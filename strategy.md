@@ -2299,3 +2299,12 @@ images) has no equivalent script yet. A staging rehearsal in a throwaway git dir
 confirmed the boundary holds: 120 files, 18.3 MiB packed, zero leaks, and the manuscript
 builds to an identical PDF from a checkout containing nothing else.
 
+Repository created 20 September 2026, private:
+`github.com/alexander-stottmeister/pphi2-cutoff-removal`, one commit, 120 files, 17.0 MiB
+packed, verified against GitHub's own tree listing rather than the local index. It is not
+public yet. Inclusion decisions: Part II ships; AI assistance is disclosed in the README
+and by commit trailers; `output/pdf/` is kept minus its 6 files whose rendered text
+duplicates a document already in the tree, one of which an MD5 comparison would have
+missed because it was a rebuild differing only in timestamp bytes. The private workspace
+repo `testing-ground` stays private and now ignores `/glimm_jaffe/`.
+

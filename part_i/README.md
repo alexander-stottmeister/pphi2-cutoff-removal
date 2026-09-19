@@ -176,6 +176,20 @@ Part II liminf constant, and the abstract-to-theorem promise map.
   byte-for-byte against the GitHub licenses API up to line wrapping), `LICENSE-CODE`
   (MIT, verbatim from the same API, placeholders filled), `CITATION.cff` (validated as
   YAML; ORCID, repository URL and Zenodo DOI left as marked blanks).
+- **Repository created 20 September 2026, PRIVATE.**
+  `github.com/alexander-stottmeister/pphi2-cutoff-removal`, one commit, 120 files,
+  17.0 MiB packed. Server-side check of GitHub's own tree listing: 120 files, identical
+  to the local index, and zero hits for `refs/`, `evidence/`, `dossier_images`, `*.png`,
+  `*dossier*.pdf`, `.aux`, `.log` or `.DS_Store`. **Not yet public**; the flip is
+  `gh repo edit --visibility public --accept-visibility-change-consequences`.
+  `/glimm_jaffe/` added to the private workspace repo's `.gitignore` so the nested
+  repository is never absorbed as a gitlink.
+- **Three inclusion decisions (author, 20 September 2026).** Part II ships in the first
+  release. AI assistance is disclosed in the README and by `Co-Authored-By` trailers.
+  `output/pdf/` was to be dropped only if it were pure duplication, and it is not: of its
+  16 files, 6 have rendered text identical to a document already in the tree and are
+  excluded by name, while 10 are unique and are kept. Comparing MD5 alone would have
+  missed one of the six, a rebuild differing only in its timestamp bytes.
 - **Not published.** Source PDFs (`refs/`) and every citation page image
   (`**/evidence/`, `part_ii/dossier_images/`) stay out of any repository: third-party
   copyright, and the JSTOR images carry a watermark naming the downloading institution.
