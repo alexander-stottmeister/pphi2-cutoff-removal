@@ -1,0 +1,262 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Sw}{\mathcal S'}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Ent}{Ent}
+\DeclareMathOperator{\supp}{supp}
+
+\title{(T3): marginalisation of the log-Sobolev inequality to sharp time\\
+\large and which Dirichlet form the programme actually needs}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+(T3) is settled. If the space-cutoff Euclidean measure $\nu_g$ on $\Sw(\R^2)$ satisfies a Poincar\'e
+or log-Sobolev inequality with respect to the \emph{covariance-weighted} Dirichlet form
+$\E_\nu\ip{\nabla F}{G\nabla F}$, then its sharp-time marginal $\mu_g$ satisfies the same
+inequality, \emph{with the same constant}, with respect to $\E_\mu\ip{\nabla f}{C\nabla f}$,
+$C=(2\mu)^{-1}$ (Theorem~\ref{thm:T3}). Two exact facts drive it: the sharp-time restriction of
+$G=(-\Delta_2+m_0^2)^{-1}$ \emph{is} $C$ (Lemma~\ref{lem:sharptime}), and time-mollification only
+\emph{decreases} the Dirichlet form, so the inequality survives the limit in the favourable
+direction (Lemma~\ref{lem:moll}). Both verified numerically (\S\ref{sec:num}).
+
+\smallskip
+\noindent\textbf{A sharper question for (T1).} The main theorem of \texttt{h6-attack.tex} requires
+the \emph{covariance-weighted} form. The plain $L^2$ Dirichlet form is \textbf{useless} for it: for
+a Wick monomial of degree $n\ge2$, $\E\bigl[|\nabla F_n[u]|_{L^2}^2\bigr]=+\infty$ identically,
+because $\E[({:}\varphi^m(x){:})^2]=m!\,C(0)^m=\infty$ (Proposition~\ref{prop:L2fails}).
+Covariance-weighted LSI implies $L^2$-LSI but not conversely. So (T1) must verify not merely
+\emph{that} Bauerschmidt--Dagallier prove an LSI, but \emph{in which form}. That is now the
+sharpest single question in the programme.
+\end{abstract}
+
+\section*{Update (8 August 2026)}
+
+The conditional marginalisation theorem below remains a statement about a
+\emph{covariance-weighted} two-dimensional inequality.  The question posed in the abstract has
+now been answered by checking \cite[Eq.~(1.6) and Thm.~1.1]{BD}: their LSI uses the unweighted
+lattice $\ell^2$ gradient.  It therefore does not satisfy hypothesis (P-2d) and does not feed
+Theorem~\ref{thm:T3}.  No comparison reverses this mismatch because the Fourier multiplier of
+$C=(2\sqrt{-\partial_x^2+m_0^2})^{-1}$ tends to zero at high momentum.  Thus (T3) is a valid
+conditional lemma, but the proposed BD $\Rightarrow$ (P-2d) $\Rightarrow$ (P-U) route is closed.
+See \texttt{remaining.tex} for the corrected program.
+
+\section{Statement}
+
+Let $G:=(-\Delta_{\R^2}+m_0^2)^{-1}$, $\Phi_G$ the centred Gaussian measure on $\Sw(\R^2)$ with
+covariance $G$, and $d\nu_g=Z_g^{-1}e^{-U_g}d\Phi_G$ with
+$U_g=\lambda\int_{\R^2}{:}P(\varphi(t,x)){:}\,g(x)\,dt\,dx$ the space-cutoff Euclidean measure; by
+Feynman--Kac--Nelson its sharp-time marginal under $\pi:\varphi\mapsto\varphi(0,\cdot)$ is the
+ground-state measure $\mu_g=\pi_*\nu_g=\Omega_g^2\,d\varphi_0$. Write $\mu=(-\partial_x^2+m_0^2)^{1/2}$
+and $C=(2\mu)^{-1}$.
+
+\begin{definition}[covariance-weighted Dirichlet form]\label{def:form}
+For a centred Gaussian reference with covariance $\mathcal C$ and $\nu\ll\Phi_{\mathcal C}$, put
+$\mathcal E_{\mathcal C}^\nu(F):=\E_\nu\ip{\nabla F}{\mathcal C\,\nabla F}$, $\nabla$ the
+Cameron--Martin gradient. This is the form for which the Gaussian itself satisfies Poincar\'e with
+constant one, $\Var_{\Phi_{\mathcal C}}(F)\le\E_{\Phi_{\mathcal C}}\ip{\nabla F}{\mathcal C\nabla F}$.
+\end{definition}
+
+\begin{hypothesis}[(P-2d)]\label{hyp:P2d}
+There is $c_P<\infty$, independent of $g$, such that, for all $F$ in the form domain,
+\[
+ \Var_{\nu_g}(F)\le c_P\,\E_{\nu_g}\ip{\nabla F}{G\nabla F}.
+\]
+\end{hypothesis}
+
+\section{The sharp-time covariance identity}
+
+\begin{lemma}\label{lem:sharptime}
+For every $k\in\R$, with $\mu(k)=(k^2+m_0^2)^{1/2}$,
+\[
+  \int_\R\frac{dk_0}{2\pi}\ \frac{1}{k_0^2+k^2+m_0^2}\;=\;\frac{1}{2\mu(k)} .
+\]
+Consequently $\pi_*\Phi_G=\varphi_0$, the centred Gaussian on $\Sw(\R)$ with covariance
+$C=(2\mu)^{-1}$; equivalently $G\bigl((0,x),(0,y)\bigr)=C(x-y)$.
+\end{lemma}
+
+\begin{proof}
+$\int_\R dk_0\,(k_0^2+a^2)^{-1}=\pi/a$ with $a=\mu(k)>0$; divide by $2\pi$. A centred Gaussian is
+determined by its covariance, and the covariance of $\pi_*\Phi_G$ has Fourier symbol
+$\int\frac{dk_0}{2\pi}(k_0^2+\mu(k)^2)^{-1}$.
+\end{proof}
+
+\section{Marginalisation}
+
+Fix a smooth probability density $\rho\ge0$ on $\R$ with $\int\rho=1$, and set
+$\rho_\varepsilon(t)=\varepsilon^{-1}\rho(t/\varepsilon)$ and
+$\varphi_\varepsilon(x):=\int\rho_\varepsilon(t)\varphi(t,x)\,dt$. For a bounded smooth cylinder
+functional $f$ on $\Sw(\R)$ put $F_\varepsilon(\varphi):=f(\varphi_\varepsilon)$.
+
+\begin{lemma}[mollification decreases the form]\label{lem:moll}
+$\displaystyle \ip{\nabla F_\varepsilon}{G\,\nabla F_\varepsilon}
+ =\int\frac{dk}{2\pi}\,|\widehat{v_\varepsilon}(k)|^2\,s_\varepsilon(k)$, where
+$v_\varepsilon:=(\nabla f)(\varphi_\varepsilon)$ and
+\[
+  s_\varepsilon(k):=\int\frac{dk_0}{2\pi}\,\frac{|\hat\rho(\varepsilon k_0)|^2}{k_0^2+\mu(k)^2} .
+\]
+Moreover $0\le s_\varepsilon(k)\le\widehat C(k)=\tfrac1{2\mu(k)}$ for every $\varepsilon>0$, and
+$s_\varepsilon(k)\to\widehat C(k)$ as $\varepsilon\downarrow0$. Hence
+\begin{equation}\label{eq:dominate}
+  \ip{\nabla F_\varepsilon}{G\nabla F_\varepsilon}\ \le\ \ip{v_\varepsilon}{C\,v_\varepsilon}
+  \qquad\text{pointwise, for every }\varepsilon>0 .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+$F_\varepsilon$ depends on $\varphi$ only through $\varphi_\varepsilon$, so
+$\delta F_\varepsilon/\delta\varphi(t,x)=\rho_\varepsilon(t)\,v_\varepsilon(x)$, i.e.
+$\nabla F_\varepsilon=\rho_\varepsilon\otimes v_\varepsilon$. Pairing with $G$ in Fourier and using
+$\widehat{\rho_\varepsilon}(k_0)=\hat\rho(\varepsilon k_0)$ gives the displayed formula. Since
+$\rho\ge0$ and $\int\rho=1$ we have $|\hat\rho|\le1$, whence
+$s_\varepsilon(k)\le\int\frac{dk_0}{2\pi}(k_0^2+\mu^2)^{-1}=\widehat C(k)$ by
+Lemma~\ref{lem:sharptime}; convergence is dominated convergence with the same integrable majorant,
+using $\hat\rho(0)=1$ and continuity of $\hat\rho$.
+\end{proof}
+
+\begin{theorem}[(T3)]\label{thm:T3}
+Assume \textup{(P-2d)}. Then for every bounded smooth cylinder functional $f$ on $\Sw(\R)$,
+\[
+  \Var_{\mu_g}(f)\ \le\ c_P\ \E_{\mu_g}\ip{\nabla f}{C\,\nabla f} ,
+\]
+with the \emph{same} constant $c_P$, uniformly in $g$. The same statement holds with $\Var$
+replaced by $\Ent(\,\cdot^2)$ and $c_P$ by the log-Sobolev constant.
+\end{theorem}
+
+\begin{proof}
+Apply (P-2d) to $F_\varepsilon$ and use \eqref{eq:dominate}:
+\[
+  \Var_{\nu_g}(F_\varepsilon)\ \le\ c_P\,\E_{\nu_g}\ip{\nabla F_\varepsilon}{G\nabla F_\varepsilon}
+  \ \le\ c_P\,\E_{\nu_g}\ip{v_\varepsilon}{C\,v_\varepsilon} .
+\]
+The sharp-time restriction exists for $P(\varphi)_2$, so $\varphi_\varepsilon\to\varphi(0,\cdot)$ in
+$\nu_g$-probability; as $f$ and $\nabla f$ are bounded and continuous, bounded convergence gives
+$\Var_{\nu_g}(F_\varepsilon)\to\Var_{\nu_g}(f\circ\pi)=\Var_{\mu_g}(f)$ and
+$\E_{\nu_g}\ip{v_\varepsilon}{Cv_\varepsilon}\to\E_{\mu_g}\ip{\nabla f}{C\nabla f}$. Passing to the
+limit gives the claim. The entropy version is identical, the only change being that
+$\Ent_{\nu_g}(F_\varepsilon^2)\to\Ent_{\mu_g}(f^2)$, which holds for $f$ bounded above and below
+away from zero; the general case follows by the usual truncation.
+\end{proof}
+
+\begin{remark}[why the direction is favourable]
+The whole content is \eqref{eq:dominate}: smearing in time can only \emph{shrink} the Dirichlet
+form, because $|\hat\rho|\le1$. Had the inequality gone the other way, the limit
+$\varepsilon\downarrow0$ would have destroyed the estimate. No constant is lost.
+\end{remark}
+
+\section{Which Dirichlet form: a sharper question for (T1)}\label{sec:which}
+
+\begin{proposition}\label{prop:L2fails}
+Let $F_n[u]=\int u\,{:}\varphi^n{:}$ with $u\not\equiv0$ and $n\ge2$. Then the \emph{unweighted}
+Dirichlet form is identically infinite:
+\[
+  \E_{\varphi_0}\Bigl[\,\bigl|\nabla F_n[u]\bigr|_{L^2}^2\Bigr]
+  =n^2\!\int u(x)^2\,\E\bigl[({:}\varphi(x)^{n-1}{:})^2\bigr]dx
+  =n^2\,(n-1)!\,C(0)^{\,n-1}\!\int u^2\;=\;+\infty ,
+\]
+since $C(0)=+\infty$ logarithmically in one space dimension.
+\end{proposition}
+
+\begin{proof}
+$\nabla F_n[u](x)=n\,u(x){:}\varphi(x)^{n-1}{:}$, and
+$\E[({:}\varphi(x)^{m}{:})^2]=m!\,C(x,x)^m$ by the Wick isometry.
+\end{proof}
+
+\begin{remark}[consequence]\label{rem:consequence}
+The main theorem of \texttt{h6-attack.tex} is driven by the identity
+$\ip{\nabla F_n[u]}{C\nabla F_n[u]}
+=n^2\iint u(x)u(y)C(x-y){:}\varphi(x)^{n-1}{:}{:}\varphi(y)^{n-1}{:}$: the factor $C(x-y)$
+supplied by the \emph{weighting} is exactly what removes the coincident-point singularity that
+Proposition~\ref{prop:L2fails} exhibits. Therefore:
+\begin{itemize}
+\item a covariance-weighted LSI \textbf{is} what the programme needs;
+\item it implies the $L^2$ version, since
+      $\ip{\nabla F}{C\nabla F}\le\|C\|_{\rm op}|\nabla F|^2_{L^2}=(2m_0)^{-1}|\nabla F|^2_{L^2}$;
+\item the converse fails, because $\widehat C(k)=(2\mu(k))^{-1}\to0$ as $|k|\to\infty$, so $C$ is
+      not bounded below and no reverse comparison exists.
+\end{itemize}
+The source check now shows that Bauerschmidt--Dagallier use the
+$L^2$/stochastic-quantisation form, so their theorem cannot enter Theorem~\ref{thm:T3}.  Moreover,
+even a covariance-weighted estimate would not by itself validate the former Theorem~2.3 of
+\texttt{h6-attack.tex}; that proof has an independent divergent-trace error.  The corrected
+conditional recursion and its additional hypotheses are in \texttt{remaining.tex},
+Proposition~6.2.
+\end{remark}
+
+\section{Numerical verification}\label{sec:num}
+
+Both analytic inputs checked numerically ($m_0=1$; $k_0$-integration on $[-4000,4000]$ with
+$4\cdot10^6$ points; Gaussian mollifier $|\hat\rho(\varepsilon k_0)|^2=e^{-(\varepsilon k_0)^2}$).
+
+\begin{center}
+\begin{tabular}{rrrr}
+\multicolumn{4}{c}{\textbf{(a) Lemma~\ref{lem:sharptime}}}\\
+\toprule
+$k$ & numeric & $1/(2\mu(k))$ & rel.\ error\\
+\midrule
+$0$   & $0.4999204$ & $0.5000000$ & $1.6\cdot10^{-4}$\\
+$1$   & $0.3534738$ & $0.3535534$ & $2.2\cdot10^{-4}$\\
+$10$  & $0.0496723$ & $0.0497519$ & $1.6\cdot10^{-3}$\\
+\bottomrule
+\end{tabular}
+\qquad
+\begin{tabular}{rrr}
+\multicolumn{3}{c}{\textbf{(b) Lemma~\ref{lem:moll}}, $k=1$}\\
+\toprule
+$\varepsilon$ & $s_\varepsilon(1)$ & $\le\widehat C(1)$?\\
+\midrule
+$1.00$ & $0.118866$ & yes\\
+$0.30$ & $0.232172$ & yes\\
+$0.10$ & $0.303518$ & yes\\
+$0.03$ & $0.337244$ & yes\\
+$0.01$ & $0.347981$ & yes\\
+\midrule
+$0$ & $0.353553$ & ---\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The residual error in (a) is the truncation of the $1/k_0^2$ tail at $|k_0|=4000$, consistent in
+size with $2\mu(k)/(\pi\cdot4000)$. In (b), $s_\varepsilon$ increases monotonically to
+$\widehat C$ from below at every $k$ tested, as Lemma~\ref{lem:moll} asserts.
+
+\section{Status}
+
+\begin{itemize}
+\item \textbf{(T3) is proved} (Theorem~\ref{thm:T3}), with no loss of constant, given (P-2d).
+\item \textbf{The BD premise fails}: \cite{BD} proves the unweighted form, not (P-2d).  Hence its
+      inequality cannot be passed through Theorem~\ref{thm:T3} to obtain (P-U).
+\item Tasks (T1), (T2), and (T4) are irrelevant to this route unless a genuinely
+      covariance-weighted two-dimensional estimate is first established.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{BD} R.~Bauerschmidt and B.~Dagallier, \emph{Log-Sobolev inequality for the $\varphi^4_2$
+and $\varphi^4_3$ measures}, Comm.\ Pure Appl.\ Math.\ \textbf{77} (2024) 2579--2612;
+arXiv:2202.02295.
+\bibitem{M3} Milestone M3, \texttt{../m3/m3.tex}.
+\end{thebibliography}
+
+\end{document}

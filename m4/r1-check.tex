@@ -1,0 +1,369 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{srcfact}[theorem]{Source Fact}
+\newtheorem{mechanism}[theorem]{Mechanism}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\He}{He}
+
+\title{Gate R1, discharged:\\ \large the cutoff-uniformity of the Glimm--Jaffe--Spencer estimates}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Gate R1 asked whether the constant in \cite[Thm.~1.1.8]{GJS} is uniform over the full cutoff
+class $\{h:\ 0\le h\le1,\ \supp h\ \text{compact}\}$, the printed statement saying only
+``uniformly as $h\to1$''. The gate is \textbf{discharged}, on three independent grounds.
+
+\smallskip
+\noindent\textbf{(1) The uniformity is printed after all.} On p.~629, in \S4 of \cite{GJS}:
+\emph{``The estimates of Theorems 1.1.8, 1.1.11, 3.1 and 4.1 are uniform in the space cutoff
+$h$, and the path space integrals converge as $h\to1$.''} This sentence, missed in the first
+audit pass because it sits in \S4 rather than \S1.1, asserts class-uniformity for precisely the
+four theorems the programme uses.
+
+\smallskip
+\noindent\textbf{(2) The mechanism audit explains why.} The convergence proof is a
+\emph{kernel-norm} argument: the norm (2.4.3) contains no Gaussian integral and no $e^{-V}$. The
+cutoff enters the expansion in exactly two ways --- multiplicatively inside vertex kernels, where
+it is majorised at the first step by $|\lambda h(x)|\le\lambda$ (printed: ``$v(x)$ is $O(\lambda)$
+times the characteristic function of a lattice square'', p.~626), and through the spectator
+factor $e^{-V(h)}$, which is never estimated: the expansion terminates in terms proportional to
+$\int e^{-V}d\Phi$, and the final division by exactly this quantity cancels every occurrence
+(their (4.3)--(4.4)). Hence no stability bound enters any constant, and the constants are
+functions of $(m_0,K_2,K_1,\lambda,n,\varepsilon,\mathscr P)$ only --- matching the printed
+constant-choice order of Theorem~2.4.1.
+
+\smallskip
+\noindent\textbf{(3) The only $h$-sensitive analytic prerequisites are proved here, uniformly.}
+Well-definedness of $dq_h$ and the integrability that legitimises the expansion identities
+require two facts, both established below with all $h$-dependence explicit:
+$e^{-\lambda|a_0|\,|K|}\le Z(h)<\infty$ (Lemma~\ref{lem:Z}) and
+$\sup_{0\le h\le1,\ \supp h\subseteq K}\|e^{-V(h)}\|_{L^p(d\Phi)}<\infty$
+(Theorem~\ref{thm:stability}). The two properties used are exactly $h\ge0$ (in the pointwise Wick
+lower bound) and $h\le1$ (in the $L^2$ kernel bounds) --- explaining why GJS chose the class
+$0\le h\le1$ on p.~589.
+
+\smallskip
+\noindent Consequently the (M$_2$) theorem of \texttt{m2-audit.tex} and the (G) theorem of
+\texttt{g-side.tex} are conditional on nothing beyond the printed theorems of \cite{GJS}
+themselves; the weak-coupling closure holds at the ordinary standard of citation. Gate R2
+(the $K_1$ exponent) remains open but affects only the numerical size of constants.
+\end{abstract}
+
+\section{The gate}
+
+\begin{definition}[R1]
+Let $C_8$ be the constant of \cite[Thm.~1.1.8]{GJS}. R1 is the assertion that $C_8$ may be chosen
+independently of $h$ within the class
+$\mathcal C:=\{h\ \text{measurable}:\ 0\le h\le1,\ \supp h\ \text{compact}\}$
+of \cite[p.~589]{GJS} --- not merely along some sequence $h\uparrow1$. The derivations of
+(M$_2$) and (G) use members $h_{T,g}=\mathbf 1_{[-T,T]}\otimes g$ of $\mathcal C$ which do
+\emph{not} increase to $1$, so R1 is load-bearing.
+\end{definition}
+
+\section{The printed statement}
+
+\begin{srcfact}[p.~629, \S4]\label{sf:printed}
+\emph{``It is important to work with a translation invariant Hamiltonian, in order that time
+translation preserve subspaces of bounded momentum. \textbf{The estimates of Theorems 1.1.8,
+1.1.11, 3.1 and 4.1 are uniform in the space cutoff $h$, and the path space integrals converge
+as $h\to1$.} Thus these theorems hold in the infinite volume limit, and we proceed to work in
+the limit $h=1$.''}
+\end{srcfact}
+
+Two remarks on the reading. First, the sentence separates the two assertions --- uniformity of
+the estimates in $h$, \emph{and} convergence as $h\to1$ --- so ``uniform in $h$'' quantifies over
+the class, not over a tail of a sequence; the second clause would otherwise be redundant.
+Second, the four theorems named are exactly the moment bound (1.1.8), the decoupling estimate
+(1.1.11), and the two norm-decrease engines (3.1, 4.1); together with Theorem~1.1.7 (printed
+``independent of $h$'' in its own statement, p.~594) these are all the source inputs of
+\texttt{m2-audit.tex} and \texttt{g-side.tex}.
+
+This alone would settle R1 at the citation standard. The remainder of this note establishes the
+stronger claim: the uniformity is \emph{structural}, i.e.\ visible in the anatomy of the proof,
+so that the reading does not rest on one sentence.
+
+\section{Mechanism audit}\label{sec:mech}
+
+The expansion machinery of \cite[\S\S2--4]{GJS} manipulates integrals
+$\int R(\Phi)\,B\,e^{-V(h)}\,d\Phi_{C}$, $C$ an interpolated covariance, through five devices. We
+list every point of contact with $h$.
+
+\begin{mechanism}[the norms are kernel norms; no $h$]\label{m:norm}
+The norm (2.4.3) of an expansion term $m_\alpha$ is
+$\int du\,ds\,\exp[\cdots]\,\|w(\alpha,u,s,y,\cdot)\|_{L^2}$ times combinatorial weights
+(2.4.4)--(2.4.5) built from $K_1,K_2,N(\Delta)$, times $e^{\tau t}$: a functional of the
+\emph{kernel} $w$ alone. No Gaussian expectation, no $e^{-V}$, no $h$ appears in the norm. The
+norm-decrease Theorems 2.4.1, 3.1, 4.1 are inequalities between such kernel functionals, and
+their proofs (Lemmas 2.4.2--2.4.4, (3.2)--(3.6), \S4) estimate kernels: contraction kernels
+$\delta C$ against vertex kernels.
+\end{mechanism}
+
+\begin{mechanism}[covariances are $h$-free]\label{m:cov}
+The interpolation $C(s)=sC'+(1-s)C''$ (2.0.1) is between free and Dirichlet-on-contours
+covariances; the kernels (2.2.2)--(2.2.3) are built from $(-d^2/dx^2+m_0^2)$ and contour
+geometry. Verified legible: no $h$ enters any covariance, any contraction kernel, or any of the
+Propositions 2.1.$x$.
+\end{mechanism}
+
+\begin{mechanism}[$h$ in vertices, majorised at first contact]\label{m:vertex}
+Vertices arise from functional derivatives of the spectator:
+\[
+  \frac{\delta}{\delta\Phi(x)}e^{-V(h)}
+  =-\lambda\,h(x)\,{:}\mathscr P'(\Phi(x)){:}\;e^{-V(h)},
+\]
+and iterates with $\mathscr P'',\dots$ So a vertex contributes to the \emph{kernel} a factor
+$\lambda h(x)p_j$ supported in a lattice square. The very first estimate applied to it is the
+printed one (p.~626): ``\emph{$v(x)$ is $O(\lambda)$ times the characteristic function of a
+lattice square}'' --- i.e.\ $|\lambda h(x)p_j|\le O(\lambda)\chi_\Delta(x)$, using $0\le h\le1$
+and nothing else. Downstream of this line the kernels are $h$-free. This is the single point
+where $h$ touches a quantitative estimate.
+\end{mechanism}
+
+\begin{mechanism}[the identities are exact and $h$-blind]\label{m:ident}
+The devices (2.0.4)--(2.0.5) (covariance interpolation), (2.2.1), (2.2.5), (2.2.7) (advancing
+annihilators), (4.1)--(4.2), (4.5) (integration by parts) are identities applied to integrands
+$F=R(\Phi)B_Te^{-V(h)}$; $e^{-V(h)}$ rides along inside $F$. Their validity requires only that
+the integrals exist --- integrability, not bounds. Theorem~\ref{thm:stability} below supplies
+this uniformly over $\mathcal C$ (per-$h$ finiteness would suffice).
+\end{mechanism}
+
+\begin{mechanism}[termination cancels every $e^{-V}$; no stability constant]\label{m:cancel}
+The full expansion (4.3) reads
+\[
+  \int AB_T\,e^{-V}d\Phi_{C_0}
+  =\sum_i\int\Bigl[\int dy\,w_i(y)\,{:}\Phi(y_1)\cdots\Phi(y_i){:}\Bigr]B_T\,e^{-V}d\Phi_{C_0}
+  \;+\;\sum_r w_r\int e^{-V}d\Phi_{C_0},
+\]
+with $w_i,w_r$ \emph{numerical kernels} controlled by the norm inequalities; the remainder
+terms are literally multiples of $\int e^{-V}d\Phi$ (Table~1: final-$r$ terms have ``no vertices,
+no annihilators''). The proof of Theorems 1.1.8/1.1.11 then \emph{divides (4.3) by
+$\int e^{-V}d\Phi_{C_0}$} (p.~628): the first sum reassembles into $dq_h$-integrals of the
+comparison polynomials, and the remainder becomes $\sum_rw_r$ exactly. Every factor $e^{-V(h)}$
+cancels against the normalisation. Consequently \emph{no upper or lower bound on
+$\int e^{-V}d\Phi$, and no stability estimate, enters any constant of the proof}.
+\end{mechanism}
+
+\begin{proposition}[structural uniformity]\label{prop:struct}
+In the proofs of Theorems 1.1.7, 1.1.8, 1.1.11, 2.4.1, 3.1 and 4.1 of \cite{GJS}, the cutoff $h$
+enters only through Mechanism~\ref{m:vertex}, where it is majorised using $0\le h\le1$, and
+through Mechanism~\ref{m:ident}, where only existence of the integrals is used. All constants
+are determined by $(m_0,K_2,K_1,\lambda,n,\varepsilon,\mathscr P)$, chosen in the printed order
+(proof of Thm.~2.4.1: ``We choose the constants of our theorem in the following order: $m_0$,
+$K_2$, $K_1$, and then $\lambda$''), with no reference to $h$.
+\end{proposition}
+
+\begin{proof}
+By Mechanisms \ref{m:norm}--\ref{m:cancel}: the quantitative chain is entirely at the level of
+kernel norms (\ref{m:norm}), whose ingredients are $h$-free covariance/contraction kernels
+(\ref{m:cov}) and vertex kernels majorised by $O(\lambda)\chi_\Delta$ (\ref{m:vertex}); the
+measure-level steps are exact identities (\ref{m:ident}) or exact cancellations (\ref{m:cancel}).
+\end{proof}
+
+\section{The two $h$-sensitive analytic facts, proved}\label{sec:analytic}
+
+Notation: $d\Phi$ = Gaussian with covariance $G=(-\Delta_{\R^2}+m_0^2)^{-1}$;
+$G(\zeta)=\frac1{2\pi}K_0(m_0|\zeta|)$; $\mathscr P(\xi)=\sum_{n=0}^{2p'}a_n\xi^n$,
+$a_{2p'}>0$; $h\in\mathcal C$ with $\supp h\subseteq K$, $K$ compact;
+$V(h)=\lambda\int h\,{:}\mathscr P(\Phi){:}\,dz$, $Z(h)=\int e^{-V(h)}d\Phi$. Let
+$\delta_\kappa$ be a fixed smooth approximate identity at scale $\kappa^{-1}$,
+$\Phi_\kappa=\delta_\kappa*\Phi$, $c_\kappa(z)=\E[\Phi_\kappa(z)^2]\le\frac1{2\pi}\log\kappa+C_0$
+(translation invariance), and
+$V_\kappa(h)=\lambda\int h\,{:}\mathscr P(\Phi_\kappa){:}_{c_\kappa}dz$, Wick ordered with
+respect to the variance of the cutoff field, so that $V_\kappa(h)\to V(h)$ in every
+$L^p(d\Phi)$.
+
+\begin{lemma}[normalisation]\label{lem:Z}
+For every $h\in\mathcal C$ with $\supp h\subseteq K$:
+$Z(h)\ge e^{-\lambda|a_0|\,|K|}>0$, and $Z(h)<\infty$ by Theorem~\ref{thm:stability}. Hence
+$dq_h$ is a well-defined probability measure on the whole class $\mathcal C$.
+\end{lemma}
+
+\begin{proof}
+$\E[V(h)]=\lambda a_0\int h\in[-\lambda|a_0||K|,\lambda|a_0||K|]$, since Wick monomials of
+degree $\ge1$ have mean zero and $0\le h\le\mathbf 1_K$. Jensen's inequality for the probability
+measure $d\Phi$ gives $Z(h)\ge e^{-\E[V(h)]}\ge e^{-\lambda|a_0||K|}$.
+\end{proof}
+
+\begin{lemma}[Wick lower bound; the $h\ge0$ entry]\label{lem:wick}
+There is $b=b(\mathscr P)$ such that for all $c\ge0$ and $x\in\R$,
+${:}\mathscr P{:}_c(x):=\sum_na_nc^{n/2}\He_n(x/\sqrt c)\ge-b\,(1+c)^{p'}$. Consequently, for
+every $h\in\mathcal C$ with $\supp h\subseteq K$ and every $\kappa\ge2$,
+\[
+  V_\kappa(h)\ \ge\ -\lambda\,b\,|K|\,\bigl(1+\tfrac1{2\pi}\log\kappa+C_0\bigr)^{p'}
+  \ \ge\ -c_1(\lambda,\mathscr P,K)\,(\log\kappa)^{p'} .
+\]
+\end{lemma}
+
+\begin{proof}
+Expanding the Hermite polynomials, ${:}\mathscr P{:}_c(x)=\sum_{m=0}^{2p'}\beta_mx^m$ with
+$\beta_{2p'}=a_{2p'}$ and $|\beta_m|\le C(\mathscr P)(1+c)^{(2p'-m)/2}$ (each power $c^j$ comes
+with $x^{n-2j}$). For a polynomial $Ax^{2p'}+\sum_{m<2p'}\beta_mx^m$ with $A>0$, weighted
+AM--GM gives, for each $m<2p'$,
+\[
+  |\beta_m||x|^m\ \le\ \frac{A}{4p'}\,x^{2p'}
+  +C_{p'}\Bigl(\frac{|\beta_m|^{2p'}}{A^{m}}\Bigr)^{\!1/(2p'-m)},
+\]
+and summing, $\min_x{:}\mathscr P{:}_c\ge-C_{p'}'\sum_m(|\beta_m|^{2p'}/A^m)^{1/(2p'-m)}$. With
+$|\beta_m|\le C(1+c)^{(2p'-m)/2}$ the exponent of $(1+c)$ is
+$\frac{2p'}{2p'-m}\cdot\frac{2p'-m}{2}=p'$, uniformly in $m$. The second claim follows from
+$0\le h$, $\int h\le|K|$, and the pointwise bound applied under the integral --- this is the
+single use of the \emph{sign} of $h$.
+\end{proof}
+
+\begin{lemma}[ultraviolet difference; the $h\le1$ entry]\label{lem:uv}
+There is $c_2=c_2(\lambda,\mathscr P,K)$ such that for all $h\in\mathcal C$ with
+$\supp h\subseteq K$ and all $\kappa\ge2$,
+\[
+  \bigl\|V(h)-V_\kappa(h)\bigr\|_{L^2(d\Phi)}^2\ \le\ c_2\,\kappa^{-1}(\log\kappa)^{2p'} .
+\]
+\end{lemma}
+
+\begin{proof}
+By the Wick isometry, with $G^{(1)}_\kappa:=(\delta_\kappa\otimes1)*G$ and
+$G_\kappa:=(\delta_\kappa\otimes\delta_\kappa)*G$,
+\[
+  \|V(h)-V_\kappa(h)\|_{L^2}^2
+  =\lambda^2\sum_{n=1}^{2p'}a_n^2\,n!\iint h(z)h(z')\,
+  \bigl[G^n-2(G^{(1)}_\kappa)^n+G_\kappa^n\bigr](z-z')\,dz\,dz' ,
+\]
+(the $c_\kappa$-Wick ordering makes the diagonal subtractions match; degree $0$ cancels).
+Using $|h|\le\mathbf 1_K$ --- the single use of the \emph{upper} bound on $h$ --- it suffices to
+bound $\iint_{K\times K}|G^n-(J)^n|$ for $J\in\{G^{(1)}_\kappa,G_\kappa\}$. The classical Bessel
+facts $0<G(\zeta)\le C(1+|\log|\zeta||)e^{-m_0|\zeta|}$ and
+$|\nabla G(\zeta)|\le C(|\zeta|^{-1}+1)e^{-m_0|\zeta|}$ give, for the average $J$ of $G$ over
+balls of radius $\le2/\kappa$:
+$J(\zeta)\le C(1+\log\kappa)$ for all $\zeta$, and
+$|J(\zeta)-G(\zeta)|\le C\kappa^{-1}(|\zeta|^{-1}+1)$ for $|\zeta|\ge4/\kappa$. Split the
+integral over $\zeta=z-z'$:
+\[
+  \int_{|\zeta|<4/\kappa}\bigl[G^n+J^n\bigr]
+  \le C_n\Bigl[\int_{|\zeta|<4/\kappa}(1+|\log|\zeta||)^nd\zeta+\kappa^{-2}(1+\log\kappa)^n\Bigr]
+  \le C_n'\kappa^{-2}(\log\kappa)^n,
+\]
+\[
+  \int_{4/\kappa\le|\zeta|\le R}n\max(G,J)^{n-1}|G-J|
+  \le C_n\kappa^{-1}\!\int_0^R(1+|\log r|)^{n-1}(1+r)\,dr
+  \le C_n(R)\,\kappa^{-1},
+\]
+with $R=\operatorname{diam}K$; multiply by $|K|$ for the outer variable and sum over $n\le2p'$.
+\end{proof}
+
+\begin{theorem}[$h$-uniform stability]\label{thm:stability}
+For every $p<\infty$ and compact $K$,
+\[
+  \sup\bigl\{\|e^{-V(h)}\|_{L^p(d\Phi)}\ :\ h\in\mathcal C,\ \supp h\subseteq K\bigr\}\ <\ \infty .
+\]
+\end{theorem}
+
+\begin{proof}
+$V(h)-V_\kappa(h)$ is a sum of Wick chaoses of order $\le2p'$, so Nelson's hypercontractive
+moment comparison ($\|X\|_{L^q}\le(q-1)^{r/2}\|X\|_{L^2}$ for $X$ in the $r$-th chaos; an
+$h$-free tool, \cite[\S I.5, Thm.~V.9]{SimonBook}) applies. For $b\ge b_0(\lambda,\mathscr P,K)$
+choose $\kappa=\kappa(b)$ by $c_1(\log\kappa)^{p'}=b/2$, i.e.\
+$L:=\log\kappa=(b/2c_1)^{1/p'}$. By Lemma~\ref{lem:wick}, $\{V(h)\le-b\}\subseteq
+\{V(h)-V_\kappa(h)\le-b/2\}$, so by Chebyshev in $L^{2q}$ and Lemma~\ref{lem:uv},
+\[
+  \Pr\bigl[V(h)\le-b\bigr]
+  \ \le\ \Bigl(\frac2b\Bigr)^{2q}(2q)^{2p'q}\,
+  \bigl(c_2\,e^{-L}L^{2p'}\bigr)^{q}
+  \ =\ \Bigl[\frac{2\sqrt{c_2}}{b}\,(2q)^{p'}\,L^{p'}e^{-L/2}\Bigr]^{2q}.
+\]
+Choose $2q=\exp\bigl(\frac{L}{4p'}\bigr)$, so that $(2q)^{p'}=e^{L/4}$ and the bracket is
+$\le\frac{2\sqrt{c_2}}{b}L^{p'}e^{-L/4}\le e^{-1}$ for $b\ge b_1(\lambda,\mathscr P,K)$, whence
+\[
+  \Pr\bigl[V(h)\le-b\bigr]\ \le\ \exp\Bigl(-\exp\Bigl(\tfrac1{4p'}(b/2c_1)^{1/p'}\Bigr)\Bigr),
+\]
+doubly exponentially small, uniformly over the stated class; and
+$\exp\bigl(\frac1{4p'}(b/2c_1)^{1/p'}\bigr)\ge2pb$ for $b$ large, since a power of $b$ inside an
+exponential beats $\log b$. Then
+$\|e^{-V(h)}\|_{L^p}^p=\int_0^\infty pe^{pb}\Pr[V(h)\le-b]\,db+O(e^{pb_1})<\infty$ with a bound
+depending only on $(p,\lambda,\mathscr P,K)$. Every constant above came from
+Lemmas~\ref{lem:wick}--\ref{lem:uv}, which used exactly $h\ge0$ and $h\le1$.
+\end{proof}
+
+\begin{remark}[why the class is what it is]
+The two halves of the constraint $0\le h\le1$ are used in complementary places: positivity in
+the pointwise lower bound (Lemma~\ref{lem:wick} would fail for $h$ of variable sign --- the
+interaction density is unbounded above \emph{and} below), boundedness in the $L^2$ kernel
+estimates (Lemma~\ref{lem:uv} and Mechanism~\ref{m:vertex}). Nothing else about $h$ ---
+smoothness, shape, time extent, monotonicity along a sequence --- is touched anywhere. This is
+the structural content of Source Fact~\ref{sf:printed}.
+\end{remark}
+
+\section{Verdict and consequences}
+
+\begin{theorem}[R1 discharged]\label{thm:verdict}
+The constants of Theorems 1.1.7, 1.1.8, 1.1.11, 3.1 and 4.1 of \cite{GJS} are uniform over
+$\mathcal C=\{0\le h\le1,\ \supp h\ \textup{compact}\}$. Grounds: the printed Source
+Fact~\ref{sf:printed} and the printed statement of Thm.~1.1.7; the structural
+Proposition~\ref{prop:struct}; and the $h$-uniform analytic prerequisites
+Lemma~\ref{lem:Z} and Theorem~\ref{thm:stability}. In particular the slab family
+$\{h_{T,g}:T>0,\ g\in\mathcal G\}$ is covered.
+\end{theorem}
+
+\begin{corollary}\label{cor:consequences}
+\emph{(i)} Theorem~4.4 of \texttt{m2-audit.tex} --- the uniform local second moment (M$_2$) ---
+holds conditional only on the printed \cite[Thm.~1.1.8]{GJS}.
+\emph{(ii)} Theorem~7.2 of \texttt{g-side.tex} --- the uniform gap (G) with $\gamma=m_1$ ---
+holds conditional only on the printed \cite[Thms.~1.1.7, 1.1.8]{GJS}.
+\emph{(iii)} With (G) and (M$_2$) supplied to the conditional LPPL theorem of
+\texttt{lppl.tex}, the full-net local-norm convergence of the spatial-cutoff ground states
+$\omega_g$, with all its listed consequences, holds in the GJS weak-coupling region at the
+ordinary standard of citation of published theorems.
+\end{corollary}
+
+\begin{remark}[what remains open, exactly]\label{rem:remaining}
+\emph{(a)} Gate R2: the exponent on $K_1$ in the norm (1.1.8) is illegible in the scan; it
+affects the numerical size of $\mathfrak K(p)$ in (M$_2$) and nothing else.
+\emph{(b)} The OCR did not permit certifying each numeric constant inside
+(2.4.6)--(2.4.17), (3.2)--(3.6); by Proposition~\ref{prop:struct} these constants are $h$-free,
+so R1 does not depend on them --- only the eventual bookkeeping of explicit numerical values
+does.
+\emph{(c)} Everything remains restricted to the GJS weak-coupling region $\lambda/m_0^2$ small;
+no claim for the full noncritical region.
+\end{remark}
+
+\section{Status}
+
+\begin{itemize}
+\item \textbf{Discharged:} Gate R1, by printed statement (p.~629) + mechanism audit
+      (\S\ref{sec:mech}) + self-contained proofs of the only two $h$-sensitive prerequisites
+      (\S\ref{sec:analytic}).
+\item \textbf{Upgraded:} (M$_2$) and (G) are now conditional only on the printed theorems of
+      \cite{GJS}; the weak-coupling closure of the spatial-cutoff programme holds at citation
+      standard.
+\item \textbf{Open:} R2 (constant size only); the numerical bookkeeping of
+      Remark~\ref{rem:remaining}(b); and everything beyond weak coupling.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{GJS} J.~Glimm, A.~Jaffe and T.~Spencer, \emph{The Wightman axioms and particle
+structure in the $\mathscr P(\phi)_2$ quantum field model}, Ann.\ of Math.\ \textbf{100} (1974)
+585--632.
+\bibitem{SimonBook} B.~Simon, \emph{The $P(\Phi)_2$ Euclidean (Quantum) Field Theory}, Princeton
+University Press, 1974.
+\end{thebibliography}
+
+\end{document}

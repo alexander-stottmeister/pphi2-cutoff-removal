@@ -1,0 +1,286 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{auditstyle}
+\lhead{Fresh Glimm--Jaffe proof audit}
+\rhead{16 August 2026}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\W}{\mathcal W}
+\newcommand{\dd}{\,d}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{Part II static projective compactness\\[3pt]
+\large A fixed-coarse interacting scaling state along a cofinal subnet}
+\author{Lamport-form proof}
+\date{16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+\textbf{Unconditional static conclusion.}  Once one state has been chosen on every
+finite-resolution algebra, weak-star compactness produces a cofinal subnet whose
+pullbacks converge simultaneously on every fixed coarse algebra.  The limiting family
+is projectively consistent and therefore defines a state on the \(C^*\)-inductive limit.
+
+The theorem proves neither convergence of the full sequence nor identification with the
+continuum \(P(\phi)_2\) vacuum.  It gives no rate, no local-state-norm convergence, no
+normality, and no limiting dynamics.
+\end{resultbox}
+
+\tableofcontents
+
+\section{Statement}
+
+\begin{definition}[directed algebraic system]
+For \(M\le N\), let \(\A_M,\A_N\) be unital \(C^*\)-algebras and let
+\[
+ \alpha_M^N:\A_M\longrightarrow\A_N                              \tag{1.1}
+\]
+be injective unital \( * \)-homomorphisms such that
+\[
+ \alpha_N^K\circ\alpha_M^N=\alpha_M^K,\qquad M\le N\le K.        \tag{1.2}
+\]
+Let \((\A_\infty,\alpha_M^\infty)\) be their \(C^*\)-inductive limit, so
+\[
+ \alpha_N^\infty\circ\alpha_M^N=\alpha_M^\infty,\qquad
+ \overline{\bigcup_M\alpha_M^\infty(\A_M)}^{\|\cdot\|}
+ =\A_\infty.                                                    \tag{1.3}
+\]
+\end{definition}
+
+\begin{theorem}[cofinal-subnet projective limit]\label{thm:compactness}
+For every \(N\), let \(\omega_N\) be a state on \(\A_N\).  Then there exist a
+directed set \(I\), a cofinal subnet map \(i\mapsto N(i)\in\mathbb N_0\), states
+\(\rho_M\in S(\A_M)\), and a state \(\Omega_\infty\in S(\A_\infty)\) such that
+\begin{align}
+ \lim_{i\in I}\omega_{N(i)}(\alpha_M^{N(i)}(A))
+ &=\rho_M(A)
+ =\Omega_\infty(\alpha_M^\infty(A)),                            \tag{1.4}\\
+ \rho_M&=\rho_{M'}\circ\alpha_M^{M'},\qquad M\le M',             \tag{1.5}
+\end{align}
+for every fixed \(M\) and every \(A\in\A_M\).
+\end{theorem}
+
+\section{Proof of Theorem \ref{thm:compactness}}
+
+\LS{1}{1}{Prove weak-star compactness at one scale.}
+
+The closed unit ball of \(\A_M^*\) is compact in
+\(\sigma(\A_M^*,\A_M)\) by Banach--Alaoglu.  Within that ball,
+\[
+ S(\A_M)=
+ \{\varphi:\varphi(1)=1,\ \varphi(A^*A)\ge0\text{ for every }A\in\A_M\}. \tag{2.1}
+\]
+For fixed \(A\), both maps
+\[
+ \varphi\longmapsto\varphi(1),\qquad
+ \varphi\longmapsto\varphi(A^*A)                               \tag{2.2}
+\]
+are weak-star continuous.  Hence every condition in (2.1) is weak-star closed.
+Therefore \(S(\A_M)\) is weak-star compact.
+
+\LS{1}{2}{Put all coarse restrictions into one compact space.}
+
+Define
+\[
+ K:=\prod_{M=0}^{\infty}S(\A_M),                               \tag{2.3}
+\]
+with the product of the weak-star topologies.  Tychonoff's theorem makes \(K\)
+compact.  For every \(N\), define \(x_N=(x_N^M)_{M\ge0}\in K\) by
+\[
+ x_N^M:=
+ \begin{cases}
+  \omega_N\circ\alpha_M^N,&M\le N,\\
+  \omega_M,&M>N.
+ \end{cases}                                                    \tag{2.4}
+\]
+The second case only fills coordinates that are eventually irrelevant.
+
+\LS{1}{3}{Extract a genuinely cofinal subnet.}
+
+Every net in a compact space has a convergent subnet.  Hence there are a directed set
+\(I\), a subnet map \(N:I\to\mathbb N_0\), and
+\((\rho_M)_M\in K\) such that
+\[
+ x_{N(i)}\longrightarrow(\rho_M)_M\quad\hbox{in }K.             \tag{2.5}
+\]
+By the definition of a subnet, the map \(i\mapsto N(i)\) is cofinal: for every
+\(M'\), there is \(i_0\) such that \(N(i)\ge M'\) whenever \(i\ge i_0\).
+Product convergence in (2.5) means, explicitly,
+\[
+ \lim_i x_{N(i)}^M(A)=\rho_M(A),\qquad A\in\A_M.                \tag{2.6}
+\]
+
+\LS{1}{4}{Prove projective consistency.}
+
+Fix \(M\le M'\) and \(A\in\A_M\).  Cofinality implies that \(N(i)\ge M'\)
+eventually.  For those \(i\), (1.2) gives
+\begin{align}
+ x_{N(i)}^{M'}(\alpha_M^{M'}(A))
+ &=\omega_{N(i)}\bigl(\alpha_{M'}^{N(i)}
+      (\alpha_M^{M'}(A))\bigr)\\
+ &=\omega_{N(i)}(\alpha_M^{N(i)}(A))
+ =x_{N(i)}^M(A).                                                \tag{2.7}
+\end{align}
+Take the limit in (2.7) and use (2.6):
+\[
+ \rho_{M'}(\alpha_M^{M'}(A))=\rho_M(A).                         \tag{2.8}
+\]
+This is exactly (1.5).
+
+\LS{1}{5}{Define the functional on the algebraic inductive union.}
+
+Set
+\[
+ \A_{\rm alg}:=\bigcup_M\alpha_M^\infty(\A_M)                  \tag{2.9}
+\]
+and prescribe
+\[
+ \Omega_0(\alpha_M^\infty(A)):=\rho_M(A).                      \tag{2.10}
+\]
+To prove that (2.10) is well-defined, suppose
+\[
+ \alpha_M^\infty(A)=\alpha_{M'}^\infty(B).                     \tag{2.11}
+\]
+Choose \(K\ge M,M'\).  By (1.3) and injectivity of
+\(\alpha_K^\infty\),
+\[
+ \alpha_M^K(A)=\alpha_{M'}^K(B).                               \tag{2.12}
+\]
+Applying \(\rho_K\) and then (2.8) gives
+\[
+ \rho_M(A)=\rho_K(\alpha_M^K(A))
+ =\rho_K(\alpha_{M'}^K(B))=\rho_{M'}(B).                       \tag{2.13}
+\]
+Thus (2.10) is independent of the representative.
+
+\LS{1}{6}{Prove positivity, normalization, and boundedness.}
+
+Every finite collection of elements of \(\A_{\rm alg}\) lies in the image of one
+\(\A_K\).  Consequently linearity of \(\Omega_0\) follows from linearity of
+\(\rho_K\).  If \(C=\alpha_M^\infty(A)\), then
+\[
+ \Omega_0(C^*C)=\rho_M(A^*A)\ge0,\qquad \Omega_0(1)=1.          \tag{2.14}
+\]
+For completeness, positivity implies the Cauchy--Schwarz inequality
+\[
+ |\rho_M(A)|^2\le\rho_M(A^*A)\rho_M(1)
+ \le\|A\|^2.                                                    \tag{2.15}
+\]
+Because every injective \( * \)-homomorphism of \(C^*\)-algebras is isometric,
+\[
+ |\Omega_0(\alpha_M^\infty(A))|
+ \le\|A\|=\|\alpha_M^\infty(A)\|.                              \tag{2.16}
+\]
+Thus \(\Omega_0\) is bounded with norm one.
+
+\LS{1}{7}{Extend and identify the coordinate limits.}
+
+By (1.3), \(\A_{\rm alg}\) is norm dense in \(\A_\infty\).  Therefore
+\(\Omega_0\) extends uniquely and continuously to a state
+\(\Omega_\infty\) on \(\A_\infty\).  Equations (2.6) and (2.10) give
+(1.4).  \QedStep
+
+\section{Spatial-cutoff interface}
+
+\begin{corollary}[iterated cutoff then resolution limit]\label{cor:cutoff}
+Suppose that for each \(N\) there is a directed cutoff family of states
+\(\{\omega_{N,g}\}_g\subset S(\A_N)\) satisfying
+\[
+ \lim_{g\uparrow1}\omega_{N,g}(B)=\omega_N(B),\qquad B\in\A_N. \tag{3.1}
+\]
+Then the subnet obtained in Theorem \ref{thm:compactness} satisfies
+\[
+ \lim_i\left(\lim_{g\uparrow1}
+ \omega_{N(i),g}(\alpha_M^{N(i)}(A))\right)
+ =\Omega_\infty(\alpha_M^\infty(A))                            \tag{3.2}
+\]
+for every fixed \(M\) and \(A\in\A_M\).
+\end{corollary}
+
+\begin{proof}
+For fixed \(i\), (3.1), applied to
+\(B=\alpha_M^{N(i)}(A)\), makes the inner limit equal to
+\(\omega_{N(i)}(\alpha_M^{N(i)}(A))\).  The outer limit is (1.4).
+\end{proof}
+
+\begin{remark}[no joint-limit inference]
+Equation (3.2) is an iterated limit.  It does not imply a joint limit.  The scalar
+array
+\[
+ a_{N,R}:=\mathbf1_{\{R<N\}}                                   \tag{3.3}
+\]
+satisfies \(\lim_{R\to\infty}a_{N,R}=0\) for every fixed \(N\), but the cofinal
+diagonal \(R=N-1\) has \(a_{N,N-1}=1\).
+\end{remark}
+
+\section{Preserved compatible symmetries}
+
+\begin{proposition}
+Suppose \(\vartheta_N\in\operatorname{Aut}(\A_N)\) obey
+\[
+ \vartheta_N\alpha_M^N=\alpha_M^N\vartheta_M                  \tag{4.1}
+\]
+and \(\omega_N\vartheta_N=\omega_N\) for every \(N\).  Then there is an induced
+\(\vartheta_\infty\in\operatorname{Aut}(\A_\infty)\), and the state from
+Theorem \ref{thm:compactness} satisfies
+\[
+ \Omega_\infty\vartheta_\infty=\Omega_\infty.                  \tag{4.2}
+\]
+\end{proposition}
+
+\begin{proof}
+Fix \(M,A\).  Eventually \(N(i)\ge M\), and
+\[
+ \omega_{N(i)}(\alpha_M^{N(i)}(\vartheta_MA))
+ =\omega_{N(i)}(\vartheta_{N(i)}(\alpha_M^{N(i)}A))
+ =\omega_{N(i)}(\alpha_M^{N(i)}A).                             \tag{4.3}
+\]
+Taking the limit gives \(\rho_M\vartheta_M=\rho_M\).  Equation (4.2) first
+follows on \(\A_{\rm alg}\) and then on \(\A_\infty\) by norm continuity.
+\end{proof}
+
+\section{Sharp limitations}
+
+\begin{proposition}[the compactness conclusion cannot be upgraded formally]
+The hypotheses of Theorem \ref{thm:compactness} imply none of the following:
+\begin{enumerate}
+\item convergence of the full sequence;
+\item convergence in the norm of state functionals;
+\item normality of the limiting state in a prescribed representation;
+\item convergence of dynamics or the ground-state spectral condition.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+For (1), take \(\A_N=\C^2\), all maps equal to the identity, and alternate the two
+point-evaluation states.
+
+For (2)--(3), take the constant system \(\A_N=B(\ell^2(\mathbb N))\) and
+\(\omega_n(A)=\langle e_n,Ae_n\rangle\).  Every weak-star cluster state \(\rho\)
+annihilates compact operators because
+\(\langle e_n,Ke_n\rangle\to0\) for every compact \(K\).  Hence \(\rho\) is
+singular.  For \(P_n=|e_n\rangle\langle e_n|\) and
+\(U_n=2P_n-I\),
+\[
+ \|U_n\|=1,\qquad \omega_n(U_n)=1,\qquad \rho(U_n)=-1.          \tag{5.1}
+\]
+Therefore \(\|\omega_n-\rho\|=2\), so no norm convergence occurs.
+
+For (4), the hypotheses mention neither automorphism groups nor Hamiltonians.
+Consequently no statement involving them is a logical consequence.  More concretely,
+one may put arbitrary, mutually incompatible dynamics on the constant algebra without
+changing any hypothesis or any step of the proof.
+\end{proof}
+
+\begin{remark}[subnet versus subsequence]
+No separability assumption was made.  Thus weak-star compactness yields a subnet, not
+necessarily a subsequence.  If every \(\A_M\) is separable, the state spaces are
+weak-star metrizable on bounded sets.  Choose successively a convergent subsequence
+at levels $M=0,1,2,\ldots$, each contained in the preceding one, and take the
+diagonal sequence whose $j$th term is the $j$th term of the level-$j$ subsequence.
+For every fixed $M$ its tail lies in the level-$M$ subsequence, so it converges on
+$\A_M$; the consistency proof above then applies unchanged.
+\end{remark}
+
+\end{document}

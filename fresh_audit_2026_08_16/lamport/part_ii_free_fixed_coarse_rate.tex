@@ -1,0 +1,504 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{auditstyle}
+\lhead{Fresh Glimm--Jaffe proof audit}
+\rhead{16 August 2026}
+\usepackage{bm}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\W}{\mathcal W}
+\newcommand{\T}{\mathbb T}
+\newcommand{\dd}{\,d}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{Part II free fixed-coarse rate\\[3pt]
+\large An explicit \(D4\) filter estimate and covariance-symbol proof}
+\author{Lamport-form proof}
+\date{16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+\textbf{Quantitative free theorem.}  Fix a coarse scale \(M\), a torus
+\(\T_L\), and a coarse Weyl generator \(W_M(\eps_Mq+ip)\).  For the MMST
+nearest-neighbour free vacua and the exact Daubechies \(D4\) observable
+embeddings,
+\[
+ \left|
+ \omega_{M+r,L}^{(0)}\!\left(\alpha_M^{M+r}
+      (W_M(\eps_Mq+ip))\right)
+ -\omega_L^{(0)}\!\left(\beta_M(W_M(\eps_Mq+ip))\right)
+ \right|
+ \le C_{M,L,m,q,p}\,2^{-\theta r},                              \tag{R}
+\]
+for all sufficiently large \(r\), where
+\[
+ \eta=2(1-\log_2\sqrt3)>0,\qquad
+ \theta=\frac{2\eta}{5+\eta}>0.                                \tag{E}
+\]
+Every constant is displayed in Section \ref{sec:rate}.  The theorem holds in
+the correct fixed-coarse topology and makes no diagonal \(M=N\) assertion.
+\end{resultbox}
+
+\tableofcontents
+
+\section{Exact covariance formulas}\label{sec:cov}
+
+Fix \(M\), and put \(N=M+r\).  Use all conventions from the companion model
+sheet.  Write
+\[
+ \Gamma_\infty:=\frac{\pi}{L}\mathbb Z,\qquad
+ \gamma(k):=\sqrt{m^2+k^2},\qquad
+ \gamma_N(k):=\sqrt{m^2+4\eps_N^{-2}\sin^2(\eps_Nk/2)}.          \tag{1.1}
+\]
+Extend the coarse Fourier transforms \(\widehat q_M,\widehat p_M\) periodically
+from \(\Gamma_M\) to \(\Gamma_\infty\), with period \(2\pi/\eps_M\).
+
+Define the finite and infinite mask products
+\[
+ P_r(\ell):=\prod_{j=1}^r m_0(2^{-j}\ell),\qquad
+ P_\infty(\ell):=\prod_{j=1}^\infty m_0(2^{-j}\ell)
+ =\widehat\phi(\ell).                                          \tag{1.2}
+\]
+The equality in (1.2) is the Fourier form of the \(D4\) scaling equation with
+\(\widehat\phi(0)=1\).
+
+\begin{lemma}[pulled-back fine covariance]\label{lem:finecov}
+For \(\xi=\eps_Mq+ip\),
+\[
+ \omega_{M+r,L}^{(0)}(\alpha_M^{M+r}(W_M(\xi)))
+ =e^{-Q_{r,M}(q,p)/4},                                        \tag{1.3}
+\]
+where
+\[
+ Q_{r,M}(q,p)
+ =\frac{\eps_M}{2L}\sum_{k\in\Gamma_\infty}
+ \mathbf1_{\Gamma_{M+r}}(k)|P_r(\eps_Mk)|^2
+ \left(\gamma_{M+r}(k)^{-1}|\widehat q_M(k)|^2
+       +\gamma_{M+r}(k)|\widehat p_M(k)|^2\right).             \tag{1.4}
+\]
+\end{lemma}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Iterate the momentum-space refinement map.}
+
+The one-step MMST map is multiplication by
+\(\sqrt2\,m_0(\eps_{j+1}k)\), together with periodic extension of the
+coarse Fourier vector.  Therefore
+\[
+ \widehat{R_M^{M+r}(q,p)}(k)
+ =2^{r/2}P_r(\eps_Mk)
+   (\widehat q_M(k),\widehat p_M(k)),
+ \qquad k\in\Gamma_{M+r}.                                      \tag{1.5}
+\]
+
+\LS{1}{2}{Insert (1.5) in the fine vacuum covariance.}
+
+The fine normalized momentum sum has weight
+\[
+ \frac1{2r_{M+r}}=\frac{2^{-r}}{2r_M}
+ =2^{-r}\frac{\eps_M}{2L}.                                    \tag{1.6}
+\]
+The squared factor \(2^{r/2}\) in (1.5) cancels the \(2^{-r}\) in
+(1.6).  Substitution in the exact free state formula gives (1.3)--(1.4).
+\QedStep
+
+\begin{lemma}[continuum pullback covariance]\label{lem:ctcov}
+\[
+ \omega_L^{(0)}(\beta_M(W_M(\xi)))=e^{-Q_{\infty,M}(q,p)/4},   \tag{1.7}
+\]
+where
+\[
+ Q_{\infty,M}(q,p)
+ =\frac{\eps_M}{2L}\sum_{k\in\Gamma_\infty}
+ |P_\infty(\eps_Mk)|^2
+ \left(\gamma(k)^{-1}|\widehat q_M(k)|^2
+       +\gamma(k)|\widehat p_M(k)|^2\right).                   \tag{1.8}
+\]
+\end{lemma}
+
+\begin{proof}
+The continuum embedding sends \(q,p\) to linear combinations of the periodized
+scaling functions.  Their Fourier coefficients equal
+\(\eps_M^{1/2}e^{-ikx}\widehat\phi(\eps_Mk)\).  Parseval's identity on
+\(\T_L\), followed by the continuum free-vacuum formula, gives (1.8).
+Equation (1.2) then identifies the multiplier with \(P_\infty\).
+\end{proof}
+
+\section{A uniform algebraic envelope for the exact D4 product}
+
+Recall the exact factorization
+\[
+ m_0(t)=\left(\frac{1+e^{-it}}2\right)^2D(t),\qquad
+ D(t)=\frac{(1+\sqrt3)+(1-\sqrt3)e^{-it}}2,                    \tag{2.1}
+\]
+and
+\[
+ |D(t)|^2=2-\cos t.                                            \tag{2.2}
+\]
+Set
+\[
+ a:=\log_2\sqrt3<1,\qquad
+ \eta:=2-2a=2(1-\log_2\sqrt3)>0,\qquad
+ C_D:=48\pi^4e^{1/6}.                                         \tag{2.3}
+\]
+
+\begin{lemma}[uniform finite-product decay]\label{lem:envelope}
+For every \(r\ge0\) and every \(\ell\) satisfying
+\(|\ell|\le\pi2^r\),
+\[
+ |P_r(\ell)|^2\le C_D(1+|\ell|)^{-2-\eta}.                     \tag{2.4}
+\]
+The same estimate holds for \(P_\infty\) on \(\mathbb R\).
+\end{lemma}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Bound the \(D\)-factor product.}
+
+Let
+\[
+ n(\ell):=\left\lceil\log_2\max(1,|\ell|)\right\rceil.          \tag{2.5}
+\]
+By (2.2), \(|D(t)|\le\sqrt3\).  Also
+\[
+ |D(t)|^2=1+(1-\cos t)\le e^{t^2/2},
+\qquad |D(t)|\le e^{t^2/4}.                                   \tag{2.6}
+\]
+For \(j>n(\ell)\), use (2.6); for \(j\le n(\ell)\), use
+\(|D|\le\sqrt3\).  Since
+\[
+ \sum_{j=n+1}^\infty4^{-j}=\frac{4^{-n}}3,\qquad
+ |\ell|^24^{-n(\ell)}\le1,                                    \tag{2.7}
+\]
+we obtain, for every finite \(r\),
+\begin{align}
+ \prod_{j=1}^r|D(2^{-j}\ell)|
+ &\le(\sqrt3)^{n(\ell)}
+ \exp\left(\frac{\ell^2}{4}\sum_{j=n(\ell)+1}^\infty4^{-j}\right)\\
+ &\le\sqrt3e^{1/12}(1+|\ell|)^a.                              \tag{2.8}
+\end{align}
+If \(r<n(\ell)\), the omitted tail factor in the first line is absent and the
+same upper bound remains valid.
+
+\LS{1}{2}{Bound the cosine product.}
+
+For \(r\ge1\), the finite sine-product identity gives
+\[
+ \prod_{j=1}^r\left|\cos\left(\frac{\ell}{2^{j+1}}\right)\right|
+ =\frac{|\sin(\ell/2)|}{2^r|\sin(\ell/2^{r+1})|}.              \tag{2.9}
+\]
+When \(|\ell|\le\pi2^r\), the denominator angle has absolute value at most
+\(\pi/2\).  The elementary bound
+\(|\sin u|\ge2|u|/\pi\) on that interval yields
+\[
+ \prod_{j=1}^r\left|\cos\left(\frac{\ell}{2^{j+1}}\right)\right|
+ \le\min\left(1,\frac{\pi|\sin(\ell/2)|}{|\ell|}\right).        \tag{2.10}
+\]
+
+\LS{1}{3}{Combine the factors.}
+
+Equations (2.1), (2.8), and (2.10) imply
+\[
+ |P_r(\ell)|^2
+ \le3e^{1/6}(1+|\ell|)^{2a}
+ \min(1,\pi^4|\ell|^{-4}).                                    \tag{2.11}
+\]
+For \(|\ell|\le1\), multiply the desired right side by
+\((1+|\ell|)^4\le16\).  For \(|\ell|\ge1\), use
+\((1+|\ell|)^4|\ell|^{-4}\le16\).  In both cases,
+\[
+ |P_r(\ell)|^2
+ \le48\pi^4e^{1/6}(1+|\ell|)^{-4+2a}
+ =C_D(1+|\ell|)^{-2-\eta}.                                   \tag{2.12}
+\]
+For \(r=0\), $P_0=1$ and $|\ell|\le\pi$; the claimed bound follows from
+$C_D\ge(1+\pi)^{2+\eta}$, which holds for
+$C_D=48\pi^4e^{1/6}$.  Finally, take \(r\to\infty\) in (2.12) and use (1.2) to obtain the
+infinite-product bound. \QedStep
+
+\begin{lemma}[explicit filter-tail error]\label{lem:filtertail}
+If \(|\ell|\le2^r\), then
+\[
+ 0\le |P_r(\ell)|^2-|P_\infty(\ell)|^2
+ \le\frac{\sqrt3}{12}\,\ell^2\,4^{-r}.                         \tag{2.13}
+\]
+\end{lemma}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Compute the second derivative exactly.}
+
+Let \(u(t):=|m_0(t)|^2\).  From (2.1)--(2.2),
+\[
+ u(t)=\frac{2+3\cos t-\cos^3t}{4},\quad
+ u'(t)=-\frac34\sin^3t,\quad
+ u''(t)=-\frac94\sin^2t\cos t.                                \tag{2.14}
+\]
+The maximum of \(x(1-x^2)\) on \([0,1]\) is
+\(2/(3\sqrt3)\), attained at \(x=1/\sqrt3\).  Hence
+\[
+ \sup_t|u''(t)|=\frac{\sqrt3}{2}.                              \tag{2.15}
+\]
+Because \(u(0)=1\) and \(u'(0)=0\), Taylor's theorem gives
+\[
+ 0\le1-u(t)\le\frac{\sqrt3}{4}t^2.                             \tag{2.16}
+\]
+The left inequality follows independently from the QMF identity
+\(u(t)+u(t+\pi)=1\).
+
+\LS{1}{2}{Estimate the omitted infinite product.}
+
+Since every \(u(t)\in[0,1]\),
+\[
+ 1-\prod_{j=r+1}^\infty u(2^{-j}\ell)
+ \le\sum_{j=r+1}^\infty(1-u(2^{-j}\ell)).                      \tag{2.17}
+\]
+For \(|\ell|\le2^r\), all arguments on the right have absolute value at most
+\(1/2\).  Equations (2.16)--(2.17) give
+\[
+ 1-\prod_{j=r+1}^\infty u(2^{-j}\ell)
+ \le\frac{\sqrt3}{4}\ell^2\sum_{j=r+1}^\infty4^{-j}
+ =\frac{\sqrt3}{12}\ell^24^{-r}.                              \tag{2.18}
+\]
+Multiplication by \(|P_r(\ell)|^2\le1\) proves (2.13).
+\QedStep
+
+\section{Dispersion error}
+
+\begin{lemma}[nearest-neighbour versus continuum symbol]\label{lem:dispersion}
+If \(|\eps_Nk|\le\pi\), then
+\begin{align}
+ 0&\le\gamma(k)-\gamma_N(k)
+ \le\frac{\eps_N^2k^4}{24m},                                  \tag{3.1}\\
+ 0&\le\gamma_N(k)^{-1}-\gamma(k)^{-1}
+ \le\frac{\eps_N^2k^4}{24m^3}.                                \tag{3.2}
+\end{align}
+\end{lemma}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Bound the discrete Laplacian symbol.}
+
+For \(0\le x\le\pi/2\),
+\[
+ \sin x\le x,\qquad \sin x\ge x-\frac{x^3}{6}.                 \tag{3.3}
+\]
+For the second inequality, the derivative of
+\(\sin x-x+x^3/6\) is nonnegative because
+\(\cos x\ge1-x^2/2\).  Since \(x-x^3/6\ge0\) on this interval,
+\[
+ x^2-\frac{x^4}{3}
+ \le\left(x-\frac{x^3}{6}\right)^2
+ \le\sin^2x\le x^2.                                           \tag{3.4}
+\]
+Putting \(x=|\eps_Nk|/2\) gives
+\[
+ 0\le k^2-4\eps_N^{-2}\sin^2(\eps_Nk/2)
+ \le\frac{\eps_N^2k^4}{12}.                                   \tag{3.5}
+\]
+
+\LS{1}{2}{Pass to square roots and inverses.}
+
+Since both dispersions are at least \(m\),
+\[
+ \gamma-\gamma_N
+ =\frac{\gamma^2-\gamma_N^2}{\gamma+\gamma_N}
+ \le\frac{\eps_N^2k^4}{24m},                                  \tag{3.6}
+\]
+which is (3.1).  Moreover,
+\[
+ \gamma_N^{-1}-\gamma^{-1}
+ =\frac{\gamma-\gamma_N}{\gamma\gamma_N}
+ \le\frac{\eps_N^2k^4}{24m^3},                                \tag{3.7}
+\]
+which is (3.2). \QedStep
+
+\section{The explicit rate}\label{sec:rate}
+
+Put
+\[
+ A_q:=\sup_{k\in\Gamma_\infty}|\widehat q_M(k)|,\qquad
+ A_p:=\sup_{k\in\Gamma_\infty}|\widehat p_M(k)|,                \tag{4.1}
+\]
+which are finite because the extensions are periodic.  Define
+\[
+ \kappa:=\frac{\pi}{L},\qquad b:=\eps_M\kappa=\frac{\pi}{r_M},
+ \qquad c_0:=\frac{\sqrt3}{12}.                                \tag{4.2}
+\]
+Set
+\begin{align}
+ C_{\rm low}
+ :=\frac{3\eps_M^3}{2L}\Bigg\{&
+ A_q^2\left(\frac{\kappa^4}{24m^3}+\frac{c_0\kappa^2}{m}\right)\\
+ &+A_p^2\left(\frac{\kappa^4}{24m}
+       +c_0(m+\kappa)\kappa^2\right)\Bigg\},                   \tag{4.3}\\
+ C_*&:=2C_D\left(\frac{A_q^2}{m}
+              +A_p^2(m+\eps_M^{-1})\right).                   \tag{4.4}
+\end{align}
+Finally, let
+\[
+ \alpha:=\frac{2}{5+\eta},\qquad
+ \theta:=\alpha\eta=\frac{2\eta}{5+\eta}=2-5\alpha.             \tag{4.5}
+\]
+
+\begin{theorem}[fixed-coarse power rate]\label{thm:rate}
+Let \(r_*\) be the least integer satisfying
+\[
+ 2^{\alpha r_*}\ge\max(1,2b).                                 \tag{4.6}
+\]
+For every \(r\ge r_*\),
+\[
+ |Q_{r,M}(q,p)-Q_{\infty,M}(q,p)|
+ \le C_Q\,2^{-\theta r},                                      \tag{4.7}
+\]
+where
+\[
+ C_Q:=C_{\rm low}(1+b^{-1})^5+\frac{2^\eta C_*}{\pi\eta}.      \tag{4.8}
+\]
+Consequently,
+\[
+ \left|
+ \omega_{M+r,L}^{(0)}(\alpha_M^{M+r}(W_M(\eps_Mq+ip)))
+ -\omega_L^{(0)}(\beta_M(W_M(\eps_Mq+ip)))
+ \right|
+ \le\frac{C_Q}{4}\,2^{-\theta r}.                             \tag{4.9}
+\]
+\end{theorem}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Choose an integer momentum split.}
+
+For \(r\ge r_*\), put
+\[
+ J_r:=\left\lfloor b^{-1}2^{\alpha r}\right\rfloor.            \tag{4.10}
+\]
+Then \(J_r\ge1\),
+\[
+ bJ_r\le2^{\alpha r}\le2^r,\qquad
+ bJ_r\ge2^{\alpha r}-b\ge\frac12\,2^{\alpha r},                \tag{4.11}
+\]
+and every mode \(k_n=\kappa n\) with \(|n|\le J_r\) lies in
+\(\Gamma_{M+r}\).  The first inequality in (4.11) also permits use of
+Lemma \ref{lem:filtertail}.
+
+\LS{1}{2}{Bound the low-momentum part.}
+
+For \(|n|\le J_r\), split the momentum integrand as
+\begin{align}
+ |\gamma_N|P_r|^2-\gamma|P_\infty|^2|
+ &\le|\gamma_N-\gamma||P_r|^2
+ +\gamma\bigl||P_r|^2-|P_\infty|^2\bigr|,                     \tag{4.12}\\
+ |\gamma_N^{-1}|P_r|^2-\gamma^{-1}|P_\infty|^2|
+ &\le|\gamma_N^{-1}-\gamma^{-1}||P_r|^2
+ +\gamma^{-1}\bigl||P_r|^2-|P_\infty|^2\bigr|.                \tag{4.13}
+\end{align}
+Here every mask argument is \(\ell=\eps_Mk_n\).  Lemmas
+\ref{lem:filtertail} and \ref{lem:dispersion}, together with
+\(\eps_{M+r}=2^{-r}\eps_M\), give
+\begin{align}
+ \text{\(q\)-integrand error}
+ &\le4^{-r}\eps_M^2A_q^2
+   \left(\frac{k_n^4}{24m^3}+\frac{c_0k_n^2}{m}\right),        \tag{4.14}\\
+ \text{\(p\)-integrand error}
+ &\le4^{-r}\eps_M^2A_p^2
+   \left(\frac{k_n^4}{24m}+c_0\gamma(k_n)k_n^2\right).         \tag{4.15}
+\end{align}
+Because
+\[
+ 2J+1\le3(1+J),\quad |k_n|\le\kappa(1+J),\quad
+ \gamma(k_n)\le m+|k_n|\le(m+\kappa)(1+J),                    \tag{4.16}
+\]
+the definition (4.3) yields
+\[
+ E_{\rm low}(r)
+ \le4^{-r}C_{\rm low}(1+J_r)^5
+ \le C_{\rm low}(1+b^{-1})^5\,2^{-(2-5\alpha)r}.              \tag{4.17}
+\]
+
+\LS{1}{3}{Bound both high-momentum tails.}
+
+Lemma \ref{lem:envelope} and
+\[
+ \gamma_{M+r}(k)\le\gamma(k)\le m+|k|
+ \le(m+\eps_M^{-1})(1+\eps_M|k|)                              \tag{4.18}
+\]
+show that the sum of the absolute fine and continuum integrands at
+\(k_n=\kappa n\) is at most
+\[
+ C_*(1+b|n|)^{-1-\eta}.                                       \tag{4.19}
+\]
+The fine term is declared zero outside \(\Gamma_{M+r}\), exactly as in (1.4).
+Since \(x\mapsto(1+bx)^{-1-\eta}\) is decreasing,
+\[
+ \sum_{|n|>J}(1+b|n|)^{-1-\eta}
+ \le2\int_J^\infty(1+bx)^{-1-\eta}\dd x
+ =\frac{2}{b\eta}(1+bJ)^{-\eta}.                              \tag{4.20}
+\]
+Multiplication by the covariance weight \(\eps_M/(2L)\), followed by
+\(b=\pi\eps_M/L\) and (4.11), gives
+\[
+ E_{\rm high}(r)
+ \le\frac{C_*}{\pi\eta}(1+bJ_r)^{-\eta}
+ \le\frac{2^\eta C_*}{\pi\eta}\,2^{-\alpha\eta r}.             \tag{4.21}
+\]
+
+\LS{1}{4}{Match the exponents.}
+
+By (4.5),
+\[
+ 2-5\alpha=\alpha\eta=\theta.                                 \tag{4.22}
+\]
+Adding (4.17) and (4.21) proves (4.7)--(4.8).
+
+\LS{1}{5}{Pass from covariance forms to states.}
+
+For \(x,y\ge0\), the mean-value theorem gives
+\[
+ |e^{-x/4}-e^{-y/4}|
+ =\frac14e^{-\zeta/4}|x-y|
+ \le\frac14|x-y|                                               \tag{4.23}
+\]
+for some \(\zeta\) between \(x\) and \(y\).  Apply (4.23) to
+\(Q_{r,M}\) and \(Q_{\infty,M}\) and use (4.7).  This is (4.9).
+\QedStep
+
+\begin{corollary}[lattice-spacing form]
+Because \(\eps_{M+r}/\eps_M=2^{-r}\), (4.9) is equivalently
+\[
+ |\omega_{M+r,L}^{(0)}\circ\alpha_M^{M+r}(W_M(\xi))
+ -\omega_L^{(0)}\circ\beta_M(W_M(\xi))|
+ \le\frac{C_Q}{4}\left(\frac{\eps_{M+r}}{\eps_M}\right)^\theta.
+                                                                    \tag{4.24}
+\]
+\end{corollary}
+
+\section{Claim ledger}
+
+\begin{longtable}{P{0.31\textwidth}P{0.17\textwidth}P{0.43\textwidth}}
+\toprule
+Claim & Status & Exact reason\\
+\midrule
+\endhead
+Fixed-coarse free convergence & \Pass & The covariance formulas are (1.4) and
+(1.8), and Theorem \ref{thm:rate} supplies a power rate.\\
+Uniform finite \(D4\) filter tail & \Pass & Lemmas \ref{lem:envelope} and
+\ref{lem:filtertail} prove both the global envelope and the low-frequency truncation
+error from the exact four mask coefficients.\\
+Finest-scale local state norm & \Fail & This theorem fixes \(M\) and sends
+\(r=N-M\to\infty\); it does not include \(M=N\).\\
+Interacting covariance reduction & \Fail & Interacting ground states are not Gaussian,
+so no quadratic covariance symbol determines their Weyl expectations.\\
+\bottomrule
+\end{longtable}
+
+\begin{thebibliography}{9}
+\bibitem{MMST}
+V.~Morinelli, G.~Morsella, A.~Stottmeister, Y.~Tanimoto,
+\emph{Scaling limits of lattice quantum fields by wavelets},
+Commun. Math. Phys. \textbf{387} (2021), 1299--1367.
+\end{thebibliography}
+
+\end{document}

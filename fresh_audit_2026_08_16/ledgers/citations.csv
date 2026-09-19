@@ -1,0 +1,74 @@
+citation_id,manuscript_claim,source_id,exact_location,evidence_image,role,scope_verdict
+C001,Lamport hierarchical proof convention,EXT-LAMPORT,PDF pages 10 and 16,lamport-010.png;lamport-016.png,method,verified
+C002,Cutoff dynamics finite propagation/locality,EXT-GJ1,Section V PDF page 6,gj1-006.png,load-bearing,verified
+C003,Common smooth core and essential self-adjointness,EXT-GJ1,Sections III--IV PDF page 5,gj1-005.png,load-bearing,verified
+C004,Cutoff ground-state existence,EXT-GJ2,Theorem 2.2.1 PDF page 8,gj2-008.png,load-bearing,verified
+C005,Cutoff ground-state uniqueness,EXT-GJ2,Theorem 2.3.1 PDF page 12,gj2-012.png,load-bearing,verified
+C006,Cutoff covariance/local cutoff independence,EXT-GJ2,printed page 398 PDF page 38,gj2-038.png,load-bearing,verified
+C007,Local algebra construction,EXT-GJ2,PDF page 40,gj2-040.png,corroborating,verified
+C008,Averaged weak-star vacuum limit point,EXT-GJ3,Section 2 printed page 210 PDF page 8,gj3-008.png,historical,verified
+C009,Local Fock normality of historical limit,EXT-GJ3,Theorems 2.2--2.3 printed page 211 PDF page 9,gj3-009.png,historical,verified
+C010,Wightman construction scope,EXT-GJ4,Theorems A--B PDF page 1,gj4-001.png,historical,verified
+C011,Uniform lower bound in auxiliary cutoffs,EXT-GJ71,Theorem 1 PDF page 2,gj71-002.png,corroborating,verified
+C012,Positivity/self-adjointness estimate,EXT-GJ71,Theorem 2 PDF page 4,gj71-004.png,corroborating,verified
+C013,Semigroup construction,EXT-ROSEN,Theorem 5.3 PDF page 22,rosen-022.png,corroborating,verified
+C014,Positive self-adjoint generator and core,EXT-ROSEN,Theorem 5.3 continuation PDF page 23,rosen-023.png,corroborating,verified
+C015,Original cutoff vacuum expectations not known to converge,EXT-GJEXP,PDF pages 54--55,gjexp-054.png;gjexp-055.png,historical,verified
+C016,Finite propagation patching,EXT-GJEXP,PDF pages 55--56,gjexp-055.png;gjexp-056.png,load-bearing,verified
+C017,General smoothing theorem has bounded-below hypothesis,EXT-GJEXP,Theorem 7.3 PDF page 165,gjexp-165.png,negative-scope,mismatch-if-used-alone
+C018,Model-specific domain smoothing,EXT-GJEXP,Lemma 7.4 and Theorem 7.4 PDF pages 166--167,gjexp-166.png;gjexp-167.png,load-bearing,verified
+C019,Cutoff Hamiltonian and simple eigenvalue,EXT-GJS,equation (1.6) printed page 588 PDF page 5,gjs74-005.png,load-bearing,verified
+C020,Euclidean cutoff class,EXT-GJS,printed page 589 PDF page 6,gjs74-006.png,load-bearing,verified
+C021,Dimensionless scaling lambda/m0 squared,EXT-GJS,printed page 590 PDF page 7,gjs74-007.png,load-bearing,verified
+C022,Sharp-time observable class,EXT-GJS,equation (1.1.5) printed page 593 PDF page 10,gjs74-010.png,load-bearing,verified
+C023,GJS norms and CE2,EXT-GJS,equations (1.1.7)--(1.1.10) and Theorem 1.1.7 printed page 594 PDF page 11,gjs74-011.png,load-bearing,verified for localized monomials
+C024,CE1 sharp-time bound,EXT-GJS,Theorem 1.1.8 printed page 595 PDF page 12,gjs74-012.png,load-bearing,uniform-as-h-tends-to-one in printed statement
+C025,Uniformity in the space cutoff for named estimates,EXT-GJS,Section 4 printed page 629 PDF page 46,gjs74-046.png,load-bearing,supports mechanism but not every manuscript quantifier
+C026,FKN formula,EXT-GRS1,Theorem II.14 PDF page 39,grs1-039.png,load-bearing,verified
+C027,General FKN formula,EXT-GRS1,Theorem II.16 PDF page 40,grs1-040.png,load-bearing,verified
+C028,GRS Problem 1,EXT-GRS2,printed page 125 PDF page 16,grs2-016.png,historical,verified
+C029,GRS Problem 2,EXT-GRS2,printed page 126 PDF page 17,grs2-017.png,historical,verified
+C030,GRS problem-list context,EXT-GRS2,printed page 127 PDF page 18,grs2-018.png,historical,verified
+C031,GRS note added/Newman qualification,EXT-GRS2,printed page 128 PDF page 19,grs2-019.png,historical,verified
+C032,Positivity preservation of Gamma(A),EXT-SIMON,Theorem I.12 PDF page 48,simon-048.png,load-bearing-Part-II,verified
+C033,Lp contraction of Gamma(A),EXT-SIMON,Corollary I.15 PDF page 53,simon-053.png,load-bearing-Part-II,verified
+C034,Positivity improvement for strict contraction,EXT-SIMON,Theorem I.16 PDF pages 55--56,simon-055.png;simon-056.png,load-bearing-Part-II,verified
+C035,Nelson hypercontractivity,EXT-SIMON,Theorem I.17 PDF pages 56--57,simon-056.png;simon-057.png,load-bearing,verified
+C036,Free FKN formula,EXT-SIMON,Theorem III.6 PDF page 111,simon-111.png,load-bearing,verified
+C037,Theorem III.12 negative pinpoint check,EXT-SIMON,Theorem III.12 PDF page 119,simon-119.png,negative-scope,not-an-FKN-theorem
+C038,Time-region hypercontractivity,EXT-SIMON,Theorem III.17 PDF pages 125--126,simon-125.png;simon-126.png,load-bearing,verified
+C039,Finite-volume exponential stability,EXT-SIMON,Theorem V.7 PDF page 174,simon-174.png,load-bearing,verified
+C040,Transfer-matrix estimate not abstract hypercontractivity,EXT-SIMON,Theorem V.10 PDF pages 178--179,simon-178.png;simon-179.png,negative-scope,pinpoint-mismatch-for-hypercontractivity
+C041,Essential self-adjointness/common-core role,EXT-SIMON,Theorem V.12 PDF page 180,simon-180.png,load-bearing,verified-for-core-role-only
+C042,Interacting FKN formula,EXT-SIMON,Corollary V.14 and Theorem V.15 PDF pages 184--185,simon-184.png;simon-185.png,load-bearing,verified
+C043,Euclidean uniqueness/global Markov scope,EXT-AHZ,abstract and conclusion PDF pages 1 and 24,ahz-001.png;ahz-024.png,contextual,not-Hamiltonian-full-net-convergence
+C044,Stochastic-quantization invariant measure uniqueness,EXT-BDW,abstract PDF page 1,bdw-001.png,contextual,not-Hamiltonian-ground-state-uniqueness
+C045,Finite-volume Hamiltonian renormalization scope,EXT-RZT,abstract PDF page 1,rzt-001.png,contextual,finite-volume-only
+C046,Quasi-adiabatic continuation for gapped local systems,EXT-HASTINGS,abstract PDF page 1,hastings-001.png,contextual,not-applicable-to-unbounded-continuum-model-without-extra-work
+C047,Automorphic equivalence in gapped quantum spin systems,EXT-BMNS,abstract PDF page 1,bmns-001.png,contextual,not-a-direct-input
+C048,Phase transition existence,EXT-GJS75,abstract/title PDF page 1,gjs75-001.png,contextual,verified
+C049,Two pure phases and clustering discussion,EXT-GJS75,PDF page 2,gjs75-002.png,contextual,partial-support-only
+C050,Precise phase-transition theorem,EXT-GJS75,Theorem 1.1 PDF page 3,gjs75-003.png,contextual,does-not-imply-B4-classification
+C051,Mean-field expansion scope,EXT-GJS76I,PDF page 1,gjs76i-001.png,contextual,verified
+C052,Mass gaps in selected pure phases,EXT-GJS76I,PDF page 2,gjs76i-002.png,contextual,not-uniform-finite-cutoff-gap
+C053,Precise mean-field theorem,EXT-GJS76I,Theorem 2.1 PDF page 5,gjs76i-005.png,contextual,does-not-imply-B4-classification
+C054,OAR projective fixed-coarse architecture,EXT-MMST,equations (2.8)--(2.11) PDF page 7,mmst-007.png,load-bearing-scope,verified
+C055,Lattice Weyl and Fourier normalizations,EXT-MMST,equations (3.5)--(3.10) PDF page 13,mmst-013.png,load-bearing,verified
+C056,Wavelet refinement symplecticity,EXT-MMST,Definition 3.3 and Lemma 3.4 PDF page 16,mmst-016.png,load-bearing,verified
+C057,D4 support and regularity,EXT-MMST,Section 3.3.4 PDF page 20,mmst-020.png,load-bearing,verified
+C058,Nearest-neighbour Hamiltonian and vacuum covariance,EXT-MMST,equations (4.1)--(4.5) PDF page 21,mmst-021.png,load-bearing,verified-free-only
+C059,Continuum observable embedding,EXT-MMST,Proposition 4.1 PDF page 25,mmst-025.png,load-bearing,verified-no-state-pushforward
+C060,Finite mask product and fixed-coarse convergence,EXT-MMST,equations (4.17)--(4.20) and Lemma 4.2 PDF page 26,mmst-026.png,load-bearing,verified-without-rate
+C061,Pointwise continuum identification,EXT-MMST,Lemma 4.3 PDF page 28,mmst-028.png,load-bearing-scope,verified-fixed-coarse-only
+C062,Free scaling limit,EXT-MMST,Proposition 4.5 PDF page 29,mmst-029.png,load-bearing-scope,verified-free-without-rate
+C063,Free continuum time-zero net,EXT-MMST,Theorem 4.11 PDF page 35,mmst-035.png,contextual,verified-free-only
+C064,Harmonic Lieb--Robinson estimate,EXT-MMST,Lemma 4.14 PDF page 36,mmst-036.png,contextual,not-quartic
+C065,LR estimate speed versus physical speed,EXT-MMST,Remark 4.17 PDF page 38,mmst-038.png,contextual,verified
+C066,Interacting wavelet scaling is future work,EXT-MMST,Section 6.1 PDF page 54,mmst-054.png,negative-scope,no-interacting-theorem
+C067,Phase-cell wavelet mechanism and prior-error correction,EXT-BF87,PDF pages 1--3,bf87-001.png;bf87-002.png;bf87-003.png,negative-scope,no-MMST-uniform-estimate
+C068,Interacting OAR extension is prospective,EXT-SMMT,conclusion PDF page 5,smmt-005.png,negative-scope,no-interacting-limit-proof
+C069,Anharmonic LR assumptions,EXT-NRSS,Theorem 4.1 PDF page 19,nrss-019.png,negative-scope,Wick-quartic-derivative-not-L1
+C070,GJS 1976 Part II source and convergence scope,EXT-GJS76II,abstract PDF page 1,gjs76ii-001.png,contextual,verified-selected-pure-phase-only
+C071,Pure-phase exponential clustering,EXT-GJS76II,Theorem 4.3.1 PDF page 37,gjs76ii-037.png,contextual,verified-not-uniform-finite-cutoff-gap
+C072,Unique vacuum and positive mass in selected phase,EXT-GJS76II,corollary after Theorem 4.3.1 PDF page 38,gjs76ii-038.png,contextual,verified-does-not-imply-B4-classification
+C073,Infinite-volume Schwinger-function conclusion,EXT-GJS76II,Section 4.4 PDF page 39,gjs76ii-039.png,contextual,verified-model-regime-only

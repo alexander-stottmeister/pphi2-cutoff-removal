@@ -1,0 +1,404 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{srcfact}[theorem]{Source Fact}
+\newtheorem{gate}[theorem]{Residual gate}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Om}{\Omega}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\spec}{spec}
+
+\title{(M$_2$) source-scope audit: Glimm--Jaffe--Spencer 1974\\
+\large verified statements, explicit derivation, and the residual gates}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Update (9 August 2026)}
+Gate R2 is closed by page-image inspection: the printed norm is $\|Q(x^0)\|=K_1[\prod_\Delta K_2^{2N(\Delta)}N(\Delta)!]\|w\|_2$ --- $K_1$ to the first power, but local weight $K_2^{2N(\Delta)}$. Consequently the constant correction ``$K_2^{4p}\to K_2^{2p}$'' in Remark~5.3(i) below is \emph{withdrawn} (an OCR artifact); the cell-count correction $32\to9$ stands. Exact constants: \texttt{r2-check.tex}.
+
+
+\begin{abstract}
+This note executes step 2 and step 5 of the execution order in
+\texttt{weak-coupling-strategy.tex}: the source-scope audit of the Glimm--Jaffe--Spencer
+estimates \cite{GJS} against the copy in \texttt{refs/}, and the explicit derivation of the
+uniform local second moment (M$_2$) from them.
+
+\smallskip
+\noindent\textbf{Audit outcome.} Better than hypothesised, on four points, each verified against
+the printed text. (i) GJS's Euclidean cutoff class is \emph{verbatim} ``$h$ with compact support
+in $\R^2$, $0\le h\le1$'' --- arbitrary, not unions of lattice squares --- so the slab
+$h_{T,g}=\mathbf 1_{[-T,T]}\otimes g$ requires no extension of scope. (ii) Their \emph{Hamiltonian}
+cutoff class (their (1.6)) is ``$0\le g\le1$, $g$ measurable and of compact support'', identical
+to ours. (iii) The observable class (1.1.5) consists of \emph{sharp-time} Wick monomials with
+$L^2$ kernels, with equal times explicitly allowed. (iv) The moment bound is their
+Theorem~1.1.8 and the cluster bound their Theorem~1.1.7, the latter stated with constants
+``independent of $h$''.
+
+\smallskip
+\noindent\textbf{Derivation outcome.} $V(h)^2$ is \emph{literally} a monomial sum of the class
+(1.1.5) with kernel $h\otimes h$ --- no Wick recombination is needed --- and the norm computation
+gives
+\[
+  \sup_{g\in\G}\ \|V(h)\Om_g\|^2\ \le\ 9\,C_8\,\mathfrak K(p)\,\lambda^2
+  \Bigl(\sum_{n=0}^p|a_n|\Bigr)^{\!2},
+\]
+conditional on exactly one residual gate: the $h$-uniform reading of the constant in
+Theorem~1.1.8 (Gate~\ref{gate:R1}). The slab transfer and the closedness limit are proved here
+from standard Feynman--Kac--Nelson and the spectral theorem; no uniform gap is used anywhere, so
+there is no circularity with (G). Two constants in \texttt{weak-coupling-strategy.tex} are
+corrected: $K_2^{4p}\to K_2^{2p}$ and $32\to9$.
+
+\smallskip
+\noindent\textbf{A finding beyond the audit brief.} GJS's own display (1.1.12) differentiates the
+cutoff measure along the \emph{interpolated family} $h_1+\alpha g$ and combines it with
+Theorem~1.1.7 cell by cell: their proof of (1.1.11) \emph{is} a Euclidean LPPL estimate with rate
+$e^{-m_1d/2}$, at weak coupling, published in 1974. The state-derivative architecture of
+\texttt{lppl.tex} has an exact Euclidean precedent in the very source being audited.
+\end{abstract}
+
+\section{What had to be verified}
+
+Hypothesis CE of \texttt{weak-coupling-strategy.tex} attributes to \cite{GJS} two estimates,
+uniform over compactly supported cutoffs $0\le h\le1$: a moment bound (CE1) and a cluster bound
+(CE2), for sharp-time polynomials. The audit questions, in decreasing order of danger:
+
+\begin{enumerate}
+\item[\textbf{Q1}] Is the cutoff class in \cite{GJS} really all of
+      $\{h:\ 0\le h\le1,\ \supp h\ \text{compact}\}$, or only characteristic functions of unions
+      of unit lattice squares? (If the latter, the slab $h_{T,g}$ with smooth $g$ is outside
+      literal scope and a variable-coupling extension would have to be proved.)
+\item[\textbf{Q2}] Does the observable class admit \emph{sharp-time} monomials --- in particular
+      \emph{equal} times --- with kernels controlled in a norm that tolerates
+      $w=h\otimes h$? (An $L^1$-in-time norm would die under sharp-time restriction.)
+\item[\textbf{Q3}] Are the constants in the moment and cluster bounds uniform in $h$?
+\item[\textbf{Q4}] Do the conventions (covariance, Wick ordering, coupling normalisation) match
+      \texttt{lppl.tex}, or is a conversion of Wick masses needed?
+\end{enumerate}
+
+\section{Source audit}
+
+All quotations are from the JSTOR scan of \cite{GJS} in \texttt{refs/}; page numbers are the
+printed Annals pagination $585$--$632$. OCR-degraded formulas were re-derived from context where
+quoted.
+
+\begin{srcfact}[cutoff classes; Q1 resolved]\label{sf:class}
+p.~589: \emph{``Let $h$ be a function with compact support in $\R^2$, and let $0\le h\le1$.
+Define the action $V(h)=\lambda\int:\mathscr P(\Phi(x)):h(x)\,dx$ \dots\ Let $dq_h$ be the cutoff
+measure''}
+\[
+  dq_h=\frac{e^{-V(h)}\,d\Phi}{\int e^{-V(h)}\,d\Phi}.
+\]
+No lattice-square restriction is imposed; rectangular cutoffs enter only as the particular
+sequence along which $dq=\lim_{h\uparrow1}dq_h$ is constructed. Moreover, p.~588, their (1.6):
+the spatially cutoff Hamiltonian is $H(g,\lambda,m_0)=H_0(m_0)+\lambda\int:\mathscr P(\phi_0(x)):g(x)dx$
+with \emph{``$\mathscr P(\cdot)$ bounded from below and $0\le g(\cdot)\le1$ with $g$ measurable
+and of compact support''}, and \emph{``$H(g,\lambda,m_0)$ is essentially self-adjoint and
+$\inf\operatorname{spectrum}H$ is a simple eigenvalue''}. Both cutoff classes coincide with those
+of \texttt{lppl.tex}; the slab $h_{T,g}=\mathbf 1_{[-T,T]}\otimes g$ is in the Euclidean class for
+every $T>0$, $g\in\G$.
+\end{srcfact}
+
+\begin{srcfact}[slab limit stated in-source]\label{sf:slab}
+p.~590, their (1.11): with $h_j=g(x^1)\chi_j(t)$, $\chi_j$ the characteristic function of
+$[-j,j]$, \emph{``the Feynman--Kac formula yields
+$W(x_1,\dots,x_n)=\lim_{j\to\infty}S_{h_j}(x_1,\dots,x_n)$''}, where $W$ are the vacuum
+expectation values of the \emph{spatially cutoff Hamiltonian theory} (their (1.7)) and $S_h$ the
+moments of $dq_h$. This is precisely the $T\to\infty$ slab transfer, asserted at the level of
+moments in the source itself.
+\end{srcfact}
+
+\begin{srcfact}[observable class and norms; Q2 resolved]\label{sf:class2}
+pp.~593--594, their (1.1.5)--(1.1.9): the class consists of monomials
+\[
+  Q(x^0)=\int d\vec x\ w(\vec x)\prod_{i=1}^r:\Phi(x_i)^{m_i}:\,,\qquad
+  Q=\int dx^0\,Q(x^0),
+\]
+with $x_i=(x_i^0,x_i^1)$, the \emph{times $x_i^0$ fixed} and only the space variables integrated
+against $w$; $Q$ is localized if $w$ is supported in a product of unit lattice squares
+$\Delta_{j_1}\times\cdots\times\Delta_{j_r}$; the degrees obey $m_i\le\kappa$ with
+(p.~593, footnote 9) \emph{``any choice $\kappa\ge\deg\mathscr P$ is sufficient''}. With
+$N(\Delta)$ the local degree, the norms are
+\[
+  \|Q(x^0)\|=K_1^{\,e}\prod_\Delta K_2^{N(\Delta)}N(\Delta)!\ \|w(x^0,\cdot)\|_{L^2},
+  \qquad
+  \|Q\|=\sum_l\|Q_l\|\ \ \text{(1.1.9), sum over localized pieces,}
+\]
+where the exponent $e$ on $K_1$ is not legible in the scan (Gate~\ref{gate:R2}). Crucially the
+kernel norm is $L^2$ \emph{in the space variables at fixed times}. Equal times are explicitly
+admitted: p.~596, \emph{``we take all times $x^0_{1}=\cdots=x^0_{r}$ equal in $Q(x^0)$. To
+indicate this restriction, we write $Q(t)$''.}
+\end{srcfact}
+
+\begin{srcfact}[the two estimates; Q3]\label{sf:thms}
+p.~594, Theorem~1.1.7: \emph{``There are constants $0<m_1$ and $O(1)$ \textbf{independent of
+$h$}, $Q_1$ and $Q_2$ such that
+$|\int Q_1Q_2\,dq_h-\int Q_1dq_h\int Q_2dq_h|\le O(1)e^{-m_1d}\|Q_1\|\,\|Q_2\|$''} ($d$ the widest
+separating strip). This is CE2, with $h$-uniformity in the statement.
+
+p.~595, Theorem~1.1.8: \emph{``For $Q(x^0)$ of the form (1.1.5),
+$|\int Q(x^0)\,dq_h|\le O(1)\|Q(x^0)\|$ \textbf{uniformly as $h\to1$}''.} This is CE1. The
+phrase ``uniformly as $h\to1$'' is the one point where the printed statement is weaker than the
+class-uniform reading; see Gate~\ref{gate:R1} for why the paper's internal logic nevertheless
+commits to the class-uniform version.
+
+p.~596, Theorem~1.1.11: the $n$-particle decoupling estimate, with (1.1.16) asserted
+\emph{``uniformly in $h$''}.
+\end{srcfact}
+
+\begin{srcfact}[the engine]\label{sf:engine}
+p.~615, Theorem~2.4.1: \emph{``Let $s$ and $n$ be given. Let $m_0$, $K_2$ and $K_1$ be
+sufficiently large and let $\lambda$ be sufficiently small. Then the increasing contour expansion
+(2.3.7) is norm decreasing''}, with the constants chosen in the order $m_0,K_2,K_1,\lambda$ ---
+none of them a function of $h$. The expansion (their \S2.0--2.2) differentiates only the
+interpolated covariances $C(s)$, never $h$; the cutoff rides inside the vertices
+$-\lambda h(x):\mathscr P'(\Phi(x)):$ produced by $\delta/\delta\Phi$ acting on $e^{-V(h)}$.
+\end{srcfact}
+
+\begin{srcfact}[GJS's own Euclidean LPPL]\label{sf:lppl}
+p.~595, (1.1.11)--(1.1.12): for cutoffs $h_1,h_2$ and $Q$ supported in $\mathcal O$, with
+$g=h_2-h_1$, $g_i=g\chi_{\Delta_i}$,
+\[
+  \ip{Q}{}_{h_2}-\ip{Q}{}_{h_1}
+  =-\int_0^1d\alpha\sum_{i\in\mathbb Z^2}
+   \Bigl[\ip{QV(g_i)}{}_{h_1+\alpha g}-\ip{Q}{}_{h_1+\alpha g}\ip{V(g_i)}{}_{h_1+\alpha g}\Bigr],
+\]
+and applying Theorem~1.1.7 to each term,
+$|\ip{Q}{}_{h_2}-\ip{Q}{}_{h_1}|\le O(1)e^{-m_1d/2}\|Q\|$, $d=\dist(\mathcal O,\supp(h_1-h_2))$.
+Three observations. (i) The interpolated cutoffs $h_1+\alpha g$ are not characteristic functions
+even when $h_1,h_2$ are; the paper therefore \emph{uses} Theorems 1.1.7--1.1.8 on the full class
+of Source Fact~\ref{sf:class}. (ii) Structurally this is the state-derivative-plus-cell-expansion
+of \texttt{lppl.tex}, executed on the Euclidean side. (iii) It is the direct precedent for the
+claim that the connected correlator against a far-away interaction cell is the right object; the
+Hamiltonian-side novelty of \texttt{lppl.tex} is the sharp-time/operator-norm conclusion, not the
+mechanism.
+\end{srcfact}
+
+\begin{proposition}[conventions; Q4 resolved, no conversion needed]\label{prop:conv}
+The Wick ordering in $V(h)$ of Source Fact~\ref{sf:class} is with respect to $d\Phi$, the Gaussian
+with covariance $G=(-\Delta_{\R^2}+m_0^2)^{-1}$ (their p.~589, (1.8)). The interaction of
+\texttt{lppl.tex} is Wick ordered with respect to the time-zero covariance $C=(2\mu)^{-1}$. These
+agree at sharp time: by \texttt{t3.tex}, Lemma~2.1, $G((0,x),(0,y))=C(x-y)$ \emph{exactly}, so
+every contraction constant entering the two Wick orderings of a sharp-time monomial is the same
+number, and
+\[
+  :\Phi(0,x)^n:_{d\Phi}\;=\;:\phi_0(x)^n:_{C}
+\]
+as $L^2$ limits of the identical mollified expressions. The coupling normalisation agrees
+($\lambda$ multiplies the full Wick polynomial in both), and the additive energy shift is absent
+from $dq_h$ by construction (the measure is normalised by division). No analogue of the Wick-mass
+conversion (6.1) of \texttt{weak-coupling-strategy.tex} is required: the source Wick mass
+\emph{is} $m_0$.
+\end{proposition}
+
+\section{Derivation of (M$_2$)}
+
+Standing assumptions: $\mathscr P(\xi)=\sum_{n=0}^pa_n\xi^n$ bounded below; $\lambda/m_0^2$ in
+the GJS weak-coupling region; $h$ real with $\|h\|_\infty\le1$ and $\supp h$ contained in an
+interval of length $2$; $g\in\G$;
+\[
+  V(h)=\lambda\int h(x):\mathscr P(\phi_0(x)):_C\,dx,\qquad
+  K_g=H_0+\lambda\int g\,:\mathscr P(\phi_0):_C dx .
+\]
+$C_8$ denotes the constant of Theorem~1.1.8 in its class-uniform reading (Gate~\ref{gate:R1});
+$\mathfrak K(p)$ the largest (1.1.8)-prefactor of a localized two-point monomial of per-point
+degree $\le p$, so that, for every legible reading of the $K_1$-exponent,
+\[
+  \mathfrak K(p)\ \le\ K_1^{\,e_*}\,K_2^{2p}\,(2p)!\,,\qquad e_*\le\max(2,2p).
+\]
+
+\begin{lemma}[class membership and norm]\label{lem:A}
+On path space define the equal-time monomial sum at time $0$
+\[
+  Q_V:=\lambda^2\sum_{n,n'=0}^p a_na_{n'}\iint h(x)h(y)\,
+  :\Phi(0,x)^n:_{d\Phi}\,:\Phi(0,y)^{n'}:_{d\Phi}\,dx\,dy .
+\]
+Then $Q_V$ is a sum of monomials of the class (1.1.5) with $r=2$, equal times, kernels
+$a_na_{n'}\,h\otimes h\in L^2$, and per-point degrees $\le p$, admissible with
+$\kappa=\deg\mathscr P$ by footnote~9. Its norm (1.1.9) obeys
+\[
+  \|Q_V\|\ \le\ 9\,\mathfrak K(p)\,\lambda^2\Bigl(\sum_{n=0}^p|a_n|\Bigr)^{\!2}.
+\]
+\end{lemma}
+
+\begin{proof}
+Membership is by inspection --- the product of two individually Wick-ordered powers at distinct
+points \emph{is} the form (1.1.5); no recombination into jointly ordered monomials occurs, so no
+contraction constants appear. For the norm: $\supp h$ meets at most $3$ unit lattice cells; write
+$h=\sum_{j\in J}h_j$, $h_j=h\,\chi_{[j,j+1)}$, $|J|\le3$, $\|h_j\|_{L^2}\le1$ since $|h|\le1$.
+Each localized piece $Q^{(j,j')}_{n,n'}$ has kernel $a_na_{n'}h_j\otimes h_{j'}$ with
+$\|h_j\otimes h_{j'}\|_{L^2}=\|h_j\|_2\|h_{j'}\|_2\le1$, and local degrees: if $j=j'$ one square
+carries $N(\Delta)=n+n'\le2p$, contributing $K_2^{n+n'}(n+n')!\le K_2^{2p}(2p)!$; if $j\ne j'$ two
+squares carry $n$ and $n'$, contributing $K_2^{n}n!\,K_2^{n'}n'!\le K_2^{2p}(p!)^2\le K_2^{2p}(2p)!$.
+Hence $\|Q^{(j,j')}_{n,n'}\|\le|a_n||a_{n'}|\,\mathfrak K(p)$, and (1.1.9) sums the $\le9$ pairs
+$(j,j')$ and the degrees.
+\end{proof}
+
+\begin{lemma}[slab Feynman--Kac--Nelson]\label{lem:B}
+Let $T>0$, $g\in\G$, $\psi_T:=e^{-TK_g}\Om_0$, $\hat\psi_T:=\psi_T/\|\psi_T\|$. Then for every
+measurable $F:\mathcal S'(\R)\to[0,\infty]$,
+\[
+  \int F\bigl(\Phi(0,\cdot)\bigr)\,dq_{h_{T,g}}
+  \;=\;\frac{\ip{\psi_T}{F(\phi_0)\,\psi_T}}{\|\psi_T\|^2}\,;
+\]
+in particular, with $F=V(h)^2$ (a nonnegative measurable function of the time-zero field, by
+Proposition~\ref{prop:conv}),
+\[
+  \bigl\|V(h)\hat\psi_T\bigr\|^2=\int Q_V\,dq_{h_{T,g}} .
+\]
+\end{lemma}
+
+\begin{proof}
+For bounded $F$ this is the standard Feynman--Kac--Nelson identity for the measure
+$Z^{-1}e^{-V(h_{T,g})}d\Phi$: the Markov property of $d\Phi$ with respect to constant-time lines
+and $\int_{-T}^{T}\!\!\int g\,{:}\mathscr P{:}\,dxdt=\int_{-T}^{T}V(g)(t)\,dt$ give
+$\int F\,e^{-V(h_{T,g})}d\Phi=\ip{\Om_0}{e^{-TK_g}Fe^{-TK_g}\Om_0}$ (Nelson; \cite[Thm.~III.12]{SimonBook};
+\cite{GRS75}); any additive normalisation of $K_g$ cancels in the ratio. Both sides are increasing
+in $F$, so monotone convergence extends the identity to $F\ge0$ measurable, as an identity in
+$[0,\infty]$. The second display is the case $F=V(h)^2$: sharp-time Wick powers with respect to
+$d\Phi$ coincide with the $C$-Wick powers of $\phi_0$ by Proposition~\ref{prop:conv}, and then
+$F(\phi_0)=V(h)^2$ as a multiplication operator on $Q$-space.
+\end{proof}
+
+\begin{lemma}[limit; no uniform gap used]\label{lem:C}
+$\hat\psi_T\to\Om_g$ in norm as $T\to\infty$. Consequently, if
+$\sup_T\|V(h)\hat\psi_T\|\le B<\infty$, then $\Om_g\in D(V(h))$ and $\|V(h)\Om_g\|\le B$.
+\end{lemma}
+
+\begin{proof}
+By Source Fact~\ref{sf:class} (or GJ~II for smooth $g$), $E_g=\inf\spec K_g$ is a simple isolated
+eigenvalue with eigenvector $\Om_g>0$ a.e.\ in $Q$-space; let $\gamma_g>0$ be its (\,$g$-dependent,
+not uniform\,) distance to the rest of the spectrum. The spectral theorem gives
+\[
+  e^{-T(K_g-E_g)}\Om_0=c\,\Om_g+r_T,\qquad c=\ip{\Om_g}{\Om_0}=\int\Om_g\,d\phi_0>0,\quad
+  \|r_T\|\le e^{-T\gamma_g},
+\]
+whence $\hat\psi_T\to\Om_g$. For the second claim: $V(h)$ is multiplication by a real function in
+$L^2(d\phi_0)$, hence self-adjoint on its maximal domain, hence closed; a closed graph is a norm-closed
+subspace and therefore weakly closed. If $\sup_T\|V(h)\hat\psi_T\|\le B$, pick a subsequence with
+$V(h)\hat\psi_{T_k}\rightharpoonup v$; then $(\hat\psi_{T_k},V(h)\hat\psi_{T_k})\rightharpoonup(\Om_g,v)$
+lies in the graph, so $\Om_g\in D(V(h))$, $V(h)\Om_g=v$, and
+$\|v\|\le\liminf\|V(h)\hat\psi_{T_k}\|\le B$.
+\end{proof}
+
+\begin{theorem}[(M$_2$), conditional on Gate~\ref{gate:R1} only]\label{thm:M2}
+In the GJS weak-coupling region, for every real $h$ with $\|h\|_\infty\le1$ and support in an
+interval of length $2$,
+\[
+  \sup_{g\in\G}\ \|V(h)\Om_g\|^2\ \le\ 9\,C_8\,\mathfrak K(p)\,\lambda^2
+  \Bigl(\sum_{n=0}^p|a_n|\Bigr)^{\!2}\;=:\;B^2 .
+\]
+\end{theorem}
+
+\begin{proof}
+Fix $g$ and $T$. The slab cutoff $h_{T,g}$ lies in the class of Source Fact~\ref{sf:class}, so
+Theorem~1.1.8 (class-uniform reading) and Lemma~\ref{lem:A} give
+\[
+  0\le\int Q_V\,dq_{h_{T,g}}\le C_8\,\|Q_V\|\le B^2 ,
+\]
+the left inequality because $\int Q_V\,dq=\|V(h)\hat\psi_T\|^2\ge0$ by Lemma~\ref{lem:B}. Thus
+$\sup_T\|V(h)\hat\psi_T\|\le B$, and Lemma~\ref{lem:C} concludes. Uniformity in $g$ holds because
+$B$ contains no $g$-dependent quantity; translation covariance (\texttt{m0}, Lemma~3.2) makes the
+bound independent of the location of $\supp h$ as well.
+\end{proof}
+
+\begin{remark}[free-field anchor]
+For $\lambda=0$ the exact value is
+$\|V(h)\Om_0\|^2=\lambda^2\sum_n a_n^2\,n!\ip{h}{C^{\circ n}h}$ (cross degrees vanish), finite for
+every $n$ since $C^{\circ n}\in L^1_{\mathrm{loc}}$; numerically, for $m_0=1$ and
+$h=\chi_{[0,1]}$: $\ip{h}{C^{\circ n}h}=0.2687,\ 0.1008,\ 0.0509,\ 0.0326$ for $n=1,\dots,4$
+(e.g.\ $\mathbb E[F_4[h]^2]=4!\cdot0.0326=0.78$). The bound of Theorem~\ref{thm:M2} sits far above
+these values, as it must; the point of the anchor is that the sharp-time second moments the
+theorem controls are finite non-vacuous quantities already at $\lambda=0$.
+\end{remark}
+
+\section{Residual gates}
+
+\begin{gate}[the $h$-uniform reading of Theorem 1.1.8]\label{gate:R1}
+The printed statement says ``uniformly as $h\to1$''; the derivation above uses ``uniformly over
+$0\le h\le1$, $\supp h$ compact''. Three facts pin the stronger reading to the paper's own logic,
+short of a line-by-line reconstruction of \S\S2--4: (i) Theorem~1.1.7 \emph{is} stated
+class-uniformly (``independent of $h$''), and its proof (p.~596--597) consists of applying
+Theorems 1.1.8 and 1.1.11 --- an $h$-dependent $C_8$ would break the derivation; (ii) the proof of
+(1.1.11) applies Theorem~1.1.7 to the interpolated cutoffs $h_1+\alpha g$, which sweep the full
+class even when $h_1,h_2$ are rectangles; (iii) in the expansion, $h$ enters only multiplicatively
+inside vertices ($|\lambda h(x)|\le\lambda$) and through stability factors $e^{-V(h)}$, and the
+constants of Theorem~2.4.1 are fixed in the order $m_0,K_2,K_1,\lambda$ with no reference to $h$.
+\emph{What remains to be checked in a clean copy}: that the stability estimates used in \S2.4/\S3
+(the analogues of $\|e^{-V_\Delta(h)}\|_{L^p(d\Phi)}\le e^{O(1)}$ per unit square) are written with
+constants depending on $h$ only through $0\le h\le1$ --- the OCR of those pages is too degraded to
+certify each display. This is a bounded verification task, not an open problem.
+\end{gate}
+
+\begin{gate}[the $K_1$ exponent]\label{gate:R2}
+The exponent $e$ in the norm (1.1.8) prefactor $K_1^{\,e}$ is illegible in the scan (readings
+$e\in\{1,r,\sum N(\Delta)\}$ are all consistent with the visible text). This affects only the
+numerical size of $\mathfrak K(p)$ through $e_*\le\max(2,2p)$, not the finiteness or the
+$g$-uniformity of Theorem~\ref{thm:M2}. To be fixed by inspection of a clean copy.
+\end{gate}
+
+\begin{remark}[corrections to \texttt{weak-coupling-strategy.tex}]\label{rem:corr}
+(i) The claimed constant $32\lambda^2C_{\rm CE}K_1K_2^{4p}(2p)!(\sum|a_n|)^2$ should read as in
+Theorem~\ref{thm:M2}: the cell count for a length-$2$ support is $9$, not $32$, and the local
+degrees sum to $n+n'\le2p$, giving $K_2^{2p}$, not $K_2^{4p}$. Both corrections go in the
+favourable direction. (ii) The citation ``Theorems 1.1.7--1.1.8'' for the pair (moments, cluster)
+should be (Thm.~1.1.8, Thm.~1.1.7) respectively; the numbering itself is confirmed correct.
+(iii) The Wick-mass conversion step (their (6.1)) can be deleted for this source: by
+Proposition~\ref{prop:conv} the source Wick mass is $m_0$ and the sharp-time orderings coincide
+exactly.
+\end{remark}
+
+\begin{remark}[what this does \emph{not} settle]
+Nothing here bears on (G): the gap derivation is a separate transfer (CE2 on a dense cylinder
+core, then the spectral-measure lemma of \texttt{remaining.tex}), and remains open pending the
+same kind of audit for the time-separated case, plus the density lemma. The present note settles
+the (M$_2$) side conditional on Gate~\ref{gate:R1}, which is shared by both transfers.
+\end{remark}
+
+\section{Status}
+
+\begin{itemize}
+\item \textbf{Verified in source} (with page references): the cutoff classes (Euclidean and
+      Hamiltonian) coincide verbatim with ours; sharp equal-time monomials with $L^2$ kernels are
+      in the observable class; Thm~1.1.7 is class-uniform in $h$ by statement; the slab limit is
+      asserted in-source; the conventions match exactly, eliminating the Wick-mass conversion.
+\item \textbf{Proved here}: Lemmas~\ref{lem:A}--\ref{lem:C} and Theorem~\ref{thm:M2} --- (M$_2$)
+      with the explicit constant $9\,C_8\,\mathfrak K(p)\,\lambda^2(\sum|a_n|)^2$, uniform in
+      $g$, using no uniform gap.
+\item \textbf{Remaining}: Gates~\ref{gate:R1} and \ref{gate:R2} --- both bounded verification
+      tasks against a clean copy of \cite{GJS}, not open problems.
+\item \textbf{Bonus}: Source Fact~\ref{sf:lppl} --- GJS (1.1.11)--(1.1.12) is a 1974 Euclidean
+      LPPL with rate $e^{-m_1d/2}$, by exactly the derivative-plus-cell mechanism of
+      \texttt{lppl.tex}.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{GJS} J.~Glimm, A.~Jaffe and T.~Spencer, \emph{The Wightman axioms and particle structure
+in the $\mathscr P(\phi)_2$ quantum field model}, Ann.\ of Math.\ \textbf{100} (1974) 585--632.
+\bibitem{GRS75} F.~Guerra, L.~Rosen and B.~Simon, \emph{The $P(\phi)_2$ Euclidean quantum field
+theory as classical statistical mechanics}, Ann.\ of Math.\ \textbf{101} (1975) 111--189, 191--259.
+\bibitem{SimonBook} B.~Simon, \emph{The $P(\Phi)_2$ Euclidean (Quantum) Field Theory}, Princeton
+University Press, 1974.
+\end{thebibliography}
+
+\end{document}

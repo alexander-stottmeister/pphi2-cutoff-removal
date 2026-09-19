@@ -1,0 +1,50 @@
+========================================================================
+V0 checkpoint — gate (II.11) thermal two-torus route      2026-08-12
+========================================================================
+
+[1] A2/A3: algebra checks and exact diagonalization (free)
+  [PASS] CCR phase  W = e^{iPhi(q)} e^{iPi(p)} e^{(i/2) eps q.p}  [corner]  err=3.89e-15
+  [PASS] Weyl relation with sigma = eps sum(qp'-pq')  [corner]  err=2.69e-15
+  [PASS] ED thermal trace vs coth formula, t=1.0  |ED-formula|=5.85e-10
+  [PASS] ED thermal trace vs coth formula, t=2.0  |ED-formula|=1.85e-16
+  [PASS] t->inf reproduces vacuum functional (model sheet (3.3))  |ED-vac|=5.81e-16
+  [PASS] free ED truncation stability (nmax vs nmax-6)  drift=8.55e-08
+  [PASS] mode vs position-space Q, rN=8, all t  
+  [PASS] mode vs position-space Q, rN=64, all t  
+
+[2] A3(b): thermal fixed-coarse rate, t in {1,2,4} vs vacuum
+  [PASS] refinement: position-space (2.6) == momentum-space (free-rate (1.5))  diff=1.78e-15
+      r : t=1.0  t=2.0  t=4.0  t=inf
+      1 : 3.319e-01  3.323e-01  3.323e-01  3.323e-01
+      2 : 1.706e-01  1.707e-01  1.707e-01  1.707e-01
+      3 : 8.652e-02  8.654e-02  8.654e-02  8.654e-02
+      4 : 4.354e-02  4.354e-02  4.354e-02  4.354e-02
+      5 : 2.183e-02  2.183e-02  2.183e-02  2.183e-02
+      6 : 1.092e-02  1.092e-02  1.092e-02  1.092e-02
+      7 : 5.457e-03  5.457e-03  5.457e-03  5.457e-03
+      8 : 2.720e-03  2.720e-03  2.720e-03  2.720e-03
+      9 : 1.351e-03  1.351e-03  1.351e-03  1.351e-03
+     10 : 6.662e-04  6.662e-04  6.662e-04  6.662e-04
+      LSQ slopes (r=7..10): {'1.0': '-1.0112', '2.0': '-1.0113', '4.0': '-1.0113', 'inf': '-1.0113'}
+  [PASS] thermal slopes t-independent (drift < 0.05)  drift=0.0000
+  [PASS] decay at least the envelope bound (slope <= -theta=0.1533)  slope(inf)=-1.0113
+
+[3] Interchange mechanism in vivo (anharmonic toys)
+  [PASS] two-site: |F(t) - omega(W)| <= 2 D(t) on t-grid  
+  [PASS] two-site: exponential rate ~ gap (within 20%)  fit=0.9237, gap=0.9154
+  [PASS] two-site interacting truncation stability (nmax 26 vs 20)  dE0=1.43e-09
+  [PASS] four-site: |F(t) - omega(W)| <= 2 D(t) on t-grid  
+      mode-doubling record: E0: +1.599225 -> +5.536744, gap: 0.915447 -> 0.904691, omega(W): +0.942064 -> +0.947066
+      (drifts are the N=0 -> N=1 approximation step; recorded, not asserted)
+      Z-tail(t=2): 1.187375 (2-site) vs 1.184065 (4-site)
+
+[4] A4b dictionary: delta_N -> log(4/pi)/(2 pi)
+      analytic prediction: 0.0384461803
+      N= 4  r_N=    16   delta_N = 0.0383332685   |delta_N - pred| = 1.129e-04
+      N= 8  r_N=   256   delta_N = 0.0384453183   |delta_N - pred| = 8.620e-07
+      N=12  r_N=  4096   delta_N = 0.0384461753   |delta_N - pred| = 5.011e-09
+      N=14  r_N= 16384   delta_N = 0.0384461800   |delta_N - pred| = 3.646e-10
+  [PASS] delta_N converges to log(4/pi)/(2 pi), monotone approach  final |delta - pred| = 3.646e-10
+
+========================================================================
+V0 RESULT: ALL CHECKS PASSED

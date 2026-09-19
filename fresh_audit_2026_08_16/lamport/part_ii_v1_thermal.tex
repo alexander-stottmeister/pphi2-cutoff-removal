@@ -1,0 +1,510 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{auditstyle}
+\lhead{Fresh Glimm--Jaffe proof audit}
+\rhead{16 August 2026}
+\usepackage{bm}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\T}{\mathbb T}
+\newcommand{\dd}{\,d}
+\DeclareMathOperator{\Tr}{Tr}
+
+\title{Part II V1 in Lamport notation\\[3pt]
+\large Thermal Weyl functionals, Mehler bridges, and the exact mean shift}
+\author{Fresh reconstruction of \texttt{part\_ii/v1\_thermal\_representations.tex}}
+\date{16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+All finite-dimensional identities in V1 are reconstructed below.  The reference
+measure in the mean-shift formula is the \emph{free periodic Gaussian} measure.  The
+continuum interacting marked-slice identity is not assumed here; it is proved by the
+V3 reconstruction and consumed only afterward.
+\end{resultbox}
+\tableofcontents
+
+\section{Objects and statement}
+
+Fix $L,m>0$, $\eps_N=L/r_N$, the spatial lattice $\Lambda_N$ with $2r_N$ sites,
+and
+\[
+ \Gamma_N=\{\pi j/L:-r_N\le j<r_N\},\qquad
+ \gamma_N(k)^2=m^2+4\eps_N^{-2}\sin^2(\eps_Nk/2).
+\]
+On $L^2(\R^{\Lambda_N},d\bm\varphi)$ let
+$\Phi_N(x)=\varphi_x$ and $\Pi_N(x)=-i\eps_N^{-1}\partial_{\varphi_x}$.  For real
+$q,p$ set
+\[
+ \Phi_N(q)=\eps_N\sum_xq_x\Phi_N(x),\quad
+ \Pi_N(p)=\eps_N\sum_xp_x\Pi_N(x),\quad
+ W_N(\eps_Nq+ip)=e^{i(\Phi_N(q)+\Pi_N(p))}.
+\]
+Let $H_N^{(0)}$ be the nearest-neighbour oscillator Hamiltonian and
+\[
+ K_N=H_N^{(0)}+V_N,\qquad
+ V_N=\lambda\eps_N\sum_x{:}\Phi_N(x)^4{:}_{c_{N,L}}.
+\]
+The model-sheet module proves that $K_N$ is self-adjoint, bounded below, has compact
+resolvent, and has a simple ground state.
+
+\section{Structured proof}
+
+\LS{1}{1}{Derive the exact Schr\"odinger action of the Weyl operator.}
+
+\LS{2}{1}{For $s\in\R$ define}
+\[
+ (U_s\psi)(\bm\varphi)=
+ e^{is\eps_Nq\cdot\bm\varphi+\frac i2s^2\eps_Nq\cdot p}
+ \psi(\bm\varphi+sp).
+\]
+
+\LS{3}{1}{$U_s$ is unitary.}
+
+\Because Translation preserves Lebesgue measure and the prefactor has modulus one.
+
+\LS{3}{2}{$U_{s+s'}=U_sU_{s'}$.}
+
+\Because Direct substitution gives the exponent
+\[
+ s\eps_Nq\cdot\bm\varphi+s'\eps_Nq\cdot(\bm\varphi+sp)
+ +\tfrac12(s^2+s'^2)\eps_Nq\cdot p
+ =(s+s')\eps_Nq\cdot\bm\varphi+\tfrac12(s+s')^2\eps_Nq\cdot p.
+\]
+
+\LS{3}{3}{$s\mapsto U_s$ is a strongly continuous unitary group and its generator
+extends $\Phi_N(q)+\Pi_N(p)$ on $C_c^\infty$.}
+
+\Because Strong continuity first holds on $C_c^\infty$ by dominated convergence and
+then on all $L^2$ by density and unitarity.  On the core,
+\[
+ \left.\frac d{ds}U_s\psi\right|_{s=0}
+ =(i\eps_Nq\cdot\bm\varphi+p\cdot\nabla)\psi
+ =i(\Phi_N(q)+\Pi_N(p))\psi.
+\]
+Stone's theorem gives a self-adjoint generator extending the displayed differential
+operator.  Moreover $U_sC_c^\infty\subset C_c^\infty$ for every $s$; Nelson's
+invariant-domain criterion therefore makes $C_c^\infty$ a core for that generator.
+Thus the differential operator is essentially self-adjoint there and its closure
+generates $U_s$.
+
+\LS{2}{2}{At $s=1$,}
+\begin{align}
+ (W_N(\eps_Nq+ip)\psi)(\bm\varphi)
+ &=e^{i\eps_Nq\cdot\bm\varphi+\frac i2\eps_Nq\cdot p}
+   \psi(\bm\varphi+p),\tag{1.1}\\
+ W_N(\eps_Nq+ip)
+ &=e^{\frac i2\eps_Nq\cdot p}e^{i\Phi_N(q)}e^{i\Pi_N(p)}.\tag{1.2}
+\end{align}
+
+\LS{2}{3}{This proves $\langle1\rangle1$.}\QedStep
+
+\LS{1}{2}{Prove trace class and the marked-slice kernel identity.}
+
+\LS{2}{1}{$K_N$ has compact resolvent and is bounded below; hence
+$e^{-tK_N}$ is trace class for $t>0$.}
+
+\Because The model sheet proves
+$K_N\ge a(-\Delta_{\bm\varphi}+|\bm\varphi|^2)-b$ in quadratic-form sense
+for some $a>0,b<\infty$.  The comparison oscillator has compact resolvent and
+summable heat eigenvalues; the min--max principle yields
+$\Tr e^{-tK_N}<\infty$.
+
+\LS{2}{2}{Let $k_t(\bm x,\bm y)$ be the continuous kernel of $e^{-tK_N}$.  For
+bounded multiplication $f$ and translation $T_p\psi(x)=\psi(x+p)$,}
+\[
+ \Tr(e^{-tK_N}M_fT_p)=\int_{\R^{\Lambda_N}}
+ k_t(\bm x+p,\bm x)f(\bm x)\,d\bm x.\tag{2.1}
+\]
+
+\Because Expand the trace in a real eigenbasis $K_Nu_j=E_ju_j$.  Its scalar series
+is absolutely convergent because $M_fT_p$ is bounded.  To justify exchanging the
+series and spatial integration, put $D(x)=e^{-(t/2)K_N}(x,x)$ and use
+Cauchy--Schwarz twice:
+\[
+ \sum_j e^{-tE_j}|u_j(x)u_j(x+p)|
+ \le \left(\sum_je^{-tE_j/2}\right)D(x)^{1/2}D(x+p)^{1/2},
+\]
+\[
+ \int D(x)^{1/2}D(x+p)^{1/2}dx
+ \le\left(\int D(x)dx\right)^{1/2}
+     \left(\int D(x+p)dx\right)^{1/2}
+ =\Tr e^{-(t/2)K_N}<\infty.
+\]
+Thus Fubini applies.  The kernel series is the continuous heat kernel, and the
+change of variable in the trace gives (2.1) with $f(x)$ (not $f(x+p)$).
+
+\LS{2}{3}{With $f(x)=e^{i\eps_Nq\cdot x}$, (1.1) and (2.1) give}
+\[
+ \Tr(e^{-tK_N}W_N(\eps_Nq+ip))
+ =e^{\frac i2\eps_Nq\cdot p}\int
+ e^{i\eps_Nq\cdot x}k_t(x+p,x)\,dx.\tag{2.2}
+\]
+
+\LS{2}{4}{This proves $\langle1\rangle2$.}\QedStep
+
+\LS{1}{3}{Diagonalize the free system and compute its thermal Weyl functional.}
+
+\LS{2}{1}{Set $X_x=\eps_N^{1/2}\Phi_N(x)$ and
+$P_x=\eps_N^{1/2}\Pi_N(x)$.  The unitary discrete Fourier transform gives}
+\[
+ H_N^{(0)}=\sum_{k\in\Gamma_N}\gamma_N(k)(a_k^*a_k+\tfrac12),
+\]
+\[
+ \widetilde X(k)=(2\gamma_N(k))^{-1/2}(a_k+a_{-k}^*),\quad
+ \widetilde P(k)=-i(\gamma_N(k)/2)^{1/2}(a_k-a_{-k}^*).
+\tag{3.1}
+\]
+
+\Because Fourier transformation diagonalizes the circulant nearest-neighbour matrix;
+substitution of (3.1) and $[a_k,a_{k'}^*]=\delta_{kk'}$ cancels the $aa$ and
+$a^*a^*$ terms and leaves the displayed oscillator sum.
+
+\LS{2}{2}{For real $q,p$,}
+\[
+ \Phi_N(q)+\Pi_N(p)=\sum_k(\bar z_ka_k+z_ka_k^*),
+\quad
+ z_k=\eps_N^{1/2}\left[\frac{\widetilde q(k)}{\sqrt{2\gamma_N(k)}}
+ +i\sqrt{\frac{\gamma_N(k)}2}\widetilde p(k)\right].\tag{3.2}
+\]
+Moreover
+\[
+ \sum_k|z_k|^2=\frac1{2(2r_N)}\sum_k
+ \left(\gamma_N(k)^{-1}|\widehat q(k)|^2+\gamma_N(k)|\widehat p(k)|^2\right).
+\tag{3.3}
+\]
+
+\Because Parseval gives (3.2).  In $|z_k|^2$ the cross term is
+$\operatorname{Im}(\widetilde q(k)\overline{\widetilde p(k)})$; it is odd under
+$k\mapsto-k$ and cancels in the sum.  The relation between the two Fourier
+normalizations gives (3.3).
+
+\LS{2}{3}{For one oscillator $H=\gamma(a^*a+1/2)$ and
+$D(z)=e^{za^*-\bar za}$,}
+\[
+ \frac{\Tr(e^{-tH}D(z))}{\Tr e^{-tH}}
+ =\exp[-\tfrac12|z|^2\coth(t\gamma/2)].\tag{3.4}
+\]
+
+\Because BCH gives $D(z)=e^{-|z|^2/2}e^{za^*}e^{-\bar za}$.  In the number
+basis,
+\[
+ \langle n|e^{za^*}e^{-\bar za}|n\rangle
+ =L_n(|z|^2),\qquad
+ \sum_{n\ge0}w^nL_n(x)=\frac{e^{-xw/(1-w)}}{1-w}.
+\]
+The first identity follows by expanding both exponentials and matching the number
+change; the second follows from
+$\sum_{n\ge j}\binom njw^n=w^j(1-w)^{-j-1}$.  Put $w=e^{-t\gamma}$ and use
+$(1+w)/(1-w)=\coth(t\gamma/2)$.
+
+\LS{2}{4}{The finite tensor-product trace therefore equals}
+\[
+ F_N^{(0)}(t;\eps_Nq+ip)
+ =\exp[-\tfrac14Q_N^{(t)}(q,p)],\tag{3.5}
+\]
+\[
+ Q_N^{(t)}(q,p)=\frac1{2r_N}\sum_{k\in\Gamma_N}
+ \coth(t\gamma_N(k)/2)
+ \left(\gamma_N(k)^{-1}|\widehat q(k)|^2+\gamma_N(k)|\widehat p(k)|^2\right).
+\tag{3.6}
+\]
+Also
+$\Tr e^{-tH_N^{(0)}}=\prod_k[2\sinh(t\gamma_N(k)/2)]^{-1}$.
+
+\Because Apply (3.4) to each commuting oscillator and insert (3.3); the zero-point
+geometric sum is $[2\sinh(t\gamma/2)]^{-1}$.
+
+\LS{2}{5}{This proves $\langle1\rangle3$.}\QedStep
+
+\LS{1}{4}{Verify the Mehler kernel and the unique harmonic jump interpolant.}
+
+\LS{2}{1}{For $H_\omega=\tfrac12(-\partial_x^2+\omega^2x^2)$, set}
+\[
+ k_\Delta^{\omega}(x,y)=
+ \left(\frac{\omega}{2\pi\sinh(\omega\Delta)}\right)^{1/2}
+ \exp\left[-\frac{\omega\coth(\omega\Delta)}2(x^2+y^2)
+ +\frac{\omega xy}{\sinh(\omega\Delta)}\right].\tag{4.1}
+\]
+
+\LS{3}{1}{$\partial_\Delta k_\Delta^\omega=-H_\omega k_\Delta^\omega$.}
+
+\Because Differentiate the prefactor and exponent, using
+$(\omega\coth\omega\Delta)'=-\omega^2\operatorname{csch}^2(\omega\Delta)$ and
+$(\omega\operatorname{csch}\omega\Delta)'=-\omega^2\coth(\omega\Delta)
+\operatorname{csch}(\omega\Delta)$; the coefficients of
+$1,x^2,xy,y^2$ agree separately.
+
+\LS{3}{2}{$k_\Delta^\omega\to\delta_{x=y}$ as $\Delta\downarrow0$.}
+
+\Because In variables $u=(x+y)/\sqrt2$, $v=(x-y)/\sqrt2$, the quadratic form
+has coefficients $\omega\tanh(\omega\Delta/2)$ and
+$\omega\coth(\omega\Delta/2)$; the latter tends to infinity with the normalized
+Gaussian mass, while the former tends to zero.
+
+\LS{3}{3}{Thus (4.1) is the heat kernel.}
+
+\Because For compactly supported smooth initial data, both convolution with (4.1)
+and $e^{-\Delta H_\omega}$ solve the same $L^2$ Cauchy problem.  Their difference
+$v$ obeys $d\|v\|_2^2/d\Delta=-2\langle v,H_\omega v\rangle\le0$ and starts at zero.
+
+\LS{2}{2}{For a prescribed jump $\rho$, the boundary-value problem}
+\[
+ -\ddot H+\omega^2H=0,\quad H(t)-H(0)=\rho,\quad \dot H(t)=\dot H(0)
+\]
+has the unique solution
+\[
+ H(s)=\frac\rho2\frac{\sinh(\omega(s-t/2))}{\sinh(\omega t/2)}.
+\tag{4.2}
+\]
+
+\Because The general solution is $A\cosh(\omega s)+B\sinh(\omega s)$.  Solving the
+two linear boundary equations gives $A=-\rho/2$ and
+$B=(\rho/2)\coth(\omega t/2)$, which is (4.2) by the subtraction formula.
+The homogeneous system has only $A=B=0$.
+
+\LS{2}{3}{The interpolant satisfies}
+\[
+ |H(s)|\le|\rho|/2,\quad
+ S(H):=\frac12\int_0^t(\dot H^2+\omega^2H^2)ds
+ =\frac{\omega\rho^2}{4}\coth(\omega t/2).\tag{4.3}
+\]
+
+\Because $|s-t/2|\le t/2$ and $|\sinh|$ is increasing on $[0,\infty)$.
+Integration by parts and the ODE give
+$S(H)=\frac12[H\dot H]_0^t=\frac12\rho\dot H(0)$; differentiating (4.2) at
+$0$ gives the last expression.
+
+\LS{2}{4}{This proves $\langle1\rangle4$.}\QedStep
+
+\LS{1}{5}{Prove the exact discrete Gaussian shift identity.}
+
+Fix the equal partition $s_i=i\Delta$, $\Delta=t/M$, and let
+$H_i=H(s_i)$.  Define the periodic Mehler-chain integral
+\[
+ J_0[f_0,\ldots,f_{M-1}]
+ =\int\prod_{i=0}^{M-1}k_{\Delta}^\omega(\eta_{i+1},\eta_i)
+ f_i(\eta_i)\,\prod_i d\eta_i,\qquad \eta_M=\eta_0,
+\]
+and the jump chain $J_\rho$ by replacing the closing condition by
+$x_M=x_0+\rho$.
+
+\LS{2}{1}{Under $x_i=\eta_i+H_i$, every interior Mehler exponent has zero linear
+term in $\eta_i$.}
+
+\Because Apart from its normalization, the negative logarithm of one kernel is
+\[
+ Q_\Delta(y,x)=\frac{\omega}{2\sinh(\omega\Delta)}
+ [\cosh(\omega\Delta)(x^2+y^2)-2xy].
+\]
+For $1\le i<M$, the coefficient of $\eta_i$ in
+$\sum_iQ_\Delta(\eta_{i+1}+H_{i+1},\eta_i+H_i)$ is proportional to
+\[
+ 2\cosh(\omega\Delta)H_i-H_{i-1}-H_{i+1}=0,
+\]
+the exact three-term propagation law of every solution of
+$-\ddot H+\omega^2H=0$.  The combined coefficient of the periodic variable
+$\eta_0=\eta_M$ is the difference of the endpoint classical momenta and vanishes
+because $\dot H(t)=\dot H(0)$.  Hence all linear terms, including the closing
+one, vanish.
+
+\LS{2}{2}{The constant part of the exponent is $S(H)$, independent of the mesh.}
+
+\Because $Q_\Delta(H_{i+1},H_i)$ is exactly the classical action
+$\frac12\int_{s_i}^{s_{i+1}}(\dot H^2+\omega^2H^2)ds$ of the unique harmonic
+path joining the two endpoints.  The restriction of (4.2) is that path.  Hence
+\[
+ \sum_iQ_\Delta(H_{i+1},H_i)
+ =\frac12\int_0^t(\dot H^2+\omega^2H^2)ds
+ =\frac12[H\dot H]_0^t=S(H).
+\]
+
+\LS{2}{3}{The endpoint conditions transform correctly:}
+$x_M=x_0+\rho$ becomes $\eta_M=\eta_0$ because $H(t)-H(0)=\rho$.
+
+\LS{2}{4}{Therefore}
+\[
+ J_\rho[f_0,\ldots,f_{M-1}]
+ =e^{-S(H)}J_0[f_0(\cdot+H_0),\ldots,f_{M-1}(\cdot+H_{M-1})].
+\tag{5.1}
+\]
+The multimode identity is the product of (5.1).
+
+\LS{2}{5}{This proves $\langle1\rangle5$.}\QedStep
+
+\LS{1}{6}{Derive the interacting marked-slice mean-shift formula.}
+
+\LS{2}{1}{The harmonic-reference FKN formula gives}
+\[
+ k_t^K(x,y)=k_t^{(0)}(x,y)
+ \mathbb E_{x,y}^{t,0}\exp\left[-\int_0^tV_N(B_s)ds\right].\tag{6.1}
+\]
+
+\Because For bounded truncations of $V_N$ this is the Trotter product formula with
+the Mehler kernel.  The Wick quartic is continuous and bounded below; truncate it
+from above, apply monotone/dominated convergence to the positive kernels, and use
+the closed lower-bounded form limit.  This proves (6.1) without importing an
+interacting scaling limit.
+
+\LS{2}{2}{Insert (6.1) into (2.2) and approximate the time integral by Riemann
+sums.}
+
+\Because Each bridge path is continuous and $V_N$ is continuous, so the Riemann sums
+converge pointwise.  If $V_N\ge-c_N$, every exponential is bounded by $e^{tc_N}$;
+the remaining Mehler chain has finite mass.  Dominated convergence applies.
+
+\LS{2}{3}{Apply (5.1) mode by mode with jump
+$\rho_k=\eps_N^{1/2}\widetilde p(k)$.}
+
+\Because The position translation in (1.1) is $p$, hence in the rescaled mode
+coordinate it is exactly $\rho_k$.  The product Jacobian is one.
+
+\LS{2}{4}{The phase from (1.1) cancels the value of the marked position source on
+$H(0)=-p/2$.}
+
+\Because The inserted factor becomes
+\[
+ e^{\frac i2\eps_Nq\cdot p}e^{i\eps_Nq\cdot(\eta(0)-p/2)}
+ =e^{i\eps_Nq\cdot\eta(0)}.
+\]
+
+\LS{2}{5}{Let $\mu_{N,t}^{\rm per}$ be the free periodic Gaussian field with mode
+covariance}
+\[
+ c_\omega(s)=\frac{\cosh(\omega(t/2-|s|_{\T_t}))}
+ {2\omega\sinh(\omega t/2)}.
+\tag{6.2}
+\]
+Then
+\[
+ \frac{\Tr(e^{-tK_N}W_N(\eps_Nq+ip))}{\Tr e^{-tK_N}}
+ =e^{-S_N(H_p)}
+ \frac{\mathbb E_{\mu_{N,t}^{\rm per}}
+ [e^{i\eps_Nq\cdot\eta(0)}e^{-\mathcal U_N(\eta+H_p)}]}
+ {\mathbb E_{\mu_{N,t}^{\rm per}}[e^{-\mathcal U_N(\eta)}]}.
+\tag{6.3}
+\]
+
+\Because The periodic Mehler chain is centered Gaussian and its two-point function is
+(6.2), obtained either by inverting $-\partial_s^2+\omega^2$ on the time circle or by
+the oscillator trace.  Normalize the periodic chain by the zero-source partition
+function.  Steps $\langle2\rangle2$--$\langle2\rangle4$ give exactly the numerator;
+$q=p=0$ gives the denominator.
+
+\LS{2}{6}{The shifted Wick quartic is exactly}
+\[
+ {:}(\eta+H)^4{:}_c-{:}\eta^4{:}_c
+ =4H{:}\eta^3{:}_c+6H^2{:}\eta^2{:}_c+4H^3\eta+H^4.
+\tag{6.4}
+\]
+
+\Because Expand $(\eta+H)^4-6c(\eta+H)^2+3c^2$ and use
+$\eta^3={:}\eta^3{:}_c+3c\eta$ and $\eta^2={:}\eta^2{:}_c+c$; all additional
+$c$ terms cancel.
+
+\LS{2}{7}{This proves $\langle1\rangle6$.}\QedStep
+
+\LS{1}{7}{Construct the continuum free thermal functional.}
+
+Let $\gamma=(-\partial_x^2+m^2)^{1/2}$ on $\T_L$ and
+\[
+ h_{\rm ct}=H^{-1/2}(\T_L)\oplus iH^{1/2}(\T_L).
+\]
+
+\LS{2}{1}{For $\zeta=q+ip\in h_{\rm ct}$, the symplectic form
+$\operatorname{Im}\int\bar\zeta\zeta'$ is finite and defines the continuum Weyl
+operator $W_{\rm ct}(\zeta)$.}
+
+\Because Sobolev duality pairs $H^{-1/2}$ with $H^{1/2}$.  The covariance norm
+$\langle q,\gamma^{-1}q\rangle+\langle p,\gamma p\rangle$ is finite by definition.
+
+\LS{2}{2}{$e^{-t\,d\Gamma(\gamma)}$ is trace class and}
+\[
+ \Tr e^{-t\,d\Gamma(\gamma)}=\prod_{k\in(\pi/L)\mathbb Z}(1-e^{-t\gamma(k)})^{-1}.
+\]
+
+\Because The occupation basis gives the product of geometric series.  It converges
+because $\sum_ke^{-t\gamma(k)}<\infty$.
+
+\LS{2}{3}{For square-summable displacement amplitudes, absolute convergence permits
+factorization of the trace into one-mode traces.  Hence}
+\[
+ F_\infty^{(0)}(t;q+ip)
+ =\exp\left[-\frac14\sum_k\coth(t\gamma(k)/2)
+ \left(\gamma(k)^{-1}|\widehat q(k)|^2+\gamma(k)|\widehat p(k)|^2\right)\right],
+\tag{7.1}
+\]
+with the Fourier normalization fixed by the model sheet.
+
+\Because $|\langle n,D(z)n\rangle|\le1$ dominates the trace by the partition
+function; Fubini applies, and (3.4) evaluates every factor.
+
+\LS{2}{4}{The D4 image of every fixed coarse symbol belongs to $h_{\rm ct}$.}
+
+\Because Its Fourier coefficients contain
+$P_\infty(\eps_Mk)$ with
+$|P_\infty(\ell)|^2\le C_D(1+|\ell|)^{-2-\eta}$, $\eta>0$.  The momentum
+sum is bounded by $\sum_k|k|(1+\eps_M|k|)^{-2-\eta}<\infty$, and the position
+sum is easier.
+
+\LS{2}{5}{This proves $\langle1\rangle7$.}\QedStep
+
+\LS{1}{8}{Prove the free thermal fixed-coarse rate uniformly for $t\ge t_0>0$.}
+
+\LS{2}{1}{For $w_t(\gamma)=\coth(t\gamma/2)$ and
+$\bar w=\coth(t_0m/2)$,}
+\begin{align*}
+ 1&\le w_t(\gamma)\le\bar w,\\
+ |(\gamma w_t(\gamma))'|&\le\bar w+s_*,\\
+ |(\gamma^{-1}w_t(\gamma))'|&\le(\bar w+s_*)m^{-2},
+\end{align*}
+where $s_*=\sup_{x\ge t_0m/2}x/\sinh^2x<\infty$.
+
+\Because Differentiate $\coth(t\gamma/2)$ and use $\gamma\ge m$.
+
+\LS{2}{2}{On low momenta, split each weighted multiplier difference into a
+dispersion term and a D4-filter term.}
+
+\Because For the momentum multiplier,
+\[
+ |\gamma_Nw_t(\gamma_N)|P_r|^2-\gamma w_t(\gamma)|P_\infty|^2|
+ \le |\gamma_Nw_t(\gamma_N)-\gamma w_t(\gamma)|\,|P_r|^2
+ +\gamma w_t(\gamma)||P_r|^2-|P_\infty|^2|.
+\]
+The first term is at most
+$(\bar w+s_*)\eps_N^2k^4/(24m)$ times $|P_r|^2$; the position multiplier is
+the same with the derivative bound $m^{-2}(\bar w+s_*)$.  The second terms use
+the explicit finite-product filter tail.
+
+\LS{2}{3}{On high momenta, multiply the vacuum D4 envelope estimate by at most
+$\bar w$.}
+
+\Because $1\le w_t\le\bar w$ uniformly in $t\ge t_0$; no derivative is used in
+the tail.
+
+\LS{2}{4}{Choose the same split exponent as the free-rate module,
+$2-5\alpha=\alpha\eta=\theta=2\eta/(5+\eta)$.  Then}
+\[
+ |Q_{M+r}^{(t)}(\xi)-Q_\infty^{(t)}(\xi)|
+ \le C_{M,\xi,m,L,t_0}2^{-\theta r},\qquad t\in[t_0,\infty].\tag{8.1}
+\]
+
+\Because The low sum is $O(4^{-r}(1+J_r)^5)$ and the high tail is
+$O(J_r^{-\eta})$.  Put $J_r\asymp2^{\alpha r}$; the two exponents become equal.
+Every sum and counting constant is the explicit one proved in the free-rate module.
+
+\LS{2}{5}{The characteristic functionals obey the same rate up to a factor $1/4$.}
+
+\Because For $x,y\ge0$, $|e^{-x/4}-e^{-y/4}|\le|x-y|/4$.
+
+\LS{2}{6}{This proves $\langle1\rangle8$.}\QedStep
+
+\section{V1 conclusion and dependency interface}
+
+The proved outputs are the exact lattice Weyl phase, trace-kernel formula, free thermal
+closed forms, Mehler/jump shift, interacting finite-lattice representation (6.3), and
+uniform free fixed-coarse rate (8.1).  Formula (6.3) uses only a finite-dimensional
+FKN argument.  The analogous continuum interacting formula requires the continuum
+Hamiltonian/periodic FKN construction; the V3 module proves it before V4 uses it.
+
+\end{document}

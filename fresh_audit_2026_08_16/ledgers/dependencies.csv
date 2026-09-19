@@ -1,0 +1,37 @@
+edge_id,from_claim,to_claim,role,load_bearing
+D001,I-A8b,I-04,uniform local moment,yes
+D002,I-A8a,I-06,Euclidean separated correlation estimate,yes
+D003,I-06,I-07,transfer CE2 to semigroup decay,yes
+D004,I-07,I-10,dense-subspace spectral estimate,yes
+D005,I-10,I-12,isolated simple eigenprojection,yes
+D006,I-10,I-13,inverse-energy spectral multiplier,yes
+D007,I-A6,I-14,finite propagation of filtered perturbation,yes
+D008,I-04,I-15,unbounded local argument integrability,yes
+D009,I-12,I-16,differentiate the state,yes
+D010,I-14,I-17,localize path perturbation,yes
+D011,I-15,I-17,cluster localized derivative,yes
+D012,I-17,I-19,telescope cutoff shells,yes
+D013,I-19,I-20,local predual completeness,yes
+D014,I-19,I-21,pass exact local dynamics to the limit,yes
+D015,I-20,I-22,local normality conclusion,yes
+D016,I-21,I-22,ground-state conclusion,yes
+D017,I-B4,I-24,phase classification hypothesis,yes
+D018,II-S0,II-V1-01,lattice CCR convention,yes
+D019,II-O3,II-V1-07,free fixed-coarse quantitative convergence,yes
+D020,II-V1-04,II-V1-05,exact harmonic mean shift,yes
+D021,II-V2-01,II-V2-06,cross-moment combinatorics,yes
+D022,II-V2-04,II-V2-06,covariance convolution bounds,yes
+D023,II-V2-09,II-V2-10,shift coefficient Fourier control,yes
+D024,II-V2-10,II-V2-11,shifted Nelson integrability,yes
+D025,II-V2-10,II-V4-02,shifted numerator convergence,yes
+D026,II-V3-01,II-V3-04,continuum interaction limit,yes
+D027,II-V3-02,II-V3-05,hypercontractive trace-class ladder,yes
+D028,II-V3-06,II-V3-07,periodic shifted limit,yes
+D029,II-V3-08,II-V4-04,positive continuum gap for Laplace transfer,yes
+D030,II-V4-02,II-V4-03,ratio convergence,yes
+D031,II-G2,II-V4-04,spectral Laplace transfer,yes
+D032,II-V4-03,II-V4-05,fixed-t thermal convergence,yes
+D033,II-V4-04,II-V4-05,uniform spectral tails,yes
+D034,II-G1,II-V4-05,interchange t and N,yes
+D035,II-V4-05,II-V4-06,ground-state characteristic-functional convergence,yes
+D036,II-O4,II-V4-06,Weyl-generator convergence to state convergence,yes

@@ -1,0 +1,897 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{auditstyle}
+\lhead{Fresh Glimm--Jaffe proof audit}
+\rhead{16 August 2026}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\T}{\mathbb T}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\W}{\mathfrak W}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\U}{\mathcal U}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\cth}{\operatorname{coth}}
+\newcommand{\logN}{\mathcal L_N}
+
+\title{Part II V4 in Lamport notation\\[3pt]
+\large Fixed-time comparison, spectral transfer, ground-state limit, and assembly}
+\author{Fresh reconstruction of \texttt{part\_ii/v4\_assembly.tex}}
+\date{16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+This module proves the V4 assembly from the corrected V1--V3 modules.  In
+particular, every use of V2's shifted estimate refers to the repaired
+fundamental-band/alias proof, and every use of its fourth-chaos comparison includes
+the four-edge term omitted by the source V2.  Thus the argument below validates the
+claimed endpoint after those repairs; it does not retroactively validate the original
+V2 proof.
+\end{resultbox}
+\tableofcontents
+
+\section{Objects and corrected input contract}
+
+Fix $L,m>0$, $\lambda\ge0$, a coarse scale $M$, and
+$\xi=\eps_Mq+ip\in h_{M,L}$.  Let $N=M+r$, $\eps_N=2^{-r}\eps_M$, and
+\[
+ \logN=1+\log(1/\eps_N),\qquad
+ \eta_D=2-\log_2 3>0.
+\tag{0.1}
+\]
+The lattice Hamiltonian $K_{N,L}$ has ordered eigenvalues
+$E_0(N)<E_1(N)\le\cdots$, simple ground vector $\Omega_N$, and ground state
+$\omega_N$.  Put
+\[
+ e_0(N)=\frac12\sum_{k\in\Gamma_N}\gamma_N(k),\qquad
+ \widetilde E_j(N)=E_j(N)-e_0(N),
+\tag{0.2}
+\]
+\[
+ D_N(t)=\sum_{j\ge1}e^{-t(E_j(N)-E_0(N))}.
+\tag{0.3}
+\]
+The continuum operator $K_L$ constructed in the V3 module has eigenvalues
+$\mu_0<\mu_1\le\cdots$, normalized positive ground vector $\Omega_L$, gap
+$\gamma_L=\mu_1-\mu_0>0$, and
+\[
+ D_\infty(t)=\sum_{j\ge1}e^{-t(\mu_j-\mu_0)}<\infty.
+\tag{0.4}
+\]
+
+Define the thermal Weyl functionals
+\[
+ F_N(t;\xi)=
+ \frac{\Tr(e^{-tK_{N,L}}W_N(R_M^N\xi))}{\Tr e^{-tK_{N,L}}},\qquad
+ F_\infty(t;\xi)=
+ \frac{\Tr(e^{-tK_L}W_{\rm ct}(R_M^\infty\xi))}{\Tr e^{-tK_L}}.
+\tag{0.5}
+\]
+Both have modulus at most one because the heat operator is positive trace class and
+the Weyl operator is unitary.
+
+The input contract is as follows.
+
+\begin{enumerate}
+\item V1 supplies the exact lattice marked-slice mean-shift formula, with the free
+periodic Gaussian reference and with the interaction, not the full harmonic
+potential, in the path weight.
+\item The repaired V2 module supplies the common-noise laws, unshifted comparison,
+the explicit four-edge correction, the exact fundamental-band/alias shifted
+comparison, and uniform plain/shifted Nelson bounds.  Its standing time hypothesis is
+$t_0L\ge1$.
+\item V3 supplies the continuum trace, marked-Weyl formula, trace-class semigroup,
+simple ground state, and positive gap.
+\item The earlier free-rate and Weyl-reduction Lamport modules supply their stated
+elementary estimates and $C^*$-algebraic extension theorem.
+\end{enumerate}
+
+No new printed theorem is imported in this module.
+
+\section{Exact coupled representations}
+
+Work on the repaired V2 common-noise probability space.  Let $\eta_N$ have the
+lattice periodic law and $\eta$ the continuum periodic law.  Let
+$\U_{N,t},\U_t$ be the corresponding interactions, and
+$h^{(N)},h^{(\infty)}$ the deterministic jump interpolants.  Define
+\[
+ b_N(k)=\eps_M^{1/2}P_r(\eps_Mk)\widehat p_M(k),\qquad
+ a_N(k)=\eps_M^{1/2}P_r(\eps_Mk)\widehat q_M(k),
+\tag{1.1}
+\]
+and define $a_\infty,b_\infty$ by replacing $P_r$ with $P_\infty$.
+
+\LS{1}{1}{Write both thermal functionals on this single coupling space.}
+
+\LS{2}{1}{Define}
+\[
+ S_N=\frac1{8L}\sum_{k\in\Gamma_N}
+ \gamma_N(k)\cth(t\gamma_N(k)/2)|b_N(k)|^2,
+\quad
+ S_\infty=\frac1{8L}\sum_{k\in\Gamma_\infty}
+ \gamma(k)\cth(t\gamma(k)/2)|b_\infty(k)|^2,
+\tag{1.2}
+\]
+\[
+ \Phi_N(J_q)=\eps_N\sum_{x\in\Lambda_N}q_N(x)\eta_N(0,x),\qquad
+ \Phi(J_q)=\int_{\T_L}q_\infty(x)\eta(0,x)dx.
+\tag{1.3}
+\]
+
+\LS{2}{2}{Put}
+\begin{align}
+ \mathcal N_N&=\E[e^{i\Phi_N(J_q)}
+ e^{-\U_{N,t}(\eta_N+h^{(N)})}],&
+ \mathcal E_N&=\E[e^{-\U_{N,t}}],\tag{1.4}\\
+ \mathcal N_\infty&=\E[e^{i\Phi(J_q)}
+ e^{-\U_t(\eta+h^{(\infty)})}],&
+ \mathcal E_\infty&=\E[e^{-\U_t}].\tag{1.5}
+\end{align}
+
+\LS{2}{3}{The exact representations are}
+\[
+ F_N=e^{-S_N}\frac{\mathcal N_N}{\mathcal E_N},
+ \qquad
+ F_\infty=e^{-S_\infty}\frac{\mathcal N_\infty}{\mathcal E_\infty}.
+\tag{1.6}
+\]
+
+\Because The first is V1's mode-by-mode Mehler mean-shift identity with the
+corrected interaction reference.  The second is equation (6.8) of the V3 module.
+The repaired V2 covariance proposition identifies their Gaussian fields on one
+space.  The Appell formula in V1/V3 shows that no extra Wick-subtraction term is
+present.  All factors and normalizations appear explicitly in (1.1)--(1.5).
+
+\LS{2}{4}{This proves $\langle1\rangle1$.}\QedStep
+
+\section{Action and marked-source comparisons}
+
+Throughout this section, $t\in[t_0,T]$, $t_0L\ge1$, and constants may depend on
+the fixed coarse data but not on $N$ or $t$.  Put
+$\bar w=\cth(t_0m/2)$.
+
+\LS{1}{2}{Compare the action prefactors.}
+
+\LS{2}{1}{$0\le S_N,S_\infty\le C_\xi$.}
+
+\Because The D4 envelope gives
+\[
+ |b_\bullet(k)|^2\le C\eps_M\|\widehat p_M\|_\infty^2
+ (1+\eps_M|k|)^{-2-\eta_D}.
+\tag{2.1}
+\]
+Also $\gamma_N\le\gamma$, $\cth(t\gamma_N/2)\le\bar w$, and
+$\sum_k(m+|k|)(1+\eps_M|k|)^{-2-\eta_D}<\infty$.
+
+\LS{2}{2}{Let $\ell=\eps_M|k|$ and split at $\ell_r=2^{r/2}$.  On
+$\ell\le\ell_r$,}
+\[
+ |\gamma_N\cth(t\gamma_N/2)-\gamma\cth(t\gamma/2)|
+ \le C(t_0,m)\eps_N^2k^4,
+\tag{2.2}
+\]
+\[
+ ||b_N|^2-|b_\infty|^2|
+ \le C_\xi2^{-r}\ell(1+\ell)^{-2-\eta_D}.
+\tag{2.3}
+\]
+
+\Because For $w(y)=y\cth(ty/2)$,
+$|w'(y)|\le\bar w+\sup_{x\ge t_0m/2}x/\sinh^2x$.  The lattice dispersion
+estimate gives $0\le\gamma-\gamma_N\le\eps_N^2k^4/(24m)$, proving
+(2.2).  The QMF telescope gives
+$|P_r-P_\infty|\le C2^{-r}\ell(1+\ell)^{-1-\eta_D/2}$; multiply by
+$|b_N|+|b_\infty|$ and use (2.1) to obtain (2.3).
+
+\LS{2}{3}{Summing the low-mode dispersion term gives}
+\[
+ C4^{-r}\int_0^{\ell_r}\ell^4(1+\ell)^{-2-\eta_D}d\ell
+ \le C2^{-r(1+\eta_D)/2}.
+\tag{2.4}
+\]
+
+\Because The mode density in $\ell$ is constant.  At large $\ell$, the
+integrand is $\ell^{2-\eta_D}$, whose integral is
+$O(\ell_r^{3-\eta_D})$; multiply by $4^{-r}$.
+
+\LS{2}{4}{Summing the low-mode filter term gives}
+\[
+ C2^{-r}\int_0^{\ell_r}\ell^2(1+\ell)^{-2-\eta_D}d\ell
+ \le C2^{-r(1+\eta_D)/2}.
+\tag{2.5}
+\]
+
+\Because The action weight grows at most linearly in $\ell$; (2.3) supplies the
+other factor.  The integral is $O(\ell_r^{1-\eta_D})$.
+
+\LS{2}{5}{The high-mode tails of both actions obey}
+\[
+ C\int_{\ell_r}^\infty\ell(1+\ell)^{-2-\eta_D}d\ell
+ \le C2^{-r\eta_D/2}.
+\tag{2.6}
+\]
+
+\LS{2}{6}{Therefore}
+\[
+ |S_N-S_\infty|\le C_\xi2^{-r\eta_D/2},\qquad
+ |e^{-S_N}-e^{-S_\infty}|\le|S_N-S_\infty|.
+\tag{2.7}
+\]
+
+\Because Add (2.4)--(2.6).  The last inequality follows from the mean-value
+theorem because $S_N,S_\infty\ge0$ and $|(-e^{-x})|\le1$ there.
+
+\LS{2}{7}{This proves $\langle1\rangle2$.}\QedStep
+
+\LS{1}{3}{Compare the marked-slice source phases, including the asymmetric edge.}
+
+\LS{2}{1}{For $r\ge1$, $a_N(\pm\pi/\eps_N)=0$.}
+
+\Because The refinement mask contains the factor $m_0(\pm\pi)=0$ at the last
+scale, so $P_r(\pm\pi2^r)=0$.  Thus the symmetrized V2 edge noise makes no
+contribution to the linear marked source.  This fact applies only to this linear
+source; it does not erase edge terms from covariance powers.
+
+\LS{2}{2}{For $r\ge1$, orthogonality of the common Gaussian Fourier family gives}
+\[
+ \E[(\Phi_N-\Phi)^2]=\frac1{2Lt}\left[
+ \sum_{\kappa\in D_N}
+ |c_N(\kappa)^{1/2}a_N(-k)-c_\infty(\kappa)^{1/2}a_\infty(-k)|^2
+ +\sum_{\kappa\in D_\infty\setminus D_N}c_\infty(\kappa)|a_\infty(-k)|^2
+ \right].
+\tag{2.8}
+\]
+
+\Because After Step $\langle2\rangle1$, the lattice source contains no edge
+coefficient, so its Fourier noise is literally the restriction of the common family.
+Subtract the two series and apply the Gaussian isometry.  The edge mode
+$+\pi/\eps_N$ is included in the continuum-tail sum.
+
+\LS{2}{3}{The filter-difference part of the first sum in (2.8) is at most}
+\[
+ C_\xi4^{-r}\int_0^{\pi2^r}\ell^2(1+\ell)^{-2-\eta_D}d\ell
+ \le C_\xi2^{-r(1+\eta_D)}.
+\tag{2.9}
+\]
+
+\Because
+$t^{-1}\sum_{k_0}c_N(k_0,k)=\cth(t\gamma_N/2)/(2\gamma_N)\le\bar w/(2m)$;
+square the QMF filter difference used in (2.3) and sum the spatial modes.
+
+\LS{2}{4}{The covariance-symbol part is $O(\eps_N^2)$.}
+
+\Because
+$(\sqrt x-\sqrt y)^2\le|x-y|$ and the repaired V2 symbol estimate is
+\[
+ |c_N-c_\infty|(k_0,k)
+ \le C\eps_N^2k^4(m^2+k_0^2+k^2)^{-2}.
+\tag{2.10}
+\]
+The exact $k_0$ count gives
+\[
+ t^{-1}\sum_{k_0}|c_N-c_\infty|
+ \le C\eps_N^2\frac{k^4}{(m^2+k^2)^{3/2}}
+ \le C\eps_N^2(m+|k|).
+\]
+Multiplying by the D4 envelope for $|a_\infty|^2$ leaves a summable
+$|k|^{-1-\eta_D}$ tail.
+
+\LS{2}{5}{The missing-mode term in (2.8) is $O(2^{-r(1+\eta_D)})$.}
+
+\Because Sum $t^{-1}\sum_{k_0}c_\infty\le\bar w/(2\gamma(k))$ against
+$|a_\infty(k)|^2$ for $|k|\ge\pi/\eps_N$ and use the D4 tail.
+
+\LS{2}{6}{After increasing the constant to cover the one fixed case $r=0$,}
+\[
+ \E[(\Phi_N-\Phi)^2]\le C_\xi2^{-r\eta_D/2},\qquad
+ \|e^{i\Phi_N}-e^{i\Phi}\|_2\le C_\xi2^{-r\eta_D/4}.
+\tag{2.11}
+\]
+
+\Because For $r\ge1$, combine (2.9)--(2.10) and the missing tail, then weaken
+the exponent to a common one.  At $r=0$ the replacement of the edge noise in (2.8)
+is not valid, but both variances are finite and bounded by a constant depending on
+the fixed coarse scale, which equals the right side after enlarging $C_\xi$.  Finally
+use $|e^{ix}-e^{iy}|\le|x-y|$.
+
+\LS{2}{7}{This proves $\langle1\rangle3$.}\QedStep
+
+\section{Numerators, denominators, and fixed-time convergence}
+
+\LS{1}{4}{Bound the denominators away from zero.}
+
+\LS{2}{1}{At the gate endpoint $(a,b)=(0,0)$,}
+\[
+ \E\U_{N,t}=3\lambda d_N(t)^2(2Lt),\qquad
+ \E\U_t=3\lambda d_\infty(t)^2(2Lt).
+\tag{3.1}
+\]
+
+\Because The ensemble-Wick chaoses of orders two and four are centered.  The Wick
+recombination constant term is exactly $3d^2$; integrate the constant over volume
+$2Lt$.
+
+\LS{2}{2}{Since $0\le d_N,d_\infty\le\bar d$,}
+\[
+ \mathcal E_N,\mathcal E_\infty
+ \ge e^{-C_0},\qquad C_0=3\lambda\bar d^2(2LT).
+\tag{3.2}
+\]
+
+\Because Jensen's inequality for the convex function $e^{-x}$ gives
+$\E e^{-\U}\ge e^{-\E\U}$; insert (3.1).
+
+\LS{2}{3}{This proves $\langle1\rangle4$.}\QedStep
+
+\LS{1}{5}{Compare the denominators.}
+
+\LS{2}{1}{The repaired unshifted V2 comparison gives}
+\[
+ \|\U_{N,t}-\U_t\|_2
+ \le C(1+t)(1+L)\eps_N\logN^{3/2}.
+\tag{3.3}
+\]
+
+\Because Its fourth-chaos computation contains the one-edge and two-edge classes
+and the nonzero four-edge class.  The last contributes the explicit positive term
+\[
+ \Delta_{4e}=4!(2Lt)^{-2}\frac32
+ \sum_{k_{0,1}+\cdots+k_{0,4}=0}
+ \prod_{i=1}^4 c_\times(k_{0,i},\pi/\eps_N),
+\tag{3.4}
+\]
+bounded by
+$9t\cth(2t_0)^3\eps_N^5/(256L^2)$.  Hence it lies below the common rate in
+(3.3); it may not be deleted from the exact identity.
+
+\LS{2}{2}{The plain lattice and continuum Nelson bounds and
+$|e^{-x}-e^{-y}|\le|x-y|(e^{-x}+e^{-y})$ imply}
+\[
+ |\mathcal E_N-\mathcal E_\infty|
+ \le C(1+t)(1+L)\eps_N\logN^{3/2}.
+\tag{3.5}
+\]
+
+\Because Apply Cauchy--Schwarz to the product of the exponent difference and
+$e^{-\U_N}+e^{-\U}$; (3.3) controls the first factor and the uniform $L^2$
+Nelson bound the second.
+
+\LS{2}{3}{This proves $\langle1\rangle5$.}\QedStep
+
+\LS{1}{6}{Compare the numerators.}
+
+\LS{2}{1}{Split}
+\begin{align}
+ |\mathcal N_N-\mathcal N_\infty|
+ &\le\E[|e^{i\Phi_N}-e^{i\Phi}|
+ e^{-\U_{N,t}(\eta_N+h^{(N)})}]\notag\\
+ &\quad+\E[|e^{-\U_{N,t}(\eta_N+h^{(N)})}
+ -e^{-\U_t(\eta+h^{(\infty)})}|].
+\tag{3.6}
+\end{align}
+
+\LS{2}{2}{The first term in (3.6) is at most $C_\xi2^{-r\eta_D/4}$.}
+
+\Because Apply Cauchy--Schwarz, (2.11), and the uniform shifted lattice
+$L^2$ Nelson bound.
+
+\LS{2}{3}{The repaired shifted V2 theorem gives}
+\[
+ \|\U_{N,t}(\eta_N+h^{(N)})-
+ \U_t(\eta+h^{(\infty)})\|_2
+ \le C_\xi\left(2^{-r(1+\eta_D)/4}
+ +\eps_N\logN^{3/2}\right).
+\tag{3.7}
+\]
+
+\Because Decompose it into the unshifted difference (3.3) and the difference of
+the two shift increments.  The latter is proved in the repaired V2 module by:
+(i) folding the lattice power symbols into the fundamental band; (ii) defining the
+exact-output cross and continuum symbols; (iii) isolating the mixed alias term
+$A_{\times,j}$; (iv) bounding filter, dispersion, high-output, and physical edge
+remainders separately; and (v) applying the convolution telescope to every
+deterministic coefficient power.  Thus no undefined $R_{\rm tail}$ is used in
+(3.7).
+
+\LS{2}{4}{The second term in (3.6) is bounded by the right side of (3.7).}
+
+\Because Apply the exponential-difference inequality, Cauchy--Schwarz, (3.7),
+and the paired uniform shifted Nelson bounds: V2 for finite $N$, V3 for the
+continuum member.
+
+\LS{2}{5}{Therefore}
+\[
+ |\mathcal N_N-\mathcal N_\infty|
+ \le C_\xi(2^{-r\eta_D/4}+\eps_N\logN^{3/2}),
+\tag{3.8}
+\]
+and
+\[
+ |\mathcal N_N|,|\mathcal N_\infty|\le B_1<\infty.
+\tag{3.9}
+\]
+
+\Because The slower of the two powers of $2^{-r}$ is $\eta_D/4$.  Equation
+(3.9) follows by deleting the unit-modulus phase and applying the $L^1$ shifted
+Nelson bounds.
+
+\LS{2}{6}{This proves $\langle1\rangle6$.}\QedStep
+
+\LS{1}{7}{Prove fixed-time convergence of the interacting thermal functionals.}
+
+\LS{2}{1}{The exact algebraic difference is}
+\begin{align}
+ F_N-F_\infty
+ &= (e^{-S_N}-e^{-S_\infty})\frac{\mathcal N_N}{\mathcal E_N}
+ +e^{-S_\infty}\frac{\mathcal N_N-\mathcal N_\infty}{\mathcal E_N}
+ \notag\\
+ &\quad+e^{-S_\infty}\mathcal N_\infty
+ \frac{\mathcal E_\infty-\mathcal E_N}
+ {\mathcal E_N\mathcal E_\infty}.
+\tag{3.10}
+\end{align}
+
+\Because Put (1.6) over the common denominators and add/subtract the two
+intermediate terms shown.
+
+\LS{2}{2}{Equations (2.7), (3.2), (3.5), (3.8), and (3.9) give}
+\[
+ |F_N(t;\xi)-F_\infty(t;\xi)|
+ \le C_\xi(2^{-r\eta_D/4}+\eps_N\logN^{3/2})\to0.
+\tag{3.11}
+\]
+
+\LS{2}{3}{For every fixed $t\ge1/L$, (3.11) is admissible by taking
+$t_0=\max(t/2,1/L)$ and $T=2t$.}
+
+\Because Then $t_0\le t\le T$ and $t_0L\ge1$.  This is the genuine range of
+the V2 comparison; no conclusion at arbitrarily small $t$ is inferred.
+
+\LS{2}{4}{This proves $\langle1\rangle7$ (A6).}\QedStep
+
+\section{Partition functions and exact Laplace transfer}
+
+\LS{1}{8}{Compare the normal-ordered free partition functions.}
+
+\LS{2}{1}{For every $t>0$,}
+\[
+ \widetilde Z_N^{(0)}(t):=Tr e^{-t(H_{N,L}^{(0)}-e_0(N))}
+ =\prod_{k\in\Gamma_N}(1-e^{-t\gamma_N(k)})^{-1}.
+\tag{4.1}
+\]
+
+\Because Subtracting $e_0(N)=\tfrac12\sum_k\gamma_N(k)$ removes the zero-point
+energy from the product of one-oscillator traces.
+
+\LS{2}{2}{For $k\in\Gamma_N$, the mean-value theorem gives}
+\[
+ |\log(1-e^{-t\gamma_N(k)})-
+ \log(1-e^{-t\gamma(k)})|
+ \le\frac{te^{-t\gamma_N(k)}}{1-e^{-tm}}
+ |\gamma(k)-\gamma_N(k)|.
+\tag{4.2}
+\]
+
+\Because The derivative of $y\mapsto\log(1-e^{-ty})$ is
+$t/(e^{ty}-1)\le te^{-ty}/(1-e^{-tm})$ for $y\ge m$, and
+$\gamma_N\le\gamma$.
+
+\LS{2}{3}{Using}
+\[
+ 0\le\gamma(k)-\gamma_N(k)\le\frac{\eps_N^2k^4}{24m},\qquad
+ \gamma_N(k)\ge\max(m,2|k|/\pi),
+\tag{4.3}
+\]
+the sum of (4.2) is $O(\eps_N^2)$.
+
+\Because The remaining series
+$\sum_k e^{-t\max(m,2|k|/\pi)}k^4$ converges with a bound independent of
+$N$.
+
+\LS{2}{4}{The omitted continuum modes contribute $O(e^{-2t/\eps_N})$.}
+
+\Because The asymmetric complement begins at magnitude $\pi/\eps_N$, including
+the positive edge.  Use
+$|\log(1-e^{-x})|\le e^{-x}/(1-e^{-tm})$ and $\gamma(k)\ge|k|$; sum the
+geometric spatial tail.
+
+\LS{2}{5}{Hence}
+\[
+ |\log\widetilde Z_N^{(0)}(t)-\log Z_0(t)|
+ \le C(m,L,t)\eps_N^2,\qquad
+ \widetilde Z_N^{(0)}(t)\to Z_0(t).
+\tag{4.4}
+\]
+
+\LS{2}{6}{This proves $\langle1\rangle8$.}\QedStep
+
+\LS{1}{9}{Compare the interacting normal-ordered partition functions and obtain a
+uniform lower ground-energy bound.}
+
+Fix $t_*>0$ with $t_*L\ge1$.
+
+\LS{2}{1}{For every $t\ge t_*$,}
+\[
+ \widetilde Z_N(t):=\Tr e^{-t(K_{N,L}-e_0(N))}
+ =\widetilde Z_N^{(0)}(t)\mathcal E_N(t).
+\tag{4.5}
+\]
+
+\Because Apply the finite-dimensional cyclic Mehler trace construction from V1/V3
+to the lattice dispersions and interaction.  Normal ordering removes only the free
+zero-point factor.  The repaired V2 proposition identifies the cyclic Gaussian law,
+including the symmetrized edge column, and Wick recombination identifies the path
+integrand with $\U_{N,t}$.
+
+\LS{2}{2}{Equations (3.5), (4.4), and the V3 continuum partition identity imply}
+\[
+ \widetilde Z_N(t)\to
+ Z_0(t)\mathcal E_\infty(t)=\Tr e^{-tK_L}=:Z_\infty(t)
+ \quad(t\ge t_*).
+\tag{4.6}
+\]
+
+\Because For this fixed $t$, use the admissible interval
+$t_0=\max(t/2,1/L)$, $T=2t$ in (3.5).  This avoids the invalid choice
+$t_0=t/2$ when $t<2/L$.
+
+\LS{2}{3}{There is $c_\lambda<\infty$ such that}
+\[
+ \inf_N\widetilde E_0(N)\ge-c_\lambda.
+\tag{4.7}
+\]
+
+\Because Fix any $t_1\ge t_*$.  Then
+\[
+ e^{-t_1\widetilde E_0(N)}\le\widetilde Z_N(t_1)
+ =\widetilde Z_N^{(0)}(t_1)\mathcal E_N(t_1).
+\]
+The first factor is uniformly bounded by (4.4), and the second by the unshifted
+$L^1$ Nelson bound.  Take logarithms and divide by $t_1$.
+
+\LS{2}{4}{This proves $\langle1\rangle9$.}\QedStep
+
+\LS{1}{10}{Prove the Laplace-transfer lemma in the exact range needed here.}
+
+Let $\nu_N=\sum_{j\ge0}\delta_{x_j(N)}$ be locally finite eigenvalue point
+measures, assume all $x_j(N)\ge c$, and suppose
+\[
+ \int e^{-tx}d\nu_N(x)\to\int e^{-tx}d\nu_\infty(x)
+ \quad\hbox{for every }t\ge t_*.
+\tag{4.8}
+\]
+
+\LS{2}{1}{The span $\mathscr A_{t_*}$ of $x\mapsto e^{-tx}$,
+$t\ge t_*$, is uniformly dense in $C_0([c,\infty))$.}
+
+\Because It is a self-adjoint algebra: products add the two parameters and remain
+at least $t_*$.  It separates points and vanishes nowhere.  The locally compact
+Stone--Weierstrass theorem applies.
+
+\LS{2}{2}{For $f\in C_c([c,\infty))$, put $\widetilde f(x)=f(x)e^{t_*x}$ and
+choose $g\in\mathscr A_{t_*}$ with
+$\|\widetilde f-g\|_\infty<\delta$.  Then}
+\[
+ \left|\int f\,d\nu_N-\int ge^{-t_*x}\,d\nu_N\right|
+ \le\delta\int e^{-t_*x}\,d\nu_N.
+\tag{4.9}
+\]
+
+\Because Multiply the pointwise approximation error by the finite measure
+$e^{-t_*x}d\nu_N$.  This weighted step is necessary: $\nu_N$ itself generally has
+infinite total mass.
+
+\LS{2}{3}{The right side of (4.9) is uniformly $O(\delta)$, and the middle
+integrals converge.}
+
+\Because Equation (4.8) at $t_*$ makes their masses uniformly bounded.  Since
+$g$ is a finite linear combination of $e^{-tx}$ with $t\ge t_*$,
+$ge^{-t_*x}$ is a finite linear combination with parameters at least $2t_*$, so
+(4.8) applies.
+
+\LS{2}{4}{Let $N\to\infty$ and then $\delta\downarrow0$ in (4.9).  Thus
+$\nu_N\to\nu_\infty$ vaguely.}
+
+\LS{2}{5}{Vague convergence implies convergence of every ordered atom with
+multiplicity:}
+\[
+ x_j(N)\to x_j(\infty).
+\tag{4.10}
+\]
+
+\Because Around the first $j+1$ limit atoms choose finitely many pairwise disjoint
+intervals whose endpoints are not atoms and which contain no other limit atoms.
+Continuous upper and lower approximations to their indicators show that the integer
+masses in each interval eventually equal the limiting multiplicities.  Shrink the
+intervals.  Induction in $j$ yields (4.10).
+
+\LS{2}{6}{For $t\ge t_*$,}
+\[
+ D_N(t)=e^{tx_0(N)}\int e^{-tx}d\nu_N(x)-1
+ \to D_\infty(t).
+\tag{4.11}
+\]
+
+\Because Combine (4.8) and (4.10) for $j=0$.  No conclusion is asserted for
+$t<t_*$; the hypotheses supply no control there.
+
+\LS{2}{7}{This proves $\langle1\rangle10$.}\QedStep
+
+\LS{1}{11}{Apply the transfer lemma to the interacting spectra.}
+
+\LS{2}{1}{Take
+$x_j(N)=\widetilde E_j(N)$ and $x_j(\infty)=\mu_j$.  Equations (4.6) and
+(4.7) verify (4.8) and the common lower support bound.}
+
+\LS{2}{2}{Therefore, for every fixed $j$,}
+\[
+ \widetilde E_j(N)\to\mu_j.
+\tag{4.12}
+\]
+
+\LS{2}{3}{In particular,}
+\[
+ E_1(N)-E_0(N)	o\mu_1-\mu_0=\gamma_L>0,
+\tag{4.13}
+\]
+and for every $t\ge t_*$,
+\[
+ D_N(t)\to D_\infty(t)<\infty.
+\tag{4.14}
+\]
+
+\Because The zero-point shift cancels from each eigenvalue difference and from
+$D_N$.  Apply (4.10)--(4.11) and the V3 strict gap.
+
+\LS{2}{4}{This proves $\langle1\rangle11$ (A7).}\QedStep
+
+\section{Thermal-to-ground-state interchange and the gate}
+
+\LS{1}{12}{Prove the spectral tail estimate.}
+
+Let $K$ have discrete spectrum $E_0<E_1\le\cdots$, normalized ground vector
+$\Omega$, and let $W$ be unitary.
+
+\LS{2}{1}{With $Z=e^{-tE_0}(1+D(t))$,}
+\[
+ \frac{\Tr(e^{-tK}W)}Z-\ip\Omega{W\Omega}
+ =\frac1Z\sum_{j\ge1}e^{-tE_j}
+ \left(\ip{\phi_j}{W\phi_j}-\ip\Omega{W\Omega}\right).
+\tag{5.1}
+\]
+
+\Because Expand the trace in an orthonormal eigenbasis and cancel the $j=0$ term.
+
+\LS{2}{2}{Since every displayed matrix element has modulus at most one,}
+\[
+ \left|\frac{\Tr(e^{-tK}W)}{\Tr e^{-tK}}-\ip\Omega{W\Omega}\right|
+ \le\frac{2D(t)}{1+D(t)}\le2D(t).
+\tag{5.2}
+\]
+
+\LS{2}{3}{This applies to every lattice $K_{N,L}$ and to $K_L$.}
+
+\Because Lattice compactness and ground simplicity were proved in the model sheet;
+V3 proves continuum trace class, discreteness, and ground simplicity.
+
+\LS{2}{4}{This proves $\langle1\rangle12$.}\QedStep
+
+\LS{1}{13}{Prove the abstract interchange of fixed-temperature and ground-state
+limits.}
+
+Suppose $a_N(t)$, $\ell_N$, and $D_N(t)$ obey
+\[
+ |a_N(t)-\ell_N|\le c_0D_N(t),\quad |a_N(t)|\le c_0,
+\tag{5.3}
+\]
+$a_N(t)\to a_\infty(t)$ for each $t\ge t_0$,
+$D_N(t_1)\to D_\infty(t_1)<\infty$ at one $t_1\ge t_0$, and
+\[
+ \liminf_N(E_1(N)-E_0(N))\ge\gamma>0.
+\tag{5.4}
+\]
+
+\LS{2}{1}{For $t\ge t_1$,}
+\[
+ D_N(t)\le e^{-(t-t_1)(E_1(N)-E_0(N))}D_N(t_1).
+\tag{5.5}
+\]
+
+\Because Factor $e^{-(t-t_1)(E_j-E_0)}$ from every summand and bound it by
+the $j=1$ value.
+
+\LS{2}{2}{There are $N_0,D_*<\infty$ such that, for all $N\ge N_0$,}
+\[
+ D_N(t)\le D_*e^{-(t-t_1)\gamma/2}.
+\tag{5.6}
+\]
+
+\Because Convergence at $t_1$ bounds $D_N(t_1)$; the liminf in (5.4) gives an
+eventual gap at least $\gamma/2$.
+
+\LS{2}{3}{The continuum tail independently satisfies}
+\[
+ D_\infty(t)\le
+ D_\infty(t_1)e^{-(t-t_1)\gamma_L}\to0.
+\tag{5.7}
+\]
+
+\LS{2}{4}{Given $\delta>0$, choose $t$ so that the right sides of (5.6)--(5.7)
+are below $\delta$.  Then}
+\[
+ |\ell_N-\ell_\infty|
+ \le2c_0\delta+|a_N(t)-a_\infty(t)|.
+\tag{5.8}
+\]
+
+\Because Add and subtract $a_N(t),a_\infty(t)$ and apply (5.3) to the two tails.
+
+\LS{2}{5}{Let $N\to\infty$ in (5.8), then $\delta\downarrow0$.  Thus
+$\ell_N\to\ell_\infty$.}
+
+\LS{2}{6}{This proves $\langle1\rangle13$.}\QedStep
+
+\LS{1}{14}{Close the Weyl gate at every fixed coarse scale.}
+
+Set
+\[
+ t_*=\max(1,1/L),\quad
+ a_N(t)=F_N(t;\xi),\quad
+ \ell_N=\omega_N(W_N(R_M^N\xi)),
+\tag{5.9}
+\]
+with the corresponding continuum definitions.
+
+\LS{2}{1}{The bound (5.3) holds with $c_0=2$.}
+
+\Because $|F_N|\le1$ and the spectral estimate (5.2) applies on both sides.
+
+\LS{2}{2}{For each fixed $t\ge t_*$, $a_N(t)\to a_\infty(t)$.}
+
+\Because $t_*\ge1/L$, so Step $\langle1\rangle7$ applies.
+
+\LS{2}{3}{$D_N(t_*)\to D_\infty(t_*)<\infty$.}
+
+\Because Step $\langle1\rangle11$ applies with the admissible lower time $t_*$.
+
+\LS{2}{4}{$\liminf_N(E_1(N)-E_0(N))=\gamma_L>0$.}
+
+\Because This is (4.13).
+
+\LS{2}{5}{Step $\langle1\rangle13$ therefore gives}
+\[
+ \lim_{N\to\infty}
+ \omega_N(\alpha_M^N(W_M(\xi)))
+ =\omega^{\rm ct}_{L,\lambda}(\beta_M(W_M(\xi))).
+\tag{5.10}
+\]
+
+\Because The embeddings are defined by
+$\alpha_M^N(W_M(\xi))=W_N(R_M^N\xi)$ and
+$\beta_M(W_M(\xi))=W_{\rm ct}(R_M^\infty\xi)$.
+
+\LS{2}{6}{This proves $\langle1\rangle14$ (the gate).}\QedStep
+
+\section{Inductive-limit state, identification, and symmetry}
+
+\LS{1}{15}{Construct the continuum embedding of the inductive-limit algebra.}
+
+Assume the already proved scaling identity
+$\beta_N\alpha_M^N=\beta_M$ and injectivity of all maps.
+
+\LS{2}{1}{On the algebraic union
+$\bigcup_M\alpha_M^\infty(\W_M)$ define}
+\[
+ \beta(\alpha_M^\infty(A))=\beta_M(A).
+\tag{6.1}
+\]
+
+\LS{2}{2}{Definition (6.1) is independent of the representative.}
+
+\Because If $M\le M'$ and
+$\alpha_M^\infty(A)=\alpha_{M'}^\infty(A')$, injectivity of
+$\alpha_{M'}^\infty$ gives $A'=\alpha_M^{M'}(A)$.  Hence
+$\beta_{M'}(A')=\beta_{M'}\alpha_M^{M'}(A)=\beta_M(A)$.
+
+\LS{2}{3}{$\beta$ is isometric on the union.}
+
+\Because An injective $*$-homomorphism between $C^*$-algebras is isometric;
+thus
+$\|\beta(\alpha_M^\infty(A))\|=\|\beta_M(A)\|=\|A\|
+=\|\alpha_M^\infty(A)\|$.
+
+\LS{2}{4}{It extends uniquely to an injective $*$-homomorphism}
+\[
+ \beta:\W_\infty\longrightarrow\W_{\rm ct},\qquad
+ \beta\alpha_M^\infty=\beta_M.
+\tag{6.2}
+\]
+
+\Because The algebraic union is dense in its inductive-limit completion.  An
+isometry extends uniquely; multiplication and involution pass by continuity, and an
+isometry is injective.
+
+\LS{2}{5}{This proves $\langle1\rangle15$.}\QedStep
+
+\LS{1}{16}{Apply the previously proved Weyl extension criterion.}
+
+Define
+\[
+ \chi_M(\xi)=\lim_{N\to\infty}
+ \omega_N(\alpha_M^N(W_M(\xi))).
+\tag{6.3}
+\]
+
+\LS{2}{1}{The limit exists and equals}
+\[
+ \chi_M(\xi)=
+ \omega^{\rm ct}_{L,\lambda}(\beta_M(W_M(\xi))).
+\tag{6.4}
+\]
+
+\Because This is (5.10).
+
+\LS{2}{2}{For each $M$, there is a unique state $\rho_M$ on $\W_M$ satisfying
+$\rho_M(W_M(\xi))=\chi_M(\xi)$, and}
+\[
+ \omega_N(\alpha_M^N(A))\to\rho_M(A)\qquad(A\in\W_M).
+\tag{6.5}
+\]
+
+\Because The Weyl-reduction module proves: pointwise convergence on all Weyl
+generators, uniform state norm one, and density of finite Weyl linear combinations
+extend the limit uniquely to the whole $C^*$-algebra.  Equation (6.4) also supplies
+positive definiteness and continuity directly as a restriction of a state.
+
+\LS{2}{3}{The family is consistent:}
+\[
+ \rho_N\circ\alpha_M^N=\rho_M.
+\tag{6.6}
+\]
+
+\Because Check it on $W_M(\xi)$ using
+$\alpha_M^N(W_M(\xi))=W_N(R_M^N\xi)$ and the compatibility of the continuum
+refinement; extend by norm density.
+
+\LS{2}{4}{There is a unique state $\Omega_\infty$ on $\W_\infty$ with}
+\[
+ \Omega_\infty\circ\alpha_M^\infty=\rho_M,\qquad
+ \Omega_\infty=\omega^{\rm ct}_{L,\lambda}\circ\beta.
+\tag{6.7}
+\]
+
+\Because Consistency defines a norm-one positive functional on the dense algebraic
+union, hence a unique state on the completion.  Equations (6.2), (6.4) show that it
+agrees there with the continuum pullback; density gives the second identity.
+
+\LS{2}{5}{All states in (6.5)--(6.7) are invariant under the field reflection
+$\vartheta(W(\zeta))=W(-\zeta)$.}
+
+\Because Every refinement map is linear, hence intertwines $\vartheta$.  The
+lattice Hamiltonian is even and commutes with its reflection unitary.  Ground-state
+simplicity forces that unitary to multiply $\Omega_N$ by a phase, so
+$\omega_N\circ\vartheta_N=\omega_N$.  Pass to the limits in (6.5), then use
+consistency.  Equivalently, the earlier Weyl-reduction symmetry proposition gives
+the same conclusion.
+
+\LS{2}{6}{This proves $\langle1\rangle16$ and the full fixed-coarse theorem.}
+\QedStep
+
+\section{V4 conclusion and validity status}
+
+\begin{resultbox}
+Step $\langle1\rangle7$ proves fixed-$t$ thermal convergence with rate.
+Steps $\langle1\rangle8$--$\langle1\rangle11$ prove normal-ordered partition
+convergence, eigenvalue convergence, the eventual lattice gap, and tail convergence.
+Steps $\langle1\rangle12$--$\langle1\rangle14$ interchange the thermal and ground
+limits and prove the gate.  Steps $\langle1\rangle15$--$\langle1\rangle16$
+identify the unique projective limit with the continuum vacuum and carry the
+$\Z_2$ symmetry.
+
+This conclusion is conditional on replacing the original V2 Lemma 6.4/Proposition
+6.5 proof by the exact repaired comparison in the preceding Lamport module.  The
+original Part II files, without that replacement and the four-edge correction, do
+not prove their final theorem as written.
+\end{resultbox}
+
+\end{document}

@@ -1,0 +1,997 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.8cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,hypertexnames=false]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\A}{\mathfrak A}
+\newcommand{\Hh}{\mathcal H_0}
+\newcommand{\Om}{\Omega}
+\newcommand{\G}{\mathcal G}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\E}{\mathbb E}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Tr}{Tr}
+
+\title{M4b: discharge audit and corrected proof program\\
+for continuum LPPL in $P(\varphi)_2$}
+\author{}
+\date{8 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note audits, one by one, the four inputs left open by the conditional LPPL theorem in
+\texttt{lppl.tex}.  Two conclusions are unconditional within the standard spatial-cutoff
+$P(\varphi)_2$ construction.  First, the actual cutoff dynamics has propagation speed at most one;
+finite propagation is therefore a theorem, not a hypothesis.  Second, every cutoff ground-state
+vector belongs to the operator domain of every compactly smeared Wick polynomial.  This removes
+the vector-domain part of the differentiability input and the domain clause from the moment input.
+
+The other conclusions are negative but precise.  A common quadratic-form domain on the entire
+closed interpolation interval is not a legitimate generic assumption when an interaction is
+turned on from zero.  It is replaced below by local form differentiability on $0<s<1$ and endpoint
+norm-resolvent continuity.  The proposed modern log-Sobolev input has the unweighted stochastic-
+quantisation Dirichlet form, not the covariance-weighted form used in \texttt{h6-attack.tex}; it
+therefore proves neither the physical Hamiltonian gap nor the required local second moment.
+Moreover, the induction in \texttt{h6-attack.tex} contains two false operator estimates and is
+withdrawn.  A corrected conditional induction is given, exposing the additional one-point bound
+that would actually be needed.
+
+Thus the continuum LPPL argument itself is complete, exact propagation is complete, and the
+ground-state domain question is complete.  The affine path regularity is also proved below from
+the Feynman--Kac--Nelson formula once the same uniform gap already assumed by LPPL is available.
+Two sharply stated analytic obligations remain: a uniform physical gap in a specified noncritical
+regime and a uniform local second moment.  Neither is asserted without proof.
+\end{abstract}
+
+\section{Setting and verdict}
+
+Let
+\[
+ K(g)=H_0+V(g),\qquad
+ V(h)=\int_{\R}h(x):P(\varphi_0(x)):\,dx,
+ \qquad H(g)=K(g)-E(g),
+\]
+where $E(g)=\inf\spec K(g)$ and
+\[
+ \G=\{g\in C_c^\infty(\R):0\le g\le1,\quad
+             g=1\text{ on a nonempty bounded interval}\}.
+\]
+The ground state of $H(g)$ is denoted by $\Om_g$ and is normalized.  The time-zero local algebra
+over a bounded open interval $O$ is $\A(O)$, and
+\[
+ \beta_t^g(A)=e^{itH(g)}Ae^{-itH(g)}.
+\]
+All assertions below use the standard $Q$-space construction of the spatially cutoff
+$P(\varphi)_2$ Hamiltonian: $V(h)$ is the self-adjoint multiplication operator associated with the
+Wick polynomial, and the usual $L^1\cap L^2$ extension of the cutoff is allowed when a
+characteristic function is used in a localization argument.
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Input in \texttt{lppl.tex} & Verdict & Exact remainder\\
+\midrule
+finite propagation (L) & proved, Proposition~\ref{prop:propagation} & none\\
+$\Om_g\in D(V(h))$ & proved, Proposition~\ref{prop:domain} & none\\
+path differentiability (D) & follows from (G) & no independent input, \S\ref{sec:path}\\
+uniform physical gap (G) & open & (G$_\mathrm{exact}$), \S\ref{sec:gap}\\
+uniform local moment (M) & open & (M$_2$), \S\ref{sec:moment}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The word ``open'' in the table is mathematical, not procedural: the sources audited here do not
+contain the required gap or moment theorem, and the arguments previously proposed in this folder
+do not prove either one.  The conditional LPPL theorem remains valid after finite propagation and
+the vector-domain condition are removed from its hypothesis list; Theorem~\ref{thm:FKNpath} also
+removes path differentiability as an independent hypothesis.
+
+\section{Exact finite propagation for the cutoff dynamics}
+
+We spell out the localization argument because the LPPL cell expansion uses the cutoff dynamics
+far outside the plateau $\{g=1\}$.
+
+\begin{proposition}[cutoff propagation]\label{prop:propagation}
+For every $g\in\G$, every bounded open interval $O\subset\R$, and every $t\in\R$,
+\[
+ \beta_t^g\bigl(\A(O)\bigr)\subseteq\A(O_{|t|}),
+ \qquad O_r=\{x:\dist(x,O)<r\}.
+\]
+The speed bound is one and is independent of $g$.  No assumption that $g=1$ on $O_{|t|}$ is
+needed for this inclusion.
+\end{proposition}
+
+\begin{proof}
+The scalar $E(g)I$ cancels from the adjoint action, so it suffices to use $K(g)=H_0+V(g)$.
+Write
+\[
+ \beta_t^0=\operatorname{Ad}e^{itH_0},\qquad
+ \beta_t^{I,g}=\operatorname{Ad}e^{itV(g)}.
+\]
+
+First, $\beta^{I,g}$ has propagation speed zero.  It is enough initially to take an observable
+$A$ generated by Weyl operators with test functions supported in a compact set $B\Subset O$.
+Choose $\chi\in C_c^\infty(O)$ with $\chi=1$ on a neighbourhood of $B$ and split
+\[
+ V(g)=V(\chi g)+V((1-\chi)g).
+\]
+The two summands strongly commute because they are multiplication operators in $Q$-space.
+Affiliation gives
+\[
+ e^{itV(\chi g)}\in\A(O),
+ \qquad e^{itV((1-\chi)g)}\in\A(B)'.
+\]
+Consequently
+\[
+ \beta_t^{I,g}(A)
+ =e^{itV(\chi g)}A e^{-itV(\chi g)}\in\A(O).
+\]
+Strong density of the compactly supported Weyl-generated subalgebra and strong closedness of
+$\A(O)$ extend this conclusion to every $A\in\A(O)$.
+
+Second, the free Klein--Gordon equation has propagation speed one, hence
+\[
+ \beta_t^0(\A(O))\subseteq\A(O_{|t|}).
+\]
+For $A\in\A(O)$, the $n$th Trotter approximant
+\[
+ A_n(t)=\bigl(\beta_{t/n}^0\circ\beta_{t/n}^{I,g}\bigr)^n(A)
+\]
+therefore belongs to $\A(O_{|t|})$: each interaction step leaves the current localization region
+unchanged, and each free step enlarges it by $|t|/n$.  The self-adjointness theorem for
+$H_0+V(g)$ and the Trotter product formula give
+\[
+ e^{itK(g)}=\mathop{\mathrm{s\! -\! lim}}_{n\to\infty}
+             \bigl(e^{itH_0/n}e^{itV(g)/n}\bigr)^n.
+\]
+The same holds for the adjoints.  Hence $A_n(t)\to\beta_t^g(A)$ strongly.  Since
+$\A(O_{|t|})$ is a von Neumann algebra and therefore strongly closed,
+$\beta_t^g(A)\in\A(O_{|t|})$.
+\end{proof}
+
+\begin{remark}
+This is the argument of Glimm--Jaffe's finite-propagation theorem
+\cite[Ch.~4, Prop.~4.1.1 and Thm.~4.1.2]{GJExp}; their later formulation
+\cite[Thm.~8.1]{GJModels} also proves cutoff independence when $g=1$ on the relevant light cone.
+Cutoff independence is an additional conclusion.  The propagation inclusion itself follows from
+``free speed one + interaction speed zero'' for every spatial cutoff $g$.
+\end{remark}
+
+\section{The ground state is in every local Wick-polynomial domain}
+
+\begin{proposition}[domain smoothing]\label{prop:domain}
+Let $g\in\G$ and let $h\in C_c^\infty(\R)$ be real.  Then
+\[
+ \Om_g\in D(V(h)).
+\]
+In particular, for an affine path $g_s=(1-s)g+sg'$ and $v=g'-g$,
+$\Om_{g_s}\in D(V(v))$ for every $0\le s\le1$.
+\end{proposition}
+
+\begin{proof}
+The self-adjointness and smoothing theorem for cutoff $P(\varphi)_2$ Hamiltonians states that, if
+$K=H_0+V(g)$ and $V'$ is any compactly smeared Wick polynomial in the standard polynomial
+$L^2(Q)$ class, then for every $t>0$,
+\[
+ \operatorname{Ran}e^{-tK}\subseteq D(H_0)\cap D(V').
+\]
+See \cite[Ch.~7, Thm.~7.3 and Lem.~7.4]{GJModels}.  Take $V'=V(h)$.  Since
+$K(g)\Om_g=E(g)\Om_g$,
+\[
+ \Om_g=e^{tE(g)}e^{-tK(g)}\Om_g.
+\]
+The right-hand side belongs to $D(V(h))$ by the displayed range inclusion.  This proves the
+claim.  Taking $h=v$ gives the path statement.
+\end{proof}
+
+Thus the domain clause in hypothesis (M) is redundant.  The unresolved content of (M) is solely
+the numerical estimate $\sup_g\|V(h)\Om_g\|<\infty$ for unit-cell $h$.
+
+\section{The correct differentiability input}\label{sec:path}
+
+\subsection{Why a global common form domain is not available automatically}
+
+The original hypothesis (D) in \texttt{lppl.tex} imposed one common form domain for all
+$0\le s\le1$.  Turning on a positive highest-degree interaction can change the form domain at an
+endpoint.  This is already visible in one-dimensional quantum mechanics.
+
+\begin{proposition}[explicit endpoint obstruction]\label{prop:oscillator}
+On $L^2(\R)$ let
+\[
+ K_s=-\frac{d^2}{dx^2}+x^2+s x^4,\qquad 0\le s\le1,
+\]
+with the Friedrichs realization.  Its form domains satisfy
+\[
+ D(q_0)=\{\psi\in H^1(\R):x\psi\in L^2\},
+\]
+whereas, for every $s>0$,
+\[
+ D(q_s)=\{\psi\in H^1(\R):x\psi\in L^2,\ x^2\psi\in L^2\}.
+\]
+In particular the domains are not common on $[0,1]$.
+\end{proposition}
+
+\begin{proof}
+The two identities follow directly from the nonnegative closed forms
+\[
+ q_s[\psi]=\|\psi'\|_2^2+\|x\psi\|_2^2+s\|x^2\psi\|_2^2.
+\]
+To see that the inclusion is strict, put $\psi(x)=(1+x^2)^{-1}$.  Then
+$\psi,\psi',x\psi\in L^2(\R)$: at infinity their absolute values are respectively
+$O(|x|^{-2})$, $O(|x|^{-3})$, and $O(|x|^{-1})$.  But
+\[
+ |x^2\psi(x)|^2=\frac{x^4}{(1+x^2)^2}\longrightarrow1,
+\]
+so $x^2\psi\notin L^2(\R)$.  Hence $\psi\in D(q_0)\setminus D(q_s)$ for $s>0$.
+\end{proof}
+
+This does not show that the $P(\varphi)_2$ ground state is discontinuous.  It shows only that a
+proof may not assume a global common domain without a separate theorem.
+
+\subsection{A minimal replacement}
+
+Let $g,g'\in\G$ have a common plateau, $g_s=(1-s)g+sg'$, $v=g'-g$, and write
+$K_s=K(g_s)$, $E_s=E(g_s)$, $H_s=K_s-E_s$, and
+$P_s=|\Om_s\rangle\langle\Om_s|$.
+
+\begin{hypothesis}[minimal path regularity, D$_\mathrm{min}$]\label{hyp:Dmin}
+The following two statements hold.
+\begin{enumerate}
+\item[(D1)] For every $s_0\in(0,1)$ there are an open interval $I\ni s_0$ and a Hilbert form
+domain $\Q_I\hookrightarrow\Hh$, common to $s\in I$, such that the closed forms of $K_s$ obey
+\[
+ k_s=k_{s_0}+(s-s_0)v_I,
+\]
+where $v_I$ is a bounded symmetric form on $\Q_I$.  On the ground state it is represented by the
+operator $V(v)$:
+\[
+ v_I(\xi,\Om_s)=\langle\xi,V(v)\Om_s\rangle
+ \quad(\xi\in\Q_I,\ s\in I).
+\]
+\item[(D2)] The shifted Hamiltonians converge in the strong resolvent sense at both endpoints:
+\[
+ H_s\xrightarrow[s\downarrow0]{\rm s.r.}H_0,
+ \qquad H_s\xrightarrow[s\uparrow1]{\rm s.r.}H_1.
+\]
+\end{enumerate}
+\end{hypothesis}
+
+The notation $H_0$ in (D2) means $H(g)$, not the free Hamiltonian.  Proposition~\ref{prop:domain}
+already supplies the operator-domain assertion in (D1).
+
+\begin{lemma}[local form regularity gives the derivative]\label{lem:localderivative}
+Assume (D1) and suppose
+\[
+ \spec H_s\subseteq\{0\}\cup[\gamma,\infty)
+ \qquad(s\in I)
+\]
+for some $\gamma>0$.  After a phase choice, $s\mapsto\Om_s$ is $C^1$ locally on $I$ and
+\begin{align}
+ \dot E_s&=\langle\Om_s,V(v)\Om_s\rangle,\label{eq:HF}\tag{4.1}\\
+ \dot\Om_s&=-H_s^{-1}(1-P_s)V(v)\Om_s.\label{eq:vector}\tag{4.2}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+Give $\Q_I$ the norm
+$\|\xi\|_{\Q_I}^2=k_{s_0}[\xi]+c\|\xi\|^2$ with $c$ so large that it is positive.  Let
+$J:\Q_I\to\Q_I^*$ be the canonical embedding induced by the Hilbert-space inner product, and
+let $A_s:\Q_I\to\Q_I^*$ represent $k_s$.  Then
+\[
+ A_s=A_{s_0}+(s-s_0)V_I
+\]
+in $B(\Q_I,\Q_I^*)$.  If $z$ is in the resolvent set of $K_s$, the weak resolvent is
+$(A_s-zJ)^{-1}:\Q_I^*\to\Q_I$.  The inverse identity gives, whenever both sides exist,
+\[
+ (A_{s+h}-zJ)^{-1}-(A_s-zJ)^{-1}
+ =-h(A_{s+h}-zJ)^{-1}V_I(A_s-zJ)^{-1}.
+\]
+Thus the resolvent is $C^1$ as a map $\Q_I^*\to\Q_I$, with derivative
+\[
+ - (A_s-zJ)^{-1}V_I(A_s-zJ)^{-1}.
+\]
+Composing with the continuous embeddings $\Hh\hookrightarrow\Q_I^*$ and
+$\Q_I\hookrightarrow\Hh$ gives norm-resolvent $C^1$ dependence on $s$.
+
+Fix $s_0$ and choose a circle $\Gamma$ enclosing only the simple eigenvalue $E_s$ for all $s$ in
+a smaller neighbourhood; the gap and norm-resolvent continuity permit this.  The Riesz projection
+\[
+ P_s=-\frac{1}{2\pi i}\int_\Gamma(K_s-z)^{-1}\,dz
+\]
+is $C^1$ in $B(\Hh)$ and, by the preceding mapping statement, as a map $\Hh\to\Q_I$.  The vector
+\[
+ \widetilde\Om_s=\frac{P_s\Om_{s_0}}{\|P_s\Om_{s_0}\|}
+\]
+is therefore $C^1$ in $\Q_I$ after shrinking the neighbourhood.  Multiplication by a $C^1$ phase
+puts it in the parallel gauge $\langle\Om_s,\dot\Om_s\rangle=0$.
+
+Differentiate the weak eigenvalue equation
+\[
+ k_s(\xi,\Om_s)=E_s\langle\xi,\Om_s\rangle,
+ \qquad \xi\in\Q_I.
+\]
+Taking $\xi=\Om_s$ after differentiating and using the weak eigenvalue equation once more with
+test vector $\dot\Om_s$ gives \eqref{eq:HF}.  For general $\xi$ one obtains
+\[
+ (k_s-E_s\langle\cdot,\cdot\rangle)(\xi,\dot\Om_s)
+ =-\langle\xi,(V(v)-\dot E_s)\Om_s\rangle.
+\]
+The right side is represented by a Hilbert-space vector by Proposition~\ref{prop:domain}.
+The representation theorem for closed forms therefore gives
+\[
+ H_s\dot\Om_s=-(1-P_s)V(v)\Om_s.
+\]
+The parallel gauge puts $\dot\Om_s$ in $(1-P_s)\Hh$, where $H_s^{-1}$ has norm at most
+$\gamma^{-1}$.  This proves \eqref{eq:vector}.
+\end{proof}
+
+\begin{lemma}[endpoint projection continuity]\label{lem:endpoint}
+Assume (D2) and a uniform gap
+$\spec H_s\subseteq\{0\}\cup[\gamma,\infty)$ for $0\le s\le1$.  Then
+\[
+ \|P_s-P_0\|\longrightarrow0\quad(s\downarrow0),
+ \qquad
+ \|P_s-P_1\|\longrightarrow0\quad(s\uparrow1).
+\]
+Consequently $s\mapsto\omega_{g_s}(A)$ is continuous at both endpoints for every bounded $A$.
+\end{lemma}
+
+\begin{proof}
+Strong resolvent convergence implies
+$e^{-tH_s}\to e^{-tH_0}$ strongly for every fixed $t>0$.  The uniform gap gives
+\[
+ \|e^{-tH_s}-P_s\|\le e^{-\gamma t},
+ \qquad \|e^{-tH_0}-P_0\|\le e^{-\gamma t}.
+\]
+For every $\xi\in\Hh$,
+\[
+ \|(P_s-P_0)\xi\|
+ \le2e^{-\gamma t}\|\xi\|
+   +\|(e^{-tH_s}-e^{-tH_0})\xi\|.
+\]
+First let $s\downarrow0$, then $t\to\infty$; this proves $P_s\to P_0$ strongly.  Since both are
+rank-one projections,
+\[
+ \|P_s-P_0\|^2=1-\Tr(P_sP_0).
+\]
+Strong convergence applied to a unit vector spanning $\operatorname{Ran}P_0$ makes the right-hand
+side tend to zero.  The proof at $s=1$ is identical.  Finally
+$\omega_{g_s}(A)=\Tr(P_sA)$ and
+$|\Tr((P_s-P_0)A)|\le\|P_s-P_0\|_1\|A\|=2\|P_s-P_0\|\|A\|$ for rank at most two.
+\end{proof}
+
+\begin{corollary}[what LPPL actually needs]\label{cor:Dmin}
+In \texttt{lppl.tex}, global hypothesis (D) may be replaced by
+(D$_\mathrm{min}$).  The derivative formula holds for $0<s<1$.  If its right-hand side is bounded
+in absolute value by a constant $C_A$ independent of $s$, then
+\[
+ |\omega_{g'}(A)-\omega_g(A)|\le C_A.
+\]
+\end{corollary}
+
+\begin{proof}
+Lemmas~\ref{lem:localderivative} and \ref{lem:endpoint} give differentiability on $(0,1)$ and
+continuity on $[0,1]$.  For $0<\varepsilon<1/2$, the ordinary mean-value estimate on
+$[\varepsilon,1-\varepsilon]$ gives
+\[
+ |\omega_{g_{1-\varepsilon}}(A)-\omega_{g_\varepsilon}(A)|
+ \le (1-2\varepsilon)C_A.
+\]
+Let $\varepsilon\downarrow0$.
+\end{proof}
+
+The form criterion above is sufficient, but the actual model admits a cleaner route which bypasses
+form domains altogether.
+
+\begin{theorem}[FKN path regularity]\label{thm:FKNpath}
+Let $g,g'\in\G$ have a common nonempty plateau, let $g_s=(1-s)g+sg'$, and put
+$v=g'-g$.  Assume the uniform gap
+\[
+ \spec H(g_s)\subseteq\{0\}\cup[\gamma,\infty)
+ \qquad(0\le s\le1).
+\]
+Then the ground-state projections $P_s$ are norm-continuous on $[0,1]$ and $C^1$ on $(0,1)$.
+Locally on $(0,1)$, normalized vectors can be chosen $C^1$ in Hilbert norm and in the parallel
+gauge, and they satisfy
+\begin{align*}
+ \dot E_s&=\langle\Om_s,V(v)\Om_s\rangle,\\
+ \dot\Om_s&=-H_s^{-1}(1-P_s)V(v)\Om_s.
+\end{align*}
+Moreover $H_s\to H_0$ in strong resolvent sense as $s\downarrow0$ and
+$H_s\to H_1$ in strong resolvent sense as $s\uparrow1$.  Thus affine-path differentiability is
+not an independent hypothesis once the LPPL gap hypothesis is assumed.
+\end{theorem}
+
+\begin{proof}
+Fix a Euclidean time $T>0$.  On free Euclidean path space let $J_0,J_T$ be the time-slice maps and
+put
+\[
+ \mathcal U_s=\int_0^T\!\int_{\R}g_s(x):P(\varphi(t,x)):\,dx\,dt,
+ \qquad w_s=e^{-\mathcal U_s},
+ \qquad \mathcal U_v=\mathcal U_1-\mathcal U_0.
+\]
+The Feynman--Kac--Nelson formula gives, initially for bounded time-zero functions $f,h$,
+\begin{equation}\label{eq:FKNpath}
+ \langle f,e^{-TK(g_s)}h\rangle
+ =\int \overline{J_Tf}\,(J_0h)w_s\,d\mu_0.                    \tag{4.3}
+\end{equation}
+Let
+\[
+ q_T=\frac{2}{1-e^{-m_0T}},\qquad r_T=\frac{q_T}{q_T-1}.
+\]
+For completeness, the time-slice product estimate follows with no hidden interpolation step.
+Let $\nu_0$ be the time-zero Gaussian marginal of $\mu_0$, let
+$\mathsf P_T=e^{-TH_0}$ be its Markov semigroup, and set
+\[
+ r_T=\frac{2}{1+e^{-m_0T}},\qquad
+ p_T=\frac2{r_T}=1+e^{-m_0T},\qquad
+ p_T'=1+e^{m_0T}.
+\]
+Then $p_T'$ is conjugate to $p_T$ and
+$(p_T'-1)/(p_T-1)=e^{2m_0T}$.  Nelson hypercontractivity therefore gives
+$\|\mathsf P_TF\|_{p_T'}\le\|F\|_{p_T}$.  The Markov property and H\"older's inequality now
+give, first for bounded $f,h$,
+\begin{align*}
+ \|(J_Tf)(J_0h)\|_{r_T}^{r_T}
+ &=\int |h|^{r_T}\,\mathsf P_T(|f|^{r_T})\,d\nu_0\\
+ &\le \||h|^{r_T}\|_{p_T}
+       \|\mathsf P_T(|f|^{r_T})\|_{p_T'}\\
+ &\le \||h|^{r_T}\|_{p_T}\||f|^{r_T}\|_{p_T}
+ =\|h\|_2^{r_T}\|f\|_2^{r_T}.
+\end{align*}
+Taking the $r_T$th root proves
+\begin{equation}\label{eq:sliceproduct}
+ \|(J_Tf)(J_0h)\|_{r_T}\le\|f\|_2\|h\|_2.                    \tag{4.4}
+\end{equation}
+This is the estimate used in the transfer-matrix construction
+\cite[Thms.~V.10 and V.12]{Simon}.
+
+Every compactly smeared Wick polynomial belongs to $L^p(\mu_0)$ for every finite $p$; hence
+$\mathcal U_v\in\bigcap_{p<\infty}L^p(\mu_0)$.  Since $g_0,g_1\ge0$ and $P$ is semibounded, the
+standard exponential estimate \cite[Thm.~V.7]{Simon} gives
+$e^{-a\mathcal U_0},e^{-a\mathcal U_1}\in L^1(\mu_0)$ for every $a>0$.  Linearity
+$\mathcal U_s=(1-s)\mathcal U_0+s\mathcal U_1$ and H\"older's inequality therefore imply
+\begin{equation}\label{eq:weightbound}
+ \|w_s\|_a^a
+ \le\left(\int e^{-a\mathcal U_0}d\mu_0\right)^{1-s}
+     \left(\int e^{-a\mathcal U_1}d\mu_0\right)^s             \tag{4.5}
+\end{equation}
+for every finite $a$.  In particular the right side is bounded uniformly in $0\le s\le1$.
+
+Because $\mathcal U_s-\mathcal U_r=(s-r)\mathcal U_v$ in every $L^p$, $w_s\to w_r$ in
+probability as $s\to r$.  Applying \eqref{eq:weightbound} with an exponent strictly larger than
+$a$ gives uniform integrability of $|w_s|^a$; Vitali's theorem yields
+\begin{equation}\label{eq:weightcont}
+ \|w_s-w_r\|_a\longrightarrow0\qquad(s\to r)                 \tag{4.6}
+\end{equation}
+for every finite $a$.
+
+Fix $q=q_T$ and choose finite $p,a$ with $q^{-1}=p^{-1}+a^{-1}$.  Pointwise in path space,
+\[
+ \frac{w_{s+h}-w_s}{h}
+ =-\mathcal U_v\int_0^1w_{s+\theta h}\,d\theta.
+\]
+Using H\"older's inequality and \eqref{eq:weightcont},
+\begin{align*}
+ \left\|\frac{w_{s+h}-w_s}{h}+\mathcal U_vw_s\right\|_q
+ &\le\|\mathcal U_v\|_p
+       \sup_{0\le\theta\le1}\|w_{s+\theta h}-w_s\|_a
+ \longrightarrow0.
+\end{align*}
+Thus $s\mapsto w_s$ is $C^1$ in $L^{q_T}$ on $(0,1)$, with one-sided continuity at the endpoints,
+and $\dot w_s=-\mathcal U_vw_s$.  Indeed, continuity of the derivative follows from
+\[
+ \|\mathcal U_v(w_s-w_r)\|_{q_T}
+ \le\|\mathcal U_v\|_p\|w_s-w_r\|_a\longrightarrow0.
+\]
+Equations \eqref{eq:FKNpath}--\eqref{eq:sliceproduct} now give
+\[
+ \|e^{-TK(g_s)}-e^{-TK(g_r)}\|
+ \le\|w_s-w_r\|_{q_T}
+\]
+and the same estimate for difference quotients.  Therefore
+\[
+ s\longmapsto e^{-TK(g_s)}
+\]
+is norm-continuous on $[0,1]$ and $C^1$ on $(0,1)$.
+
+Set $L_s=e^{-TK(g_s)}$.  Its largest spectral value is
+$\lambda_s=\|L_s\|=e^{-TE_s}$, it is simple, and the gap assumption puts the remainder of its
+spectrum in $[0,e^{-T\gamma}\lambda_s]$.  Norm continuity of $L_s$ implies continuity of
+$\lambda_s$, hence of $E_s$.  A local Riesz contour around $\lambda_s$ then shows that $P_s$ is
+$C^1$ on $(0,1)$ and norm-continuous at both endpoints.  A local vector is obtained from
+$P_s\Om_{s_0}/\|P_s\Om_{s_0}\|$; a $C^1$ phase change imposes
+$\langle\Om_s,\dot\Om_s\rangle=0$.  Since
+$\lambda_s=\langle\Om_s,L_s\Om_s\rangle$, the eigenvalue $\lambda_s$ and therefore
+$E_s=-T^{-1}\log\lambda_s$ are $C^1$ on $(0,1)$.
+
+It remains to identify the derivative.  The cutoff Hamiltonians have the common operator core
+$\mathscr C=C^\infty(H_0)$ and, on this core,
+\[
+ K(g_s)\xi=K(g_{s_0})\xi+(s-s_0)V(v)\xi
+ \qquad(\xi\in\mathscr C),
+\]
+see \cite[Thm.~V.12(a)]{Simon}.  For $\xi\in\mathscr C$, differentiate
+\[
+ \langle K(g_s)\xi,\Om_s\rangle=E_s\langle\xi,\Om_s\rangle.
+\]
+Proposition~\ref{prop:domain} permits
+$\langle V(v)\xi,\Om_s\rangle=\langle\xi,V(v)\Om_s\rangle$, so
+\[
+ \langle (K(g_s)-E_s)\xi,\dot\Om_s\rangle
+ =\langle\xi,(\dot E_s-V(v))\Om_s\rangle.
+\]
+Because $\mathscr C$ is an operator core, the definition of the adjoint gives
+$\dot\Om_s\in D(H_s)$ and
+\[
+ H_s\dot\Om_s=(\dot E_s-V(v))\Om_s.
+\]
+Taking the inner product with $\Om_s$ proves the Hellmann--Feynman identity.  The parallel gauge
+and the gap then give the asserted formula for $\dot\Om_s$.
+
+Finally, the preceding norm-continuity argument holds for every $T>0$.  Since $E_s$ is continuous,
+$e^{-TH_s}=e^{TE_s}e^{-TK(g_s)}$ converges in norm at the endpoints for every $T>0$.  Semigroup
+convergence gives the explicit resolvent identity
+\[
+ (H_s+1)^{-1}=\int_0^\infty e^{-T}e^{-TH_s}\,dT.
+\]
+The integrand differences converge in norm pointwise in $T>0$ and are bounded by $2e^{-T}$.
+Bochner dominated convergence therefore proves norm-resolvent, hence strong-resolvent,
+convergence at both endpoints.
+\end{proof}
+
+\section{The uniform-gap obligation}\label{sec:gap}
+
+\subsection{What the cited log-Sobolev theorem says}
+
+Bauerschmidt--Dagallier \cite[Eq.~(1.6), Thm.~1.1]{BD} use, on a lattice of mesh $\varepsilon$,
+the Dirichlet form
+\[
+ \mathcal D_{\rm BD}(F)
+ =\varepsilon^{-d}\sum_x
+   \E\!\left[\left(\frac{\partial F}{\partial\varphi_x}\right)^2\right].
+\]
+It is the unweighted $\ell^2$ gradient form of stochastic quantisation.  The covariance-weighted
+form used in \texttt{h6-attack.tex} is instead
+\[
+ \mathcal D_C(F)=\E\langle\nabla F,C\nabla F\rangle,
+ \qquad \widehat C(k)=\frac{1}{2\sqrt{k^2+m_0^2}}.
+\]
+Since $0<C\le(2m_0)^{-1}I$,
+\[
+ \mathcal D_C(F)\le(2m_0)^{-1}\mathcal D_{L^2}(F).
+\]
+Thus a covariance-weighted Poincar\'e inequality implies an unweighted one (with a changed
+constant), but the converse does not follow: $\widehat C(k)\to0$ as $|k|\to\infty$, so no
+inequality $I\le cC$ is possible.  The mismatch is structural, not a missing constant.
+
+Furthermore, the spectral gap furnished by an LSI is the gap of the Markov generator associated
+with $\mathcal D_{\rm BD}$.  That generator is not the physical Hamiltonian $H(g)$.  A separate
+Euclidean-time correlation argument is required.
+
+\subsection{The exact Euclidean-to-Hamiltonian implication}
+
+\begin{lemma}[dense-family decay forces a Hamiltonian gap]\label{lem:decaygap}
+Let $H\ge0$ have a simple ground state $\Om$, let $Q=1-|\Om\rangle\langle\Om|$, and let
+$\mathscr D\subset Q\mathcal H$ be dense.  Suppose there is $\gamma>0$ such that for every
+$\psi\in\mathscr D$ there is $C_\psi<\infty$ satisfying
+\[
+ 0\le\langle\psi,e^{-tH}\psi\rangle\le C_\psi e^{-\gamma t}
+ \qquad(t\ge0).
+\]
+Then $\spec(H|_{Q\mathcal H})\subseteq[\gamma,\infty)$.
+\end{lemma}
+
+\begin{proof}
+Fix $0<\varepsilon<\gamma$ and let
+$R_\varepsilon=\mathbf1_{[0,\gamma-\varepsilon]}(H)Q$.  For $\psi\in\mathscr D$, the spectral
+theorem gives
+\[
+ \langle\psi,e^{-tH}\psi\rangle
+ \ge e^{-(\gamma-\varepsilon)t}\|R_\varepsilon\psi\|^2.
+\]
+Combining this with the assumed upper bound yields
+\[
+ \|R_\varepsilon\psi\|^2\le C_\psi e^{-\varepsilon t}
+ \quad(t\ge0),
+\]
+and therefore $R_\varepsilon\psi=0$.  Density of $\mathscr D$ and boundedness of
+$R_\varepsilon$ imply $R_\varepsilon=0$.  Since this holds for every $\varepsilon>0$, the spectral
+projection of $H|_{Q\mathcal H}$ on $[0,\gamma)$ is zero.
+\end{proof}
+
+Decay of the two-point function of the single field $\varphi$ is not enough to invoke this lemma:
+it controls only vectors of the form $\varphi(f)\Om$.  Cyclicity of the full local algebra does not
+turn that one-particle family into a dense family.  One needs the same exponent for a collection
+of centered polynomial/cylinder observables whose vectors are dense.
+
+The unresolved gap statement is consequently:
+
+\begin{quote}
+\textbf{(G$_\mathrm{exact}$).} Specify a noncritical class of polynomials/couplings, a cylinder
+$*$-algebra $\mathscr C$, and $\gamma>0$ such that, for every $g\in\G$,
+\[
+ \overline{\operatorname{span}}\{F\Om_g:F\in\mathscr C\}=\Hh
+\]
+and, for every $F\in\mathscr C$, there is $C_{g,F}<\infty$ for which
+\[
+ 0\le
+ \langle Q_gF\Om_g,e^{-tH(g)}Q_gF\Om_g\rangle
+ \le C_{g,F}e^{-\gamma t}
+ \qquad(t\ge0),
+ \quad Q_g=1-|\Om_g\rangle\langle\Om_g|.
+\]
+Only the exponent $\gamma$ must be uniform in $g$ and $F$.  Then
+$\operatorname{span}\{Q_gF\Om_g:F\in\mathscr C\}$ is dense in $Q_g\Hh$, and
+Lemma~\ref{lem:decaygap} gives
+$\spec H(g)\subseteq\{0\}\cup[\gamma,\infty)$ uniformly in $g$.
+\end{quote}
+
+The theorem of \cite{BD} is uniform in its lattice and volume parameters under its hypotheses,
+but it treats the unweighted stochastic-quantisation form and constant-coupling finite-volume
+measures.  It does not state (G$_\mathrm{exact}$) for arbitrary profiles $0\le g(x)\le1$.
+In a symmetry-broken regime a uniform full-net gap is in any event impossible by the tunnelling
+argument already proved in \texttt{../m3/m3.tex}.  Therefore the regime must be part of the gap
+theorem, not appended after it.
+
+\section{The local-second-moment obligation}\label{sec:moment}
+
+The remaining moment statement is
+\begin{equation}\label{eq:M2}
+ \tag{M$_2$}
+ \sup_{\substack{g\in\G,\ h\in C_c^\infty(\R;\R)\\
+                   \|h\|_\infty\le1,
+                   \ \supp h\subset I_h,\ |I_h|\le2}}
+ \|V(h)\Om_g\|^2<\infty
+\end{equation}
+with one constant for all indicated $g$ and $h$.
+Proposition~\ref{prop:domain} proves that every term in \eqref{eq:M2} is defined; it does not prove
+uniform boundedness.
+
+\subsection{Why the claimed Poincar\'e induction is invalid}
+
+Let $B$ be a bounded interval, let
+$C=(2\sqrt{-\partial_x^2+m_0^2})^{-1}$, and let
+\[
+ W_u=M_uCM_u
+\]
+on $L^2(B)$, where $u\in C_c^\infty(B)$ is nonzero.  The proof of Theorem~2.3 in
+\texttt{h6-attack.tex} uses both
+\[
+ \|v\|_\infty^2\le\kappa_B\|v\|_2^2
+ \quad\text{for all }v\in L^2(B),                                      \tag{6.1}
+\]
+and $\Tr W_u<\infty$.  Both assertions are false.
+
+\begin{proposition}[the two failed estimates]\label{prop:failed}
+There is no finite $\kappa_B$ for which \emph{(6.1)} holds.  Moreover $W_u$ is positive and
+Hilbert--Schmidt but not trace class; in particular $\Tr W_u=+\infty$.
+\end{proposition}
+
+\begin{proof}
+Choose $x_0\in B$ and a nonzero $\eta\in C_c^\infty((-1,1))$.  For all sufficiently large $n$,
+\[
+ v_n(x)=n^{1/2}\eta(n(x-x_0))
+\]
+is supported in $B$, while
+\[
+ \|v_n\|_2=\|\eta\|_2,
+ \qquad \|v_n\|_\infty=n^{1/2}\|\eta\|_\infty.
+\]
+This contradicts (6.1).
+
+The kernel $C(x-y)$ has only a logarithmic diagonal singularity, so
+$u(x)C(x-y)u(y)\in L^2(B\times B)$; hence $W_u$ is Hilbert--Schmidt.  To compute its trace, let
+$C_\Lambda$ be the positive Fourier multiplier
+\[
+ \widehat C_\Lambda(k)
+ =\mathbf1_{[-\Lambda,\Lambda]}(k)\frac1{2\sqrt{k^2+m_0^2}}.
+\]
+Then $0\le M_uC_\Lambda M_u\le W_u$.  More explicitly,
+$A_\Lambda=C_\Lambda^{1/2}M_u$ is Hilbert--Schmidt because
+\[
+ \|A_\Lambda\|_2^2
+ =\frac{\|u\|_2^2}{2\pi}
+   \int_{-\Lambda}^{\Lambda}\frac{dk}{2\sqrt{k^2+m_0^2}}<\infty.
+\]
+Hence $M_uC_\Lambda M_u=A_\Lambda^*A_\Lambda$ is positive trace class and
+\begin{align*}
+ \Tr(M_uC_\Lambda M_u)
+ &=C_\Lambda(0)\int_Bu(x)^2\,dx\\
+ &=\frac{\|u\|_2^2}{2\pi}
+   \int_{-\Lambda}^{\Lambda}\frac{dk}{2\sqrt{k^2+m_0^2}}.
+\end{align*}
+The last integral diverges logarithmically as $\Lambda\to\infty$.  If $W_u$ were trace class,
+monotonicity of the trace on positive operators would bound all these traces by $\Tr W_u$, a
+contradiction.
+\end{proof}
+
+The invalid step in \texttt{h6-attack.tex} is precisely
+\[
+ \sum_\alpha\lambda_\alpha\|e_\alpha\|_\infty^2
+ \lesssim\sum_\alpha\lambda_\alpha=\Tr W_u.
+\]
+Proposition~\ref{prop:failed} shows that neither inequality is available.  In addition, the
+spectral vectors $e_\alpha$ are a priori $L^2$ vectors, whereas the induction was stated only for
+smooth test functions; an approximation/closability argument was not supplied.  The claimed
+implication ``(P-U) $\Rightarrow$ (H6)'' is therefore withdrawn.
+
+\subsection{A corrected conditional recursion}
+
+The mean terms can be summed without $\Tr W_u$, but doing so exposes an additional input.  The
+following proposition records the valid statement.
+
+\begin{proposition}[corrected covariance recursion]\label{prop:recursion}
+Fix a bounded interval $B$ and an integer $N\ge1$.  Suppose, uniformly in $g$, that:
+\begin{enumerate}
+\item the covariance-weighted Poincar\'e inequality
+\[
+ \Var_{\mu_g}(F)\le c_P\E_{\mu_g}\langle\nabla F,C\nabla F\rangle
+\]
+holds for the ultraviolet-mollified Wick polynomials introduced below;
+\item for $0\le n\le N$ the mollified one-point functions satisfy
+\[
+ m_{n,g,\varepsilon}(x)=
+ \E_{\mu_g}\!\left[:\varphi_\varepsilon(x)^n:\right],
+ \qquad
+ \sup_{\substack{g\in\G\\0<\varepsilon\le1}}
+ \|m_{n,g,\varepsilon}\|_{L^\infty(B)}\le b_n;
+\]
+\item for every $u\in C_c^\infty(B)$ and $n\le N$,
+$F_{n,\varepsilon}[u]\to F_n[u]$ in $\mu_g$-probability as $\varepsilon\downarrow0$, where
+\[
+ F_{n,\varepsilon}[u]=\int_Bu(x):\varphi_\varepsilon(x)^n:\,dx,
+ \qquad
+ F_n[u]=\int_Bu(x):\varphi(x)^n:\,dx.
+\]
+\end{enumerate}
+Then, for every $n\le N$,
+\[
+ \sup_{\substack{g\in\G,\ u\in C_c^\infty(B;\R)\\\|u\|_\infty\le1}}
+ \E_{\mu_g}[F_n[u]^2]<\infty.
+\]
+Consequently (M$_2$) holds for every polynomial of degree at most $N$; translation covariance
+makes the constant independent of the location of the interval $B$.
+\end{proposition}
+
+\begin{proof}
+Choose a nonnegative, compactly supported smooth approximate identity $\rho_\varepsilon$ and put
+$\varphi_\varepsilon=\rho_\varepsilon*\varphi$ and
+\[
+ C_\varepsilon=\rho_\varepsilon*C*\widetilde\rho_\varepsilon,
+ \qquad \widetilde\rho_\varepsilon(x)=\rho_\varepsilon(-x).
+\]
+Wick ordering at scale $\varepsilon$ is with respect to $C_\varepsilon(0)$.  Let
+$K_{n,g,\varepsilon}$ denote the covariance kernel of the mollified $n$th Wick power, so
+\[
+ \Var_{\mu_g}(F_{n,\varepsilon}[u])
+ =\langle u,K_{n,g,\varepsilon}u\rangle.
+\]
+All inequalities below are inequalities of positive kernels, equivalently of their quadratic
+forms on test functions.  Set
+\[
+ S_{1,g,\varepsilon}=c_PC_\varepsilon.
+\]
+For $n\ge2$ define recursively the positive kernel
+\[
+ S_{n,g,\varepsilon}(x,y)=c_Pn^2C_\varepsilon(x-y)
+ \bigl(S_{n-1,g,\varepsilon}(x,y)
+ +m_{n-1,g,\varepsilon}(x)m_{n-1,g,\varepsilon}(y)\bigr).       \tag{6.2}
+\]
+We prove $0\le K_{n,g,\varepsilon}\le S_{n,g,\varepsilon}$ by induction.
+
+For $n=1$, the covariance-weighted norm of the gradient is
+$\langle u,C_\varepsilon u\rangle$, so Poincar\'e gives
+$\langle u,K_{1,g,\varepsilon}u\rangle
+ \le c_P\langle u,C_\varepsilon u\rangle$.
+Assume $K_{n-1,g,\varepsilon}\le S_{n-1,g,\varepsilon}$.  The chain rule gives
+\[
+ \frac{\delta F_{n,\varepsilon}[u]}{\delta\varphi(z)}
+ =n\int_Bu(x)\rho_\varepsilon(x-z)
+      :\varphi_\varepsilon(x)^{n-1}:\,dx.
+\]
+Degree lowering and Poincar\'e therefore give
+\begin{align*}
+ \langle u,K_{n,g,\varepsilon}u\rangle
+ &\le c_Pn^2\iint u(x)u(y)C_\varepsilon(x-y)\\
+ &\quad\times\bigl(K_{n-1,g,\varepsilon}(x,y)
+ +m_{n-1,g,\varepsilon}(x)m_{n-1,g,\varepsilon}(y)\bigr)\,dx\,dy.
+\end{align*}
+The Schur product theorem applies to positive kernels: multiplying the positive-form inequality
+$K_{n-1,g,\varepsilon}\le S_{n-1,g,\varepsilon}$ by the positive-definite kernel
+$C_\varepsilon$ preserves the inequality.  The right side is therefore at most
+$\langle u,S_{n,g,\varepsilon}u\rangle$, proving the induction.
+
+The ground-state derivative formula is not involved.  Iterating (6.2) instead shows that
+$S_{n,g,\varepsilon}$ is a finite sum of terms, each bounded in absolute value on
+$B\times B$ by
+\[
+ A\sum_{r=1}^n C_\varepsilon(x-y)^r,
+\]
+where $A$ depends only on $n,c_P,b_0,\ldots,b_{n-1}$.  Every finite power of the logarithmically
+singular kernel $C(x-y)$ is locally integrable in one dimension, and the bound is uniform in
+$\varepsilon$.  Indeed, with
+$\kappa_\varepsilon=\rho_\varepsilon*\widetilde\rho_\varepsilon$ a probability density,
+$C_\varepsilon=\kappa_\varepsilon*C$; Jensen's inequality gives, for every integer $r\ge1$,
+\[
+ C_\varepsilon(z)^r\le(\kappa_\varepsilon*C^r)(z).
+\]
+After enlarging the fixed compact difference set $B-B$ by the support of $\kappa_\varepsilon$,
+integration shows
+\[
+ \sup_{0<\varepsilon\le1}\int_{B-B}C_\varepsilon(z)^r\,dz<\infty.
+\]
+Hence $\langle |u|,S_{n,g,\varepsilon}|u|\rangle$ is bounded uniformly in $g$ and
+$\varepsilon$.  The mean obeys
+\[
+ \left|\E F_{n,\varepsilon}[u]\right|
+ \le b_n\|u\|_{L^1(B)},
+\]
+so $\sup_{g,\varepsilon}\E[F_{n,\varepsilon}[u]^2]<\infty$.
+
+For fixed $g$, convergence in probability supplies a sequence $\varepsilon_j\downarrow0$ along
+which $F_{n,\varepsilon_j}[u]\to F_n[u]$ almost surely.  Fatou's lemma yields
+\[
+ \E_{\mu_g}[F_n[u]^2]
+ \le\liminf_{j\to\infty}\E_{\mu_g}[F_{n,\varepsilon_j}[u]^2],
+\]
+with the same bound independent of $g$.  A finite sum and Cauchy--Schwarz handle a polynomial
+$P$.
+\end{proof}
+
+The extra uniform $L^\infty$ hypothesis on the mollified one-point functions in
+Proposition~\ref{prop:recursion} is not supplied by
+the first-moment estimate quoted in \texttt{h6-attack.tex}.  A bound
+$|\E F_n[u]|\le c\|u\|_\infty$ identifies a finite signed measure, not an $L^\infty$ density;
+an atomic measure has infinite logarithmic self-energy and would not close (6.2).  This is the
+exact distinction hidden by the false inequality (6.1).
+
+There are therefore two honest routes to (M$_2$):
+\begin{enumerate}
+\item prove a local $N_\tau$/hypercontractive estimate directly, uniform in the remote spatial
+cutoff; or
+\item prove both the covariance-weighted Poincar\'e inequality and the uniform one-point density
+bounds in Proposition~\ref{prop:recursion}.
+\end{enumerate}
+The unweighted LSI of \cite{BD} supplies neither item 1 nor the covariance-weighted inequality in
+item 2.
+
+\section{Corrected proof program}
+
+The dependency order is now:
+\[
+ \boxed{\text{classical cutoff construction}}
+ \Longrightarrow
+ \boxed{\text{finite propagation + }\Om_g\in D(V(h))}
+\]
+and, independently,
+\[
+ \begin{gathered}
+ \boxed{\text{(G$_\mathrm{exact}$)}}
+ \Longrightarrow\ \boxed{\text{FKN path regularity, Theorem~\ref{thm:FKNpath}}},\\[5pt]
+ \boxed{\text{(G$_\mathrm{exact}$)}}\quad+\quad\boxed{\text{(M$_2$)}}\\[3pt]
+ \Longrightarrow\ \boxed{\text{LPPL cell estimate in \texttt{lppl.tex}}}
+ \Longrightarrow\ \boxed{\text{full-net local-norm convergence}}.
+ \end{gathered}
+\]
+The last implication includes local normality, translation invariance, $\mathbb Z_2$ invariance
+for even $P$, and the algebraic ground-state property, exactly as proved in \texttt{lppl.tex} and
+\texttt{../m0/m0.tex}.
+
+The remaining work is to be carried out in the following explicit order.
+
+\begin{enumerate}
+\item \textbf{Path theorem (executed).}  Theorem~\ref{thm:FKNpath} proves norm-$C^1$
+dependence of $e^{-TK(g_s)}$ directly from the Feynman--Kac--Nelson formula.  Under
+(G$_\mathrm{exact}$), spectral perturbation then gives norm-continuous ground-state projections,
+the Hellmann--Feynman identity, the ground-state-vector derivative, and endpoint
+strong-resolvent continuity.  No common form domain is needed.
+
+\item \textbf{Regime-specific physical gap.}  State the coupling/mass region before proving a
+gap.  Establish uniform Euclidean-time connected decay, with one exponent, for a dense cylinder
+algebra and for every profile $0\le g\le1$.  Apply Lemma~\ref{lem:decaygap}.  A stochastic-
+quantisation spectral gap alone is not a substitute.
+
+\item \textbf{Local second moment.}  Prove (M$_2$) by a uniform local higher-order estimate, or
+verify every hypothesis of Proposition~\ref{prop:recursion}.  In the latter route, the required
+Poincar\'e form is covariance-weighted and the one-point functions must have uniformly bounded
+densities; a total-variation bound is insufficient.
+
+\item \textbf{Assembly (executed).}  The FKN path theorem,
+Proposition~\ref{prop:propagation}, and Proposition~\ref{prop:domain} have been inserted into
+\texttt{lppl.tex}.  Its cell estimate now assumes only (G$_\mathrm{exact}$) and (M$_2$).
+The derivative is integrated on $[\varepsilon,1-\varepsilon]$ and the endpoints are obtained by
+norm continuity of the ground-state projection.
+
+\item \textbf{Wavelet uniformity only afterward.}  Once the continuum theorem is unconditional
+in a stated regime, prove discrete propagation, gap, and moment estimates with constants uniform
+in resolution, and derive path regularity from the corresponding discrete FKN formula.  The
+continuum gap and the stochastic-quantisation gap must not be identified.
+\end{enumerate}
+
+This ordering removes completed work from the hypothesis list, prevents the endpoint-domain
+problem from contaminating the interior derivative, and makes the two genuinely new estimates
+--- physical gap and local second moment --- visible as separate theorems.
+
+\section{Final status theorem}
+
+\begin{theorem}[rigorous status of M4]\label{thm:status}
+Within the standard spatial-cutoff $P(\varphi)_2$ construction:
+\begin{enumerate}
+\item the actual cutoff dynamics satisfies exact finite propagation with speed at most one;
+\item every cutoff ground state belongs to the domain of every compactly smeared Wick polynomial;
+\item (G$_\mathrm{exact}$) implies the affine-path regularity and endpoint continuity needed in
+the state-derivative argument;
+\item (G$_\mathrm{exact}$) and (M$_2$) imply all conclusions of the conditional continuum LPPL
+theorem in \texttt{lppl.tex};
+\item neither the uniform physical gap nor (M$_2$) follows from the Bauerschmidt--Dagallier LSI;
+\item the proof of ``(P-U) $\Rightarrow$ (H6)'' in \texttt{h6-attack.tex} is invalid for the
+reasons in Proposition~\ref{prop:failed}.
+\end{enumerate}
+Consequently the main spatial-cutoff convergence theorem is not yet unconditional.  Its remaining
+inputs are exactly (G$_\mathrm{exact}$) and (M$_2$).
+\end{theorem}
+
+\begin{proof}
+Items 1 and 2 are Propositions~\ref{prop:propagation} and \ref{prop:domain}.  Item 3 is
+Theorem~\ref{thm:FKNpath}.  For item 4, that theorem supplies the derivative formula and endpoint
+continuity, Proposition~\ref{prop:propagation} supplies the exact light cone,
+(G$_\mathrm{exact}$) supplies the spectral filter and clustering estimate, and (M$_2$) supplies
+the uniform cell norm.  These are exactly the inputs used in the proof of the one-path estimate in
+\texttt{lppl.tex}; no hypothesis (D) or (L) remains.  Items 5 and 6 were proved in
+\S\ref{sec:gap} and Proposition~\ref{prop:failed}.  The last sentence is the resulting exhaustive
+list.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{BD}
+R.~Bauerschmidt and B.~Dagallier,
+\emph{Log-Sobolev inequality for the $\varphi^4_2$ and $\varphi^4_3$ measures},
+Comm. Pure Appl. Math. \textbf{77} (2024), 2579--2612;
+\href{https://arxiv.org/abs/2202.02295}{arXiv:2202.02295}.
+
+\bibitem{GJExp}
+J.~Glimm and A.~Jaffe,
+\emph{Quantum Field Theory and Statistical Mechanics: Expositions},
+Birkh\"auser, Boston, 1985, Chapter~4.
+
+\bibitem{GJModels}
+J.~Glimm and A.~Jaffe,
+\emph{Boson quantum field models}, in \emph{Mathematics of Contemporary Physics},
+Academic Press, 1972, Chapters~7--8; reprinted in \cite{GJExp}.
+
+\bibitem{GJIV}
+J.~Glimm and A.~Jaffe,
+\emph{The $\lambda(\varphi^4)_2$ quantum field theory without cutoffs. IV.
+Perturbations of the Hamiltonian},
+J. Math. Phys. \textbf{13} (1972), 1568--1584.
+
+\bibitem{GRS}
+F.~Guerra, L.~Rosen, and B.~Simon,
+\emph{Nelson's symmetry and the infinite volume behavior of the vacuum in $P(\varphi)_2$},
+Comm. Math. Phys. \textbf{27} (1972), 10--22.
+
+\bibitem{Simon}
+B.~Simon,
+\emph{The $P(\varphi)_2$ Euclidean (Quantum) Field Theory},
+Princeton University Press, Princeton, 1974.
+\end{thebibliography}
+
+\end{document}

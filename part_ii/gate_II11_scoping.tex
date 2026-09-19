@@ -1,0 +1,734 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.9cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs,longtable,array}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+% ------------------------------------------------------------------
+% Scoping pass for gate (II.11) of the Part II programme (strategy.md \S6-\S7).
+% Statement inventory + design decisions, prior to execution. 2026-08-12.
+% Proof-contract: every design decision is backed by a displayed computation;
+% statements scheduled for execution are marked [exec]; imports are marked with
+% candidate pinpoints. No scheduled statement is used as a premise elsewhere.
+% ------------------------------------------------------------------
+
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{statement}[theorem]{Statement}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\W}{\mathfrak{W}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\Om}{\Omega}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\Trace}{Tr}
+
+\title{Gate (II.11): scoping pass\\[4pt]
+\large Exact statement inventory for the interacting fixed-coarse limit,\\
+the momentum-source obstruction, and the thermal two-torus route}
+\author{}
+\date{12 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document is the preparatory scoping pass for the single remaining gate of the
+Part II programme: the interacting fixed-coarse characteristic-functional limit
+(II.11). It records, with proofs where they are short and load-bearing:
+(i) the \emph{minimal} logical requirements of the gate --- pointwise convergence in the
+coarse symbol suffices; no uniformity over source sets is required by the proved Weyl
+criterion; (ii) an exact obstruction which makes step (2) of the recorded attack plan
+(\texttt{strategy.md} \S7) unimplementable as literally written: sharp-time momentum
+sources are not Cameron--Martin admissible for the Euclidean measures on either side
+(the relevant $H^{-1}$ integral diverges identically), so ``characteristic functionals
+including the momentum component'' cannot be Gaussian source functionals; and (iii) a
+repaired architecture --- the \emph{thermal two-torus route} --- in which both sides of
+(II.11) are represented by traces over the compact space--time torus
+$\T_t\times\T_L$, the momentum component enters through exact finite-mode Mehler
+formulas and a smooth mean shift rather than through distributional sources, the
+$t\to\infty$ and $N\to\infty$ limits are interchanged by a two-line spectral lemma, and
+the previously feared $N$-uniform gap input is \emph{derived} (in eventual form) from
+partition-function convergence instead of being assumed. The route is reduced to eight
+statements A1--A8 with assigned proof methods; a fallback route B and its precise
+defect are recorded; the import-acquisition list and the numeric falsification
+checkpoint are specified. This document proves no part of (II.11); it fixes what
+``proving (II.11)'' shall mean, statement by statement.
+\end{abstract}
+
+\tableofcontents
+
+\section{The gate and its minimal logical requirements}\label{sec:gate}
+
+Throughout, the model and notation are those of the Part II model sheet
+(\texttt{lamport\_part\_ii\_}\allowbreak\texttt{model\_sheet.tex}): the spatial torus $\T_L=\R/(2L\Z)$;
+dyadic lattices $\Lambda_N$ with spacing $\eps_N=2^{-N}\eps_0$; Weyl algebras
+$\W_{N,L}$ over $\ell^2(\Lambda_N)$ with the symplectic form of the model sheet;
+the $D4$ refinement embeddings $\alpha_M^N:\W_{M,L}\to\W_{N,L}$ and the continuum
+embeddings $\beta_M$; the nearest-neighbour free Hamiltonian $H^{(0)}_{N,L}$ with
+dispersion $\gamma_N(k)=(m^2+4\eps_N^{-2}\sin^2(\eps_Nk/2))^{1/2}$, $k\in\Gamma_N$; the
+finite-torus Wick covariance $c_{N,L}$; the interacting operator
+\[
+ K_{N,L}:=H^{(0)}_{N,L}
+ +\lambda\,\eps_N\!\!\sum_{x\in\Lambda_N}\!{:}\Phi_N(x)^4{:}_{c_{N,L}}
+ \qquad(g_N\equiv1),
+\]
+realized by its coercive closed quadratic form, with compact resolvent and simple
+ground state $\Om_{N}$, and the states
+$\omega_{N}:=\omega_{N,L,\lambda,1}=\ip{\Om_N}{\cdot\,\Om_N}$.
+
+\begin{definition}[the gate]\label{def:gate}
+Gate (II.11) is the statement: there is a state $\omega^{\rm ct}_{L,\lambda}$ on the
+continuum Weyl algebra $\W(\T_L)$ --- namely the vector state of the ground vector
+of the operator $K_L$ constructed in V3, Theorem 4.1 as the strong limit of the
+mode-truncated semigroups, in the convention $(a,b)=(0,0)$, the plain $\varphi^4$
+truncation convention (V2, Corollary 5.2; V3, \S1) --- such that for every
+fixed coarse scale $M$ and every $\xi\in h_{M,L}$,
+\begin{equation}
+ \lim_{N\to\infty}\omega_{N}\bigl(\alpha_M^N(W_M(\xi))\bigr)
+ =\omega^{\rm ct}_{L,\lambda}\bigl(\beta_M(W_M(\xi))\bigr).
+ \tag{II.11}\label{eq:II11}
+\end{equation}
+Whether this $K_L$ coincides with any \emph{other} realization of
+$H_{0,L}+\lambda\int_{\T_L}{:}\varphi^4{:}$ on $\T_L$ --- in particular with a Segal
+essentially-self-adjoint one --- is neither proved nor consumed anywhere in Part~II;
+see V3, Remark 4.2, which records that essential self-adjointness of
+$(H_0+V_L)|_{\mathcal D}$ is not established here and that $\omega^{\rm ct}_{L,\lambda}$ is
+\emph{defined} by this $K_L$. The gate is therefore an identification with a
+constructed object, not a uniqueness claim.
+\end{definition}
+
+\begin{remark}[what the Weyl criterion already delivers; demotion of uniformity]
+\label{rem:pointwise}
+The full-sequence Weyl criterion and the identification corollary are \emph{proved}
+(\texttt{lamport\_part\_ii\_}\allowbreak\texttt{weyl\_reduction.tex},
+Thm.~1.1 and Cor.~3.1): if the limit
+in \eqref{eq:II11} exists for every fixed $M$ and $\xi$, then the limits define states
+$\rho_M$ on each $\W_{M,L}$, convergence upgrades automatically from Weyl generators to
+every $A\in\W_{M,L}$ (a $2\delta$ argument on the norm-dense span), the family is
+projectively consistent, and it assembles to the unique inductive-limit state; if
+moreover the limit equals the right side of \eqref{eq:II11} generator by generator,
+the inductive-limit state is $\omega^{\rm ct}_{L,\lambda}\circ\beta$. The hypotheses
+are \emph{pointwise in $\xi$}. Consequently:
+\begin{enumerate}
+\item Step (3) of the recorded attack plan (\texttt{strategy.md} \S7: ``prove
+convergence of those scalar functionals uniformly on a stated bounded set of source
+strengths'') demands more than the gate needs. Uniformity on bounded symbol sets is a
+\emph{desirable output} of the estimates below (and would feed any later quantitative
+rate), but it is not a logical prerequisite and shall not be treated as one.
+\item No positivity, normalization, or consistency statement needs separate proof at
+the gate: all are downstream of pointwise convergence, by the cited criterion.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}[what is off the critical path --- reaffirmed with one refinement]
+\label{rem:offpath}
+The corrected programme records that an $N$-uniform interacting gap, $N$-uniform local
+moments, and an interacting Lieb--Robinson bound are not on the static critical path.
+The scoping pass refines this: the route below \emph{derives} an eventual uniform gap
+(Statement~A7, via Lemma~\ref{lem:laplace}) from partition-function convergence. It is
+an output, not an input --- the same logical pattern as the Part I slab limit, where
+the gap of the cutoff theory was an output of CE2 and simplicity was the only
+spectral input.
+\end{remark}
+
+\section{The momentum-source obstruction and the design amendment}
+\label{sec:obstruction}
+
+Step (2) of the recorded attack plan asks to ``represent the two sides of (II.11) by
+their corresponding finite-torus Euclidean characteristic functionals, including the
+momentum component of $\xi$.'' The following computation shows that the momentum
+component admits \emph{no} representation as a Gaussian source functional, on either
+side, so step (2) is unimplementable as written and must be amended.
+
+\begin{lemma}[sharp-time momentum sources are not $H^{-1}$]\label{lem:nogo}
+Let $C_\infty=(-\partial_t^2-\partial_x^2+m^2)^{-1}$ be the free Euclidean covariance
+on $\R_t\times\T_L$, and for real $h\in C^\infty(\T_L)$, $h\ne0$, let
+$\delta_0'\otimes h$ be the time-derivative sharp-time source, i.e.\ the functional
+$\varphi\mapsto-\partial_t\Phi(\delta_0\otimes h)$ in the distributional sense. Then
+\begin{equation}
+ \bigl\|\delta_0'\otimes h\bigr\|_{H^{-1}}^2
+ =\frac1{2L}\sum_{k\in\Gamma_\infty}|\widehat h(k)|^2
+ \int_\R\frac{dk_0}{2\pi}\,\frac{k_0^2}{k_0^2+\gamma(k)^2}
+ =+\infty ,
+ \label{eq:nogo}
+\end{equation}
+where $\gamma(k)^2=k^2+m^2$. The same divergence, with $\gamma_N$ in place of
+$\gamma$, occurs for the Euclidean measure of the spatial-lattice model (whose time
+variable is continuous). Consequently the random variable ``$\Phi(\delta_0'\otimes h)$''
+is not an element of the Gaussian first chaos on either side, and
+$e^{i\Pi(h)}$-insertions cannot be written as $e^{i\Phi(J)}$ with an $H^{-1}$ source
+$J$.
+\end{lemma}
+
+\begin{proof}
+The Fourier symbol of $\delta_0'\otimes h$ is $ik_0\widehat h(k)$, so the
+$H^{-1}$-norm is the displayed double sum; the $k_0$-integrand tends to $1$ as
+$|k_0|\to\infty$ for every fixed $k$, so already a single $k$-term with
+$\widehat h(k)\neq0$ diverges. For the lattice model the spatial sum is finite but the
+$k_0$-integral is unchanged.
+\end{proof}
+
+\begin{remark}[design amendment D-$\alpha$]\label{rem:amendment}
+The momentum component of $\xi=\eps_Mq+ip$ shall never enter path space as a source.
+It enters in exactly two controlled ways:
+\begin{enumerate}
+\item \emph{Free/thermal level (exact formulas).} All free thermal Weyl expectations
+are computed in closed form by finite-mode Mehler algebra (Statement~A3); no path-space
+representation is used for them.
+\item \emph{Interacting level (mean shift).} In the trace representation of
+Statement~A2, the unitary $e^{i\Pi_N(p)}$ acts by translation of the field
+configuration at the marked time slice. The resulting ``jump'' ensemble is the
+translate of the periodic Gaussian ensemble by the \emph{explicit mean path}
+$H_p(t')$ --- the free covariance's harmonic interpolation of the jump around the time
+circle --- which is smooth away from the marked slice and lies in every
+$L^p$ of the circle. The interaction then changes by the Wick-binomial finite sum
+\begin{equation}
+ \mathcal U(\varphi+H_p)-\mathcal U(\varphi)
+ =\lambda\!\int\!\Bigl[\,4H_p\,{:}\varphi^3{:}+6H_p^2\,{:}\varphi^2{:}
+ +4H_p^3\,\varphi+H_p^4\Bigr],
+ \label{eq:meanshift}
+\end{equation}
+a polynomial perturbation with smooth deterministic coefficients, uniformly
+controlled in $N$ because $H^{(N)}_p\to H_p$ by the dispersion estimates of the
+free-rate document. No distributional source ever appears. The precise bookkeeping is
+Statement~A2's content and is scheduled, not assumed.
+\end{enumerate}
+This amendment replaces step (2) of \texttt{strategy.md} \S7 and is recorded there.
+\end{remark}
+
+\section{Route A: the thermal two-torus architecture}\label{sec:routeA}
+
+\subsection{The representation and the two elementary lemmas}
+
+For $t>0$ define the thermal functionals
+\begin{equation}
+ F_N(t;\xi):=\frac{\Trace\bigl(e^{-tK_{N,L}}\,W_N(R_M^N\xi)\bigr)}
+                  {\Trace\bigl(e^{-tK_{N,L}}\bigr)},
+ \qquad
+ F_\infty(t;\xi):=\frac{\Trace\bigl(e^{-tK_{L}}\,W_{\rm ct}(R_M^\infty\xi)\bigr)}
+                  {\Trace\bigl(e^{-tK_{L}}\bigr)},
+ \label{eq:thermal}
+\end{equation}
+the right-hand version conditional on the continuum package A1 (trace-class
+semigroup). Both numerators are Euclidean objects over the \emph{compact} space--time
+torus $\T_t\times\T_L$ (time circle of circumference $t$): no slab limit, no boundary
+terms, no spatial cutoff. The architecture rests on the following two lemmas, which we
+prove now because the entire route stands on them.
+
+\begin{lemma}[interchange of $t\to\infty$ and $N\to\infty$]\label{lem:interchange}
+Let $(a_N(t))_{N\in\mathbb N\cup\{\infty\}}$, $t\ge t_0>0$, be complex functions with
+$|a_N(t)|\le c_0$ for all $N,t$, and let $\ell_N$ be numbers such that
+\begin{equation}
+ |a_N(t)-\ell_N|\le c_0\,D_N(t),\qquad
+ D_N(t):=\sum_{j\ge1}e^{-t\,(E_j(N)-E_0(N))},
+ \label{eq:tail}
+\end{equation}
+for discrete sequences $E_0(N)<E_1(N)\le E_2(N)\le\cdots\to\infty$. Assume
+\begin{enumerate}
+\item[\rm(i)] $a_N(t)\to a_\infty(t)$ as $N\to\infty$, for every fixed $t\ge t_0$;
+\item[\rm(ii)] $D_N(t_1)\to D_\infty(t_1)<\infty$ as $N\to\infty$, for one fixed
+$t_1\ge t_0$;
+\item[\rm(iii)] $\liminf_N\,(E_1(N)-E_0(N))\ge\gamma>0$.
+\end{enumerate}
+Then $\ell_N\to\ell_\infty$.
+\end{lemma}
+
+\begin{proof}
+For $t\ge t_1$,
+\[
+ D_N(t)=\sum_{j\ge1}e^{-(t-t_1)(E_j(N)-E_0(N))}\,e^{-t_1(E_j(N)-E_0(N))}
+ \le e^{-(t-t_1)(E_1(N)-E_0(N))}\,D_N(t_1).
+\]
+By (ii) there are $N_0$ and $D_*<\infty$ with $D_N(t_1)\le D_*$ for
+$N_0\le N<\infty$ and also $D_\infty(t_1)\le D_*$, and by (iii) there is
+$N_1\ge N_0$ with $E_1(N)-E_0(N)\ge\gamma/2$ for $N_1\le N<\infty$. Hence
+\[
+ \sup_{N_1\le N<\infty}D_N(t)\le D_*\,e^{-(t-t_1)\gamma/2}
+ \xrightarrow[t\to\infty]{}0 .
+\]
+Hypothesis (iii) is a statement about finite $N$ only and says nothing about
+the limit member, which is handled separately by the standing strict
+inequality $E_0(\infty)<E_1(\infty)$ of the setup:
+$D_\infty(t)\le e^{-(t-t_1)(E_1(\infty)-E_0(\infty))}D_\infty(t_1)\to0$ as
+$t\to\infty$ as well.
+Given $\eps>0$ choose $t$ with $\sup_{N_1\le N<\infty}D_N(t)<\eps$ and
+$D_\infty(t)<\eps$; then for $N\ge N_1$,
+\[
+ |\ell_N-\ell_\infty|
+ \le|\ell_N-a_N(t)|+|a_N(t)-a_\infty(t)|+|a_\infty(t)-\ell_\infty|
+ \le 2c_0\eps+|a_N(t)-a_\infty(t)| ,
+\]
+and the middle term tends to $0$ by (i). Thus
+$\limsup_N|\ell_N-\ell_\infty|\le2c_0\eps$ for every $\eps$.
+\end{proof}
+
+\begin{lemma}[Laplace transfer of spectra]\label{lem:laplace}
+For $N\in\mathbb N\cup\{\infty\}$ let $\nu_N=\sum_j\delta_{E_j(N)}$ be the eigenvalue
+point measures (with multiplicity) of self-adjoint operators with
+$Z_N(t):=\int e^{-tE}\,d\nu_N(E)<\infty$ for all $t>0$. Assume
+\begin{enumerate}
+\item[\rm(i)] $Z_N(t)\to Z_\infty(t)$ as $N\to\infty$, for every $t\ge t_*$, where
+$t_*>0$ is fixed but arbitrary;
+\item[\rm(ii)] $\inf_NE_0(N)>-\infty$.
+\end{enumerate}
+Then $\nu_N\to\nu_\infty$ vaguely on $\R$; consequently, for every $j$,
+$E_j(N)\to E_j(\infty)$ (eigenvalues in increasing order with multiplicity), and if
+$E_0(\infty)$ is simple with gap $\gamma_L:=E_1(\infty)-E_0(\infty)>0$, then
+\[
+ E_1(N)-E_0(N)\longrightarrow\gamma_L,
+ \qquad
+ D_N(t)=e^{tE_0(N)}Z_N(t)-1\longrightarrow D_\infty(t)\quad(t\ge t_*).
+\]
+\end{lemma}
+
+\begin{proof}
+Let $c:=\inf_NE_0(N)$. All $\nu_N$ are supported in $[c,\infty)$. The linear span
+$\mathscr A_{t_*}$ of $\{E\mapsto e^{-tE}:t\ge t_*\}$ is a subalgebra of
+$C_0([c,\infty))$ (indeed $e^{-tE}e^{-sE}=e^{-(t+s)E}$ with $t+s\ge2t_*\ge t_*$)
+which separates points and vanishes nowhere, so by the Stone--Weierstrass theorem
+for locally compact spaces $\mathscr A_{t_*}$ is uniformly dense in
+$C_0([c,\infty))$. For $f\in\mathscr A_{t_*}$, (i) gives
+$\int f\,d\nu_N\to\int f\,d\nu_\infty$.
+
+The passage to general $f$ must be made against a \emph{finite} measure: $\nu_N$
+has infinite total mass, so $\|f-g\|_\infty<\eps$ by itself controls nothing.
+(For $E_j(N)=j$, $f(E)=\eps/(1+E)\in C_0$ and $g=0$ one has
+$\int f\,d\nu_N=+\infty$.) We therefore pair against $e^{-t_*E}d\nu_N$, whose total
+mass is $Z_N(t_*)$ and hence uniformly bounded by (i). Let $f\in C_c(\R)$ and
+$\eps>0$. Then $\widetilde f(E):=f(E)e^{t_*E}\in C_c([c,\infty))\subset
+C_0([c,\infty))$; pick $g\in\mathscr A_{t_*}$ with
+$\|\widetilde f-g\|_\infty<\eps$. Since $\int e^{-t_*E}d\nu_N=Z_N(t_*)$,
+\[
+ \Bigl|\int f\,d\nu_N-\int g\,e^{-t_*E}d\nu_N\Bigr|
+ =\Bigl|\int(\widetilde f-g)\,e^{-t_*E}d\nu_N\Bigr|\ \le\ \eps\,Z_N(t_*),
+\]
+and likewise for $\nu_\infty$. Moreover $g\,e^{-t_*E}\in\mathscr A_{t_*}$, so
+$\int g\,e^{-t_*E}d\nu_N\to\int g\,e^{-t_*E}d\nu_\infty$ by (i). Letting
+$\eps\downarrow0$ gives $\int f\,d\nu_N\to\int f\,d\nu_\infty$ for every
+$f\in C_c(\R)$, which is vague convergence.
+
+The restriction $t\ge t_*$ in the last conclusion is necessary, not cosmetic:
+hypothesis (i) says nothing about $Z_N$ on $(0,t_*)$. Take $t_*=1$,
+$\nu_\infty=\sum_{j\ge0}\delta_j$ and $\nu_N=\nu_\infty+m_N\delta_N$ with
+$m_N:=\lceil e^N/N\rceil$. Then $Z_N(t)<\infty$ for every $t>0$; for $t\ge1$ one has
+$m_Ne^{-tN}\le(e^N/N+1)e^{-N}\to0$, so (i) holds on $[t_*,\infty)$; $E_0(N)=0$, so (ii)
+holds; and $E_j(N)=j\to E_j(\infty)$, so the eigenvalue and gap conclusions hold. Yet
+$D_N(t)-D_\infty(t)=m_Ne^{-tN}$, which at $t=\tfrac12$ is $\sim e^{N/2}/N\to\infty$.
+Only $t\ge t_*$ is claimed, and only one value $t_1\ge t_*$ is consumed downstream
+(V4, Theorem 5.2(c)).
+
+Vague convergence of integer-valued atomic measures to an atomic limit gives
+convergence of the ordered atoms with multiplicity on every compact interval whose
+endpoints are not atoms of $\nu_\infty$; since $\nu_\infty$ is locally finite and its
+atoms are discrete, $E_j(N)\to E_j(\infty)$ for every $j$. The gap statement is the
+case $j=0,1$; the convergence of
+$D_N(t)=e^{tE_0(N)}Z_N(t)-1$ follows from $E_0(N)\to E_0(\infty)$ and (i).
+\end{proof}
+
+\begin{remark}
+Lemma~\ref{lem:interchange} with $a_N=F_N(\cdot\,;\xi)$, $\ell_N=\omega_N(W)$,
+$c_0=2$, and the spectral tail bound
+$|F_N(t;\xi)-\omega_N(W_N(R_M^N\xi))|
+=\bigl|Z_N(t)^{-1}\sum_{j\ge1}e^{-tE_j(N)}(\ip{\phi_j}{W\phi_j}-\omega_N(W))\bigr|
+\le2D_N(t)/(1+D_N(t))\le2D_N(t)$
+reduces \eqref{eq:II11} to: fixed-$t$ convergence of the thermal functionals
+(A6), fixed-$t$ convergence of partition functions feeding
+Lemma~\ref{lem:laplace} (A7), and the continuum package (A1). This is the entire
+logical skeleton of Route A; everything else below is the analytic content of those
+three items.
+\end{remark}
+
+\subsection{Statement inventory A1--A8}
+
+\begin{statement}[A1: continuum torus package]\label{st:A1}
+\emph{[import + exec]} For $\lambda\ge0$ and the convention of A4b: the continuum
+operator $K_L=H_{0,L}+\lambda\int_{\T_L}{:}\varphi^4{:}_{C_L}\,dx$ is self-adjoint and
+bounded below (form sum); $e^{-tK_L}$ is trace class for every $t>0$ (hence discrete
+spectrum, $Z_\infty(t)<\infty$); the ground state is simple with gap
+$\gamma_L>0$; and $\omega^{\rm ct}_{L,\lambda}$ is its vector state on
+$\W(\T_L)$. Trace-class of the free part is elementary
+($\Trace e^{-tH_{0,L}}=\prod_{k\in\Gamma_\infty}(1-e^{-t\gamma(k)})^{-1}<\infty$
+since $\sum_ke^{-t\gamma(k)}<\infty$); the interacting statements are classical
+finite-volume $P(\varphi)_2$ material. \emph{Import candidates:}
+H{\o}egh-Krohn's finite-temperature $P(\varphi)_2$ paper (CMP 38 (1974) 195--224) and
+Figari--H{\o}egh-Krohn--Nappi (CMP 44 (1975) 265--278, $P(\varphi)_2$ on the de Sitter
+cylinder $=$ spatial circle), plus the $Q$-space semiboundedness/hypercontractivity
+package of Simon's book as an import candidate. \emph{Fallback:} prove from scratch on
+the torus by the Part I Appendix-C pattern (Nelson bounds on compact space are
+strictly easier than on $\R$); simplicity by positivity improvement; trace-class by
+Golden--Thompson against $e^{-tH_{0,L}}$ plus $e^{-\mathcal U}\in L^p$.
+\emph{Deliverable:} a source-scope audit in the Part II dossier style deciding
+import vs.\ proof, with page images for whatever is imported.
+\emph{Executed resolution (16 August 2026):} V3 takes the proof route.  It derives
+the finite-mode Gaussian unitary, closed form, compact embedding, Mehler--Trotter
+kernel, cyclic trace, mean shift, periodic cutoff tails, and positivity argument
+explicitly.  Its only printed import is the precisely enumerated $\Gamma(A)$ cluster
+from Simon, with the consumed pages imaged in the dossier; no unproved transplantation
+from a line model to the circle is used.
+\end{statement}
+
+\begin{statement}[A2: trace representations with a marked slice]\label{st:A2}
+\emph{[exec]} (a) Lattice: for the finite-dimensional Schr\"odinger operator
+$K_{N,L}$ and $W_N(\eps_Nq+ip)=e^{i(\Phi_N(q)+\Pi_N(p))}$, the kernel identity
+\[
+ \Trace\bigl(e^{-tK_{N,L}}W_N(\eps_Nq+ip)\bigr)
+ =e^{i\theta(q,p)}\!\!\int_{\R^{\Lambda_N}}\!\!
+ e^{-tK_{N,L}}\bigl(\varphi+p,\varphi\bigr)\,
+ e^{i\,\eps_N\sum_xq(x)\varphi(x)}\,d\varphi ,
+\]
+with the explicit CCR phase $\theta$, and its Feynman--Kac form: the periodic
+Ornstein--Uhlenbeck ensemble on $\T_t\times\Lambda_N$ with a configuration jump at the
+marked slice, equal to the translate of the periodic ensemble by the explicit mean
+path $H^{(N)}_p$, with the interaction shifted per \eqref{eq:meanshift}. All objects
+are finite-dimensional; the proof is Trotter plus Gaussian bridge algebra.
+(b) Continuum: the same statement over $\T_t\times\T_L$, with the mean path
+$H_p(t')$ given by the periodized kernel
+$\cosh\bigl((\tfrac t2-|t'|)\gamma\bigr)/\!\sinh(\tfrac t2\gamma)$-type mode
+multipliers applied to $p$; proof by A1's trace-class semigroup, cylinder
+approximation, and the same bridge algebra mode by mode. \emph{Contract:} part (b) is
+formulated so that its free case is Statement A3's formula, and no object beyond A1 is
+consumed.
+\end{statement}
+
+\begin{statement}[A3: exact free thermal functionals and a thermal fixed-coarse
+rate]\label{st:A3}
+\emph{[exec]} (a) Closed forms: for the free lattice and continuum models,
+\[
+\begin{gathered}
+ F^{(0)}_N(t;\xi)=\exp\Bigl[-\tfrac14\,Q^{(t)}_{N}(\xi)\Bigr],\\
+ Q^{(t)}_{N}(\xi)=\frac1{2r_N}\sum_{k\in\Gamma_N}
+ \coth\!\Bigl(\tfrac{t\,\gamma_N(k)}2\Bigr)
+ \Bigl(\gamma_N(k)^{-1}|\widehat q(k)|^2+\gamma_N(k)|\widehat p(k)|^2\Bigr),
+\end{gathered}
+\]
+and the analogous $Q^{(t)}_{\infty}$ with $\gamma$, obtained per mode from the
+harmonic-oscillator identity
+$\langle W(z)\rangle_{t}=\exp[-\tfrac12|z|^2\coth(t\gamma/2)]$ (finite-mode Mehler
+computation; to be derived, not imported). At $t\to\infty$, $\coth\to1$ recovers the
+vacuum formulas of the free-rate document, eq.~(1.4)/(1.8).
+(b) Thermal fixed-coarse rate: for fixed $M$ and $\xi$, uniformly in $t\ge t_0$,
+\[
+ \bigl|Q^{(t)}_{M+r}(R_M^{M+r}\xi)-Q^{(t)}_{\infty}(R_M^\infty\xi)\bigr|
+ \le C\,2^{-\theta r},
+\]
+by the same envelope/filter-tail/dispersion decomposition as the vacuum rate theorem,
+using $1\le\coth(t\gamma/2)\le\coth(t_0m/2)$ and, for $t\ge t_0$, $\gamma\ge m$,
+\[
+ \coth(t\gamma/2)-1=\frac2{e^{t\gamma}-1}\ \le\ \frac2{e^{t_0\gamma}-1}
+ \ \le\ \frac{2e^{-t_0\gamma}}{1-e^{-t_0m}}
+\]
+(the naive bound $2e^{-t_0\gamma}$ is \emph{false} for every $t_0,\gamma>0$, since
+$2/(e^x-1)-2e^{-x}=2/[e^x(e^x-1)]>0$, and the ratio blows up like $1/(t_0\gamma)$ as
+$t_0\gamma\downarrow0$; only the corrected form above is available). The thermal
+weights improve, never damage, the high-momentum tails. \emph{Contract:} (b) reuses the proved Lemmas 2.1--3.1 of the
+free-rate document verbatim; only the weight bookkeeping is new.
+\end{statement}
+
+\begin{statement}[A4: interaction comparison on the space--time torus]\label{st:A4}
+\emph{[executed form, repaired 16 August 2026]} Use one Hermitian Gaussian Fourier
+family on $D_\infty$.  Off the Nyquist column set $G_N=G$; at
+$k_e=-\pi/\eps_N$ set
+$G_N(k_0,k_e)=2^{-1/2}[G(k_0,k_e)+G(k_0,-k_e)]$.  This is the V2
+same-noise coupling and makes the lattice field real.  Its mixed covariance has a
+translation-invariant part with symbol
+$\hat c_\times=(\hat c_N\hat c_\infty)^{1/2}$ and a separately bounded physical-edge
+remainder. Then:
+\begin{enumerate}
+\item[\rm(a)] \emph{$L^2$ convergence:}
+$\|\mathcal U_N-\mathcal U\|_{L^2(\mathbb P)}
+\le C(1+t)(1+L)\eps_N[1+\log(1/\eps_N)]^{3/2}$ for $tL\ge1$.
+The executed fourth-chaos identity is
+\[
+ \|X_4-Y_4\|_2^2=4!(2Lt)^{-2}B_4+\mathrm{Al}_N
+ -2\mathcal E_N^{\rm edge}.
+\]
+Here telescoping the principal products gives the two explicit sums
+$T_1\le C(tL)^3\eps_N^2\log_N^3$ (dispersion) and
+$T_2\le C(tL)^3\eps_N^2\log_N^2$ (missing inputs), while the three possible
+lattice alias outputs satisfy
+$\mathrm{Al}_N\le C tL\eps_N^2\log_N^3$.  These are the bounds proved from
+V2's displayed $F_3$ convolution estimate and one-dimensional temporal and
+spatial sum--integral comparisons; no power-counting slogan is used as a proof.
+At the symmetric Nyquist edges,
+four momenta can conserve exactly (two positive and two negative); their missing
+contribution is
+\[
+ \Delta_{4e}=4!(2Lt)^{-2}\frac32
+ \sum_{\sum k_{0,i}=0}\prod_i\hat c_\times(k_{0,i},\pi/\eps_N)
+ \le\frac{9t}{256L^2}\coth(2t_0)^3\eps_N^5.
+\]
+This term is retained in the executed V2 proof.
+\item[\rm(b)] \emph{Finite renormalization dictionary (A4b):} the model sheet fixes
+Wick ordering by the \emph{lattice vacuum} constant $c_{N,L}$, while the continuum
+interaction is Wick-ordered by a continuum convention $c^{\rm ct}_{L}$ (to be fixed:
+vacuum mode sum with a stated truncation). The recombination identity
+${:}\varphi^4{:}_{c_1}={:}\varphi^4{:}_{c_2}+6(c_2-c_1){:}\varphi^2{:}_{c_2}
++3(c_2-c_1)^2$ shows: if
+$\delta_N:=c_{N,L}-c^{\rm ct}_{L,N}$ (matched truncations) converges to
+$\delta_\infty$, then --- \emph{if the two Wick powers were taken of the same field}
+--- the lattice theory would converge to the continuum theory with polynomial
+$\varphi^4-6\delta_\infty\varphi^2+3\delta_\infty^2$ (note the sign, which follows from
+$c_2-c_1=-\delta_N$ in the displayed identity; the version with $+6\delta_\infty$
+printed here originally was a slip).
+\emph{Superseded (12 Aug 2026):} the executed form of this clause is V2,
+Corollary 5.2, and its outcome is that \emph{no} residue survives: the lattice and
+continuum fields' equal-point variances also differ by exactly $\delta_\infty$, which
+cancels the excess Wick subtraction, so the gate's continuum polynomial is plain
+$\varphi^4$ and the endpoint convention is $(a,b)=(0,0)$. $\delta_\infty$ remains the
+correctly computed offset between the two tadpoles. \emph{Task (as executed):}
+compute $\delta_\infty$ exactly (mode sums; the model sheet's
+$c_N=\tfrac1{2\pi}\log\tfrac8{m\eps_N}+o(1)$ already fixes the divergent part), and
+\emph{define} $\omega^{\rm ct}_{L,\lambda}$ in Definition~\ref{def:gate} as the vacuum
+of the so-normalized continuum polynomial. This is a convention lock, exactly parallel
+to Part I's Remark on sharp-time Wick ordering; (II.11) without it is
+under-specified.
+\item[\rm(c)] \emph{Mean-shift terms:} the same $L^2$ statements for each term of
+\eqref{eq:meanshift}, with the deterministic coefficients $H^{(N)}_p\to H_p$ supplied
+by A2/A3 dispersion estimates.  The executed proof uses the fundamental band
+$B_N=\Gamma_N$ and representative $[q]_N$ modulo $2\pi/\eps_N$.  For chaos order
+$j=1,2,3$ it distinguishes the folded lattice multiplier
+$K_{N,j}^{\rm fold}$ from the exact-output multipliers $K_{\times,j}$ and
+$K_{\infty,j}$.  Because the asymmetric-band mixed kernel need not be real on
+the Nyquist edge, V2 defines its scalar surrogate as the real part of the mixed
+pairing.  After extending the lattice coefficient by zero, that real surrogate
+quadratic difference is exactly
+\[
+ \langle\delta b,K_{\infty,j}\delta b\rangle
+ +\langle b_N,(K_{N,j}^{\rm fold}-K_{\infty,j})b_N\rangle
+ -2\Re\langle b_N,(K_{\times,j}-K_{\infty,j})b_{\infty,B_N}\rangle
+ -2\Re A_{\times,j},
+\]
+where $A_{\times,j}$ is the explicitly summed set of nonzero exact outputs
+$q=p+2n\pi/\eps_N$.  Fundamental-band differences are
+$O(\eps_N^2\log_N^2)$, high outputs are
+$O(\eps_N^2\log_N^{j-1})$, and coefficient powers are controlled by a written
+convolution telescope.  The physical edge remainder is estimated separately.
+There is no unnamed tail term.  The resulting rate is
+$O(2^{-r(1+\eta)/4}+\eps_N\log_N)$.
+\end{enumerate}
+
+\emph{Superseded (13 Aug 2026):} the coupling scheduled here --- the image of the
+continuum space--time field under a sharp-time per-spatial-mode amplitude ratio --- is
+\emph{not} the coupling executed, and would not do what it is asked to do: a per-mode
+multiplier applied at a single time does not reproduce the lattice ensemble's time
+correlations. What is executed is V2's \emph{same-noise} coupling (V2,
+Definition 1.1): one Hermitian Gaussian family $G$ on $D_\infty$, with $\eta$ built
+from the symbol $\hat c_\infty^{1/2}$ over $D_\infty$ and $\eta_N$ from
+$\hat c_N^{1/2}$ over $D_N$, the edge column $k_e=-\pi/\eps_N$ symmetrised as
+$G_N(k_0,k_e)=2^{-1/2}(G(k_0,k_e)+G(k_0,-k_e))$ (without which $\eta_N$ is neither real
+nor of the periodic-lattice law). Clause (a) as executed reads
+$\|\mathcal U_N-\mathcal U\|_{L^2(\mathbb P)}\le C(1+t)(1+L)\eps_N(1+\log(1/\eps_N))^{3/2}$ under the standing
+hypothesis $tL\ge1$ (V2, Theorem 4.3). Recorded as an erratum in V4, Remark 1.1.
+\end{statement}
+
+\begin{statement}[A5: uniform-in-$N$ Nelson bounds on the space--time torus]
+\label{st:A5}
+\emph{[exec]} For every $p<\infty$ and $t>0$:
+$\sup_N\|e^{-\mathcal U_N}\|_{L^p(\mu^{\rm per}_{t,L,N})}<\infty$, and the same for the
+mean-shifted interactions of \eqref{eq:meanshift} locally uniformly in $p$-shift.
+\emph{Proof pattern:} verbatim the Part I Appendix C stability argument with the
+mollification scale $\kappa$ replaced by $\eps_N^{-1}$: the Wick lower bound
+${:}P{:}_c\ge-b(1+c)^{p'}$ with $c=c_{N,L}\sim\tfrac1{2\pi}\log\eps_N^{-1}$, the $L^2$
+ultraviolet difference between scales $N$ and $N'$ (part (a) computations), Nelson
+hypercontractivity on the Gaussian space, and the double-exponential tail with
+$2q=e^{L/(4p')}$. Nothing in that argument used noncompactness of space or vacuum
+boundary conditions; the periodic covariance obeys the same two Bessel-type bounds.
+
+\emph{Amended (14 Aug 2026):} as executed (V2, Theorem 7.2) the bound is stated for
+$t\in[t_0,T]$ under the standing convention $t_0L\ge1$, with a constant depending also on
+the coarse scale through $\eps_M$; the unrestricted range printed above is narrower in
+execution. The gate consumes A5 only at $t\ge t_*=\max(1,1/L)$, so nothing is lost.
+\end{statement}
+
+\begin{statement}[A6: fixed-$t$ convergence of the thermal functionals]\label{st:A6}
+\emph{[exec]} For every fixed $t\ge t_0$, $M$, and $\xi$:
+$F_N(t;\xi)\to F_\infty(t;\xi)$. \emph{Proof shape (all pieces above):} write both
+sides via A2 as
+$\E[e^{i\Phi(J^{(\bullet)}_q)}\,e^{-\mathcal U_\bullet-\Delta\mathcal U_{\bullet,p}}]
+\cdot G^{(0)}_\bullet(t;\xi)$ normalized by the sourceless expectations; the free
+prefactors converge by A3; the exponents converge in every $L^p$ ($p<\infty$) by A4
+(a,c) plus Gaussian hypercontractivity; uniform integrability of
+$e^{-\mathcal U_N}$ by A5; conclude by Vitali (the same convergence pattern as Part I,
+Proposition on path regularity, Step 2). The $q$-source $J_q$ is an honest $H^{-1}$
+element (sharp-time \emph{position} sources are admissible:
+$\int dk_0\,(k_0^2+\gamma^2)^{-1}<\infty$), so no obstruction arises on the position
+side --- Lemma~\ref{lem:nogo} concerns momentum only.
+\end{statement}
+
+\begin{statement}[A7: partition-function convergence and the derived eventual gap]
+\label{st:A7}
+\emph{[exec]} For every $t>0$:
+$Z_N(t)/Z^{(0)}_N(t)\to Z_\infty(t)/Z^{(0)}_\infty(t)$ (this is A6 at $\xi=0$,
+sourceless), and $Z^{(0)}_N(t)\to Z^{(0)}_\infty(t)$ (explicit:
+$\prod_{k\in\Gamma_N}(2\sinh(t\gamma_N(k)/2))^{-1}
+\to\prod_{k\in\Gamma_\infty}(2\sinh(t\gamma(k)/2))^{-1}$, by the dispersion lemma and
+the summable tail $e^{-t\gamma(k)}$).
+\emph{Amended (12 Aug 2026):} the displayed free-factor limit is vacuous as
+written --- both sides carry the divergent ground-energy factor and the
+right-hand infinite product tends to $0$, since $\sum_k\gamma(k)=\infty$. A7 is
+executed in the \emph{normal-ordered} normalization, where the free factor is
+$\prod_{k\in\Gamma_N}(1-e^{-t\gamma_N(k)})^{-1}\to Z_0(t)$; see V4,
+Remark 1.1(2) and Lemma 5.1. Every quantity the route consumes (eigenvalue
+differences, $D_N$, gaps) is invariant under the $c$-number shift.
+
+The conclusions must be read in that same normalization; in the \emph{un}-shifted
+symbols two of them are false, since
+$e_0(N)=\tfrac12\sum_{k\in\Gamma_N}\gamma_N(k)\ge r_Nm\to\infty$ forces
+$Z_N(t)\to0\ne Z_\infty(t)$ and $E_j(N)\to+\infty$. Writing
+$\widetilde Z_N(t):=\Trace e^{-t(K_{N,L}-e_0(N))}$ and
+$\widetilde E_j(N):=E_j(N)-e_0(N)$: for every $t\ge t_*$ ($t_*>0$ fixed --- see
+hypothesis (i) of Lemma~\ref{lem:laplace} and V2, the remark following Theorem 4.3, the interaction
+comparison being unavailable as $t\downarrow0$) one has
+$\widetilde Z_N(t)\to Z_\infty(t)=\Trace e^{-tK_L}$; with the uniform lower bound
+$\inf_N\widetilde E_0(N)\ge-c$ (from A5 via $e^{-t\widetilde E_0(N)}\le
+\widetilde Z_N(t)\le\widetilde Z^{(0)}_N(t)\,\|e^{-\mathcal U_N}\|$-type bounds),
+Lemma~\ref{lem:laplace} applied to
+$\widetilde\nu_N=\sum_j\delta_{\widetilde E_j(N)}$ yields
+$\widetilde E_j(N)\to\mu_j$, the \emph{derived} eventual uniform gap
+$E_1(N)-E_0(N)\to\gamma_L>0$, and $D_N(t_1)\to D_\infty(t_1)<\infty$ --- the last
+two being invariant under the $c$-number shift, and being the only conclusions of
+A7 that A8 consumes.
+\end{statement}
+
+\begin{statement}[A8: assembly]\label{st:A8}
+\emph{[exec, short]} A6 + A7 + A1 verify hypotheses (i)--(iii) of
+Lemma~\ref{lem:interchange} for $a_N=F_N$, $\ell_N=\omega_N(W_N(R_M^N\xi))$,
+$\ell_\infty=\omega^{\rm ct}_{L,\lambda}(W_{\rm ct}(R_M^\infty\xi))$ (the spectral tail
+bound preceding \S\ref{sec:routeA}.2 supplies \eqref{eq:tail} on both sides; the
+$N=\infty$ instance of \eqref{eq:tail} uses A1's gap). Hence \eqref{eq:II11} holds
+pointwise for every $M,\xi$; the proved Weyl criterion and identification corollary
+then deliver the full-sequence, identified, fixed-coarse theorem. No statement beyond
+A1--A7 is consumed.
+\end{statement}
+
+\subsection{What Route A does not need}
+No $N$-uniform gap as an input (A7 derives an eventual one); no interacting
+Lieb--Robinson estimate; no spatial cutoff (torus, $g\equiv1$); no slab limits or
+boundary conditions (compact time circle); no uniformity of \eqref{eq:II11} in $\xi$
+(Remark~\ref{rem:pointwise}); no comparison of the full lattice and continuum
+\emph{measures} --- Statement A4's coupling compares only fourth-moment functionals,
+which is essential: the per-mode Gaussian relative densities diverge near the band
+edge (the thermal shadow of the finest-scale obstruction), so any route through
+measure-level absolute continuity would fail.
+
+\section{Route B (slab diagonal), recorded as fallback}\label{sec:routeB}
+
+The previously envisaged route represents $\omega_N$ by $T\to\infty$ slabs and
+compares slabs at fixed $T$. Its defect, stated precisely: the error
+$|\omega_N(W)-\mathrm{slab}_N(T;W)|$ is controlled only by the \emph{lattice} gap
+$\gamma_{N,L}$, so interchanging $T\to\infty$ with $N\to\infty$ requires exactly the
+uniformity that Route A derives in A7 --- but without the trace structure, no
+partition-function argument is available to derive it, and one is thrown back on an
+$N$-uniform cluster-expansion input (the Battle--Federbush audit was negative). Route
+B is therefore strictly weaker than Route A at current knowledge and is kept only as
+a fallback should the trace-class package A1 fail to close (it will not: the free
+trace is elementary and the interacting dressing is A5).
+
+\section{Imports to acquire, and the numeric checkpoint}\label{sec:imports}
+
+\subsection{Acquisition list}
+For A1: H{\o}egh-Krohn, \emph{Relativistic quantum statistical mechanics in
+two-dimensional space-time} (CMP 38 (1974) 195--224); Figari--H{\o}egh-Krohn--Nappi
+(CMP 44 (1975) 265--278). Both to be added to \texttt{refs/part\_ii/} with page-image
+dossier entries if used as imports. Everything else in A2--A8 is self-contained or
+already proved in the Part II documents (free-rate lemmas) and Part I Appendix C
+(stability pattern).
+
+\subsection{Numeric falsification checkpoint (before execution)}
+A \texttt{numpy} script, in the style of \texttt{m2\_ii\_checkpoint.py}:
+\begin{enumerate}
+\item verify the A3 closed forms against exact diagonalization of small free lattice
+models (one and two modes, then $r_N\le64$), including the momentum component and the
+CCR phase of A2(a);
+\item measure the thermal fixed-coarse rate exponent at $t\in\{1,2,4\}$ against the
+vacuum exponent $\theta$ (they should agree within the envelope constants);
+\item for a two-site anharmonic toy ($\Lambda$ of size $2$, quartic coupling), verify
+the interchange mechanism numerically: $E_j(N)$-convergence under mode-doubling, the
+$D_N(t)$ tail, and $F_N(t)\to\omega_N$ rates --- a sanity check of
+Lemmas~\ref{lem:interchange}--\ref{lem:laplace} in vivo;
+\item compute $\delta_N=c_{N,L}-c^{\rm ct}_{L,N}$ for the A4b dictionary numerically
+before the analytic evaluation, to fix the expected constant.
+\end{enumerate}
+Falsification criteria: any mismatch in (1) kills A2/A3 as formulated; a
+$t$-dependent drift in (2) kills the claimed $t$-uniformity of A3(b); failure of
+eigenvalue convergence in (3) would signal a flaw in the A7 logic.
+
+\section{Execution phases and gates}\label{sec:phases}
+
+\begin{center}
+\begin{tabular}{P{1.6cm}P{6.6cm}P{5.6cm}}
+\toprule
+phase & content & gate \\
+\midrule
+V0 & numeric checkpoint (\S\ref{sec:imports}.2) & all four criteria pass; exponents
+recorded \\
+V1 & A2 (trace representations) + A3 (free thermal formulas and rate) & proofs
+complete; A3(a) matches V0 item (1) to rounding \\
+V2 & A4 (interaction $L^2$ + dictionary $\delta_\infty$; four-edge,
+real-surrogate, and shifted fundamental-band repairs incorporated) + A5 (uniform Nelson) &
+constants explicit; $\delta_\infty$ matches V0 item (4) \\
+V3 & A1 (torus package) & full proof executed; finite-mode normalization and
+periodic tails explicit; gap $\gamma_L>0$ certified \\
+V4 & A6 + A7 + A8 (assembly) & (II.11) closed; Weyl criterion invoked; adversarial
+pass on the assembled document \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Standing rules carried over from Part I: transcription discipline for every display
+reused from the free-rate document and Appendix C; every import through a dossier
+entry with page images; a claim ledger in the final document; an independent
+adversarial pass before the gate is declared closed.
+
+\section{Claim ledger of this scoping pass}
+
+\begin{longtable}{P{5.2cm}P{2.2cm}P{6.4cm}}
+\toprule
+claim & status & ground \\
+\midrule
+\endhead
+Pointwise-in-$\xi$ convergence suffices for the gate & proved elsewhere &
+Weyl-reduction document, Thm.~1.1/Cor.~3.1; Remark~\ref{rem:pointwise} \\
+Sharp-time momentum sources inadmissible & \textbf{proved here} &
+Lemma~\ref{lem:nogo}, display \eqref{eq:nogo} \\
+Interchange of limits under (i)--(iii) & \textbf{proved here} &
+Lemma~\ref{lem:interchange} \\
+Spectral transfer from partition functions & \textbf{proved here} &
+Lemma~\ref{lem:laplace} \\
+Free thermal formulas and thermal rate & scheduled [exec] & Statement A3; V0/V1 \\
+Trace representations with marked slice & scheduled [exec] & Statement A2; V1 \\
+Interaction $L^2$ comparison + renormalization dictionary & scheduled [exec] &
+Statement A4; V2 \\
+Uniform Nelson bounds (torus, all $N$) & scheduled [exec] & Statement A5 (Part I
+App.~C pattern); V2 \\
+Continuum torus package & import/exec & Statement A1; V3 \\
+Fixed-$t$ convergence; partition functions; assembly & scheduled [exec] &
+Statements A6--A8; V4 \\
+Eventual uniform lattice gap & derived, not assumed & A7 via
+Lemma~\ref{lem:laplace} \\
+Measure-level absolute continuity route & rejected & band-edge divergence of
+per-mode relative densities (\S\ref{sec:routeA}.3) \\
+Route B (slab diagonal) & fallback only & \S\ref{sec:routeB} \\
+\bottomrule
+\end{longtable}
+
+\end{document}

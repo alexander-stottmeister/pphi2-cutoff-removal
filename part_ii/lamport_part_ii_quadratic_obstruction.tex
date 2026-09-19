@@ -1,0 +1,783 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{auditstyle}
+\usepackage{bm}
+
+\newcommand{\T}{\mathbb T}
+\newcommand{\W}{\mathcal W}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dd}{\,d}
+\DeclareMathOperator{\gap}{gap}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{Part II, corrected at the first falsifiable checkpoint\\[3pt]
+\large The quadratic OAR model obstructs diagonal local state-norm convergence}
+\author{Lamport-form proof and source audit}
+\date{9 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+\textbf{Decisive status.}  The Part II target in \texttt{strategy.md} is not a
+well-defined statement as written, because an injective wavelet map embeds
+\emph{observables}; it does not push a lattice state canonically to the continuum
+algebra.  Under the natural MMST comparison, the intended diagonal local-norm
+estimate is false already for the free massive scalar field.
+
+More precisely, for every bounded interval $O$ containing a smaller interval, there
+are finest-scale Weyl unitaries $U_N$ whose lattice support and continuum wavelet
+support lie in $O$ and for which
+\[
+ \liminf_{N\to\infty}
+ \left|\omega_N(U_N)-\omega\bigl(\beta_N(U_N)\bigr)\right|
+ \geq e^{-\sqrt{2+\sqrt2}/4}-e^{-3\pi/16}
+ =0.0752053795\ldots .                                           \tag{R}
+\]
+Consequently no estimate $C\eps_N^\theta$, $\theta>0$, can hold in local state
+norm on the diagonal scale.  This does not contradict the MMST theorem: MMST take
+the fine-scale limit while the tested observable is held at a \emph{fixed coarse
+scale}.  Section \ref{sec:repair} gives the corrected Part II target.
+\end{resultbox}
+
+\tableofcontents
+
+\section{Exact model and comparison map}\label{sec:model}
+
+This section fixes every normalization.  The construction is the one-dimensional
+specialization of Morinelli--Morsella--Stottmeister--Tanimoto (MMST), equations
+(3.2)--(3.10), (4.1)--(4.5), and Proposition 4.1.
+
+Fix $L>0$.  For $N\geq0$, choose integers $r_N=2^Nr_0$ and put
+\[
+ \eps_N=L/r_N,\qquad
+ \Lambda_N=\{\eps_N n:-r_N\leq n\leq r_N-1\}\subset\T_L,
+ \qquad \T_L=\R/(2L\mathbb Z).
+\]
+The dual momenta and their dimensionless representatives are
+\[
+ k_j=\frac{\pi j}{L},\qquad
+ \theta_j=\eps_Nk_j=\frac{\pi j}{r_N},qquad
+ -r_N\leq j\leq r_N-1.                                         \tag{1.1}
+\]
+For a real sequence $p=(p_n)$, define
+\[
+ \widetilde p_j=\sum_{n=-r_N}^{r_N-1}p_ne^{-i\theta_jn}.
+\]
+Parseval's identity, with no suppressed constant, is
+\[
+ \sum_n|p_n|^2=\frac1{2r_N}\sum_j|\widetilde p_j|^2.             \tag{1.2}
+\]
+
+Let $\W_N$ be the Weyl algebra over $\C^{2r_N}$ with its standard symplectic
+form.  In one space dimension the MMST decomposition (3.7) is
+$\xi=\eps_Nq+ip$, $q,p$ real.  Let $m>0$ be the physical mass and put
+$\delta_N=m\eps_N$.  The nearest-neighbour lattice dispersion is
+\begin{align}
+ \gamma_N(k_j)
+ &=\left(m^2+2\eps_N^{-2}(1-\cos\theta_j)\right)^{1/2}\\
+ &=\eps_N^{-1}a_{\delta_N}(\theta_j),
+ &a_\delta(\theta)&=\left(\delta^2+4\sin^2(\theta/2)\right)^{1/2}. \tag{1.3}
+\end{align}
+The centered lattice vacuum is the quasifree state
+\[
+ \omega_N(W_N(\eps_Nq+ip))
+ =\exp\left[-\frac14\left(
+  \|\gamma_N^{-1/2}\widehat q\|_{N}^{2}
+ +\|\gamma_N^{1/2}\widehat p\|_{N}^{2}\right)\right],          \tag{1.4}
+\]
+where $\widehat p_j=\eps_N^{1/2}\widetilde p_j$ and
+$\|z\|_N^2=(2r_N)^{-1}\sum_j|z_j|^2$.
+
+Let $\phi\in L^2(\R)$ be a real compactly supported scaling function such that
+its integer translates are orthonormal.  We assume the exact decay used in MMST,
+\[
+ |\widehat\phi(\zeta)|\leq C(1+|\zeta|)^{-\rho},\qquad \rho>1,   \tag{1.5}
+\]
+which holds for the Daubechies choices admitted in MMST in one dimension.  Write
+\[
+\phi_{N,n}(x)=\eps_N^{-1/2}\phi(x/\eps_N-n).
+\]
+Periodize these functions with period $2L$.  The MMST symplectic map and the
+induced injective morphism of Weyl $C^*$-algebras are
+\begin{align}
+ R_N(q,p)&=\eps_N^{1/2}\sum_n(q_n+ip_n)\phi_{N,n},               \tag{1.6}\\
+ \beta_N(W_N(\eps_Nq+ip))&=W_{\rm ct}(R_N(q,p)).                 \tag{1.7}
+\end{align}
+Let $\omega$ be the continuum mass-$m$ vacuum on $\W(\T_L)$.
+
+\begin{definition}[the only canonical finite-scale comparison]\label{def:comparison}
+The lattice state $\omega_N$ and continuum state $\omega$ are compared on
+$\W_N$ as
+\[
+ \omega_N\quad\hbox{versus}\quad \omega\circ\beta_N.           \tag{1.8}
+\]
+An injective $*$-homomorphism is contravariant on states: it sends $\omega$ to
+$\omega\circ\beta_N$.  It supplies no canonical state on $\W(\T_L)$ from
+$\omega_N$.
+\end{definition}
+
+\section{Exact covariance symbols}\label{sec:symbols}
+
+\begin{lemma}[lattice momentum symbol]\label{lem:lattice-symbol}
+For every real $p\in\R^{2r_N}$,
+\[
+ \omega_N(W_N(ip))
+ =\exp\left[-\frac14 Q_N^{\rm lat}(p)\right],\qquad
+ Q_N^{\rm lat}(p)=\frac1{2r_N}\sum_j
+ a_{\delta_N}(\theta_j)|\widetilde p_j|^2.                      \tag{2.1}
+\]
+\end{lemma}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Insert $q=0$ in (1.4).}
+
+\LS{1}{2}{Use $\widehat p_j=\eps_N^{1/2}\widetilde p_j$ and
+$\gamma_N(k_j)=\eps_N^{-1}a_{\delta_N}(\theta_j)$ to obtain}
+\[
+ \|\gamma_N^{1/2}\widehat p\|_N^2
+ =\frac1{2r_N}\sum_j
+  \eps_N^{-1}a_{\delta_N}(\theta_j)
+  \eps_N|\widetilde p_j|^2,
+\]
+which is (2.1). \QedStep
+
+\begin{lemma}[continuum pullback symbol]\label{lem:continuum-symbol}
+For every real $p\in\R^{2r_N}$,
+\[
+ \omega(\beta_N(W_N(ip)))
+ =\exp\left[-\frac14 Q_N^{\rm ct}(p)\right],                    \tag{2.2}
+\]
+where
+\begin{align}
+ Q_N^{\rm ct}(p)
+ &=\frac1{2r_N}\sum_j b_{\phi,\delta_N}(\theta_j)
+       |\widetilde p_j|^2,                                      \tag{2.3}\\
+ b_{\phi,\delta}(\theta)
+ &=\sum_{\ell\in\mathbb Z}
+ \left(\delta^2+(\theta+2\pi\ell)^2\right)^{1/2}
+ |\widehat\phi(\theta+2\pi\ell)|^2.                           \tag{2.4}
+\end{align}
+The series in (2.4) converges uniformly in $\theta\in[-\pi,\pi]$.
+\end{lemma}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Compute the Fourier coefficient of the embedded momentum smearing.}
+
+For continuum momentum $k\in(\pi/L)\mathbb Z$, (1.6) and
+$\widehat{\phi_{N,n}}(k)=\eps_N^{1/2}e^{-ik\eps_Nn}
+\widehat\phi(\eps_Nk)$ give
+\[
+ \widehat{\Im R_N(0,p)}(k)
+ =\eps_N\widehat\phi(\eps_Nk)
+   \sum_np_ne^{-ik\eps_Nn}.                                    \tag{2.5}
+\]
+
+\LS{1}{2}{Split every continuum momentum uniquely as}
+\[
+ k=k_j+\frac{2\pi\ell}{\eps_N},qquad
+ -r_N\leq j\leq r_N-1,quad \ell\in\mathbb Z.                 \tag{2.6}
+\]
+Then $e^{-ik\eps_Nn}=e^{-i\theta_jn}$ and
+\[
+ \eps_N(m^2+k^2)^{1/2}
+ =\left(\delta_N^2+(\theta_j+2\pi\ell)^2\right)^{1/2}.         \tag{2.7}
+\]
+
+\LS{1}{3}{Insert (2.5)--(2.7) into the continuum vacuum quadratic form.}
+
+The torus Fourier normalization is $(2L)^{-1}\sum_k$.  Since
+$\eps_N/(2L)=1/(2r_N)$, grouping the sum by (2.6) gives exactly
+(2.3)--(2.4), with no limiting argument.
+
+\LS{1}{4}{Prove convergence of (2.4).}
+
+By (1.5), uniformly for $|\theta|\leq\pi$ and $|\ell|\geq1$,
+\[
+ \left(\delta^2+(\theta+2\pi\ell)^2\right)^{1/2}
+ |\widehat\phi(\theta+2\pi\ell)|^2
+ \leq C_{\delta} (1+|\ell|)^{1-2\rho}.
+\]
+The majorant is summable because $\rho>1$.  The Weierstrass test proves uniform
+convergence. \QedStep
+
+\begin{lemma}[alias partition of unity]\label{lem:alias}
+For every $\theta\in\R$,
+\[
+ \sum_{\ell\in\mathbb Z}
+ |\widehat\phi(\theta+2\pi\ell)|^2=1.                            \tag{2.8}
+\]
+Consequently, with $d(\theta)=\dist(\theta,2\pi\mathbb Z)$,
+\[
+ b_{\phi,\delta}(\theta)
+ \geq h_\delta(\theta):=\left(\delta^2+d(\theta)^2\right)^{1/2}. \tag{2.9}
+\]
+\end{lemma}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Use orthonormality of the integer translates.}
+
+For every $n\in\mathbb Z$, Plancherel gives
+\begin{align*}
+ \delta_{n0}
+ &=\int_\R\phi(x)\phi(x-n)\dd x\\
+ &=\frac1{2\pi}\int_{-\pi}^{\pi}e^{in\theta}
+   \left(\sum_{\ell\in\mathbb Z}
+   |\widehat\phi(\theta+2\pi\ell)|^2\right)\dd\theta.         \tag{2.10}
+\end{align*}
+The periodic function in parentheses therefore has Fourier coefficients
+$\delta_{n0}$ and equals $1$ almost everywhere.  Assumption (1.5) makes its
+series uniformly convergent, hence continuous.  Equality almost everywhere between
+continuous functions implies (2.8) everywhere.
+
+\LS{1}{2}{For each $\ell$,}
+\[
+ |\theta+2\pi\ell|\geq d(\theta),
+\]
+so every square-root factor in (2.4) is at least $h_\delta(\theta)$.  Multiply by
+the nonnegative weights in (2.8) and sum.  This proves (2.9). \QedStep
+
+\begin{remark}[strict ultraviolet mismatch]
+For $0<|\theta|<\pi$ and $\delta\geq0$,
+\[
+ h_\delta(\theta)=\sqrt{\delta^2+\theta^2}
+ >\sqrt{\delta^2+4\sin^2(\theta/2)}=a_\delta(\theta),            \tag{2.11}
+\]
+because $2\sin(|\theta|/2)<|\theta|$.  No property of a particular Daubechies
+filter can remove this inequality.
+\end{remark}
+
+\section{A localized high-frequency sequence}\label{sec:carrier}
+
+Fix open intervals $J\Subset O\Subset\T_L$ and choose real
+$\eta\in C_c^\infty(J)$ with $\int_{\T_L}\eta(x)^2\dd x=1$.
+Set
+\[
+ \theta_0=\frac{3\pi}{4},qquad
+ p_{N,n}=c_N\sqrt{2\eps_N}\,\eta(\eps_Nn)\cos(\theta_0n),        \tag{3.1}
+\]
+where $c_N>0$ is chosen so that $\sum_n p_{N,n}^2=1$.  For all
+sufficiently large $N$, $2r_N$ is divisible by $8$, so the carrier is periodic.
+
+\begin{lemma}[localized carrier measure]\label{lem:carrier}
+For every continuous even $2\pi$-periodic function $f$,
+\[
+ \lim_{N\to\infty}\frac1{2r_N}\sum_j
+ f(\theta_j)|\widetilde p_{N,j}|^2=f(\theta_0).                  \tag{3.2}
+\]
+Moreover $c_N\to1$.
+\end{lemma}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Prove $c_N\to1$.}
+
+Before multiplication by $c_N^2$, the squared norm in (3.1) equals
+\begin{align}
+ 2\eps_N\sum_n\eta(\eps_Nn)^2\cos^2(\theta_0n)
+ &=\eps_N\sum_n\eta(\eps_Nn)^2\\
+ &\quad+\eps_N\sum_n\eta(\eps_Nn)^2\cos(2\theta_0n).           \tag{3.3}
+\end{align}
+The first sum tends to $\int\eta^2=1$ by Riemann integration.  For the second,
+partition $n$ into its four residue classes modulo $4$.  Since
+$2\theta_0=3\pi/2$, each residue-class Riemann sum tends to
+$\frac14\int\eta^2$, while
+\[
+ \sum_{a=0}^{3}e^{i(3\pi/2)a}=0.                                \tag{3.4}
+\]
+Thus the second sum tends to zero.  The unnormalized squared norm tends to one,
+so $c_N\to1$.
+
+\LS{1}{2}{Prove (3.2) first for $f(\theta)=e^{is\theta}$,
+$s\in\mathbb Z$.}
+
+By the discrete Fourier inversion formula, the left side of (3.2) is
+\[
+ \sum_np_{N,n}p_{N,n-s},                                        \tag{3.5}
+\]
+where no wrap-around term occurs for large $N$ because $\supp\eta\Subset(-L,L)$.
+The product-to-sum identity turns (3.5) into
+\begin{align}
+ c_N^2\eps_N\sum_n&\eta(\eps_Nn)\eta(\eps_N(n-s))
+ \left[\cos(s\theta_0)+\cos(2n\theta_0-s\theta_0)\right].      \tag{3.6}
+\end{align}
+The first term tends to $\cos(s\theta_0)$.  The second tends to zero by the same
+four-residue calculation as (3.3)--(3.4), now with the Riemann integrand
+$\eta(x)\eta(x-\eps_Ns)$, which converges uniformly to $\eta(x)^2$.
+Therefore (3.5) tends to
+\[
+ \cos(s\theta_0)=\frac12(e^{is\theta_0}+e^{-is\theta_0}).       \tag{3.7}
+\]
+
+\LS{1}{3}{Extend to continuous $f$.}
+
+Equation (3.7) proves weak convergence of the probability measures
+\[
+ \nu_N=\frac1{2r_N}\sum_j|\widetilde p_{N,j}|^2\delta_{\theta_j}
+ \quad\Longrightarrow\quad
+ \frac12(\delta_{\theta_0}+\delta_{-\theta_0})                 \tag{3.8}
+\]
+first on trigonometric polynomials.  Trigonometric polynomials are uniformly dense
+in the continuous periodic functions, and both sides of (3.8) have mass one.
+Hence (3.8) holds for every continuous periodic $f$.  If $f$ is even, its integral
+against the limiting measure is $f(\theta_0)$, proving (3.2). \QedStep
+
+\section{The diagonal local-norm no-go theorem}\label{sec:nogo}
+
+Let $X_N=\{\eps_Nn:p_{N,n}\neq0\}$ and let $\W_N(X_N)$ be the corresponding
+lattice Weyl subalgebra.
+
+\begin{theorem}[free quadratic obstruction]\label{thm:nogo}
+For the MMST diagonal lattice vacua and continuum mass-$m$ vacuum,
+\begin{align}
+ \lim_{N\to\infty}Q_N^{\rm lat}(p_N)
+ &=2\sin(3\pi/8)=\sqrt{2+\sqrt2},                               \tag{4.1}\\
+ \liminf_{N\to\infty}Q_N^{\rm ct}(p_N)
+ &\geq 3\pi/4.                                                   \tag{4.2}
+\end{align}
+Consequently
+\begin{align}
+ \liminf_{N\to\infty}
+ \left\|
+ \omega_N|_{\W_N(X_N)}-(\omega\circ\beta_N)|_{\W_N(X_N)}
+ \right\|
+ &\geq c_*,                                                       \tag{4.3}\\
+ c_*&=e^{-\sqrt{2+\sqrt2}/4}-e^{-3\pi/16}>0.                    \tag{4.4}
+\end{align}
+Numerically, $c_*=0.0752053795\ldots$.
+\end{theorem}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Apply Lemma \ref{lem:carrier} to the lattice symbol.}
+
+The functions $a_\delta$ converge uniformly to
+$a_0(\theta)=2|\sin(\theta/2)|$, because
+\[
+ 0\leq a_\delta(\theta)-a_0(\theta)\leq\delta.                  \tag{4.5}
+\]
+Equations (2.1), (3.2), and (4.5) yield
+\[
+ Q_N^{\rm lat}(p_N)\longrightarrow a_0(\theta_0)
+ =2\sin(3\pi/8)=\sqrt{2+\sqrt2}.                                \tag{4.6}
+\]
+
+\LS{1}{2}{Apply the alias lower bound to the continuum symbol.}
+
+By (2.9),
+\[
+ Q_N^{\rm ct}(p_N)
+ \geq\frac1{2r_N}\sum_jh_{\delta_N}(\theta_j)
+       |\widetilde p_{N,j}|^2.                                  \tag{4.7}
+\]
+The periodic functions $h_\delta$ converge uniformly to
+$h_0(\theta)=d(\theta)$, because
+$0\leq h_\delta-h_0\leq\delta$.  Lemma \ref{lem:carrier} and
+$0<\theta_0<\pi$ therefore give
+\[
+ \liminf_NQ_N^{\rm ct}(p_N)\geq h_0(\theta_0)=3\pi/4.           \tag{4.8}
+\]
+
+\LS{1}{3}{Use the Weyl unitary itself as a norm-one test observable.}
+
+By (2.1)--(2.2),
+\[
+ \left|\omega_N(W_N(ip_N))-\omega(\beta_N(W_N(ip_N)))\right|
+ =\left|e^{-Q_N^{\rm lat}(p_N)/4}-e^{-Q_N^{\rm ct}(p_N)/4}\right|.
+                                                                    \tag{4.9}
+\]
+The right side has lower limit at least (4.4), by (4.1)--(4.2) and the strict
+inequality $\sqrt{2+\sqrt2}<3\pi/4$.  Since $W_N(ip_N)$ is a unitary in
+$\W_N(X_N)$, the dual norm dominates (4.9).  This proves (4.3). \QedStep
+
+\begin{corollary}[no continuum extension repairs the norm]\label{cor:extension}
+Assume $\supp\phi\subset[0,R_\phi]$.  For all sufficiently large $N$,
+\[
+ \beta_N(\W_N(X_N))\subset\W(O).                                \tag{4.10}
+\]
+If $\widetilde\omega_N$ is any state on the continuum Weyl algebra satisfying
+$\widetilde\omega_N\circ\beta_N=\omega_N$, then
+\[
+ \liminf_{N\to\infty}
+ \| (\widetilde\omega_N-\omega)|_{\W(O)}\|\geq c_*.            \tag{4.11}
+\]
+\end{corollary}
+
+\begin{proof}
+Choose $a>0$ with $\dist(\supp\eta,\T_L\setminus O)>a$.  Every nonzero
+coefficient in (3.1) is based at a point of $\supp\eta$, and
+\[
+ \supp\phi_{N,n}\subset\eps_Nn+[0,R_\phi\eps_N].               \tag{4.12}
+\]
+If $R_\phi\eps_N<a$, (4.10) follows.  On the subalgebra in (4.10), the two
+functionals in (4.11) restrict to the two functionals in (4.3).  Restriction cannot
+increase a functional norm, so (4.3) implies (4.11).
+\end{proof}
+
+\begin{corollary}[the proposed Part II vertical term is false]\label{cor:false-target}
+There are no constants $C<\infty$ and $\theta>0$ for which
+\[
+ \left\|
+ \omega_N|_{\W_N(X_N)}-(\omega\circ\beta_N)|_{\W_N(X_N)}
+ \right\|\leq C\eps_N^\theta                                  \tag{4.13}
+\]
+holds for all sufficiently large $N$.
+\end{corollary}
+
+\begin{proof}
+The right side of (4.13) tends to zero; the lower limit of the left side is at
+least $c_*>0$ by Theorem \ref{thm:nogo}.
+\end{proof}
+
+\begin{remark}[spatial cutoffs do not evade the obstruction]
+In the quadratic model, let $g_R\uparrow1$ and let the one-particle squared
+energies be
+\[
+ A_{N,R}=-\Delta_N+m_0^2+\lambda g_R,qquad
+ B_N=-\Delta_N+m_0^2+\lambda.
+\]
+At fixed $N$, $A_{N,R}\to B_N$ strongly and
+$m_0^2\leq A_{N,R},B_N\leq 4\eps_N^{-2}+m_0^2+\lambda$.  Continuous functional
+calculus on this common compact spectral interval gives
+$A_{N,R}^{\pm1/2}\to B_N^{\pm1/2}$ strongly.  Hence the expectation of every
+finitely supported Weyl operator converges to the full mass-$m_1$ lattice vacuum,
+$m_1^2=m_0^2+\lambda$.  Therefore a putative estimate
+$\Psi(d_R)+C\eps_N^\theta$, with $\Psi(d_R)\to0$, would imply (4.13) after first
+taking $R\to\infty$ at fixed $N$.  Theorem \ref{thm:nogo} rules this out.
+\end{remark}
+
+\section{The free facts that do survive (II.2)}\label{sec:freefacts}
+
+\begin{proposition}[exact gap and group-velocity bounds]\label{prop:gap-velocity}
+For the MMST free lattice Hamiltonian, after subtraction of the vacuum energy,
+\[
+ \gap H_N=m                                                       \tag{5.1}
+\]
+for every $N$.  Its one-particle group velocity satisfies
+\[
+ \sup_N\sup_{k\in[-\pi/\eps_N,\pi/\eps_N]}
+ |\partial_k\gamma_N(k)|\leq1.                                  \tag{5.2}
+\]
+For the quadratic spatial-cutoff model
+$A_N(g)=-\Delta_N+m_0^2+\lambda g$, $0\leq g\leq1$, the Fock gap is at least
+$m_0$; on the infinite lattice with compactly supported $g$, it equals $m_0$.
+\end{proposition}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{The one-particle energy is multiplication by $\gamma_N(k)$ and
+$\gamma_N(k)\geq\gamma_N(0)=m$.}
+
+The normal-ordered many-body Hamiltonian is
+\[
+ H_N=d\Gamma(\gamma_N).
+\]
+Its nonzero spectrum begins at $\inf\operatorname{spec}\gamma_N=m$, proving
+(5.1).
+
+\LS{1}{2}{Differentiate (1.3).}
+\[
+ \partial_k\gamma_N(k)
+ =\frac{\sin(\eps_Nk)}
+ {\sqrt{\delta_N^2+4\sin^2(\eps_Nk/2)}}.                         \tag{5.3}
+\]
+Since $|\sin\theta|=2|\sin(\theta/2)\cos(\theta/2)|$, the absolute value
+of (5.3) is at most $|\cos(\theta/2)|\leq1$.  This proves (5.2).
+
+\LS{1}{3}{For a spatial cutoff, $A_N(g)\geq m_0^2$, so
+$A_N(g)^{1/2}\geq m_0$.}
+
+If $g$ is compactly supported on the infinite lattice, multiplication by $g$ is a
+compact perturbation of $-\Delta_N+m_0^2$.  Weyl's theorem gives essential
+spectrum beginning at $m_0^2$.  The perturbation is nonnegative, so there is no
+spectrum below $m_0^2$.  Thus the bottom is exactly $m_0^2$, and the Fock gap is
+$m_0$. \QedStep
+
+\begin{proposition}[exact Wick-constant asymptotic]\label{prop:wick}
+The infinite-lattice equal-site field covariance is
+\[
+ c_N=\frac1{4\pi}\int_{-\pi}^{\pi}
+ \frac{\dd\theta}{\sqrt{\delta_N^2+4\sin^2(\theta/2)}}.         \tag{5.4}
+\]
+As $N\to\infty$,
+\[
+ c_N=\frac1{2\pi}\log\frac{8}{m\eps_N}+o(1).                   \tag{5.5}
+\]
+In particular the coefficient of $\log(1/\eps_N)$ is exactly $1/(2\pi)$.
+\end{proposition}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Evenness and the substitution $\theta=2u$ give}
+\[
+ c_N=\frac1\pi\int_0^{\pi/2}
+ \frac{\dd u}{\sqrt{\delta_N^2+4\sin^2u}}.                      \tag{5.6}
+\]
+
+\LS{1}{2}{Add and subtract the model singularity $2u$.}
+\begin{align}
+ c_N&=I(\delta_N)+D(\delta_N),                                  \tag{5.7}\\
+ I(\delta)&=\frac1\pi\int_0^{\pi/2}
+ \frac{\dd u}{\sqrt{\delta^2+4u^2}}
+ =\frac1{2\pi}\operatorname{arsinh}\frac\pi\delta,           \tag{5.8}\\
+ D(\delta)&=\frac1\pi\int_0^{\pi/2}\left[
+ \frac1{\sqrt{\delta^2+4\sin^2u}}
+ -\frac1{\sqrt{\delta^2+4u^2}}\right]\dd u.                   \tag{5.9}
+\end{align}
+
+\LS{1}{3}{Justify dominated convergence in (5.9).}
+
+For $0<a\leq b$,
+\[
+ 0\leq\frac1{\sqrt{\delta^2+a^2}}
+       -\frac1{\sqrt{\delta^2+b^2}}
+ \leq\frac1a-\frac1b,                                         \tag{5.10}
+\]
+because the absolute derivative of $(\delta^2+x^2)^{-1/2}$ is at most $x^{-2}$.
+Apply (5.10) with $a=2\sin u$, $b=2u$.  The majorant
+\[
+ \frac1{2\sin u}-\frac1{2u}                                    \tag{5.11}
+\]
+is integrable at $u=0$, since it equals $u/12+O(u^3)$.  Therefore
+\begin{align}
+ \lim_{\delta\downarrow0}D(\delta)
+ &=\frac1{2\pi}\int_0^{\pi/2}(\csc u-u^{-1})\dd u\\
+ &=\frac1{2\pi}\log\frac4\pi.                                \tag{5.12}
+\end{align}
+The last equality follows by integrating from $a$ to $\pi/2$, using
+$\int\csc u\dd u=\log\tan(u/2)$, and then taking $a\downarrow0$.
+
+\LS{1}{4}{Since}
+\[
+ \operatorname{arsinh}(\pi/\delta)=\log(2\pi/\delta)+o(1),      \tag{5.13}
+\]
+adding (5.8) and (5.12) yields
+\[
+ c_N=\frac1{2\pi}\left[
+ \log\frac{2\pi}{\delta_N}+\log\frac4\pi\right]+o(1)
+ =\frac1{2\pi}\log\frac8{m\eps_N}+o(1).
+\]
+This proves (5.5). \QedStep
+
+\begin{remark}[what (5.2) does and does not prove]
+Equation (5.2) is a group-velocity estimate.  It is not, by itself, an interacting
+Lieb--Robinson theorem for unbounded quartic oscillators.  MMST obtain a free harmonic
+Lieb--Robinson estimate separately in their Lemma 4.14 and Proposition 4.15.  Part II
+must import or prove an interacting bound with the exact $\eps_N$ scaling; relabeling
+(5.2) as such a theorem would be invalid.
+\end{remark}
+
+\section{What the cited sources establish}\label{sec:sources}
+
+\begin{proposition}[precise MMST scope]\label{prop:mmst-scope}
+The following statements, and no stronger diagonal state-norm claim, are supported by
+the cited MMST paper.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The maps $\alpha_N^{N'}$ form an inductive system of observable algebras, while
+states at finer scales are pulled back to a fixed coarse algebra.
+\item Proposition 4.1 embeds the inductive-limit Weyl algebra into the continuum Weyl
+algebra by $\beta_L$.
+\item Lemmas 4.2--4.3 and Proposition 4.5 prove, for every \emph{fixed} coarse scale,
+weak$^*$ convergence of the pulled-back free lattice ground states and identify the
+projective limit with the continuum vacuum on the embedded algebra.
+\item Theorem 4.11 identifies the resulting time-zero net with the massive free-field
+net.
+\item Section 6.1 explicitly treats interacting lattice ground-state scaling limits and
+wavelet interacting dynamics as future generalizations.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Items (i)--(iv) are the literal content of MMST equations (2.8)--(2.11),
+Propositions 4.1 and 4.5, and Theorem 4.11.  Item (v) is stated in the first two
+paragraphs of MMST Section 6.1.  Page images of all five locations appear in the
+separate Part II citation dossier.
+\end{proof}
+
+\begin{proposition}[Battle--Federbush does not supply II.4]\label{prop:battle-scope}
+The 1987 Battle--Federbush note does not state CE1$_N$/CE2$_N$ for the MMST
+Daubechies OAR lattice, uniformly in $N$, nor for the mixed interpolation proposed in
+II.6.
+\end{proposition}
+
+\begin{proof}
+The note uses Meyer-type or exponentially localized orthonormal modes $\psi_k$ and
+expands the Euclidean field with
+\[
+ u_k=(-\Delta+M^2)^{-1/2}\psi_k.                                \tag{6.1}
+\]
+It explicitly singles out the resulting diagonality of the free action in the phase-cell
+variables as an attractive feature.  The MMST finite-scale Hamiltonian instead has the
+nearest-neighbour symbol (1.3), and its Daubechies functions define symplectic scaling
+maps between time-zero Weyl algebras.  The note contains no theorem with the MMST
+Hamiltonian, the Wick constant (5.4), a sharp-time GJS observable norm, an $N$-uniform
+physical gap, or two mixed vertex species.  These missing hypotheses are exactly the
+conclusion demanded by II.4, so the note cannot be cited as that conclusion.
+
+\end{proof}
+
+\section{Why II.6 is not an operator interpolation}\label{sec:interpolation}
+
+\begin{proposition}[ill-defined mixed Hamiltonian path]\label{prop:path}
+The expression
+\[
+ H_s=(1-s)H_N(g)+sH(g)                                          \tag{7.1}
+\]
+in the original II.6 program is undefined with the currently specified data.
+\end{proposition}
+
+\begin{proof}
+$H_N(g)$ is a self-adjoint operator in the lattice ground-state Hilbert space
+$\Hh_{N,g}$, whereas $H(g)$ is a self-adjoint operator in the continuum Hilbert space
+$\Hh_g$.  Addition of unbounded operators is defined only after both are realized as
+operators or closed forms on one Hilbert space with a specified common form domain.
+The observable embedding $\beta_N:\W_N\to\W$ supplies neither:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item it maps $C^*$-algebra elements, not unbounded Hamiltonians;
+\item it does not push $\omega_N$ to a canonical continuum state;
+\item its symplectic one-particle map need not intertwine the finite-scale and continuum
+complex structures, so no stated second-quantized unitary identifies the two vacuum
+representations;
+\item no common closed quadratic form for the two Wick-ordered interactions is given.
+\end{enumerate}
+Therefore (7.1), its derivative $\partial_sH_s$, its spectral gap, and the vectors
+$D_j\Omega_s$ have no definitions.  A mixed-vertex Euclidean measure is not a repair of
+this operator defect unless an Osterwalder--Schrader construction identifies the entire
+path on a common Hilbert space and proves common-domain control.
+\end{proof}
+
+\section{Corrected Part II target and dependency order}\label{sec:repair}
+
+The no-go theorem forces a change of topology.  It does not merely change the value of
+the exponent $\theta$.
+
+\begin{definition}[fixed-coarse comparison]\label{def:fixed-coarse}
+For $M<N$, a lattice state $\omega_{N,g}$ defines a state on the fixed coarse algebra
+$\W_M$ by
+\[
+ \omega_{N,g}^{[M]}:=\omega_{N,g}\circ\alpha_M^N.               \tag{8.1}
+\]
+The continuum comparison state is
+\[
+ \omega_\infty^{[M]}:=\omega_\infty\circ\beta_M.                \tag{8.2}
+\]
+Both sides of (8.1)--(8.2) are states on exactly the same $C^*$-algebra.
+\end{definition}
+
+\begin{definition}[resolution-separated diagonal]\label{def:separated}
+Let $M(N)\leq N$ satisfy
+\[
+ M(N)\to\infty,\qquad N-M(N)\to\infty.                          \tag{8.3}
+\]
+The first condition makes the tested observables dense in the continuum algebra; the
+second prevents this comparison class from containing the particular finest-scale
+$M=N$ carrier used in Theorem \ref{thm:nogo}.  These two conditions make the topology
+admissible; they do not by themselves prove convergence.
+\end{definition}
+
+\begin{definition}[corrected interacting Part II target]\label{def:corrected-target}
+For each fixed $M$, bounded lattice region $X\subset\Lambda_M$, and
+$A\in\W_M(X)$,
+\[
+ \left|\omega_{N,g}^{[M]}(A)-\omega_\infty^{[M]}(A)\right|
+ \leq \|A\|\,\Psi_\gamma(d)+E_{M,X,A}(N),                       \tag{8.4}
+\]
+where $E_{M,X,A}(N)\to0$ as $N\to\infty$, uniformly in the spatial cutoff
+once $g=1$ on the required neighbourhood.  A stronger uniform estimate may be sought
+along (8.3), but no supremum over all $M\leq N$ can tend to zero.
+\end{definition}
+
+\begin{proposition}[what is proved about the corrected target]\label{prop:target-status}
+The left side of (8.4) is well-defined.  In the free full-space case MMST prove that it
+tends to zero for each fixed $M$ and $A$.  No estimate (8.4) can hold uniformly over a
+class containing $M=N$ with $E_{M,X,A}(N)\to0$ uniformly over its norm-one local
+observables.
+\end{proposition}
+
+\begin{proof}
+Definitions \ref{def:comparison} and \ref{def:fixed-coarse} put both functionals on
+$\W_M$, proving the first assertion.  MMST Proposition 4.5 and Lemma 4.3 give the
+second assertion.  For the third, take $M=N$, $X=X_N$, and the norm-one observable
+$A=W_N(ip_N)$ of Theorem \ref{thm:nogo}.  The left side then has lower limit at least
+$c_*>0$ by (4.3), contradicting any uniform error tending to zero.
+\end{proof}
+
+The corrected dependency order is therefore:
+\begin{enumerate}[label=\textbf{II.\arabic*.},start=0]
+\item \textbf{Choose one lattice model.}  Decide between the MMST nearest-neighbour
+Hamiltonian, a Daubechies Galerkin Hamiltonian, or another action.  These choices have
+different symbols, interactions, counterterms, and locality estimates.
+\item \textbf{Checkpoint completed.}  The diagonal local-norm target fails by Theorem
+\ref{thm:nogo}.  Fix either the fixed-coarse topology (8.4) or a precise
+resolution-separated norm before proceeding.
+\item \textbf{Free estimates partially completed.}  Equations (5.1)--(5.5) give the
+MMST gap, group velocity, and Wick asymptotic.  A separate interacting
+Lieb--Robinson theorem is still required.
+\item \textbf{Source audit completed negatively.}  Battle--Federbush is mechanism
+precedent, not CE1$_N$/CE2$_N$ for the chosen OAR action.
+\item \textbf{Uniform interacting expansion remains open.}  State it directly in the
+fixed-coarse or resolution-separated topology, including counterterms and source norms.
+\item \textbf{LPPL with lattice tails remains open.}  It must be formulated on one
+finite-scale algebra and must include quantitative commutator errors for affiliated
+unbounded Wick polynomials.
+\item \textbf{Replace the invalid vertical interpolation.}  Use a common Euclidean
+interpolation followed by a proved OS identification, or compare projective states
+directly.  Do not add $H_N$ and $H$ across different Hilbert spaces.
+\end{enumerate}
+
+\section{Claim ledger}
+
+\begin{longtable}{P{0.27\textwidth}P{0.20\textwidth}P{0.41\textwidth}}
+\toprule
+Claim & Status & Exact reason\\
+\midrule
+\endhead
+MMST supplies the free benchmark & \Pass & Fixed-coarse weak$^*$ projective limit;
+Proposition 4.5 and Theorem 4.11.\\
+The displayed Part II norm is defined & \Fail & An observable embedding has no
+canonical push-forward on states.\\
+Diagonal local state norm is $O(\eps_N^\theta)$ & \Fail & Explicit local Weyl lower
+bound (4.3)--(4.4).\\
+$N$-uniform free gap & \Pass & Exact identity $\gap H_N=m$.\\
+$N$-uniform free group velocity & \Pass & Exact derivative bound (5.3).\\
+Wick constant coefficient & \Pass & Explicit asymptotic (5.5).\\
+Group velocity alone gives interacting LR & \Fail & It controls only the free
+dispersion; an anharmonic commutator theorem is separate.\\
+Battle supplies CE1$_N$/CE2$_N$ & \Fail & Different variables/action and no theorem
+in the required norms or mixed family.\\
+$H_s=(1-s)H_N+sH$ is defined & \Fail & Operators live on different Hilbert spaces;
+no common form realization is specified.\\
+Fixed-coarse interacting OAR estimate & \Conditional & Meaningful target; free case
+known pointwise, interacting uniform expansion still absent.\\
+Full Part II OAR closure as originally written & \Fail & False topology plus undefined
+interpolation; it cannot be repaired by estimating a different exponent.\\
+\bottomrule
+\end{longtable}
+
+\section{Reproducibility}
+
+The script \texttt{m2\_ii\_checkpoint.py} evaluates the finite-torus quadratic forms
+in (2.1) and the universal lower form from (2.9), the group-velocity bound (5.3), and
+the Wick integral (5.4).  It asserts convergence to the exact constants in
+(4.1)--(4.4) and (5.5).  The numerical output is diagnostic only; every limiting
+statement used in the proof was derived analytically above.
+
+\begin{thebibliography}{9}
+
+\bibitem{MMST}
+V. Morinelli, G. Morsella, A. Stottmeister, and Y. Tanimoto,
+\emph{Scaling limits of lattice quantum fields by wavelets},
+Commun. Math. Phys. \textbf{387} (2021), 1299--1367,
+\href{https://doi.org/10.1007/s00220-021-04152-5}{doi:10.1007/s00220-021-04152-5}.
+
+\bibitem{BF87}
+G. Battle and P. Federbush,
+\emph{Ondelettes and phase cell cluster expansions, a vindication},
+Commun. Math. Phys. \textbf{109} (1987), 417--419,
+\href{https://doi.org/10.1007/BF01206144}{doi:10.1007/BF01206144}.
+
+\end{thebibliography}
+
+\end{document}

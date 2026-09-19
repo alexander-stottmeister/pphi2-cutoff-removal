@@ -1,0 +1,1689 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.9cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs,bm}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs,longtable,array}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+% ------------------------------------------------------------------
+% Phase V3 of the gate-(II.11) execution (scoping: gate_II11_scoping.tex).
+% Contents: Statement A1 (continuum torus package) in full, including the
+% amendment clause (A1-iv) of V1 (rem:amendment), and the closure of A2(b).
+% Route: the sanctioned from-scratch fallback (scoping St. A1): model-sheet
+% \S3 pattern for the finite-mode systems, V1 \S\S3-5 thermal machinery,
+% V2 ensemble estimates; printed imports only from the Simon-book Gamma(A)
+% cluster (Thms I.12, I.16, I.17, Cor. I.15), page images in
+% part_ii/dossier_images/.
+% ------------------------------------------------------------------
+
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{importx}[theorem]{Import}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\U}{\mathcal U}
+\newcommand{\D}{\mathcal D}
+\newcommand{\Jone}{\mathcal J_1}
+\newcommand{\Jtwo}{\mathcal J_2}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\Trace}{\mathrm{Tr}}
+\DeclareMathOperator{\cth}{coth}
+\DeclareMathOperator{\sh}{sinh}
+\newcommand{\ch}{\cosh}
+\newcommand{\muv}{\mu}
+\newcommand{\Gam}{\Gamma}
+\newcommand{\N}{\mathbb N}
+\newcommand{\HH}{\mathcal H}
+
+\title{Gate (II.11), phase V3:\\[4pt]
+\large The continuum torus package A1 --- construction of $K_L$, trace
+class, gap, and the periodic Feynman--Kac clause (A1-iv); closure of A2(b)}
+\author{}
+\date{16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document proves Statement A1 of the scoping note in full, including the
+clause (A1-iv) added by V1: for the $P(\varphi)_2$ interaction on the spatial
+circle $\T_L$ (quartic with quadratic dictionary terms, any Wick convention of
+the A4b family), the Hamiltonian $K_L$ is constructed as the strong limit of
+mode-truncated semigroups; it is self-adjoint, bounded below, acts as
+$H_0+V_L$ on bounded smooth cylinders, and its form restricts to the form sum
+there. $e^{-tK_L}$ is trace class for every $t>0$ and is the
+\emph{trace-norm} limit of its cylinder truncations; the spectrum is
+discrete, obeys $\mu_j\ge\tfrac12\nu_j-c$ against the free eigenvalues, and
+the truncated eigenvalues converge. The semigroup is positivity improving,
+so the ground state is simple and strictly positive and the gap
+$\gamma_L>0$ is automatic; $\omega^{\rm ct}_{L,\lambda}$ is its vector state
+on the Weyl algebra. For $t\ge t_0$ with $t_0L\ge1$, the periodic Feynman--Kac identities over
+$\T_t\times\T_L$ hold: $\Trace\,e^{-tK_L}=Z_0(t)\,
+\E_{\mu^{\rm per}}[e^{-\U_t}]$, and the Weyl-insertion traces equal the V1
+mean-shift functionals --- so A2(b) closes as a corollary. The route is the
+sanctioned from-scratch fallback: an explicit Gaussian-to-Schr\"odinger
+unitary, closed finite-dimensional forms, Mehler kernels, bounded-potential
+Trotter products, cyclic bridge densities, and a direct Cameron--Martin
+calculation, followed by V1's thermal machinery, V2's ensemble estimates, one elementary
+Trotter instance (bounded perturbations, as in model-sheet (3.16)), and the
+Simon-book $\Gam(A)$ cluster (Thms.\ I.12, I.16, I.17, Cor.\ I.15) as the
+only printed imports, with page images in \texttt{dossier\_images/}.
+\end{abstract}
+
+\tableofcontents
+
+\section{Statement, conventions, imports}\label{sec:setup}
+
+\subsection{The package to be proved}
+
+Fix $L,m>0$, $\lambda\ge0$, and dictionary constants $a,b\in\R$ (the A4b
+convention family). Wherever a lower time-cutoff $t_0>0$ appears below we assume, as
+V2 does, the standing convention
+\[
+ t_0L\ \ge\ 1 \qquad(\star)
+\]
+--- concretely $t_0:=\max(1,1/L)$ --- since \emph{every} V2 result is stated only under it (V2, \S1: ``assumed throughout
+this document; every statement below inherits it''), and the one that forces it ---
+Lemma 3.1(ii) --- is \emph{false} without it: at $\chi=0$ its conclusion reads $\Sigma_1\le C_2\,tL(1+\log2)$ while $\Sigma_1$
+saturates as $t\downarrow0$, forcing $C_2\ge3.7,\,37,\,3.7\times10^2,\,3.7\times10^3$ at
+$t=1,10^{-1},10^{-2},10^{-3}$ ($m=L=1$). This costs nothing: $L$ is fixed throughout
+Part~II and $t_0$ is at our disposal, and the gate consumes the package only at
+$t\ge t_*=\max(1,1/L)$ (V4, Theorem 6.2). Everything below is proved for arbitrary $(a,b)\in\R^2$;
+\emph{the gate endpoint is $(a,b)=(0,0)$}, the plain truncation-convention
+quartic, because by V2, Corollary 5.2 the lattice-vacuum and continuum
+truncation conventions agree in the limit: the two Wick constants differ by
+$\delta_\infty=\tfrac1{2\pi}\log\tfrac4\pi$, but so do the two fields'
+equal-point variances, and the offsets cancel, leaving no counterterm. (An
+earlier version declared the endpoint
+$(a,b)=(-6\delta_\infty,3\delta_\infty^2)$, following the superseded form of
+V2, Corollary 5.2; see V2, Remark 5.3 and \texttt{strategy.md}.) Write $\Gamma_\infty=
+\tfrac\pi L\Z$, $\gamma(k)=(m^2+k^2)^{1/2}$, and
+\[
+ Z_0(t):=\prod_{k\in\Gamma_\infty}\bigl(1-e^{-t\gamma(k)}\bigr)^{-1}<\infty
+ \qquad(t>0),
+\]
+finite because $\sum_ke^{-t\gamma(k)}<\infty$. The deliverables, stated
+precisely as Theorems~\ref{thm:A1i}--\ref{thm:A1iv} and
+Corollary~\ref{cor:A2b} below, are:
+
+\begin{itemize}
+\item[(A1-i)] a self-adjoint, bounded-below realization $K_L$ of
+$H_{0,L}+\lambda\int_{\T_L}({:}\varphi^4{:}_{C_L}+a\,{:}\varphi^2{:}_{C_L}
++b)\,dx$, acting as the operator sum on bounded smooth cylinder vectors,
+with quadratic form equal to the form sum there;
+\item[(A1-ii)] $e^{-tK_L}$ trace class for all $t>0$, with discrete spectrum
+$\mu_0<\mu_1\le\cdots\to\infty$ and free comparison
+$\mu_j\ge\tfrac12\nu_j-c$;
+\item[(A1-iii)] positivity improving semigroup, hence simple ground state
+$\Omega_L>0$ a.e.\ and gap $\gamma_L:=\mu_1-\mu_0>0$;
+$\omega^{\rm ct}_{L,\lambda}:=\ip{\Omega_L}{\,\cdot\,\Omega_L}$ on the Weyl
+algebra $\mathfrak W(\T_L)$;
+\item[(A1-iv)] the periodic Feynman--Kac representation over
+$\T_t\times\T_L$, compatible with cylinder approximation: the partition
+identity $\Trace\,e^{-tK_L}=Z_0(t)\,\E_{\mu^{\rm per}_{t,L}}[e^{-\U_t}]$,
+the trace-norm convergence of cylinder truncations, and the Weyl-insertion
+identity in the exact mean-shift form of V1, Definition 8.1 --- which is
+Statement A2(b) (Corollary~\ref{cor:A2b}).
+\end{itemize}
+
+\subsection{Conventions}
+
+$\T_L=\R/2L\Z$; real orthonormal $\gamma$-eigenbasis of $L^2(\T_L)$:
+\[
+ e_0:=(2L)^{-1/2},\qquad
+ e^c_k:=L^{-1/2}\cos(kx),\quad e^s_k:=L^{-1/2}\sin(kx)\quad(k\in
+ \Gamma_\infty,\ k>0),
+\]
+each an eigenfunction of $\gamma=(m^2-\partial_x^2)^{1/2}$ with eigenvalue
+$\gamma(k)$. Enumerate this basis as $(e_j)_{j\ge1}$ with dispersions
+$(\gamma_j)$, each $\gamma_j\ge m$, and let
+\[
+ (Q,\muv):=\Bigl(\R^\infty,\ \bigotimes_{j\ge1}\mathcal N(0,1)\Bigr),
+ \qquad \xi=(\xi_j)_{j\ge1},
+\]
+the standard Gaussian product space. The time-zero field and its
+truncations are
+\begin{equation}
+ \varphi(x):=\sum_{j}\frac{\xi_j}{(2\gamma_j)^{1/2}}\,e_j(x),\qquad
+ \varphi^{(K)}(x):=\sum_{j:\ |k_j|\le K}\frac{\xi_j}{(2\gamma_j)^{1/2}}
+ \,e_j(x),
+ \label{eq:field}
+\end{equation}
+the first as an $L^2(\muv)$-valued distribution, the second an a.s.\ smooth
+random field in finitely many coordinates ($n_K$ of them). Since
+$\sum_{|k_j|\le K}e_j(x)^2=(2L)^{-1}\#\{k\in\Gamma_\infty:|k|\le K\}$
+pointwise (the $\cos^2+\sin^2$ pairing), the truncated equal-point variance
+is $x$-independent:
+\begin{equation}
+ c_K:=\E_\muv[\varphi^{(K)}(x)^2]
+ =\frac1{2L}\sum_{k\in\Gamma_\infty,\ |k|\le K}\frac1{2\gamma(k)}
+ \ \le\ C_c(m,L)\,\bigl(1+\log(1+K/m)\bigr),
+ \label{eq:cK}
+\end{equation}
+by the integral comparison $\sum_{|k|\le K}\gamma(k)^{-1}\le
+\tfrac{2L}\pi\int_0^K(m^2+u^2)^{-1/2}du+m^{-1}$. This $c_K$ is the
+$\Gamma$-truncated continuum vacuum constant $c^{\mathrm{ct}}_{L,\cdot}$ of
+V2, \S5. On $L^2(Q,\muv)$ the free Hamiltonian is
+$H_0:=d\Gam(\gamma)\ge0$, with $e^{-tH_0}=\Gam(e^{-t\gamma})$,
+$\Trace\,e^{-tH_0}=Z_0(t)$, and eigenvalues
+$\nu_0=0<\nu_1\le\cdots$ (occupation sums $\sum n_j\gamma_j$). The
+\emph{cylinder core} is
+\[
+ \D:=\bigl\{\psi(\xi)=F(\xi_1,\dots,\xi_n):\ n\in\N,\
+ F\in C^\infty_b(\R^n)\bigr\},
+\]
+dense in $L^2(\muv)$, contained in $D(H_0)$, with
+$H_0\psi=\sum_j\gamma_j(-\partial_j^2+\xi_j\partial_j)\psi$ there.
+
+\subsection{Imports}\label{sec:imports}
+
+\begin{importx}[the $\Gam(A)$ cluster; Simon,
+\emph{The $P(\phi)_2$ Euclidean (Quantum) Field Theory}]\label{imp:gamma}
+For a contraction $A$ of real Hilbert spaces and the second quantization
+$\Gam(A)$ between the associated Gaussian $L^2$-spaces:
+\emph{(a)} $\Gam(A)$ is positivity preserving [Thm.\ I.12; dossier image
+p.\,48];
+\emph{(b)} $\Gam(A)$ is a contraction on each $L^p$, $1\le p\le\infty$
+[Cor.\ I.15; p.\,53];
+\emph{(c)} if $\|A\|<1$ then $\Gam(A)$ is positivity improving
+[Thm.\ I.16; p.\,55];
+\emph{(d)} $\|\Gam(A)\psi\|_{L^q}\le\|\psi\|_{L^p}$ whenever $1<p\le
+q<\infty$ and $\|A\|\le(p-1)^{1/2}(q-1)^{-1/2}$ [Thm.\ I.17 (Nelson);
+p.\,56 $=$ printed p.\,34].
+This is the identical import cluster as Part I's Assumption
+\texttt{A:hyper} (same source, same theorem I.17); the abstract Gaussian
+form applies verbatim to every Gaussian space used below (vacuum, periodic,
+Ornstein--Uhlenbeck). Page images: \texttt{dossier\_images/simon-gamma-p\{48,53,55,56,57\}.png}.
+\end{importx}
+
+\begin{importx}[program-internal]\label{imp:internal}
+(a) Model sheet \S3 (\texttt{lamport\_part\_ii\_model\_sheet}): the
+finite-dimensional pattern --- coercive closed form, compact resolvent,
+Feynman--Kac kernel (3.16) via Trotter for bounded truncations plus
+monotone form convergence, positivity improving, simple ground state. The
+same elementary Trotter instance (self-adjoint semibounded $+$ bounded
+perturbation) is invoked below exactly as there.
+(b) V1 (\texttt{v1\_thermal\_}\allowbreak\texttt{representations}): Propositions 2.1, 3.1,
+Lemma 3.2, Theorem 3.3 (kernel identity), Lemmas 4.1--4.2, Theorem 4.3
+and Theorem 6.1 (free closed forms, lattice and continuum), Lemmas 5.1--5.3,
+Theorem 5.4 (mean shift), Remark 5.5 (ensemble), Definition 8.1 and Remark
+8.2 (the A2(b) form and the (A1-iv) clause).
+(c) V2 (\texttt{v2\_interaction\_comparison}): \S1 (periodic ensemble
+$\mu^{\rm per}_{t,L}$, Prop.\ 1.2), \S2 (recombination Lemma 2.1;
+existence of the continuum chaoses, Prop.\ 2.4), \S3 (envelope Lemma 3.1,
+symbol bounds), \S5 (dictionary), \S6 (closed-form interpolant Lemma 6.1,
+shift fields), \S7 (uniform Nelson bounds, Theorem 7.2 and its proof
+pattern).
+(d) Part I Appendix C: the $\Gam(e^{-\tau})$ sum-of-chaoses moment
+comparison and the layer-cake assembly (proof of \texttt{thm:stability}),
+as already re-used in V2 \S7.
+\end{importx}
+
+\noindent\emph{Chaos moment bound (consequence of
+Import~\ref{imp:gamma}(d), used throughout):} if $X$ is a sum of Wick
+chaoses of order $\le4$ in any Gaussian space, then
+$\|X\|_{L^q}\le(q-1)^2\|X\|_{L^2}$ for $q\ge2$ (Part I, App.\ C form:
+write $X=\Gam(e^{-\tau})\sum_re^{r\tau}X_r$ and use orthogonality;
+$q=1+e^{2\tau}$).
+
+\section{The interactions and the three ensembles}\label{sec:interactions}
+
+\subsection{Sharp-time interaction on the circle}
+
+\begin{definition}\label{def:VK}
+For $K\in\Gamma_\infty$, $K>0$, set (all Wick powers with the constant
+\eqref{eq:cK})
+\[
+ V^{(K)}:=\lambda\int_{\T_L}\Bigl[{:}\varphi^{(K)}(x)^4{:}_{c_K}
+ +a\,{:}\varphi^{(K)}(x)^2{:}_{c_K}+b\Bigr]dx ,
+\]
+a polynomial in the $n_K$ variables $(\xi_j)_{|k_j|\le K}$.
+\end{definition}
+
+\begin{lemma}[pointwise bound and coercivity]\label{lem:pointwise}
+For every $u\in\R$ and $c\ge0$,
+\begin{equation}
+ {:}u^4{:}_c+a\,{:}u^2{:}_c+b
+ =(u^2-3c)^2+a(u^2-3c)-6c^2+2ac+b
+ \ \ge\ -\Bigl(6c^2+2|a|c+\tfrac{a^2}4+|b|\Bigr).
+ \label{eq:ptwise}
+\end{equation}
+Hence $V^{(K)}\ge-2L\lambda(6c_K^2+2|a|c_K+\tfrac{a^2}4+|b|)
+=:-b_K$, with $b_K\le c_1\bigl(1+\log(1+K/m)\bigr)^2$,
+$c_1=c_1(\lambda,a,b,m,L)$. Moreover, for $\lambda>0$,
+\[
+ V^{(K)}\ \ge\ \frac\lambda{2L}\Bigl(\int_{\T_L}(\varphi^{(K)})^2\,
+ dx\Bigr)^{2}-C_K\Bigl(1+\int_{\T_L}(\varphi^{(K)})^2dx\Bigr),
+ \qquad
+ \int_{\T_L}(\varphi^{(K)})^2dx=\sum_{|k_j|\le K}
+ \frac{\xi_j^2}{2\gamma_j},
+\]
+with a finite constant $C_K$; in particular
+$V^{(K)}(\xi)\to+\infty$ as $|\xi|\to\infty$ in $\R^{n_K}$
+(for $\lambda=0$ the total potential below is purely harmonic).
+\end{lemma}
+
+\begin{proof}
+\eqref{eq:ptwise}: substitute $v:=u^2-3c\ge-3c$ and minimize
+$v^2+av\ge-a^2/4$; the constant collects as displayed. Integrate over
+$\T_L$ for the first claim, insert \eqref{eq:cK} for $b_K$. Coercivity:
+$\int(\varphi^{(K)})^4\ge(2L)^{-1}(\int(\varphi^{(K)})^2)^2$ by
+Cauchy--Schwarz on $\T_L$, and the Wick-subtracted quadratic terms are
+linear in $\int(\varphi^{(K)})^2$ with $K$-dependent coefficients;
+Parseval gives the mode expression.
+\end{proof}
+
+\begin{lemma}[$L^2$ structure and rates, vacuum ensemble]\label{lem:VL2}
+Each $V^{(K)}$ is a sum of Wick chaoses of order $\le4$ in $L^2(\muv)$,
+$\E_\muv[V^{(K)}]=2L\lambda b$, and there is $V_L\in L^2(\muv)$ (chaos
+$\le4$) with, for $K'\ge K\ge m$,
+\begin{equation}
+ \|V^{(K)}-V^{(K')}\|_{L^2(\muv)}
+ +\|V^{(K)}-V_L\|_{L^2(\muv)}
+ \ \le\ C_V\,\frac{1+\log(1+K/m)}{(K/m)^{1/2}},
+ \qquad C_V=C_V(\lambda,a,m,L).
+ \label{eq:VKrate}
+\end{equation}
+Consequently $V^{(K)}\to V_L$ in every $L^p(\muv)$, $p<\infty$ (chaos
+moment bound), and $V_L=\lambda\int_{\T_L}({:}\varphi^4{:}_{C_L}
++a{:}\varphi^2{:}_{C_L}+b)\,dx$ in the sense of the truncation convention
+(V2, \S5).
+\end{lemma}
+
+\begin{proof}
+The quartic chaos norm: by V2's Isserlis Lemma 2.3 applied at sharp time,
+with the one-dimensional momentum-space covariance symbol
+$\hat C(k)=(2\gamma(k))^{-1}$,
+\[
+ \Bigl\|\int_{\T_L}{:}(\varphi^{(K)})^4{:}-{:}(\varphi^{(K')})^4{:}\,dx
+ \Bigr\|_2^2
+ =4!\,(2L)^{-2}\!\!\!\sum_{\substack{k_1+\dots+k_4=0\\
+ \text{some }|k_i|\in(K,K']}}\ \prod_{i=1}^4\frac1{2\gamma(k_i)},
+\]
+i.e.\ $4!\,(2L)^{-2}$ times the constrained sum of
+$\prod(2\gamma(k_i))^{-1}$ (the bookkeeping is V2, Lemma 4.1 with the
+time direction absent). Dominate by the one-dimensional convolution
+decay: with $g(k):=(m+|k|)^{-1}\ge(2\gamma)^{-1}\cdot$const$^{-1}$
+reversed, i.e.\ $(2\gamma(k))^{-1}\le g(k)$, the three-region argument of
+V2, Lemma 3.1(ii) (one dimension, sums over $\Gamma_\infty$ with density
+$L/\pi$) gives
+\[
+ (g*g)(k)\le C L\,\frac{1+\log(2+|k|/m)}{m+|k|},\qquad
+ (g*g*g)(k)\le C L^2\,\frac{(1+\log(2+|k|/m))^2}{m+|k|},
+\]
+so the tail sum with $|k_1|>K$ is bounded by
+$\sum_{|k_1|>K}g(k_1)\cdot CL^2\log^2(2+|k_1|/m)(m+|k_1|)^{-1}
+\le CL^3\log^2(1+K/m)\,(m/K)$.
+
+The chaos structure is nested with \emph{no} cross-convention terms:
+since $c_K$ is the variance of $\varphi^{(K)}(x)$ itself,
+${:}\varphi^{(K)}(x)^4{:}_{c_K}$ is the pure fourth Wiener chaos of
+$\varphi^{(K)}(x)^4$ and ${:}\varphi^{(K)}(x)^2{:}_{c_K}$ the pure second
+chaos (own-variance Wick ordering is the Hermite/chaos projection), so
+\[
+ V^{(K)}=\lambda\,I_4(f_K)+\lambda a\,I_2(g_K)+2L\lambda b
+\]
+exactly, with mode kernels $f_K,g_K$ equal to the restrictions of the
+fixed kernels $f_\infty,g_\infty$ to modes $|k_i|\le K$. Hence
+$\E_\muv[V^{(K)}]=2L\lambda b$ for every $K$, and
+$V^{(K')}-V^{(K)}$ is exactly the chaos integral of the kernel tails ---
+the constrained sums displayed above for the quartic part, and for the
+quadratic part the diagonal tail: that difference is
+$\lambda a\sum_{K<|k_j|\le K'}(\xi_j^2-1)/(2\gamma_j)$ over the tail
+modes, of variance
+$\tfrac12\lambda^2a^2\sum_{K<|k|\le K'}\gamma(k)^{-2}
+\le C(a,\lambda)\,L/K$ (the $k$-sum is
+$\le\tfrac{2L}\pi\int_K^\infty(m^2+u^2)^{-1}du\le2L/(\pi K)$). Taking square
+roots gives \eqref{eq:VKrate}; completeness of $L^2$ gives
+$V_L=\lambda I_4(f_\infty)+\lambda aI_2(g_\infty)+2L\lambda b$. The
+identification with the truncation convention is V2, \S5 (the proof of
+its Corollary 5.2, first paragraph).
+\end{proof}
+\subsection{The three Gaussian ensembles and the uniform Nelson lemma}
+
+Three Gaussian ensembles carry the analysis; all chaos and moment
+statements below use the abstract Import~\ref{imp:gamma}(d).
+
+\begin{definition}[ensembles]\label{def:ensembles}
+\emph{(i) Vacuum:} $(Q,\muv)$ as above.
+\emph{(ii) Periodic:} $\mu^{\rm per}_{t,L}$, the V2 ensemble on
+$\T_t\times\T_L$ (V2, Definition 1.1 and Prop.\ 1.2): mode covariances
+$c_\omega(s-s')=\ch(\omega(\tfrac t2-|s-s'|))/(2\omega\sh(\tfrac{\omega
+t}2))$ at $\omega=\gamma(k)$.
+\emph{(iii) Ornstein--Uhlenbeck:} the stationary field process
+$(X_s)_{s\in\R}$ with time-zero marginal $\muv$ and per-mode covariance
+$\E[\xi_j(s)\xi_j(s')]=e^{-\gamma_j|s-s'|}$; concretely, independent
+one-dimensional stationary OU processes in each coordinate, with
+continuous versions (Kolmogorov--Chentsov, as the covariance is
+Lipschitz). For $s,t$ fixed, the pair $(X_0,X_t)$ is Gaussian with
+per-mode correlation $e^{-\gamma_jt}$; equivalently, for bounded
+$F,G$,
+\begin{equation}
+ \E\bigl[F(X_0)\,G(X_t)\bigr]
+ =\ip{\bar F}{\,\Gam(e^{-t\gamma})\,G}_{L^2(\muv)} .
+ \label{eq:pairGamma}
+\end{equation}
+\end{definition}
+
+\eqref{eq:pairGamma} holds because both sides are Gaussian expectations
+with the same finite-dimensional covariances (per mode, the Mehler
+operator's kernel is the two-point OU density; cylinder functions, then
+$L^2$ limits).
+
+\begin{lemma}[abstract uniform Nelson bound]\label{lem:nelson}
+Let $(\Omega,\PP)$ be a Gaussian space and $\{A_K\}_{K\in\mathcal K}$,
+$\mathcal K\subseteq\Gamma_\infty$ unbounded, a family of sums of Wick
+chaoses of order $\le4$ with, for constants $c_1,C_A,\kappa>0$:
+\emph{(N0)} consecutive elements of $\mathcal K$ satisfy
+$\ell_{K^+}-\ell_K\le\log2$, where $\ell_K:=1+\log(1+K/m)$ and $K^+$ is the
+successor of $K$ in $\mathcal K$;
+\emph{(N1)} $A_K\ge-c_1(1+\log(1+K/m))^2$ a.s.;
+\emph{(N2)} $\|A_K-A_{K'}\|_{L^2(\PP)}\le C_A(1+\log(1+K/m))
+(K/m)^{-\kappa}$ for $K'\ge K$.
+Then for every $p<\infty$,
+\[
+ \sup_{K\in\mathcal K}\ \bigl\|e^{-A_K}\bigr\|_{L^p(\PP)}\ \le\
+ B(p,c_1,C_A,\kappa,m,\ell_{K_0})\ <\ \infty,\qquad K_0:=\min\mathcal K,
+\]
+and if $A_K\to A$ in $L^2$ then $e^{-A}\in L^p(\PP)$ with the same bound.
+The dependence on $\ell_{K_0}=1+\log(1+K_0/m)$ cannot be dropped: the constant
+family $A_K:\equiv-c_1\ell_{K_0}^2$ on
+$\mathcal K=\Gamma_\infty\cap[K_0,\infty)$ satisfies (N0)--(N2) at fixed
+$(p,c_1,C_A,\kappa,m)$ --- a constant is a chaos of order $0$, (N1) holds with
+equality at $K=K_0$, and (N2) holds with left-hand side $0$ (the right-hand side
+being $C_A\ell_K(K/m)^{-\kappa}>0$, since $C_A>0$) --- yet
+$\sup_K\|e^{-A_K}\|_{L^p}=e^{c_1\ell_{K_0}^2}\to\infty$ as $K_0\to\infty$.
+In every instantiation below $\mathcal K$ is a full tail of $\Gamma_\infty$ with a
+\emph{fixed} base point $K_0$, so the resulting bounds are $K$-uniform as claimed.
+\end{lemma}
+
+\begin{proof}
+This is the proof of V2, Theorem 7.2, with the dyadic scale variable
+$\log(1/\eps)$ replaced by $\ell_K:=1+\log(1+K/m)$; we record the
+instance. For $b$ with $L_b:=(b/2c_1)^{1/2}\ge\ell_{K_0}\vee2\log2$
+($K_0:=\min\mathcal K$) choose the largest $K_b\in\mathcal K\cap[K_0,K]$
+with $\ell_{K_b}\le L_b$; by (N0) this satisfies
+$\ell_{K_b}>L_b-\log2\ge L_b/2$ when $b\le b_K^*:=c_1\ell_K^2$ (indeed
+$\ell_{K_b^+}>L_b$ by maximality and $\ell_{K_b}\ge\ell_{K_b^+}-\log2$; for
+$b>b_K^*$, $\PP[A_K\le-b]=0$ by (N1)). Hypothesis (N0) is not decorative --- it is exactly what the scale
+selection uses, and without it \emph{this proof's estimate} fails. Take the
+tower family $K_0:=\pi/L$, $K_{n+1}:=(\pi/L)\,2^{(L/\pi)K_n}$ (which lies in
+$\Gamma_\infty$, unlike a naive $e^{K_n}$), for which
+$\ell_{K_{n+1}}=1+\log\bigl(1+\tfrac{\pi}{Lm}2^{(L/\pi)K_n}\bigr)
+\sim(\log2)(L/\pi)K_n$ (the factor $\pi/(Lm)$ comes from
+$\ell_K=1+\log(1+K/m)$; it shifts the value by the additive constant
+$\log(\pi/(Lm))$ and leaves the asymptotics unchanged). For $L_b$
+falling in such a gap one has only $\ell_{K_b}=O(\log L_b)$, whence by (N2)
+\[
+ \rho_b\ \le\ C_A\,\ell_{K_b}\,(K_b/m)^{-\kappa}
+ \ \sim\ C_A\,L_b^{-\kappa}\log L_b ,
+\]
+merely polynomially rather than exponentially small in $L_b$; optimizing
+Chebyshev then gives a tail exponent
+$\exp(-cL_b^{1+\kappa/2}(\log L_b)^{-1/2})$ --- a fortiori no better than
+$\exp(-cL_b^{1+\kappa/2})$ --- and since
+$b=2c_1L_b^2$, for the $\kappa\le1$ of every instantiation below
+($\kappa=\tfrac12$, resp.\ $\tfrac12-\varsigma$) the exponent
+$1+\kappa/2\le\tfrac32<2$ is too small to beat $pe^{pb}$: the layer-cake
+\emph{bound} diverges and the argument breaks down. (This exhibits the
+failure of the proof's own estimate, not of the conclusion: (N1)--(N2) are
+upper bounds, so no divergence of the true $\E[e^{-pA_K}]$ follows.)
+Divergent $\ell$-gaps alone do \emph{not} suffice: for the factorial family
+$K_n=(\pi/L)\lceil e^{n!}\rceil$ one still has $\ell_{K_b}\ge L_b/(n+1)$,
+i.e.\ $\ell_{K_b}\ge c_bL_b$ with $c_b\to0$ only logarithmically in $L_b$,
+and the proof still closes, with $\kappa$ replaced by $c_b\kappa$ at each
+$b$; the witness must be at least tower-sparse. Then
+$A_{K_b}\ge-c_1L_b^2=-b/2$ a.s.\ and
+$\{A_K\le-b\}\subseteq\{A_K-A_{K_b}\le-b/2\}$, with
+$\rho_b:=\|A_K-A_{K_b}\|_2\le2C_AL_be^{-\kappa(L_b/2-1)}$ by (N2) and
+$\ell_{K_b}\ge L_b/2$. The chaos moment bound and Chebyshev at
+$(2q)^2=e^{\kappa L_b/4}$ give
+$\PP[A_K\le-b]\le\exp(-e^{\kappa L_b/8})$ for $b\ge
+b_1(c_1,C_A,\kappa)$, uniformly in $K$; the layer-cake integral closes
+as in V2/Part I App.\ C. The final claim follows since
+$e^{-A_K}\to e^{-A}$ in probability along a subsequence and Fatou applies.
+\end{proof}
+
+\begin{proposition}[the three instantiations]\label{prop:nelson3}
+For every $p<\infty$ and $0<t\le T$:
+\emph{(i)} $\sup_{K}\|e^{-\sigma V^{(K)}}\|_{L^p(\muv)}<\infty$ for each
+$\sigma\in(0,\sigma_0]$, any fixed $\sigma_0$, and $e^{-\sigma
+V_L}\in L^p(\muv)$;
+\emph{(ii)} with $\mathcal W_K:=\int_0^tV^{(K)}(X_s)\,ds$ on the OU
+ensemble: $\sup_K\|e^{-\mathcal W_K}\|_{L^p}<\infty$ uniformly in $t\le
+T$, $\mathcal W_K\to\mathcal W:=\int_0^tV_L(X_s)ds$ in $L^2$ with
+$\|\mathcal W_K-\mathcal W\|_2\le t\,\|V^{(K)}-V_L\|_{L^2(\muv)}$, and
+$e^{-\mathcal W}\in L^p$;
+\emph{(iii)} with $\U^{(K)}_t$ the $K$-mode truncation of the V2
+interaction $\U_t$ on $\mu^{\rm per}_{t,L}$ (V2, Definition 2.2 with all
+spatial modes restricted to $|k|\le K$; V2's $\U_t$ is the $(a,b)=(0,0)$
+member of the family, the $(a,b)$-terms of Definition~\ref{def:VK} being
+carried along additively): $\sup_K\|e^{-\U^{(K)}_t}\|_{L^p}<\infty$ for $t\in[t_0,T]$,
+$\U^{(K)}_t\to\U_t$ in $L^2(\mu^{\rm per})$, and $e^{-\U_t}\in L^p$.
+\end{proposition}
+
+\begin{proof}
+In each case verify (N1), (N2) of Lemma~\ref{lem:nelson}.
+In all three cases $\mathcal K$ is a full tail
+$\Gamma_\infty\cap[K_0,\infty)$, for which (N0) holds automatically: for
+$K\in\Gamma_\infty$, $K\ge\pi/L$, the successor is $K^+=K+\pi/L$ and
+$\ell_{K^+}-\ell_K=\log\bigl(1+\tfrac{\pi/L}{m+K}\bigr)
+\le\log\bigl(1+\tfrac{\pi/L}{m+\pi/L}\bigr)<\log2$.
+\emph{(i)} (N1) is Lemma~\ref{lem:pointwise} (scaled by $\sigma$); (N2)
+is \eqref{eq:VKrate} with $\kappa=1/2$.
+\emph{(ii)} (N1): pointwise on paths,
+$\mathcal W_K\ge-t\,b_K\ge-Tc_1\ell_K^2$; (N2): by stationarity and
+Cauchy--Schwarz in $s$,
+\[
+ \|\mathcal W_K-\mathcal W_{K'}\|_{L^2}^2
+ =\int_0^t\!\!\int_0^t\E\bigl[\Delta V(X_s)\Delta V(X_{s'})\bigr]ds\,ds'
+ \le t^2\,\|\Delta V\|_{L^2(\muv)}^2 ,
+\]
+since each two-time expectation is bounded by the equal-time one
+(Cauchy--Schwarz plus stationarity); then \eqref{eq:VKrate}. The chaos
+structure: $\mathcal W_K$ is a time integral of chaoses of order $\le4$
+of the global Gaussian field, hence itself chaos $\le4$. The limit
+$\mathcal W$ is defined as the $L^2$ limit, and $e^{-\mathcal W}\in L^p$
+by the final clause.
+\emph{(iii)} Pointwise on paths,
+$\U^{(K)}_t=\lambda\int_0^t\!\!\int_{\T_L}
+({:}X_s^4{:}_{c_K}+a{:}X_s^2{:}_{c_K}+b)$, so
+Lemma~\ref{lem:pointwise}, with the truncated \emph{vacuum} constant $c_K$,
+gives $\U^{(K)}_t\ge-c_1't\ell_K^2$.  We now verify (N2) explicitly.
+
+Let $Y_j^{(K)}$ be the periodic spacetime integral of the $j$th chaos with
+all spatial input modes restricted to $|k|\le K$.  Wick isometry and the
+continuum covariance envelope give, for $K'\ge K\ge m$,
+\begin{equation}
+ \|Y_2^{(K')}-Y_2^{(K)}\|_2^2
+ \le C\sum_{\substack{|k|>K\\k_0\in(2\pi/t)\Z}}
+       (m^2+k_0^2+k^2)^{-2}
+ \le C(m,L,t_0)(1+t)K^{-2}.                                      \label{eq:perY2tail}
+\end{equation}
+Indeed, with $A^2=m^2+k^2$,
+\[
+ \sum_{k_0\in(2\pi/t)\Z}(A^2+k_0^2)^{-2}
+ \le A^{-4}+\frac{t}{2\pi}\int_\R(A^2+u^2)^{-2}du
+ =A^{-4}+\frac{t}{4A^3},
+\]
+and the spatial sum--integral comparisons give
+$\sum_{|k|>K}A^{-3}\le C L K^{-2}$ and
+$\sum_{|k|>K}A^{-4}\le C L K^{-3}$.
+
+For the fourth chaos, choose one of the four inputs whose spatial momentum has
+modulus $>K$ and sum the other three constrained inputs by the V2 convolution
+bound.  Including the factor $4$ for this union and the harmless Wick and volume
+normalizations,
+\begin{align}
+ \|Y_4^{(K')}-Y_4^{(K)}\|_2^2
+ &\le C(m,t_0)
+ \sum_{\substack{|k|>K\\k_0\in(2\pi/t)\Z}}
+ \frac{[1+\log(2+|(k_0,k)|)]^2}
+      {(m^2+k_0^2+k^2)^2} \notag\\
+ &\le C(m,L,t_0)(1+t)K^{-2}[1+\log(1+K/m)]^2 .                   \label{eq:perY4tail}
+\end{align}
+For the second inequality, the same temporal sum--integral comparison, after
+splitting at $|k_0|=(m^2+k^2)^{1/2}$, gives
+\[
+ \sum_{k_0}\frac{[1+\log(2+|(k_0,k)|)]^2}
+ {(m^2+k_0^2+k^2)^2}
+ \le C(m,t_0)(1+t)
+ \frac{[1+\log(2+|k|)]^2}{(m^2+k^2)^{3/2}}.
+\]
+The remaining decreasing tail is bounded by its first term plus
+$\frac L\pi\int_K^\infty(1+\log(2+u))^2(m^2+u^2)^{-3/2}du$,
+which is at most $CLK^{-2}[1+\log(1+K/m)]^2$ by one integration by parts.
+
+The exact thermal-to-vacuum Wick coefficient is
+\[
+ d^{(K)}(t)=\frac1{2L}\sum_{|k|\le K}
+ \frac1{\gamma(k)(e^{t\gamma(k)}-1)}.
+\]
+Since $t\ge t_0$ and $\gamma(k)=\sqrt{m^2+k^2}\ge\max(m,|k|)$,
+\begin{equation}
+ |d^{(K')}(t)-d^{(K)}(t)|
+ \le C(m,L,t_0)\sum_{|k|>K}\frac{e^{-t_0\gamma(k)}}{\gamma(k)}
+ \le C(m,L,t_0)e^{-t_0K/2}.                                      \label{eq:perdtail}
+\end{equation}
+The ensemble-Wick identity is, exactly,
+\begin{equation}
+ \U_t^{(K)}=\lambda\bigl[Y_4^{(K)}+(6d^{(K)}+a)Y_2^{(K)}
+ +(3(d^{(K)})^2+ad^{(K)}+b)(2Lt)\bigr].                           \label{eq:perrecomb}
+\end{equation}
+The norms $\|Y_2^{(K)}\|_2$ and $|d^{(K)}|$ are uniformly bounded by the
+convergent full sums.  Subtracting \eqref{eq:perrecomb} at $K,K'$, applying
+\eqref{eq:perY2tail}--\eqref{eq:perdtail}, and taking square roots gives the
+stronger increment estimate
+\begin{equation}
+ \|\U_t^{(K')}-\U_t^{(K)}\|_2
+ \le C(m,L,t_0,T,\lambda,a,b)\,
+       \ell_K(K/m)^{-1}.                                          \label{eq:perUtail}
+\end{equation}
+Thus (N2) holds directly with $\kappa=1$; no unspecified ``same envelope
+count'' and no logarithm absorption are used.  Lemma~\ref{lem:nelson} now proves
+the asserted periodic $L^p$ bounds and the $L^2$ limit.
+\end{proof}
+
+\begin{corollary}[uniform lower bounds]\label{cor:lowerbounds}
+There are $c_\lambda=c(\lambda,a,b,m,L,t_0)$ and, for each
+$\delta\in(0,1)$, $c_\delta$ (the value of $c_{\lambda/(1-\delta)}$
+scaled by $1-\delta$) such that the finite-mode operators of
+\S\ref{sec:finitemode} obey, uniformly in $K$,
+\[
+ \inf\mathrm{spec}\,K^{(K)}\ \ge\ -c_\lambda,
+ \qquad
+ K^{(K)}\ \ge\ \delta H_0-c_\delta\quad\text{(quadratic forms)} .
+\]
+\end{corollary}
+
+\begin{proof}
+By the trace identity of Theorem~\ref{thm:finitemode}(v) below (whose
+proof does not use this corollary),
+$e^{-t_0\inf\mathrm{spec}\,K^{(K)}}\le\Trace\,e^{-t_0K^{(K)}}
+=Z_0(t_0)\,\E[e^{-\U^{(K)}_{t_0}}]\le Z_0(t_0)B$
+with $B$ from Proposition~\ref{prop:nelson3}(iii), giving the first
+bound. For the second: $K^{(K)}-\delta H_0=(1-\delta)\bigl[H_0+
+(1-\delta)^{-1}V^{(K)}\bigr]$, and $(1-\delta)^{-1}V^{(K)}$ is the
+interaction with parameters $(\lambda,a,b)$ replaced by
+$(\lambda/(1-\delta),a,b)$, so the first bound applies at the amplified
+coupling.
+\end{proof}
+
+\section{The finite-mode systems}\label{sec:finitemode}
+
+Fix $K$. The truncated system is the quantum mechanics of the $n_K$
+oscillator modes $\{j:|k_j|\le K\}$ with dispersions $\gamma_j$ and the
+interaction $V^{(K)}$, tensored with the free remainder: on
+$L^2(\muv)=L^2(\muv_{\le K})\otimes L^2(\muv_{>K})$ set
+\begin{equation}
+ K^{(K)}:=\bigl(H_0^{\le K}+V^{(K)}\bigr)\otimes\mathbf 1
+ +\mathbf 1\otimes H_0^{>K},
+ \qquad
+ T_K(t):=e^{-tK^{(K)}},
+ \label{eq:KK}
+\end{equation}
+where $H_0^{\le K}+V^{(K)}$ is the closed-form realization constructed in
+Theorem~\ref{thm:finitemode}(i) below.
+
+\begin{theorem}[finite-mode package in explicit Gaussian coordinates]
+\label{thm:finitemode}
+For every $K$ and $t>0$:
+\emph{(i)} the form sum $H_0^{\le K}+V^{(K)}$ is a lower-bounded closed
+quadratic form on $L^2(\muv_{\le K})$ whose operator has compact
+resolvent and simple lowest eigenvalue; $K^{(K)}$ is self-adjoint and
+bounded below.
+\emph{(ii)} $e^{-t(H_0^{\le K}+V^{(K)})}$ has a jointly continuous,
+strictly positive integral kernel with respect to $\muv_{\le K}$, given by
+the Feynman--Kac formula with respect to the $n_K$-mode OU/Mehler
+reference; matrix elements obey, for bounded measurable $f,g$ on
+$\R^{n_K}$,
+\begin{equation}
+ \ip{f}{\,e^{-t(H_0^{\le K}+V^{(K)})}\,g}_{L^2(\muv_{\le K})}
+ =\E\Bigl[\overline{f(X^{\le K}_0)}\,g(X^{\le K}_t)\,
+ e^{-\int_0^tV^{(K)}(X_s)ds}\Bigr],
+ \label{eq:FKmatrix}
+\end{equation}
+the expectation over the OU ensemble of Definition~\ref{def:ensembles}
+(only the $\le K$ coordinates enter the integrand).
+\emph{(iii)} Consequently, for bounded measurable cylinder $f,g$
+(any finitely many modes),
+$\ip{f}{T_K(t)g}=\E[\bar f(X_0)g(X_t)e^{-\int_0^tV^{(K)}(X_s)ds}]$.
+\emph{(iv)} $T_K(t)$ is trace class, with
+$\Trace\,T_K(t)\le e^{tb_K}Z_0(t)$ ($b_K$ from
+Lemma~\ref{lem:pointwise}).
+\emph{(v)} The periodic trace identity holds:
+\[
+ \Trace\,T_K(t)=Z_0(t)\ \E_{\mu^{\rm per}_{t,L}}
+ \bigl[e^{-\U^{(K)}_t}\bigr].
+\]
+\emph{(vi)} For every Weyl symbol $\xi=\eps_Mq+ip$ whose refined momentum
+and position parts are supported in modes $|k|\le K$, the following
+mode-by-mode mean-shift identity holds with dispersion $\gamma(\cdot)$:
+\begin{equation}
+ \frac{\Trace\bigl(T_K(t)\,W_{\rm ct}(\xi)\bigr)}{\Trace\,T_K(t)}
+ =e^{-S^{(K)}(H_p)}\,
+ \frac{\E_{\mu^{\rm per}}\bigl[e^{i\Phi(J_q)}\,
+ e^{-\U^{(K)}_t(\eta+H^{(K)}_p)}\bigr]}
+ {\E_{\mu^{\rm per}}\bigl[e^{-\U^{(K)}_t}\bigr]},
+ \label{eq:meanshiftK}
+\end{equation}
+with the $\gamma$-dispersion action in the normalization of V1, eq.\ (12) and
+V4, eq.\ (3),
+\[
+ S^{(K)}(H_p)=\frac1{4\cdot2L}\sum_{|k|\le K}\gamma(k)
+ \cth\Bigl(\frac{t\gamma(k)}2\Bigr)\,|b_\infty(k)|^2,
+ \qquad b_\infty(k):=\eps_M^{1/2}P_\infty(\eps_Mk)\widehat p_M(k),
+\] $H^{(K)}_p$ the interpolant with the closed
+form of V2, Lemma 6.1 at $\omega=\gamma(k)$, and $J_q$ the sharp-time
+position source.
+\end{theorem}
+
+\begin{proof}
+Let $J_K$ be the finite set of retained real sine/cosine coordinates and
+$n_K=|J_K|$.  The relation to the ordinary oscillator Schr"odinger
+coordinates is fixed, not implicit: for one mode define
+\begin{equation}
+ (\mathscr U_jf)(q)
+ :=\left(\frac{\gamma_j}{\pi}\right)^{1/4}
+   e^{-\gamma_jq^2/2}f(\sqrt{2\gamma_j}\,q),                        \label{eq:Gaussian-unitary}
+\end{equation}
+and let $\mathscr U_K=\bigotimes_{j\in J_K}\mathscr U_j$.  With
+$d\muv_1(\xi)=(2\pi)^{-1/2}e^{-\xi^2/2}d\xi$, the substitution
+$\xi=\sqrt{2\gamma_j}q$ gives
+\[
+ \int_\R|\mathscr U_jf(q)|^2dq
+ =\int_\R|f(\xi)|^2d\muv_1(\xi),
+\]
+so \eqref{eq:Gaussian-unitary} is unitary.  Direct differentiation yields
+\begin{equation}
+ \mathscr U_j\,\gamma_j(-\partial_\xi^2+\xi\partial_\xi)\,
+ \mathscr U_j^{-1}
+ =\frac12(-\partial_q^2+\gamma_j^2q^2-\gamma_j).                   \label{eq:Gaussian-conjugacy}
+\end{equation}
+Moreover $q_j=\xi_j/\sqrt{2\gamma_j}$, exactly the coefficient in
+the field formula \eqref{eq:field}.  Thus the interaction polynomial is the same
+function on both sides of the unitary; no scaling constant is suppressed.
+
+Choose $C>b_K+1$ and put $W=V^{(K)}$.  In Gaussian coordinates the form is
+\begin{equation}
+ q_K(\psi)=\sum_{j\in J_K}\gamma_j\|\partial_j\psi\|_{L^2(\muv)}^2
+ +\int(W+C)|\psi|^2d\muv .                                       \label{eq:finite-form}
+\end{equation}
+It is dense because $C_c^\infty(\R^{n_K})$ is contained in its domain.
+If $(\psi_n)$ is Cauchy in $\|\cdot\|_2^2+q_K$, then it converges in
+$L^2(\muv)$ and each weighted weak derivative converges in $L^2(\muv)$.
+Choose a subsequence converging pointwise a.e.; closedness of weak
+derivatives identifies their limits with the derivatives of $\psi$, while
+Fatou gives
+$\int(W+C)|\psi|^2d\muv\le\liminf_n\int(W+C)|\psi_n|^2d\muv$.
+Applying the same argument to $\psi_n-\psi_m$ and then $m\to\infty$ shows
+convergence in the form norm.  Hence \eqref{eq:finite-form} is closed and
+lower bounded.  This is the form of $H_0^{\le K}+W+C$; subtracting the scalar
+$C$ gives the asserted realization of $H_0^{\le K}+W$.
+
+Compactness must also cover $\lambda=0$, so it cannot be inferred from
+coercivity of $W$.  Instead use the free form.  Since $W\ge-b_K$ and
+$C>b_K+1$,
+\[
+ q_K(\psi)\ge
+ q_{0,K}(\psi)+\|\psi\|_2^2,
+ \qquad q_{0,K}(\psi):=\sum_{j\in J_K}\gamma_j\|\partial_j\psi\|_2^2.
+\]
+Let $H_{\boldsymbol n}=\prod_{j\in J_K}H_{n_j}$ be the normalized Hermite
+basis of $L^2(\muv_{\le K})$.  Integration by parts against the Gaussian
+density gives
+\[
+ q_{0,K}(\psi)=
+ \sum_{\boldsymbol n\in\N^{n_K}}
+ \left(\sum_j\gamma_jn_j\right)
+ |\langle H_{\boldsymbol n},\psi\rangle|^2.
+\]
+Consequently, for a set bounded by $q_K(\psi)\le R$ and any $A>0$,
+\[
+ \sum_{\sum_j\gamma_jn_j>A}
+ |\langle H_{\boldsymbol n},\psi\rangle|^2\le R/A.
+\]
+Only finitely many multi-indices satisfy $\sum_j\gamma_jn_j\le A$.
+Projection onto those indices is finite dimensional, while the displayed tail
+is uniform; hence the form-domain unit ball is relatively compact in $L^2$.
+The retained-mode operator therefore has compact resolvent for every
+$\lambda\ge0$.  Equation \eqref{eq:KK} and the self-adjoint free tail then give
+a self-adjoint, lower-bounded $K^{(K)}$.
+
+For (ii), the reference dynamics is the $n_K$-mode OU semigroup
+$P^{\le K}_t=\bigotimes_j M^{(j)}_t$ with the Mehler kernels
+\begin{equation}
+ M^{(j)}_t(\zeta,\zeta')
+ =(1-r_j^2)^{-1/2}
+ \exp\Bigl[-\frac{r_j^2(\zeta^2+\zeta'^2)-2r_j\zeta\zeta'}
+ {2(1-r_j^2)}\Bigr],
+ \qquad r_j:=e^{-t\gamma_j},
+ \label{eq:mehlermu}
+\end{equation}
+with respect to $\muv_1$ in each coordinate.  Completing the square gives
+$\int M_t^{(j)}(\zeta,\zeta')d\muv_1(\zeta')=1$; the kernel is symmetric and
+strictly positive.  The Gaussian generating function for the normalized
+Hermite polynomials gives eigenvalue $r_j^n$ in degree $n$.  Hence the product
+kernel is exactly $\Gam(e^{-t\gamma})$ on the retained Gaussian space.
+
+For $R>0$ let $W_R=W\wedge R$.  Since $-b_K\le W_R\le R$, it is a bounded
+self-adjoint multiplication operator, and the bounded-perturbation Trotter formula
+gives
+\begin{equation}
+ e^{-t(H_0^{\le K}+W_R)}
+ =s\!\!\lim_{n\to\infty}
+   (e^{-(t/n)H_0^{\le K}}e^{-(t/n)W_R})^n .                        \label{eq:finite-trotter}
+\end{equation}
+Inserting the product Mehler kernel between the $n$ multiplication factors turns
+a bounded matrix element into the OU chain integral with weight
+$\exp[-(t/n)\sum_{\ell=1}^nW_R(X_{\ell t/n})]$.  The finite-dimensional OU
+process has continuous paths and $W_R$ is continuous, so the exponent is a Riemann
+sum converging almost surely to $-\int_0^tW_R(X_s)ds$; it is dominated by
+$e^{tb_K}$.  Dominated convergence proves \eqref{eq:FKmatrix} with $W_R$.
+As $R\to\infty$, $W_R\uparrow W$; monotone form convergence gives the operator
+limit, and the path weights decrease to $e^{-\int_0^tW(X_s)ds}$ while remaining
+bounded by $e^{tb_K}$.  A second dominated-convergence step proves
+\eqref{eq:FKmatrix}.  Conditioning on the endpoints expresses its kernel as the
+strictly positive continuous Mehler endpoint density times a bridge expectation in
+$(0,e^{tb_K}]$.  Realize the bridge as an affine continuous function of the endpoints
+plus an endpoint-independent centered bridge; dominated convergence proves joint
+continuity.
+
+The strictly positive compact kernel also proves simplicity without an omitted
+Perron--Frobenius step.  Put $T=e^{-t(H_0^{\le K}+W)}$ and $r=\|T\|>0$.
+Compactness and positivity of the self-adjoint operator give a real eigenvector
+$u$ with $Tu=ru$.  Replacing it by $|u|$ is legitimate because
+\[
+ r\|u\|_2=\|Tu\|_2\le\|T|u|\|_2\le r\||u|\|_2=r\|u\|_2;
+\]
+the spectral expansion of the nonnegative operator $T$ shows that equality in
+the last inequality makes $|u|$ an $r$-eigenvector.  The strictly positive
+kernel gives $|u|>0$ a.e.; rename it $u$.
+
+If the $r$-eigenspace had dimension at least two, reality of the kernel would
+give a nonzero real $r$-eigenvector $h\perp u$.  Then both
+$h_+=\max(h,0)$ and $h_-=\max(-h,0)$ are nonzero (otherwise
+$\langle u,h\rangle$ could not vanish).  Strict positivity of the kernel gives
+$Th_+>0$ and $Th_->0$ a.e., and hence
+\[
+ r|h|=|Th_+-Th_-|<Th_++Th_-=T|h|\qquad\text{a.e.}
+\]
+Pairing with $u>0$ and using self-adjointness yields the contradiction
+\[
+ r\langle u,|h|\rangle
+ <\langle u,T|h|\rangle
+ =\langle Tu,|h|\rangle
+ =r\langle u,|h|\rangle.
+\]
+Thus the retained lowest eigenvalue is simple.  The free tail has its unique
+vacuum, proving the simplicity assertion in (i).
+
+(iii) Tensor with the free factor: $T_K(t)=e^{-t(H^{\le
+K}_0+V^{(K)})}\otimes\Gam(e^{-t\gamma})|_{>K}$, and for the free factor
+the OU pair formula \eqref{eq:pairGamma} applies; the product of the two
+expectations is the joint expectation because the $\le K$ and $>K$
+OU coordinates are independent.
+
+(iv) By the form inequality $H_0^{\le K}+V^{(K)}\ge H_0^{\le K}-b_K$
+and the min--max principle,
+$\mathrm{spec}(H^{\le K}_0+V^{(K)})\ni\mu^{(K)}_j\ge\nu^{\le K}_j-b_K$
+against the $\le K$ free eigenvalues, so
+$\Trace T_K(t)\le e^{tb_K}Z_0(t)$.
+
+(v) We spell out the cyclic normalization.  For bounded $W_R$ and
+$\delta=t/n$, the trace of the Trotter product in
+\eqref{eq:finite-trotter} is
+\begin{equation}
+ \int_{(\R^{n_K})^n}
+ \prod_{\ell=0}^{n-1}
+ M_\delta(\zeta_\ell,\zeta_{\ell+1})
+ e^{-\delta W_R(\zeta_{\ell+1})}
+ \prod_{\ell=0}^{n-1}d\muv_{\le K}(\zeta_\ell),
+ \qquad \zeta_n=\zeta_0.                                           \label{eq:cyclic-chain}
+\end{equation}
+With $W_R=0$, this integral is
+$Z_{0,\le K}(t)=\prod_{j\in J_K}(1-e^{-t\gamma_j})^{-1}$.  Divide
+\eqref{eq:cyclic-chain} by that number.  Its covariance can be inverted
+exactly before taking a limit.  For one mode put $\delta=t/n$ and
+$r=e^{-\delta\gamma_j}$.  Expanding the product of the $n$ Mehler kernels
+against $\prod_ell d\muv_1(\zeta_ell)$ gives the cyclic precision matrix
+\[
+ A_n=(1-r^2)^{-1}\bigl[(1+r^2)I-r(S+S^*)\bigr],
+\]
+where $S$ is the cyclic right shift.  For $0\le d\le n$ set
+\[
+ C_d:=\frac{r^d+r^{n-d}}{1-r^n}.
+\]
+For $1\le d<n$, $(1+r^2)C_d-rC_{d-1}-rC_{d+1}=0$, while
+$(1+r^2)C_0-2rC_1=1-r^2$.  Hence the cyclic matrix
+$(C_{|a-b|})_{a,b}$ is $A_n^{-1}$.  At mesh times
+$s=a\delta$, $s'=b\delta$ this gives, exactly,
+\[
+ \E[\xi_j(s)\xi_j(s')]
+ =\frac{e^{-\gamma_j|s-s'|}+e^{-\gamma_j(t-|s-s'|)}}
+        {1-e^{-t\gamma_j}}
+ =\frac{\cosh(\gamma_j(t/2-|s-s'|))}{\sinh(\gamma_jt/2)}.
+\]
+These consistent mesh marginals converge to the continuous periodic Gaussian
+process.  Equivalently, its covariance has the temporal Fourier expansion
+\begin{equation}
+ \E[\xi_j(s)\xi_j(s')]
+ =\frac{2\gamma_j}{t}\sum_{k_0\in(2\pi/t)\Z}
+   \frac{e^{ik_0(s-s')}}{k_0^2+\gamma_j^2}
+ =\frac{\cosh(\gamma_j(t/2-|s-s'|_{\T_t}))}
+        {\sinh(\gamma_jt/2)}.                                     \label{eq:cyclic-cov}
+\end{equation}
+where the first equality is the Fourier series of the preceding continuous
+function and the second is the Mittag--Leffler sum.  Since the field coefficient is
+$\xi_j/\sqrt{2\gamma_j}$, \eqref{eq:cyclic-cov} is exactly the covariance
+$c_{\gamma_j}$ in Definition~\ref{def:ensembles}(ii).
+
+Let $v_K(t)$ be this periodic field's equal-point variance and
+$d^{(K)}=v_K-c_K$.  The two polynomial identities
+\[
+ {:}X^4{:}_{c_K}={:}X^4{:}_{v_K}+6d^{(K)}{:}X^2{:}_{v_K}+3(d^{(K)})^2,
+ \qquad {:}X^2{:}_{c_K}={:}X^2{:}_{v_K}+d^{(K)}
+\]
+show that the limiting exponent in \eqref{eq:cyclic-chain} is precisely
+$\U_t^{(K)}$ as displayed in \eqref{eq:perrecomb}.  The limits
+$n\to\infty$ and then $R\to\infty$ also commute with the trace, as follows
+directly from the diagonal kernels.  For every $R$ the positive continuous
+Feynman--Kac kernel satisfies
+\[
+ 0\le K_R(t;\zeta,\zeta)
+ \le e^{tb_K}M_t(\zeta,\zeta),
+ \qquad
+ \int M_t(\zeta,\zeta)d\muv_{\le K}(\zeta)=Z_{0,\le K}(t)<\infty.
+\]
+The trace equals the diagonal integral without a basis interchange: symmetry and
+the semigroup identity give
+$K_R(t;\zeta,\zeta)=\int K_R(t/2;\zeta,z)^2d\muv(z)$; integrating and using
+Tonelli gives $\int K_R(t;\zeta,\zeta)d\muv(\zeta)
+=\|e^{-t(H_0+W_R)/2}\|_{\mathcal S_2}^2
+=\Trace e^{-t(H_0+W_R)}$.
+Thus dominated convergence applies first to the Trotter-chain diagonal and
+then, because $W_R\uparrow W$, to $K_R(t;\zeta,\zeta)\downarrow
+K(t;\zeta,\zeta)$.  This proves the retained-mode trace identity without
+inferring trace convergence from strong convergence.  Tensoring the independent
+free tail multiplies $Z_{0,\le K}(t)$ by
+$Z_{0,>K}(t)$, yielding
+\[
+ \Trace T_K(t)=Z_0(t)\E_{\mu^{\rm per}_{t,L}}[e^{-\U_t^{(K)}}].
+\]
+
+(vi) It remains to account for the Weyl insertion.  In an ordinary retained
+Schr\"odinger coordinate the BCH identity gives, with real source coefficients
+$\alpha,\beta$,
+\[
+ (W(\alpha,\beta)\psi)(q)
+ =e^{i\alpha q+i\alpha\beta/2}\psi(q+\beta).
+\]
+Indeed, $[i\alpha q,\beta\partial_q]=-i\alpha\beta$ is central, so
+$e^{i\alpha q+\beta\partial_q}=e^{i\alpha\beta/2}
+e^{i\alpha q}e^{\beta\partial_q}$.  Therefore the trace kernel joins
+$q_0$ to $q_t=q_0+\beta$.  Set $q_s=\eta_s+H_s$ with
+$\eta_t=\eta_0$, $H_0=-\beta/2$, and $H_t=+\beta/2$.  The Weyl phase becomes
+\[
+ e^{i\alpha q_0+i\alpha\beta/2}=e^{i\alpha\eta_0};
+\]
+thus the CCR half-phase cancels exactly, leaving the sharp-time position source.
+
+For each Fourier mode the unique function with those endpoint values,
+$\dot H(t)=\dot H(0)$, and $-\ddot H+\gamma(k)^2H=0$ is
+\begin{equation}
+ H^{(K)}_{p,k}(s)=\frac{b_\infty(k)}2
+ \frac{\sinh(\gamma(k)(s-t/2))}{\sinh(t\gamma(k)/2)},qquad |k|\le K. \label{eq:HKexplicit}
+\end{equation}
+The Gaussian shift is exact already on every Mehler time mesh.  At an interior
+mesh node the two cross coefficients are $-\dot H(s_i)$ from the factor on its
+left and $+\dot H(s_i)$ from the factor on its right; they cancel.  At the
+marked node their sum is $\dot H(t)-\dot H(0)=0$.  Hence no linear term
+remains, and the constants sum to the Cameron--Martin action.  Equivalently,
+for smooth periodic $\eta$,
+\[
+ \Re\int_0^t(\overline{\dot\eta}\dot H+\gamma(k)^2\bar\eta H)ds
+ =\Re[\bar\eta\dot H]_0^t
+ +\Re\int_0^t\bar\eta(-\ddot H+\gamma(k)^2H)ds=0;
+\]
+the mesh identity is the rigorous statement for OU paths.
+
+Spatial Fourier Parseval is
+$\frac12\int_{\T_L}(|\partial_sH|^2+|\gamma H|^2)dx
+=\frac1{4L}\sum_k(|\dot H_k|^2+\gamma(k)^2|H_k|^2)$.
+For the remaining constant of one Fourier mode, integration by parts gives
+\begin{align*}
+ \frac1{4L}\int_0^t(|\dot H|^2+\gamma(k)^2|H|^2)ds
+ &=\frac1{4L}\Re[\bar H\dot H]_0^t\\
+ &=\frac1{4L}\left(
+   \frac{\gamma(k)|b_\infty(k)|^2}{4}\cth\frac{t\gamma(k)}2
+  +\frac{\gamma(k)|b_\infty(k)|^2}{4}\cth\frac{t\gamma(k)}2\right)\\
+ &=\frac1{8L}\gamma(k)\cth\Bigl(\frac{t\gamma(k)}2\Bigr)
+   |b_\infty(k)|^2.
+\end{align*}
+Thus
+\[
+ S_k(H_p)=\frac1{8L}\gamma(k)\cth(t\gamma(k)/2)|b_\infty(k)|^2.
+\]
+Summing the retained modes is the action in the theorem.  Completing the Gaussian
+square therefore contributes $e^{-S^{(K)}}$.  The position component of the Weyl
+operator remains as the sharp-time phase $e^{i\Phi(J_q)}$.  Finally, the exact Appell
+identity
+\[
+ {:}(X+H)^4{:}_c={:}X^4{:}_c+4H{:}X^3{:}_c+6H^2{:}X^2{:}_c+4H^3X+H^4
+\]
+(and its quadratic analogue) identifies the translated interaction with
+$\U_t^{(K)}(\eta+H_p^{(K)})$.  The bounded truncation, Trotter-mesh, and
+$R\to\infty$ limits use the same domination $e^{tb_K}$; the Weyl insertion has
+norm one.  Since the Weyl data have no tail modes, the independent free-tail trace
+factor is identical in numerator and denominator and cancels.  This proves
+\eqref{eq:meanshiftK} with every normalization displayed.
+\end{proof}
+
+\begin{remark}[finite-mode dictionary]\label{rem:finite-dictionary}
+Equations \eqref{eq:Gaussian-unitary}--\eqref{eq:Gaussian-conjugacy} give the
+unitary coordinate identification, \eqref{eq:finite-form} proves the weighted
+form realization, \eqref{eq:mehlermu}--\eqref{eq:finite-trotter} prove FKN, and
+\eqref{eq:cyclic-chain}--\eqref{eq:cyclic-cov} fix the trace normalization.
+Thus every finite-mode step used later is contained in the displayed
+Gaussian calculation; V1 supplies matching notation, not an additional
+unwritten theorem.
+\end{remark}
+
+\section{The Hamiltonian $K_L$ (A1-i)}\label{sec:KL}
+
+\begin{theorem}[construction of $K_L$]\label{thm:A1i}
+There is a unique self-adjoint, bounded-below operator $K_L$ on
+$L^2(Q,\muv)$ such that $T_K(t)\to e^{-tK_L}=:T(t)$ strongly for every
+$t\ge0$. It satisfies:
+\emph{(i)} $\inf\mathrm{spec}\,K_L\ge-c_\lambda$ and $K_L\ge\tfrac12H_0
+-c_{1/2}$ in the sense of quadratic forms;
+\emph{(ii)} for every bounded cylinder $f,g$,
+\begin{equation}
+ \ip{f}{\,T(t)\,g}
+ =\E\Bigl[\overline{f(X_0)}\,g(X_t)\,e^{-\mathcal W}\Bigr],
+ \qquad \mathcal W=\int_0^tV_L(X_s)\,ds ,
+ \label{eq:FKlimit}
+\end{equation}
+and \eqref{eq:FKlimit} extends to all bounded measurable $f,g$ on $Q$;
+\emph{(iii)} $\D\subset D(K_L)$ with $K_L\psi=H_0\psi+V_L\psi$ for
+$\psi\in\D$ (operator sum; $V_L\psi\in L^2$ since $\psi$ is bounded);
+\emph{(iv)} $\D\subset Q(K_L)$ with
+$q_{K_L}(\psi)=\ip{\psi}{H_0\psi}+\int V_L|\psi|^2d\muv$ there (form
+sum).
+\end{theorem}
+
+\begin{proof}
+\emph{Strong Cauchy property.} For $\psi\in\D$ (based on modes $\le K_0$)
+and $K,K'\ge K_0$, conditional Cauchy--Schwarz on \eqref{eq:FKmatrix}
+gives
+\[
+ \|(T_K(t)-T_{K'}(t))\psi\|_2^2
+ =\E\Bigl[\bigl|\E\bigl[\psi(X_t)(e^{-\mathcal W_K}-e^{-\mathcal
+ W_{K'}})\,\big|\,X_0\bigr]\bigr|^2\Bigr]
+ \le\|\psi\|_\infty^2\,
+ \bigl\|e^{-\mathcal W_K}-e^{-\mathcal W_{K'}}\bigr\|_{L^2}^2 ,
+\]
+and by $|e^{-\alpha}-e^{-\beta}|\le|\alpha-\beta|(e^{-\alpha}+e^{-\beta})$,
+H\"older, Proposition~\ref{prop:nelson3}(ii) and the chaos moment bound,
+\begin{equation}
+ \bigl\|e^{-\mathcal W_K}-e^{-\mathcal W_{K'}}\bigr\|_{L^2}
+ \le\|\mathcal W_K-\mathcal W_{K'}\|_{L^4}
+ \bigl(\|e^{-\mathcal W_K}\|_{L^8}+\|e^{-\mathcal W_{K'}}\|_{L^8}\bigr)
+ \le C\,t\,\|V^{(K)}-V^{(K')}\|_{L^2(\muv)},
+ \label{eq:expdiff}
+\end{equation}
+uniformly for $t\le T$. With \eqref{eq:VKrate} and
+$\|T_K(t)\|\le e^{tc_\lambda}$ (Corollary~\ref{cor:lowerbounds}) the
+family $T_K(t)$ is strongly Cauchy on $\D$, hence on $L^2$; call the
+limit $T(t)$.
+
+\emph{Semigroup, self-adjointness, strong continuity.} Each $T_K$ is a
+self-adjoint contraction semigroup up to $e^{tc_\lambda}$; the limit
+inherits $T(t)^*=T(t)$, $T(t)T(t')=T(t+t')$ (strong limits on the
+uniformly bounded family), and $\|T(t)\|\le e^{tc_\lambda}$. Strong
+continuity at $t=0$: for $\psi\in\D$ and any $K\ge K_0$,
+$\|T(t)\psi-\psi\|\le\|T(t)\psi-T_K(t)\psi\|+\|T_K(t)\psi-\psi\|$; the
+first term is bounded, uniformly in $t\le1$, by
+$C\|\psi\|_\infty\,t\cdot\sup_{K'\ge K}\|V^{(K)}-V^{(K')}\|_2
+\le C'\|\psi\|_\infty\,\varrho_K$ with $\varrho_K\to0$, by
+\eqref{eq:expdiff} (note the factor $t\le1$); the second tends to $0$ as
+$t\downarrow0$ for fixed $K$ ($C_0$-semigroup). Hence
+$\limsup_{t\downarrow0}\|T(t)\psi-\psi\|\le C'\|\psi\|_\infty\varrho_K$
+for every $K$, i.e.\ $=0$; density and uniform bounds finish. By the
+Hille--Yosida theorem for self-adjoint semigroups, $T(t)=e^{-tK_L}$ with
+$K_L$ self-adjoint, $K_L\ge-c_\lambda$.
+
+\emph{(i).} The first bound is $\|T(t)\|\le e^{tc_\lambda}$. For the second
+we use resolvent antitonicity, which avoids any form-core question (none is
+available: $\D$ is \emph{not} shown to be a form core, cf.\
+Remark~\ref{rem:formsum}). Fix $M>c_{1/2}\vee c_\lambda$ and recall the
+Legendre identity: for a self-adjoint $S\ge\varepsilon>0$ with form
+$q_S$ (set $q_S(\psi):=+\infty$ off $Q(S)$),
+\begin{equation}
+ q_S(\psi)=\sup_{\phi\in\HH}\bigl[2\,\mathrm{Re}\ip\psi\phi
+ -\ip{\phi}{S^{-1}\phi}\bigr],
+ \qquad
+ \ip{\phi}{S^{-1}\phi}=\sup_{\psi\in\HH}
+ \bigl[2\,\mathrm{Re}\ip\psi\phi-q_S(\psi)\bigr],
+ \label{eq:legendre}
+\end{equation}
+both by the spectral theorem and the scalar identity
+$\sup_c[2\mathrm{Re}(\bar\psi c)-|c|^2/\lambda]=\lambda|\psi|^2$
+($\lambda>0$), applied componentwise. Consequently, for self-adjoint
+$S_1,S_2\ge\varepsilon$: $q_{S_1}\ge q_{S_2}$ pointwise on $\HH$ (with the
+$+\infty$ convention, which in particular forces $Q(S_1)\subseteq Q(S_2)$)
+\emph{if and only if} $S_1^{-1}\le S_2^{-1}$ --- each direction is one
+application of \eqref{eq:legendre} under the supremum. Now
+$K^{(K)}+M\ge\tfrac12H_0+(M-c_{1/2})$ as forms
+(Corollary~\ref{cor:lowerbounds}), so
+$(K^{(K)}+M)^{-1}\le(\tfrac12H_0+M-c_{1/2})^{-1}$ for every $K$. Strong
+semigroup convergence and $\|T_K(t)\|\le e^{tc_\lambda}$ give, by dominated
+convergence in the Laplace representation
+$(K^{(K)}+M)^{-1}=\int_0^\infty e^{-Mt}T_K(t)\,dt$, strong resolvent
+convergence $(K^{(K)}+M)^{-1}\to(K_L+M)^{-1}$. Hence
+$(K_L+M)^{-1}\le(\tfrac12H_0+M-c_{1/2})^{-1}$, and the ``if''
+direction of the equivalence (take the supremum over $\phi$ in the first
+Legendre identity) returns
+$K_L\ge\tfrac12H_0-c_{1/2}$ as quadratic forms, including
+$Q(K_L)\subseteq Q(H_0)$.
+
+\emph{(ii).} Fix bounded cylinder $f,g$ based on modes $\le K_0$. By
+Theorem~\ref{thm:finitemode}(iii),
+$\ip{f}{T_K(t)g}=\E[\bar f(X_0)g(X_t)e^{-\mathcal W_K}]$ for $K\ge K_0$;
+the left side converges to $\ip f{T(t)g}$, the right side to
+\eqref{eq:FKlimit} by \eqref{eq:expdiff}
+($\E[|\bar fg||e^{-\mathcal W_K}-e^{-\mathcal W}|]\le
+\|f\|_\infty\|g\|_\infty\|e^{-\mathcal W_K}-e^{-\mathcal W}\|_{L^1}$).
+Extension to bounded measurable $f,g$: both sides are continuous under
+bounded pointwise-a.e.\ convergence (dominated on the right by
+$\|f\|_\infty\|g\|_\infty e^{-\mathcal W}\in L^1$; strong on the left),
+and bounded cylinder functions are dense in that sense (martingale
+convergence for the mode filtration).
+
+\emph{(iii).} Let $\psi\in\D$. Write, using \eqref{eq:FKlimit} and the
+free OU semigroup $P_s=\Gam(e^{-s\gamma})$,
+\[
+ \frac{(1-T(t))\psi}t
+ =\frac{(1-P_t)\psi}t
+ -\frac1t\,\E\bigl[\psi(X_t)\bigl(e^{-\mathcal W}-1\bigr)\,\big|\,
+ X_0=\cdot\,\bigr] .
+\]
+The first term converges in $L^2$ to $H_0\psi$ ($\psi\in\D\subset
+D(H_0)$). For the second, expand $e^{-\mathcal W}-1=-\mathcal W+\rho$,
+$|\rho|\le\tfrac12\mathcal W^2e^{\mathcal W_-}$ with $\mathcal
+W_-:=\max(-\mathcal W,0)$:
+\[
+ \frac1t\,\E\bigl[\psi(X_t)\mathcal W\,\big|\,X_0\bigr]
+ =\frac1t\int_0^t P_s\bigl(V_L\cdot P_{t-s}\psi\bigr)\,ds
+ \ \xrightarrow[t\downarrow0]{L^2}\ V_L\,\psi ,
+\]
+because $\|P_s(V_LP_{t-s}\psi)-V_L\psi\|_2\le
+\|V_L(P_{t-s}\psi-\psi)\|_2+\|(P_s-1)(V_L\psi)\|_2
+\le\|V_L\|_{L^4}\|P_{t-s}\psi-\psi\|_{L^4}+o(1)\to0$ uniformly in $s\le
+t$ (for $\psi=F(\xi_1,\dots,\xi_n)\in\D$ the Mehler representation gives the
+pointwise bound
+$|P_u\psi-\psi|\le\mathrm{Lip}(F)\sum_{j\le n}
+[(1-e^{-u\gamma_j})|\xi_j|+(1-e^{-2u\gamma_j})^{1/2}\,\E|\zeta_j|]$
+with $\zeta_j$ standard Gaussian, whence
+$\sup_{u\le t}\|P_u\psi-\psi\|_{L^4(\muv)}
+\le C_n\mathrm{Lip}(F)\sum_{j\le n}(1-e^{-t\gamma_j})^{1/2}\to0$ as
+$t\downarrow0$ --- an $L^4$, not a uniform-on-$Q$, statement, which is all
+that is used; and $V_L\psi\in L^2$ with $P_s$ strongly continuous). The remainder: by Cauchy--Schwarz and
+Proposition~\ref{prop:nelson3}(ii),
+$t^{-1}\|\E[\psi(X_t)\rho|X_0]\|_{L^2}\le
+t^{-1}\|\psi\|_\infty\,\|\mathcal W^2e^{\mathcal W_-}\|_{L^2}
+\le t^{-1}\|\psi\|_\infty\|\mathcal W\|_{L^8}^2\,
+\|e^{\mathcal W_-}\|_{L^4}\le C\,t^{-1}\cdot t^2=Ct\to0$
+(here $\|\mathcal W\|_{L^8}\le49\,t\|V_L\|_2$ by stationarity and the
+chaos bound, and $e^{\mathcal W_-}\le1+e^{-\mathcal W}$ with the uniform
+$L^4$ bound). Hence $t^{-1}(1-T(t))\psi\to H_0\psi+V_L\psi$ in $L^2$,
+which is precisely $\psi\in D(K_L)$ with $K_L\psi=H_0\psi+V_L\psi$.
+
+\emph{(iv).} For $\psi\in\D$, spectral calculus gives
+$t^{-1}\ip{\psi}{(1-T(t))\psi}\uparrow q_{K_L}(\psi)
+\in[-c_\lambda\|\psi\|^2,\infty]$ as $t\downarrow0$ (monotone because
+$t\mapsto(1-e^{-tx})/t$ is decreasing for every $x\in\R$, its $t$-derivative
+having numerator $e^{-tx}(1+tx)-1\le0$; the lower endpoint is
+$\inf\mathrm{spec}\,K_L\ge-c_\lambda$, not $0$, the ground energy $\mu_0$ being
+in general negative); by (iii) the limit equals
+$\ip{\psi}{(H_0+V_L)\psi}=q_0(\psi)+\int V_L|\psi|^2d\muv$, finite.
+(Part (i) uses no such $t\downarrow0$ interchange: it is proved by resolvent
+antitonicity through the Legendre identity and the Laplace representation. The
+interchange above is used only here.)
+
+\emph{Uniqueness} is immediate: the semigroup determines its generator.
+\end{proof}
+
+\begin{remark}[on the ``form sum'' clause and the literature
+object]\label{rem:formsum}
+Theorem~\ref{thm:A1i}(iii)--(iv) realize the A1(i) clause: $K_L$ is a
+self-adjoint, bounded-below extension of the operator sum
+$H_0+V_L$ from the cylinder core, whose quadratic form is the form sum
+there. Two scope notes, recorded for the ledger. (1) Whether
+$(H_0+V_L)|_\D$ is \emph{essentially} self-adjoint (Segal's theorem in
+the $\T_L$ setting; cf.\ Simon's book, \S V, in \texttt{refs/}) is not
+proved here and \emph{not consumed anywhere in Part II}: every
+downstream use of $K_L$ (A2(b), A6--A8) goes through the semigroup
+$T(t)$, its traces, and its ground state, i.e.\ through this
+construction. (2) Consequently $\omega^{\rm ct}_{L,\lambda}$
+(Theorem~\ref{thm:A1iii}) is \emph{defined} by this $K_L$; this is the
+same normalization the scoping note fixed when it declared A1 the
+definition of the gate's right-hand side.
+\end{remark}
+
+\section{Trace class and trace-norm cylinder approximation
+(A1-ii)}\label{sec:trace}
+
+\begin{lemma}[uniform hypercontractive smoothing]\label{lem:ladder}
+Let $s_4:=\log3/m$. Then, uniformly in $K$ (and in the bounded-truncation
+parameter $R$ where it appears in the proof),
+\[
+ \|T_K(s)\|_{L^2\to L^4}\ \le\ M_0\,e^{c_\lambda(s-s_4)}
+ \qquad(s\ge s_4),
+\]
+with $M_0=M_0(\lambda,a,b,m,L)<\infty$; the same bound holds for
+$T(s)$.
+\end{lemma}
+
+\begin{proof}
+By duality and self-adjointness it suffices to bound
+$\|T_K(s_4)\|_{L^{4/3}\to L^2}$ ($s>s_4$ then composes with
+$\|T_K(s-s_4)\|_{2\to2}\le e^{c_\lambda(s-s_4)}$, applied first). Let
+$W:=V^{(K)}$, $W_R:=W\wedge R$, and let $K^{(K)}_R$ be the form sum with
+$W_R$; by monotone form convergence $e^{-sK^{(K)}_R}\to e^{-sK^{(K)}}$
+strongly as $R\to\infty$ (model-sheet \S3 tool), so by Fatou (pointwise
+a.e.\ along a subsequence) it suffices to bound
+$\|e^{-s_4K^{(K)}_R}\|_{4/3\to2}$ uniformly in $K,R$. By the elementary
+Trotter product formula (self-adjoint semibounded $+$ bounded; the
+model-sheet (3.16) instance) and Fatou again, it suffices to bound the
+products $\bigl(e^{-\tau W_R}e^{-\tau H_0}\bigr)^n$ uniformly, $\tau
+:=s_4/n$.
+
+Set $p_j:=1+\tfrac13e^{j\tau m}$, $j=0,\dots,n$, so $p_0=4/3$ and
+$p_n=2$. Each free factor is bounded by Import~\ref{imp:gamma}(d):
+$\|e^{-\tau H_0}\|_{L^{p_j}\to L^{P_j}}\le1$ with
+$P_j:=1+(p_j-1)e^{2\tau m}$ (since $\|e^{-\tau\gamma}\|\le e^{-\tau
+m}$). Each multiplication costs, by H\"older with
+$\tfrac1{p_{j+1}}=\tfrac1{r_j}+\tfrac1{P_j}$,
+\[
+ \begin{gathered}
+ \bigl\|e^{-\tau W_R}u\bigr\|_{p_{j+1}}
+ \le\bigl\|e^{-\tau W_R}\bigr\|_{L^{r_j}}\|u\|_{P_j},\\
+ \bigl\|e^{-\tau W_R}\bigr\|_{L^{r_j}}
+ =\E\bigl[e^{-r_j\tau W_R}\bigr]^{1/r_j}
+ \le\bigl(1+\E[e^{-r_j\tau W}]\bigr)^{1/r_j},
+ \end{gathered}
+\]
+using $e^{-\tau W_R}\le1+e^{-\tau W}$ pointwise. The exponent budget: $P_j-p_{j+1}=\tfrac13e^{(j+1)\tau m}(e^{\tau m}-1)>0$,
+and, using $p_{j+1}\ge\tfrac43$, $P_j\ge\tfrac43$ and $e^{n\tau m}=3$,
+\[
+ \frac1{r_j}=\frac{P_j-p_{j+1}}{p_{j+1}P_j}
+ \le\frac{9}{16}\cdot\frac{e^{(j+1)\tau m}(e^{\tau m}-1)}{3},
+ \qquad
+ \sum_{j=0}^{n-1}\frac1{r_j}
+ \le\frac{3}{16}\,e^{\tau m}\bigl(e^{n\tau m}-1\bigr)
+ =\frac38\,e^{\tau m}\ \le\ 1
+\]
+for $n\ge2$ (then $e^{\tau m}\le\sqrt3$). For the H\"older \emph{times}, the
+crude bound $p_{j+1}P_j\le4$ would be \emph{false} at the top rungs
+($P_{n-1}=1+e^{\tau m}>2$); instead use $p_{j+1}\le2$,
+$P_j\le1+\tfrac13e^{(j+2)\tau m}$ and $\tau m\le e^{\tau m}-1$:
+\begin{align*}
+ r_j\,\tau m&=\tau m\,\frac{p_{j+1}P_j}{P_j-p_{j+1}}
+ =\frac{3\,\tau m\,p_{j+1}P_j}{e^{(j+1)\tau m}(e^{\tau m}-1)}\\
+ &\le3\,p_{j+1}\Bigl(e^{-(j+1)\tau m}+\tfrac13e^{\tau m}\Bigr)
+ \le6+2e^{\tau m}\le6+2\sqrt3<12 ,
+\end{align*}
+so $r_j\tau\le12/m$ for all $j$; hence each expectation is bounded by
+\[
+ D:=1+\sup_{K}\ \sup_{0<\sigma\le12/m}\E\bigl[e^{-\sigma V^{(K)}}\bigr]
+ <\infty
+\]
+(Proposition~\ref{prop:nelson3}(i) at $\sigma_0=12/m$; the supremum over
+$0<\sigma\le\sigma_0$ follows from that single bound because
+$e^{-\sigma V}\le1+e^{-\sigma_0V}$ pointwise for $0<\sigma\le\sigma_0$).
+Multiplying the factors,
+$\|(e^{-\tau W_R}e^{-\tau H_0})^n\|_{4/3\to2}
+\le D^{\sum1/r_j}\le D\vee1=:M_0$, uniformly in $n,K,R$. (The tensor free
+factor $>K$ rides along inside
+$H_0$; no separate argument is needed since $W$ is $\le K$-cylindrical
+and Import~\ref{imp:gamma}(d) is applied to the full $\Gam(e^{-\tau
+\gamma})$.) The bound for $T(s)$ follows by strong convergence and
+Fatou.
+\end{proof}
+
+\begin{theorem}[A1-ii]\label{thm:A1ii}
+For every $t>0$: $e^{-tK_L}$ is trace class;
+$\|T_K(t)-T(t)\|_{\Jone}\to0$; $\Trace\,T_K(t)\to\Trace\,T(t)$; the
+spectrum of $K_L$ is discrete, $\mu_0\le\mu_1\le\cdots\to\infty$ with
+$\mu_j\ge\tfrac12\nu_j-c_{1/2}$, and each $\mu^{(K)}_j\to\mu_j$ as
+$K\to\infty$. Moreover, for every bounded operator $B$,
+$\Trace(T_K(t)B)\to\Trace(T(t)B)$.
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: norm convergence at $t_2:=2s_4$.}
+
+\emph{Step 1a: both Duhamel vectors lie in both form domains.} This is the
+one point where the Duhamel identity needs an argument: differentiating
+$s\mapsto\ip{T_K(s)\phi}{T_{K'}(t_2-s)\psi}$ produces
+$\ip{T_K(s)\phi}{K^{(K')}T_{K'}(t_2-s)\psi}
+-\ip{K^{(K)}T_K(s)\phi}{T_{K'}(t_2-s)\psi}$, and rewriting this as
+$q_{K^{(K')}}-q_{K^{(K)}}$ evaluated on the pair, so that the $H_0$ parts
+cancel and only $\int\Delta V\,\bar uv\,d\muv$ survives, requires
+\emph{each} vector to lie in \emph{both} form domains. Membership in
+$Q(H_0)$ is automatic: $D(K^{(K)})\subseteq Q(K^{(K)})\subseteq Q(H_0)$, the second
+inclusion because $K^{(K)}\ge\tfrac12H_0-c_{1/2}$ as quadratic forms \emph{uniformly
+in $K$} --- this is the finite-mode statement of Corollary~\ref{cor:lowerbounds}, from
+which Theorem~\ref{thm:A1i}(i) then derives the same for the limit $K_L$; it is the
+finite-mode form that is needed here, but $Q(H_0)\not\subseteq Q(V^{(K')})$ in general,
+so it must be supplied. Take $\phi,\psi\in\D$, in particular bounded. The
+Feynman--Kac formula \eqref{eq:FKmatrix} gives
+$|(T_K(s)\phi)(x)|\le\|\phi\|_\infty\,\E_x\bigl[e^{-\mathcal W_K}\bigr]$, and
+$x\mapsto\E_x[\,\cdot\,]$ is a conditional expectation on the stationary OU
+ensemble, so by conditional Jensen and
+Proposition~\ref{prop:nelson3}(ii),
+\[
+ \|T_K(s)\phi\|_{L^4(\muv)}\ \le\ \|\phi\|_\infty\,
+ \bigl\|e^{-\mathcal W_K}\bigr\|_{L^4}\ \le\ C\,\|\phi\|_\infty
+ \qquad\text{uniformly in }K\text{ and }s\in[0,t_2],
+\]
+and likewise for $T_{K'}(t_2-s)\psi$. Since $V^{(K)},V^{(K')}\in
+L^2(\muv)$, Cauchy--Schwarz gives, for every $u\in L^4(\muv)$,
+\[
+ \int|V^{(\cdot)}|\,|u|^2\,d\muv
+ \ \le\ \|V^{(\cdot)}\|_{L^2}\,\|u\|_{L^4}^2\ <\ \infty,
+\]
+i.e.\ $L^4(\muv)\subseteq Q(V^{(K)})\cap Q(V^{(K')})$. Both vectors
+therefore lie in $Q(H_0)\cap Q(V^{(K)})\cap Q(V^{(K')})$, the $H_0$ parts
+cancel, and the derivative equals
+$\int\Delta V\,\overline{T_K(s)\phi}\,T_{K'}(t_2-s)\psi\,d\muv$,
+integrable over $s\in[0,t_2]$ by the bounds below.
+
+\emph{Step 1b.} Integrating that derivative over $[0,t_2]$ gives, for
+$\phi,\psi\in\D$ and hence by density for all $\phi,\psi\in L^2$,
+\[
+ \bigl|\ip{\phi}{(T_K(t_2)-T_{K'}(t_2))\psi}\bigr|
+ \le\int_0^{t_2}\bigl|\ip{T_K(s)\phi}{\ \Delta V\ T_{K'}(t_2-s)\psi}
+ \bigr|\,ds,\qquad\Delta V:=V^{(K')}-V^{(K)} .
+\]
+For $s\le t_2/2$: H\"older $\tfrac14+\tfrac12+\tfrac14$ with
+$\|T_K(s)\phi\|_2\le e^{sc_\lambda}\|\phi\|_2$ and
+$\|T_{K'}(t_2-s)\psi\|_4\le M_0e^{c_\lambda t_2}\|\psi\|_2$
+(Lemma~\ref{lem:ladder}, $t_2-s\ge s_4$); for $s\ge t_2/2$
+symmetrically. With $\|\Delta V\|_{L^4}\le9\|\Delta V\|_{L^2}$ (chaos
+bound),
+\begin{equation}
+ \|T_K(t_2)-T_{K'}(t_2)\|_{2\to2}
+ \ \le\ 18\,t_2\,M_0\,e^{2c_\lambda t_2}\ \|V^{(K)}-V^{(K')}\|_{L^2(\muv)}
+ \ \xrightarrow[K,K'\to\infty]{}\ 0 .
+ \label{eq:normcauchy}
+\end{equation}
+Hence $\|T_K(t_2)-T(t_2)\|\to0$.
+
+\emph{Step 2: eigenvalues.} Each $T_K(t_2)$ is compact positive
+(Theorem~\ref{thm:finitemode}(iv)); by \eqref{eq:normcauchy} and Weyl's
+inequality for singular values, $T(t_2)$ is compact and each ordered
+eigenvalue converges: $e^{-t_2\mu^{(K)}_j}\to e^{-t_2\mu_j}$, where
+$e^{-t_2\mu_j}$ enumerates $\mathrm{spec}\,T(t_2)$; hence
+$\mu^{(K)}_j\to\mu_j$ and, by Corollary~\ref{cor:lowerbounds} and
+min--max, $\mu^{(K)}_j\ge\tfrac12\nu_j-c_{1/2}$, so also
+$\mu_j\ge\tfrac12\nu_j-c_{1/2}$. Since $T(t)=T(t_2)^{t/t_2}$ by the
+spectral theorem (both defined from $K_L$), the $\mu_j$ are
+$t$-independent and exhaust $\mathrm{spec}\,K_L$ (discreteness).
+
+\emph{Step 3: traces for all $t>0$.} By dominated convergence on
+$j$-sums ($e^{-t\mu^{(K)}_j}\le e^{tc_{1/2}}e^{-t\nu_j/2}$, summable to
+$e^{tc_{1/2}}Z_0(t/2)$),
+\[
+ \Trace\,T_K(t)=\sum_je^{-t\mu^{(K)}_j}
+ \ \longrightarrow\ \sum_je^{-t\mu_j}=\Trace\,T(t)\ <\ \infty .
+\]
+\emph{Step 4: $\Jone$-convergence.} With $s:=t/2$,
+\[
+ \|T_K(s)-T(s)\|_{\Jtwo}^2=\Trace T_K(2s)-2\,\Trace(T_K(s)T(s))
+ +\Trace T(2s).
+\]
+The first term converges to $\Trace T(2s)$ (Step 3).
+For the mixed term, expand in the eigenbasis $(\phi_n)$ of $T(s)$ with
+eigenvalues $\sigma_n$ ($\sum\sigma_n<\infty$):
+\[
+ \Trace(T_K(s)T(s))=\sum_n\sigma_n\ip{\phi_n}{T_K(s)\phi_n}
+ \ \longrightarrow\
+ \sum_n\sigma_n\ip{\phi_n}{T(s)\phi_n}=\Trace T(2s)
+\]
+by dominated
+convergence ($|\ip{\phi_n}{T_K(s)\phi_n}|\le e^{sc_\lambda}$, strong
+convergence pointwise in $n$). Hence
+$\|T_K(s)-T(s)\|_{\Jtwo}\to0$, and by H\"older
+$\|T_K(t)-T(t)\|_{\Jone}\le(\|T_K(s)\|_{\Jtwo}+\|T(s)\|_{\Jtwo})
+\|T_K(s)-T(s)\|_{\Jtwo}\to0$ (the $\Jtwo$ norms converge, hence are
+bounded). Finally $|\Trace((T_K(t)-T(t))B)|\le
+\|T_K(t)-T(t)\|_{\Jone}\|B\|\to0$.
+\end{proof}
+
+\section{The periodic Feynman--Kac clause (A1-iv) and the closure of
+A2(b)}\label{sec:A1iv}
+
+\subsection{Euclidean-side limits}
+
+\begin{lemma}[shift data and shifted interactions, $K\to\infty$]
+\label{lem:shiftlimits}
+Fix a coarse symbol $\xi=\eps_Mq+ip$ (coarse scale $M$, refined by the
+$D4$ map as in V1/V2) and $t\in[t_0,T]$. Let $H_p$ be the continuum
+interpolant field (V2, Definition 6.2 with multiplier $P_\infty$,
+dispersion $\gamma$), $H^{(K)}_p$ its mode truncation ($|k|\le K$),
+$S^{(K)},S_\infty$ the corresponding actions, and $J^{(K)}_q,J_q$ the
+sharp-time position sources. Then, with $\kappa_0:=\eta/2>0$:
+\emph{(i)} $0\le S_\infty(H_p)-S^{(K)}(H_p)\le C_\xi\,(K/m)^{-\eta}$;
+\emph{(ii)} $\|\Phi(J_q)-\Phi(J^{(K)}_q)\|_{L^2(\mu^{\rm per})}\le
+C_\xi(K/m)^{-\kappa_0}$, so
+$\|e^{i\Phi(J_q)}-e^{i\Phi(J^{(K)}_q)}\|_{L^2}\to0$;
+\emph{(iii)}
+\[
+ \bigl\|\U^{(K)}_t(\eta+H^{(K)}_p)-\U_t(\eta+H_p)\bigr\|
+ _{L^2(\mu^{\rm per})}\le C_\xi\,\bigl(1+\log(1+K/m)\bigr)^2(K/m)^{-1/2};
+\]
+\emph{(iv)} $\sup_K\|e^{-\U^{(K)}_t(\eta+H^{(K)}_p)}\|_{L^p}<\infty$ for
+every $p<\infty$, uniformly over coarse data with $\Sigma_M(p)\le R$,
+$\bar P_M\le R'$; and, by (iii) together with the final clause of
+Lemma~\ref{lem:nelson}, the untruncated member obeys the same bound,
+$\|e^{-\U_t(\eta+H_p)}\|_{L^p}<\infty$.
+\end{lemma}
+
+\begin{proof}
+(i) The action tail is
+$\tfrac14\sum_{|k|>K}\gamma(k)\cth(\tfrac{t\gamma}2)|\hat h(k)|^2$ with
+the $D4$ envelope $|\hat h(k)|^2\le C(1+\eps_M|k|)^{-2-\eta}$ (V2, \S6);
+since $\cth\le\cth(t_0m/2)$ and $\gamma(k)\le m+|k|$, the tail is
+bounded by $C\sum_{|k|>K}|k|^{-1-\eta}\le C'(K/m)^{-\eta}$.
+(ii) $\Phi(J_q-J^{(K)}_q)$ is Gaussian with variance given by the
+thermal sharp-time covariance paired against the source tail,
+\[
+ \mathrm{Var}\bigl[\Phi(J_q-J^{(K)}_q)\bigr]
+ \le\cth\bigl(\tfrac{t_0m}2\bigr)\sum_{|k|>K}\frac{|\hat
+ q_{\rm tail}(k)|^2}{2\gamma(k)}\ \longrightarrow\ 0
+\]
+with the $q$-envelope, at rate $(K/m)^{-\eta}$; then
+$|e^{ia}-e^{ib}|\le|a-b|$.
+(iii) Expand both shifted interactions by the Wick binomial (V2,
+Prop.\ 6.5's display). The chaos-$j$ terms differ through (a) the plain
+kernel tails --- the $j=4,2$ parts of
+Proposition~\ref{prop:nelson3}(iii)'s rate --- and (b) the deterministic
+coefficients $(H^{(K)})^{4-j}$ vs.\ $(H_p)^{4-j}$. For (b): both fields
+share the dispersion $\gamma$ and multiplier family, so
+$\sup_{s,x}|H^{(K)}_p|\le\Sigma_M(p)$ (V2, Lemma 6.3(i), whose count is
+cutoff-monotone) and the mode-$\ell^2$ difference of the coefficient
+fields is a pure tail,
+$\sup_s\tfrac1{2L}\sum_{|k|>K}|a^{(\infty)}_k(s)|^2\le
+C\bar P_M^2(\eps_MK)^{-1-\eta}$ (envelope tail as in V2, Lemma
+6.3(iii), with no filter-tail or dispersion terms); the self-convolution
+telescopes and the normalized power-symbol bounds $B_j$ (V2, Lemma 6.4(i),
+which is cutoff-uniform) then bound the $L^2$ differences by
+$C\Sigma_M(p)^{3}\,\bar P_M(K/m)^{-(1+\eta)/2}$ plus the part (a) rate;
+the slower rate $(K/m)^{-1/2}\log^2$ dominates.
+(iv) The pointwise lower bound of V2, Lemma 7.1 is invariant under
+deterministic shifts (a deterministic shift leaves the Wick constant unchanged)
+and depends on $K$ only through the truncated \emph{vacuum} constant $c_K$ of
+\eqref{eq:cK} --- the constant that Wick-orders $\U^{(K)}_t$, not the thermal
+variance --- with $c_K\le C_c\ell_K$, which is (N1); (iii) and the triangle inequality supply
+(N2) after absorbing one logarithm ($\ell_K\le C_\varsigma(K/m)^\varsigma$),
+i.e.\ with $\kappa=\tfrac12-\varsigma$; and (N0) holds as in
+Proposition~\ref{prop:nelson3}, $\mathcal K$ being again a full tail of
+$\Gamma_\infty$. Lemma~\ref{lem:nelson} then applies.
+\end{proof}
+
+\subsection{The clause}
+
+\begin{theorem}[A1-iv]\label{thm:A1iv}
+For every $t\ge t_0$, with $t_0$ subject to the standing convention $(\star)$ of
+\S\ref{sec:setup} (all statements uniform on $t\in[t_0,T]$):
+\emph{(a)} (partition identity)
+\[
+ Z_\infty(t):=\Trace\,e^{-tK_L}
+ =Z_0(t)\ \E_{\mu^{\rm per}_{t,L}}\bigl[e^{-\U_t}\bigr]\ \in(0,\infty);
+\]
+\emph{(b)} (cylinder compatibility) $\Trace|e^{-tK^{(K)}}-e^{-tK_L}|\to0$
+and $\Trace(e^{-tK^{(K)}}B)\to\Trace(e^{-tK_L}B)$ for every bounded $B$;
+\emph{(c)} (Weyl insertions, mean-shift form) for every coarse symbol
+$\xi=\eps_Mq+ip$ and its $D4$ refinement $R_M^\infty\xi$,
+\begin{equation}
+ \frac{\Trace\bigl(e^{-tK_L}\,W_{\rm ct}(R_M^\infty\xi)\bigr)}
+      {\Trace\,e^{-tK_L}}
+ \ =\
+ e^{-S_\infty(H_p)}\,
+ \frac{\E_{\mu^{\rm per}_{t,L}}
+ \bigl[e^{i\Phi(J_q)}\,e^{-\U_t(\eta+H_p)}\bigr]}
+      {\E_{\mu^{\rm per}_{t,L}}\bigl[e^{-\U_t}\bigr]}\ .
+ \label{eq:A2bdisplay}
+\end{equation}
+Together with $e^{-\U_t},e^{-\U_t(\eta+H_p)}\in L^p(\mu^{\rm per})$ for
+all $p<\infty$ (Proposition~\ref{prop:nelson3}(iii),
+Lemma~\ref{lem:shiftlimits}(iv)), this is the full (A1-iv) package of V1,
+Remark 8.2.
+\end{theorem}
+
+\begin{proof}
+\emph{(b)} is Theorem~\ref{thm:A1ii}.
+
+\emph{(a).} By Theorem~\ref{thm:finitemode}(v),
+$\Trace T_K(t)=Z_0(t)\E[e^{-\U^{(K)}_t}]$. The left side converges by
+Theorem~\ref{thm:A1ii}; the right side: by
+Proposition~\ref{prop:nelson3}(iii) and
+$|e^{-\alpha}-e^{-\beta}|\le|\alpha-\beta|(e^{-\alpha}+e^{-\beta})$ with
+H\"older, $\E[e^{-\U^{(K)}_t}]\to\E[e^{-\U_t}]$. Positivity: $e^{-\U_t}>0$
+a.s.\ and $\E[e^{-\U_t}]\ge e^{-\E[\U_t]}>0$ by Jensen, the ensemble-Wick
+chaoses being centered, so that
+$\E[\U_t]=2Lt\,\lambda\bigl(3d_\infty(t)^2+a\,d_\infty(t)+b\bigr)$, finite
+because $0\le d_\infty(t)\le\bar d<\infty$ (V2, Lemma 2.1).
+
+\emph{(c).} Step 1 (finite-mode symbols): if $R_M^\infty\xi$ is replaced
+by its mode truncation $\xi_K$ (supported in $|k|\le K$), then
+Theorem~\ref{thm:finitemode}(vi) gives \eqref{eq:A2bdisplay} for the
+pair $(T_K,\xi_K)$. Step 2 ($K\to\infty$ on the Euclidean side): by
+Lemma~\ref{lem:shiftlimits}, the numerator converges,
+\[
+ \E\bigl[e^{i\Phi(J^{(K)}_q)}e^{-\U^{(K)}_t(\eta+H^{(K)}_p)}\bigr]
+ \longrightarrow
+ \E\bigl[e^{i\Phi(J_q)}e^{-\U_t(\eta+H_p)}\bigr]
+\]
+(split the difference into the phase part, bounded by
+$\|\Phi(J_q-J^{(K)}_q)\|_{L^2}\sup_K\|e^{-\U^{(K)}(\cdot)}\|_{L^2}$, and
+the interaction part, treated as in (a) with
+Lemma~\ref{lem:shiftlimits}(iii)--(iv)); the prefactor converges by
+(i); the denominator as in (a). Step 3 ($K\to\infty$ on the operator
+side): $\Trace(T_K(t)W_{\rm ct}(\xi_K))-\Trace(T(t)W_{\rm ct}
+(R_M^\infty\xi))$ splits into
+$\Trace((T_K(t)-T(t))W_{\rm ct}(\xi_K))$, which vanishes by (b) and
+$\|W\|=1$, and $\Trace(T(t)(W_{\rm ct}(\xi_K)-W_{\rm ct}
+(R_M^\infty\xi)))$. For the latter: $\xi_K\to R_M^\infty\xi$ in the
+one-particle norm (envelope tails), and Weyl operators are strongly
+continuous along norm-convergent symbols: on the total set of Weyl
+vectors $W(\zeta)\Omega_0$,
+$\|(W(\eta_n)-W(\eta))W(\zeta)\Omega_0\|^2
+=2-2\,\mathrm{Re}\bigl[e^{i\theta_n}\ip{W(\zeta)\Omega_0}
+{W(\eta_n-\eta+\zeta)\Omega_0}\bigr]\to0$ by the explicit Fock formula
+$\ip{W(\alpha)\Omega_0}{W(\beta)\Omega_0}
+=e^{i\sigma(\alpha,\beta)/2}e^{-\|\alpha-\beta\|^2/4}$ and continuity of
+the symplectic form; unitarity and density upgrade this to strong
+convergence. Then, expanding $T(t)$ in its eigenbasis,
+$|\Trace(T(t)(W(\xi_K)-W(R_M^\infty\xi)))|
+\le\sum_n e^{-t\mu_n}\|(W(\xi_K)-W(R_M^\infty\xi))\phi_n\|\to0$
+by dominated convergence. Combining the three steps proves
+\eqref{eq:A2bdisplay}.
+\end{proof}
+
+\begin{corollary}[A2(b) closed]\label{cor:A2b}
+Statement A2(b) of the scoping note, in the exact final form of V1,
+Definition 8.1, holds for every $t\ge t_0$ with $t_0$ subject to the standing
+convention $(\star)$ of \S\ref{sec:setup}. (V1's Definition 8.1 is quantified
+``for $t>0$''; that range is narrowed here to $t\ge t_0$, since the only support is
+Theorem~\ref{thm:A1iv}(c), whose proof runs through Lemma~\ref{lem:shiftlimits} and
+Proposition~\ref{prop:nelson3}(iii), both stated on $[t_0,T]$. Nothing downstream is
+lost: the gate consumes A2(b) only at $t\ge t_*=\max(1,1/L)$, V4,
+Theorem 6.2.) The amendment clause (A1-iv) of V1, Remark 8.2 is
+discharged; no import from H{\o}egh-Krohn (1974) or
+Figari--H{\o}egh-Krohn--Nappi (1975) is consumed (they remain historical
+anchors).
+\end{corollary}
+
+\begin{proof}
+\eqref{eq:A2bdisplay} \emph{is} V1's display (Definition 8.1), with
+$S_\infty$, $H_p$, $J_q$, $\U$ as there; the $e^{-\U}\in L^1$ package
+required by V1's chain is Proposition~\ref{prop:nelson3}(iii) and
+Lemma~\ref{lem:shiftlimits}(iv).
+\end{proof}
+
+\section{Gap, ground state, and the state on the Weyl algebra
+(A1-iii)}\label{sec:gap}
+
+\begin{theorem}[A1-iii]\label{thm:A1iii}
+For every $t>0$, $e^{-tK_L}$ is positivity improving on $L^2(Q,\muv)$.
+Consequently the lowest eigenvalue $\mu_0$ of $K_L$ is simple, its
+normalized eigenvector can be chosen with $\Omega_L>0$ $\muv$-a.e., and
+\[
+ \gamma_L:=\mu_1-\mu_0\ >\ 0 .
+\]
+The state $\omega^{\rm ct}_{L,\lambda}:=\ip{\Omega_L}{\,\cdot\,
+\Omega_L}$ is well defined on the Weyl algebra $\mathfrak W(\T_L)$
+generated by $\{W_{\rm ct}(\zeta)\}$, $\zeta$ in the one-particle space
+$h_{\rm ct}=H^{-1/2}(\T_L)\oplus iH^{1/2}(\T_L)$ of V1, \S6 --- on which, and only
+on which, each $W_{\rm ct}(\zeta)$ is unitary; $R_M^\infty\xi\in h_{\rm ct}$ for every
+coarse $\xi$, by the $D4$ envelope (V1, \S6).
+\end{theorem}
+
+\begin{proof}
+\emph{Improving.} Let $f,g\in L^2$, $f,g\ge0$, both nonzero; by
+monotone approximation ($f\wedge n\uparrow f$, positivity preservation
+of $T(t)$ --- itself inherited from
+Theorem~\ref{thm:finitemode}(ii)'s strictly positive kernels through
+strong limits) it suffices to take $f,g$ bounded. By
+\eqref{eq:FKlimit},
+\[
+ \ip{f}{T(t)g}=\E\bigl[f(X_0)\,g(X_t)\,e^{-\mathcal W}\bigr],
+ \qquad \mathcal W=\int_0^tV_L(X_s)ds .
+\]
+The integrand is nonnegative; $e^{-\mathcal W}>0$ a.s.\ because
+$\E|\mathcal W|\le t\|V_L\|_{L^1(\muv)}<\infty$; and with
+$A:=\{f>0\}$, $B:=\{g>0\}$ (both of positive $\muv$-measure),
+\[
+ \PP\bigl[X_0\in A,\ X_t\in B\bigr]
+ =\ip{\mathbf 1_A}{\,\Gam(e^{-t\gamma})\,\mathbf 1_B}_{L^2(\muv)}
+ \ >\ 0
+\]
+by \eqref{eq:pairGamma} and Import~\ref{imp:gamma}(c)
+($\|e^{-t\gamma}\|=e^{-tm}<1$). On $\{X_0\in A,X_t\in B\}$ the integrand
+is strictly positive a.s., so $\ip f{T(t)g}>0$.
+
+\emph{Simplicity and positivity of the ground vector.} $T(t)$ is
+compact (Theorem~\ref{thm:A1ii}), self-adjoint, positive, positivity
+improving, and commutes with complex conjugation (real FK integrand).
+Put $r=\|T(t)\|>0$.  Compactness gives an $r$-eigenvector $u$; since
+\[
+ r\|u\|_2=\|T(t)u\|_2\le\|T(t)|u|\|_2\le r\||u|\|_2,
+\]
+all inequalities are equalities.  The spectral expansion of the nonnegative
+self-adjoint operator $T(t)$ then gives $T(t)|u|=r|u|$, and positivity
+improvement gives $|u|>0$ a.e.; take $u=|u|$.
+
+If the $r$-eigenspace were not one dimensional, commutation with conjugation
+would provide a nonzero real eigenvector $h\perp u$.  Both $h_+$ and $h_-$
+are nonzero, since $u>0$ and $\langle u,h\rangle=0$.  Positivity improvement
+gives $T(t)h_+>0$ and $T(t)h_->0$ a.e., so
+\[
+ r|h|=|T(t)h_+-T(t)h_-|<T(t)h_++T(t)h_-=T(t)|h|
+ \quad\text{a.e.}
+\]
+The difference is positive a.e.\ and integrable against $u>0$; hence
+\[
+ r\langle u,|h|\rangle
+ <\langle u,T(t)|h|\rangle
+ =\langle T(t)u,|h|\rangle
+ =r\langle u,|h|\rangle,
+\]
+a contradiction. Hence
+$e^{-t\mu_0}=\|T(t)\|$ is a simple eigenvalue with eigenvector
+$\Omega_L>0$ a.e., $t$-independent by spectral calculus.
+
+\emph{Gap.} The spectrum of $K_L$ is discrete
+(Theorem~\ref{thm:A1ii}); $\mu_0$ is simple; hence
+$\mu_1>\mu_0$.
+
+\emph{The state.} Each $W_{\rm ct}(\zeta)$ is unitary on
+$L^2(Q,\muv)\cong\mathcal F$; $\omega^{\rm ct}_{L,\lambda}$ is a state
+on the $C^*$-algebra they generate.
+\end{proof}
+
+\section{Acceptance, ledger, imports}\label{sec:ledger}
+
+\subsection*{Acceptance against the scoping statement}
+
+Statement A1's four clauses are Theorems~\ref{thm:A1i} (self-adjoint
+bounded-below realization; operator and form sum on the cylinder core),
+\ref{thm:A1ii} (trace class, discreteness, free comparison, trace-norm
+cylinder approximation), \ref{thm:A1iii} (simple ground state, gap,
+$\omega^{\rm ct}_{L,\lambda}$), and \ref{thm:A1iv} (periodic FK with
+cylinder compatibility and the $e^{-\U}\in L^p$ package); A2(b) is
+Corollary~\ref{cor:A2b}. The scoping deliverable ``import audit or
+proof'' is resolved as: \emph{proof}, on the sanctioned fallback route,
+with the import decision recorded in \S\ref{sec:imports} and the dossier
+images for the single printed cluster consumed.
+
+\begin{longtable}{P{5.9cm}P{2.2cm}P{5.7cm}}
+\toprule
+claim & status & ground \\
+\midrule
+\endhead
+Pointwise bound and coercivity of $V^{(K)}$; $b_K\le c_1\log^2$-growth &
+proved & Lemma~\ref{lem:pointwise} \\
+Chaos structure; $\|V^{(K)}-V_L\|_2\le C\log K/\sqrt K$; all $L^p$ &
+proved & Lemma~\ref{lem:VL2} \\
+Abstract uniform Nelson bound (dyadic-in-$K$ form) & proved &
+Lemma~\ref{lem:nelson} ($=$ V2 Thm.\ 7.2 pattern) \\
+Uniform $L^p$ bounds: vacuum, OU-interval, periodic (plain and shifted) &
+proved & Prop.~\ref{prop:nelson3}, Lemma~\ref{lem:shiftlimits}(iv) \\
+Uniform $\inf\mathrm{spec}\ge-c_\lambda$; $K^{(K)}\ge\tfrac12H_0-c_{1/2}$
+& proved & Corollary~\ref{cor:lowerbounds} \\
+Finite-mode package (Gaussian unitary, closed form, compact resolvent,
+Mehler--Trotter FK kernel, cyclic bridge density, OU matrix elements,
+periodic trace, mean shift) & proved &
+Theorem~\ref{thm:finitemode} (explicit derivation; normalization dictionary
+in Rem.~\ref{rem:finite-dictionary}) \\
+$K_L$: strong semigroup limit, $C_0$, self-adjoint, $\ge-c_\lambda$;
+operator/form sum on $\D$ & proved & Theorem~\ref{thm:A1i} \\
+Hypercontractive smoothing $\|T_K(s)\|_{2\to4}\le M_0e^{c(s-s_4)}$,
+$K$-uniform & proved & Lemma~\ref{lem:ladder} \\
+Norm Cauchy at $t_2$; eigenvalue convergence; trace class $\forall t$;
+$\Jone$-convergence; weighted traces & proved & Theorem~\ref{thm:A1ii} \\
+Partition identity $Z_\infty=Z_0\,\E[e^{-\U}]$ & proved &
+Theorem~\ref{thm:A1iv}(a) \\
+Weyl mean-shift identity for $e^{-tK_L}$, all $D4$-refined symbols &
+proved & Theorem~\ref{thm:A1iv}(c) \\
+A2(b) & closed & Corollary~\ref{cor:A2b} \\
+Positivity improving; simple ground state; $\gamma_L>0$;
+$\omega^{\rm ct}_{L,\lambda}$ & proved & Theorem~\ref{thm:A1iii} \\
+ESA of $(H_0+V_L)|_\D$ (Segal) & \emph{not consumed} & scope fence,
+Remark~\ref{rem:formsum} \\
+\bottomrule
+\end{longtable}
+
+\subsection*{External imports}
+
+Only Import~\ref{imp:gamma} (Simon book, Thms.\ I.12, I.16, I.17,
+Cor.\ I.15; the identical cluster as Part I's \texttt{A:hyper}; PDF in
+\texttt{refs/}; page images
+\texttt{simon-gamma-p\{48,\allowbreak53,\allowbreak55,\allowbreak
+56,\allowbreak57\}.png} in \texttt{part\_ii/dossier\_images/}, printed
+pages 26/31/33/34), the elementary Trotter instance for bounded
+perturbations
+(the same invocation as model-sheet (3.16)), and the program-internal
+items of Import~\ref{imp:internal}. The H{\o}egh-Krohn (1974) and
+Figari--H{\o}egh-Krohn--Nappi (1975) candidates were \emph{not}
+acquired and are \emph{not} consumed; the scoping's fallback clause is
+exercised instead.
+
+\medskip
+\noindent\emph{Phase V3 gate:} A1(i)--(iv) proved, A2(b) closed.
+Remaining phase: V4 --- A6 (fixed-$t$ convergence via Vitali, consuming
+V2's $L^2$ comparison and this document's trace identities), A7
+(partition functions and the derived eventual uniform lattice gap,
+consuming Theorem~\ref{thm:A1iv}(a) and $\gamma_L>0$), A8 (assembly
+through the Weyl criterion), and the adversarial pass over the
+assembled Part II chain.
+
+\end{document}

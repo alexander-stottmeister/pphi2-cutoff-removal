@@ -1,0 +1,602 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{freshaudit}
+\fancyhead[L]{Critical audit --- Parts I and II}
+\title{Fresh deep critical audit of Parts I and II\\[3pt]
+\large Proof-breaking issues, repairs, and source-scope verification}
+\author{Independent reconstruction pass}
+\date{16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+\textbf{Bottom line.}
+
+\textbf{Part I.}  The principal implication chain
+\[
+ \begin{aligned}
+ \mathrm{GJS\ CE1/CE2}&\Longrightarrow M_2\Longrightarrow
+ \text{uniform cutoff gap}\Longrightarrow\text{LPPL}\\
+ &\Longrightarrow\text{full local-norm net limit}
+ \Longrightarrow\text{spectral ground state}.
+ \end{aligned}
+\]
+is mathematically coherent.  I found one omitted localization decomposition in the
+CE2-to-gap step and one missing mollifier hypothesis in Appendix C.  Both have short,
+fully explicit repairs.  The remaining substantive caveat is source scope: GJS
+Theorem 1.1.8 is printed as uniform ``as $h\uparrow1$'', while Part I quantifies over
+its entire enlarged cutoff class.  GJS p.~629 says the named estimates are uniform in
+the space cutoff, which strongly supports the intended use, but the manuscript's
+Appendix C does not reproduce enough of the cluster expansion to constitute an
+independent proof of every strengthened quantifier.  The Main Theorem is therefore
+\Conditional{} on that exact uniformity reading unless its cutoff class is narrowed.
+
+\textbf{Part II.}  The current final theorem is \Fail{} as a proof in the files as
+written.  The load-bearing shifted-interaction comparison (V2, Proposition 6.5) uses
+an ambiguous cross power symbol, introduces an undefined $R_{\rm tail}$, and then
+drops it.  This breaks A6 and hence gate (II.11).  Separately, V2 Proposition 1.2
+contains a false combinatorial assertion: four edge momenta can conserve momentum.
+That second error does \emph{not} change the advertised rate; its missing contribution
+is explicitly bounded below.  The companion Lamport reconstruction supplies the
+missing Fourier partition and a complete repair of Proposition 6.5, so the theorem is
+salvageable, but the repair is new mathematics and must be adopted before Part II can
+be called proved.
+\end{resultbox}
+
+\tableofcontents
+
+\section{Scope, freshness, and standards}
+
+\subsection{Documents of record}
+
+The Part I document of record is \texttt{part\_i/main.tex}.  The current Part II proof
+chain is the model sheet, free fixed-coarse rate, quadratic obstruction, projective
+compactness, Weyl reduction, gate scoping note, and V1--V4.  The older M0--M6 files and
+earlier audits were used only to locate possible source pages; no earlier verdict was
+inherited.  Every cited page was rendered again from the local PDF.
+
+\subsection{Validity standard}
+
+A step passes only if its domains, quantifiers, normalizations, topology, and limiting
+order are specified and every displayed equality follows from stated premises.  A true
+result with a dropped term is still a proof defect.  A source citation passes only if
+the exact cited source page states the needed result at the needed scope.  Numerical
+checks are permitted only to falsify an identity, never to establish a theorem.
+
+\subsection{Reproducibility artifacts}
+
+The claim, dependency, source, citation, and finding ledgers are CSV files in
+\texttt{ledgers/}.  The source-evidence companion contains 88 freshly rendered pages.
+The Lamport reconstruction gives the repaired proof chain with hierarchical steps.
+
+\section{Severity-ranked findings}
+
+\subsection{F-II-02: the shifted-interaction comparison is not proved}
+
+\begin{finding}[Dropped Fourier sectors in V2 Proposition 6.5]
+\textbf{Severity: \Critical.}
+
+V2 lines 1405--1417 assert a decomposition of the lattice, mixed, and continuum
+quadratic forms, add a term called $R_{\rm tail}$, describe it only as ``regrouping''
+missing modes, and then omit it from the inequality at lines 1419--1422.  In addition,
+Lemma 6.4 defines the cross power symbol on the $j$-fold symmetric band but does not
+put the edge weights $\chi$ into the defining convolution.  Its proof treats the
+lattice symbol but does not separately prove the symmetric-edge cross case.
+
+The omission is load-bearing: Proposition 6.5 is used by V4 Lemma 5.2, Theorem A6,
+gate (II.11), and the final fixed-coarse theorem.
+\end{finding}
+
+\subsubsection{Why the displayed decomposition is not an identity}
+
+Put $R=\pi/\eps_N$ and let
+\[
+ B_N=\{-R,-R+\pi/L,\ldots,R-\pi/L\},\qquad
+ [k]_N\in B_N,\quad k-[k]_N\in2R\mathbb Z.
+\]
+Write $b_N(p)$ for the spatial Fourier coefficient of a lattice coefficient
+$g_N$, $p\in B_N$, and $b_\infty(k)$ for the continuum coefficient.  If
+$K_{\times,j}(\kappa)$ is the exact-output $j$-fold symbol of the translation-invariant
+surrogate mixed kernel, direct Fourier expansion gives
+\[
+ \langle g_N,C_\times^jg_\infty\rangle
+ =\frac1{2Lt}\sum_{\kappa}
+ K_{\times,j}(\kappa)\,
+ \overline{\widetilde b_N(-[k]_N,-k_0)}\,
+ \widetilde b_\infty(k,k_0).
+ \tag{2.1}
+\]
+The sum runs over the entire $j$-fold output band, not only $k\in B_N$.  Thus outputs
+$k=p+2Rn$ with $n\ne0$ pair the lattice coefficient $b_N(-p)$ with the continuum
+coefficient $b_\infty(p+2Rn)$.  They do not occur in the band-limited quadratic form
+used at V2 line 1408.  Those are precisely mixed alias-output terms; calling them
+$R_{\rm tail}$ does not make them vanish.
+
+There is a second, independent correction.  The true mixed covariance is
+$C_\times+R_N$ and is not translation invariant in $(x,y)$.  It may be bounded in
+physical space, as V2 lines 1362--1388 do, but it cannot simultaneously be represented
+by the unweighted cross symbol of Lemma 6.4.  One must choose one of the two descriptions
+and account for the difference exactly once.
+
+\subsubsection{A complete repair}
+
+The following partition closes the gap.  It is proved step by step in the Lamport
+reconstruction; the estimates are recorded here so the audit verdict is falsifiable.
+
+Define, for $p\in (2\pi/t)\mathbb Z\times B_N$,
+\begin{align*}
+ K_{N,j}^{\rm fold}(p)
+ &=(2Lt)^{-(j-1)}
+ \sum_{\substack{\kappa_i\in D_N\\
+ \sum k_{0,i}=p_0,\ [\sum k_i]_N=p}}
+ \prod_i\widehat c_N(\kappa_i),\\
+ K_{\times,j}(\kappa)
+ &=(2Lt)^{-(j-1)}
+ \sum_{\substack{\kappa_i\in D_N\\\sum\kappa_i=\kappa}}
+ \prod_i\widehat c_\times(\kappa_i),\\
+ K_{\infty,j}(\kappa)
+ &=(2Lt)^{-(j-1)}
+ \sum_{\sum\kappa_i=\kappa}\prod_i\widehat c_\infty(\kappa_i).
+\end{align*}
+All sums are nonnegative.  The envelope-convolution lemma implies, for
+$j=1,2,3$,
+\begin{align}
+ \sup_p|K_{N,j}^{\rm fold}(p)-K_{\infty,j}(p)|
+ &\le C\eps_N^2\log_N^2,\tag{2.2}\\
+ \sup_{p\in B_N}|K_{\times,j}(p)-K_{\infty,j}(p)|
+ &\le C\eps_N^2\log_N^2,\tag{2.3}\\
+ \sup_{|k|\ge R}K_{\times,j}(k_0,k)
+ &\le C\eps_N^2\log_N^{j-1}.\tag{2.4}
+\end{align}
+For (2.2), partition the folded lattice configurations into exact output and the
+finitely many shifts $2Rn$.  Telescope the exact-output products one factor at a time,
+use
+\[
+ |\widehat c_N-\widehat c_\infty|(u)
+ \le C\eps_N^2\frac{u_{\rm sp}^4}{(m^2+|u|^2)^2},
+\]
+and sum the remaining $j-1$ envelope factors.  Every nonzero shift has one convolution
+argument at distance at least $R$ and hence contributes (2.4).  Continuum configurations
+with an input outside $B_N$ are bounded by fixing that input and applying the same tail
+convolution.  This proves (2.2).  The proof of (2.3) is identical without folded output.
+Equation (2.4) is the convolution-decay estimate at distance $R$.
+
+Extend $b_N$ by zero outside the fundamental band and put
+$\delta b=b_N-b_\infty$ on $B_N$, $\delta b=-b_\infty$ outside.  Splitting (2.1) into
+$n=0$ and $n\ne0$ gives the exact identity
+\begin{align*}
+ Q_{N,j}-2Q_{\times,j}+Q_{\infty,j}
+ &=\langle\delta b,K_{\infty,j}\delta b\rangle
+ +\langle b_N,(K_{N,j}^{\rm fold}-K_{\infty,j})b_N\rangle\\
+ &\quad-2\langle b_N,(K_{\times,j}-K_{\infty,j})b_{\infty,B}\rangle
+ -2A_{\times,j},\tag{2.5}
+\end{align*}
+where
+\[
+ A_{\times,j}=\frac1{2Lt}
+ \sum_{\substack{p_0\in(2\pi/t)\mathbb Z,\ p\in B_N,\ n\ne0}}
+ K_{\times,j}(p_0,p+2Rn)\,
+ \overline{b_N(-p,-p_0)}\,b_\infty(p+2Rn,p_0).
+\]
+Only finitely many $n$ occur because $K_{\times,j}$ is supported in the $j$-fold band.
+Cauchy--Schwarz and (2.4) give
+\[
+ |A_{\times,j}|\le C\eps_N^2\log_N^2
+ \|b_N\|_2\|b_\infty\|_2.\tag{2.6}
+\]
+The physical-space edge remainder satisfies
+\[
+ |Q_{\rm true\ cross}-Q_{\times,j}|
+ \le C(2Lt)^2\Sigma_M(p)^{2(4-j)}\eps_N\log_N^{j-1}.
+ \tag{2.7}
+\]
+Because $\eps_N=\eps_M2^{-r}$ and
+$\theta_H=(1+\eta)/2<1$,
+\[
+ \eps_N\log_N^2\le C(\eps_M,\eta)2^{-r\theta_H}.
+ \tag{2.8}
+\]
+Finally, the power coefficients obey
+\[
+ \|b_N^{(h_N^{4-j})}-b_\infty^{(h_\infty^{4-j})}\|_2^2
+ \le C\,2^{-r\theta_H}.\tag{2.9}
+\]
+To prove (2.9), telescope the $(4-j)$-fold convolution; apply
+$\ell^2*\ell^1\to\ell^2$ Young inequality to the ordinary differences; for lattice
+aliases, $|k_1+\cdots+k_{4-j}|\ge R$ forces one
+$|k_i|\ge R/(4-j)$, so put that factor in the $D4$ $\ell^2$ tail and the remaining
+factors in $\ell^1$.  The same argument treats missing continuum modes.
+
+Equations (2.2)--(2.9), inserted into the Wick--Isserlis identity, yield
+\[
+ \|\Delta\mathcal U_N-\Delta\mathcal U\|_2
+ \le C\{2^{-r(1+\eta)/4}+\eps_N\log_N\},
+\]
+which is exactly the claimed rate.  Thus the proposition is repairable, but the repair
+is absent from V2 and cannot be inferred from its undefined $R_{\rm tail}$.
+
+\subsection{F-II-01: the ``three or more edge momenta are impossible'' claim is false}
+
+\begin{finding}[Omitted four-edge sector]
+\textbf{Severity: \Major.}
+
+V2 Proposition 1.2(iii)(b) says that a fourth-moment cross configuration with at
+least three edge momenta is impossible.  Let $R=\pi/\eps_N$.  The symmetric band contains
+both $+R$ and $-R$, and
+\[
+ (+R)+(+R)+(-R)+(-R)=0.
+\]
+Hence six ordered four-edge sign configurations exist.  The exact cross-moment formula
+at V2 lines 577--579 is correct; the subsequent classification is not exhaustive.
+\end{finding}
+
+Put $f(k_0)=\widehat c_\times(k_0,R)$; evenness makes the sign irrelevant.  Each edge
+has weight $2^{-1/2}$, so the omitted positive contribution to
+$\mathbb E[X_4Y_4]$ is
+\begin{equation}
+ \Delta_{4e}=4!(2Lt)^{-2}\frac32
+ \sum_{k_{0,1}+\cdots+k_{0,4}=0}\prod_{i=1}^4f(k_{0,i}).
+ \tag{2.10}
+\end{equation}
+The factor $3/2$ is
+$\binom42(2^{-1/2})^4=6/4$.
+
+Let $A=\sum f$ and $B=\sum f^2$.  Since
+$f(k_0)\le(k_0^2+\gamma_e^2)^{-1}$,
+$\gamma_e\ge2\eps_N^{-1}$, and $t\gamma_e/2\ge2t_0$,
+\begin{align*}
+ A&\le\frac{t}{2\gamma_e}\coth(t\gamma_e/2)
+ \le\frac{t\eps_N}{4}\coth(2t_0),\\
+ B&\le\gamma_e^{-2}A
+ \le\frac{t\eps_N^3}{16}\coth(2t_0).
+\end{align*}
+Furthermore
+\[
+ \sum_{\sum k_{0,i}=0}\prod_i f(k_{0,i})
+ =\|f*f\|_2^2
+ \le\|f*f\|_\infty\|f*f\|_1
+ \le B A^2.
+\]
+Substitution into (2.10) gives the explicit bound
+\begin{equation}
+ 0\le\Delta_{4e}\le
+ \frac{9t}{256L^2}\coth(2t_0)^3\eps_N^5.
+ \tag{2.11}
+\end{equation}
+This is smaller than the $O(t\eps_N^3\log_N^2)$ correction already allowed.  Because it
+increases the cross moment, dropping it also decreases the true squared difference
+relative to the approximate expression.  Thus (2.11) repairs the equality and preserves
+the rate; it does not by itself destroy A4(a).
+
+\subsection{F-I-02: CE2 is applied to a nonlocalized polynomial}
+
+\begin{finding}[Missing source-required cell decomposition]
+\textbf{Severity: \Major in the written proof; short repair.}
+
+Part I Lemma \texttt{ce2strip} applies GJS Theorem 1.1.7 directly to $Q$.  The source
+theorem is stated for two localized monomials.  GJS p.~594 explicitly says that a
+nonlocalized/general polynomial is written as a sum of localized monomials and defines
+its norm as the sum of their norms.  Part I established this norm but omitted the
+decomposition at the point of use.
+\end{finding}
+
+Write the finite source-prescribed decomposition
+$Q=\sum_{a\in A}Q_a$.  Translation to either time row does not change the component
+norms.  Every localization square of $Q_a(-t/2)$ is separated from every square of
+$Q_b(t/2)$ by width at least $t-2$.  Therefore CE2 gives
+\begin{align*}
+ &\left|\operatorname{Cov}_{dq_h}
+ \bigl(Q(-t/2),Q(t/2)\bigr)\right|\\
+ &\quad\le\sum_{a,b}\left|\operatorname{Cov}_{dq_h}
+ \bigl(Q_a(-t/2),Q_b(t/2)\bigr)\right|\\
+ &\quad\le C_7e^{-m_1(t-2)}
+ \sum_{a,b}\|Q_a\|_{\rm GJS}\|Q_b\|_{\rm GJS}\\
+ &\quad=C_7e^{2m_1}e^{-m_1t}
+ \left(\sum_a\|Q_a\|_{\rm GJS}\right)^2
+ =C_7e^{2m_1}e^{-m_1t}\|Q\|_{\rm GJS}^2.
+\end{align*}
+This is exactly the displayed Lemma 7.4 estimate.  After insertion, semigroup decay and
+the uniform-gap theorem are restored without changing a constant.
+
+\subsection{F-II-03: V3's periodic N2 rate is asserted, not derived}
+
+\begin{finding}[Unwritten two-dimensional tail estimate]
+\textbf{Severity: \Major in a no-compression proof; repairable.}
+
+V3 Proposition 2.6(iii) states that the periodic spatial truncations satisfy the N2 rate
+by ``the same envelope tail counts,'' without writing the $k_0$ sum or the constrained
+four-fold convolution.  V3 Lemma 6.1 then consumes that rate in the continuum
+marked-slice limit.
+\end{finding}
+
+For the quartic chaos, Wick--Isserlis and a union bound over the first out-of-band input
+give
+\begin{align*}
+ \|Y_4^{(K')}-Y_4^{(K)}\|_2^2
+ &\le C(2Lt)^{-2}\sum_{|k|>K,k_0}
+ \widehat c(k_0,k)F_3(-k_0,-k)\\
+ &\le C\sum_{|k|>K,k_0}
+ \frac{(1+\log(2+|k_0|+|k|))^2}
+ {(m^2+k_0^2+k^2)^2}.
+\end{align*}
+For $t\in[t_0,T]$, the one-dimensional grid comparison gives
+\[
+ \sum_{k_0\in(2\pi/t)\mathbb Z}
+ \frac{(1+\log(2+|k_0|+|k|))^2}{(m^2+k_0^2+k^2)^2}
+ \le Ct\frac{(1+\log(2+|k|))^2}{(m^2+k^2)^{3/2}}.
+\]
+The spatial tail is bounded by
+\[
+ \sum_{|k|>K}\frac{(1+\log(2+|k|))^2}{(m^2+k^2)^{3/2}}
+ \le CL\frac{(1+\log(1+K/m))^2}{K^2}.
+\]
+Thus the quartic norm is $O(\sqrt{tL}\,K^{-1}\log K)$, stronger than V3's
+$O(K^{-1/2}\log^2K)$.  The quadratic chaos uses
+$\sum_{|k|>K,k_0}\widehat c(k_0,k)^2$ and has the same or better rate.  The difference
+between the truncated thermal-to-vacuum Wick constants is exponentially small because
+\[
+ 0\le\frac{coth(t\gamma/2)-1}{2\gamma}
+ =\frac{1}{\gamma(e^{t\gamma}-1)}\le C(t_0,m)e^{-t_0\gamma}/\gamma.
+\]
+The claimed N2 estimate follows.  This derivation is included in the reconstruction.
+
+\subsection{F-I-01: GJS cutoff uniformity is stronger than the theorem's literal wording}
+
+\begin{finding}[Source-quantifier ambiguity]
+\textbf{Severity: \Major if full-class uniformity is not accepted; otherwise citation
+qualification.}
+
+GJS Theorem 1.1.7 is explicitly independent of $h$.  Theorem 1.1.8 is printed as a
+bound holding uniformly ``as $h\uparrow1$.''  Part I promotes it to every
+$h\in\mathcal C_E$, including arbitrary compact slabs and affine cutoff paths.  GJS
+p.~629 states that the estimates of Theorems 1.1.8, 1.1.11, 3.1 and 4.1 are uniform in
+the space cutoff $h$.  This is strong positive support, but it is not a verbatim
+restatement of the enlarged quantifier used in Part I.
+\end{finding}
+
+Appendix C's ``structural uniformity'' proposition lists the locations where $h$ enters
+the cluster expansion, but it does not reproduce the polymer estimates, convergence
+summations, or constants.  It is therefore a source audit, not a standalone proof of a
+strengthened cluster-expansion theorem.  There are two rigorous ways to close the issue:
+
+\begin{enumerate}
+\item state as an explicit imported assumption that GJS p.~629's ``uniform in the space
+cutoff $h$'' covers the entire source cutoff class used here; or
+\item narrow the manuscript cutoff family to a directed family covered literally by the
+printed limiting statement and prove that every slab/path application belongs to a
+uniform tail of that family.
+\end{enumerate}
+
+The present manuscript does neither with complete formal precision.  This is why the
+Part I verdict is conditional rather than an unconditional fail: the source evidence is
+substantial and the internal argument needs only the bound, but the exact import scope
+must be made explicit.
+
+\subsection{F-I-03: the ultraviolet mollifier lacks used hypotheses}
+
+\begin{finding}[Approximate identity underspecified]
+\textbf{Severity: \textbf{MODERATE}.}
+
+Part I Appendix C fixes a ``smooth approximate identity'' $\delta_\kappa$ and later
+treats $G^{(1)}_\kappa$ and $G_\kappa$ as averages of $G$ over balls of radius at most
+$2/\kappa$.  This requires $\delta\ge0$, $\int\delta=1$, compact support, the scaling
+$\delta_\kappa(x)=\kappa^2\delta(\kappa x)$, and for the symmetric Wick-covariance
+identities it is convenient to require $\delta(x)=\delta(-x)$.  None is stated.
+\end{finding}
+
+Choose once and for all
+$\delta\in C_c^\infty(B(0,1))$, $\delta\ge0$, $\delta(x)=\delta(-x)$,
+$\int\delta=1$, and define $\delta_\kappa(x)=\kappa^2\delta(\kappa x)$.  Then the
+``average over balls'' bounds and all covariance identities used in the proof follow.
+This repairs the lemma.  It does not independently repair the broader cluster-expansion
+uniformity issue F-I-01.
+
+\subsection{F-II-04: a constant has unstated anisotropic-grid dependence}
+
+V2 Lemma 3.1 describes certain convolution constants as depending only on $m$.  The
+proof absorbs isolated terms by $tL\ge1$ and uses a lower bound $t\ge t_0$; hence the
+constant also depends on the grid control, equivalently on $t_0$ (and on fixed $L$ if
+the condition is not normalized).  Downstream statements already allow that dependence,
+so this is not proof-breaking.  Correct the displayed dependency.
+
+\subsection{F-II-05: finite-mode transplant is too compressed for the stated standard}
+
+V3 Theorem 3.1 transfers the model-sheet and V1 finite-dimensional kernel results into
+the continuum-mode truncations.  The spaces are finite-dimensional, the covariance
+matrices are positive, and the Mehler/Trotter argument is valid; no contradictory
+normalization was found.  Nevertheless, the theorem repeatedly says that earlier steps
+are ``transplanted'' instead of writing the unitary coordinate identification, reference
+Gaussian density, and trace-kernel normalization.  The Lamport reconstruction supplies
+those steps.  This is a rigor/presentation defect, not an identified false result.
+
+\section{Part I proof-chain audit}
+
+\subsection{Imports and dimensionless reduction}
+
+The cutoff Hamiltonian existence/uniqueness, FKN formula, stability, hypercontractivity,
+domain smoothing, finite propagation, and covariance claims have exact positive source
+pages in the evidence dossier.  Three former pinpoint risks are resolved:
+
+\begin{enumerate}
+\item Simon III.6 and V.14--V.15 are the FKN results; III.12 is not.
+\item Simon I.17 and III.17 are the hypercontractive results; V.10 is not the direct
+source of the displayed abstract inequality.
+\item Glimm--Jaffe Expositions Theorem 7.4 is the model-specific domain-smoothing theorem;
+Theorem 7.3 alone has an extra bounded-below premise.
+\end{enumerate}
+
+The dilation in Part I tracks the mass, coupling, spatial cutoff, Wick covariance, and
+observable norm consistently.  No reversed small-coupling inequality was found.
+
+\subsection{Slab limit and uniform moment}
+
+The bounded FKN formula is extended first to signed bounded functions, then to unbounded
+polynomials by truncation and uniform square moments.  Simplicity alone identifies the
+large-slab rank-one limit.  The $M_2$ proof uses CE1 on $V(h)^2$, which is permitted as a
+product of individually Wick-ordered monomials; no Wick recombination is needed.  The
+single overall $K_1$ in the GJS norm is used correctly.
+
+\subsection{Uniform gap}
+
+After inserting F-I-02's cell decomposition, the logic is sound.  The Euclidean two-time
+bound gives
+$\langle\psi_Q,e^{-tH(g)}\psi_Q\rangle\le C_Qe^{-m_1t}$ on a dense family.
+If $P_{(0,m_1)}\ne0$, choose a vector in its range and approximate it by that dense
+family; the spectral theorem gives a lower exponential rate incompatible with the
+upper rate.  Simplicity identifies the zero-energy projection.  The proof does not infer
+a gap from clustering for only one observable; it first proves density, which is the
+necessary step.
+
+\subsection{Path regularity, filter, and LPPL}
+
+The affine path stays within the admissible cutoff class.  The semigroup derivative is
+proved in a weak pairing and upgraded using the uniform $M_2$ control.  The spectral
+projection derivative is licensed by the common uniform gap.  The exact filter has the
+correct Fourier convention and equals $H^{-1}(1-P)$ on the gapped subspace.  Finite
+propagation localizes the truncated filter, while the time tail is controlled by the
+filter decay.  The unbounded interaction is used only through affiliation and the
+uniform second moment.  Shell counting in one space dimension produces a summable,
+super-polynomial LPPL rate.  No hidden assumption of bounded interaction was found.
+
+\subsection{Full net, normality, and spectral passage}
+
+The plateau-containment relation is technically a preorder rather than an antisymmetric
+partial order, but directed-net convergence is unaffected.  Local dual spaces are
+complete, restriction limits are compatible, and positivity extends to the quasi-local
+completion.  Normality is proved from norm convergence to normal cutoff vector states;
+the monotone-net argument is valid.  The ground-state spectral condition is passed using
+exact equality with a nonnegative cutoff spectral measure on every fixed compact time
+window, followed by an $L^1$ tail limit.  This avoids an unjustified convergence of
+Hamiltonians.
+
+\subsection{Dichotomy scope}
+
+The two-phase exclusion theorem is explicitly conditional on hypothesis B4.  The cited
+GJS phase papers prove phase coexistence and pure-phase gaps in their stated regimes but
+do not supply the classification of every parity-invariant Hamiltonian ground state
+required by B4.  Because the manuscript now labels B4 as a hypothesis, this is not a
+false theorem; it must not be advertised as an unconditional uniqueness result.
+
+\section{Part II proof-chain audit}
+
+\subsection{Correct target and free obstruction}
+
+The quadratic obstruction correctly rejects a diagonal finest-scale local-state norm
+target.  MMST's construction is projective: convergence is evaluated after pullback to
+one fixed coarse algebra.  The localized high-frequency sequence exposes the difference
+between pointwise/fixed-coarse weak-star convergence and a supremum over a moving unit
+ball.  The projective compactness theorem and full-sequence Weyl criterion are standard
+compactness/density arguments and are correct.
+
+The exact D4 finite product, dispersion comparison, and fixed-coarse free rate were
+recomputed.  The support, normalization, and momentum/position covariance factors agree
+with MMST.  The cited source proves convergence but not the new rate; the rate is supplied
+internally and its summations are adequate.
+
+\subsection{V1: thermal representations}
+
+The finite-dimensional Schr\"odinger realization produces the correct Weyl phase.  The
+Mehler kernel normalization integrates to the harmonic trace.  Completing the square in
+the bridge variables yields the stated harmonic jump interpolant and action.  The V4
+erratum correctly specifies the periodic Gaussian reference measure, avoiding a circular
+use of the interacting measure.  Mode products converge under the D4 envelope, and all
+uses of the thermal rate occur for $t\ge t_*>0$.
+
+\subsection{V2: unshifted interaction and Wick dictionary}
+
+The same-noise coupling needs the special edge symmetrization because the half-open
+spatial band is not invariant under $k\mapsto-k$.  The marginal lattice covariance is
+correct.  The unshifted A4(a) comparison has valid dispersion, missing-mode, and lattice
+alias estimates once the four-edge term (2.10) is added.  The Wick recombination formula
+and the vacuum/thermal dictionary constants have the correct signs; no residual mass
+counterterm remains under the matched convention.
+
+The shifted comparison is the unique unresolved load-bearing point in the original file;
+see F-II-02.
+
+\subsection{V3: continuum Hamiltonian package}
+
+The finite-mode FKN semigroups are uniformly lower bounded by Nelson estimates.  Strong
+semigroup convergence defines a self-adjoint generator; the cylinder-core generator
+identity and lower form bound are compatible.  The hypercontractive ladder upgrades a
+single-time Hilbert--Schmidt factor to trace class and permits trace-norm finite-mode
+convergence.  Eigenvalue and partition-function convergence then follow from standard
+trace-ideal arguments.  The periodic FKN clause requires the quantitative tail repair in
+F-II-03.  Positivity improving follows from Simon I.16 because
+$\|e^{-t\gamma}\|=e^{-tm}<1$; simplicity and a positive first gap follow from compact
+resolvent/trace class.  No use at norm $1$ was found.
+
+\subsection{V4: assembly and quantifiers}
+
+Every invocation of V2's $tL\ge1$ estimates occurs with
+$t\ge\max(1,1/L)$.  The corrected Laplace-transfer lemma needs transform convergence
+only for $t\ge t_*$, and V4 uses exactly that range.  The interchange lemma requires a
+uniform spectral tail, supplied by the transferred gap and normalized partition bound.
+Thus the order
+\[
+ \text{fixed }t:\ N\to\infty,\qquad\text{then }t\to\infty
+\]
+is legitimate once A6 is proved.  Because A6 currently depends on the incomplete V2
+Proposition 6.5, the final theorem is not proved in the original chain.  With the repaired
+Proposition 6.5 and F-II-03 inserted, the remaining assembly closes.
+
+\section{External-source verdicts}
+
+\begin{longtable}{P{3.0cm}P{3.0cm}P{4.0cm}P{4.0cm}}
+\toprule
+Source/result & Exact evidence & Positive conclusion & Limitation\\
+\midrule\endhead
+GJ I--II & I02--I08 & cutoff core, ground state, covariance, locality & no full-net
+vacuum convergence\\
+GJ Expositions 7.4 & I24--I25 & model-specific semigroup domain smoothing & 7.3 alone
+has extra premise\\
+GJS 1.1.7 & I31 & CE2 and explicit $h$ independence & localized monomials; decompose
+general $Q$\\
+GJS 1.1.8/p.629 & I32--I33 & CE1 and space-cutoff uniformity mechanism & full-class
+quantifier should be stated as import\\
+GRS II.14/II.16 & I34--I35 & FKN and general marked-time FKN & none relevant\\
+Simon I.17/III.17 & I44--I45/I48--I49 & abstract and time-region hypercontractivity &
+V.10 is not the direct pinpoint\\
+Simon V.7/V.14--15 & I50/I54--I55 & stability and interacting FKN & none relevant\\
+MMST 4.1--4.5 & II07--II10 & observable embedding and free fixed-coarse limit & no
+interacting theorem or rate\\
+MMST Section 6.1 & II14 & identifies interacting extension as future work & cannot be
+used as theorem\\
+Battle--Federbush & II15--II17 & phase-cell wavelet mechanism & different variables;
+no A4/A5 estimates\\
+NRSS 4.1 & II19 & anharmonic LR under Fourier/$L^1$ assumptions & Wick quartic fails
+$V'\in L^1$\\
+\bottomrule
+\end{longtable}
+
+\section{Final disposition}
+
+\begin{longtable}{P{3.1cm}P{3.4cm}P{7.5cm}}
+\toprule
+Deliverable theorem & Status & Exact disposition\\
+\midrule\endhead
+Part I Main Theorem & \Conditional & Internal chain closes after the explicit CE2
+decomposition.  Accept GJS p.~629 as a full cutoff-class import or narrow the class.
+State the mollifier hypotheses in Appendix C.\\
+Part I canonical-vacuum corollary & \Conditional & Follows from the Main Theorem and
+the verified GJ III construction formulas.\\
+Part I two-phase exclusion & \Conditional & Correct only under explicit B4; cited
+phase papers do not discharge B4.\\
+Part II unshifted A4(a) & \Repair & Add the four-edge contribution (2.10)--(2.11).
+The rate survives.\\
+Part II shifted A4(c)/Proposition 6.5 & \Fail{} as written & Undefined/dropped mixed
+alias sectors break the proof.  Equations (2.1)--(2.9) provide a complete replacement.\\
+Part II A6 and gate (II.11) & \Fail{} as written & Depend on Proposition 6.5.  They
+become valid after the replacement and the explicit V3 periodic-tail derivation.\\
+Part II final fixed-coarse theorem & \Fail{} as written; salvageable & The free target,
+compactness, Weyl reduction, V1, and V3/V4 architecture are sound.  Adopt the two
+repairs before asserting the theorem.\\
+\bottomrule
+\end{longtable}
+
+No evidence was found that the cited literature already proves the new interacting
+fixed-coarse Part II comparison.  The value of the present audit is therefore not a
+source substitution: it isolates the exact internal Fourier estimate on which the new
+result stands or falls and supplies a checkable repair.
+
+\end{document}

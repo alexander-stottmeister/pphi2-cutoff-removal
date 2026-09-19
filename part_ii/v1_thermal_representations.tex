@@ -1,0 +1,1121 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.9cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs,longtable,array}
+\usepackage{bm}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+% ------------------------------------------------------------------
+% Phase V1 of the gate-(II.11) execution (scoping: gate_II11_scoping.tex).
+% Contents: Statements A2(a) (lattice trace representation with a marked
+% slice, incl. the exact mean-shift/jump representation) and A3 (free
+% thermal Weyl functionals, lattice and continuum, and the thermal
+% fixed-coarse rate), all with complete proofs.  A2(b)-interacting is
+% stated with its precise input clause and deferred to V3 (amendment
+% recorded in Sec. 7).  Acceptance: the closed forms proved here are the
+% formulas verified numerically in v0_checkpoint.py (V0 tables).
+% ------------------------------------------------------------------
+
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\W}{\mathfrak{W}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\Om}{\Omega}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\muv}{\mu}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Trace}{Tr}
+\DeclareMathOperator{\ch}{cosh}
+\DeclareMathOperator{\sh}{sinh}
+\DeclareMathOperator{\cth}{coth}
+
+\title{Gate (II.11), phase V1:\\[4pt]
+\large Trace representations with a marked slice, the free thermal Weyl
+functionals,\\ and the thermal fixed-coarse rate}
+\author{}
+\date{12 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document executes phase V1 of the thermal two-torus route
+(\texttt{gate\_II11\_}\allowbreak\texttt{scoping.tex}): Statements A2(a) and A3 are proved in full,
+and A2(b) is put into its final conditional form. Contents: the Schr\"odinger
+realization of the lattice Weyl operators with the exact CCR phase; trace-class
+bounds and eigenfunction estimates giving the kernel identity for
+$\Trace(e^{-tK_{N,L}}W_N(\xi))$ with complete Fubini justification; the exact
+\emph{mean-shift representation} of the marked-slice trace --- the momentum
+component of $\xi$ enters through an explicit harmonic jump interpolant $H_p$
+which satisfies the discrete Mehler-chain harmonicity \emph{exactly} at every
+time discretization, so the Gaussian change of variables is exact, its constant
+is the classical action of the interpolant --- precisely the momentum half of
+the thermal covariance form --- and the shift phase cancels the CCR phase
+identically; the closed free thermal Weyl functionals on both sides
+(lattice: finite mode products; continuum: countable products with a complete
+convergence argument), by an elementary Laguerre-series proof of the
+single-mode thermal displacement formula; and the thermal fixed-coarse rate
+theorem, uniform on $t\in[t_0,\infty]$, obtained from the proved vacuum-rate
+lemmas with two new derivative bounds and explicit constants. Every import is
+isolated with its hypotheses; the V0 numeric tables verify each closed form
+proved here.
+\end{abstract}
+
+\tableofcontents
+
+\section{Conventions, imports, and the proof contract}\label{sec:conv}
+
+We work in the setting of the Part II model sheet
+(\texttt{lamport\_part\_ii\_}\allowbreak\texttt{model\_sheet.tex}), whose
+conventions are used without change: the spatial torus $\T_L=\R/(2L\Z)$; the
+lattice $\Lambda_N$ of $2r_N$ sites with spacing $\eps_N=L/r_N$ and momenta
+$\Gamma_N=\{\pi j/L:-r_N\le j\le r_N-1\}$; the dispersion
+$\gamma_N(k)=(m^2+4\eps_N^{-2}\sin^2(\eps_Nk/2))^{1/2}$; the canonical pairs
+$[\Phi_N(x),\Pi_N(y)]=i\eps_N^{-1}\delta_{xy}$; the smeared fields
+$\Phi_N(q)=\eps_N\sum_xq(x)\Phi_N(x)$, $\Pi_N(p)=\eps_N\sum_xp(x)\Pi_N(x)$; the
+Weyl operators $W_N(\eps_Nq+ip)=e^{i(\Phi_N(q)+\Pi_N(p))}$; the hat
+$\widehat f(k)=\eps_N^{1/2}\sum_xf(x)e^{-ikx}$; the free Hamiltonian
+$H^{(0)}_{N,L}$ of model-sheet (3.1); the Wick covariance $c_{N,L}$ of (3.4);
+and the interacting operator
+\[
+ K_{N,L}=H^{(0)}_{N,L}+V_N,\qquad
+ V_N:=\lambda\,\eps_N\!\!\sum_{x\in\Lambda_N}\!
+ {:}\Phi_N(x)^4{:}_{c_{N,L}},\qquad\lambda\ge0,
+\]
+with its coercive closed-form realization, compact resolvent, and simple ground
+state (model-sheet Proposition, \S3). Everything below except \S\ref{sec:cont}
+is finite-dimensional in the number of sites (though infinite-dimensional as
+quantum mechanics), and no constructive-QFT input is used.
+
+\paragraph{Imports.} (I1) The \emph{harmonic-reference} Feynman--Kac formula
+for $e^{-tK_{N,L}}$: jointly continuous, strictly positive kernel
+\begin{equation}
+ e^{-tK_{N,L}}(\bm x,\bm y)
+ =k^{(0)}_t(\bm x,\bm y)\;
+ \E^{\,t}_{\bm x,\bm y}\Bigl[\exp\Bigl(-\int_0^tV_N(B_s)\,ds\Bigr)\Bigr],
+ \label{eq:FK}
+\end{equation}
+where $k^{(0)}_t$ is the kernel of $e^{-tH^{(0)}_{N,L}}$ (the Mehler product
+of Lemma~\ref{lem:mehler}), $\E^t_{\bm x,\bm y}$ the corresponding
+\emph{oscillator}-bridge expectation, and $V_N$ the \emph{interaction} alone
+--- not the full multiplication potential: the harmonic part is carried by the
+reference kernel. Proof: V3 (\texttt{v3\_continuum\_package.tex}), Theorem
+3.1(ii), applied with the lattice dictionary of its Remark 3.2 (dispersions
+$\gamma_N(k)$, $k\in\Gamma_N$; interaction $V_N$; class membership by the
+model-sheet \S3 proposition) --- the Trotter/monotone-convergence argument
+there is run against the Mehler reference. \emph{Two bookkeeping remarks.}
+(a) V3, Theorem 3.1(ii) states the identity in the \emph{Gaussian}
+($\muv$-) representation, with the normalized Mehler operator
+$M_t$ ($M_t\mathbf 1=\mathbf 1$); \eqref{eq:FK} is its Lebesgue form, obtained
+by the ground-state (Doob) conjugation
+\[
+ k^{(0)}_t(\bm x,\bm y)
+ =e^{-tE^{(0)}_N}\,\Omega_0(\bm x)\,\Omega_0(\bm y)\,M_t(\bm x,\bm y),
+ \qquad E^{(0)}_N=\tfrac12\sum_{k\in\Gamma_N}\gamma_N(k),
+\]
+$\Omega_0$ the free ground state; the two bridge measures induced on paths
+coincide, because the interior factors $\Omega_0^2$ are precisely the
+reference density, and the boundary factors cancel in every ratio used below.
+(Lemma~\ref{lem:mehler} is stated in the rescaled coordinates
+$\bm X=\eps_N^{1/2}\bm\varphi$; as a $d\bm\varphi$-kernel it carries the
+constant Jacobian $\eps_N^{r_N}$, which likewise cancels in ratios.)
+(b) \emph{Acyclicity.} V3's Theorem 3.1(ii) is proved from the Mehler kernel,
+the elementary Trotter product formula for a bounded perturbation, and
+monotone convergence; its only contact with this document is
+Lemma~\ref{lem:mehler}, whose own proof (heat equation plus an $L^2$
+uniqueness argument) uses nothing from (I1), and which V3 re-verifies inline
+from the Hermite eigenvalues. The dependency order is therefore
+Lemma~\ref{lem:mehler} $\to$ V3~3.1(ii) $\to$
+\S\ref{sec:kernel} (Lemma~\ref{lem:efbound}, Theorem~\ref{thm:kernel}),
+Lemmas~\ref{lem:interp}--\ref{lem:shift}, Theorem~\ref{thm:meanshift}
+$\to$ V3~3.1(v)--(vi); no cycle arises. The model sheet's own formula (3.16) --- flat Gaussian
+kernel, Brownian bridge, \emph{full} potential --- is a different identity and
+is \emph{not} the one used below. (I2) From the free-rate document
+(\texttt{lamport\_part\_ii\_free\_}\allowbreak\texttt{fixed\_coarse\_rate.tex}): the uniform $D4$
+envelope (its Lemma 2.1), the filter-tail bound (Lemma 2.2), the dispersion
+estimates (Lemma 3.1), its pulled-back covariances (Lemmas 1.1 \emph{and} 1.2),
+and --- in \S\ref{sec:rate} --- the \emph{proof architecture} of its Theorem 4.1:
+the constants $r_*,A_q,A_p,b,\kappa,c_0$ of (4.1)--(4.6) together with $C_D$ of (2.3)
+and $J_r$ of (4.10), the split (4.10)--(4.11), the counting bounds (4.16) and the
+integral-comparison tail (4.20)--(4.21), which \S\ref{sec:rate} re-runs verbatim with thermal weights.
+(I0) The model sheet, including its \S3 Proposition (class membership of the
+finite-torus systems), and the scoping note's Lemma 2.1 where cited.
+(I3) Elementary classical facts proved inline where used (Mehler kernel:
+verified, not imported; Laguerre summation: proved). No other input enters.
+
+\paragraph{Contract.} Every limit names its topology; every interchange of sum
+and integral is dominated explicitly; statements consumed from V0 are numerical
+verifications only and never premises.
+
+\section{The Schr\"odinger realization and the CCR phase}\label{sec:schrod}
+
+On $\HH_N=L^2(\R^{\Lambda_N},d\bm\varphi)$ the model sheet realizes
+$\Phi_N(x)$ as multiplication by $\varphi_x$ and $\Pi_N(x)=-i\eps_N^{-1}
+\partial_{\varphi_x}$. Then
+$\Pi_N(p)=-i\sum_xp(x)\partial_{\varphi_x}$.
+
+\begin{proposition}[translations and the exact phase]\label{prop:phase}
+\emph{(i)} $\Phi_N(q)+\Pi_N(p)$ is essentially self-adjoint on
+$C_c^\infty(\R^{\Lambda_N})$, and
+\begin{equation}
+ \bigl(W_N(\eps_Nq+ip)\,\psi\bigr)(\bm\varphi)
+ =e^{\,i\eps_Nq\cdot\bm\varphi+\frac i2\eps_N\,q\cdot p}\;
+ \psi(\bm\varphi+p),
+ \label{eq:Waction}
+\end{equation}
+where $q\cdot\bm\varphi:=\sum_xq(x)\varphi_x$ etc.
+\emph{(ii)} Consequently
+\begin{equation}
+ W_N(\eps_Nq+ip)=e^{\frac i2\eps_N q\cdot p}\;
+ e^{i\Phi_N(q)}\,e^{i\Pi_N(p)},
+ \qquad
+ \bigl(e^{i\Pi_N(p)}\psi\bigr)(\bm\varphi)=\psi(\bm\varphi+p).
+ \label{eq:ccrphase}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Define, for $s\in\R$,
+\[
+ (V(s)\psi)(\bm\varphi)
+ :=e^{\,is\,\eps_Nq\cdot\bm\varphi+\frac i2s^2\eps_N q\cdot p}\,
+ \psi(\bm\varphi+sp).
+\]
+Each $V(s)$ is unitary, $V(s+s')=V(s)V(s')$ by direct substitution
+(the cross terms $ss'$ combine as
+$s'\eps_Nq\cdot(\bm\varphi)+s\eps_Nq\cdot(\bm\varphi+s'p)
++\tfrac{\eps_N}2(s^2+s'^2)q\cdot p
+=(s+s')\eps_Nq\cdot\bm\varphi+\tfrac{\eps_N}2(s+s')^2q\cdot p$),
+and $s\mapsto V(s)\psi$ is continuous for $\psi\in C_c^\infty$, hence, by the
+group property and density, strongly continuous everywhere. For
+$\psi\in C_c^\infty$,
+\[
+ \frac d{ds}\Big|_{s=0}V(s)\psi
+ =\bigl(i\eps_Nq\cdot\bm\varphi+p\cdot\nabla\bigr)\psi
+ =i\bigl(\Phi_N(q)+\Pi_N(p)\bigr)\psi .
+\]
+By Stone's theorem $V$ has a self-adjoint generator $G$ extending
+$(\Phi_N(q)+\Pi_N(p))|_{C_c^\infty}$; since $V(s)$ maps $C_c^\infty$ into
+itself, $C_c^\infty$ is a core for $G$ (Nelson's invariant-domain criterion),
+i.e.\ $\Phi_N(q)+\Pi_N(p)$ is essentially self-adjoint there and
+$e^{i(\Phi_N(q)+\Pi_N(p))}=V(1)$, which is \eqref{eq:Waction}. Setting $q=0$
+gives the translation formula; comparing \eqref{eq:Waction} with the
+composition $e^{i\Phi_N(q)}e^{i\Pi_N(p)}$ (multiplication, then translation)
+gives \eqref{eq:ccrphase}.
+\end{proof}
+
+\begin{remark}
+The phase $\theta(q,p)=\tfrac12\eps_Nq\cdot p$ and the Weyl relation with the
+model-sheet symplectic form were verified numerically on truncation-safe
+corners in V0, with residuals $3.9\times10^{-15}$ (CCR phase) and
+$2.7\times10^{-15}$ (Weyl relation).
+\end{remark}
+
+\section{Trace class, eigenfunction bounds, and the kernel identity}
+\label{sec:kernel}
+
+Throughout this section $t>0$ and $K:=K_{N,L}$ with eigenvalues
+$E_0<E_1\le E_2\le\cdots\to\infty$ (compact resolvent; simplicity of $E_0$
+per the model sheet) and real orthonormal eigenfunctions $\psi_j$.
+
+\begin{proposition}[trace class]\label{prop:traceclass}
+\emph{(i)} The pointwise bound
+${:}u^4{:}_c=u^4-6cu^2+3c^2=(u^2-3c)^2-6c^2\ge-6c^2$ gives
+$V_N\ge-12\lambda L\,c_{N,L}^2=:-c_V$.
+\emph{(ii)} $E_j(K)\ge E_j(H^{(0)})-c_V$ for all $j$, and hence
+\[
+ Z_N(t):=\Trace e^{-tK}\le e^{tc_V}\,\Trace e^{-tH^{(0)}}
+ =e^{tc_V}\prod_{k\in\Gamma_N}\bigl(2\sh(t\gamma_N(k)/2)\bigr)^{-1}<\infty .
+\]
+\end{proposition}
+
+\begin{proof}
+(i) is the displayed algebra summed over the $2r_N$ sites with weight
+$\lambda\eps_N$ ($\eps_N\cdot2r_N=2L$). (ii): $K\ge H^{(0)}-c_V$ as quadratic
+forms on the common form core, so the min--max values obey the same
+inequality; both operators have discrete spectrum, and the free trace is the
+standard oscillator product (computed independently in
+Theorem~\ref{thm:lattice-free} below with its zero-point factors).
+\end{proof}
+
+\begin{lemma}[eigenfunction bounds]\label{lem:efbound}
+For every $s>0$ and $\bm\varphi$,
+\[
+ |\psi_j(\bm\varphi)|\le e^{sE_j}\,
+ \bigl(e^{-2sK}(\bm\varphi,\bm\varphi)\bigr)^{1/2},
+ \qquad
+ \int e^{-2sK}(\bm\varphi,\bm\varphi)\,d\bm\varphi=\Trace e^{-2sK}<\infty .
+\]
+\end{lemma}
+
+\begin{proof}
+From $\psi_j=e^{sE_j}e^{-sK}\psi_j$ and Cauchy--Schwarz,
+\[
+ |\psi_j(\bm\varphi)|\le e^{sE_j}\|e^{-sK}(\bm\varphi,\cdot)\|_2
+ =e^{sE_j}\bigl(e^{-2sK}(\bm\varphi,\bm\varphi)\bigr)^{1/2},
+\]
+the last step by the semigroup property and symmetry of the (real) kernel. For the integral:
+$e^{-2sK}=(e^{-sK})^2$ with $e^{-sK}$ Hilbert--Schmidt
+(Proposition~\ref{prop:traceclass}) and continuous kernel \eqref{eq:FK}, so
+\[
+ e^{-2sK}(\bm\varphi,\bm\varphi)=\int|e^{-sK}(\bm\varphi,\bm y)|^2d\bm y,
+ \qquad
+ \int e^{-2sK}(\bm\varphi,\bm\varphi)\,d\bm\varphi
+ \overset{\rm Tonelli}{=}\|e^{-sK}\|_{\rm HS}^2
+ =\Trace e^{-2sK} .
+\]
+\end{proof}
+
+\begin{theorem}[kernel identity for the marked-slice trace]\label{thm:kernel}
+For all real $q,p$ and $t>0$, with $\theta=\tfrac12\eps_Nq\cdot p$,
+\begin{equation}
+ \Trace\bigl(e^{-tK}\,W_N(\eps_Nq+ip)\bigr)
+ =e^{i\theta}\int_{\R^{\Lambda_N}}
+ e^{-tK}(\bm\varphi+p,\bm\varphi)\;
+ e^{\,i\eps_N q\cdot\bm\varphi}\;d\bm\varphi ,
+ \label{eq:kernelid}
+\end{equation}
+both sides absolutely convergent.
+\end{theorem}
+
+\begin{proof}
+By the spectral decomposition and boundedness of $W:=W_N(\eps_Nq+ip)$,
+$\Trace(e^{-tK}W)=\sum_je^{-tE_j}\ip{\psi_j}{W\psi_j}$, absolutely convergent
+since $|\ip{\psi_j}{W\psi_j}|\le1$. By \eqref{eq:Waction},
+\[
+ \ip{\psi_j}{W\psi_j}
+ =e^{i\theta}\int\psi_j(\bm\varphi)\,
+ e^{i\eps_Nq\cdot\bm\varphi}\,\psi_j(\bm\varphi+p)\,d\bm\varphi .
+\]
+To interchange $\sum_j$ and $\int$, dominate using
+Lemma~\ref{lem:efbound} with $s=t/4$:
+\[
+ \sum_je^{-tE_j}|\psi_j(\bm\varphi)||\psi_j(\bm\varphi+p)|
+ \le\Bigl(\sum_je^{-tE_j/2}\Bigr)
+ D(\bm\varphi)^{1/2}D(\bm\varphi+p)^{1/2},
+ \qquad D:=e^{-tK/2}(\cdot,\cdot)\big|_{\rm diag},
+\]
+and $\int D(\bm\varphi)^{1/2}D(\bm\varphi+p)^{1/2}d\bm\varphi
+\le(\int D)^{1/2}(\int D(\cdot+p))^{1/2}=\Trace e^{-tK/2}<\infty$ by
+Cauchy--Schwarz and Lemma~\ref{lem:efbound}. Fubini then gives
+\eqref{eq:kernelid} with
+$e^{-tK}(\bm x,\bm y)=\sum_je^{-tE_j}\psi_j(\bm x)\psi_j(\bm y)$, which agrees
+with the continuous kernel \eqref{eq:FK} almost everywhere, hence (both sides
+being continuous in $(\bm x,\bm y)$ --- the series converges locally uniformly
+by the same domination) everywhere.
+\end{proof}
+
+\section{The free thermal Weyl functionals (A3(a), lattice)}\label{sec:free}
+
+\subsection{Mode diagonalization}
+
+Introduce the rescaled pairs $X_x:=\eps_N^{1/2}\Phi_N(x)$,
+$P_x:=\eps_N^{1/2}\Pi_N(x)$, so $[X_x,P_y]=i\delta_{xy}$, and the unitary
+discrete Fourier transform
+$\widetilde f(k):=(2r_N)^{-1/2}\sum_xf(x)e^{-ikx}$. With
+$\widetilde X(k),\widetilde P(k)$ defined likewise (so
+$\widetilde X(k)^*=\widetilde X(-k)$),
+the model-sheet free Hamiltonian becomes
+\[
+ H^{(0)}=\tfrac12\sum_{k\in\Gamma_N}
+ \bigl(\widetilde P(k)^*\widetilde P(k)
+ +\gamma_N(k)^2\,\widetilde X(k)^*\widetilde X(k)\bigr)
+ =\sum_{k\in\Gamma_N}\gamma_N(k)\bigl(a_k^*a_k+\tfrac12\bigr),
+\]
+where
+$a_k:=(2\gamma_N(k))^{-1/2}(\gamma_N(k)\widetilde X(k)+i\widetilde P(k))$
+satisfy $[a_k,a_{k'}^*]=\delta_{kk'}$, $[a_k,a_{k'}]=0$ (direct computation
+from $[\widetilde X(k),\widetilde P(k')^*]=i\delta_{kk'}$), and
+\begin{equation}
+ \widetilde X(k)=(2\gamma_N(k))^{-1/2}(a_k+a_{-k}^*),\qquad
+ \widetilde P(k)=-i\,(\gamma_N(k)/2)^{1/2}(a_k-a_{-k}^*).
+ \label{eq:modes}
+\end{equation}
+
+\begin{lemma}[displacement amplitudes]\label{lem:amp}
+For real $q,p$,
+$\Phi_N(q)+\Pi_N(p)=\sum_{k\in\Gamma_N}(\bar z_ka_k+z_ka_k^*)$ with
+\[
+\begin{gathered}
+ z_k=\eps_N^{1/2}\Bigl[(2\gamma_N(k))^{-1/2}\,\widetilde q(k)
+ +i(\gamma_N(k)/2)^{1/2}\,\widetilde p(k)\Bigr],\\
+ \sum_{k\in\Gamma_N}|z_k|^2
+ =\frac1{2\cdot2r_N}\sum_{k\in\Gamma_N}
+ \Bigl(\frac{|\widehat q(k)|^2}{\gamma_N(k)}
+ +\gamma_N(k)|\widehat p(k)|^2\Bigr).
+\end{gathered}
+\]
+\end{lemma}
+
+\begin{proof}
+$\Phi_N(q)+\Pi_N(p)=\eps_N^{1/2}\sum_x(q_xX_x+p_xP_x)
+=\eps_N^{1/2}\sum_k(\overline{\widetilde q(k)}\widetilde X(k)
++\overline{\widetilde p(k)}\widetilde P(k))$ by Parseval (reality of $q,p$
+gives $\widetilde q(-k)=\overline{\widetilde q(k)}$). Substituting
+\eqref{eq:modes} and collecting the coefficient of $a_k$ (using the $k\to-k$
+symmetry of the sums) gives the displayed $z_k$. Then
+\[
+ |z_k|^2=\eps_N\Bigl[\frac{|\widetilde q(k)|^2}{2\gamma_N(k)}
+ +\frac{\gamma_N(k)}2|\widetilde p(k)|^2
+ +\operatorname{Im}\bigl(\widetilde q(k)\overline{\widetilde p(k)}\bigr)\Bigr],
+\]
+and the imaginary part is odd under $k\to-k$
+($\widetilde q(-k)\overline{\widetilde p(-k)}
+=\overline{\widetilde q(k)}\widetilde p(k)$), so it cancels in the sum;
+finally $\eps_N|\widetilde f(k)|^2=|\widehat f(k)|^2/(2r_N)$.
+\end{proof}
+
+\subsection{The single-mode thermal displacement formula}
+
+\begin{lemma}[Laguerre summation]\label{lem:laguerre}
+For one mode ($[a,a^*]=1$, number basis $|n\rangle$), $z\in\C$, and
+$0<w<1$:
+\emph{(i)} $\ip{n}{e^{za^*}e^{-\bar za}\,n}=L_n(|z|^2)
+:=\sum_{j=0}^n\binom nj\frac{(-|z|^2)^j}{j!}$;
+\emph{(ii)} $\sum_{n\ge0}w^nL_n(x)=(1-w)^{-1}e^{-xw/(1-w)}$, absolutely
+convergent;
+\emph{(iii)} for $H=\gamma(a^*a+\tfrac12)$ and the displacement
+$D(z)=e^{za^*-\bar za}$,
+\[
+ \frac{\Trace\bigl(e^{-tH}D(z)\bigr)}{\Trace e^{-tH}}
+ =\exp\Bigl[-\tfrac12|z|^2\cth\bigl(\tfrac{t\gamma}2\bigr)\Bigr].
+\]
+\end{lemma}
+
+\begin{proof}
+(i) $e^{-\bar za}|n\rangle=\sum_{j\le n}\frac{(-\bar z)^j}{j!}
+\sqrt{\tfrac{n!}{(n-j)!}}\,|n-j\rangle$ and likewise for the bra with $z$;
+orthonormality gives
+$\sum_j\frac{(-|z|^2)^j}{(j!)^2}\frac{n!}{(n-j)!}=L_n(|z|^2)$.
+(ii) Insert (i) and interchange the (absolutely convergent: majorant
+$\sum_j\frac{x^j}{j!}\sum_n\binom njw^n<\infty$) double sum:
+\[
+ \sum_{n}w^n\sum_j\binom nj\frac{(-x)^j}{j!}
+ =\sum_j\frac{(-x)^j}{j!}\frac{w^j}{(1-w)^{j+1}}
+ =\frac1{1-w}\,e^{-xw/(1-w)},
+\]
+using $\sum_{n\ge j}\binom njw^n=w^j(1-w)^{-j-1}$.
+(iii) $D(z)=e^{-|z|^2/2}e^{za^*}e^{-\bar za}$ (BCH with central
+$[za^*,-\bar za]=|z|^2$), so with $w=e^{-t\gamma}$ (zero-point factors cancel
+in the ratio),
+\[
+ \frac{\Trace(e^{-tH}D(z))}{\Trace e^{-tH}}
+ =e^{-|z|^2/2}\,(1-w)\sum_nw^nL_n(|z|^2)
+ =e^{-|z|^2(\frac12+\frac w{1-w})}
+ =e^{-\frac{|z|^2}2\frac{1+w}{1-w}},
+\]
+and $(1+w)/(1-w)=\cth(t\gamma/2)$.
+\end{proof}
+
+\subsection{The lattice closed form}
+
+\begin{theorem}[A3(a), lattice]\label{thm:lattice-free}
+For every $t\in(0,\infty]$ and $\xi=\eps_Nq+ip$,
+\begin{equation}
+ F^{(0)}_N(t;\xi):=
+ \frac{\Trace\bigl(e^{-tH^{(0)}_{N,L}}W_N(\xi)\bigr)}
+      {\Trace\bigl(e^{-tH^{(0)}_{N,L}}\bigr)}
+ =\exp\Bigl[-\tfrac14\,Q^{(t)}_N(\xi)\Bigr],
+ \label{eq:latticefree}
+\end{equation}
+\begin{equation}
+ Q^{(t)}_N(\xi)=\frac1{2r_N}\sum_{k\in\Gamma_N}
+ \cth\Bigl(\frac{t\gamma_N(k)}2\Bigr)
+ \Bigl(\gamma_N(k)^{-1}|\widehat q(k)|^2
+ +\gamma_N(k)|\widehat p(k)|^2\Bigr),
+ \label{eq:Qt}
+\end{equation}
+with $\cth(\infty):=1$; moreover
+$\Trace e^{-tH^{(0)}}=\prod_k(2\sh(t\gamma_N(k)/2))^{-1}$, and $t=\infty$
+reproduces the model-sheet vacuum functional (3.3).
+\end{theorem}
+
+\begin{proof}
+$\HH_N$ factorizes unitarily over the modes,
+$H^{(0)}=\sum_k\gamma_k(a_k^*a_k+\tfrac12)$ with commuting summands, and by
+Lemma~\ref{lem:amp} and the multimode BCH (all commutators central),
+$W_N(\xi)=\prod_kD_k(iz_k)$ with $|iz_k|=|z_k|$. The trace factorizes over the
+finite tensor decomposition; Lemma~\ref{lem:laguerre}(iii) applies per mode:
+\[
+ F^{(0)}_N(t;\xi)=\prod_{k\in\Gamma_N}
+ e^{-\frac12|z_k|^2\cth(t\gamma_k/2)} ,
+\]
+and inserting Lemma~\ref{lem:amp}'s sum (with the $\cth$ weight carried along;
+the cross terms cancel in the same $k\to-k$ pairing because
+$\gamma_N(-k)=\gamma_N(k)$ and hence the weights are even) gives
+\eqref{eq:latticefree}--\eqref{eq:Qt}. The partition function is the product
+of the geometric sums $e^{-t\gamma/2}(1-e^{-t\gamma})^{-1}
+=(2\sh(t\gamma/2))^{-1}$. As $t\to\infty$, $\cth\to1$ monotonically and the
+thermal state converges to the vacuum in trace norm, giving the vacuum case.
+\end{proof}
+
+\begin{remark}[V0 acceptance]
+\eqref{eq:latticefree}--\eqref{eq:Qt} are the formulas verified in V0: against
+exact diagonalization to $6\times10^{-10}$ ($t=1$) and $2\times10^{-16}$
+($t=2$), and against the independent position-space matrix-function evaluation
+to $10^{-9}$ for $r_N\in\{8,64\}$, all $t$.
+\end{remark}
+
+\section{The jump representation and the exact mean shift (A2(a))}
+\label{sec:jump}
+
+This section proves the interacting marked-slice representation. Fix $t>0$ and
+write $\omega(k):=\gamma_N(k)$ for the mode frequencies, $n:=2r_N$.
+
+\subsection{The free kernel in Mehler form}
+
+\begin{lemma}[Mehler kernel, verified]\label{lem:mehler}
+In the rescaled coordinates $\bm X=\eps_N^{1/2}\bm\varphi$ and mode variables,
+the free kernel factorizes over $k\in\Gamma_N$ into one-dimensional kernels
+(for $H=\tfrac12(P^2+\omega^2X^2)$, which is $\gamma(a^*a+\tfrac12)$ per mode)
+\begin{equation}
+\begin{gathered}
+ k^{\rm 1d}_\Delta(x,y)
+ =\Bigl(\frac{\omega}{2\pi\sh(\omega\Delta)}\Bigr)^{1/2}
+ \exp\Bigl[-\frac{A_\Delta}2(x^2+y^2)+B_\Delta\,xy\Bigr],\\
+ A_\Delta=\omega\cth(\omega\Delta),\qquad
+ B_\Delta=\frac{\omega}{\sh(\omega\Delta)} .
+\end{gathered}
+ \label{eq:mehler}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Call the right side $\kappa_\Delta$. A direct computation gives
+$\partial_\Delta\kappa_\Delta=\bigl(\tfrac12\partial_x^2
+-\tfrac{\omega^2}2x^2\bigr)\kappa_\Delta$
+(using $A'=-B^2$... explicitly: $A_\Delta'=-\omega^2/\sh^2$,
+$B_\Delta'=-\omega^2\ch/\sh^2$, and the prefactor contributes
+$-\tfrac12\omega\cth$; collecting terms on both sides matches coefficient by
+coefficient in $\{1,x^2,y^2,xy\}$), and $\kappa_\Delta\to\delta$ as
+$\Delta\downarrow0$ in the weak sense against $C_c$ (Gaussian concentration
+with $A_\Delta-B_\Delta=\omega\tanh(\omega\Delta/2)\to0$,
+$A_\Delta+B_\Delta\to\infty$). Hence for $\psi\in C_c^\infty$,
+$u(\Delta):=\int\kappa_\Delta(\cdot,y)\psi(y)dy$ is a strongly differentiable
+$L^2$-solution of $u'=-Hu$, $u(0)=\psi$, as is $e^{-\Delta H}\psi$; for the
+difference $v$, $\tfrac d{d\Delta}\|v\|^2=-2\ip v{Hv}\le0$ and $v(0)=0$, so
+$v\equiv0$. Thus $\kappa_\Delta$ is the kernel of $e^{-\Delta H}$.
+\end{proof}
+
+\subsection{The harmonic jump interpolant}
+
+\begin{lemma}[jump interpolant]\label{lem:interp}
+Fix $t>0$, a mode frequency $\omega>0$, and a jump $\rho\in\R$. There is
+exactly one $H\in C^\infty([0,t])$ with
+\[
+ -\ddot H+\omega^2H=0,\qquad H(t)-H(0)=\rho,\qquad \dot H(t)=\dot H(0),
+\]
+namely $H(s)=A\ch(\omega s)+B\sh(\omega s)$ with
+\begin{equation}
+ A=-\frac\rho2,\qquad
+ B=\frac\rho2\,\cth\Bigl(\frac{\omega t}2\Bigr).
+ \label{eq:AB}
+\end{equation}
+It satisfies, for every $\Delta>0$ and $s\in[\Delta,t-\Delta]$, the
+\emph{exact} three-term recursion
+\begin{equation}
+ H(s+\Delta)+H(s-\Delta)=2\ch(\omega\Delta)\,H(s),
+ \label{eq:threeterm}
+\end{equation}
+its boundary values are $H(0)=-\rho/2$, $H(t)=+\rho/2$, and its classical
+action is
+\begin{equation}
+ S(H):=\int_0^t\tfrac12\bigl(\dot H^2+\omega^2H^2\bigr)ds
+ =\tfrac12\,\dot H(0)\,\rho
+ =\frac{\omega\rho^2}4\,\cth\Bigl(\frac{\omega t}2\Bigr).
+ \label{eq:action}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The general solution of $-\ddot H+\omega^2H=0$ is
+$A\ch(\omega s)+B\sh(\omega s)$. The two conditions read
+$A(\ch(\omega t)-1)+B\sh(\omega t)=\rho$ and
+$A\sh(\omega t)+B(\ch(\omega t)-1)=0$; solving,
+$A=-B(\ch-1)/\sh$ and
+$B[\sh^2-(\ch-1)^2]/\sh=\rho$, and since
+$\sh^2-(\ch-1)^2=2(\ch-1)$,
+$B=\rho\,\sh(\omega t)/(2(\ch(\omega t)-1))=\tfrac\rho2\cth(\omega t/2)$
+and $A=-\rho/2$; uniqueness because the homogeneous system
+($\rho=0$) forces $A=B=0$. \eqref{eq:threeterm} is the addition formula
+$\ch(\omega(s\pm\Delta))$, $\sh(\omega(s\pm\Delta))$ summed. For
+\eqref{eq:action}: integrate by parts,
+$S(H)=\tfrac12[H\dot H]_0^t=\tfrac12(H(t)\dot H(t)-H(0)\dot H(0))
+=\tfrac12\dot H(0)(H(t)-H(0))$ using $\dot H(t)=\dot H(0)$; and
+$\dot H(0)=\omega B=\tfrac{\omega\rho}2\cth(\omega t/2)$.
+\end{proof}
+
+For the lattice, define the vector interpolant $\bm H_p(s)$ mode by mode: in
+the rescaled coordinates the translation by $p$ is the shift by
+$\eps_N^{1/2}p$, whose $k$-th Fourier component is
+$\eps_N^{1/2}\widetilde p(k)$; let $H_k(s)$ be the interpolant of
+Lemma~\ref{lem:interp} with $\omega=\gamma_N(k)$ and jump
+$\rho_k=\eps_N^{1/2}\widetilde p(k)$ (complex $\rho$: apply the lemma to real
+and imaginary parts; reality of the resulting position-space path follows from
+$\rho_{-k}=\bar\rho_k$), and let $\bm H_p$ be the inverse transform. Then, by
+\eqref{eq:action} and $\eps_N|\widetilde p(k)|^2=|\widehat p(k)|^2/(2r_N)$,
+\begin{equation}
+ S_N(\bm H_p):=\sum_{k\in\Gamma_N}S(H_k)
+ =\frac1{4\cdot 2r_N}\sum_{k\in\Gamma_N}
+ \gamma_N(k)\,\cth\Bigl(\frac{t\gamma_N(k)}2\Bigr)|\widehat p(k)|^2 ,
+ \label{eq:SNp}
+\end{equation}
+which is exactly the momentum half of $\tfrac14Q^{(t)}_N$; and
+$\bm H_p(0)=-p/2$, $\bm H_p(t)=+p/2$ in the original coordinates
+(the mode relation $H_k(0)=-\rho_k/2$ is linear, so it inverts to
+$\bm X$-shift $-\eps_N^{1/2}p/2$, i.e.\ $\bm\varphi$-shift $-p/2$).
+
+\subsection{The exact change of variables}
+
+Let $0=s_0<s_1<\cdots<s_M=t$ be any partition,
+$\Delta_i:=s_{i+1}-s_i$. Define the (unnormalized) \emph{jump chain
+integrals}: for bounded measurable $f_i:\R^n\to\C$,
+\[
+ J_p[f_0,\dots,f_{M-1}]
+ :=\int\!\cdots\!\int
+ \prod_{i=0}^{M-1}k^{(0)}_{\Delta_i}(\bm y_{i+1},\bm y_i)\,
+ \prod_{i=0}^{M-1}f_i(\bm y_i)\;d\bm y_0\cdots d\bm y_{M-1}
+ \Bigg|_{\bm y_M:=\bm y_0+p} ,
+\]
+and $J^{\rm per}$ the same with $\bm y_M:=\bm y_0$ (periodic chain).
+
+\begin{lemma}[exact shift identity]\label{lem:shift}
+For every partition and all bounded measurable $f_i$,
+\begin{equation}
+ J_p[f_0,\dots,f_{M-1}]
+ =e^{-S_N(\bm H_p)}\;
+ J^{\rm per}\bigl[f_0(\cdot+\bm H_p(s_0)),\dots,
+ f_{M-1}(\cdot+\bm H_p(s_{M-1}))\bigr].
+ \label{eq:shiftid}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Work per mode in the rescaled Fourier coordinates (the free chain factorizes
+by Lemma~\ref{lem:mehler}; the substitution below is a composition of
+one-dimensional ones). Substitute $\bm y_i=\bm\eta_i+\bm H_p(s_i)$ (unit
+Jacobian). Each Mehler factor transforms by
+\[
+ \log k^{\rm 1d}_{\Delta}(\eta'+a',\eta+a)
+ =\log k^{\rm 1d}_{\Delta}(\eta',\eta)
+ +\bigl[(-A_\Delta a'+B_\Delta a)\eta'
+ +(-A_\Delta a+B_\Delta a')\eta\bigr]
+ -S^{\rm cl}_\Delta(a',a),
+\]
+where $S^{\rm cl}_\Delta(a',a):=\tfrac{A_\Delta}2(a'^2+a^2)-B_\Delta a'a$
+is the classical action of the harmonic path from $a$ to $a'$ in time
+$\Delta$ (read off Lemma~\ref{lem:mehler}). Sum over the chain with
+$a_i=H(s_i)$ (and $a_M=H(s_M)=H(s_0)+\rho$, matching
+$\bm y_M=\bm y_0+p\mapsto\bm\eta_M=\bm\eta_0$, so the chain closes
+periodically in $\bm\eta$). The linear terms at the node $\eta_i$
+($1\le i\le M-1$) collect to
+\[
+ \bigl[-A_{\Delta_{i-1}}H(s_i)+B_{\Delta_{i-1}}H(s_{i-1})\bigr]
+ +\bigl[-A_{\Delta_i}H(s_i)+B_{\Delta_i}H(s_{i+1})\bigr]=0 :
+\]
+indeed, for the \emph{harmonic} $H$, $H(s_{i\pm1})=\ch(\omega\Delta)H(s_i)
+\pm\sh(\omega\Delta)\,\dot H(s_i)/\omega$ (addition formulas), so
+$-A_\Delta H(s_i)+B_\Delta H(s_i\mp\Delta)
+=\mp\,\dot H(s_i)/\!\ldots$ — explicitly,
+$-\omega\cth(\omega\Delta)H(s_i)
++\tfrac{\omega}{\sh(\omega\Delta)}
+[\ch(\omega\Delta)H(s_i)\mp\tfrac{\sh(\omega\Delta)}\omega\dot H(s_i)]
+=\mp\dot H(s_i)$, and the two contributions ($-$ from the left factor,
+$+$ from the right factor) cancel. At the glued node $\eta_0=\eta_M$ the same
+computation applies with the one-sided derivatives $\dot H(0)$ and
+$\dot H(t)$, which are equal by construction, so that node's linear term
+vanishes as well. The constants collect to
+$-\sum_iS^{\rm cl}_{\Delta_i}(H(s_{i+1}),H(s_i))$; since $H$ restricted to
+$[s_i,s_{i+1}]$ \emph{is} the classical trajectory between its endpoints, each
+term equals the true action integral
+$\int_{s_i}^{s_{i+1}}\tfrac12(\dot H^2+\omega^2H^2)$, and the sum telescopes
+to $S(H)$ of \eqref{eq:action}. Summing over modes gives
+$e^{-S_N(\bm H_p)}$ and \eqref{eq:shiftid}.
+\end{proof}
+
+\begin{theorem}[A2(a): interacting mean-shift representation]\label{thm:meanshift}
+For $t>0$, real $q,p$, and $\lambda\ge0$, with the periodic free ensemble
+$\mu^{\rm per}_{N,t}$ (the Gaussian process on the time circle with the
+covariance of the periodic Mehler chain; Remark~\ref{rem:ensemble}) and
+$\mathcal V_N(\bm\varphi):=\lambda\eps_N\sum_x{:}\varphi_x^4{:}_{c_{N,L}}$
+the \emph{interaction} multiplication function (the harmonic part of the
+potential is carried by the ensemble; import (I1)), which satisfies the
+pointwise bound
+\[
+ \mathcal V_N\ \ge\ -6\lambda\,\eps_N\,(2r_N)\,c_{N,L}^2
+ \;=\;-12\lambda L\,c_{N,L}^2\;=\;-c_V
+\]
+of Proposition~\ref{prop:traceclass} (complete the square:
+${:}u^4{:}_c=(u^2-3c)^2-6c^2$; this display is deliberately unnumbered, so
+that the equation numbers cited by V2--V4 are unchanged):
+\begin{equation}
+ \frac{\Trace\bigl(e^{-tK_{N,L}}\,W_N(\eps_Nq+ip)\bigr)}
+      {\Trace\bigl(e^{-tK_{N,L}}\bigr)}
+ =e^{-S_N(\bm H_p)}\;
+ \frac{\displaystyle\E_{\mu^{\rm per}_{N,t}}
+ \Bigl[e^{\,i\eps_Nq\cdot\bm\eta(0)}\,
+ e^{-\int_0^t\mathcal V_N(\bm\eta(s)+\bm H_p(s))\,ds}\Bigr]}
+ {\displaystyle\E_{\mu^{\rm per}_{N,t}}
+ \Bigl[e^{-\int_0^t\mathcal V_N(\bm\eta(s))\,ds}\Bigr]} ,
+ \label{eq:meanshift}
+\end{equation}
+with $S_N(\bm H_p)$ as in \eqref{eq:SNp}; the CCR phase has cancelled against
+the shift phase ($e^{i\theta}e^{i\eps_Nq\cdot\bm H_p(0)}
+=e^{\frac i2\eps_Nq\cdot p}e^{-\frac i2\eps_Nq\cdot p}=1$). Expanding
+$\mathcal V_N(\cdot+\bm H_p)$, the interaction changes by the finite Wick binomial
+\begin{equation}
+ \mathcal U_N(\bm\eta+\bm H_p)-\mathcal U_N(\bm\eta)
+ =\lambda\eps_N\!\sum_x\!\int_0^t\!
+ \Bigl[4H_x{:}\eta_x^3{:}+6H_x^2\,{:}\eta_x^2{:}
+ +4H_x^3\,\eta_x+H_x^4\Bigr]ds,
+ \label{eq:wickshift}
+\end{equation}
+(here $\mathcal U_N(\bm\eta):=\int_0^t\mathcal V_N(\bm\eta(s))\,ds$ denotes
+the time-integrated interaction along a path), a polynomial with smooth
+bounded deterministic coefficients
+(by the closed form derived in the proof, for each fixed $N$,
+$\|\bm H_p(s)\|_\infty\le\tfrac12\|p\|_{\ell^2(\Lambda_N)}$ uniformly in
+$s\in[0,t]$ and $t\ge t_0$, with no dependence on $t_0$ or $m$; here
+$\|p\|^2_{\ell^2(\Lambda_N)}=\sum_x|p(x)|^2$ is the counting-measure norm of the
+model sheet (1.4), and the constant $\tfrac12$ is attained, since
+$\bm H_p(0)=-p/2$).
+This bound is \emph{not} uniform in $N$ along the $D4$ refinement: the mask is
+orthogonal, $\sum_nh_nh_{n+2j}=\delta_{j0}$, so
+$\|R_M^{M+r}p_M\|_{\ell^2(\Lambda_{M+r})}=2^{r/2}\|p_M\|_{\ell^2(\Lambda_M)}$ and
+the right-hand side diverges. The $N$-uniform coarse-data bound that the route
+actually consumes is $\sup_N\|\bm H_{p_N}\|_\infty\le\Sigma_M(p)$ of V2,
+Lemma 6.3(i), which sums the $D4$ envelope over $\Gamma_N$ instead of applying
+Cauchy--Schwarz over $2r_N$ modes; nothing downstream consumes the bound stated
+here.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:kernel} and the Feynman--Kac formula \eqref{eq:FK}, the
+numerator trace is
+\[
+ e^{i\theta}\!\int d\bm\varphi\,e^{i\eps_Nq\cdot\bm\varphi}\,
+ k^{(0)}_t(\bm\varphi+p,\bm\varphi)\,
+ \E^t_{\bm\varphi+p,\bm\varphi}\Bigl[e^{-\int_0^t\mathcal V_N}\Bigr]
+ =e^{i\theta}\lim_{M\to\infty}
+ J_p\Bigl[e^{i\eps_Nq\cdot(\cdot)}e^{-\Delta_0\mathcal V_N},
+ e^{-\Delta_1\mathcal V_N},\dots\Bigr],
+\]
+where the second equality is the Riemann-sum approximation of the time
+integral inside the bridge expectation: $\mathcal V_N$ is continuous, bounded below, and
+the bridge paths are continuous, so
+$\sum_i\Delta_i\mathcal V_N(B_{s_i})\to\int_0^t\mathcal V_N(B_s)ds$
+pointwise on paths and the integrands are dominated by $e^{tc_V}$ times the
+free chain (bounded-below $\mathcal V_N$, by the displayed pointwise bound
+in Theorem~\ref{thm:meanshift}), allowing
+dominated convergence under the (finite) free chain integral;
+the chain form of the bridge-times-endpoint integral is the semigroup
+(Chapman--Kolmogorov) property of $k^{(0)}$. Apply Lemma~\ref{lem:shift} at
+each level $M$: the marked-slice functional $f_0$ produces the factor
+$e^{i\eps_Nq\cdot(\bm\eta_0+\bm H_p(0))}$ with
+$\bm H_p(0)=-p/2$, cancelling $e^{i\theta}$; the potential factors become
+$e^{-\Delta_i\mathcal V_N(\bm\eta_i+\bm H_p(s_i))}$. Undo the Riemann sum on the periodic
+side (same dominated convergence; $\bm H_p$ continuous), obtaining
+$e^{-S_N(\bm H_p)}$ times the periodic FK integral with the shifted potential,
+i.e.\ the numerator of \eqref{eq:meanshift}. The denominator is the case
+$q=p=0$. Finally \eqref{eq:wickshift} is the Appell (binomial) property of Wick
+powers: from ${:}u^4{:}_c=u^4-6cu^2+3c^2$,
+\begin{gather*}
+ {:}(\eta+H)^4{:}_c-{:}\eta^4{:}_c
+ =\bigl[4H\eta^3+6H^2\eta^2+4H^3\eta+H^4\bigr]
+ -6c\bigl[2H\eta+H^2\bigr]\\
+ =4H{:}\eta^3{:}_c+6H^2{:}\eta^2{:}_c+4H^3\eta+H^4,
+\end{gather*}
+the last equality by $\eta^3={:}\eta^3{:}_c+3c\eta$,
+$\eta^2={:}\eta^2{:}_c+c$, which cancels $-6c[2H\eta+H^2]$ identically (no
+residual Wick-constant term survives in the Wick-power form); the uniform bound on
+$\|\bm H_p\|_\infty$ follows from the \emph{closed form} of the interpolant,
+not from \eqref{eq:AB} by the triangle inequality: the hyperbolic addition
+formula turns \eqref{eq:AB} into
+\[
+ H_k(s)=\frac{\rho_k}2\,
+ \frac{\sh\bigl(\gamma_N(k)(s-\tfrac t2)\bigr)}{\sh(\gamma_N(k)t/2)},
+\]
+a one-line verification: expanding
+\[
+ \sh\bigl(\gamma_N(s-\tfrac t2)\bigr)
+ =\sh(\gamma_Ns)\ch\bigl(\tfrac{\gamma_Nt}2\bigr)
+ -\ch(\gamma_Ns)\sh\bigl(\tfrac{\gamma_Nt}2\bigr)
+\]
+and dividing by $\sh(\gamma_Nt/2)$ returns exactly
+$A_k\ch(\gamma_Ns)+B_k\sh(\gamma_Ns)$ with the $A_k,B_k$ of \eqref{eq:AB}. Hence $|H_k(s)|\le|\rho_k|/2$ for every $s\in[0,t]$, because
+$|\sh|$ is even and increasing and $|s-\tfrac t2|\le\tfrac t2$. (The same
+identity is recorded downstream as V2, Lemma 6.1; it is derived here from
+\eqref{eq:AB} alone, so no import is created.) The triangle inequality applied to \eqref{eq:AB} would give only
+$\tfrac{|\rho_k|}2\bigl(\ch(\gamma_Ns)
++\cth(\tfrac{t\gamma_N}2)\sh(\gamma_Ns)\bigr)$, which grows like
+$e^{\gamma_Nt}$ and is useless in the regime $\gamma_N\sim2/\eps_N$; the
+cancellation in the closed form is what makes the bound uniform, with no
+$t_0$-dependence. The inverse transform is an $\ell^2\to\ell^\infty$ bounded
+map on $2r_N$ modes with the stated $p$-dependence.
+\end{proof}
+
+\begin{remark}[the periodic ensemble]\label{rem:ensemble}
+$\mu^{\rm per}_{N,t}$ is the finite product over $k\in\Gamma_N$ of the
+one-dimensional Gaussian processes on the circle of circumference $t$ with
+covariance
+\begin{equation}
+ c_\omega(s)=\frac{\ch\bigl(\omega(\tfrac t2-|s|_{\T_t})\bigr)}
+ {2\omega\,\sh(\omega t/2)},\qquad \omega=\gamma_N(k),
+ \label{eq:percov}
+\end{equation}
+which is the two-point function of the periodic Mehler chain: per mode, for
+$0\le s\le t$ and $w=e^{-t\omega}$,
+\[
+ Z^{-1}\Trace\bigl(e^{-(t-s)H}Xe^{-sH}X\bigr)
+ =\frac{e^{-s\omega}+we^{s\omega}}{2\omega\,(1-w)}=c_\omega(s),
+\]
+by the ladder computation
+$\ip{n}{Xe^{-sH}X\,n}$-insertion and the geometric sums
+$\sum(n{+}1)w^n=(1-w)^{-2}$, $\sum nw^n=w(1-w)^{-2}$. Existence of a
+continuous version: $c_\omega(0)-c_\omega(s)\le C_\omega|s|$, so
+$\E|\eta(s)-\eta(s')|^2\le C|s-s'|$ and, the process being Gaussian,
+$\E|\eta(s)-\eta(s')|^4\le3C^2|s-s'|^2$; Kolmogorov--Chentsov applies. Its
+finite-dimensional marginals are the normalized periodic Mehler chains (both
+are Gaussian; the chain marginals are consistent by the semigroup property and
+have the two-point function above, computed operator-side), which is the form
+used in Lemma~\ref{lem:shift}.
+To fix a normalization that the product description leaves implicit: the mode
+variables carrying \eqref{eq:percov} are the unitary DFT modes of the
+\emph{rescaled} coordinates $\bm X=\eps_N^{1/2}\bm\varphi$ of the
+import note (I1) in \S\ref{sec:conv}, not of $\bm\varphi$ itself, whose DFT modes carry
+$c_\omega/\eps_N$. Equivalently, in position space the $\bm\varphi$-process has
+\[
+ \E\bigl[\varphi_x(s)\,\varphi_y(s')\bigr]
+ =\frac1{2L}\sum_{k\in\Gamma_N}e^{ik(x-y)}\,c_{\gamma_N(k)}(s-s'),
+\]
+which is the form matched verbatim by V2, Proposition 1.2(i); this was verified
+against the explicitly diagonalized chain at $r_N=4,8,16$ to $4\times10^{-14}$.
+\end{remark}
+
+\begin{corollary}[free case closes the circle]\label{cor:freecircle}
+For $\lambda=0$, \eqref{eq:meanshift} reads
+\[
+ F^{(0)}_N(t;\xi)=e^{-S_N(\bm H_p)}\,
+ \E\bigl[e^{i\eps_Nq\cdot\bm\eta(0)}\bigr]
+ =e^{-S_N(\bm H_p)}\,e^{-\frac{\eps_N^2}2\,q^\top C^{\rm per}_N(0)\,q},
+\]
+and by
+\eqref{eq:percov} ($s=0$: $c_\omega(0)=\cth(\omega t/2)/(2\omega)$) and the
+mode Parseval identity this equals
+$\exp[-\tfrac14Q^{(t)}_N(\xi)]$: the momentum half is \eqref{eq:SNp} and the
+position half is
+\[
+ \tfrac14\,(2r_N)^{-1}\textstyle\sum_k
+ \cth(t\gamma_k/2)\,\gamma_k^{-1}|\widehat q(k)|^2
+\]
+--- in exact agreement with Theorem~\ref{thm:lattice-free}. The two proofs are
+independent (operator ladder algebra vs.\ Gaussian chain calculus), so the
+agreement is a genuine internal cross-check of \eqref{eq:meanshift}.
+\end{corollary}
+
+\section{The continuum free functional (A3(a), continuum)}\label{sec:cont}
+
+Let $H_{0,L}=\mathrm d\Gamma(\mu)$, $\mu=(-\partial_x^2+m^2)^{1/2}$, on the
+Fock space over $L^2(\T_L)$, with modes $k\in\Gamma_\infty=\tfrac\pi L\Z$ and
+$\gamma(k)=(m^2+k^2)^{1/2}$. The model sheet's (2.13)--(2.16) fix
+$\phi_{M,x}$, $R_M^\infty$, the scaling equation and $\beta_M$, but not the
+continuum Weyl data themselves; we therefore fix them here, once, and use them
+throughout Part~II. The one-particle space is
+\[
+ h_{\rm ct}:=\bigl\{\zeta=q+ip:\ \ip{q}{\gamma^{-1}q}+\ip{p}{\gamma p}<\infty\bigr\}
+ =H^{-1/2}(\T_L)\oplus i\,H^{1/2}(\T_L),
+\]
+\emph{not} all of $L^2(\T_L;\C)$: for $p\in L^2\setminus H^{1/2}$ the operator
+$\Pi(p)$ is not densely defined and $W_{\rm ct}(ip)$ is not unitary, so the larger
+space would not carry a Weyl system. On $h_{\rm ct}$ the symplectic form
+$\sigma_{\rm ct}(\zeta,\zeta')=\mathrm{Im}\int_{\T_L}\bar\zeta\zeta'$ is finite (it
+pairs $H^{-1/2}$ with $H^{1/2}$), and we set
+$W_{\rm ct}(q+ip):=e^{i(\Phi(q)+\Pi(p))}$ with the CCR phase
+$\tfrac12\ip{q}{p}$, the continuum analogue of Proposition~\ref{prop:phase}. Note the
+parametrisation is $\zeta=q+ip$, \emph{without} the lattice's $\eps_M$: with
+$\eps_Mq$ in place of $q$ the Weyl relation would carry $\sigma_{\rm ct}/\eps_M$ and
+$\beta_M$ would fail to be a $*$-homomorphism. The free vacuum
+functional is
+\[
+ \omega^{(0)}_L\bigl(W_{\rm ct}(\zeta)\bigr)
+ =\exp\Bigl[-\tfrac14\bigl(\ip{q}{\gamma^{-1}q}+\ip{p}{\gamma p}\bigr)\Bigr],
+ \qquad\zeta=q+ip .
+\]
+With $q_\infty=\eps_M^{1/2}\sum_xq(x)\phi_{M,x}$ one has
+$\int_{\T_L}q_\infty(y)e^{-iky}dy=\eps_M^{1/2}P_\infty(\eps_Mk)\widehat q_M(k)$
+(using $\widehat\phi=P_\infty$, free-rate (1.2)), so this functional evaluated on
+$R_M^\infty\xi$ is exactly the free-rate document's continuum vacuum
+(1.7)--(1.8); the two sides of the gate are thus normalized identically, and
+$R_M^\infty$ is symplectic by orthonormality of
+$\{\phi_{M,x}\}_{x\in\Lambda_M}$. Finally $R_M^\infty$ maps into $h_{\rm ct}$:
+$R_M^\infty\xi$ has Fourier coefficients $\eps_M^{1/2}P_\infty(\eps_Mk)\widehat q_M(k)$
+with $|P_\infty(\ell)|\le C_D^{1/2}(1+|\ell|)^{-1-\eta/2}$ (free-rate Lemma 2.1), so
+both $\ip{q_\infty}{\gamma^{-1}q_\infty}$ and $\ip{p_\infty}{\gamma p_\infty}$ converge
+--- the latter needing $\sum_k\gamma(k)(1+\eps_M|k|)^{-2-\eta}<\infty$, which holds
+since $2+\eta>2$. Hence every Weyl generator the gate names is defined, and
+$\mathfrak W(\T_L)$ below is generated by $\{W_{\rm ct}(\zeta):\zeta\in h_{\rm ct}\}$.
+
+\begin{theorem}[A3(a), continuum free]\label{thm:cont-free}
+$e^{-tH_{0,L}}$ is trace class for every $t>0$, with
+$\Trace e^{-tH_{0,L}}=\prod_{k\in\Gamma_\infty}(1-e^{-t\gamma(k)})^{-1}$
+(convergent), and for every finite-mode symbol --- in particular for
+$R_M^\infty\xi$, whose mode amplitudes $z_k$ are given by the continuum
+analogue of Lemma~\ref{lem:amp} with $\sum_k|z_k|^2<\infty$ ---
+\begin{equation}
+ \frac{\Trace\bigl(e^{-tH_{0,L}}W_{\rm ct}(R_M^\infty\xi)\bigr)}
+      {\Trace\,e^{-tH_{0,L}}}
+ =\exp\Bigl[-\tfrac14\,Q^{(t)}_\infty(R_M^\infty\xi)\Bigr],
+ \label{eq:contfree}
+\end{equation}
+where $Q^{(t)}_\infty$ is the $\cth(t\gamma(k)/2)$-weighted continuum
+covariance form (the vacuum form of the free-rate document, eq.\ (1.8), with
+the thermal weights inserted).
+\end{theorem}
+
+\begin{proof}
+Here $H_{0,L}=\sum_k\gamma(k)\,a_k^*a_k$ (no zero-point subtlety: we use the
+number-operator normalization; ratios are unaffected). The occupation basis
+$\{|\bm n\rangle:\bm n\in\bigoplus_k\mathbb N_0\ \text{finitely supported}\}$
+diagonalizes $e^{-tH_{0,L}}$ with eigenvalues $e^{-t\sum_k\gamma(k)n_k}$;
+summability:
+$\sum_{\bm n}e^{-t\sum\gamma n}
+=\prod_k(1-e^{-t\gamma(k)})^{-1}$, finite because
+$\sum_ke^{-t\gamma(k)}<\infty$ ($\gamma(k)\ge c|k|$). For a Weyl operator
+with $\ell^2$ mode amplitudes, $W=\overline{\bigotimes}_kD_k(iz_k)$ in the
+incomplete-tensor-product sense over the vacuum stabilization, and
+$\ip{\bm n}{W\bm n}=\prod_k\ip{n_k}{D_k(iz_k)n_k}$: all but finitely many
+factors are $\ip{0}{D(iz_k)0}=e^{-|z_k|^2/2}$, and the product converges
+absolutely since $\sum|z_k|^2<\infty$. Then
+\[
+ \Trace(e^{-tH_{0,L}}W)
+ =\sum_{\bm n}e^{-t\sum\gamma n}\prod_k\ip{n_k}{D_k(iz_k)n_k},
+\]
+absolutely convergent with majorant $\Trace e^{-tH_{0,L}}$
+($|\ip{n}{Dn}|\le1$, unitarity), so Fubini--Tonelli for countable products
+applies and the sum factorizes into
+\[
+ \prod_k\sum_{n_k}e^{-t\gamma n_k}\ip{n_k}{D_kn_k}.
+\]
+Lemma~\ref{lem:laguerre}
+evaluates each factor; taking the ratio with the partition function and
+inserting the continuum amplitude computation --- identical to
+Lemma~\ref{lem:amp}, with the normalization
+$(2r_N)^{-1}\sum_{\Gamma_N}$ replaced by
+$\eps_M(2L)^{-1}\sum_{\Gamma_\infty}$ as in the free-rate document,
+Lemma 1.2 --- gives \eqref{eq:contfree}.
+\end{proof}
+
+\section{The thermal fixed-coarse rate (A3(b))}\label{sec:rate}
+
+Fix the coarse scale $M$, $\xi=\eps_Mq+ip$, and $t_0>0$. Write
+$w_t(\gamma):=\cth(t\gamma/2)$, $\bar w:=\cth(t_0m/2)$, and
+$x_0:=t_0m/2$. Define the pulled-back thermal forms $Q^{(t)}_{r,M}$ and
+$Q^{(t)}_{\infty,M}$ exactly as in the free-rate document, Lemma 1.1/1.2, with
+the weight $w_t(\gamma_{M+r}(k))$ resp.\ $w_t(\gamma(k))$ inserted (V0
+verified the two implementations of the pullback agree to $2\times10^{-15}$,
+i.e.\ at round-off level; \texttt{v0\_checkpoint.out}, item [2], records
+$1.78\times10^{-15}$, and the value is not bit-reproducible across runs).
+
+\begin{lemma}[derivative bounds for the thermal weights]\label{lem:wderiv}
+Let $s_*:=\sup_{x\ge x_0}x/\sh^2(x)<\infty$. For all
+$\gamma\ge m$ and $t\in[t_0,\infty]$:
+\begin{align}
+ \Bigl|\frac{d}{d\gamma}\bigl[\gamma\,w_t(\gamma)\bigr]\Bigr|
+ &=\Bigl|\,w_t(\gamma)-\frac{t\gamma/2}{\sh^2(t\gamma/2)}\Bigr|
+ \le\bar w+s_* ,
+ \label{eq:Dp}\\
+ \Bigl|\frac{d}{d\gamma}\bigl[\gamma^{-1}w_t(\gamma)\bigr]\Bigr|
+ &=\Bigl|-\frac{w_t(\gamma)}{\gamma^2}
+ -\frac{t/2}{\gamma\,\sh^2(t\gamma/2)}\Bigr|
+ \le\frac{\bar w+s_*}{m^2} ,
+ \label{eq:Dq}
+\end{align}
+and $1\le w_t(\gamma)\le\bar w$; at $t=\infty$, $w\equiv1$ and both
+left-hand sides reduce to $1$ and $\gamma^{-2}\le m^{-2}$.
+\end{lemma}
+
+\begin{proof}
+$\tfrac d{d\gamma}\cth(t\gamma/2)=-\tfrac t2\sh^{-2}(t\gamma/2)$, so the two
+derivatives are as displayed. In \eqref{eq:Dp}, $w_t(\gamma)\le\bar w$
+(monotonicity of $\cth$ in both arguments, $t\gamma\ge t_0m$) and
+$\tfrac{t\gamma}2\sh^{-2}(\tfrac{t\gamma}2)=x/\sh^2x\big|_{x=t\gamma/2}\le
+s_*$ since $x\ge x_0$. In \eqref{eq:Dq}, the first term is
+$\le\bar w/m^2$ and the second is
+$\tfrac{t/2}{\gamma\sh^2}=\tfrac{x}{\gamma^2\sh^2x}\le s_*/m^2$.
+\end{proof}
+
+\begin{theorem}[A3(b): thermal rate, uniform in $t$]\label{thm:thermalrate}
+Let $\eta=2(1-\log_2\sqrt3)$, $\theta=2\eta/(5+\eta)$, and let
+$r_*$, $J_r$, $C_D$, $A_q$, $A_p$, $b$, $\kappa$, $c_0$ be as in the free-rate
+document, \S4. Then for all $r\ge r_*$ and all $t\in[t_0,\infty]$,
+\begin{equation}
+ \bigl|Q^{(t)}_{r,M}(\xi)-Q^{(t)}_{\infty,M}(\xi)\bigr|
+ \le C^{\rm th}_Q\,2^{-\theta r},
+ \qquad
+ \Bigl|F^{(0)}_{M+r}\text{-side}-F^{(0)}_\infty\text{-side}\Bigr|
+ \le\tfrac14\,C^{\rm th}_Q\,2^{-\theta r},
+ \label{eq:thermalrate}
+\end{equation}
+where the second display compares the two thermal Weyl functionals of
+Theorems \ref{thm:lattice-free} and \ref{thm:cont-free} on the embedded
+generator, and
+\begin{align}
+ C^{\rm th}_Q&:=C^{\rm th}_{\rm low}\,(1+b^{-1})^{5}
+ +\frac{2^{\eta}\,C^{\rm th}_*}{\pi\eta},
+ \label{eq:CthQ}\\
+ C^{\rm th}_{\rm low}
+ &:=\frac{3\eps_M^3}{2L}
+ \Bigl\{A_q^2\Bigl(\frac{(\bar w+s_*)\kappa^4}{24\,m^3}
+ +\frac{c_0\bar w\,\kappa^2}{m}\Bigr)
+ +A_p^2\Bigl(\frac{(\bar w+s_*)\kappa^4}{24\,m}
+ +c_0\bar w\,(m+\kappa)\kappa^2\Bigr)\Bigr\},
+ \nonumber\\
+ C^{\rm th}_*&:=\bar w\,C_*
+ =2\,\bar w\,C_D\Bigl(\frac{A_q^2}{m}+A_p^2\,(m+\eps_M^{-1})\Bigr).
+ \nonumber
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Follow the proof of the free-rate Theorem 4.1 step by step; only the weights
+change. \emph{Low momenta} ($|n|\le J_r$): the two integrand errors are now,
+by the triangle splits
+\[
+ |w(\gamma_N)\gamma_N|P_r|^2-w(\gamma)\gamma|P_\infty|^2|
+ \le|w(\gamma_N)\gamma_N-w(\gamma)\gamma|\,|P_r|^2
+ +w(\gamma)\gamma\,\bigl||P_r|^2-|P_\infty|^2\bigr|,
+\]
+and its $q$-analogue; the mean value theorem with Lemma~\ref{lem:wderiv} and
+the imported dispersion bound $|\gamma_N-\gamma|\le\eps_N^2k^4/(24m)$
+(free-rate Lemma 3.1) give
+\[
+ |w(\gamma_N)\gamma_N-w(\gamma)\gamma|
+ \le(\bar w+s_*)\,\frac{\eps_N^2k^4}{24m},\qquad
+ |w(\gamma_N)\gamma_N^{-1}-w(\gamma)\gamma^{-1}|
+ \le\frac{\bar w+s_*}{m^2}\,\frac{\eps_N^2k^4}{24m},
+\]
+while the imported filter-tail bound (free-rate Lemma 2.2) is multiplied by
+$w(\gamma)\gamma\le\bar w(m+\kappa(1+J))$ resp.\
+$w(\gamma)/\gamma\le\bar w/m$. Summing over $|n|\le J_r$ exactly as in the
+source (the counting bounds (4.16) are unchanged) yields
+$E_{\rm low}\le4^{-r}C^{\rm th}_{\rm low}(1+J_r)^5$. \emph{High momenta}: the
+envelope estimate (free-rate Lemma 2.1) is unchanged and the summand acquires
+the factor $w\le\bar w$, so $C_*$ becomes $C^{\rm th}_*=\bar wC_*$ and the
+integral-comparison tail (4.20)--(4.21) goes through verbatim. Balancing the
+exponents as in the source ($2-5\alpha=\alpha\eta=\theta$) proves the first
+display of \eqref{eq:thermalrate}; the second follows from
+$|e^{-x/4}-e^{-y/4}|\le\tfrac14|x-y|$ ($x,y\ge0$). All bounds are uniform on
+$t\in[t_0,\infty]$, with the $t=\infty$ case reducing to the printed vacuum
+theorem (weights $\equiv1$, $s_*$-terms replaced by the original ones, and
+$C^{\rm th}\ge C^{\rm vac}$).
+\end{proof}
+
+\begin{remark}[V0 acceptance]
+The measured slopes at $t\in\{1,2,4\}$ and $t=\infty$ coincide to four
+decimals (drift $0.0000$), consistent with the $t$-uniform bound
+\eqref{eq:thermalrate}; the measured decay $2^{-1.011r}$ for the smooth V0
+symbol is faster than the worst-case $2^{-\theta r}$, as expected.
+\end{remark}
+
+\section{A2(b): the continuum statement and its input clause}\label{sec:A2b}
+
+\begin{definition}[A2(b), final form]\label{def:A2b}
+Let $K_L$ be the continuum torus Hamiltonian in the A4b convention. The
+continuum marked-slice representation is the statement: for $t>0$ and every
+coarse symbol $\xi$,
+\[
+ \frac{\Trace\bigl(e^{-tK_L}W_{\rm ct}(R_M^\infty\xi)\bigr)}
+      {\Trace\,e^{-tK_L}}
+ =e^{-S_\infty(H_p)}\,
+ \frac{\E_{\mu^{\rm per}_{t,L}}
+ \bigl[e^{i\Phi(J_q)}e^{-\mathcal U(\eta+H_p)}\bigr]}
+      {\E_{\mu^{\rm per}_{t,L}}\bigl[e^{-\mathcal U(\eta)}\bigr]},
+\]
+with $S_\infty$, $H_p$ the mode-wise objects of
+Lemmas~\ref{lem:interp}--\ref{lem:shift} for the dispersion $\gamma(k)$ (the
+free ingredients are proved: Theorem~\ref{thm:cont-free} and the
+per-mode statements apply verbatim), $J_q$ the sharp-time position source
+(admissible: Lemma 2.1 of the scoping note concerns momentum only), and
+$\mathcal U$ the continuum interaction.
+\end{definition}
+
+\begin{remark}[input clause and amendment]\label{rem:amendment}
+The only unproved ingredient in Definition~\ref{def:A2b} is the continuum
+Feynman--Kac/trace formula for $e^{-tK_L}$ on the space--time torus (the
+$\lambda=0$ case is Theorem~\ref{thm:cont-free}; the Gaussian shift lemma is
+mode-wise and dimension-free). Accordingly, Statement A1 of the scoping note
+is \emph{extended by the clause} (A1-iv): ``$e^{-tK_L}$ admits the periodic
+Feynman--Kac representation over $\T_t\times\T_L$, compatible with cylinder
+approximation.'' A2(b) is then a theorem given A1(i)--(iv), by the identical
+chain of \S\ref{sec:jump}: kernel identity (the spectral/Fubini argument of
+Theorem~\ref{thm:kernel} uses only trace-class, A1(ii)), shift identity
+(mode-wise, proved), and Riemann/dominated convergence (uses
+$e^{-\mathcal U}\in L^1$, part of A1(iv)'s package). The amendment is recorded
+in \texttt{strategy.md}; A1 including (A1-iv) is the V3 deliverable, with
+H{\o}egh-Krohn's finite-temperature construction as the import candidate for
+precisely this clause.
+\end{remark}
+
+\section{Acceptance and claim ledger}\label{sec:ledger}
+
+\begin{longtable}{P{5.6cm}P{2.6cm}P{5.6cm}}
+\toprule
+claim & status & ground \\
+\midrule
+\endhead
+Schr\"odinger action of $W_N$, CCR phase $\tfrac12\eps_Nq\cdot p$ &
+proved & Prop.~\ref{prop:phase}; V0 corner checks, residuals
+$\le4\times10^{-15}$ \\
+Trace class of $e^{-tK_{N,L}}$, $Z_N(t)\le e^{tc_V}Z^{(0)}_N(t)$ &
+proved & Prop.~\ref{prop:traceclass} \\
+Kernel identity for the marked-slice trace &
+proved & Thm.~\ref{thm:kernel} (eigenfunction bounds, Fubini) \\
+Free thermal functional, lattice (coth form) &
+proved & Thm.~\ref{thm:lattice-free}; V0: ED residual $6\times10^{-10}$;
+position-space cross-check passed at tolerance $10^{-9}$ \\
+Single-mode thermal displacement &
+proved & Lem.~\ref{lem:laguerre} (elementary Laguerre summation) \\
+Harmonic jump interpolant; exact three-term recursion; action
+$=\tfrac\omega4\cth(\tfrac{\omega t}2)\rho^2$ &
+proved & Lem.~\ref{lem:interp} \\
+Exact Gaussian shift identity at every partition &
+proved & Lem.~\ref{lem:shift} (Mehler-chain harmonicity is exact) \\
+Interacting mean-shift representation (lattice); phase cancellation;
+Wick-binomial shift &
+proved & Thm.~\ref{thm:meanshift} \\
+Free case agreement of the two routes &
+proved & Cor.~\ref{cor:freecircle} \\
+Continuum free thermal functional &
+proved & Thm.~\ref{thm:cont-free} (countable-product Fubini) \\
+Thermal fixed-coarse rate, uniform on $[t_0,\infty]$ &
+proved & Thm.~\ref{thm:thermalrate}; imports (I2); V0 slope drift $0.0000$ \\
+A2(b) continuum interacting representation &
+conditional & Def.~\ref{def:A2b} $+$ clause (A1-iv); deferred to V3
+(Rem.~\ref{rem:amendment}) \\
+\bottomrule
+\end{longtable}
+
+\noindent\emph{Phase V1 gate:} A2(a) and A3 are closed; A2(b) is in final
+conditional form with its single input clause isolated and reassigned to V3.
+The V0 acceptance criteria (formulas match the tables to rounding) are met by
+Theorems \ref{thm:lattice-free}, \ref{thm:cont-free},
+and \ref{thm:thermalrate}.
+
+\end{document}

@@ -1,0 +1,398 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{auditstyle}
+\graphicspath{{evidence/}}
+\title{Citation screenshot dossier\\[3pt]
+\large Exact source pages used in the 2026 audit of \texttt{glimm\_jaffe/m6/main.tex}}
+\author{}
+\date{9 August 2026}
+
+\newcommand{\evidence}[5]{%
+  \clearpage
+  \phantomsection\addcontentsline{toc}{section}{#1 --- #2}
+  {\Large\bfseries #1 --- #2\par}
+  \vspace{3pt}
+  \textbf{Claim audited.} #3\par
+  \textbf{Finding.} #4\par
+  \vspace{3pt}
+  \begin{center}
+  \includegraphics[width=\textwidth,height=.76\textheight,keepaspectratio]{#5}
+  \end{center}
+}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+This is the page-image evidence companion to the critical audit and the two corrected
+Lamport proofs.  Every bibliography item used by M6 is represented.  Load-bearing
+citations are shown at the theorem page actually used; contextual citations are explicitly
+labelled contextual.  A page image verifies only what appears on that page, not any stronger
+claim.
+
+Page numbers called ``PDF page'' count from the local file's first page; ``printed page'' is
+the journal/book pagination visible in the image.  All source PDFs and SHA-256 values are
+listed in the critical audit report.
+\end{resultbox}
+
+\tableofcontents
+
+\section{Evidence index}
+
+\begin{longtable}{P{1.0cm}P{3.2cm}P{5.1cm}P{4.7cm}}
+\toprule
+ID & Source & Result/claim & Audit use\\
+\midrule
+\endhead
+E01--02 & Lamport & hierarchical numbering and proof layout & method, not mathematical input\\
+E03 & GJ I & exact finite propagation/cutoff locality & load-bearing construction input\\
+E04--06 & GJ II & ground-state existence/uniqueness; cutoff covariance/local algebra & load-bearing construction inputs\\
+E07--08 & GJ III & averaged limit point and local Fock normality & historical claim and canonical-vacuum corollary\\
+E09 & GJ IV & Wightman construction statement & contextual construction history\\
+E10--11 & GJ 1971 & lower bounds and positivity estimates & corroborating cutoff construction\\
+E12--13 & Rosen & semigroup limit and self-adjoint generator & corroborating cutoff construction\\
+E14--19 & GJ Expositions & unproved vacuum limit, propagation, domain smoothing & historical and load-bearing; one citation repaired\\
+E20--26 & GJS 1974 & cutoff class, scaling, norm, CE2, CE1, uniformity & principal weak-coupling inputs\\
+E54 & GJS 1974 & proof of Thm.~1.1.7 from Thms.~1.1.8/1.1.11 (p.~597) & scope of $U_{\rm GJS}$; added 5 Sept.\ 2026\\
+E27--32 & GRS 1975 & FKN and Problems 1--2, including note added & load-bearing FKN and historical scope\\
+E33--43 & Simon & hypercontractivity, FKN, stability, miscited III.12, interacting FKN & pinpoint correction of three citations\\
+E44--45 & AHZ & Euclidean uniqueness/global Markov property & contextual only\\
+E46 & BDW & stochastic-quantization invariant-measure uniqueness & contextual; not Hamiltonian uniqueness\\
+E47 & RZT & finite-volume scope & contextual scope check\\
+E48--50 & GJS 1975 & phase transition and pure phases & contextual; insufficient for omitted M3 premise\\
+E51--53 & GJS 1976 & two pure phases and mean-field theorems & contextual; insufficient for omitted M3 premise\\
+\bottomrule
+\end{longtable}
+
+\evidence{E01}{Lamport worked structured proof, first page}
+{The requested notation is a hierarchical proof whose labels expose logical structure.}
+{Method evidence.  The companion proofs use labels of the form $\langle1\rangle1$,
+$\langle2\rangle1$, with explicit ``Because'' clauses.}
+{lamport-example-10.png}
+
+\evidence{E02}{Lamport numbering discussion}
+{Hierarchical step numbering is the relevant Lamport convention.}
+{Method evidence.  This page supports the notation choice; it is not an input to the
+field-theory theorem.}
+{lamport-numbering-16.png}
+
+\evidence{E03}{Glimm--Jaffe I, PDF page 6}
+{Cutoff dynamics has finite propagation and a local observable depends on the cutoff only
+inside the causal region.}
+{Load-bearing pass.  The page contains the Trotter/locality argument and the cutoff-dependence
+statement used for patching.}
+{gj1-locality-06.png}
+
+\evidence{E04}{Glimm--Jaffe II, Theorem 2.2.1}
+{The spatially cutoff Hamiltonian has a vacuum vector.}
+{Load-bearing pass.  This is the exact existence theorem page.}
+{gj2-ground-existence-08.png}
+
+\evidence{E05}{Glimm--Jaffe II, Theorem 2.3.1}
+{The cutoff vacuum vector is unique.}
+{Load-bearing pass.  Simplicity is used in the slab limit and parity argument.}
+{gjii-ground-12.png}
+
+\evidence{E06}{Glimm--Jaffe II, printed page 398}
+{The field is independent of the spatial cutoff inside the causal region and transforms
+covariantly under translations.}
+{Load-bearing pass.  This page states the cutoff-independence condition explicitly.}
+{gj2-cutoff-independence-38.png}
+
+\evidence{E07}{Glimm--Jaffe III, printed page 210}
+{The physical vacuum construction begins with averaged cutoff states and a weak-star limit
+point.}
+{Historical pass.  The displayed averaging formula and Theorem 2.1 support the manuscript's
+description.}
+{gjiii-08.png}
+
+\evidence{E08}{Glimm--Jaffe III, printed page 211}
+{The limit-point representation is locally Fock/normal.}
+{Historical pass.  Theorems 2.2--2.3 are visible and match the cited conclusion.}
+{gjiii-09.png}
+
+\evidence{E09}{Glimm--Jaffe IV, first page}
+{The I--IV series establishes limiting Wightman functions and field operators.}
+{Contextual pass.  Theorems A and B support the construction-history sentence; no later
+proof step depends on this page.}
+{gj4-01.png}
+
+\evidence{E10}{Glimm--Jaffe 1971, Theorem 1}
+{Cutoff Hamiltonians possess uniform lower bounds in the auxiliary cutoffs.}
+{Corroborating pass.  This is not, by itself, the source for every simplicity/domain claim.}
+{gj71-lower-bound-02.png}
+
+\evidence{E11}{Glimm--Jaffe 1971, Theorem 2}
+{The cited positivity/self-adjointness paper supplies the stated model estimates.}
+{Corroborating pass.  M6 should continue to rely on the more precise GJ II/GJS statements
+for ground-state simplicity.}
+{gj71-theorem2-04.png}
+
+\evidence{E12}{Rosen 1970, semigroup construction}
+{The cutoff-free/self-adjoint construction is supported by a convergent semigroup.}
+{Corroborating pass.  Theorem 5.3 begins on this page.}
+{rosen-semigroup-22.png}
+
+\evidence{E13}{Rosen 1970, self-adjoint generator/core}
+{The limiting semigroup generator is positive self-adjoint and agrees with the Hamiltonian
+on the specified core.}
+{Corroborating pass.  The visible continuation supplies the precise operator conclusion.}
+{rosen-selfadjoint-23.png}
+
+\evidence{E14}{Glimm--Jaffe Expositions, PDF page 54}
+{The original construction did not prove convergence of cutoff vacuum expectation values.}
+{Historical pass.  The relevant discussion begins on this page.}
+{gjexp-054.png}
+
+\evidence{E15}{Glimm--Jaffe Expositions, PDF page 55}
+{The limit of vacuum expectations ``has not been proved'' and locality uses finite
+propagation.}
+{Historical/load-bearing pass.  The exact limiting-status language and surrounding
+propagation argument are visible.}
+{gjexp-055.png}
+
+\evidence{E16}{Glimm--Jaffe Expositions, PDF page 56}
+{Cutoff dynamics is patched into a local cutoff-independent dynamics.}
+{Load-bearing pass.  This is the continuation of the construction shown in E15.}
+{gjexp-056.png}
+
+\evidence{E17}{Glimm--Jaffe Expositions, Theorem 7.3}
+{M6 cites Theorem 7.3 for semigroup domain smoothing.}
+{Citation mismatch.  The visible statement assumes the multiplication potential $V$ is
+bounded below, a hypothesis M6 does not verify for its Wick interaction.}
+{gjexp-domain-165.png}
+
+\evidence{E18}{Glimm--Jaffe Expositions, Lemma 7.4}
+{The proof mechanism for domain smoothing uses convergence of truncated multiplication
+operators times the semigroup.}
+{Supporting page.  The lemma belongs to the general Theorem 7.3 argument; the model-specific
+result is on the next page.}
+{gjexp-domain-166.png}
+
+\evidence{E19}{Glimm--Jaffe Expositions, Theorem 7.4}
+{For the $P(\varphi)_2$ Hamiltonian, $\Ran e^{-tH(g)}$ lies in the domain of every
+relevant $V'$.}
+{Load-bearing repair.  Cite this theorem directly for M6 line 214.}
+{gjexp-domain-167.png}
+
+\evidence{E20}{GJS 1974, printed page 588}
+{The spatially cutoff Hamiltonian is essentially self-adjoint and has a simple ground
+eigenvalue.}
+{Load-bearing pass.  The source states the cutoff model and simplicity explicitly.}
+{gjs-source-05.png}
+
+\evidence{E21}{GJS 1974, printed page 589}
+{The Euclidean cutoff class permits compactly supported $0\leq h\leq1$ and defines
+$dq_h$.}
+{Load-bearing pass.  The slab cutoff $\mathbf1_{[-T,T]}\otimes g$ lies in this measurable
+class.}
+{gjs-source-06.png}
+
+\evidence{E22}{GJS 1974, printed page 590}
+{The dimensionless coupling is $\lambda/m_0^2$, by an exact unitary dilation.}
+{Load-bearing pass.  This page supplies the scaling omitted from M6's proof.}
+{gjs-scaling-07.png}
+
+\evidence{E23}{GJS 1974, printed page 593}
+{The observable class is the product of individually Wick-ordered powers, with bounded
+per-point degree.}
+{Load-bearing pass.  This validates the $V(h)^2$ observable without Wick recombination.}
+{gjs-theorems-10.png}
+
+\evidence{E24}{GJS 1974, printed page 594}
+{The GJS norms have one overall $K_1$, local weights $K_2^{2N(\Delta)}N(\Delta)!$, and
+Theorem 1.1.7 has constants independent of $h,Q_1,Q_2$.}
+{Load-bearing pass.  This closes the norm-prefactor and CE2 gates.}
+{gjs-theorems-11.png}
+
+\evidence{E25}{GJS 1974, printed page 595}
+{Theorem 1.1.8 bounds sharp-time monomials uniformly as the cutoff tends to one.  The same
+page, (1.1.12), applies Theorem 1.1.7 at every cutoff $h_1+\alpha(h_2-h_1)$ of an affine
+path between arbitrary cutoff functions $h_1,h_2$ (``We apply Theorem 1.1.7 to each term
+in the sum'').}
+{Load-bearing pass with E26 and E54.  E26 supplies the explicit space-cutoff uniformity
+statement; E54 shows the printed proof of Theorem 1.1.7 consuming Theorem 1.1.8 at the
+same $h$; the affine-path application fixes the scope at which the source uses the
+quantifier (Part~I, Assumption A8(vii$'$), added 5 September 2026).}
+{gjs-theorems-12.png}
+
+\evidence{E26}{GJS 1974, printed page 629}
+{The estimates of Theorem 1.1.8 are uniform in the space cutoff $h$.}
+{Load-bearing pass.  Together with E24's direct independence statement for CE2, the
+cutoff-uniform source gate closes.}
+{gjs-uniform-46.png}
+
+\evidence{E27}{GRS 1975, Theorem II.14}
+{A cutoff Feynman--Kac--Nelson formula identifies Euclidean and Hamiltonian matrix
+elements.}
+{Load-bearing pass.  This is an appropriate pinpoint replacement for the broad GRS
+citation in M6.}
+{grs-fkn-39.png}
+
+\evidence{E28}{GRS 1975, Theorem II.16}
+{The general interacting FKN formula used for slab transfer is available.}
+{Load-bearing pass.  The theorem begins on this page.}
+{grs-fkn-40.png}
+
+\evidence{E29}{GRS 1975, printed page 125}
+{Problem 1 asks for local $L^p$ estimates on the vacuum density.}
+{Historical pass.  This is Euclidean and is not proved by M6.}
+{grs-16.png}
+
+\evidence{E30}{GRS 1975, printed page 126}
+{Problem 2 asks for convergence of finite-volume Euclidean states on bounded regions.}
+{Historical pass with scope qualification: M6 proves a Hamiltonian local-algebra analogue,
+not literally this Euclidean problem.}
+{grs-17.png}
+
+\evidence{E31}{GRS 1975, printed page 127}
+{The surrounding open-problem list fixes the historical context.}
+{Contextual evidence.  No load-bearing theorem is imported from this page.}
+{grs-18.png}
+
+\evidence{E32}{GRS 1975, printed page 128, note added}
+{Later developments affected the status of the first problems.}
+{Historical qualification.  The note records Newman's small-coupling $p=1$ result, so
+unqualified claims that every form remained open are too broad.}
+{grs-19.png}
+
+\evidence{E33}{Simon, Theorem I.17}
+{Nelson hypercontractivity supplies the exact $L^p\to L^q$ condition used in path
+regularity.}
+{Load-bearing repair.  This is the direct theorem M6 should cite at line 542.}
+{simon-hyper-056.png}
+
+\evidence{E34}{Simon, Theorem III.6}
+{The free-field FKN formula relates time slices and the free Hamiltonian semigroup.}
+{Load-bearing repair.  This is the correct free FKN theorem.}
+{simon-free-fkn-111.png}
+
+\evidence{E35}{Simon, Theorem III.12}
+{M6 cites this theorem as FKN.}
+{Citation failure.  The page shows a product-of-projections/Sobolev-region estimate, not
+an FKN identity.}
+{simon-wrong-iii12-119.png}
+
+\evidence{E36}{Simon, Theorem III.17, first page}
+{The time-region form of hypercontractivity supplies the transfer estimate.}
+{Load-bearing repair.  The theorem statement begins here.}
+{simon-timeslice-125.png}
+
+\evidence{E37}{Simon, Theorem III.17, continuation}
+{The hypercontractive exponent condition and proof continue.}
+{Load-bearing supporting page for E36.}
+{simon-timeslice-126.png}
+
+\evidence{E38}{Simon, Theorem V.7}
+{Finite-volume exponential stability/integrability of the interaction weights is available.}
+{Load-bearing pass for the actual role at M6 line 557.}
+{simon-exp-174.png}
+
+\evidence{E39}{Simon, Theorem V.10, first page}
+{M6 cites V.10 as if it were the direct free hypercontractivity theorem.}
+{Pinpoint mismatch.  This result is a later transfer-matrix estimate that uses earlier
+hypercontractivity; cite I.17/III.17 for the displayed inequality.}
+{simon-transfer-178.png}
+
+\evidence{E40}{Simon, Theorem V.10, continuation}
+{The transfer estimate's actual scope.}
+{Supporting mismatch evidence for E39.}
+{simon-transfer-179.png}
+
+\evidence{E41}{Simon, Theorem V.12}
+{M6 cites V.12 both for hypercontractivity and for a common-core/self-adjointness role.}
+{Mixed verdict.  The hypercontractivity citation is wrong; the essential-self-adjointness/
+core citation near M6 line 593 is consistent with this page.}
+{simon-transfer-180.png}
+
+\evidence{E42}{Simon, Corollary V.14}
+{The interacting semigroup admits the FKN representation.}
+{Load-bearing repair for M6 lines 305 and 536.}
+{simon-fkn-184.png}
+
+\evidence{E43}{Simon, Theorem V.15}
+{The full interacting FKN formula is stated.}
+{Load-bearing repair.  This is the strongest direct Simon page matching the formula used.}
+{simon-fkn-185.png}
+
+\evidence{E44}{AHZ 1989, abstract}
+{Euclidean uniqueness and global Markov results exist for general polynomial interactions
+under specified conditions.}
+{Contextual pass.  This does not itself prove Hamiltonian cutoff-net convergence.}
+{ahz-01.png}
+
+\evidence{E45}{AHZ 1989, uniqueness conclusion}
+{The paper's Gibbs-state uniqueness conclusion and transition to the global Markov property.}
+{Contextual pass.  The page fixes the actual Euclidean scope of the citation.}
+{ahz-uniqueness-24.png}
+
+\evidence{E46}{Bauerschmidt--Dagallier--Weber, first page}
+{The modern uniqueness citation concerns $\Phi^4_2$ stochastic quantization.}
+{Contextual scope finding.  The abstract proves uniqueness of the invariant measure above
+critical temperature, not uniqueness of Hamiltonian ground states or convergence of M6's
+cutoff net.}
+{bdw-01.png}
+
+\evidence{E47}{Rodriguez Zarate--Thiemann, first page}
+{The closest cited Hamiltonian-renormalisation work is finite volume.}
+{Contextual pass.  The abstract explicitly states the finite-volume scope.}
+{rzt-01.png}
+
+\evidence{E48}{GJS 1975, first page}
+{The paper proves a phase transition for specified two-dimensional quantum fields.}
+{Contextual pass.  It supports the broad phase-transition statement, not the full omitted
+M3 phase-decomposition premise.}
+{gjs75-01.png}
+
+\evidence{E49}{GJS 1975, second page}
+{The discussion identifies two distinct pure phases and clustering within them.}
+{Contextual partial support for M3.  The stronger classification of every parity-invariant
+Hamiltonian ground state is not supplied merely by this prose.}
+{gjs75-phases-02.png}
+
+\evidence{E50}{GJS 1975, Theorem 1.1 page}
+{The paper's precise phase-transition theorem has model-specific hypotheses and an order
+parameter conclusion.}
+{Scope check.  M6 must quote the exact theorem if it wishes to import it; a general
+``coexistence'' phrase cannot replace M3's hypotheses.}
+{gjs75-theorem-03.png}
+
+\evidence{E51}{GJS 1976, first page}
+{The mean-field expansion studies a selected pure phase and ground state.}
+{Contextual pass.  This supports detailed strong-coupling phase analysis.}
+{gjs76-01.png}
+
+\evidence{E52}{GJS 1976, second page}
+{The paper states mass gaps in each of two pure phases.}
+{Important scope distinction.  Gaps in infinite-volume pure-phase representations are not
+the same proposition as a uniform lower bound for the finite-cutoff tunnelling gap.}
+{gjs76-phases-02.png}
+
+\evidence{E53}{GJS 1976, Theorem 2.1 page}
+{The detailed mean-field theorem begins under explicit hypotheses.}
+{Contextual scope check.  Nothing on this page removes the need to state M3 Hypothesis 4.1
+when invoking M3 Theorem 4.2.}
+{gjs76-theorem-05.png}
+
+\evidence{E54}{GJS 1974, printed page 597}
+{``Proof of Theorem 1.1.7, assuming Theorems 1.1.8 and 1.1.11'' (begins at the foot of
+p.~596): $Q=\int A\,dq_h+O(1)\|A\|e^{-m_0(1-\varepsilon)T}$, then ``the proof follows from
+Theorem 1.1.8, (1.1.16) and the above determination of $Q$''.}
+{Load-bearing pass for the scope of $U_{\rm GJS}$ (added 5 September 2026).  The
+$h$-independent constant of Theorem 1.1.7 is obtained from Theorem 1.1.8 at the same $h$;
+accepting Theorem 1.1.7 as printed at non-rectangular slab cutoffs therefore commits to
+the $h$-uniform constant of Theorem 1.1.8 on the same class.  Together with E25's
+affine-path application and E26, this fixes $U_{\rm GJS}$ as the quantifier the source
+states and uses (Part~I, Assumption A8(vi), (vii$'$) and Scope paragraph).}
+{gjs-proof-14.png}
+
+\clearpage
+\section{Dossier conclusion}
+
+The page-image audit closes the two principal source gates: GJS CE1/CE2 have the claimed
+norm structure and cutoff independence, and appropriate FKN/hypercontractivity/domain
+theorems exist.  It also proves that the theorem numbers presently attached to those three
+imports in M6 are inaccurate.  Finally, it makes the subsidiary-corollary defect visible:
+the phase-transition sources establish substantial strong-coupling results, but M6 does not
+state the exact phase-space classification assumed by its internal dichotomy theorem.
+
+\end{document}

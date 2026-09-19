@@ -1,0 +1,54 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{auditstyle}[2026/08/09 Glimm--Jaffe audit style]
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage[margin=2.35cm]{geometry}
+\RequirePackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\RequirePackage{microtype}
+\RequirePackage{xcolor}
+\RequirePackage{booktabs,longtable,array,tabularx}
+\RequirePackage{enumitem}
+\RequirePackage{graphicx}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,citecolor=blue!55!black]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlist{nosep,leftmargin=2em}
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{Glimm--Jaffe proof audit}
+\rhead{9 August 2026}
+\cfoot{\thepage/\pageref*{LastPage}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\E}{\mathbb E}
+\newcommand{\A}{\mathfrak A}
+\newcommand{\Hh}{\mathcal H}
+\newcommand{\Om}{\Omega}
+\newcommand{\G}{\mathcal G}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\LS}[2]{\par\medskip\noindent\textbf{$\langle #1\rangle\,#2$}\quad}
+\newcommand{\Because}{\emph{Because:} }
+\newcommand{\Suffices}{\emph{Suffices:} }
+\newcommand{\QedStep}{\hfill$\square$}
+\newcommand{\Pass}{\textcolor{green!45!black}{\textbf{PASS}}}
+\newcommand{\Repair}{\textcolor{orange!80!black}{\textbf{REPAIR}}}
+\newcommand{\Fail}{\textcolor{red!70!black}{\textbf{FAIL}}}
+\newcommand{\Conditional}{\textcolor{blue!65!black}{\textbf{CONDITIONAL}}}
+\newenvironment{resultbox}{\begin{center}\begin{minipage}{0.94\textwidth}\hrule\vspace{6pt}}{\vspace{6pt}\hrule\end{minipage}\end{center}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Imported assumption}
+\newtheorem{remark}[theorem]{Remark}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}

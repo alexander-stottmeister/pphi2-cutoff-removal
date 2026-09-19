@@ -1,0 +1,35 @@
+# ---------------------------------------------------------------------------
+# Publication boundary.  Third-party copyrighted material is never committed:
+# source PDFs and every citation page image.  The JSTOR page images also carry
+# a watermark naming the downloading institution.  The dossier sources still
+# build without them, with framed placeholders in place of each image, and
+# fresh_audit_2026_08_16/render_evidence.sh regenerates the corpus from local
+# copies of the sources, one pinned page per call.
+# ---------------------------------------------------------------------------
+refs/
+**/evidence/
+part_ii/dossier_images/
+*.png
+*dossier*.pdf
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+!part_ii/*checkpoint.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+.DS_Store
+
+# macOS duplicate
+m6/main 2.pdf
+
+# output/pdf/ re-publishes some documents unchanged; keep only the unique ones
+output/pdf/glimm-jaffe-main-theorem-repaired.pdf
+output/pdf/glimm-jaffe-critical-proof-audit-2026.pdf
+output/pdf/glimm-jaffe-part-ii-free-fixed-coarse-rate.pdf
+output/pdf/glimm-jaffe-part-ii-model-sheet.pdf
+output/pdf/glimm-jaffe-part-ii-projective-compactness.pdf
+output/pdf/glimm-jaffe-part-ii-weyl-reduction.pdf

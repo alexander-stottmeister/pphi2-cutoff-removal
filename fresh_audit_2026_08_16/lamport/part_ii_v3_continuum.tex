@@ -1,0 +1,1470 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{auditstyle}
+\lhead{Fresh Glimm--Jaffe proof audit}
+\rhead{16 August 2026}
+\usepackage{bm}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\T}{\mathbb T}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\U}{\mathcal U}
+\newcommand{\D}{\mathcal D}
+\newcommand{\HH}{\mathcal H}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Jone}{\mathcal J_1}
+\newcommand{\Jtwo}{\mathcal J_2}
+\DeclareMathOperator{\cth}{coth}
+
+\title{Part II V3 in Lamport notation\\[3pt]
+\large Construction of the continuum torus Hamiltonian, trace class, periodic
+Feynman--Kac formula, and the gap}
+\author{Fresh reconstruction of \texttt{part\_ii/v3\_continuum\_package.tex}}
+\date{16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+The continuum package is reconstructed below without importing a pre-existing
+$P(\varphi)_2$ Hamiltonian.  The only printed input is Simon's four-result
+second-quantization cluster, checked in the accompanying citation-evidence dossier.
+The periodic cutoff estimate that V3 states only by analogy is supplied explicitly
+in Steps $\langle3\rangle8$--$\langle3\rangle10$.
+\end{resultbox}
+\tableofcontents
+
+\section{Data, exact target, and imports}
+
+Fix $L,m>0$, $\lambda\ge0$, and $a,b\in\R$.  Put
+\[
+ \Gamma_\infty=\frac\pi L\Z,
+ \qquad \gamma(k)=(m^2+k^2)^{1/2},
+ \qquad \T_L=\R/(2L\Z).
+\tag{0.1}
+\]
+Whenever a periodic time interval is used, fix $t\in[t_0,T]$ and impose
+\[
+ t_0L\ge1.\tag{0.2}
+\]
+The gate ultimately uses $(a,b)=(0,0)$.  Allowing arbitrary $(a,b)$ here makes
+explicit that no continuum counterterm is being hidden.
+
+Let $(e_j)_{j\ge1}$ be the real orthonormal Fourier basis
+\[
+ e_0=(2L)^{-1/2},\qquad e_k^c=L^{-1/2}\cos(kx),\qquad
+ e_k^s=L^{-1/2}\sin(kx)\quad(k>0),
+\tag{0.3}
+\]
+and let $\gamma_j$ be the corresponding value of $\gamma$.  On
+\[
+ (Q,\mu)=\left(\R^\N,\bigotimes_{j\ge1}\mathcal N(0,1)\right)
+\tag{0.4}
+\]
+write the coordinate variables as $\xi_j$ and define
+\[
+ \varphi^{(K)}(x)=\sum_{|k_j|\le K}
+ \frac{\xi_j}{\sqrt{2\gamma_j}}e_j(x),
+ \qquad
+ c_K=\E_\mu[\varphi^{(K)}(x)^2]
+ =\frac1{2L}\sum_{|k|\le K}\frac1{2\gamma(k)}.
+\tag{0.5}
+\]
+The free Hamiltonian on $L^2(Q,\mu)$ is
+\[
+ H_0=d\Gamma(\gamma),\qquad e^{-sH_0}=\Gamma(e^{-s\gamma}),
+ \qquad
+ Z_0(s)=\Tr e^{-sH_0}=\prod_{k\in\Gamma_\infty}(1-e^{-s\gamma(k)})^{-1}.
+\tag{0.6}
+\]
+Its bounded smooth cylinder core is
+\[
+ \D=\{F(\xi_1,\ldots,\xi_n):n<\infty, F\in C_b^\infty(\R^n)\}.
+\tag{0.7}
+\]
+
+The following are the only external statements used.
+
+\begin{assumption}[Simon second-quantization cluster]
+For a real-Hilbert-space contraction $A$, the Gaussian second quantization
+$\Gamma(A)$ is positivity preserving; it is an $L^p$ contraction for every
+$1\le p\le\infty$; it is positivity improving if $\|A\|<1$; and
+\[
+ \|\Gamma(A)f\|_q\le\|f\|_p
+ \quad\hbox{if}\quad
+ 1<p\le q<\infty,\qquad
+ \|A\|\le\sqrt{\frac{p-1}{q-1}}.
+\tag{0.8}
+\]
+These are Simon, Theorem I.12, Corollary I.15, Theorems I.16 and I.17.
+The exact pages are reproduced in the evidence dossier.
+\end{assumption}
+
+The elementary bounded-perturbation Trotter product formula and the spectral
+theorem are used in the forms proved in the model-sheet reconstruction.  All
+remaining inputs below are results already proved in the V1 and repaired V2
+Lamport modules.
+
+\section{Interaction and sharp-time convergence}
+
+\LS{1}{1}{Bound the cutoff variance.}
+
+\LS{2}{1}{For $K\ge m$,}
+\[
+ c_K\le C_c(m,L)\,[1+\log(1+K/m)].\tag{1.1}
+\]
+
+\Because Pair the sine and cosine modes and compare the decreasing summand with
+the integral:
+\[
+ \sum_{0<k\le K}\frac1{\sqrt{m^2+k^2}}
+ \le \frac L\pi\int_0^K\frac{du}{\sqrt{m^2+u^2}}+\frac1m
+ =\frac L\pi\operatorname{arsinh}(K/m)+\frac1m.
+\]
+Since $\operatorname{arsinh}x\le1+\log(1+x)$, (1.1) follows.
+
+\LS{2}{2}{This proves $\langle1\rangle1$.}\QedStep
+
+\LS{1}{2}{Define and bound the mode-cutoff interaction.}
+
+For $K\in\Gamma_\infty$, set
+\[
+ V^{(K)}=\lambda\int_{\T_L}
+ \left[{:}\varphi^{(K)}(x)^4{:}_{c_K}
+ +a{:}\varphi^{(K)}(x)^2{:}_{c_K}+b\right]dx.
+\tag{1.2}
+\]
+
+\LS{2}{1}{For $u\in\R$ and $c\ge0$,}
+\[
+ {:}u^4{:}_c+a{:}u^2{:}_c+b
+ =(u^2-3c)^2+a(u^2-3c)-6c^2+2ac+b.
+\tag{1.3}
+\]
+
+\Because Expanding the right side gives
+$u^4+(a-6c)u^2+3c^2-ac+b$, which is
+$(u^4-6cu^2+3c^2)+a(u^2-c)+b$.
+
+\LS{2}{2}{Consequently,}
+\[
+ {:}u^4{:}_c+a{:}u^2{:}_c+b
+ \ge-\left(6c^2+2|a|c+\frac{a^2}{4}+|b|\right).
+\tag{1.4}
+\]
+
+\Because For $v=u^2-3c$, $v^2+av=(v+a/2)^2-a^2/4\ge-a^2/4$;
+$2ac+b\ge-2|a|c-|b|$.
+
+\LS{2}{3}{Thus}
+\[
+ V^{(K)}\ge-b_K,\qquad
+ b_K:=2L\lambda\left(6c_K^2+2|a|c_K+\frac{a^2}{4}+|b|\right)
+ \le C[1+\log(1+K/m)]^2.
+\tag{1.5}
+\]
+
+\LS{2}{4}{If $\lambda>0$, $V^{(K)}(\xi)\to+\infty$ as
+$|\xi|\to\infty$ in the finitely many retained coordinates.}
+
+\Because Cauchy--Schwarz on a space of volume $2L$ and Parseval give
+\[
+ \int_{\T_L}(\varphi^{(K)})^4dx
+ \ge\frac1{2L}\left(\int_{\T_L}(\varphi^{(K)})^2dx\right)^2,
+ \qquad
+ \int_{\T_L}(\varphi^{(K)})^2dx
+ =\sum_{|k_j|\le K}\frac{\xi_j^2}{2\gamma_j}.
+\tag{1.6}
+\]
+All Wick-subtraction and $a$ terms are affine in the last sum.  A positive
+quadratic polynomial in that sum therefore dominates them at infinity.  When
+$\lambda=0$, the free harmonic operator supplies coercivity.
+
+\LS{2}{5}{This proves $\langle1\rangle2$.}\QedStep
+
+\LS{1}{3}{Construct the limiting sharp-time interaction in $L^2(\mu)$.}
+
+\LS{2}{1}{Own-variance Wick ordering gives the exact chaos decomposition}
+\[
+ V^{(K)}=\lambda I_4(f_K)+\lambda a I_2(g_K)+2L\lambda b,
+\tag{1.7}
+\]
+where $f_K,g_K$ are restrictions of fixed infinite-mode kernels.
+
+\Because ${:}X^r{:}_{\E X^2}$ is the $r$th homogeneous Wiener chaos.
+The integral imposes spatial momentum conservation and introduces no lower-chaos
+terms because the Wick constant in (1.2) is exactly the variance in (0.5).
+
+\LS{2}{2}{For $K'\ge K$, the quartic tail satisfies}
+\[
+ \left\|I_4(f_{K'})-I_4(f_K)\right\|_2^2
+ =4!(2L)^{-2}
+ \sum_{\substack{k_1+\cdots+k_4=0\\
+       \max_i|k_i|\in(K,K']}}
+ \prod_{i=1}^4\frac1{2\gamma(k_i)}.
+\tag{1.8}
+\]
+
+\Because The Wick isometry contracts only equal chaos orders.  Expanding four
+Fourier sums and integrating $x,y\in\T_L$ supplies two Kronecker constraints;
+one is eliminated, leaving (1.8), including the factor $4!$.
+
+\LS{2}{3}{Let $g(k)=(m+|k|)^{-1}$.  Then $(2\gamma(k))^{-1}\le g(k)$ and}
+\[
+ (g*g)(k)\le CL\frac{1+\log(2+|k|/m)}{m+|k|},\qquad
+ (g*g*g)(k)\le CL^2\frac{[1+\log(2+|k|/m)]^2}{m+|k|}.
+\tag{1.9}
+\]
+
+\Because $m+|k|\le2\sqrt{m^2+k^2}$.  For the first convolution split the
+summation into $|u|\le|k|/2$, $|k-u|\le|k|/2$, and the complement.  In the
+first region the second denominator is at least $(m+|k|)/2$ and
+$\sum_{|u|\le R}(m+|u|)^{-1}\le CL[1+\log(1+R/m)]$; the second region is
+symmetric.  In the complement both denominators are at least a fixed multiple of
+$m+|k|$, and the remaining square tail is $O(L/(m+|k|))$.  Repeat the same
+three-region split after convolving the first estimate with $g$; the partial sum of
+$(1+\log)/(m+|u|)$ contributes the second logarithm.  These are finite sums on the
+grid $(\pi/L)\Z$, so no continuum-limit interchange occurs.
+
+\LS{2}{4}{The part of (1.8) with $|k_1|>K$ is at most}
+\[
+ CL^3\sum_{|k_1|>K}
+ \frac{[1+\log(2+|k_1|/m)]^2}{(m+|k_1|)^2}
+ \le CL^3\frac{[1+\log(1+K/m)]^2}{K/m}.
+\tag{1.10}
+\]
+
+\Because Sum the remaining three momenta by (1.9).  Integral comparison of the
+decreasing tail $\log^2 u/u^2$ gives the final bound.  The union over the four
+choices of the large momentum changes only $C$.
+
+\LS{2}{5}{The quadratic tail has variance}
+\[
+ \left\|I_2(g_{K'})-I_2(g_K)\right\|_2^2
+ =\frac12\sum_{K<|k|\le K'}\gamma(k)^{-2}\le\frac{CL}{K}.
+\tag{1.11}
+\]
+
+\Because In the real sine/cosine basis it is the sum of independent multiples of
+$\xi_j^2-1$, whose variance is $2$.  The mode normalizations give the factor
+$1/2$; compare the remaining sum with
+$(2L/\pi)\int_K^\infty(m^2+u^2)^{-1}du$.
+
+\LS{2}{6}{There is a chaos-$\le4$ random variable $V_L\in L^2(\mu)$ such that}
+\[
+ \|V^{(K)}-V^{(K')}\|_2+\|V^{(K)}-V_L\|_2
+ \le C_V\frac{1+\log(1+K/m)}{(K/m)^{1/2}}.
+\tag{1.12}
+\]
+
+\Because Combine (1.10), (1.11), orthogonality of distinct chaoses, and
+completeness of $L^2(\mu)$.  The constant chaos cancels.  The limiting kernels
+are precisely the truncation-convention objects denoted
+$\lambda\int({:}\varphi^4{:}_{C_L}+a{:}\varphi^2{:}_{C_L}+b)dx$.
+
+\LS{2}{7}{$V^{(K)}\to V_L$ in every finite $L^p(\mu)$.}
+
+\Because If $X$ is a sum of chaoses of orders at most four, (0.8) applied with
+$A=e^{-\tau}\mathbf1$, $q=1+e^{2\tau}$, and the orthogonal chaos decomposition
+gives
+\[
+ \|X\|_q\le(q-1)^2\|X\|_2\qquad(q\ge2).
+\tag{1.13}
+\]
+Use (1.13) for the difference and interpolate for $p<2$.
+
+\LS{2}{8}{This proves $\langle1\rangle3$.}\QedStep
+
+\section{The three Gaussian path ensembles and uniform exponential bounds}
+
+\LS{1}{4}{Fix the three ensembles and their covariance identities.}
+
+\LS{2}{1}{The vacuum ensemble is $(Q,\mu)$ of (0.4).}
+
+\LS{2}{2}{The periodic ensemble $\mu^{\rm per}_{t,L}$ is the centered field on
+$\T_t\times\T_L$ with per-mode covariance}
+\[
+ c_\omega(s-s')=
+ \frac{\cosh(\omega(t/2-|s-s'|_{\T_t}))}{2\omega\sinh(\omega t/2)},
+ \qquad \omega=\gamma(k).
+\tag{2.1}
+\]
+
+\LS{2}{3}{The stationary Ornstein--Uhlenbeck ensemble is the Gaussian process
+$X_s=(\xi_j(s))_j$ with}
+\[
+ \E[\xi_j(s)\xi_j(s')]=e^{-\gamma_j|s-s'|}.
+\tag{2.2}
+\]
+For bounded cylinder $F,G$,
+\[
+ \E[\overline{F(X_0)}G(X_s)]
+ =\ip{F}{\Gamma(e^{-s\gamma})G}_{L^2(\mu)}.
+\tag{2.3}
+\]
+
+\Because Both sides of (2.3) are finite-dimensional Gaussian integrals with unit
+marginals and cross covariance $e^{-s\gamma_j}$ in coordinate $j$.  Equality for
+cylinders follows from their characteristic functions; $L^2$ density extends it.
+
+\LS{2}{4}{This proves $\langle1\rangle4$.}\QedStep
+
+\LS{1}{5}{Prove the abstract uniform Nelson lemma used at every cutoff.}
+
+Let $A_K$ be chaos-$\le4$ random variables indexed by a full tail
+$\mathcal K\subset\Gamma_\infty$.  Define
+$\ell_K=1+\log(1+K/m)$ and assume
+\begin{align}
+ \ell_{K^+}-\ell_K&\le\log2,\tag{2.4}\\
+ A_K&\ge-c_1\ell_K^2,\tag{2.5}\\
+ \|A_K-A_{K'}\|_2&\le C_A\ell_K(K/m)^{-\kappa}\quad(K'\ge K),
+ \qquad \kappa>0.\tag{2.6}
+\end{align}
+
+\LS{2}{1}{For $b$ with $L_b=\sqrt{b/(2c_1)}$ sufficiently large and
+$b\le c_1\ell_K^2$, choose the largest $K_b\le K$ for which
+$\ell_{K_b}\le L_b$.  Then}
+\[
+ \frac{L_b}{2}<\ell_{K_b}\le L_b.
+\tag{2.7}
+\]
+
+\Because Maximality gives $\ell_{K_b^+}>L_b$ and (2.4) gives
+$\ell_{K_b}>L_b-\log2\ge L_b/2$.  If $b>c_1\ell_K^2$, (2.5) makes
+$\PP(A_K\le-b)=0$.
+
+\LS{2}{2}{$A_{K_b}\ge-b/2$, hence}
+\[
+ \{A_K\le-b\}\subset
+ \{A_K-A_{K_b}\le-b/2\}.
+\tag{2.8}
+\]
+
+\LS{2}{3}{The $L^2$ scale of the difference obeys}
+\[
+ \rho_b:=\|A_K-A_{K_b}\|_2
+ \le2C_AL_b e^{-\kappa(L_b/2-1)}.
+\tag{2.9}
+\]
+
+\Because $K_b/m=e^{\ell_{K_b}-1}-1$.  For large $L_b$, this is at least
+$\tfrac12e^{\ell_{K_b}-1}$; insert (2.7) into (2.6).
+
+\LS{2}{4}{For every integer $q\ge1$,}
+\[
+ \PP(A_K\le-b)
+ \le\left[\frac{2(2q-1)^2\rho_b}{b}\right]^{2q}.
+\tag{2.10}
+\]
+
+\Because Apply Markov to $|A_K-A_{K_b}|^{2q}$ in (2.8) and apply
+(1.13) with exponent $2q$ to the chaos-$\le4$ difference.
+
+\LS{2}{5}{Choose $q$ so that $(2q)^2\le e^{\kappa L_b/4}<(2q+2)^2$.
+After increasing the fixed threshold $b_1$,}
+\[
+ \PP(A_K\le-b)\le\exp[-e^{\kappa L_b/8}]
+ \qquad(b\ge b_1),
+\tag{2.11}
+\]
+uniformly in $K$.
+
+\Because Substitute (2.9) into (2.10).  The logarithm of the bracket is
+at most $-\kappa L_b/8$ after the polynomial factors in $L_b$ are absorbed;
+$2q\ge\tfrac12e^{\kappa L_b/8}$ gives (2.11), after another harmless
+increase of $b_1$.
+
+\LS{2}{6}{For every $p<\infty$,}
+\[
+ \sup_K\E[e^{-pA_K}]<\infty.
+\tag{2.12}
+\]
+
+\Because Layer cake gives
+\[
+ \E[e^{-pA_K}]
+ \le e^{pb_1}+p\int_{b_1}^\infty e^{pb}\PP(A_K\le-b)\,db.
+\]
+Since $L_b$ is a positive constant times $\sqrt b$, the double-exponential
+decay in (2.11) dominates $e^{pb}$ and makes the integral finite uniformly in
+$K$.  If $A_K\to A$ in $L^2$, take an a.s. convergent subsequence and apply
+Fatou to obtain the same bound for $e^{-A}$.
+
+\LS{2}{7}{The bounded successor-gap hypothesis (2.4) holds on every full lattice
+tail.}
+
+\Because For $K^+=K+\pi/L$ and $K\ge\pi/L$,
+\[
+ \ell_{K^+}-\ell_K
+ =\log\left(1+\frac{\pi/L}{m+K}\right)<\log2.
+\]
+This condition is essential to the scale selection (2.7); (2.5)--(2.6) alone do
+not imply that selection for a tower-sparse index set.
+
+\LS{2}{8}{This proves $\langle1\rangle5$.}\QedStep
+
+\LS{1}{6}{Instantiate the Nelson lemma in all three ensembles.}
+
+\LS{2}{1}{For $0<\sigma\le\sigma_0$,}
+\[
+ \sup_K\|e^{-\sigma V^{(K)}}\|_{L^p(\mu)}<\infty,\qquad
+ e^{-\sigma V_L}\in L^p(\mu).
+\tag{2.13}
+\]
+
+\Because Conditions (2.5) and (2.6) are respectively (1.5) and (1.12),
+with $\kappa=1/2$, after multiplying constants by $\sigma_0$.
+
+\LS{2}{2}{For}
+\[
+ \mathcal W_K(t)=\int_0^tV^{(K)}(X_s)ds,\qquad
+ \mathcal W(t)=\int_0^tV_L(X_s)ds,
+\tag{2.14}
+\]
+one has, uniformly for $0<t\le T$,
+\[
+ \|\mathcal W_K-\mathcal W_{K'}\|_2
+ \le t\|V^{(K)}-V^{(K')}\|_2,\quad
+ \mathcal W_K\ge-TC\ell_K^2,\quad
+ \sup_K\|e^{-\mathcal W_K}\|_p<\infty.
+\tag{2.15}
+\]
+
+\Because Stationarity and Cauchy--Schwarz give
+\[
+ \|\mathcal W_K-\mathcal W_{K'}\|_2^2
+ =\int_0^t\!\int_0^t\E[\Delta V(X_s)\Delta V(X_u)]dsdu
+ \le t^2\|\Delta V\|_2^2.
+\]
+The pathwise lower bound is the integral of (1.5).  Time integration of a
+global Gaussian chaos remains in chaos orders at most four, so Step
+$\langle1\rangle5$ applies.
+
+\LS{2}{3}{Let $\U_t^{(K)}$ be the spatial-mode truncation of the periodic
+interaction.  Then}
+\[
+ \U_t^{(K)}\to\U_t\quad\hbox{in }L^2(\mu^{\rm per}_{t,L}),\qquad
+ \sup_K\|e^{-\U_t^{(K)}}\|_p<\infty.
+\tag{2.16}
+\]
+
+\LS{3}{1}{The pathwise lower bound is $\U_t^{(K)}\ge-Ct\ell_K^2$.}
+
+\Because Apply (1.4) at every spacetime point using the vacuum cutoff constant
+$c_K$, which obeys (1.1), and integrate over $\T_t\times\T_L$.
+
+\LS{3}{2}{The quadratic chaos tail satisfies}
+\[
+ \|Y_2^{(K')}-Y_2^{(K)}\|_2^2
+ \le C\sum_{|k|>K}\sum_{k_0\in(2\pi/t)\Z}
+ (m^2+k_0^2+k^2)^{-2}\le C(t,L,m)K^{-2}.
+\tag{2.17}
+\]
+
+\Because The first inequality is the Wick isometry and the continuum covariance
+envelope.  Summing $k_0$ by comparison with its integral gives
+$\sum_{k_0}(A^2+k_0^2)^{-2}\le C(t_0)(A^{-4}+tA^{-3})$; the remaining
+one-dimensional spatial tail is $O(tLK^{-2})$ (and the $A^{-4}$ term is
+smaller under $tL\ge1$).
+
+\LS{3}{3}{The quartic chaos tail satisfies the explicit bound}
+\[
+ \|Y_4^{(K')}-Y_4^{(K)}\|_2^2
+ \le C(t,L,m)
+ \sum_{\substack{|k|>K\\ k_0\in(2\pi/t)\Z}}
+ \frac{[1+\log(2+|(k_0,k)|)]^2}
+ {(m^2+k_0^2+k^2)^2}
+ \le C(t,L,m)K^{-2}[1+\log K]^2.
+\tag{2.18}
+\]
+
+\Because Select one of the four momenta whose spatial component exceeds $K$;
+there are four choices.  Sum the other three constrained covariance factors using
+the two-dimensional convolution estimate already proved in the repaired V2 module:
+$c_{\rm env}^{*3}(-\kappa)\le C(tL)^2[1+\log(2+|\kappa|)]^2/
+(m^2+|\kappa|^2)$.  Multiplication by the selected factor gives the first sum.
+Cover the anisotropic grid by its fundamental rectangles.  Its radial majorant is
+decreasing outside a fixed disk, so the sum is bounded by its density times
+\[
+ \int_{r>K}\frac{r[1+\log(2+r)]^2}{(m^2+r^2)^2}dr
+ \le C\frac{[1+\log K]^2}{m^2+K^2}.
+\]
+This is the missing ``same tail counts'' calculation in the source V3 document.
+
+\LS{3}{4}{The thermal recombination coefficient tail is exponentially small.}
+
+\Because
+\[
+ d^{(K)}(t)=\frac1{2L}\sum_{|k|\le K}
+ \frac1{\gamma(k)(e^{t\gamma(k)}-1)},
+\]
+and for $t\ge t_0$ the omitted summand is bounded by
+$C e^{-t_0|k|}/(m+|k|)$.  Hence
+$|d^{(K)}-d^{(K')}|\le Ce^{-t_0K/2}$ after enlarging $C$.
+
+\LS{3}{5}{Equations (2.17)--(2.18), the finite Wick recombination identity, and
+boundedness of $d^{(K)}$ imply}
+\[
+ \|\U_t^{(K)}-\U_t^{(K')}\|_2
+ \le C[1+\log(1+K/m)]^2(K/m)^{-1/2}.
+\tag{2.19}
+\]
+
+\Because The actual chaos tails from (2.17)--(2.18) are at least as small as
+$K^{-1}\log K$ after taking square roots.  The displayed $K^{-1/2}\log^2K$
+rate is a weaker common bound that also covers the coefficient cross terms.  Each
+cross term is a bounded coefficient difference times a bounded lower-chaos norm.
+
+\LS{3}{6}{Absorb one logarithm by
+$\ell_K\le C_\varsigma(K/m)^\varsigma$, choose
+$0<\varsigma<1/2$, and apply Step $\langle1\rangle5$ with
+$\kappa=1/2-\varsigma$.  This proves (2.16).}
+
+\LS{2}{4}{The deterministically shifted periodic interactions obey the same
+Cauchy and exponential-integrability conclusions, uniformly for the bounded
+coarse-data class used in V4.}
+
+\Because Substitute $u=\eta^{(K)}(s,x)+H^{(K)}(s,x)$ in (1.4).  Since (1.4)
+holds for every real $u$, integration gives the same lower bound
+$\U_t^{(K)}(\eta+H^{(K)})\ge-Ct\ell_K^2$.  Expand each shifted Wick monomial by
+the Appell identity (3.12) and its degree-two analogue.  The repaired V2 theorem,
+whose fundamental-band and alias sums are displayed in its Steps
+$\langle1\rangle7$--$\langle1\rangle8$, bounds the resulting random-chaos tails
+and deterministic coefficient differences by the right side of (2.19), uniformly
+over the stated coarse-data bounds.  These are precisely the lower-tail and
+$L^2$-increment hypotheses of Step $\langle1\rangle5$; applying that step proves
+the asserted uniform exponential integrability and $L^2$ convergence.
+
+\LS{2}{5}{This proves $\langle1\rangle6$.}\QedStep
+
+\LS{1}{7}{Derive uniform spectral lower bounds for the finite-cutoff operators.}
+
+Let $K^{(K)}$ be defined in the next section.  Its finite-mode periodic trace
+identity will be proved independently of this step.
+
+\LS{2}{1}{For a fixed admissible $t_0$,}
+\[
+ e^{-t_0\inf\spec K^{(K)}}\le\Tr e^{-t_0K^{(K)}}
+ =Z_0(t_0)\E[e^{-\U_{t_0}^{(K)}}]\le Z_0(t_0)B.
+\tag{2.20}
+\]
+
+\Because The first inequality selects the lowest heat eigenvalue; the identity is
+proved in Step $\langle1\rangle8$ below; the last inequality is (2.16) at $p=1$.
+No uniform lower bound is used in proving that finite-mode identity, so this is not
+circular.
+
+\LS{2}{2}{Taking logarithms gives a $K$-independent constant $c_\lambda$ with}
+\[
+ K^{(K)}\ge-c_\lambda.
+\tag{2.21}
+\]
+
+\LS{2}{3}{For $0<\delta<1$, apply (2.21) to the amplified coupling
+$\lambda/(1-\delta)$ to obtain}
+\[
+ K^{(K)}=\delta H_0+(1-\delta)
+ \left[H_0+(1-\delta)^{-1}V^{(K)}\right]
+ \ge\delta H_0-c_\delta
+\tag{2.22}
+\]
+as quadratic forms.
+
+\LS{2}{4}{This proves $\langle1\rangle7$.}\QedStep
+
+\section{Finite-mode systems and their exact Feynman--Kac formulas}
+
+For fixed $K$, decompose
+$L^2(Q,\mu)=L^2(\mu_{\le K})\otimes L^2(\mu_{>K})$ and set
+\[
+ K^{(K)}=(H_0^{\le K}+V^{(K)})\otimes\mathbf1
+ +\mathbf1\otimes H_0^{>K},\qquad T_K(s)=e^{-sK^{(K)}}.
+\tag{3.1}
+\]
+
+\LS{1}{8}{Construct each finite-mode system and prove every representation used
+later.}
+
+\LS{2}{1}{The form of $H_0^{\le K}+V^{(K)}$ is densely defined,
+lower bounded, and closed.}
+
+\Because Choose $C>b_K$ and write
+\[
+ q_K(f)=\sum_{|k_j|\le K}\gamma_j\|\partial_jf\|_2^2
+ +\int(V^{(K)}+C)|f|^2d\mu_{\le K}.
+\tag{3.2}
+\]
+Both summands are nonnegative and their domains contain
+$C_c^\infty(\R^{n_K})$.  If $f_n$ is Cauchy in the norm
+$\|f\|_2^2+q_K(f)$, it converges in $L^2$ and in each weighted weak derivative.
+A subsequence converges pointwise a.e.; Fatou for the multiplication term and
+closedness of weak derivatives identify the limits.  Thus the form norm is
+complete.
+
+\LS{2}{2}{The finite-mode operator has compact resolvent.}
+
+\Because On every Euclidean ball the Gaussian density is bounded above and below
+by positive constants, so the weighted form norm controls the ordinary $H^1$ norm
+there; Rellich makes the restricted embedding compact.  Outside a sufficiently
+large ball, coercivity from (1.6) gives
+$(V^{(K)}+C)\ge R$, hence
+$\int_{|\xi|>R_0}|f|^2d\mu\le R^{-1}q_K(f)$.  First take $R$ large and then
+use Rellich on the ball.  The unit ball of the form domain is therefore relatively
+compact in $L^2$.
+
+\LS{2}{3}{For one retained coordinate, the free Mehler kernel with respect to
+$\mathcal N(0,1)$ is}
+\[
+ M_s^{(j)}(x,y)=(1-r_j^2)^{-1/2}
+ \exp\left[-\frac{r_j^2(x^2+y^2)-2r_jxy}{2(1-r_j^2)}\right],
+ \qquad r_j=e^{-s\gamma_j}.
+\tag{3.3}
+\]
+
+\Because Completing the square shows
+$\int M_s^{(j)}(x,y)d\mu(y)=1$; symmetry is evident.  Applying the Gaussian
+generating function to Hermite polynomials gives eigenvalue $r_j^n$ in degree
+$n$.  Hence the product over retained coordinates is exactly
+$\Gamma(e^{-s\gamma})$ on that finite Gaussian space.
+
+\LS{2}{4}{For bounded $f,g$ on the retained coordinates,}
+\[
+ \ip f{e^{-s(H_0^{\le K}+V^{(K)})}g}
+ =\E\left[\overline{f(X_0^{\le K})}g(X_s^{\le K})
+ e^{-\int_0^sV^{(K)}(X_u)du}\right].
+\tag{3.4}
+\]
+
+\LS{3}{1}{First replace $V^{(K)}$ by $V_R=V^{(K)}\wedge R$, with $R>0$.}
+
+\Because By (1.5), $-b_K\le V_R\le R$, so multiplication by $V_R$ is
+bounded and self-adjoint.
+
+\LS{3}{2}{The bounded-perturbation Trotter formula gives}
+\[
+ e^{-s(H_0+V_R)}=s\!\!\!\lim_{n\to\infty}
+ (e^{-(s/n)H_0}e^{-(s/n)V_R})^n.
+\tag{3.5}
+\]
+
+\LS{3}{3}{Insertion of (3.3) between the multiplication factors turns the matrix
+element of the product into the OU chain integral with weight}
+\[
+ \exp\left[-\frac{s}{n}\sum_{j=1}^nV_R(X_{js/n})\right].
+\]
+
+\LS{3}{4}{As $n\to\infty$ this weight converges a.s. to
+$e^{-\int_0^sV_R(X_u)du}$ and is bounded by $e^{sb_K}$.}
+
+\Because The finite-dimensional OU process has continuous paths and $V_R$ is
+bounded continuous.  The displayed sum is therefore an ordinary Riemann sum;
+dominated convergence applies.
+
+\LS{3}{5}{As $R\to\infty$, the operators and path integrals converge to (3.4).}
+
+\Because $V_R\uparrow V^{(K)}$, so the associated closed forms increase and
+monotone form convergence gives strong semigroup convergence.  On each continuous
+path, $e^{-\int V_R}\downarrow e^{-\int V^{(K)}}$; it is bounded by $e^{sb_K}$,
+so dominated convergence applies.  This proves (3.4).
+
+\LS{2}{5}{The kernel in (3.4) is jointly continuous and strictly positive.}
+
+\Because Condition the OU law on its two endpoints.  The product Mehler density is
+continuous and strictly positive.  The bridge expectation of the weight lies in
+$(0,e^{sb_K}]$.  Continuity follows by dominated convergence after realizing the
+finite-dimensional Gaussian bridge as an affine continuous function of its endpoints
+plus an endpoint-independent bridge.
+
+\LS{2}{6}{Tensoring with the independent free tail gives, for bounded cylinders
+$f,g$,}
+\[
+ \ip f{T_K(s)g}
+ =\E\left[\overline{f(X_0)}g(X_s)e^{-\mathcal W_K(s)}\right].
+\tag{3.6}
+\]
+
+\Because The retained and omitted OU coordinates are independent; apply (3.4) to
+the first factor and (2.3) to the second.
+
+\LS{2}{7}{$T_K(s)$ is trace class and}
+\[
+ \Tr T_K(s)\le e^{sb_K}Z_0(s).
+\tag{3.7}
+\]
+
+\Because The min--max principle and $V^{(K)}\ge-b_K$ imply that every ordered
+eigenvalue of the retained interacting operator is at least the corresponding free
+eigenvalue minus $b_K$.  Tensoring with the free tail and summing all occupation
+numbers gives (3.7).  In particular, the full tensor operator has compact resolvent.
+
+\LS{2}{8}{The periodic trace formula is}
+\[
+ \Tr T_K(s)=Z_0(s)\E_{\mu^{\rm per}_{s,L}}[e^{-\U_s^{(K)}}].
+\tag{3.8}
+\]
+
+\Because Apply the diagonal trace to the strictly positive kernel from (3.4),
+normalize the product of cyclic Mehler kernels by its free trace, and integrate the
+intermediate points.  The normalized cyclic Gaussian chain has covariance (2.1):
+for one mode, direct inversion of the cyclic tridiagonal quadratic form gives
+$\cosh(\omega(s/2-|u-v|))/(2\omega\sinh(\omega s/2))$.  The equal-time
+variance differs from $c_K$ by $d^{(K)}(s)$; the exact Wick-recombination identity
+\[
+ {:}X^4{:}_{c_K}={:}X^4{:}_{v_K}
+ +6(v_K-c_K){:}X^2{:}_{v_K}+3(v_K-c_K)^2
+\tag{3.9}
+\]
+identifies the path action with $\U_s^{(K)}$.  Passing from equal cyclic
+partitions to the continuous bridge uses the bounded-truncation and dominated
+limits already justified in Steps $\langle3\rangle1$--$\langle3\rangle5$.
+
+\LS{2}{9}{For a Weyl symbol whose position and momentum components are supported
+in $|k|\le K$,}
+\[
+ \frac{\Tr(T_K(s)W_{\rm ct}(\xi))}{\Tr T_K(s)}
+ =e^{-S^{(K)}(H_p)}
+ \frac{\E[e^{i\Phi(J_q)}e^{-\U_s^{(K)}(\eta+H_p^{(K)})}]}
+ {\E[e^{-\U_s^{(K)}]}}.
+\tag{3.10}
+\]
+Here
+\[
+ S^{(K)}(H_p)=\frac1{8L}\sum_{|k|\le K}
+ \gamma(k)\cth(s\gamma(k)/2)|b_\infty(k)|^2.
+\tag{3.11}
+\]
+
+\Because Apply the V1 proof mode by mode: the Weyl operator translates the endpoint
+by its momentum component and multiplies by its position phase; the unique solution
+of $(-\partial_u^2+\gamma(k)^2)H=0$ off the marked slice with the prescribed jump
+removes the endpoint translation; completing the Gaussian square produces (3.11)
+and the sharp-time phase.  The Wick Appell identity
+\[
+ {:}(X+H)^4{:}_c
+ ={:}X^4{:}_c+4H{:}X^3{:}_c+6H^2{:}X^2{:}_c+4H^3X+H^4
+\tag{3.12}
+\]
+gives the shifted action without an extra $-6c(2HX+H^2)$ term.  To remove the
+interaction cutoff, replace $V^{(K)}$ by $V_R=V^{(K)}\wedge R$ exactly as in
+Steps $\langle3\rangle1$--$\langle3\rangle5$: the Weyl insertion is unitary, the
+truncated path weight is bounded by $e^{sb_K}$, and dominated convergence first
+passes the Trotter mesh and then $R\to\infty$.  All retained spaces are
+finite-dimensional.  Tensoring with the omitted free modes produces the same free
+factor in numerator and denominator, so that factor cancels.
+
+\LS{2}{10}{The kernel is positivity improving, so the finite-mode lowest
+eigenvalue is simple.}
+
+\Because If $f,g\ge0$ are nonzero, the endpoint Mehler density is strictly
+positive and the Feynman--Kac weight is strictly positive on every finite path;
+therefore $\ip f{e^{-s(H_0^{\le K}+V^{(K)})}g}>0$.  Let $T$ denote this compact
+self-adjoint integral operator and let $Th=\|T\|h$.  Its strictly positive kernel
+gives $|Th(x)|\le T|h|(x)$; the variational bound
+$\langle |h|,T|h|\rangle\le\|T\|\|h\|^2$ forces equality.  Equality in the
+integral triangle inequality for a strictly positive kernel forces $h(y)$ to have
+one common phase for almost every $y$.  Thus every top eigenvector is a scalar
+multiple of one strictly positive vector, so the top eigenvalue is simple.
+Tensoring with the free tail preserves a unique total ground vector because each
+strictly positive tail frequency has the unique oscillator vacuum.
+
+\LS{2}{11}{This proves $\langle1\rangle8$ and supplies the identity used in
+(2.20).}\QedStep
+
+\section{Strong semigroup limit and the continuum generator}
+
+\LS{1}{9}{Prove that $T_K(s)$ converges strongly to one self-adjoint semigroup.}
+
+\LS{2}{1}{For a bounded cylinder $\psi$ supported in modes at most $K_0$ and
+$K,K'\ge K_0$,}
+\[
+ \|(T_K(s)-T_{K'}(s))\psi\|_2
+ \le\|\psi\|_\infty
+ \|e^{-\mathcal W_K(s)}-e^{-\mathcal W_{K'}(s)}\|_2.
+\tag{4.1}
+\]
+
+\Because Subtract the two conditional-expectation versions of (3.6), condition on
+$X_0$, square, integrate, and apply conditional Jensen.
+
+\LS{2}{2}{For real $x,y$,}
+\[
+ |e^{-x}-e^{-y}|\le|x-y|(e^{-x}+e^{-y}).\tag{4.2}
+\]
+
+\Because Integrate the derivative of $e^{-[(1-u)x+uy]}$ over $u\in[0,1]$ and
+bound every intermediate exponential by $e^{-x}+e^{-y}$.
+
+\LS{2}{3}{Equations (1.13), (2.13)--(2.15), and H\"older give}
+\[
+ \|e^{-\mathcal W_K}-e^{-\mathcal W_{K'}}\|_2
+ \le C_Ts\|V^{(K)}-V^{(K')}\|_2.
+\tag{4.3}
+\]
+
+\Because Apply (4.2), then
+$\|XY\|_2\le\|X\|_4\|Y\|_4$ with
+$X=\mathcal W_K-\mathcal W_{K'}$ and
+$Y=e^{-\mathcal W_K}+e^{-\mathcal W_{K'}}$.  The first norm is at most
+$9s\|V^{(K)}-V^{(K')}\|_2$ by (1.13), (2.15); the second is uniformly
+bounded by (2.13)--(2.15).
+
+\LS{2}{4}{$T_K(s)$ is strongly Cauchy on $L^2(\mu)$, uniformly for $s$ in a
+compact interval.}
+
+\Because Equations (4.1), (4.3), and (1.12) prove this on the dense bounded
+cylinder core.  The uniform operator bound
+$\|T_K(s)\|\le e^{sc_\lambda}$ from (2.21) extends it to all $L^2$.
+Call the strong limit $T(s)$.
+
+\LS{2}{5}{$T(s)$ is a self-adjoint semigroup with
+$\|T(s)\|\le e^{sc_\lambda}$.}
+
+\Because Strong limits preserve the adjoint identity on matrix elements.
+For the product, insert and subtract
+$T_K(s)T_K(u)$ and use uniform boundedness to pass both factors strongly:
+$T(s)T(u)=T(s+u)$.  The norm bound passes by lower semicontinuity.
+
+\LS{2}{6}{$T(s)$ is strongly continuous at $s=0$.}
+
+\Because For a bounded cylinder $\psi$ and fixed $K$ containing its modes,
+\[
+ \|T(s)\psi-\psi\|
+ \le\|T(s)\psi-T_K(s)\psi\|+\|T_K(s)\psi-\psi\|.
+\]
+By (4.1)--(4.3), the first term is at most
+$Cs\|\psi\|_\infty\sup_{K'\ge K}\|V^{(K')}-V^{(K)}\|_2$; the second
+tends to zero for fixed $K$.  First let $s\downarrow0$, then $K\to\infty$.
+Density and the uniform norm bound finish.
+
+\LS{2}{7}{There is a unique self-adjoint $K_L\ge-c_\lambda$ such that}
+\[
+ T(s)=e^{-sK_L}.
+\tag{4.4}
+\]
+
+\Because Apply the spectral-generator theorem for a strongly continuous
+self-adjoint semigroup bounded by $e^{sc_\lambda}$.  The semigroup uniquely
+determines its generator.
+
+\LS{2}{8}{For bounded measurable $f,g$,}
+\[
+ \ip f{T(s)g}=\E[\overline{f(X_0)}g(X_s)e^{-\mathcal W(s)}].
+\tag{4.5}
+\]
+
+\Because For bounded cylinders, pass $K\to\infty$ in (3.6) by (4.3) and
+strong convergence.  Approximate bounded measurable functions by their conditional
+expectations on the increasing mode sigma-fields.  Martingale convergence gives
+a.e. and $L^2$ convergence; dominated convergence on the right uses
+$e^{-\mathcal W}\in L^1$, while strong continuity of $T(s)$ handles the left.
+
+\LS{2}{9}{The uniform form bound passes to the limit:}
+\[
+ K_L\ge\tfrac12H_0-c_{1/2}.
+\tag{4.6}
+\]
+
+\LS{3}{1}{Choose $M>c_{1/2}\vee c_\lambda$.  From (2.22),}
+\[
+ (K^{(K)}+M)^{-1}\le
+ (\tfrac12H_0+M-c_{1/2})^{-1}.
+\tag{4.7}
+\]
+
+\Because For strictly positive self-adjoint $S$, spectral calculus gives
+\[
+ q_S(\psi)=\sup_\phi[2\operatorname{Re}\ip\psi\phi-ip\phi{S^{-1}\phi}],
+\quad
+ \ip\phi{S^{-1}\phi}=\sup_\psi[2\operatorname{Re}\ip\psi\phi-q_S(\psi)].
+\tag{4.8}
+\]
+Thus form order and the reverse resolvent order are equivalent.
+
+\LS{3}{2}{The resolvents converge strongly:}
+\[
+ (K^{(K)}+M)^{-1}	o(K_L+M)^{-1}.
+\tag{4.9}
+\]
+
+\Because Use the Laplace representation
+$S^{-1}=\int_0^\infty e^{-Ms}e^{-s(S-M)}ds$ with the semigroups
+$T_K,T$; $M>c_\lambda$ supplies an integrable uniform majorant.
+
+\LS{3}{3}{Pass to the limit in (4.7) on every vector and use (4.8) in the
+reverse direction.  This gives (4.6) and
+$Q(K_L)\subset Q(H_0)$.}
+
+\LS{2}{10}{This proves $\langle1\rangle9$.}\QedStep
+
+\LS{1}{10}{Identify the generator and its form on the cylinder core.}
+
+\LS{2}{1}{For $\psi\in\D$,}
+\[
+ \frac{(1-T(s))\psi}{s}
+ =\frac{(1-e^{-sH_0})\psi}{s}
+ -\frac1s\E[\psi(X_s)(e^{-\mathcal W(s)}-1)\mid X_0].
+\tag{4.10}
+\]
+
+\Because This is (4.5) written as a conditional expectation, with the free
+conditional expectation subtracted and added.
+
+\LS{2}{2}{The first term in (4.10) converges in $L^2$ to $H_0\psi$.}
+
+\Because Let $d\mu_\psi(\lambda)=d\langle\psi,E_{H_0}(\lambda)\psi\rangle$.
+The spectral theorem gives
+\[
+ \left\|\frac{1-e^{-sH_0}}s\psi-H_0\psi\right\|_2^2
+ =\int_0^\infty
+ \left|\frac{1-e^{-s\lambda}}s-\lambda\right|^2d\mu_\psi(\lambda).
+\]
+The integrand converges pointwise to zero and is bounded by $\lambda^2$, because
+$0\le(1-e^{-s\lambda})/s\le\lambda$.  Since $\psi\in D(H_0)$,
+$\int\lambda^2d\mu_\psi<\infty$; dominated convergence proves the claim.
+
+\LS{2}{3}{Write $e^{-x}-1=-x+\rho(x)$, where}
+\[
+ |\rho(x)|\le\tfrac12x^2e^{x_-},\qquad x_-=\max(-x,0).
+\tag{4.11}
+\]
+
+\Because Taylor's formula with integral remainder gives
+$\rho(x)=x^2\int_0^1(1-u)e^{-ux}du$; bound $e^{-ux}\le e^{x_-}$.
+
+\LS{2}{4}{The linear part satisfies}
+\[
+ \frac1s\E[\psi(X_s)\mathcal W(s)\mid X_0]
+ =\frac1s\int_0^s e^{-uH_0}
+ \bigl(V_L e^{-(s-u)H_0}\psi\bigr)du
+ \longrightarrow V_L\psi
+\tag{4.12}
+\]
+in $L^2$.
+
+\Because The Markov property gives the identity.  Since $V_L\in L^4$ and
+$\psi$ is bounded,
+\[
+ \|V_L(e^{-vH_0}\psi-\psi)\|_2
+ \le\|V_L\|_4\|e^{-vH_0}\psi-\psi\|_4.
+\]
+For $\psi=F(\xi_1,\ldots,\xi_n)$, the Mehler formula and bounded derivatives of
+$F$ give
+\[
+ \sup_{0\le v\le s}\|e^{-vH_0}\psi-\psi\|_4
+ \le C_F\sum_{j\le n}(1-e^{-s\gamma_j})^{1/2}\to0.
+\]
+Also $e^{-uH_0}$ is strongly continuous on $V_L\psi\in L^2$.  Both errors are
+uniform for $0\le u\le s$, proving (4.12).
+
+\LS{2}{5}{The remainder in (4.11), divided by $s$, tends to zero in $L^2$.}
+
+\Because Conditional Jensen, H\"older, (1.13), and (2.15) give
+\[
+ \frac1s\|\E[\psi(X_s)\rho(\mathcal W)\mid X_0]\|_2
+ \le\frac{\|\psi\|_\infty}{2s}
+ \|\mathcal W\|_8^2\|e^{\mathcal W_-}\|_4
+ \le Cs.
+\tag{4.13}
+\]
+Indeed $\|\mathcal W\|_8\le49s\|V_L\|_2$ and
+$e^{\mathcal W_-}\le1+e^{-\mathcal W}$, whose $L^4$ norm is uniformly
+bounded by Step $\langle1\rangle6$.
+
+\LS{2}{6}{Therefore}
+\[
+ \D\subset D(K_L),\qquad K_L\psi=H_0\psi+V_L\psi
+ \quad(\psi\in\D).
+\tag{4.14}
+\]
+
+\Because Combine (4.10)--(4.13) with the generator characterization
+$K_L\psi=\lim_{s\downarrow0}s^{-1}(1-e^{-sK_L})\psi$.
+
+\LS{2}{7}{For $\psi\in\D$,}
+\[
+ q_{K_L}(\psi)=\ip\psi{H_0\psi}+\int V_L|\psi|^2d\mu.
+\tag{4.15}
+\]
+
+\Because Spectral calculus gives
+$s^{-1}\ip\psi{(1-e^{-sK_L})\psi}\to q_{K_L}(\psi)$ after shifting by the
+lower spectral bound.  Equation (4.14) identifies the same limit with the
+right side.  This proves equality on $\D$ only; no unproved claim that $\D$ is a
+form core is made.
+
+\LS{2}{8}{This proves $\langle1\rangle10$.}\QedStep
+
+\section{Uniform smoothing, trace class, and trace-norm approximation}
+
+\LS{1}{11}{Prove the cutoff-uniform $L^2\to L^4$ smoothing estimate.}
+
+Put $s_4=(\log3)/m$.
+
+\LS{2}{1}{By self-adjoint duality it suffices to prove}
+\[
+ \sup_K\|T_K(s_4)\|_{4/3\to2}<\infty.
+\tag{5.1}
+\]
+
+\Because $\|T_K(s_4)\|_{2\to4}=\|T_K(s_4)\|_{4/3\to2}$.  For
+$s>s_4$, compose with
+$\|T_K(s-s_4)\|_{2\to2}\le e^{c_\lambda(s-s_4)}$.
+
+\LS{2}{2}{Replace $W=V^{(K)}$ by $W_R=W\wedge R$ and use Trotter with
+$\tau=s_4/n$.  It is enough to bound}
+\[
+ (e^{-\tau W_R}e^{-\tau H_0})^n:L^{4/3}\to L^2
+\tag{5.2}
+\]
+uniformly in $n,K,R$.
+
+\Because The bounded Trotter products converge strongly.  The form semigroups for
+$W_R\uparrow W$ converge strongly.  An a.e. convergent subsequence and Fatou pass
+any common $L^2$ bound through both limits.
+
+\LS{2}{3}{For $j=0,\ldots,n$, define}
+\[
+ p_j=1+\frac13e^{j\tau m},\qquad
+ P_j=1+(p_j-1)e^{2\tau m}.
+\tag{5.3}
+\]
+Then $p_0=4/3$, $p_n=2$, and
+\[
+ \|e^{-\tau H_0}\|_{p_j\to P_j}\le1.
+\tag{5.4}
+\]
+
+\Because $\|e^{-\tau\gamma}\|=e^{-\tau m}$ and
+$e^{-\tau m}=\sqrt{(p_j-1)/(P_j-1)}$; apply (0.8).
+
+\LS{2}{4}{Define $r_j$ by}
+\[
+ \frac1{p_{j+1}}=\frac1{r_j}+\frac1{P_j}.
+\tag{5.5}
+\]
+Then multiplication gives
+\[
+ \|e^{-\tau W_R}u\|_{p_{j+1}}
+ \le\|e^{-\tau W_R}\|_{r_j}\|u\|_{P_j}.
+\tag{5.6}
+\]
+
+\LS{2}{5}{For $n\ge2$,}
+\[
+ \sum_{j=0}^{n-1}\frac1{r_j}\le1,\qquad
+ r_j\tau\le\frac{12}{m}.
+\tag{5.7}
+\]
+
+\Because From (5.3),
+$P_j-p_{j+1}=\tfrac13e^{(j+1)\tau m}(e^{\tau m}-1)$.  Since
+$p_{j+1},P_j\ge4/3$,
+\[
+ \sum_jr_j^{-1}
+ \le\frac3{16}e^{\tau m}(e^{n\tau m}-1)
+ =\frac38e^{\tau m}\le\frac{3\sqrt3}{8}<1.
+\]
+Also $p_{j+1}\le2$, $P_j\le1+\tfrac13e^{(j+2)\tau m}$, and
+$\tau m\le e^{\tau m}-1$, whence
+\[
+ r_j\tau m
+ =\frac{3\tau m,p_{j+1}P_j}
+ {e^{(j+1)\tau m}(e^{\tau m}-1)}
+ \le6+2e^{\tau m}<12.
+\]
+
+\LS{2}{6}{There is a constant $D$ independent of $j,n,K,R$ such that}
+\[
+ \|e^{-\tau W_R}\|_{r_j}\le D^{1/r_j}.
+\tag{5.8}
+\]
+
+\Because Since $R>0$, $e^{-r_j\tau W_R}\le1+e^{-r_j\tau W}$.
+Equation (5.7) restricts $r_j\tau$ to $(0,12/m]$, so the vacuum Nelson
+bound (2.13), with $p=1$ and all $\sigma$ in that compact interval, makes
+$\E e^{-r_j\tau W}$ uniformly bounded.
+
+\LS{2}{7}{Multiplication of (5.4), (5.6), and (5.8) yields}
+\[
+ \|(e^{-\tau W_R}e^{-\tau H_0})^n\|_{4/3\to2}
+ \le D^{\sum_j1/r_j}\le\max(1,D)=:M_0.
+\tag{5.9}
+\]
+
+\LS{2}{8}{Consequently, uniformly in $K$,}
+\[
+ \|T_K(s)\|_{2\to4}\le M_0e^{c_\lambda(s-s_4)}\quad(s\ge s_4),
+\tag{5.10}
+\]
+and the same holds for $T(s)$ by strong convergence and Fatou.
+
+\LS{2}{9}{This proves $\langle1\rangle11$.}\QedStep
+
+\LS{1}{12}{Upgrade strong convergence to operator-norm convergence at one time.}
+
+Set $s_2=2s_4$ and $\Delta V=V^{(K')}-V^{(K)}$.
+
+\LS{2}{1}{For bounded cylinder $\phi,\psi$ and every $0<s<s_2$, both
+$T_K(s)\phi$ and $T_{K'}(s_2-s)\psi$ lie in the form domains of both
+$K^{(K)}$ and $K^{(K')}$.}
+
+\Because The uniform form lower bound (2.22) puts both vectors in $Q(H_0)$.
+From (3.6), conditional Jensen, and the OU Nelson bound,
+\[
+ \|T_K(u)\phi\|_4\le C\|\phi\|_\infty.
+\]
+For every $v\in L^4$ and either cutoff interaction,
+$\int|V^{(\cdot)}||v|^2d\mu\le\|V^{(\cdot)}\|_2\|v\|_4^2<\infty$.
+Thus both vectors also lie in both multiplication-form domains.
+
+\LS{2}{2}{The form Duhamel identity is}
+\[
+ \ip\phi{(T_K(s_2)-T_{K'}(s_2))\psi}
+ =\int_0^{s_2}
+ \ip{T_K(u)\phi}{\Delta V,T_{K'}(s_2-u)\psi}\,du.
+\tag{5.11}
+\]
+
+\Because Differentiate
+$u\mapsto\ip{T_K(u)\phi}{T_{K'}(s_2-u)\psi}$ in the common form domain.
+The two $H_0$ form terms cancel, leaving multiplication by $\Delta V$.
+Integrability follows from the estimates in the next step, so the fundamental
+theorem for absolutely continuous form matrix elements applies.
+
+\LS{2}{3}{For $0\le u\le s_4$, use exponents $(2,4,4)$ on
+$(T_K(u)\phi,\Delta V,T_{K'}(s_2-u)\psi)$; for
+$s_4\le u\le s_2$, reverse the two semigroup roles.  Then}
+\[
+ \|T_K(s_2)-T_{K'}(s_2)\|_{2\to2}
+ \le18s_2M_0e^{2c_\lambda s_2}\|V^{(K)}-V^{(K')}\|_2.
+\tag{5.12}
+\]
+
+\Because The long semigroup factor has elapsed time at least $s_4$ and is
+$L^2\to L^4$ bounded by (5.10); the short factor is $L^2\to L^2$ bounded.
+The interaction difference satisfies
+$\|\Delta V\|_4\le9\|\Delta V\|_2$ by (1.13).  Integrate the common bound
+over a length $s_2$ interval; the harmless factor $2$ accommodates both halves.
+
+\LS{2}{4}{Equation (1.12) implies}
+\[
+ \|T_K(s_2)-T(s_2)\|_{2\to2}\to0.
+\tag{5.13}
+\]
+
+\LS{2}{5}{This proves $\langle1\rangle12$.}\QedStep
+
+\LS{1}{13}{Prove discreteness, eigenvalue convergence, trace class, and trace-norm
+convergence for every positive time.}
+
+Let $\nu_0\le\nu_1\le\cdots$ be the occupation-number eigenvalues of $H_0$.
+
+\LS{2}{1}{$T(s_2)$ is compact, and if $\mu_j^{(K)}$ and $\mu_j$ are ordered
+eigenvalues of $K^{(K)}$ and $K_L$, then}
+\[
+ \mu_j^{(K)}\to\mu_j,\qquad
+ \mu_j\ge\tfrac12\nu_j-c_{1/2}.
+\tag{5.14}
+\]
+
+\Because Each $T_K(s_2)$ is trace class by (3.7), hence compact.  The
+operator-norm limit (5.13) is compact.  The min--max/singular-value inequality
+gives convergence of every ordered heat eigenvalue
+$e^{-s_2\mu_j^{(K)}}\to e^{-s_2\mu_j}$; the logarithm is continuous on
+$(0,\infty)$.  Apply min--max to (2.22) at $\delta=1/2$ and pass to the
+limit.
+
+\LS{2}{2}{For every $s>0$,}
+\[
+ \Tr T_K(s)\to\Tr T(s)<\infty.
+\tag{5.15}
+\]
+
+\Because By (5.14), each summand converges, while
+\[
+ e^{-s\mu_j^{(K)}}\le e^{sc_{1/2}}e^{-s\nu_j/2},\qquad
+ \sum_je^{-s\nu_j/2}=Z_0(s/2)<\infty.
+\]
+Dominated convergence on the counting measure gives (5.15), and shows that the
+spectrum of $K_L$ is discrete and exhausts the $\mu_j$.
+
+\LS{2}{3}{For $u=s/2$,}
+\[
+ \|T_K(u)-T(u)\|_{\Jtwo}^2
+ =\Tr T_K(2u)-2\Tr(T_K(u)T(u))+\Tr T(2u).
+\tag{5.16}
+\]
+
+\Because Expand the square of the self-adjoint difference and use cyclicity for
+products of a trace-class and a bounded operator.
+
+\LS{2}{4}{The mixed trace in (5.16) converges to $\Tr T(2u)$.}
+
+\Because If $(\phi_n)$ diagonalizes $T(u)$ with eigenvalues $\sigma_n$, then
+\[
+ \Tr(T_K(u)T(u))=\sum_n\sigma_n\ip{\phi_n}{T_K(u)\phi_n}.
+\]
+Each matrix element converges strongly, is bounded by $e^{uc_\lambda}$, and
+$\sum_n\sigma_n=\Tr T(u)<\infty$; dominated convergence applies.
+
+\LS{2}{5}{Thus $\|T_K(u)-T(u)\|_{\Jtwo}\to0$, and}
+\[
+ \|T_K(s)-T(s)\|_{\Jone}
+ \le(\|T_K(u)\|_{\Jtwo}+\|T(u)\|_{\Jtwo})
+ \|T_K(u)-T(u)\|_{\Jtwo}\to0.
+\tag{5.17}
+\]
+
+\Because Factor
+$T_K(s)-T(s)=T_K(u)[T_K(u)-T(u)]+[T_K(u)-T(u)]T(u)$ and apply the
+Schatten H\"older inequality.  The Hilbert--Schmidt norms are bounded by (5.15).
+
+\LS{2}{6}{For every bounded $B$,}
+\[
+ \Tr(T_K(s)B)\to\Tr(T(s)B).
+\tag{5.18}
+\]
+
+\Because The absolute difference is at most
+$\|T_K(s)-T(s)\|_{\Jone}\|B\|$.
+
+\LS{2}{7}{This proves $\langle1\rangle13$.}\QedStep
+
+\section{Periodic Feynman--Kac clause and Weyl insertions}
+
+Fix a coarse Weyl symbol $\xi=\eps_Mq+ip$ and its continuum refinement.  Let
+$H_p$ be the V2 continuum harmonic interpolant, $H_p^{(K)}$ its mode truncation,
+and let $J_q,J_q^{(K)}$ be the corresponding sharp-time sources.
+
+\LS{1}{14}{Pass every deterministic shift datum to the continuum cutoff limit.}
+
+\LS{2}{1}{The action tail satisfies}
+\[
+ 0\le S_\infty(H_p)-S^{(K)}(H_p)
+ \le C_\xi(K/m)^{-\eta}.
+\tag{6.1}
+\]
+
+\Because The tail is
+\[
+ \frac1{8L}\sum_{|k|>K}\gamma(k)\cth(t\gamma(k)/2)|b_\infty(k)|^2.
+\]
+The D4 envelope is $|b_\infty(k)|^2\le
+C(1+\eps_M|k|)^{-2-\eta}$; $\cth(t\gamma/2)\le\cth(t_0m/2)$ and
+$\gamma(k)\le m+|k|$.  Integral comparison of the resulting
+$|k|^{-1-\eta}$ tail yields (6.1).
+
+\LS{2}{2}{The source-phase tail satisfies}
+\[
+ \|\Phi(J_q)-\Phi(J_q^{(K)})\|_2^2
+ \le C_\xi(K/m)^{-\eta},\qquad
+ \|e^{i\Phi(J_q)}-e^{i\Phi(J_q^{(K)})}\|_2
+ \le C_\xi(K/m)^{-\eta/2}.
+\tag{6.2}
+\]
+
+\Because Its variance is the sharp-time thermal covariance paired with the source
+tail:
+\[
+ \sum_{|k|>K}\frac{\cth(t\gamma(k)/2)}{2\gamma(k)}
+ |a_\infty(k)|^2.
+\]
+Use the D4 envelope and integral comparison.  The second assertion uses
+$|e^{ix}-e^{iy}|\le|x-y|$.
+
+\LS{2}{3}{The shifted action difference obeys}
+\[
+ \|\U_t^{(K)}(\eta+H_p^{(K)})-
+ \U_t(\eta+H_p)\|_2
+ \le C_\xi[1+\log(1+K/m)]^2(K/m)^{-1/2}.
+\tag{6.3}
+\]
+
+\LS{3}{1}{Expand every shifted Wick power using (3.12) and its quadratic
+analogue.}
+
+\LS{3}{2}{Terms in which the random Wick chaos is truncated are bounded by
+(2.17)--(2.19).}
+
+\LS{3}{3}{For deterministic coefficients,}
+\[
+ \sup_s\frac1{2L}\sum_{|k|>K}|\widehat H_p(s,k)|^2
+ \le C_\xi(\eps_MK)^{-1-\eta},\qquad
+ \|H_p^{(K)}\|_\infty,\|H_p\|_\infty\le C_\xi.
+\tag{6.4}
+\]
+
+\Because The harmonic time factor has modulus at most one; square the D4 mode
+envelope and sum its tail.  The uniform bound is the absolutely summable
+$|k|^{-1-\eta/2}$ envelope.
+
+\LS{3}{4}{The identity}
+\[
+ A^{*n}-B^{*n}=\sum_{r=0}^{n-1}A^{*r}*(A-B)*B^{*(n-1-r)}
+\tag{6.5}
+\]
+and Young/Cauchy--Schwarz bounds turn (6.4) into the required differences of all
+coefficient power symbols.
+
+\Because Only $n\le4$ occurs and the untruncated coefficient sequences have
+uniform $\ell^1$ bounds.  Each term of (6.5) contains exactly one tail factor,
+so its $\ell^2$ norm has the rate in (6.4).  Wick isometry pairs it with the
+bounded covariance convolution from V2.  The slower common rate in (6.3) is
+therefore valid.
+
+\LS{2}{4}{For every finite $p$,}
+\[
+ \sup_K\|e^{-\U_t^{(K)}(\eta+H_p^{(K)})}\|_p<\infty,\qquad
+ e^{-\U_t(\eta+H_p)}\in L^p.
+\tag{6.6}
+\]
+
+\Because Apply (1.4) pointwise with
+$u=\eta^{(K)}(s,x)+H_p^{(K)}(s,x)$ and integrate: this gives
+$\U_t^{(K)}(\eta+H_p^{(K)})\ge-Ct\ell_K^2$, uniformly in the admissible coarse
+data.  Equation (6.3) is the required $L^2$ increment bound; use
+$1+\log(1+K/m)\le C_\varsigma(K/m)^\varsigma$ with
+$0<\varsigma<1/4$ to retain a positive power.  Step $\langle1\rangle5$ then gives
+the uniform $L^p$ bound, and an almost-everywhere convergent subsequence followed by
+Fatou gives the limiting assertion.
+
+\LS{2}{5}{This proves $\langle1\rangle14$.}\QedStep
+
+\LS{1}{15}{Prove the continuum periodic partition and marked-Weyl formulas.}
+
+\LS{2}{1}{For $t\ge t_0$,}
+\[
+ \Tr e^{-tK_L}=Z_0(t)\E_{\mu^{\rm per}_{t,L}}[e^{-\U_t}]
+ \in(0,\infty).
+\tag{6.7}
+\]
+
+\Because Equation (3.8) holds at every $K$.  Its left side converges by (5.15).
+For the right side, (4.2), (2.16), H\"older, and the uniform exponential bounds
+give $e^{-\U_t^{(K)}}\to e^{-\U_t}$ in $L^1$.  Finiteness follows.  Positivity
+follows because the exponential is positive a.s.; alternatively Jensen gives
+$\E e^{-\U_t}\ge e^{-\E\U_t}>0$, and the finite chaos expectation is finite.
+
+\LS{2}{2}{For the full refined coarse symbol,}
+\[
+ \frac{\Tr(e^{-tK_L}W_{\rm ct}(R_M^\infty\xi))}{\Tr e^{-tK_L}}
+ =e^{-S_\infty(H_p)}
+ \frac{\E[e^{i\Phi(J_q)}e^{-\U_t(\eta+H_p)}]}
+ {\E[e^{-\U_t}]}.
+\tag{6.8}
+\]
+
+\LS{3}{1}{Apply (3.10) to the symbol and interaction truncated at $K$.}
+
+\LS{3}{2}{The Euclidean numerator converges.}
+
+\Because Split its difference into a phase difference and an exponential
+difference.  Bound the phase part by (6.2) times the uniform $L^2$ norm in
+(6.6).  Bound the exponential part using (4.2), (6.3), and (6.6).  Equations
+(6.1) and (6.7) handle the prefactor and denominator.
+
+\LS{3}{3}{The operator numerator converges.}
+
+\Because Split
+\[
+ \Tr[(T_K(t)-T(t))W(\xi_K)]
+ +\Tr[T(t)(W(\xi_K)-W(R_M^\infty\xi))].
+\]
+The first term tends to zero by (5.17) and unitarity.  The one-particle symbols
+$\xi_K$ converge in norm by the D4 envelope.  The Weyl relation and the Fock
+vacuum overlap
+\[
+ \ip{W(\alpha)\Omega_0}{W(\beta)\Omega_0}
+ =e^{i\sigma(\alpha,\beta)/2}e^{-\|\alpha-\beta\|^2/4}
+\]
+give strong continuity of $W(\xi_K)$.  Expanding the trace-class $T(t)$ in an
+eigenbasis and using the bound $2e^{-t\mu_j}$ gives convergence of the second
+term by dominated convergence.  Thus (6.8) follows.
+
+\LS{2}{3}{This proves $\langle1\rangle15$.}\QedStep
+
+\section{Positivity improvement, simple ground state, and positive gap}
+
+\LS{1}{16}{Prove the continuum ground-state assertions.}
+
+\LS{2}{1}{$T(t)$ is positivity preserving.}
+
+\Because Each $T_K(t)$ has a nonnegative Feynman--Kac kernel; strong limits preserve
+the closed positive cone in $L^2$.
+
+\LS{2}{2}{If $f,g\ge0$ are nonzero and bounded, then}
+\[
+ \ip f{T(t)g}>0.
+\tag{7.1}
+\]
+
+\Because Equation (4.5) has a nonnegative integrand.  The weight is strictly
+positive a.s. because $\mathcal W$ is finite a.s. ($\mathcal W\in L^2$).  If
+$A=\{f>0\}$ and $B=\{g>0\}$, then
+\[
+ \PP(X_0\in A,X_t\in B)
+ =\ip{\mathbf1_A}{\Gamma(e^{-t\gamma})\mathbf1_B}>0
+\]
+by (2.3) and Simon's positivity-improving theorem, since
+$\|e^{-t\gamma}\|=e^{-tm}<1$.  The integrand is strictly positive on an event
+of positive probability.
+
+\LS{2}{3}{Equation (7.1) extends to all nonzero $f,g\ge0$ in $L^2$.}
+
+\Because Replace each by its bounded truncations $f\wedge n,g\wedge n$ and use
+positivity preservation plus $L^2$ convergence.
+
+\LS{2}{4}{The largest eigenvalue of the compact positive operator $T(t)$ is
+simple and has an a.e. strictly positive eigenvector $\Omega_L$.}
+
+\Because If $u$ is a top eigenvector, positivity gives
+$T(t)|u|\ge|T(t)u|=\|T(t)\||u|$.  The variational characterization forces
+equality, so $|u|$ is a nonnegative top eigenvector; (7.1) makes it strictly
+positive.  If a second real top eigenvector $h$ were orthogonal to it, then both
+$h_+$ and $h_-$ would be nonzero.  Positivity improvement gives
+$T h_+>0$ and $T h_->0$ a.e., hence
+$|Th|=|Th_+-Th_-|<Th_++Th_-=T|h|$ a.e.  Pairing with $\Omega_L>0$
+contradicts equality of their top Rayleigh quotients.
+
+\LS{2}{5}{If $\mu_0<\mu_1\le\cdots$ are the discrete eigenvalues of $K_L$,}
+\[
+ \gamma_L:=\mu_1-\mu_0>0.
+\tag{7.2}
+\]
+
+\Because Simplicity says the eigenspace at $\mu_0$ has dimension one;
+discreteness from Step $\langle1\rangle13$ prevents another spectral point from
+accumulating at $\mu_0$.  Hence the next ordered eigenvalue is strictly larger.
+
+\LS{2}{6}{The vector functional}
+\[
+ \omega^{\rm ct}_{L,\lambda}(A)=\ip{\Omega_L}{A\Omega_L}
+\tag{7.3}
+\]
+is a state on the continuum Weyl algebra.
+
+\Because Every Weyl operator whose symbol lies in
+$H^{-1/2}(\T_L)\oplus iH^{1/2}(\T_L)$ is unitary on the Fock/Gaussian
+representation.  A normalized vector functional is positive and unital; it extends
+by continuity to the generated $C^*$-algebra.  The D4 refined coarse symbols lie in
+this one-particle space by their decay envelope.
+
+\LS{2}{7}{This proves $\langle1\rangle16$.}\QedStep
+
+\section{V3 conclusion and scope fence}
+
+\begin{resultbox}
+Steps $\langle1\rangle9$--$\langle1\rangle10$ construct the bounded-below
+self-adjoint $K_L$ and identify its operator and quadratic form on $\D$.
+Steps $\langle1\rangle11$--$\langle1\rangle13$ prove trace class for every
+positive time, trace-norm cutoff convergence, discrete spectrum, and eigenvalue
+convergence.  Steps $\langle1\rangle14$--$\langle1\rangle15$ prove the periodic
+partition and marked-Weyl formulas.  Step $\langle1\rangle16$ proves a simple
+strictly positive ground vector and $\gamma_L>0$.
+
+No assertion of essential self-adjointness of $(H_0+V_L)|_{\D}$, and no assertion
+that $\D$ is a form core, is made or needed.  The source V3's compressed periodic
+N2 tail count is repaired explicitly in (2.17)--(2.19).
+\end{resultbox}
+
+\end{document}

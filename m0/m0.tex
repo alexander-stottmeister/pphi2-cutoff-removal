@@ -1,0 +1,475 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{fact}[theorem]{Fact}
+
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Cc}{\mathbb{C}}
+\newcommand{\Om}{\Omega}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator*{\ess}{ess}
+
+\title{Limit points of the finite-volume ground states of $P(\varphi)_2$\\
+are ground states of the quasi-local dynamics}
+\author{Milestone M0}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $H(g)$ be the $P(\varphi)_2$ Hamiltonian with spatial cutoff $g$, let $\Om_g$ be its
+(unique) ground state, and let $\omega_g=\ip{\Om_g}{\,\cdot\,\Om_g}$ be the induced state on the
+time-zero quasi-local algebra $\A$. Let $\alpha$ be the Glimm--Jaffe automorphism group of $\A$,
+which is independent of $g$. We prove that every limit point of the net $(\omega_g)_{g\uparrow 1}$,
+in the topology of norm convergence on local algebras, is a \emph{ground state} of the
+$C^*$-dynamical system $(\A,\alpha)$.
+
+The proof is an exact identity, not an estimate: it produces no error terms and requires no
+hypotheses beyond facts already established by Glimm and Jaffe. Consequently the removal of the
+spatial cutoff is reduced, modulo the compactness already available from
+\cite[Thm.~2.3]{GJIII}, to the \emph{uniqueness} of the ground state of $(\A,\alpha)$.
+
+We also record two invariance properties obtained at no cost: the set of limit points is stable
+under space translations (so uniqueness forces translation invariance, with no space-averaging),
+and, for even $P$, every $\omega_g$ is $\Z_2$-invariant.
+\end{abstract}
+
+\section{Setting}\label{sec:setting}
+
+\subsection{Free field and local algebras}
+
+Let $\HH_0=\Gamma_s(L^2(\R))$ be the symmetric Fock space over $L^2(\R)$ and
+$\mu=(-\partial_x^2+m_0^2)^{1/2}$ with $m_0>0$. For real $f\in H^{-1/2}(\R)$ and real
+$h\in H^{1/2}(\R)$ the time-zero fields $\varphi_0(f)$ and $\pi_0(h)$ are essentially
+self-adjoint on the finite-particle domain \cite[Prop.~1.2.6]{GJExp}; we denote their closures by
+the same symbols and set
+\[
+  W(f,h):=\exp\bigl(i(\varphi_0(f)+\pi_0(h))\bigr),
+\]
+a unitary on $\HH_0$. For bounded open $O\subseteq\R$ put
+\[
+  \A(O):=\{W(f,h)\;:\;f,h\in C_c^\infty(O)\ \text{real}\}''\subseteq B(\HH_0),
+  \qquad
+  \A:=\overline{\textstyle\bigcup_{O}\A(O)}^{\;\|\cdot\|}.
+\]
+The net $O\mapsto\A(O)$ is isotonous, so $\A$ is a $C^*$-algebra. For $r>0$ we write
+$O_r:=\{x\in\R:\dist(x,O)<r\}$.
+
+Let $\tau_a$ denote the automorphism of $\A$ induced by the space translation
+$U_a=\Gamma(e^{ia\,\cdot})$, so $\tau_a(\A(O))=\A(O+a)$.
+
+\subsection{The cutoff Hamiltonian}
+
+Let $P$ be a real polynomial, bounded below, of even degree, and let
+\[
+  \G:=\bigl\{g\in C_c^\infty(\R)\;:\;0\le g\le 1,\ g\equiv1 \text{ on some nonempty bounded open
+  interval}\bigr\}.
+\]
+For $g\in\G$ set
+\[
+  H(g):=H_0+\int_\R :\!P(\varphi_0(x))\!:\,g(x)\,dx-E(g),
+  \qquad
+  E(g):=\inf\spec\Bigl(H_0+\int :\!P(\varphi_0)\!:g\Bigr).
+\]
+
+\begin{fact}[Glimm--Jaffe; Rosen]\label{fact:sa}
+$H(g)$ is self-adjoint and bounded below, and $H(g)\ge0$ with $\inf\spec H(g)=0$.
+\cite{GJI,Rosen70,GJ71}
+\end{fact}
+
+\begin{fact}[Glimm--Jaffe]\label{fact:vac}
+$0$ is a \emph{simple and isolated} eigenvalue of $H(g)$. Its normalised eigenvector $\Om_g$ may
+be chosen strictly positive in the $Q$-space (Schr\"odinger) representation.
+\cite[\S2.2--2.3]{GJII}
+\end{fact}
+
+We write $\omega_g:=\ip{\Om_g}{\,\cdot\,\Om_g}$, a state on $\A$.
+
+\begin{fact}[Glimm--Jaffe: locality and $g$-independence]\label{fact:loc}
+There is a one-parameter group $(\alpha_t)_{t\in\R}$ of $*$-automorphisms of $\A$ such that
+\begin{enumerate}
+\item[\rm(i)] $\alpha_t(\A(O))\subseteq\A(O_{|t|})$ for every bounded open $O$ and every $t\in\R$;
+\item[\rm(ii)] if $A\in\A(O)$ and $g\in\G$ satisfies $g\equiv1$ on $O_{|t|}$, then
+      $\alpha_t(A)=e^{itH(g)}Ae^{-itH(g)}$.
+\end{enumerate}
+In particular $\alpha$ does not depend on $g$. \cite[\S III]{GJI}, \cite[\S3.5--3.6]{GJII},
+\cite[\S4.1]{GJExp}
+\end{fact}
+
+Property (i) is an \emph{exact} light cone: there is no tail, in contrast with the Lieb--Robinson
+bounds available for lattice systems. This is used decisively in \S\ref{sec:spectral}.
+
+\subsection{The directed set}
+
+Order $\G$ by
+\[
+  g\preccurlyeq g' \quad:\Longleftrightarrow\quad \{g=1\}^\circ\subseteq\{g'=1\}^\circ ,
+\]
+and for bounded open $O$ put
+\[
+  d(g,O):=\dist\bigl(O,\ \R\setminus\{g=1\}^\circ\bigr)\in(0,\infty].
+\]
+
+\begin{lemma}\label{lem:directed}
+$(\G,\preccurlyeq)$ is directed; it is stable under translations, and for each $a\in\R$ the map
+$g\mapsto\tau_ag$ is an order isomorphism of $\G$ with cofinal range. Moreover, for every bounded
+open $O$ and every $R>0$ there is $g_0\in\G$ with $d(g,O)>R$ for all $g\succcurlyeq g_0$.
+\end{lemma}
+
+\begin{proof}
+Given $g_1,g_2\in\G$, the sets $\{g_i=1\}^\circ$ are bounded and open; choose a bounded open
+interval $I$ containing their closures and $g_3\in C_c^\infty(\R)$ with $0\le g_3\le1$ and
+$g_3\equiv1$ on $I$. Then $g_3\in\G$ and $g_3\succcurlyeq g_1,g_2$. Translation stability and the
+order-isomorphism property are immediate from $\{\tau_ag=1\}^\circ=\{g=1\}^\circ+a$; cofinality
+follows from directedness. For the last claim choose $g_0\equiv1$ on a bounded open interval
+containing $\overline{O_R}$; then $g\succcurlyeq g_0$ gives
+$\{g=1\}^\circ\supseteq O_R$, hence $d(g,O)\ge R$; enlarging $g_0$ slightly gives the strict
+inequality.
+\end{proof}
+
+\section{Ground states of $(\A,\alpha)$}
+
+Because $\A$ contains Weyl unitaries, $t\mapsto\alpha_t(A)$ is in general \emph{not}
+norm-continuous: two Weyl unitaries $W(f,h)$, $W(f',h')$ with $(f,h)\neq(f',h')$ are at distance
+$2$ in the CCR $C^*$-algebra. Hence $\alpha$ has no densely defined norm-generator and the
+familiar characterisation ``$-i\,\omega(A^*\delta(A))\ge0$'' is unavailable. We therefore use the
+spectral form throughout. (See Remark~\ref{rem:nogenerator}.)
+
+\begin{definition}\label{def:gs}
+A state $\omega$ on $\A$ is a \emph{ground state} of $(\A,\alpha)$ if
+\begin{enumerate}
+\item[\rm(a)] $\omega\circ\alpha_t=\omega$ for all $t\in\R$; and
+\item[\rm(b)] $t\mapsto\omega(A\,\alpha_t(B))$ is continuous for all $A,B\in\A$, and for every
+      $f\in L^1(\R)$ whose inverse Fourier transform
+      \[
+        \check f(E):=\int_\R f(t)\,e^{itE}\,dt
+      \]
+      vanishes on $[0,\infty)$, one has $\displaystyle\int_\R f(t)\,\omega\bigl(A\,\alpha_t(B)\bigr)\,dt=0$.
+\end{enumerate}
+\end{definition}
+
+The continuity requirement in (b) is what makes the integral meaningful; it is verified
+independently in Theorem~\ref{thm:main}, so it is not an extra assumption there.
+
+\begin{lemma}\label{lem:gsGNS}
+Let $\omega$ satisfy \textup{(a)}. Then \textup{(b)} holds if and only if, in the GNS triple
+$(\HH_\omega,\pi_\omega,\Om_\omega)$, the unitary group $U$ implementing $\alpha$ with
+$U(t)\Om_\omega=\Om_\omega$ has self-adjoint generator $H_\omega\ge0$. In particular
+Definition~\ref{def:gs} agrees with the usual notion \cite[Def.~5.3.18]{BR2}.
+\end{lemma}
+
+\begin{proof}
+By (a) the group $U(t)\pi_\omega(A)\Om_\omega:=\pi_\omega(\alpha_t(A))\Om_\omega$ is well defined,
+unitary and weakly, hence strongly, continuous; write $U(t)=e^{itH_\omega}$. For $A,B\in\A$ set
+$u=\pi_\omega(A)^*\Om_\omega$, $v=\pi_\omega(B)\Om_\omega$ and let $\rho:=\ip{u}{P_{H_\omega}(\cdot)v}$,
+a complex measure on $\R$ of finite total variation $|\rho|(\R)\le\|u\|\|v\|$. Using
+$U(t)^*\Om_\omega=\Om_\omega$,
+\[
+  \omega\bigl(A\alpha_t(B)\bigr)=\ip{u}{U(t)v}=\int_\R e^{itE}\,d\rho(E).
+\]
+Fubini (legitimate since $f\in L^1$ and $|\rho|(\R)<\infty$) gives
+$\int f(t)\,\omega(A\alpha_t(B))\,dt=\int_\R\check f(E)\,d\rho(E)$.
+If $H_\omega\ge0$ then $\rho$ is supported in $[0,\infty)$, where $\check f$ vanishes, so the
+integral is $0$. Conversely, if the integral vanishes for all such $f$, then, since
+$\{\check f: f\in L^1,\ \check f|_{[0,\infty)}=0\}\supseteq C_c^\infty((-\infty,0))$, we get
+$\rho|_{(-\infty,0)}=0$ for all $A,B$; as vectors of the form $\pi_\omega(B)\Om_\omega$ are dense,
+$P_{H_\omega}((-\infty,0))=0$.
+\end{proof}
+
+\section{Two invariances, for free}\label{sec:inv}
+
+\begin{lemma}[local $\alpha$-invariance]\label{lem:localinv}
+Let $O$ be bounded open, $A\in\A(O)$, $g\in\G$ and $|t|<d(g,O)$. Then
+$\omega_g(\alpha_t(A))=\omega_g(A)$.
+\end{lemma}
+
+\begin{proof}
+Since $|t|<d(g,O)$ we have $O_{|t|}\subseteq\{g=1\}^\circ$, so $g\equiv1$ on $O_{|t|}$ and
+Fact~\ref{fact:loc}(ii) gives $\alpha_t(A)=e^{itH(g)}Ae^{-itH(g)}$. As $H(g)\Om_g=0$ we have
+$e^{-itH(g)}\Om_g=\Om_g$, whence
+$\omega_g(\alpha_t(A))=\ip{\Om_g}{e^{itH(g)}Ae^{-itH(g)}\Om_g}=\ip{\Om_g}{A\Om_g}$.
+\end{proof}
+
+\begin{lemma}[translation covariance of the net]\label{lem:transl}
+For every $a\in\R$ and $g\in\G$ one has $\omega_{\tau_ag}=\omega_g\circ\tau_{-a}$.
+\end{lemma}
+
+\begin{proof}
+$U_a$ implements $\tau_a$ and commutes with $H_0$, while
+$U_a\bigl(\int:\!P(\varphi_0)\!:g\bigr)U_a^*=\int:\!P(\varphi_0)\!:\,\tau_ag$. Hence
+$H(\tau_ag)=U_aH(g)U_a^*$ and $E(\tau_ag)=E(g)$. By Fact~\ref{fact:vac} the ground state of
+$H(\tau_ag)$ is $U_a\Om_g$ up to a phase, which does not affect the induced state. Therefore
+$\omega_{\tau_ag}(A)=\ip{U_a\Om_g}{AU_a\Om_g}=\ip{\Om_g}{U_a^*AU_a\Om_g}
+=\omega_g(\tau_{-a}(A))$.
+\end{proof}
+
+\begin{lemma}[$\Z_2$ invariance]\label{lem:z2}
+Assume $P$ is even and let $\theta$ be the automorphism of $\A$ with $\theta(W(f,h))=W(-f,-h)$.
+Then $\omega_g\circ\theta=\omega_g$ for every $g\in\G$.
+\end{lemma}
+
+\begin{proof}
+$\theta$ is implemented by $\Theta=\Gamma(-1)$, which is unitary, self-adjoint, commutes with
+$H_0$, and satisfies $\Theta:\!P(\varphi_0(x))\!:\Theta^*=\;:\!P(\varphi_0(x))\!:$ because $P$ is
+even. Hence $\Theta H(g)\Theta^*=H(g)$, so $\Theta\Om_g$ is a normalised ground state and, by
+simplicity, $\Theta\Om_g=c\,\Om_g$ with $c\in\{\pm1\}$ (using $\Theta^2=1$). In the $Q$-space
+representation $\Theta$ acts by $(\Theta\psi)(q)=\psi(-q)$, so $\Theta\Om_g>0$ pointwise by
+Fact~\ref{fact:vac}; hence $c=+1$ and
+$\omega_g(\theta(A))=\ip{\Theta\Om_g}{A\Theta\Om_g}=\omega_g(A)$.
+\end{proof}
+
+\begin{remark}\label{rem:noaveraging}
+Lemma~\ref{lem:transl} replaces the space-translation averaging used in
+\cite[eq.~(2.5)]{GJIII}: the set of limit points of $(\omega_g)_{g\in\G}$ is stable under
+translations by Lemmas~\ref{lem:directed} and \ref{lem:transl}, so \emph{uniqueness of the limit
+already forces translation invariance}. This matters beyond aesthetics: averaging is precisely
+what produces a mixed limit in a multiple-phase regime, whereas Lemma~\ref{lem:z2} shows the
+unaveraged net is $\Z_2$-invariant by itself.
+\end{remark}
+
+\section{The exact spectral identity}\label{sec:spectral}
+
+\begin{proposition}\label{prop:exact}
+Let $O$ be bounded open, $A,B\in\A(O)$, $g\in\G$, and set $d:=d(g,O)$, $M:=\|A\|\,\|B\|$. Define
+the complex measure
+\[
+  \rho_g(\cdot):=\ip{A^*\Om_g}{\,P_{H(g)}(\cdot)\,B\Om_g}
+\]
+on $\R$, and $G_g(z):=\int e^{izE}\,d\rho_g(E)$ for $\operatorname{Im}z\ge0$. Then
+\begin{enumerate}
+\item[\rm(i)] $\supp\rho_g\subseteq[0,\infty)$ and $|\rho_g|(\R)\le M$;
+\item[\rm(ii)] $G_g$ is holomorphic on $\{\operatorname{Im}z>0\}$, continuous and bounded by $M$
+      on $\{\operatorname{Im}z\ge0\}$;
+\item[\rm(iii)] $\omega_g\bigl(A\,\alpha_t(B)\bigr)=G_g(t)$ for every $|t|<d$;
+\item[\rm(iv)] $\displaystyle\int_\R f(t)\,G_g(t)\,dt=0$ for every $f\in L^1(\R)$ with
+      $\check f|_{[0,\infty)}=0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) $\supp\rho_g\subseteq\spec H(g)\subseteq[0,\infty)$ by Fact~\ref{fact:sa}. For a complex
+spectral measure, $|\rho_g|(\R)\le\|A^*\Om_g\|\,\|B\Om_g\|\le M$.
+
+(ii) For $\operatorname{Im}z\ge0$ and $E\ge0$ we have $|e^{izE}|=e^{-E\operatorname{Im}z}\le1$;
+holomorphy and continuity follow from dominated convergence together with (i).
+
+(iii) Let $|t|<d$. Then $g\equiv1$ on $O_{|t|}$, so Fact~\ref{fact:loc}(ii) applies to $B$ and
+\[
+  \omega_g\bigl(A\alpha_t(B)\bigr)
+  =\ip{\Om_g}{A\,e^{itH(g)}Be^{-itH(g)}\Om_g}
+  =\ip{\Om_g}{A\,e^{itH(g)}B\,\Om_g}
+  =\ip{A^*\Om_g}{e^{itH(g)}B\Om_g}
+  =G_g(t),
+\]
+where the second equality uses $e^{-itH(g)}\Om_g=\Om_g$ and the last is the spectral theorem.
+
+(iv) By (i) and $f\in L^1$, Fubini applies:
+$\int f(t)G_g(t)\,dt=\int_{[0,\infty)}\check f(E)\,d\rho_g(E)=0$, since $\check f$ vanishes on
+$[0,\infty)$.
+\end{proof}
+
+The cancellation $e^{-itH(g)}\Om_g=\Om_g$ in (iii) is the whole point: it is exact, and it is
+available because $\Om_g$ is the ground state of the \emph{same} operator that implements
+$\alpha_t$ locally. No approximation, and no error term, enters.
+
+\begin{theorem}\label{thm:main}
+Let $(g_n)_{n\in\mathbb N}\subseteq\G$ be a sequence such that $d(g_n,O)\to\infty$ for every
+bounded open $O$, and suppose that for every bounded open $O$ the restrictions
+$\omega_{g_n}|_{\A(O)}$ converge in \emph{norm} in $\A(O)^*$. Let $\omega$ be the resulting state
+on $\A$. Then $\omega$ is a ground state of $(\A,\alpha)$ in the sense of
+Definition~\ref{def:gs}.
+\end{theorem}
+
+\begin{proof}
+\emph{(a)} Fix $A\in\A(O)$ and $t\in\R$. For $n$ large, $d(g_n,O)>|t|$, so
+Lemma~\ref{lem:localinv} gives $\omega_{g_n}(\alpha_t(A))=\omega_{g_n}(A)$. Both
+$\alpha_t(A)\in\A(O_{|t|})$ and $A\in\A(O_{|t|})$, so letting $n\to\infty$ yields
+$\omega(\alpha_t(A))=\omega(A)$. As $\bigcup_O\A(O)$ is norm-dense in $\A$ and $\|\alpha_t\|=1$,
+(a) follows.
+
+\emph{(b)} Fix $A,B\in\A(O)$ and put $M:=\|A\|\|B\|$.
+
+\emph{Continuity.} Let $T>0$ and let $n$ be large enough that $d(g_n,O)>T$. For $|t|\le T$ we
+have $A\in\A(O)\subseteq\A(O_T)$ and, by Fact~\ref{fact:loc}(i),
+$\alpha_t(B)\in\A(O_{|t|})\subseteq\A(O_T)$; hence $A\alpha_t(B)\in\A(O_T)$ with
+$\|A\alpha_t(B)\|\le M$, and therefore
+\begin{equation}\label{eq:unif}
+  \sup_{|t|\le T}\bigl|\omega\bigl(A\alpha_t(B)\bigr)-\omega_{g_n}\bigl(A\alpha_t(B)\bigr)\bigr|
+  \ \le\ M\,\bigl\|(\omega-\omega_{g_n})|_{\A(O_T)}\bigr\|\ \xrightarrow[n\to\infty]{}\ 0 .
+\end{equation}
+By Proposition~\ref{prop:exact}(ii)--(iii), $t\mapsto\omega_{g_n}(A\alpha_t(B))=G_{g_n}(t)$ is
+continuous on $[-T,T]$. Thus $t\mapsto\omega(A\alpha_t(B))$ is a uniform limit of continuous
+functions on $[-T,T]$, hence continuous there; as $T$ was arbitrary it is continuous on $\R$, and
+bounded by $M$. In particular the integral below is well defined.
+
+\emph{Vanishing.} Let $f\in L^1(\R)$ with $\check f|_{[0,\infty)}=0$. For $T>0$ set
+$\varepsilon(T):=\int_{|t|>T}|f(t)|\,dt$, so $\varepsilon(T)\to0$ as $T\to\infty$. Fix $T>0$ and
+decompose
+\[
+  \int_\R f\,\omega(A\alpha_\cdot(B))
+  =\underbrace{\int_{|t|\le T} f\,\bigl[\omega-\omega_{g_n}\bigr](A\alpha_t(B))\,dt}_{(\mathrm I)}
+  +\underbrace{\int_{|t|\le T} f\,\omega_{g_n}(A\alpha_t(B))\,dt}_{(\mathrm{II})}
+  +\underbrace{\int_{|t|> T} f\,\omega(A\alpha_t(B))\,dt}_{(\mathrm{III})}.
+\]
+
+By \eqref{eq:unif},
+$|(\mathrm I)|\le\|f\|_{L^1}\,M\,\|(\omega-\omega_{g_n})|_{\A(O_T)}\|$,
+and $|(\mathrm{III})|\le M\varepsilon(T)$ since $|\omega(A\alpha_t(B))|\le M$.
+
+For $(\mathrm{II})$: choose $n$ so large that $d(g_n,O)>T$. Then
+Proposition~\ref{prop:exact}(iii) applies for all $|t|\le T$, so, using
+Proposition~\ref{prop:exact}(iv) and then (ii),
+\[
+  (\mathrm{II})=\int_{|t|\le T} f\,G_{g_n}
+  =\underbrace{\int_\R f\,G_{g_n}}_{=\,0}-\int_{|t|>T} f\,G_{g_n},
+  \qquad |(\mathrm{II})|\le M\varepsilon(T).
+\]
+
+Letting $n\to\infty$ with $T$ fixed kills $(\mathrm I)$ by hypothesis, and we obtain
+\[
+  \Bigl|\int_\R f(t)\,\omega\bigl(A\alpha_t(B)\bigr)\,dt\Bigr|\ \le\ 2M\varepsilon(T)
+  \qquad\text{for every }T>0 .
+\]
+Letting $T\to\infty$ gives $0$. Finally, for general $A,B\in\A$ choose local
+$A_k\to A$, $B_k\to B$ in norm; the map $(A,B)\mapsto\int f\,\omega(A\alpha_\cdot(B))$ is
+jointly norm-continuous with bound $\|f\|_{L^1}\|A\|\|B\|$, so (b) extends to $\A$.
+\end{proof}
+
+\begin{corollary}\label{cor:exists}
+Assume the local number bound
+\[
+  \sup_{g\in\G}\ \omega_g\bigl(N_{\tau,B}\bigr)\le c(|B|)<\infty \tag{H2}
+\]
+so that \cite[Thm.~2.3]{GJIII} applies. Then sequences as in Theorem~\ref{thm:main} exist: any
+sequence $(g_n)\subseteq\G$ with $d(g_n,O)\to\infty$ for all $O$ admits a subsequence along which
+$\omega_{g_n}|_{\A(O)}$ converges in norm for every bounded open $O$, and every resulting limit is
+a locally normal ground state of $(\A,\alpha)$.
+\end{corollary}
+
+\begin{proof}
+Fix an exhausting sequence $O_1\subseteq O_2\subseteq\cdots$ of bounded open sets with
+$\bigcup_kO_k=\R$. By \cite[Thm.~2.3]{GJIII} and (H2), $\{\omega_{g_n}|_{\A(O_k)}\}_n$ is
+contained in a norm-compact subset of $\A(O_k)^*$ for each $k$; norm-compact metric spaces are
+sequentially compact, so a diagonal argument produces a subsequence converging in norm on every
+$\A(O_k)$, hence on every $\A(O)$ by isotony. Limits of norm-convergent sequences of normal
+states are normal \cite[Thm.~2.3]{GJIII}. Theorem~\ref{thm:main} applies.
+\end{proof}
+
+\begin{corollary}[reduction of the target]\label{cor:reduction}
+Assume \textup{(H2)}. If $(\A,\alpha)$ has a \emph{unique} locally normal ground state
+$\omega_\infty$ which is $\Z_2$- and translation-invariant, then
+\[
+  \omega_g\longrightarrow\omega_\infty\qquad\text{in norm on every }\A(O),
+\]
+along the full net $\G$.
+\end{corollary}
+
+\begin{proof}
+Suppose not; then there are $O$, $\varepsilon>0$ and a sequence $g_n$, cofinal in $\G$, with
+$\|(\omega_{g_n}-\omega_\infty)|_{\A(O)}\|\ge\varepsilon$. By Corollary~\ref{cor:exists} pass to a
+subsequence converging in norm on all local algebras to a locally normal ground state
+$\omega_2$; by Lemmas~\ref{lem:transl}, \ref{lem:z2} and Remark~\ref{rem:noaveraging}, $\omega_2$
+is $\Z_2$-invariant, and by hypothesis $\omega_2=\omega_\infty$. This contradicts
+$\|(\omega_2-\omega_\infty)|_{\A(O)}\|\ge\varepsilon$.
+\end{proof}
+
+\section{Remarks}
+
+\begin{remark}[why the generator form is unusable]\label{rem:nogenerator}
+The characterisation of ground states by $-i\,\omega(A^*\delta(A))\ge0$ requires
+$t\mapsto\alpha_t(A)$ to be norm-differentiable on a dense $*$-subalgebra. For a Weyl algebra
+this fails badly: $\|W(f,h)-W(f',h')\|=2$ whenever $(f,h)\neq(f',h')$, so $\alpha$ is not even
+norm-continuous and no densely defined norm-generator exists. Definition~\ref{def:gs} and
+Proposition~\ref{prop:exact} avoid generators entirely, working only with bounded operators and
+the unitary group $e^{itH(g)}$. As a byproduct, the domain hypothesis
+``$A\Om_g\in D(H(g)^{1/2})$'', which a generator-based argument would need, is not required.
+\end{remark}
+
+\begin{remark}[M0 needs P2: the two pillars are not independent]\label{rem:dependency}
+Theorem~\ref{thm:main} assumes \emph{norm} convergence on local algebras, not merely weak-$*$
+convergence of $(\omega_{g_n})$. This is not a technical convenience. In the proof, term
+$(\mathrm I)$ must be shown to vanish, and weak-$*$ convergence gives only pointwise convergence
+in $t$ of the integrand, with no dominated convergence theorem available for nets. Norm
+convergence on $\A(O_T)$ supplies exactly the uniformity in $t\in[-T,T]$ that is needed. Hence
+the compactness of \cite[Thm.~2.3]{GJIII} enters the argument \emph{twice}: once to produce a
+limit, once to pass the spectral condition to it.
+\end{remark}
+
+\begin{remark}[what is \emph{not} proved here]\label{rem:notproved}
+Theorem~\ref{thm:main} does not assert that a limit exists along the full net; it identifies the
+nature of every limit point. Nor does it produce a rate. The remaining inputs are:
+\textup{(H2)} without space-averaging (Milestone M1); uniqueness of the locally normal
+$\Z_2$- and translation-invariant ground state of $(\A,\alpha)$ (Milestone M3, or the
+uniform-gap substitute); and, for rates, a uniform spectral gap together with a quasi-adiabatic
+argument exploiting the exact light cone of Fact~\ref{fact:loc}(i) (Milestone M4).
+\end{remark}
+
+\begin{remark}[what M0 buys]
+Rosen's proof that $\omega_g\to\omega_\infty$ in the quadratic model \cite[\S5]{Rosen72} has two
+steps: identify the limit, then upgrade the topology using \cite[Thm.~4.1]{GJIII}. In the
+quadratic model the first step is free because $\mu_g\to\mu_1$ in the one-particle space. For
+$P(\varphi)_2$ it is not, and this is exactly what Guerra--Rosen--Simon list as open
+\cite[Problems 1--2]{GRS75}. Theorem~\ref{thm:main} supplies that first step in a form that is
+exact and independent of any Euclidean input, and thereby reduces the removal of the spatial
+cutoff to a \emph{uniqueness} question, where the post-1989 literature has delivered.
+\end{remark}
+
+\begin{thebibliography}{99}
+
+\bibitem{BR2} O.~Bratteli and D.~W.~Robinson,
+\emph{Operator Algebras and Quantum Statistical Mechanics 2}, 2nd ed., Springer, 1997.
+
+\bibitem{GJI} J.~Glimm and A.~Jaffe,
+\emph{A $\lambda\phi^4$ quantum field theory without cutoffs. I},
+Phys.\ Rev.\ \textbf{176} (1968) 1945--1951.
+
+\bibitem{GJII} J.~Glimm and A.~Jaffe,
+\emph{The $\lambda(\phi^4)_2$ quantum field theory without cutoffs. II. The field operators and
+the approximate vacuum}, Ann.\ of Math.\ \textbf{91} (1970) 362--401.
+
+\bibitem{GJIII} J.~Glimm and A.~Jaffe,
+\emph{The $\lambda(\phi^4)_2$ quantum field theory without cutoffs. III. The physical vacuum},
+Acta Math.\ \textbf{125} (1970) 203--261.
+
+\bibitem{GJ71} J.~Glimm and A.~Jaffe,
+\emph{Positivity and self adjointness of the $P(\phi)_2$ Hamiltonian},
+Comm.\ Math.\ Phys.\ \textbf{22} (1971) 253--258.
+
+\bibitem{GJExp} J.~Glimm and A.~Jaffe,
+\emph{Quantum Field Theory and Statistical Mechanics: Expositions}, Birkh\"auser, 1985.
+
+\bibitem{GRS75} F.~Guerra, L.~Rosen and B.~Simon,
+\emph{The $P(\phi)_2$ Euclidean quantum field theory as classical statistical mechanics},
+Ann.\ of Math.\ \textbf{101} (1975) 111--189 and 191--259.
+
+\bibitem{Rosen70} L.~Rosen,
+\emph{A $\lambda\phi^{2n}$ field theory without cutoffs},
+Comm.\ Math.\ Phys.\ \textbf{16} (1970) 157--183.
+
+\bibitem{Rosen72} L.~Rosen,
+\emph{Renormalization of the Hilbert space in the mass shift model},
+J.\ Math.\ Phys.\ \textbf{13} (1972) 918--927.
+
+\end{thebibliography}
+
+\end{document}

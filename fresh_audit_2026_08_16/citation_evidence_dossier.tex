@@ -1,0 +1,684 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{freshaudit}
+\graphicspath{{evidence/}}
+\fancyhead[L]{Citation evidence dossier}
+\title{Fresh citation evidence dossier\\[3pt]
+\large Parts I and II of the Glimm--Jaffe project}
+\author{Independent source and scope cross-check}
+\date{16 August 2026}
+
+\newcommand{\shot}[1]{%
+  \begin{center}
+  \includegraphics[width=\textwidth,height=.72\textheight,keepaspectratio]{#1}
+  \end{center}}
+\newcommand{\evidence}[6]{%
+  \clearpage
+  \phantomsection\addcontentsline{toc}{subsection}{#1 --- #2}
+  {\Large\bfseries #1 --- #2\par}
+  \textbf{Exact location.} #3\par
+  \textbf{Manuscript claim checked.} #4\par
+  \textbf{Scope verdict.} #5\par
+  \shot{#6}}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+This dossier contains \textbf{92 page images freshly rendered on 16 August 2026} from
+the acquired primary-source PDFs.  No screenshot from an earlier audit was reused.
+Every mathematical import or source-scope assertion actually consumed by the current
+Part I/Part II chain is assigned an exact file page and a verdict.  Cover pages are
+included to bind the image corpus to the source identity; theorem pages are included
+for the mathematical claim.  A page proves only what is visible on it.  Stronger
+uniformity, topology, or model-identification claims are separately marked.
+
+The machine-readable cross-reference is
+\texttt{ledgers/citations.csv}; hashes and page counts are in
+\texttt{ledgers/sources.csv}.  PDF page numbers are one-based file pages; ``printed
+page'' means the pagination visible in the source image.
+\end{resultbox}
+
+\tableofcontents
+
+\section{Index and audit conventions}
+
+\begin{longtable}{P{1.8cm}P{3.3cm}P{4.4cm}P{4.8cm}}
+\toprule
+Range & Source family & Positive use & Principal scope check\\
+\midrule\endhead
+M01--M02 & Lamport & hierarchical proof notation & methodological only\\
+I01--I55 & GJ/GJS/GRS/Simon and modern context & cutoff construction, FKN,
+hypercontractivity, CE1/CE2, domains & printed versus strengthened cutoff
+uniformity; historical versus proved conclusions\\
+II01--II19 & MMST / Battle--Federbush / SMMT / NRSS & free wavelet/OAR normalization and
+fixed-coarse architecture & no cited interacting limit; no quartic LR import\\
+\bottomrule
+\end{longtable}
+
+\section{Proof-notation evidence}
+
+\evidence{M01}{Lamport worked structured proof}
+{Lamport, PDF page 10.}
+{The requested reconstruction should expose the hierarchical proof structure.}
+{Method evidence only.  It contributes no field-theoretic premise.}
+{lamport-010.png}
+
+\evidence{M02}{Lamport hierarchical numbering}
+{Lamport, PDF page 16.}
+{Steps should use stable hierarchical labels rather than paragraph-order references.}
+{Verified.  The companion reconstruction uses labels
+$\langle1\rangle1$, $\langle2\rangle1$, and explicit justification clauses.}
+{lamport-016.png}
+
+\section{Part I source evidence}
+
+\evidence{I01}{Glimm--Jaffe I source identity}
+{Glimm--Jaffe I, PDF page 1.}
+{Identity and scope of the cutoff-dynamics source.}
+{Manifest evidence.}
+{gj1-001.png}
+
+\evidence{I02}{Common core and self-adjointness}
+{Glimm--Jaffe I, PDF page 5, Sections III--IV.}
+{The cutoff interaction and total Hamiltonian possess the stated smooth common core.}
+{Positive support for Part I Assumption A5.  The page does not prove the separate
+semigroup range-smoothing assertion.}
+{gj1-005.png}
+
+\evidence{I03}{Finite propagation and cutoff locality}
+{Glimm--Jaffe I, PDF page 6, Section V.}
+{A local Heisenberg observable depends only on the cutoff in its causal region.}
+{Load-bearing pass for the patching construction.}
+{gj1-006.png}
+
+\evidence{I04}{Glimm--Jaffe II source identity}
+{Glimm--Jaffe II, PDF page 1.}
+{Identity and scope of the cutoff ground-state source.}
+{Manifest evidence.}
+{gj2-001.png}
+
+\evidence{I05}{Cutoff ground-state existence}
+{Glimm--Jaffe II, Theorem 2.2.1, PDF page 8.}
+{The spatially cutoff Hamiltonian has a ground-state eigenvector.}
+{Load-bearing pass.}
+{gj2-008.png}
+
+\evidence{I06}{Cutoff ground-state uniqueness}
+{Glimm--Jaffe II, Theorem 2.3.1, PDF page 12.}
+{The cutoff ground-state eigenvector is unique.}
+{Load-bearing pass for the slab limit and parity argument.}
+{gj2-012.png}
+
+\evidence{I07}{Cutoff covariance}
+{Glimm--Jaffe II, printed page 398, PDF page 38.}
+{The field is cutoff independent in the causal region and transforms covariantly.}
+{Load-bearing pass for Part I Assumptions A6--A7.}
+{gj2-038.png}
+
+\evidence{I08}{Local algebra construction}
+{Glimm--Jaffe II, PDF page 40.}
+{The local algebra and cutoff-independent local field construction have the cited scope.}
+{Corroborating pass; it does not itself prove convergence of the cutoff vacuum states.}
+{gj2-040.png}
+
+\evidence{I09}{Glimm--Jaffe III source identity}
+{Glimm--Jaffe III, PDF page 1.}
+{Identity of the historical vacuum-construction source.}
+{Manifest evidence.}
+{gj3-001.png}
+
+\evidence{I10}{Historical averaged limit point}
+{Glimm--Jaffe III, printed page 210, PDF page 8.}
+{The physical vacuum construction begins with space-averaged cutoff states and a
+weak-star limit point.}
+{Historical pass.  It is not full-net convergence.}
+{gj3-008.png}
+
+\evidence{I11}{Historical local Fock normality}
+{Glimm--Jaffe III, printed page 211, PDF page 9, Theorems 2.2--2.3.}
+{The historical limit-point representation is locally Fock/normal.}
+{Pass for the canonical-vacuum corollary, conditional on the new full-net theorem.}
+{gj3-009.png}
+
+\evidence{I12}{Glimm--Jaffe IV}
+{Glimm--Jaffe IV, PDF page 1, Theorems A--B.}
+{The I--IV series constructs limiting Wightman functions and fields.}
+{Contextual pass only.}
+{gj4-001.png}
+
+\evidence{I13}{Glimm--Jaffe 1971 source identity}
+{Glimm--Jaffe 1971, PDF page 1.}
+{Identity of the positivity/self-adjointness source.}
+{Manifest evidence.}
+{gj71-001.png}
+
+\evidence{I14}{Uniform lower bound}
+{Glimm--Jaffe 1971, Theorem 1, PDF page 2.}
+{Cutoff Hamiltonians have lower bounds uniform in the auxiliary cutoffs.}
+{Corroborating pass; this is not the unique-ground-state theorem.}
+{gj71-002.png}
+
+\evidence{I15}{Positivity and self-adjointness estimates}
+{Glimm--Jaffe 1971, Theorem 2, PDF page 4.}
+{The cited model estimates have the claimed positivity/self-adjointness scope.}
+{Corroborating pass.}
+{gj71-004.png}
+
+\evidence{I16}{Rosen 1970 source identity}
+{Rosen 1970, PDF page 1.}
+{Identity of the semigroup construction source.}
+{Manifest evidence.}
+{rosen-001.png}
+
+\evidence{I17}{Rosen semigroup construction}
+{Rosen 1970, Theorem 5.3, PDF page 22.}
+{The cutoff-free Hamiltonian is obtained from a convergent semigroup.}
+{Corroborating pass.}
+{rosen-022.png}
+
+\evidence{I18}{Rosen generator and core}
+{Rosen 1970, Theorem 5.3 continuation, PDF page 23.}
+{The semigroup generator is positive self-adjoint and agrees with the Hamiltonian on
+the stated core.}
+{Positive support for the common-core component of A5.}
+{rosen-023.png}
+
+\evidence{I19}{Glimm--Jaffe Expositions source identity}
+{Glimm--Jaffe Expositions, PDF page 1.}
+{Identity of the construction/domain source.}
+{Manifest evidence.}
+{gjexp-001.png}
+
+\evidence{I20}{Historical nonconvergence status begins}
+{Glimm--Jaffe Expositions, PDF page 54.}
+{The original construction did not prove convergence of cutoff vacuum expectations.}
+{Historical pass.}
+{gjexp-054.png}
+
+\evidence{I21}{Historical nonconvergence and propagation}
+{Glimm--Jaffe Expositions, PDF page 55.}
+{The vacuum-expectation limit was unproved, while locality uses finite propagation.}
+{Pass with the explicit distinction between state convergence and dynamics patching.}
+{gjexp-055.png}
+
+\evidence{I22}{Patching the dynamics}
+{Glimm--Jaffe Expositions, PDF page 56.}
+{Local cutoff dynamics patch into a cutoff-independent local dynamics.}
+{Load-bearing pass for A6.}
+{gjexp-056.png}
+
+\evidence{I23}{Theorem 7.3 hypothesis check}
+{Glimm--Jaffe Expositions, Theorem 7.3, PDF page 165.}
+{The manuscript discusses this theorem as a possible domain-smoothing source.}
+{Negative pinpoint: the theorem assumes the multiplication potential is bounded below;
+that hypothesis is not the desired model-specific statement.}
+{gjexp-165.png}
+
+\evidence{I24}{Domain-smoothing mechanism}
+{Glimm--Jaffe Expositions, Lemma 7.4, PDF page 166.}
+{Truncated multiplication operators times the semigroup converge in the domain proof.}
+{Supporting page; the model-specific conclusion is on I25.}
+{gjexp-166.png}
+
+\evidence{I25}{Model-specific domain smoothing}
+{Glimm--Jaffe Expositions, Theorem 7.4, PDF page 167.}
+{For the $P(\varphi)_2$ Hamiltonian, $\Ran e^{-tH}$ lies in the relevant interaction
+domains.}
+{Load-bearing pass and correct pinpoint for A5(i).}
+{gjexp-167.png}
+
+\evidence{I26}{GJS 1974 source identity}
+{Glimm--Jaffe--Spencer 1974, PDF page 1.}
+{Identity of the principal cluster-expansion source.}
+{Manifest evidence.}
+{gjs74-001.png}
+
+\evidence{I27}{Cutoff Hamiltonian and simple eigenvalue}
+{GJS 1974, printed page 588, PDF page 5, equation (1.6).}
+{The cutoff Hamiltonian is essentially self-adjoint and its bottom eigenvalue is simple.}
+{Load-bearing pass.}
+{gjs74-005.png}
+
+\evidence{I28}{Euclidean cutoff class}
+{GJS 1974, printed page 589, PDF page 6.}
+{The Euclidean cutoff satisfies compact support and $0\le h\le1$ and defines $dq_h$.}
+{Pass: the slab indicator times a spatial cutoff belongs to this measurable class.}
+{gjs74-006.png}
+
+\evidence{I29}{Dimensionless scaling}
+{GJS 1974, printed page 590, PDF page 7.}
+{The unitary dilation reduces the coupling to the dimensionless ratio used in Part I.}
+{Load-bearing pass.}
+{gjs74-007.png}
+
+\evidence{I30}{Observable class}
+{GJS 1974, printed page 593, PDF page 10, equation (1.1.5).}
+{The permitted observables are products of individually Wick-ordered sharp-time powers.}
+{Pass for localized monomials.  A nonlocalized polynomial must first be decomposed as
+the source prescribes on the next page.}
+{gjs74-010.png}
+
+\evidence{I31}{GJS norm and CE2}
+{GJS 1974, printed page 594, PDF page 11, equations (1.1.7)--(1.1.10) and
+Theorem 1.1.7.}
+{The norm has one overall $K_1$; CE2 is exponentially decaying with constants independent
+of $h,Q_1,Q_2$.}
+{Load-bearing pass.  The theorem is stated for two localized monomials; the source says a
+general polynomial is the sum of such terms.  Part I omits that decomposition in Lemma
+\texttt{ce2strip}.}
+{gjs74-011.png}
+
+\evidence{I32}{GJS CE1}
+{GJS 1974, printed page 595, PDF page 12, Theorem 1.1.8.}
+{Sharp-time monomial expectations have the displayed bound uniformly as $h\uparrow1$.}
+{Positive but qualified: the printed theorem does not literally quantify over every
+$h$ in Part I's enlarged class.}
+{gjs74-012.png}
+
+\evidence{I33}{GJS space-cutoff uniformity}
+{GJS 1974, printed page 629, PDF page 46, Section 4.}
+{The estimates of Theorems 1.1.8, 1.1.11, 3.1, and 4.1 are uniform in the space cutoff.}
+{Strong mechanism evidence.  It does not by itself rewrite Theorem 1.1.8 with every
+quantifier asserted in Part I Appendix C.}
+{gjs74-046.png}
+
+\evidence{I34}{GRS FKN theorem}
+{Guerra--Rosen--Simon Part I, Theorem II.14, PDF page 39.}
+{The cutoff Feynman--Kac--Nelson identity relates Hamiltonian matrix elements to the
+Euclidean integral.}
+{Load-bearing pass.}
+{grs1-039.png}
+
+\evidence{I35}{General GRS FKN theorem}
+{Guerra--Rosen--Simon Part I, Theorem II.16, PDF page 40.}
+{The general interacting FKN formula with marked time slices holds.}
+{Load-bearing pass for slab transfer.}
+{grs1-040.png}
+
+\evidence{I36}{GRS Problem 1}
+{Guerra--Rosen--Simon Part II, printed page 125, PDF page 16.}
+{The historical Problem 1 asks for local $L^p$ estimates on the vacuum density.}
+{Historical evidence only.}
+{grs2-016.png}
+
+\evidence{I37}{GRS Problem 2}
+{Guerra--Rosen--Simon Part II, printed page 126, PDF page 17.}
+{The historical Problem 2 asks for convergence of finite-volume Euclidean states on
+bounded regions.}
+{Part I proves a Hamiltonian local-algebra analogue, not this literal Euclidean statement.}
+{grs2-017.png}
+
+\evidence{I38}{GRS problem-list context}
+{Guerra--Rosen--Simon Part II, printed page 127, PDF page 18.}
+{The surrounding problem list fixes the historical scope.}
+{Contextual evidence.}
+{grs2-018.png}
+
+\evidence{I39}{GRS note added}
+{Guerra--Rosen--Simon Part II, printed page 128, PDF page 19.}
+{The note added records later progress, including Newman's small-coupling $p=1$ result.}
+{Historical qualification: claims that every form remained open would be too broad.}
+{grs2-019.png}
+
+\evidence{I40}{Simon source identity}
+{Simon, \emph{The $P(\phi)_2$ Euclidean (Quantum) Field Theory}, PDF page 1.}
+{Identity of the principal FKN/hypercontractivity/stability source.}
+{Manifest evidence.}
+{simon-001.png}
+
+\evidence{I41}{Positivity preservation of \texorpdfstring{$\Gamma(A)$}{Gamma(A)}}
+{Simon, Theorem I.12, PDF page 48.}
+{Second quantization of a real contraction is positivity preserving.}
+{Load-bearing Part II pass.  Strict positivity is a different theorem.}
+{simon-048.png}
+
+\evidence{I42}{\texorpdfstring{$L^p$ contraction of $\Gamma(A)$}{Lp contraction of Gamma(A)}}
+{Simon, Corollary I.15, PDF page 53.}
+{$\Gamma(A)$ is a contraction on each $L^p$.}
+{Load-bearing Part II pass.  This is not the hypercontractive improvement.}
+{simon-053.png}
+
+\evidence{I43}{Strict positivity improvement begins}
+{Simon, Theorem I.16, PDF page 55.}
+{If $\|A\|<1$, then $\Gamma(A)$ is positivity improving.}
+{Load-bearing Part II pass; the strict-contraction hypothesis is essential.}
+{simon-055.png}
+
+\evidence{I44}{Strict positivity conclusion and hypercontractivity}
+{Simon, PDF page 56: conclusion of Theorem I.16 and Theorem I.17.}
+{Positivity improvement and Nelson's exact $L^p\to L^q$ criterion.}
+{Load-bearing pass for Part I A4 and Part II V3.}
+{simon-056.png}
+
+\evidence{I45}{Hypercontractive factorization}
+{Simon, Theorem I.17 continuation, PDF page 57.}
+{The general contraction is reduced to the scalar Ornstein--Uhlenbeck case by
+$\Gamma(A)=\Gamma(B)\Gamma(\|A\|)$.}
+{Pass for the factorization used by V3's ladder argument.}
+{simon-057.png}
+
+\evidence{I46}{Free FKN}
+{Simon, Theorem III.6, PDF page 111.}
+{The free-field FKN formula relates time slices to the free Hamiltonian semigroup.}
+{Correct load-bearing pinpoint.}
+{simon-111.png}
+
+\evidence{I47}{Theorem III.12 is not FKN}
+{Simon, Theorem III.12, PDF page 119.}
+{A formerly suggested pinpoint was claimed to support FKN.}
+{Negative result: the visible theorem is a product-of-projections/Sobolev-region
+estimate, not an FKN identity.}
+{simon-119.png}
+
+\evidence{I48}{Time-region hypercontractivity begins}
+{Simon, Theorem III.17, PDF page 125.}
+{The time-region form of hypercontractivity supplies the slab transfer estimate.}
+{Load-bearing pass.}
+{simon-125.png}
+
+\evidence{I49}{Time-region hypercontractivity continues}
+{Simon, Theorem III.17 continuation, PDF page 126.}
+{The exponent condition and proof of the time-region estimate.}
+{Supporting load-bearing page.}
+{simon-126.png}
+
+\evidence{I50}{Finite-volume exponential stability}
+{Simon, Theorem V.7, PDF page 174.}
+{The interaction exponential is integrable with the stability control used in Part I.}
+{Load-bearing pass for A3.}
+{simon-174.png}
+
+\evidence{I51}{Theorem V.10 begins}
+{Simon, Theorem V.10, PDF page 178.}
+{A formerly broad citation attached V.10 to the abstract hypercontractive display.}
+{Pinpoint mismatch: this is a later transfer-matrix estimate; cite I.17/III.17 for the
+displayed hypercontractivity inequality.}
+{simon-178.png}
+
+\evidence{I52}{Theorem V.10 continues}
+{Simon, Theorem V.10 continuation, PDF page 179.}
+{The actual scope of the transfer estimate.}
+{Supporting mismatch evidence.}
+{simon-179.png}
+
+\evidence{I53}{Theorem V.12}
+{Simon, Theorem V.12, PDF page 180.}
+{The source is used for an essential-self-adjointness/common-core role.}
+{Pass for that role; fail if cited as the direct abstract hypercontractivity theorem.}
+{simon-180.png}
+
+\evidence{I54}{Interacting FKN corollary}
+{Simon, Corollary V.14, PDF page 184.}
+{The interacting semigroup has the FKN representation.}
+{Load-bearing pass.}
+{simon-184.png}
+
+\evidence{I55}{Full interacting FKN theorem}
+{Simon, Theorem V.15, PDF page 185.}
+{The full marked-time interacting FKN formula is stated.}
+{Strongest direct Simon pinpoint for Part I A2.}
+{simon-185.png}
+
+\section{Part I contextual citations}
+
+\evidence{C01}{AHZ source and abstract}
+{Albeverio--H\o egh-Krohn--Zegarlinski 1989, PDF page 1.}
+{Euclidean uniqueness and global Markov results exist for general polynomial interactions
+under specified hypotheses.}
+{Contextual pass; not Hamiltonian cutoff-net convergence.}
+{ahz-001.png}
+
+\evidence{C02}{AHZ uniqueness conclusion}
+{AHZ 1989, PDF page 24.}
+{The paper's Euclidean Gibbs uniqueness conclusion and global Markov transition.}
+{Confirms the Euclidean scope only.}
+{ahz-024.png}
+
+\evidence{C03}{BDW modern uniqueness result}
+{Bauerschmidt--Dagallier--Weber, arXiv:2504.08606, PDF page 1.}
+{The citation concerns uniqueness of the $\Phi^4_2$ stochastic-quantization invariant
+measure above critical temperature.}
+{Not Hamiltonian ground-state uniqueness or cutoff-net convergence.}
+{bdw-001.png}
+
+\evidence{C04}{RZT finite-volume scope}
+{Rodriguez Zarate--Thiemann, arXiv:2505.13030, PDF page 1.}
+{The closest cited Hamiltonian-renormalization paper is explicitly finite-volume.}
+{Contextual pass with finite-volume restriction.}
+{rzt-001.png}
+
+\evidence{C05}{Hastings quasi-adiabatic continuation}
+{Hastings, arXiv:cond-mat/0305505, PDF page 1.}
+{Quasi-adiabatic continuation is formulated for gapped local many-body systems.}
+{Context only.  Its hypotheses are not imported to justify the unbounded continuum
+$P(\phi)_2$ path.}
+{hastings-001.png}
+
+\evidence{C06}{BMNS automorphic equivalence}
+{Bachmann--Michalakis--Nachtergaele--Sims, arXiv:1102.0842, PDF page 1.}
+{Automorphic equivalence is proved for gapped quantum-spin phases.}
+{Context only; no direct theorem application in Part I.}
+{bmns-001.png}
+
+\evidence{C07}{GJS 1975 source identity}
+{GJS 1975, PDF page 1.}
+{The paper proves a phase transition for specified two-dimensional quantum fields.}
+{Contextual pass; it does not state Part I hypothesis B4.}
+{gjs75-001.png}
+
+\evidence{C08}{Two pure phases discussion}
+{GJS 1975, PDF page 2.}
+{The discussion identifies two pure phases and clustering within them.}
+{Partial support only; it does not classify every parity-invariant Hamiltonian ground
+state as their midpoint.}
+{gjs75-002.png}
+
+\evidence{C09}{GJS 1975 precise theorem}
+{GJS 1975, Theorem 1.1, PDF page 3.}
+{The phase-transition theorem has explicit model-specific hypotheses and an order parameter.}
+{Does not discharge B4.}
+{gjs75-003.png}
+
+\evidence{C10}{GJS 1976 source identity}
+{GJS 1976 Part I, PDF page 1.}
+{The mean-field expansion studies a selected pure phase and its ground state.}
+{Contextual pass.}
+{gjs76i-001.png}
+
+\evidence{C11}{Pure-phase mass gaps}
+{GJS 1976 Part I, PDF page 2.}
+{The paper states mass gaps in each of two pure phases.}
+{These infinite-volume pure-phase gaps are not a uniform lower bound for the finite-cutoff
+tunnelling gap.}
+{gjs76i-002.png}
+
+\evidence{C12}{GJS 1976 precise theorem}
+{GJS 1976 Part I, Theorem 2.1, PDF page 5.}
+{The detailed mean-field result begins under explicit hypotheses.}
+{Does not remove the need for Part I hypothesis B4.}
+{gjs76i-005.png}
+
+\evidence{C13}{GJS 1976 Part II source identity}
+{GJS 1976 Part II, PDF page 1.}
+{The companion paper proves convergence of the Part I expansion and exponential
+clustering in the pure phase selected by boundary conditions.}
+{Contextual pass; a selected Euclidean pure phase is not the full Hamiltonian
+state-space classification B1--B4.}
+{gjs76ii-001.png}
+
+\evidence{C14}{Pure-phase exponential clustering theorem}
+{GJS 1976 Part II, Theorem 4.3.1, PDF page 37 (printed page 667).}
+{The truncated correlation of localized Wick polynomials decays exponentially,
+uniformly in the volume, in the specified small-parameter regime.}
+{Verifies the cited pure-phase clustering result; it does not assert a uniform
+finite-cutoff tunnelling gap.}
+{gjs76ii-037.png}
+
+\evidence{C15}{Unique-vacuum and positive-mass corollary}
+{GJS 1976 Part II, PDF page 38 (printed page 668), immediately after Theorem 4.3.1.}
+{The paper explicitly records unique vacuum and positive mass as a corollary of the
+exponential-clustering theorem and begins its proof.}
+{Verified for the boundary-selected pure phase; it does not discharge Part I's B4
+midpoint-classification hypothesis.}
+{gjs76ii-038.png}
+
+\evidence{C16}{Infinite-volume conclusion}
+{GJS 1976 Part II, Section 4.4, PDF page 39 (printed page 669).}
+{The paper passes to the infinite-volume Schwinger functions and states completion
+of the relevant Part I theorems.}
+{Verified in the paper's mean-field regime; no statement here identifies every
+Hamiltonian ground state or a cutoff-uniform finite-volume gap.}
+{gjs76ii-039.png}
+
+\clearpage
+\section{Part II source evidence}
+
+\phantomsection\addcontentsline{toc}{subsection}{II01 --- MMST source identity}
+{\Large\bfseries II01 --- MMST source identity\par}
+\textbf{Exact location.} Morinelli--Morsella--Stottmeister--Tanimoto, PDF page 1.\par
+\textbf{Manuscript claim checked.} Identity of the wavelet scaling/OAR source.\par
+\textbf{Scope verdict.} Manifest evidence.\par
+\begin{center}
+\includegraphics[width=\textwidth,height=.62\textheight,keepaspectratio]{mmst-001.png}
+\end{center}
+
+\evidence{II02}{Projective fixed-coarse architecture}
+{MMST, PDF page 7, equations (2.8)--(2.11).}
+{Finer states are pulled back to each fixed coarse algebra, and a projectively compatible
+family defines the limit state.}
+{No convergence in local-state norm and no diagonal finest-scale supremum is stated.}
+{mmst-007.png}
+
+\evidence{II03}{Weyl and Fourier normalizations}
+{MMST, PDF page 13, equations (3.5)--(3.10).}
+{The scale-dependent symplectic form, Fourier normalization, and induced Weyl embedding
+are fixed.}
+{Load-bearing kinematic pass; no interaction is defined here.}
+{mmst-013.png}
+
+\evidence{II04}{Wavelet refinement map}
+{MMST, PDF page 16, Definition 3.3 and Lemma 3.4.}
+{The one-step $\sqrt2$ normalization, low-pass coefficients, periodization, and
+symplecticity are explicit.}
+{Kinematic pass only; Hamiltonians are not intertwined by this lemma.}
+{mmst-016.png}
+
+\evidence{II05}{D4 support and regularity}
+{MMST, PDF page 20, Section 3.3.4.}
+{For $K=2$ the scaling function has support $[0,3]$ and the stated regularity.}
+{The numerical filter coefficients are not on this page; the model sheet verifies them
+algebraically.}
+{mmst-020.png}
+
+\evidence{II06}{Nearest-neighbour free Hamiltonian}
+{MMST, PDF page 21, equations (4.1)--(4.5).}
+{The lattice Hamiltonian, dispersion, and free Weyl covariance are fixed.}
+{Free only: no Wick quartic or interacting limit is proved.}
+{mmst-021.png}
+
+\evidence{II07}{Continuum observable embedding}
+{MMST, PDF page 25, Proposition 4.1.}
+{The symplectic map induces an injective homomorphism into the continuum Weyl algebra.}
+{An observable embedding does not canonically push a state backward and does not place
+lattice and continuum Hamiltonians on one form domain.}
+{mmst-025.png}
+
+\evidence{II08}{Finite mask product and fixed-coarse limit}
+{MMST, PDF page 26, equations (4.17)--(4.20), Lemma 4.2.}
+{The pulled-back covariance contains the finite mask product and converges weak-star at
+each fixed coarse scale.}
+{No quantitative rate is stated; the separate free-rate proof derives one.}
+{mmst-026.png}
+
+\evidence{II09}{Pointwise continuum identification}
+{MMST, PDF page 28, Lemma 4.3.}
+{At a fixed finite scale the limiting state equals the continuum vacuum on the embedded
+observable.}
+{Not a diagonal local-norm estimate.}
+{mmst-028.png}
+
+\evidence{II10}{Free scaling limit}
+{MMST, PDF page 29, Proposition 4.5.}
+{The free lattice states have a scaling limit agreeing with the continuum vacuum on
+fixed-coarse observables.}
+{No power rate and no interacting $\phi^4_2$ conclusion.}
+{mmst-029.png}
+
+\evidence{II11}{Free continuum net}
+{MMST, PDF page 35, Theorem 4.11 and Remarks 4.12--4.13.}
+{The limiting time-zero net is unitarily equivalent to the massive free-field net.}
+{Does not identify finite-scale and continuum Hamiltonians on a common Hilbert space.}
+{mmst-035.png}
+
+\evidence{II12}{Harmonic Lieb--Robinson estimate}
+{MMST, PDF page 36, Lemma 4.14.}
+{The cited commutator estimate is for the harmonic lattice Hamiltonian and Weyl observables.}
+{Not an interacting quartic Lieb--Robinson theorem.}
+{mmst-036.png}
+
+\evidence{II13}{LR speed scope}
+{MMST, PDF page 38, Remark 4.17.}
+{The LR velocity from the estimate differs from the physical group velocity.}
+{The exact dispersion derivative is a check, not a replacement for an interacting LR
+bound.}
+{mmst-038.png}
+
+\evidence{II14}{Interacting scaling is future work}
+{MMST, PDF page 54, Section 6.1.}
+{The extension to interacting lattice ground states is described prospectively.}
+{No interacting wavelet scaling theorem, uniform gap, or mixed-vertex estimate is supplied.}
+{mmst-054.png}
+
+\evidence{II15}{Battle--Federbush mechanism}
+{Battle--Federbush 1987, PDF page 1 / journal page 417.}
+{Wavelet phase-cell expansions are proposed and an earlier error is excised.}
+{No theorem in the MMST lattice variables or uniform constants A4/A5 appear.}
+{bf87-001.png}
+
+\evidence{II16}{Battle--Federbush basis scope}
+{Battle--Federbush 1987, PDF page 2 / journal page 418.}
+{The source distinguishes Meyer, nonsmooth localized, and exponentially localized bases.}
+{Those basis facts do not identify its action with the nearest-neighbour OAR action.}
+{bf87-002.png}
+
+\evidence{II17}{Battle--Federbush diagonal variables}
+{Battle--Federbush 1987, PDF page 3 / journal page 419.}
+{The phase-cell free action is diagonal in variables
+$u_k=(-\Delta+M^2)^{-1/2}\psi_k$.}
+{No A4/A5 estimate, interacting gap, or OAR fixed-coarse convergence theorem.}
+{bf87-003.png}
+
+\evidence{II18}{SMMT prospective interacting step}
+{Stottmeister--Morinelli--Morsella--Tanimoto, arXiv:2002.01442v2, PDF page 5.}
+{The conclusion says interacting systems would require analytic or numerical expansions
+and asks about explicit errors.}
+{Outlook, not a proof.}
+{smmt-005.png}
+
+\evidence{II19}{NRSS quartic hypothesis failure}
+{Nachtergaele--Raz--Schlein--Sims, Theorem 4.1, PDF page 19.}
+{The anharmonic LR theorem assumes $V'\in L^1$ and a weighted Fourier condition.}
+{For the Wick quartic, $V'(u)$ grows cubically and is not in $L^1$; this theorem cannot
+be imported.  This does not prove that no other quartic LR theorem exists.}
+{nrss-019.png}
+
+\clearpage
+\section{Integrity and conclusion}
+
+\begin{auditbox}
+\textbf{Image accounting.}  The directory contains 92 PNG files, and every one is
+displayed exactly once above.  Source-identity covers are paired with the displayed
+theorem families rather than treated as mathematical evidence by themselves.  The
+rendering commands are preserved in \texttt{render\_evidence.sh}.
+
+\textbf{Principal source conclusions.}
+The exact FKN, hypercontractivity, cutoff construction, CE2, and model-specific domain
+results exist at the pinpoints shown.  GJS p.~629 gives strong evidence for space-cutoff
+uniformity of the named estimates, but the manuscript's full-class CE1 quantifier is
+stronger than Theorem 1.1.8's printed wording.  The Part II sources prove the free
+fixed-coarse OAR architecture; they do not supply the new interacting comparison.  That
+comparison therefore has to be proved internally, and the critical audit finds that its
+shifted version is not yet closed.
+\end{auditbox}
+
+\end{document}

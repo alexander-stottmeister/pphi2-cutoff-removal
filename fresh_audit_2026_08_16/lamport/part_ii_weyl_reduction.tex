@@ -1,0 +1,320 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{auditstyle}
+\lhead{Fresh Glimm--Jaffe proof audit}
+\rhead{16 August 2026}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\W}{\mathcal W}
+\newcommand{\dd}{\,d}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{Part II interacting Weyl reduction\\[3pt]
+\large The exact scalar convergence criterion and the excluded quartic LR citation}
+\author{Lamport-form proof and proof-obligation ledger}
+\date{16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+\textbf{Reduction theorem.}  To obtain a full
+fixed-coarse weak-star scaling limit, it is sufficient to prove convergence of the
+single scalar characteristic functional
+\[
+ \chi_{N,M}(\xi):=\omega_N(\alpha_M^N(W_M(\xi)))
+\]
+for every fixed \(M\) and every coarse one-particle vector \(\xi\).  Positivity,
+boundedness, extension from Weyl polynomials, projective consistency, and continuum
+identification are then automatic by the proved steps below.
+
+This static reduction requires neither an interacting Lieb--Robinson bound nor a
+uniform spectral gap.  Those inputs are needed only for a quantitative spatial-cutoff
+or dynamical theorem.
+\end{resultbox}
+
+\tableofcontents
+
+\section{Characteristic-functional criterion}
+
+Let \((\W_N,\alpha_M^N)\) be the Weyl \(C^*\)-inductive system fixed in the
+model sheet.  Let
+\[
+ \mathcal D_M:=\operatorname{span}\{W_M(\xi):\xi\in h_{M,L}\}.   \tag{1.1}
+\]
+By the definition of the Weyl \(C^*\)-algebra,
+\[
+ \overline{\mathcal D_M}^{\|\cdot\|}=\W_M.                     \tag{1.2}
+\]
+
+\begin{theorem}[full-sequence Weyl criterion]\label{thm:weylcriterion}
+For every \(N\), let \(\omega_N\in S(\W_N)\).  Assume that, for every fixed
+\(M\) and every \(\xi\in h_{M,L}\), the limit
+\[
+ \chi_M(\xi):=
+ \lim_{N\to\infty,\ N\ge M}
+ \omega_N(\alpha_M^N(W_M(\xi)))                               \tag{1.3}
+\]
+exists.  Then:
+\begin{enumerate}
+\item there is a unique state \(\rho_M\in S(\W_M)\) satisfying
+      \(\rho_M(W_M(\xi))=\chi_M(\xi)\);
+\item for every \(A\in\W_M\),
+      \[
+       \lim_{N\to\infty}\omega_N(\alpha_M^N(A))=\rho_M(A);     \tag{1.4}
+      \]
+\item the family is projectively consistent,
+      \[
+       \rho_M=\rho_{M'}\circ\alpha_M^{M'},\qquad M\le M';      \tag{1.5}
+      \]
+\item there is a unique state \(\Omega_\infty\in S(\W_\infty)\) with
+      \[
+       \Omega_\infty\circ\alpha_M^\infty=\rho_M.               \tag{1.6}
+      \]
+\end{enumerate}
+\end{theorem}
+
+\section{Proof of Theorem \ref{thm:weylcriterion}}
+
+\LS{1}{1}{Define the limit on finite Weyl polynomials.}
+
+For
+\[
+ D=\sum_{j=1}^s c_jW_M(\xi_j)\in\mathcal D_M,                  \tag{2.1}
+\]
+set
+\[
+ \rho_M^{(0)}(D):=\sum_{j=1}^sc_j\chi_M(\xi_j).                \tag{2.2}
+\]
+This is independent of the representation (2.1).  Indeed, if \(D=0\) in
+\(\W_M\), then \(\alpha_M^N(D)=0\) for every \(N\), and hence
+\[
+ \sum_jc_j\chi_M(\xi_j)
+ =\lim_N\omega_N(\alpha_M^N(D))=0.                             \tag{2.3}
+\]
+If $D=\sum_jc_jW_M(\xi_j)$ and $E=\sum_kd_kW_M(\zeta_k)$, concatenate the two
+finite sums in (2.2).  For $a,b\in\C$ this gives
+$\rho_M^{(0)}(aD+bE)=a\rho_M^{(0)}(D)+b\rho_M^{(0)}(E)$; representation
+independence just proved makes the equality intrinsic.
+
+\LS{1}{2}{Prove boundedness and positivity before extending.}
+
+For \(D\in\mathcal D_M\), (1.3) and linearity of the finite sum give
+\[
+ \rho_M^{(0)}(D)=\lim_N\omega_N(\alpha_M^N(D)).                 \tag{2.4}
+\]
+Because \(\alpha_M^N\) is injective and therefore isometric,
+\[
+ |\rho_M^{(0)}(D)|
+ \le\limsup_N\|\alpha_M^N(D)\|=\|D\|.                          \tag{2.5}
+\]
+If \(D\in\mathcal D_M\), then \(D^*D\in\mathcal D_M\), and
+\[
+ \rho_M^{(0)}(D^*D)
+ =\lim_N\omega_N(\alpha_M^N(D)^*\alpha_M^N(D))\ge0.            \tag{2.6}
+\]
+Also \(\rho_M^{(0)}(I)=1\).
+
+\LS{1}{3}{Extend to the coarse \(C^*\)-algebra.}
+
+Equations (1.2) and (2.5) give a unique bounded extension
+\(\rho_M:\W_M\to\C\).  Positivity persists under norm limits: if
+\(A\in\W_M\) and \(D_j\to A\), then \(D_j^*D_j\to A^*A\), so
+\[
+ \rho_M(A^*A)=\lim_j\rho_M^{(0)}(D_j^*D_j)\ge0.                \tag{2.7}
+\]
+Together with \(\rho_M(I)=1\), this makes \(\rho_M\) a state.
+
+\LS{1}{4}{Upgrade convergence from Weyl polynomials to every coarse observable.}
+
+Fix \(A\in\W_M\) and \(\delta>0\).  By (1.2), choose
+\(D\in\mathcal D_M\) with \(\|A-D\|<\delta\).  Then
+\begin{align}
+ |\omega_N(\alpha_M^N(A))-\rho_M(A)|
+ &\le|\omega_N(\alpha_M^N(A-D))|\\
+ &\quad+|\omega_N(\alpha_M^N(D))-\rho_M(D)|
+       +|\rho_M(D-A)|\\
+ &\le2\delta+
+ |\omega_N(\alpha_M^N(D))-\rho_M(D)|.                          \tag{2.8}
+\end{align}
+The last term tends to zero by (2.4).  Therefore
+\[
+ \limsup_N|\omega_N(\alpha_M^N(A))-\rho_M(A)|\le2\delta.       \tag{2.9}
+\]
+Letting \(\delta\downarrow0\) proves (1.4).
+
+\LS{1}{5}{Prove projective consistency.}
+
+Fix \(M\le M'\) and \(A\in\W_M\).  For every \(N\ge M'\),
+\[
+ \alpha_{M'}^N(\alpha_M^{M'}(A))=\alpha_M^N(A).                \tag{2.10}
+\]
+Apply \(\omega_N\), take \(N\to\infty\), and use (1.4) at scales
+\(M,M'\):
+\[
+ \rho_{M'}(\alpha_M^{M'}(A))=\rho_M(A).                        \tag{2.11}
+\]
+This is (1.5).
+
+\LS{1}{6}{Construct the inductive-limit state.}
+
+On the algebraic union prescribe
+\[
+ \Omega_0(\alpha_M^\infty(A)):=\rho_M(A).                      \tag{2.12}
+\]
+Equation (2.11) makes this well-defined.  It is positive, unital, and bounded by
+one on each embedded algebra.  It therefore extends uniquely to the norm completion
+\(\W_\infty\), proving (1.6). \QedStep
+
+\section{Exact continuum-identification criterion}
+
+\begin{corollary}[identification on one common algebra]\label{cor:identify}
+Let \(\omega_{\rm ct}\) be a state on a continuum Weyl algebra \(\W_{\rm ct}\),
+and let
+\[
+ \beta:\W_\infty\longrightarrow\W_{\rm ct}                    \tag{3.1}
+\]
+be an injective \( * \)-homomorphism satisfying
+\(\beta\alpha_M^\infty=\beta_M\).  If
+\[
+ \chi_M(\xi)=\omega_{\rm ct}(\beta_M(W_M(\xi)))                \tag{3.2}
+\]
+for every \(M,\xi\), then
+\[
+ \Omega_\infty=\omega_{\rm ct}\circ\beta
+ \quad\hbox{on }\W_\infty.                                    \tag{3.3}
+\]
+\end{corollary}
+
+\begin{proof}
+Equation (3.2) and Theorem \ref{thm:weylcriterion} give equality on every Weyl
+generator, hence on \(\mathcal D_M\), hence by norm continuity on every
+\(\W_M\).  The union of the embedded \(\W_M\) is norm dense in
+\(\W_\infty\), so the equality extends to all of \(\W_\infty\).
+\end{proof}
+
+\begin{remark}[the exact remaining interacting statement]
+For the finite-torus Wick-quartic states from the model sheet, the unresolved scalar
+statement is
+\[
+ \lim_{N\to\infty}
+ \omega_{N,L,\lambda,1}(\alpha_M^N(W_M(\xi)))
+ =
+ \omega_{P(\phi)_2,L}(\beta_M(W_M(\xi)))                       \tag{3.4}
+\]
+for every fixed \(M\) and \(\xi\).  Proving (3.4) closes the static,
+full-sequence, identified fixed-coarse theorem by Corollary \ref{cor:identify}.
+Neither Theorem \ref{thm:weylcriterion} nor Corollary \ref{cor:identify}
+asserts (3.4).
+\end{remark}
+
+\section{Compatible symmetry}
+
+\begin{proposition}
+Suppose \(\vartheta_N\in\operatorname{Aut}(\W_N)\) satisfy
+\[
+ \vartheta_N\alpha_M^N=\alpha_M^N\vartheta_M,\qquad
+ \omega_N\vartheta_N=\omega_N.                                \tag{4.1}
+\]
+Then every \(\rho_M\) and \(\Omega_\infty\) constructed above is invariant under
+the induced symmetry.
+\end{proposition}
+
+\begin{proof}
+For \(A\in\W_M\),
+\[
+ \rho_M(\vartheta_MA)
+ =\lim_N\omega_N(\alpha_M^N(\vartheta_MA))
+ =\lim_N\omega_N(\vartheta_N(\alpha_M^N A))
+ =\rho_M(A).                                                    \tag{4.2}
+\]
+The inductive-limit assertion follows first on the algebraic union and then by norm
+continuity.
+\end{proof}
+
+\section{Why the cited anharmonic LR theorem does not cover the Wick quartic}
+
+Nachtergaele--Raz--Schlein--Sims, Theorem 4.1, assumes for the on-site
+perturbation \(V\) that
+\[
+ V\in C^1(\R),\qquad V'\in L^1(\R),\qquad
+ \kappa_V:=\int_{\R}|w|\,|\widehat{V'}(w)|\dd w<\infty.         \tag{5.1}
+\]
+
+\begin{proposition}[exact hypothesis failure]\label{prop:NRSSfail}
+For every \(\lambda>0\) and \(c\ge0\), the Wick quartic
+\[
+ V_c(u):=\lambda(u^4-6cu^2+3c^2)                              \tag{5.2}
+\]
+does not satisfy \(V_c'\in L^1(\R)\).  Hence the cited theorem cannot be
+applied to this interaction.
+\end{proposition}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Differentiate the stated polynomial.}
+
+\[
+ V_c'(u)=4\lambda u^3-12\lambda cu
+ =4\lambda u(u^2-3c).                                         \tag{5.3}
+\]
+
+\LS{1}{2}{Obtain a lower bound on the tails.}
+
+If \(|u|\ge\sqrt{6c}\), then
+\[
+ |u^2-3c|\ge\frac12u^2,                                       \tag{5.4}
+\]
+and therefore
+\[
+ |V_c'(u)|\ge2\lambda|u|^3.                                   \tag{5.5}
+\]
+
+\LS{1}{3}{Integrate.}
+
+For every \(R\ge\sqrt{6c}\),
+\[
+ \int_R^\infty|V_c'(u)|\dd u
+ \ge2\lambda\int_R^\infty u^3\dd u=\infty.                    \tag{5.6}
+\]
+Thus \(V_c'\notin L^1(\R)\), so the first analytic hypothesis in (5.1)
+already fails. \QedStep
+
+\begin{remark}
+Proposition \ref{prop:NRSSfail} excludes only this citation route.  It is not a
+nonexistence theorem for quartic Lieb--Robinson bounds.  A replacement would require a
+polynomial-specific energy-weighted argument, with constants controlled uniformly in
+the resolution.
+\end{remark}
+
+\section{Revised proof obligations}
+
+\begin{longtable}{P{0.33\textwidth}P{0.17\textwidth}P{0.41\textwidth}}
+\toprule
+Item & Status & Exact content\\
+\midrule
+\endhead
+Projective cofinal-subnet existence & \Pass & Proved independently in the compactness
+companion.\\
+Full-sequence reduction to Weyl generators & \Pass & Theorem
+\ref{thm:weylcriterion}.\\
+Continuum identification once generator limits are known & \Pass & Corollary
+\ref{cor:identify}.\\
+Interacting characteristic limit (3.4) & \Fail & This is the remaining static
+finite-torus theorem.  It requires a uniform Euclidean or cluster-expansion comparison.\\
+\(N\)-uniform gap and local second moment & \Fail & Not needed for the static weak-star
+criterion, but still needed by the quantitative LPPL route.\\
+Quartic interacting LR estimate & \Fail & The cited theorem assumes (5.1), which the
+Wick quartic violates by Proposition \ref{prop:NRSSfail}.\\
+Local-state-norm rate & \Fail & Pointwise convergence on a norm-dense set does not imply
+uniform convergence over the norm-one ball.\\
+\bottomrule
+\end{longtable}
+
+\begin{thebibliography}{9}
+\bibitem{NRSS}
+B.~Nachtergaele, H.~Raz, B.~Schlein, R.~Sims,
+\emph{Lieb--Robinson bounds for harmonic and anharmonic lattice systems},
+Commun. Math. Phys. \textbf{286} (2009), 1073--1098.
+\end{thebibliography}
+
+\end{document}

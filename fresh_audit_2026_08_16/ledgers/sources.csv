@@ -1,0 +1,25 @@
+source_id,short_name,local_pdf,sha256,pages,acquisition_status
+EXT-GJ1,Glimm--Jaffe I,"refs/Glimm und Jaffe - 1968 - A λ{Φ^4}_2 Quantum Field Theory without Cutoffs. I.pdf",80993a0521b7f0de21b096c93365b3d84cd569ed457dcb71b5766866b9c8ac07,7,local-primary
+EXT-GJ2,Glimm--Jaffe II,"refs/Glimm und Jaffe - 1970 - The λ(φ4)_2 quantum field theory without cutoffs .pdf",8bfa327da9f3a78222243b3990b44693bd8e2cf1737c7a7d6f8749cfd3d9f961,65,local-primary
+EXT-GJ3,Glimm--Jaffe III,"refs/Glimm und Jaffe - 1970 - The λ{Φ^4}_2 Quantum Field Theory without Cutoffs..pdf",6c33fbc138766c344ee9eaca8bd780893108a74549c8de74d995f08ec75f05d1,41,local-primary
+EXT-GJ4,Glimm--Jaffe IV,"refs/Glimm und Jaffe - 1972 - The λ{Φ^4}_2 Quantum Field Theory without Cutoffs..pdf",b073f26cc15e08e66b4ea8480489109d7537f00e83ebfffd457cb62151483774,18,local-primary
+EXT-GJ71,Glimm--Jaffe 1971,"refs/Glimm und Jaffe - 1971 - Positivity and self adjointness of the $P(phi)_{2.pdf",655df0cadb54e132594d85a27b1849719128e8604fb4161f418a8d56d156ab97,6,local-primary
+EXT-GJEXP,Glimm--Jaffe Expositions,"refs/Glimm & Jaffe - Quantum Field Theory and Statistical Mechanics - Expositions.pdf",d474345dc9336e968728e6ca2620d05f41ad21deb85143b48ccecb34b21410fe,405,local-primary
+EXT-GJS,Glimm--Jaffe--Spencer 1974,"refs/Glimm et al. - 1974 - The Wightman Axioms and Particle Structure in the (φ) 2 Quantum Field Model.pdf",e0a08c9438ff5c69f6d55f1c1b48e0201fc44f2313cef94ad4e87deaf872aa48,49,local-primary
+EXT-GJS75,Glimm--Jaffe--Spencer 1975,"refs/Glimm et al. - 1975 - Phase Transitions for φ_2^4 Quantum Fields.pdf",dc20756fcdfa18992bb1034a35415d008e02339718beeca06d0ab74ec71c40e9,14,local-primary
+EXT-GJS76I,Glimm--Jaffe--Spencer 1976 I,"refs/Glimm et al. - 1976 - A Convergent Expansion about Mean Field Theory. I..pdf",ef7957c5ef3eef3d867cf8db676bc9cbf03944d2f6ba79df3c68ca293fdc7b2e,21,local-primary
+EXT-GJS76II,Glimm--Jaffe--Spencer 1976 II,"refs/Glimm et al. - 1976 - A Convergent Expansion about Mean Field Theory. II.pdf",7ffaff7052ea5f4dd1826fb1991f4eb6db9347275f150241ac6603cad2e47d64,39,local-primary
+EXT-GRS1,Guerra--Rosen--Simon 1975 Part I,"refs/Guerra et al. - 1975 - The P(φ)2 Euclidean Quantum Field Theory as Classical Statistical Mechanics - Part 1.pdf",a97248302fe44eb9cddd690505c319f1bc9237e87f188fbefd74e4564e9945c5,80,local-primary
+EXT-GRS2,Guerra--Rosen--Simon 1975 Part II,"refs/Guerra et al. - 1975 - The P(φ)2 Euclidean Quantum Field Theory as Classical Statistical Mechanics - Part 2.pdf",4d1b306ab8517a70682a625a8b66253ce4f8fc05772c376cac0ea87eba8f6603,70,local-primary
+EXT-ROSEN,Rosen 1970,"refs/Rosen - 1970 - A λφ2 n field theory without cutoffs.pdf",7336ed96d62107cd10459bd065199c0676c8b417fc9e74c450a20488f6c953ca,27,local-primary
+EXT-SIMON,Simon P(phi)2 book,"refs/Simon - The P(\Phi)_2 Euclidean (Quantum) Field Theory.pdf",06dc3239715cebb6a52ceec707e42bccd0561ed2601370568d29790c3c59133c,418,local-primary
+EXT-AHZ,Albeverio--Hoegh-Krohn--Zegarlinski 1989,"refs/Albeverio et al. - 1989 - Uniqueness and global Markov property for Euclidean fields The case of general polynomial interacti.pdf",a4970d07869341427dd201a9fa397b8c8be825bb880234dfce61929882452165,48,local-primary
+EXT-BDW,Bauerschmidt--Dagallier--Weber 2025,refs/audit_2026/BDW_arXiv_2504.08606.pdf,e1b9ebe4a8a702153e764b3b4a3e9b04e2adc9818725d0ebb3afeaf3cc954823,70,local-primary
+EXT-RZT,Rodriguez Zarate--Thiemann 2025,refs/audit_2026/RZT_arXiv_2505.13030.pdf,50eaa5c031bcce2cf3ea057e2d6a9c3c793fe2734b4b88cae013d02fbf7cec23,23,local-primary
+EXT-HASTINGS,Hastings 2004,refs/audit_2026/Hastings_cond-mat_0305505.pdf,9849c33e2393e4fff99fb907152bf31682efd3a7fc637a1af15069fc80fd2916,14,downloaded-primary
+EXT-BMNS,Bachmann--Michalakis--Nachtergaele--Sims 2011,refs/audit_2026/BMNS_arXiv_1102.0842.pdf,ee2493d9a7e910414f082986158c6b360f621db5d3b122134b265103fe202f49,31,downloaded-primary
+EXT-MMST,Morinelli--Morsella--Stottmeister--Tanimoto 2021,refs/part_ii/MMST_scaling_limits_wavelets_2010.11121.pdf,3882444339413145bae290b8213582cb9a388c79b16ac2e2ee4e15dcac79c01e,63,local-primary
+EXT-BF87,Battle--Federbush 1987,refs/part_ii/Battle_Federbush_1987_ondelettes_vindication.pdf,d68ceaf1e27ca82f0db995e94a7168eb2aa448dddbe82d83a553bf0395b94c07,3,local-primary
+EXT-SMMT,Stottmeister--Morinelli--Morsella--Tanimoto 2020,refs/part_ii/SMMT_operator_algebraic_renormalization_2002.01442.pdf,2db5b30468cba5f073769774838a8925d36060809b65ecaf9e57cb5b753c4ec2,6,local-primary
+EXT-NRSS,Nachtergaele--Raz--Schlein--Sims 2009,refs/part_ii/NRSS_Lieb_Robinson_0712.3820.pdf,613ff5cc8af3f7b9734a2ca1912f33624b59050204e108071c4d200285179114,27,local-primary
+EXT-LAMPORT,Lamport 2012,refs/audit_2026/Lamport_How_to_Write_a_21st_Century_Proof.pdf,c0fceb68ecfb1117138c39a942d61e3f17fb2f0c825067e18c9c657c393049a1,28,local-primary

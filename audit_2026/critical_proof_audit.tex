@@ -1,0 +1,511 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{auditstyle}
+\title{Fresh critical audit of the Glimm--Jaffe research program\\[3pt]
+\large Severity-ranked proof check, source verification, and closure workflow}
+\author{Audit target: \texttt{glimm\_jaffe/m6/main.tex}}
+\date{9 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+\textbf{Outcome first.}
+
+\begin{itemize}
+\item \textbf{Central Main Theorem 9.1: not refuted, but not certification-ready as
+written.}  After the explicit local repairs recorded in this report and proved in the two
+companion Lamport documents, its mathematical dependency chain closes conditionally on
+the enumerated cutoff-construction and GJS inputs.
+\item \textbf{Corollary 9.3 (``no symmetry breaking''): not proved as stated.}  Its only
+cited internal theorem assumes a phase-decomposition hypothesis that Corollary 9.3 omits.
+This is the audit's one confirmed proof-breaking issue.  It does not feed back into Main
+Theorem 9.1.
+\item \textbf{Citation correctness: three load-bearing pinpoint defects.}  Both FKN
+citations to Simon Theorem III.12 are wrong; the hypercontractivity theorem numbers are
+wrong; and the cited domain-smoothing theorem has a hypothesis not verified in the
+manuscript.  Correct source theorems exist and repair all three imports.
+\item \textbf{Local derivation defects: repairable.}  The manuscript has a false unit-cell
+count, a false inequality for negative Euclidean time, an incomplete positivity choice in
+the moment transfer, a dropped prefactor, an unrestricted spectral parameter, and omitted
+signed truncation details.  None changes the qualitative theorem after correction.
+\end{itemize}
+\end{resultbox}
+
+\tableofcontents
+
+\section{Frozen audit object and standard of review}
+
+The canonical target was fixed before the audit:
+\[
+ \begin{gathered}
+ \texttt{glimm\_jaffe/m6/main.tex},\\
+ \operatorname{SHA256}=\texttt{fdd67e696e68f93f5227ddfe32a6927a}\\[-2pt]
+ \phantom{\operatorname{SHA256}=}\texttt{ace0099dc969819417ddcc9eca3f886a}.
+ \end{gathered}
+\]
+The source has 1,022 lines.  A fresh \texttt{latexmk -pdf} build produced a 15-page PDF
+with no unresolved references; layout warnings were limited to overfull boxes.  Successful
+typesetting is not treated as mathematical verification.
+
+The review standard was:
+
+\begin{enumerate}[label=\textup{R\arabic*.}]
+\item Every conclusion must be reachable from earlier displayed assumptions by an explicit
+logical or analytic step.
+\item Every use of an unbounded operator must state the relevant domain, closure, or
+truncation passage.
+\item Every limit must identify its topology and the theorem permitting the passage.
+\item Every source citation must point to a result whose statement has the hypotheses and
+conclusion actually used.
+\item Contextual literature claims must not be promoted to mathematical inputs.
+\item A defect is called \emph{proof-breaking} only if the claim does not follow from the
+stated hypotheses.  A defect with a proved local correction is called \emph{repairable}.
+\end{enumerate}
+
+\section{Agentic workflow and gates}
+
+The work was executed as a stateful audit workflow.  Each state had a testable exit gate;
+failure returned the object to the preceding state rather than being concealed by prose.
+
+\begin{longtable}{P{1.2cm}P{3.0cm}P{5.4cm}P{4.3cm}}
+\toprule
+State & Action & Concrete output & Exit gate\\
+\midrule
+\endhead
+A0 & Freeze target & Canonical source, line count, SHA-256, fresh build & One unambiguous proof version\\
+A1 & Reconstruct dependencies & Theorem-to-lemma graph and import ledger & Every main conclusion has predecessors\\
+A2 & Local adversarial check & Recomputed constants, domains, signs, limits, spectral supports & Every internal arrow either passes or has a counterexample/repair\\
+A3 & Source acquisition & All 15 bibliography entries present locally; three missing modern/method references downloaded afresh & Every citation has a local source artifact\\
+A4 & Pinpoint source check & Exact theorem pages and scope comparison & Used statement is no stronger than source statement\\
+A5 & Proof-break search & M3 hypothesis trace; historical and uniqueness scope audit & Unstated hypotheses isolated\\
+A6 & Corrected reconstruction & Two independent Lamport-structured proofs & Every repair integrated and cross-referenced\\
+A7 & Artifact QA & Compile, render every page, inspect every rendered page, clean temporary files & No TeX errors, clipping, blank pages, or unreadable evidence\\
+\bottomrule
+\end{longtable}
+
+\section{Dependency graph and audit result}
+
+The manuscript's central proof has the following actual dependency graph:
+\[
+\begin{array}{c}
+\text{cutoff self-adjointness, simple positive ground state, FKN, domains}\\
+\quad+\quad\text{GJS CE1, CE2, cutoff uniformity, scaling}
+\end{array}
+\Longrightarrow
+\begin{array}{c}
+(M_2)\ \text{uniform local moment}\\
+(G)\ \text{uniform cutoff gap}
+\end{array}
+\]
+\[
+\begin{array}{c}
+(M_2)+(G)+\text{finite propagation}+\text{patching}\\
++\text{affiliation}+\text{path regularity}
+\end{array}
+\Longrightarrow
+\text{LPPL estimate}
+\Longrightarrow
+\begin{array}{c}
+\text{full-net local-norm convergence}\cr
+\text{local normality}
+\end{array}
+\]
+\[
+\text{local-norm convergence}+\text{patching}+\text{covariance}
+\Longrightarrow
+\begin{array}{c}
+\text{spectral ground state}\cr
+\text{translation and parity invariance.}
+\end{array}
+\]
+
+The two GJS estimates are the only \emph{nonstandard weak-coupling estimates} in this
+graph.  They are not the only logical inputs.  Therefore line 895's statement that all
+conclusions are ``conditional only'' on GJS Theorems 1.1.7--1.1.8 is false as a literal
+dependency claim.
+
+\begin{longtable}{P{4.3cm}P{2.2cm}P{7.2cm}}
+\toprule
+Claim & Verdict & Reason\\
+\midrule
+Uniform local moment (M$_2$) & \Repair & Correct after choosing $F_1=F_2=|V(h)|$ and writing the unbounded truncation/weak-graph passage.\\
+Uniform gap (G) & \Repair & CE2-to-semigroup argument and density argument pass after the cell-count, time-sign, moment-prefactor, and $\beta$ repairs.\\
+Affine-path differentiability & \Repair & Argument passes with correct FKN/hypercontractivity citations and model-specific domain theorem.\\
+Exact spectral filter & \Pass & Fourier sign, inverse-energy multiplier, integrability near $0$, and rapid tail all check.\\
+Unbounded clustering & \Pass & Spectral supports, locality identity, affiliation, and Gaussian separator constants check.\\
+One-path LPPL estimate & \Pass & Factor $32M$, distance loss, and shell count recompute correctly.\\
+Full-net Cauchy limit/rate & \Pass & Cofinality and local dual completeness are used correctly.\\
+Local normality & \Pass & Direct monotone-net argument proves norm-closedness in the required case.\\
+Spectral ground-state passage & \Pass & The exact finite-volume spectral identity and the two-limit argument check.\\
+Translation/$\mathbb Z_2$ invariance & \Pass & Covariance, cofinality, simplicity, and local norm passage check.\\
+Canonical averaged vacuum & \Pass & The shifted plateaux contain $[-2n,2n]$ uniformly in the averaging parameter.\\
+No symmetry breaking, Cor. 9.3 & \Fail & Companion M3 Theorem 4.2 assumes a broken-phase structure hypothesis absent from the corollary.\\
+\bottomrule
+\end{longtable}
+
+\section{Confirmed proof-breaking issue}
+
+\subsection{Corollary 9.3 omits the hypothesis used by M3}
+
+The formal inference in the manuscript is invalid.
+
+\LS{1}{1}{What Corollary 9.3 states.}
+
+For an even polynomial in the weak-coupling region, it says the uniform gap is
+incompatible with coexistence of two clustering phases exchanged by parity, citing
+M3, Theorem 4.2.
+
+\LS{1}{2}{What M3, Theorem 4.2 assumes.}
+
+Lines 239--244 of \texttt{m3/m3.tex} impose Hypothesis 4.1: two translation-invariant
+clustering ground states $\omega_\pm$, parity exchange, a nonzero local order parameter,
+and---critically---identification of every parity-invariant ground state under discussion
+with the symmetric midpoint $\tfrac12(\omega_++\omega_-)$.  The theorem begins
+``Assume $P$ even and Hypothesis 4.1.''
+
+\LS{1}{3}{Where the missing hypothesis is used.}
+
+M3 first obtains a parity-invariant clustering limit $\omega$.  It then invokes the
+hypothesis to write
+\[
+ \omega=\tfrac12(\omega_++\omega_-).
+\]
+For an order parameter with $\omega_\pm(A)=\pm m$, this gives
+\[
+ \omega(A)=0,
+ \qquad
+ \lim_{|a|\to\infty}\omega(A\tau_a(A))=m^2\ne0,
+\]
+contradicting clustering.  Without the midpoint identity, neither displayed equality
+follows merely from parity invariance.
+
+\LS{1}{4}{Logical diagnosis.}
+
+M3 proves
+\[
+ \text{evenness}+\text{Hypothesis 4.1}+\text{uniform gap}
+ \Longrightarrow\bot.
+\]
+Corollary 9.3 attempts to use this as
+\[
+ \text{evenness}+\text{uniform gap}+\text{two exchanged clustering states}
+ \Longrightarrow\bot,
+\]
+which drops a premise.  This is the invalid inference
+$(A\wedge B\Rightarrow C)\not\Rightarrow(A\Rightarrow C)$.
+
+\LS{1}{5}{Exact repair choices.}
+
+Either append all of M3 Hypothesis 4.1 to Corollary 9.3, or delete the corollary and
+retain the proved parity invariance of the constructed cutoff-net limit.  The GJS
+1975--1976 phase-transition papers do not, as cited in M6, automatically supply the exact
+Hamiltonian phase-space classification needed here.
+
+\section{Load-bearing source mismatches}
+
+\subsection{FKN: Simon Theorem III.12 is the wrong theorem}
+
+M6 lines 305 and 536 cite Simon Theorem III.12 for FKN.  The page image shows that
+Theorem III.12 is an estimate for products of projections attached to Sobolev/Markov
+regions.  It does not state either slab identity or the interacting semigroup formula.
+
+The correct source chain is:
+\[
+ \begin{array}{ll}
+ \text{Simon Theorem III.6} & \text{free-field FKN formula},\\
+ \text{Simon Corollary V.14 and Theorem V.15} & \text{interacting FKN formula},\\
+ \text{GRS Theorems II.14 and II.16} & \text{cutoff and general FKN formulas}.
+ \end{array}
+\]
+The mathematical formula used in M6 is supported by these results, so this is a
+repairable citation failure, not a refutation of the argument.
+
+\subsection{Hypercontractivity: the exact theorem is Simon I.17/III.17}
+
+M6 line 542 cites Simon Theorems V.10 and V.12 for
+\[
+ \|\mathsf P_TF\|_{p'}\leq\|F\|_p,
+ \qquad\frac{p'-1}{p-1}=e^{2m_0T}.
+\]
+Simon Theorem I.17 is the free Nelson hypercontractivity theorem, and Theorem III.17
+is its time-region form.  Theorem V.10 uses the earlier estimate inside a transfer-matrix
+argument; Theorem V.12 is an essential-self-adjointness theorem.  The exponent arithmetic
+in M6 is correct, but the pinpoint citation is not.
+
+\subsection{Domain smoothing: use Expositions Theorem 7.4}
+
+M6 line 214 cites Theorem 7.3 and Lemma 7.4 to infer
+$\Ran e^{-tK(g)}\subset D(V(h))$.  Theorem 7.3 assumes the multiplication potential
+$V$ itself is bounded below.  M6 does not establish that assumption for the cutoff Wick
+interaction.  The next result, Expositions Theorem 7.4, is explicitly model-specific and
+states
+\[
+ \Ran e^{-tH(g)}\subset D(H_0)\cap D(V')
+\]
+for every relevant polynomial multiplication $V'$.  Citing Theorem 7.4 repairs the
+domain input exactly.
+
+\section{Repairable internal defects with explicit derivations}
+
+\subsection{False unit-cell bound}
+
+M6 lines 376--377 use $L+1$ as an upper bound for the number of unit cells met by an
+interval of length $L$.  Let $I=(-0.1,0.1)$; it has length $0.2$ and meets both
+$[-1,0)$ and $[0,1)$ in positive measure, while $L+1=1.2<2$.  Thus the inequality is
+false.
+
+For half-open cells $[j,j+1)$, the correct integer bound is
+\[
+ N_I\leq\lfloor L\rfloor+2\leq L+2.                               \tag{6.1}
+\]
+Consequently the two displayed estimates must read
+\begin{align*}
+ \|Q\|_{\rm GJS}
+ &\leq K_1K_2^{2r}r!(L+2)^{r/2}\prod_i\|f_i\|_2,\\
+ \|Q^2\|_{\rm GJS}
+ &\leq K_1K_2^{4r}(2r)!(L+2)^r\prod_i\|f_i\|_2^2.
+\end{align*}
+Only vector-dependent constants change; the decay exponent $m_1$ and gap proof do not.
+
+\subsection{Wrong time-sign inequality}
+
+M6 line 412 bounds $\|\psi_{T+s}\|$ by $\|\psi_T\|$ for both
+$s=\pm t/2$.  Since $a\mapsto\|e^{-aH}\Om_0\|$ decreases, this holds for $s\geq0$
+and reverses for $s<0$.
+
+The corrected bound is
+\[
+ \frac{\|\psi_{T+s}\|}{\|\psi_T\|}
+ \leq\begin{cases}1,&s\geq0,\\c_g^{-1},&s<0,
+ \end{cases}
+ \qquad c_g=\ip{\Om_g}{\Om_0}>0.                                  \tag{6.2}
+\]
+For fixed $g$ and fixed $s$, both ratios tend to $1$ as $T\to\infty$.  The finite
+bound (6.2), not uniformity in $g$, is all that the weak-graph passage needs.
+
+\subsection{Nonnegative FKN arguments at \texorpdfstring{$t=0$}{t=0}}
+
+The slab lemma is stated for individually nonnegative $F_1,F_2$.  M6 line 352 specifies
+only their product.  Set
+\[
+ F_1=F_2=|V(h)|.
+\]
+Then both hypotheses hold and $F_1F_2=V(h)^2$.  Bounded truncations
+$|V(h)|\wedge M$ give the identity first; monotone convergence and CE1 give the
+unbounded limit.
+
+\subsection{Signed truncations in the gap transfer}
+
+For a real polynomial multiplication operator $Q$, define
+\[
+ Q^{[M]}=(-M)\vee(Q\wedge M).
+\]
+Write $Q^{[M]}=(Q^{[M]})^+-(Q^{[M]})^-$ and apply the nonnegative FKN identity
+bilinearly.  The two-time product is dominated by
+\[
+ |Q(-t/2)Q(t/2)|
+ \leq\tfrac12\bigl(Q(-t/2)^2+Q(t/2)^2\bigr).                       \tag{6.3}
+\]
+CE1 bounds both terms.  On Hilbert space,
+$Q^{[M]}\psi_a\to Q\psi_a$ follows from
+$|Q-Q^{[M]}|^2|\psi_a|^2\leq Q^2|\psi_a|^2$.  These statements supply the
+omitted limit theorem in lines 404--418.
+
+\subsection{Dropped \texorpdfstring{$K_1$}{K1} and spectral range}
+
+From the corrected moment bound
+\[
+ \E_{\mu_g}X^{2n}\leq C_8K_1(K')^{2n}(2n)!,
+\]
+one obtains
+\[
+ \E_{\mu_g}e^{s|X|}
+ \leq2\max\{1,C_8K_1\}\sum_{n\geq0}(sK')^{2n},                    \tag{6.4}
+\]
+not the expression at line 455 with $K_1$ absent.  The radius $s<K'^{-1}$ is
+unchanged.
+
+In the final projection argument one must fix $0\leq\beta<m_1$.  For $\beta<0$,
+$P_{[0,\beta]}\Om_g=0$, contrary to line 487.  Restricting $\beta$ gives
+\[
+ e^{-\beta t}\|P_{[0,\beta]}\psi_Q\|^2
+ \leq\ip{\psi_Q}{e^{-tH(g)}\psi_Q}
+ \leq C_Qe^{-m_1t},
+\]
+and the intended conclusion follows.
+
+\subsection{Dimensionless weak-coupling reduction}
+
+GJS page 590 supplies the dilation
+\[
+ (m_0,\lambda)\mapsto(s^{-1}m_0,s^{-2}\lambda).
+\]
+If the printed expansion is valid at an admissible $M_*$ for
+$\lambda'<\lambda_*$, choose $s=m_0/M_*$.  Then
+\[
+ m_0'=M_*,\qquad \lambda'=\lambda M_*^2/m_0^2.
+\]
+Thus $\lambda/m_0^2<\lambda_*/M_*^2$ implies the printed hypotheses.  This explicit
+reduction should accompany the definition
+$\varepsilon_{\mathscr P}=\lambda_*/M_*^2$.
+
+\section{Source-by-source cross-check}
+
+All bibliography entries in M6 are present under \texttt{glimm\_jaffe/refs}; BDW,
+RZT, and Lamport were downloaded afresh from their official author/arXiv locations.
+The separate dossier contains the exact page images described below.
+
+\begin{longtable}{P{2.0cm}P{4.2cm}P{5.5cm}P{2.5cm}}
+\toprule
+Source & Claim checked & Exact page/result inspected & Verdict\\
+\midrule
+\endhead
+GJ I (1968) & cutoff self-adjointness; locality; cutoff independence in a light cone & article PDF pp. 5--6, especially locality/Trotter discussion & \Pass, broad citation\\
+GJ II (1970) & ground state exists and is unique; locality/covariance & Thms. 2.2.1, 2.3.1; printed pp. 397--400 & \Pass\\
+GJ III (1970) & averaged $w^*$ limit point and locally Fock/normal limit points & printed pp. 210--211, Thms. 2.1--2.3 & \Pass\\
+GJ IV (1972) & completion of construction/Wightman functions & first-page Theorems A--B & Contextual pass\\
+GJ (1971) & positivity/lower bounds/self-adjointness & Theorems 1--2, PDF pp. 2, 4 & Corroborating; not sufficient for every clause alone\\
+Rosen (1970) & self-adjoint cutoff construction & Theorem 5.3 and following core argument, PDF pp. 22--23 & Corroborating\\
+GJ Expositions & limit not proved & PDF pp. 54--56 (printed p. 50 and surrounding construction) & \Pass\\
+GJ Expositions & finite propagation/patching & same chapter, PDF pp. 55--56 & \Pass, chapter citation broad\\
+GJ Expositions & semigroup domain smoothing & Theorems 7.3--7.4, PDF pp. 165--167 & \Repair: cite Thm. 7.4\\
+GJS (1974) & cutoff class and scaling & printed pp. 588--590 & \Pass\\
+GJS (1974) & norm, degree class, CE2, CE1 & printed pp. 593--595, (1.1.5)--(1.1.10), Thms. 1.1.7--1.1.8 & \Pass\\
+GJS (1974) & cutoff uniformity & printed p. 629 & \Pass for Thm. 1.1.8; CE2 already says independent of $h$\\
+GRS (1975) & FKN & Thms. II.14 and II.16, Part I PDF pp. 39--40 & \Pass; use pinpoint citation\\
+GRS (1975) & Problems 1--2 & printed pp. 125--126 and note added p. 128 & \Pass with historical qualification\\
+Simon (1974) & free/interacting FKN & Thm. III.6; Cor. V.14; Thm. V.15 & \Repair\ citation\\
+Simon (1974) & purported III.12 FKN citation & Thm. III.12, PDF p. 119 & \Fail as citation\\
+Simon (1974) & hyper\-contractivity & Thm. I.17 and III.17 & \Repair\ citation\\
+Simon (1974) & exponential stability; common core & Thms. V.7 and V.12 & \Pass in their actual roles\\
+AHZ (1989) & Euclidean uniqueness/global Markov property in polynomial models & abstract and uniqueness conclusion near PDF p. 24 & Contextual pass; hypotheses matter\\
+BDW (2025) & modern uniqueness & abstract: uniqueness of invariant measure for stochastic quantization above critical temperature & Scope mismatch if used for Hamiltonian uniqueness; M6 uses context only\\
+RZT (2025) & Hamiltonian-renormalisation scope & abstract explicitly says finite volume & \Pass\\
+GJS (1975--76) & phase transition/two pure phases & opening statements and theorem pages & Contextual pass; does not by itself supply M3 Hypothesis 4.1 as used\\
+Lamport (2012) & hierarchical proof notation & worked examples and numbering discussion & Method followed in companion documents\\
+\bottomrule
+\end{longtable}
+
+\section{Historical and scope corrections}
+
+\subsection{GRS Problems 1--2}
+
+GRS printed pages 125--126 formulate Euclidean local $L^p$ bounds and convergence of
+finite-volume Gibbs states.  A note added on printed page 128 states that small-coupling
+$p=1$ versions were solved by Newman.  M6 is justified in distinguishing its Hamiltonian
+local-von-Neumann-algebra norm convergence from those Euclidean problems, but it should not
+suggest without qualification that every formulation of Problems 1--2 remained open.
+
+\subsection{Modern uniqueness citations}
+
+BDW proves uniqueness of an invariant measure for the $\Phi^4_2$ stochastic quantization
+equation above the critical temperature.  It does not itself prove uniqueness of locally
+normal Hamiltonian ground states or convergence of the specific cutoff Hamiltonian net.
+AHZ proves Euclidean Gibbs uniqueness/global Markov statements under its stated conditions.
+M6 appropriately treats these as context, not inputs, but the wording should remain explicit.
+
+\subsection{Exhaustive literature claim}
+
+The sentence that Hamiltonian local-norm convergence ``has remained open in all regimes'' is
+an exhaustive claim about the literature.  The finite list cited in M6 establishes that the
+original construction used limit points and that RZT is finite volume; it does not establish
+the absence of every later result in every regime.  Replace it by the defensible statement:
+``The cited primary construction does not prove local-norm convergence of this cutoff net,
+and no such theorem is identified in the references reviewed here.''
+
+\section{Severity register}
+
+\begin{longtable}{P{1.2cm}P{2.0cm}P{3.5cm}P{5.2cm}P{2.0cm}}
+\toprule
+ID & Severity & Location & Finding and mathematical consequence & Disposition\\
+\midrule
+\endhead
+P1 & proof-breaking & Cor. 9.3; M3 lines 239--268 & Omitted phase-decomposition premise; corollary does not follow. & Add premise or delete\\
+S1 & high & lines 305, 536 & Simon III.12 is not FKN. & Cite III.6, V.14--V.15 or GRS II.14/II.16\\
+S2 & high & line 542 & V.10/V.12 are not the direct hypercontractivity theorem. & Cite I.17/III.17\\
+S3 & high & line 214 & Theorem 7.3's bounded-below hypothesis is not checked. & Cite model-specific Thm. 7.4\\
+L1 & moderate & lines 376--377 & $L+1$ cell count is false. & Replace by $L+2$\\
+L2 & moderate & line 412 & Semigroup norm inequality fails for negative $s$. & Use sign split and $c_g^{-1}$\\
+L3 & moderate & line 352 & Nonnegative inputs not individually specified. & Set both equal to $|V(h)|$\\
+L4 & moderate & lines 404--418 & Signed/unbounded FKN limit under-described. & Use clipped truncations and (6.3)\\
+L5 & low & line 455 & $K_1$ dropped from prefactor. & Restore it outside series\\
+L6 & low & lines 484--489 & $\beta$ must be nonnegative. & State $0\leq\beta<m_1$\\
+C1 & moderate & standing weak coupling & Dimensional reduction omitted. & Insert exact GJS scaling\\
+C2 & moderate & line 895 & ``conditional only'' hides independent imports. & Enumerate all imports\\
+H1 & moderate & introduction & ``open in all regimes'' not established by cited corpus. & Narrow claim\\
+H2 & low & GRS discussion & Later p=1 note not mentioned. & Add qualification\\
+\bottomrule
+\end{longtable}
+
+No P0 defect---a defect that survives all local repairs and breaks Main Theorem 9.1---was
+found.  This negative finding is limited to the frozen source and imported theorems checked;
+it is not a substitute for independent journal peer review.
+
+\section{Closure plan for the research program}
+
+The remaining work is finite and ordered by logical risk.
+
+\begin{enumerate}[label=\textup{C\arabic*.}]
+\item \textbf{Patch the theorem-bearing source.}  Apply S1--S3, L1--L6, and C1--C2
+exactly as written in the two Lamport proofs.  Acceptance test: a line-by-line comparison
+finds no use of the old constants, time-sign inequality, or theorem numbers.
+\item \textbf{Resolve Corollary 9.3.}  Either state all of M3 Hypothesis 4.1 or remove the
+corollary.  Acceptance test: every premise used in the midpoint contradiction appears in
+the corollary statement.
+\item \textbf{Narrow the literature claims.}  Incorporate the GRS note and replace the
+exhaustive modern-open-problem assertion.  Acceptance test: every historical sentence is
+entailed by a displayed primary-source page.
+\item \textbf{Re-run the structured proof.}  Use the two companion Lamport documents as a
+checklist against the patched M6 source.  Acceptance test: each $\langle1\rangle$ step maps
+to a unique lemma/proposition in M6.
+\item \textbf{Independent source audit of the only irreducible analytic import.}  Have a
+second reader verify GJS (1.1.7)--(1.1.10), especially the localization-square convention
+at sharp times and the cutoff-uniform scope.  Acceptance test: signed page references and
+recomputed constants agree with the dossier.
+\item \textbf{Certification build.}  Compile, run a reference/warning check, render every
+page, and inspect every page.  Acceptance test: no unresolved references, clipped equations,
+or unexplained external hypotheses.
+\end{enumerate}
+
+\section{Reference artifact manifest}
+
+The full filenames are retained in \texttt{glimm\_jaffe/refs}.  The following SHA-256
+values make the source audit reproducible; long titles are abbreviated only in this table.
+
+\newcommand{\hashvalue}[2]{\texttt{#1}\newline\texttt{#2}}
+\begin{longtable}{P{4.0cm}P{10.0cm}}
+\toprule
+Artifact & SHA-256\\
+\midrule
+\endhead
+GJ I (1968) & \hashvalue{80993a0521b7f0de21b096c93365b3d8}{4cd569ed457dcb71b5766866b9c8ac07}\\
+GJ II (1970) & \hashvalue{6c33fbc138766c344ee9eaca8bd78089}{3108a74549c8de74d995f08ec75f05d1}\\
+GJ III (1970) & \hashvalue{8bfa327da9f3a78222243b3990b44693}{bd8e2cf1737c7a7d6f8749cfd3d9f961}\\
+GJ IV (1972) & \hashvalue{b073f26cc15e08e66b4ea8480489109d}{7537f00e83ebfffd457cb62151483774}\\
+GJ positivity (1971) & \hashvalue{655df0cadb54e132594d85a27b184971}{9128e8604fb4161f418a8d56d156ab97}\\
+GJ Expositions & \hashvalue{d474345dc9336e968728e6ca2620d05f}{41ad21deb85143b48ccecb34b21410fe}\\
+GJS (1974) & \hashvalue{e0a08c9438ff5c69f6d55f1c1b48e02}{01fc44f2313cef94ad4e87deaf872aa48}\\
+GJS phase transitions (1975) & \hashvalue{dc20756fcdfa18992bb1034a35415d008}{e02339718beeca06d0ab74ec71c40e9}\\
+GJS mean field I (1976) & \hashvalue{ef7957c5ef3eef3d867cf8db676bc9cb}{f03944d2f6ba79df3c68ca293fdc7b2e}\\
+GJS mean field II (1976) & \hashvalue{7ffaff7052ea5f4dd1826fb1991f4eb6}{db9347275f150241ac6603cad2e47d64}\\
+GRS Part I (1975) & \hashvalue{a97248302fe44eb9cddd690505c319f1}{bc9237e87f188fbefd74e4564e9945c5}\\
+Rosen (1970) & \hashvalue{7336ed96d62107cd10459bd065199c06}{76c8b417fc9e74c450a20488f6c953ca}\\
+Simon monograph & \hashvalue{06dc3239715cebb6a52ceec707e42bcc}{d0561ed2601370568d29790c3c59133c}\\
+AHZ (1989) & \hashvalue{a4970d07869341427dd201a9fa397b8c}{8be825bb880234dfce61929882452165}\\
+BDW arXiv:2504.08606 & \hashvalue{e1b9ebe4a8a702153e764b3b4a3e9b04}{e2adc9818725d0ebb3afeaf3cc954823}\\
+RZT arXiv:2505.13030 & \hashvalue{50eaa5c031bcce2cf3ea057e2d6a9c3}{c793fe2734b4b88cae013d02fbf7cec23}\\
+Lamport proof article & \hashvalue{c0fceb68ecfb1117138c39a942d61e3f}{17fb2f0c825067e18c9c657c393049a1}\\
+\bottomrule
+\end{longtable}
+
+\section{Final audit verdict}
+
+The highest-value correction is to withdraw or conditionalize Corollary 9.3.  The next
+highest-value work is citation and domain repair, because the present pinpoint references
+do not certify the formulas they are attached to.  Once those changes and the six local
+derivation corrections are made, the central proof program has a complete conditional
+route from the printed GJS estimates to the claimed cutoff-net limit.  The word
+``conditional'' remains essential: the proof imports the cutoff construction, FKN,
+semigroup smoothing, finite propagation, patching, covariance, and GJS itself.
+
+\end{document}

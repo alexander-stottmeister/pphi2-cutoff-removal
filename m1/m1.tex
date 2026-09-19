@@ -1,0 +1,313 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Om}{\Omega}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\supp}{supp}
+
+\title{M1: the local number bound without space-averaging}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Milestone M0 needs norm-compactness of $\{\omega_g|_{\A(O)}\}$, i.e.\ the hypothesis
+$\omega(N_{\xi,\tau})\le M(\xi)$ of \cite[Thm.~4.1]{GJIII}, for the \emph{unaveraged} states
+$\omega_g$. We settle this, with one correction to the plan.
+
+\smallskip
+\noindent\textbf{(1) The strategy's proposed route does not work.} We display Glimm and Jaffe's
+proof of Theorem~3.3.1(a) explicitly. Its only input is the \emph{extensive} bound
+$\omega_{g_n}(N)=O(n)$ coming from Theorem~5.1 ($-M\le E_g\le0$, $M\propto$ volume); the averaging,
+performed at the scale $n$ of the cutoff, contributes exactly the compensating factor $1/n$.
+Averaging at any scale $R$ independent of the volume yields $O(V/R)$ and is useless. So the
+averaging is not a technical convenience: it is the device converting an extensive bound into an
+intensive one, and it cannot be removed by bookkeeping. In particular the route proposed in the
+strategy note --- ``GJ~IV Theorem~$A_g$ plus the linear lower bound'' --- fails, because the linear
+lower bound \emph{is} Theorem~5.1, i.e.\ the extensive input itself.
+
+\smallskip
+\noindent\textbf{(2) What is true, and suffices.} A Chebyshev selection applied to Glimm and
+Jaffe's own averaged estimate produces a \emph{cofinal sequence} of cutoffs along which the
+unaveraged bound holds, simultaneously for a countable family of test functions
+(Theorem~\ref{thm:main}). This is exactly the hypothesis M0 requires, so:
+
+\begin{quote}
+there is a locally normal ground state of $(\A,\alpha)$ arising as a norm-local limit of
+\emph{unaveraged} finite-volume ground states; and under uniqueness the limit is the vacuum
+(Corollaries~\ref{cor:exist}--\ref{cor:conv}).
+\end{quote}
+
+\noindent\textbf{(3) The residual gap, identified.} Convergence along the \emph{full net} needs
+$\sup_{g\in\G}\omega_g(N_{\xi,\tau})<\infty$, an \emph{intensive} bound on the local particle
+density. We show in \S\ref{sec:gap} that this is a Hamiltonian form of Problem~1 of
+\cite{GRS75}. Hence M0 removes Problem~1 from the \emph{identification} step, but a Problem-1-like
+statement survives in the \emph{compactness} step unless one accepts the cofinal-sequence version.
+\end{abstract}
+
+\section{What is needed}
+
+We use the notation of \cite{M0}. Let $N_{\xi,\tau}$ denote the local number operator of
+\cite[\S3.2]{GJIII}: the Fock quantisation of the one-particle operator built from
+$\xi\ge0$ and the energy weight $\mu^\tau$. We use only three of its properties, all explicit in
+\cite[\S3.2--3.3]{GJIII}:
+\begin{enumerate}
+\item[\textbf{(N1)}] $N_{\xi,\tau}\ge0$ as a self-adjoint operator, so $\omega(N_{\xi,\tau})\in[0,\infty]$
+      for every state $\omega$;
+\item[\textbf{(N2)}] $U_aN_{\xi,\tau}U_a^*=N_{\xi(\cdot-a),\tau}$, $U_a$ the space translation;
+\item[\textbf{(N3)}] the constant $M$ in Theorem~3.3.1 is \emph{translation invariant}:
+      $M(\xi(\cdot-a))=M(\xi)$.
+\end{enumerate}
+
+\begin{theorem}[Glimm--Jaffe {\cite[Thm.~4.1]{GJIII}}]\label{thm:GJ41}
+Let $(\omega_n)$ be a sequence of normal states on $\A$ and suppose that for some $\tau>0$ and
+each $0\le\xi\in C_0^\infty$,
+\begin{equation}\label{eq:41}
+  \omega_n(N_{\xi,\tau})\le M(\xi)
+\end{equation}
+with $M(\xi)$ independent of $n$. Then $(\omega_n|_{\A(B)})$ lies in a norm-compact subset of
+$\A(B)^*$ and every limit point is normal.
+\end{theorem}
+
+Theorem~\ref{thm:GJ41} is a statement about \emph{arbitrary} sequences of normal states. So M1
+is exactly: produce a cofinal family of $g$'s for which \eqref{eq:41} holds with $\omega_n$
+replaced by $\omega_{g}$.
+
+\section{Why the averaging cannot simply be deleted}\label{sec:diag}
+
+Glimm and Jaffe verify \eqref{eq:41} for the averaged states
+\begin{equation}\label{eq:avg}
+  \omega_n(A)\;=\;\frac1n\int \ip{\Om_{g_n}}{\sigma_\alpha(A)\Om_{g_n}}\,h(\alpha/n)\,d\alpha
+  \;=\;\int_{-1}^{1} h(u)\,\omega_{g_n}\bigl(\tau_{nu}A\bigr)\,du ,
+\end{equation}
+where $g_n(x)=g(x/n)$ with $g\equiv1$ on $[-3,3]$, and $h\ge0$, $\supp h\subseteq[-1,1]$,
+$\int h=1$ \cite[(2.3)--(2.5)]{GJIII}.
+
+\begin{proposition}[the mechanism]\label{prop:mech}
+The proof of \cite[Thm.~3.3.1(a)]{GJIII} is the chain
+\[
+  \omega_n(N_B)=\ip{\Om_{g_n}}{C_n\Om_{g_n}},\qquad
+  \bigl\|(N+I)^{-1/2}C_n(N+I)^{-1/2}\bigr\|\ \le\ \mathrm{const}\cdot\tfrac1n\,|B| ,
+\]
+\[
+  \Longrightarrow\qquad
+  \omega_n(N_B)\ \le\ \mathrm{const}\cdot\tfrac1n\,|B|\;\omega_{g_n}(N)\ \le\ \mathrm{const}\cdot|B|,
+\]
+the last step by \cite[Thm.~5.1]{GJIII}. The operator norm bound comes from
+\[
+  \sup_{x,y}\Bigl|\tfrac1n\!\int E(x-\alpha)E(y-\alpha)h(\alpha/n)\,d\alpha\Bigr|
+  \ \le\ \tfrac1n\|h\|_\infty\|E\|_1=\tfrac1n\|h\|_\infty|B| .
+\]
+\end{proposition}
+
+Two consequences, both negative.
+
+\begin{remark}[the input is extensive]\label{rem:extensive}
+\cite[Thm.~5.1]{GJIII} states $-M\le E_g\le0$ with $M$ \emph{proportional to the volume} of
+$(\supp g)_1$, and its Remark~2 draws from this precisely that the expected number of bare
+particles \emph{per unit volume} is finite. Thus the only available bound on the total number is
+$\omega_{g_n}(N)=O(n)$, and it is sharp: the ground state contains $O(\mathrm{volume})$ particles.
+\end{remark}
+
+\begin{remark}[the averaging scale must match the volume]\label{rem:scale}
+Replacing $h(\alpha/n)/n$ in \eqref{eq:avg} by $h(\alpha/R)/R$ with $R$ fixed changes the operator
+norm bound to $\mathrm{const}\cdot|B|/R$ and hence gives
+$\omega^{(R)}_{g}(N_B)\le\mathrm{const}\cdot|B|\,V(g)/R$, which is uniform in $g$ only if
+$R\asymp V(g)$. So no fixed-scale averaging, and \emph{a fortiori} no deletion of the averaging,
+survives this argument.
+\end{remark}
+
+\begin{remark}[correction to the strategy]\label{rem:correction}
+The strategy note proposed deriving the unaveraged bound from ``GJ~IV Theorem~$A_g$ plus the
+linear lower bound $-MV\le E(g)$''. This cannot work: the linear lower bound \emph{is}
+Theorem~5.1, i.e.\ the extensive input of Remark~\ref{rem:extensive}, and Theorem~$A_g$ of
+\cite{GJIV} bounds \emph{field} perturbations, not local particle number. The proposed route is
+therefore withdrawn.
+\end{remark}
+
+\section{The selection theorem}
+
+\begin{lemma}[the average is an average of unaveraged states]\label{lem:rewrite}
+For every $A\in\A$ and every positive quadratic form $Q$ on the Fock space,
+\[
+  \omega_n(A)=\int_{-1}^{1}h(u)\,\omega_{\tau_{-nu}g_n}(A)\,du,
+  \qquad
+  \omega_n(Q)=\int_{-1}^{1}h(u)\,\omega_{\tau_{-nu}g_n}(Q)\,du ,
+\]
+where $\omega_g(Q):=Q[\Om_g]\in[0,\infty]$.
+\end{lemma}
+
+\begin{proof}
+Substituting $\alpha=nu$ in \eqref{eq:avg} gives
+$\omega_n(A)=\int h(u)\,\omega_{g_n}(\tau_{nu}A)\,du$. By \cite[Lem.~3.2]{M0},
+$\omega_{\tau_ag}=\omega_g\circ\tau_{-a}$, hence $\omega_{g_n}\circ\tau_{nu}=\omega_{\tau_{-nu}g_n}$.
+The statement for $Q$ follows from the same identity at the level of quadratic forms, using
+\textbf{(N2)} and $\Om_{\tau_{-nu}g_n}=U_{nu}^*\Om_{g_n}$ up to a phase.
+\end{proof}
+
+\begin{lemma}[measurability]\label{lem:meas}
+For fixed $n$ and $\xi$, the map $u\mapsto \omega_{\tau_{-nu}g_n}(N_{\xi,\tau})\in[0,\infty]$ is
+lower semicontinuous, hence Borel measurable.
+\end{lemma}
+
+\begin{proof}
+Write $F(u)=q[U_{nu}^*\Om_{g_n}]$ where $q[\psi]=\|N_{\xi,\tau}^{1/2}\psi\|^2$ is the closed
+positive quadratic form of $N_{\xi,\tau}$. Closed positive forms are lower semicontinuous on the
+Hilbert space, and $u\mapsto U_{nu}^*\Om_{g_n}$ is norm-continuous by strong continuity of $U$.
+The composition of a lower semicontinuous function with a continuous map is lower semicontinuous.
+\end{proof}
+
+\begin{theorem}[M1]\label{thm:main}
+Fix $\tau\in(0,1)$ and a countable family $\{\xi_k\}_{k\ge1}\subset C_0^\infty(\R)$ with
+$\xi_k\ge0$. Let $M_k:=\max\{M(\xi_k),1\}$ with $M(\xi_k)$ the constant of
+\cite[Thm.~3.3.1(b)]{GJIII}. Then there are $u_n\in[-1,1]$ such that the cutoffs
+\[
+  \tilde g_n:=\tau_{-nu_n}g_n\in\G
+\]
+satisfy
+\begin{enumerate}
+\item[\rm(i)] $\tilde g_n\equiv1$ on $[-2n,2n]$; in particular $d(\tilde g_n,O)\to\infty$ for
+      every bounded $O$, so $(\tilde g_n)$ is cofinal in $\G$;
+\item[\rm(ii)] $\displaystyle \omega_{\tilde g_n}\bigl(N_{\xi_k,\tau}\bigr)\ \le\ 2^{\,k+1}M_k
+      \qquad\text{for all }n\ge1\text{ and all }k\ge1 .$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Fix $n$. Let $\nu(du):=h(u)\,du$, a Borel probability measure on $[-1,1]$, and put
+$F_k(u):=\omega_{\tau_{-nu}g_n}(N_{\xi_k,\tau})\ge0$, measurable by Lemma~\ref{lem:meas}. By
+Lemma~\ref{lem:rewrite} and \cite[Thm.~3.3.1(b)]{GJIII},
+\[
+  \int F_k\,d\nu=\omega_n\bigl(N_{\xi_k,\tau}\bigr)\le M(\xi_k)\le M_k .
+\]
+Set $S_k:=\{u: F_k(u)>2^{\,k+1}M_k\}$. By Chebyshev's inequality,
+\[
+  \nu(S_k)\ \le\ \frac{1}{2^{\,k+1}M_k}\int F_k\,d\nu\ \le\ 2^{-(k+1)} ,
+\]
+whence $\nu\bigl(\bigcup_{k\ge1}S_k\bigr)\le\sum_{k\ge1}2^{-(k+1)}=\tfrac12<1=\nu([-1,1])$.
+Therefore $[-1,1]\setminus\bigcup_kS_k$ has $\nu$-measure at least $\tfrac12$, in particular it is
+nonempty; choose $u_n$ in it. Then $F_k(u_n)\le 2^{k+1}M_k$ for every $k$, which is (ii).
+
+For (i): $(\tau_{-a}g)(x)=g(x+a)$, so $\tilde g_n(x)=g_n(x+nu_n)$ equals $1$ exactly when
+$x+nu_n\in\{g_n=1\}\supseteq[-3n,3n]$, i.e.\ on $[-3n-nu_n,\,3n-nu_n]\supseteq[-2n,2n]$ because
+$|u_n|\le1$. Hence for $O\subseteq[-R,R]$ we get $d(\tilde g_n,O)\ge 2n-R\to\infty$.
+\end{proof}
+
+\begin{remark}
+The constants $2^{k+1}M_k$ grow in $k$. This is harmless: Theorem~\ref{thm:GJ41} requires, for each
+\emph{fixed} $\xi$, a constant independent of $n$, which (ii) provides.
+\end{remark}
+
+\section{Consequences}
+
+\begin{corollary}[existence]\label{cor:exist}
+Let $\{\xi_k\}$ be chosen so that for every bounded open $O$ there is $k$ with $\xi_k\ge1$ on $O$.
+Then the sequence $(\omega_{\tilde g_n})$ of Theorem~\ref{thm:main} satisfies the hypothesis
+\eqref{eq:41} of Theorem~\ref{thm:GJ41}. Consequently it admits a subsequence converging in norm
+on every $\A(O)$ to a locally normal state $\omega$, and by \cite[Thm.~4.2]{M0} $\omega$ is a
+ground state of $(\A,\alpha)$. By \cite[Lem.~3.3]{M0} $\omega$ is $\mathbb Z_2$-invariant when $P$
+is even.
+\end{corollary}
+
+\begin{proof}
+Combine Theorem~\ref{thm:main}(ii) with Theorem~\ref{thm:GJ41}, then run the diagonal argument of
+\cite[Cor.~4.3]{M0} over an exhausting sequence of regions; Theorem~\ref{thm:main}(i) supplies the
+hypothesis $d(\tilde g_n,O)\to\infty$ of \cite[Thm.~4.2]{M0}.
+\end{proof}
+
+\begin{corollary}[convergence, under uniqueness]\label{cor:conv}
+If $(\A,\alpha)$ has a unique locally normal, $\mathbb Z_2$- and translation-invariant ground
+state $\omega_\infty$, then $\omega_{\tilde g_n}\to\omega_\infty$ in norm on every $\A(O)$ along the
+full sequence $(\tilde g_n)$.
+\end{corollary}
+
+\begin{proof}
+Every subsequence has, by Corollary~\ref{cor:exist}, a further subsequence converging in norm on
+each $\A(O)$ to a locally normal ground state, which is $\omega_\infty$ by hypothesis. A sequence
+in a metric space all of whose subsequences have sub-subsequences converging to the same limit
+converges to that limit.
+\end{proof}
+
+\section{The residual gap, precisely}\label{sec:gap}
+
+\begin{problem}[(H2)-full]\label{prob:full}
+Show that for some $\tau>0$ and each $0\le\xi\in C_0^\infty$,
+\[
+  \sup_{g\in\G}\ \omega_g\bigl(N_{\xi,\tau}\bigr)\ <\ \infty .
+\]
+\end{problem}
+
+Problem~\ref{prob:full} is what upgrades Corollary~\ref{cor:conv} from a cofinal sequence to the
+full net, i.e.\ to Theorem~A as stated in the strategy note. It asks for an \emph{intensive}
+bound: the expected local particle density at a \emph{given} location, uniformly in the cutoff,
+whereas Theorem~5.1 of \cite{GJIII} delivers only the density \emph{averaged over the volume}.
+
+Three remarks on how to attack it, and one on why it is not cheap.
+
+\begin{enumerate}
+\item \textbf{A naive operator inequality is unavailable.} One would like
+      $N_{\xi,\tau}\le c_1H(g)+c_2(\xi)$ with $c_2$ independent of $g$, since $H(g)\Om_g=0$ would
+      then give the bound at once. But the only route to comparing $H_0$ with $H(g)$ is
+      $-H_{I}(g)\le\varepsilon H_0+b(g)$, giving
+      $(1-\varepsilon)H_0\le H(g)+b(g)+E(g)$, in which $b(g)$ is extensive while Theorem~5.1
+      bounds $E(g)$ only from \emph{below}, $-MV\le E_g$. The volume terms do not cancel.
+\item \textbf{A homogeneity estimate would suffice.} By \cite[Lem.~3.2]{M0},
+      $a\mapsto\omega_g(N_{\xi(\cdot-a),\tau})=\omega_{\tau_{-a}g}(N_{\xi,\tau})$, and
+      Theorem~\ref{thm:main} bounds its $\nu$-average. Any Harnack-type statement --- that this
+      function varies by at most a constant factor as $a$ ranges over the bulk of $\{g=1\}$ ---
+      converts the averaged bound into the pointwise one.
+\item \textbf{It is a Hamiltonian form of GRS Problem~1.} $\omega_g(N_{\xi,\tau})$ is, up to the
+      energy weight, a smeared $\langle:\!\varphi^2\!:\rangle$-type local density in the
+      finite-volume vacuum; its uniform boundedness in the volume is exactly the kind of local
+      $L^p$ control of the vacuum that \cite[Problem~1]{GRS75} conjectures in the form
+      $\log\|\nu_{\Lambda\Lambda'}\|_p=O(|\Lambda|)$, and which they observe would re-prove the
+      locally Fock property.
+\end{enumerate}
+
+\begin{remark}[what this does to the strategy's headline]
+The strategy claims M0 replaces GRS Problem~1 by an exact identity. That is correct for the
+\emph{identification} step, and it is the substantive gain. But \S\ref{sec:diag} shows a
+Problem-1-like statement survives in the \emph{compactness} step. Theorem~\ref{thm:main} buys it
+off at the price of restricting to a cofinal sequence. The honest formulation of the programme's
+current reach is therefore:
+\begin{quote}
+\emph{modulo uniqueness, the finite-volume ground states converge along a cofinal sequence of
+spatial cutoffs, in norm on every local algebra, to the vacuum} ---
+with the full-net statement contingent on Problem~\ref{prob:full}.
+\end{quote}
+This is still the Hamiltonian analogue of what Nelson and Guerra--Rosen--Simon obtain
+Euclidean-ly, and it is what M2 verifies is correct in the solvable model.
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{M0} \emph{Limit points of the finite-volume ground states of $P(\varphi)_2$ are ground
+states of the quasi-local dynamics}, Milestone M0, \texttt{../m0/m0.tex}.
+\bibitem{GJIII} J.~Glimm and A.~Jaffe, \emph{The $\lambda(\phi^4)_2$ quantum field theory without
+cutoffs. III. The physical vacuum}, Acta Math.\ \textbf{125} (1970) 203--261.
+\bibitem{GJIV} J.~Glimm and A.~Jaffe, \emph{The $\lambda\phi^4_2$ quantum field theory without
+cutoffs. IV. Perturbations of the Hamiltonian}, J.\ Math.\ Phys.\ \textbf{13} (1972) 1568--1584.
+\bibitem{GRS75} F.~Guerra, L.~Rosen and B.~Simon, \emph{The $P(\phi)_2$ Euclidean quantum field
+theory as classical statistical mechanics}, Ann.\ of Math.\ \textbf{101} (1975) 111--189 and
+191--259.
+\end{thebibliography}
+
+\end{document}

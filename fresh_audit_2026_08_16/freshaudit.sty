@@ -1,0 +1,68 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{freshaudit}[2026/08/16 fresh Glimm--Jaffe Parts I--II audit]
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage[margin=2.25cm]{geometry}
+\RequirePackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\RequirePackage{microtype}
+\RequirePackage{xcolor}
+\RequirePackage{booktabs,longtable,array,tabularx}
+\RequirePackage{enumitem}
+\RequirePackage{graphicx}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage{listings}
+\RequirePackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,citecolor=blue!55!black]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlist{nosep,leftmargin=2em}
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{Fresh Parts I--II proof audit}
+\rhead{16 August 2026}
+\cfoot{\thepage/\pageref*{LastPage}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\T}{\mathbb T}
+\newcommand{\E}{\mathbb E}
+\newcommand{\A}{\mathfrak A}
+\newcommand{\W}{\mathcal W}
+\newcommand{\Hh}{\mathcal H}
+\newcommand{\Om}{\Omega}
+\newcommand{\G}{\mathcal G}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\newcommand{\LS}[2]{\par\medskip\noindent\textbf{$\langle #1\rangle\,#2$}\quad}
+\newcommand{\Because}{\emph{Because:} }
+\newcommand{\Suffices}{\emph{Suffices:} }
+\newcommand{\QedStep}{\hfill$\square$}
+\newcommand{\Pass}{\textcolor{green!42!black}{\textbf{PASS}}}
+\newcommand{\Repair}{\textcolor{orange!80!black}{\textbf{REPAIRABLE GAP}}}
+\newcommand{\Fail}{\textcolor{red!70!black}{\textbf{FAIL}}}
+\newcommand{\Conditional}{\textcolor{blue!65!black}{\textbf{CONDITIONAL}}}
+\newcommand{\Major}{\textcolor{red!68!black}{\textbf{MAJOR}}}
+\newcommand{\Critical}{\colorbox{red!13}{\textcolor{red!75!black}{\textbf{CRITICAL}}}}
+\newenvironment{resultbox}{\begin{center}\begin{minipage}{0.94\textwidth}\hrule\vspace{6pt}}{\vspace{6pt}\hrule\end{minipage}\end{center}}
+\newenvironment{auditbox}{\begin{center}\begin{minipage}{0.96\textwidth}\color{black}\hrule\vspace{5pt}}{\vspace{5pt}\hrule\end{minipage}\end{center}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Imported assumption}
+\newtheorem{finding}[theorem]{Audit finding}
+\newtheorem{remark}[theorem]{Remark}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,frame=single,columns=fullflexible}

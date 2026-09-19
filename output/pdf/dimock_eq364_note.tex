@@ -1,0 +1,509 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+
+\title{A Note on Equation (364) in Dimock's\\
+\emph{The Renormalization Group According to Balaban, I. Small Fields}}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Conclusion}
+
+The estimate printed as Eq. (364),
+\begin{equation}
+  |C_k(\Omega;y,y')|
+  \le O(1)L^2 \exp\{-\delta_0 L^{-2} d(y,y')\},
+  \tag{364}
+\end{equation}
+is a valid weaker bound, but the factor \(L^{-2}\) is not the factor produced by
+the scaling argument given immediately before it.  Scaling Eq. (348) from
+\(G_{k+1}(L^{-1}\Omega)\) to \(G^0_{k+1}(\Omega)\) gives instead
+\begin{equation}
+  |\ip{f}{G^0_{k+1}(\Omega)f'}|
+  \le C L^2 \exp\{-c L^{-1}d(y,y')\}\norm{f}_2\norm{f'}_2,
+  \label{eq:sharp-g0}
+\end{equation}
+and hence
+\begin{equation}
+  |C_k(\Omega;y,y')|
+  \le C L^2 \exp\{-c L^{-1}d(y,y')\}.
+  \label{eq:sharp-ck}
+\end{equation}
+Here \(c>0\) is independent of \(k,N,\Omega,y,y'\), and may be taken as a fixed
+constant multiple of the \(\delta_0\) in Eq. (348).
+
+Since \(L^{-1}\ge L^{-2}\) for \(L>1\), the sharp estimate
+\eqref{eq:sharp-ck} immediately implies the printed estimate (364), after
+possibly changing constants.  Thus Eq. (364) is harmless for the later argument.
+However, if Eq. (364) is read as the estimate that directly follows from scaling,
+the exponent should contain \(L^{-1}\), not \(L^{-2}\).  This is also confirmed
+internally by Eq. (370), whose first displayed line uses
+\(\exp\{-\delta_0 L^{-1}d(y,y')\}\) while citing Eq. (364).
+
+A further consequence is that the decay rate in Eq. (374) need not be of order
+\(L^{-2}\).  If one uses \eqref{eq:sharp-ck} sharply, then the final estimate for
+\(G_k(\Omega)\) may be written with an \(L\)-independent exponential rate,
+\[
+  |(G_k(\Omega)f)(x)|
+  \le C_L\exp\{-\Gamma d(x,\supp f)\}\norm{f}_{\infty},
+  \qquad \Gamma=O(1).
+\]
+Here \(C_L\) may depend on \(L\), as is allowed by the convention in the paper.
+If, however, one keeps the extra weakening by \(L^{-1}\) that appears in the
+printed Eq. (373), the resulting final rate is only \(O(L^{-1})\).  Thus the
+printed \(O(L^{-2})\) in Lemma 33 is not forced by the improved Eq. (364).
+
+The two substantive losses of sharpness are:
+\[
+  \hbox{Eq. (364): } L^{-1}\longrightarrow L^{-2},
+  \qquad
+  \hbox{Eq. (373): } \Gamma=L\alpha_L\longrightarrow \Gamma=\alpha_L.
+\]
+The first loss is the replacement of the scaling-correct \(C_k\) decay rate by a
+weaker one.  The second loss is the extra \(L^{-1}\) inserted when Lemma 32 is
+used inside the multiscale identity (372).
+
+\section*{Notation}
+
+In Appendix D, Dimock considers
+\begin{equation}
+  G_k(\Omega)
+  =
+  \left[-\Delta+\bar\mu_k+a_k Q_k^TQ_k\right]_{\Omega}^{-1},
+  \tag{340}
+\end{equation}
+on \(\Omega\subset (L^{-k}\Z)^3\).  Equation (348) states that if
+\(\supp f\subset \Delta_y\), \(\supp f'\subset \Delta_{y'}\), then
+\begin{equation}
+  |\ip{f}{G_k(\Omega)f'}|
+  \le C\exp\{-\delta_0d(y,y')\}\norm{f}_2\norm{f'}_2.
+  \tag{348}
+\end{equation}
+
+The operator relevant for Eq. (363) is
+\begin{equation}
+  G^0_{k+1}(\Omega)
+  =
+  \left[
+    -\Delta+\bar\mu_k+L^{-2}a_{k+1}Q_{k+1}^TQ_{k+1}
+  \right]_{\Omega}^{-1}.
+  \tag{362}
+\end{equation}
+This is the unscaled \(k+1\) Green function acting on the old lattice
+\((L^{-k}\Z)^3\).  It becomes the ordinary \(G_{k+1}\) after the spatial change of
+variables \(x=Lz\).
+
+\section*{Scaling of \(G^0_{k+1}\)}
+
+Let
+\[
+  \Omega' = L^{-1}\Omega \subset (L^{-(k+1)}\Z)^3
+\]
+and define the pullback
+\[
+  (Rf)(z)=f(Lz), \qquad z\in \Omega'.
+\]
+With the usual weighted lattice sums, the measure scales by \(dx=L^3dz\), so
+\begin{equation}
+  \norm{Rf}_{L^2(\Omega')}=L^{-3/2}\norm{f}_{L^2(\Omega)}.
+  \label{eq:norm-scale}
+\end{equation}
+
+The lattice Laplacian scales as
+\begin{equation}
+  R(-\Delta_k)R^{-1}=L^{-2}(-\Delta_{k+1}),
+  \label{eq:lap-scale}
+\end{equation}
+and the mass satisfies
+\begin{equation}
+  \bar\mu_k=L^{-2}\bar\mu_{k+1}.
+  \label{eq:mass-scale}
+\end{equation}
+Moreover the averaging term in \(G^0_{k+1}\) is precisely the old-lattice
+representation of the \(k+1\) averaging term after scaling:
+\begin{equation}
+  R\left(L^{-2}Q_{k+1}^TQ_{k+1}\right)R^{-1}
+  =
+  L^{-2}Q_{k+1}^TQ_{k+1}.
+  \label{eq:q-scale}
+\end{equation}
+The same symbol \(Q_{k+1}\) appears on both sides, but the left side acts on
+\(\Omega\subset (L^{-k}\Z)^3\), whereas the right side acts on
+\(\Omega'\subset (L^{-(k+1)}\Z)^3\).
+
+Combining \eqref{eq:lap-scale}, \eqref{eq:mass-scale}, and \eqref{eq:q-scale},
+\[
+  R\left(G^0_{k+1}(\Omega)\right)^{-1}R^{-1}
+  =
+  L^{-2}\left(G_{k+1}(\Omega')\right)^{-1}.
+\]
+Therefore
+\begin{equation}
+  RG^0_{k+1}(\Omega)R^{-1}
+  =
+  L^2G_{k+1}(\Omega').
+  \label{eq:operator-scale}
+\end{equation}
+Equivalently,
+\[
+  G^0_{k+1}(\Omega)f
+  =
+  L^2R^{-1}G_{k+1}(\Omega')Rf.
+\]
+
+Now compute the \(L^2\) pairing.  For any \(u\) on \(\Omega\) and \(v\) on
+\(\Omega'\),
+\[
+  \ip{u}{R^{-1}v}_{\Omega}
+  =
+  L^3\ip{Ru}{v}_{\Omega'}.
+\]
+Using \eqref{eq:operator-scale},
+\begin{align}
+  \ip{f}{G^0_{k+1}(\Omega)f'}_{\Omega}
+  &=
+  L^2\ip{f}{R^{-1}G_{k+1}(\Omega')Rf'}_{\Omega} \notag\\
+  &=
+  L^5\ip{Rf}{G_{k+1}(\Omega')Rf'}_{\Omega'}.
+  \label{eq:pairing-scale}
+\end{align}
+
+Apply Eq. (348) to \(G_{k+1}(\Omega')\).  The supports of \(Rf\) and \(Rf'\) are
+the scaled sets \(L^{-1}\Delta_y\) and \(L^{-1}\Delta_{y'}\).  Their separation is
+\[
+  \dist(L^{-1}\Delta_y,L^{-1}\Delta_{y'})
+  =
+  L^{-1}d(y,y')+O(1),
+\]
+where the \(O(1)\) ambiguity only changes the prefactor.  Hence
+\[
+  |\ip{Rf}{G_{k+1}(\Omega')Rf'}_{\Omega'}|
+  \le
+  C\exp\{-cL^{-1}d(y,y')\}\norm{Rf}_2\norm{Rf'}_2.
+\]
+Using \eqref{eq:norm-scale} in \eqref{eq:pairing-scale} gives
+\begin{align*}
+  |\ip{f}{G^0_{k+1}(\Omega)f'}_{\Omega}|
+  &\le
+  L^5 C e^{-cL^{-1}d(y,y')}
+    (L^{-3/2}\norm{f}_2)(L^{-3/2}\norm{f'}_2)\\
+  &=
+  C L^2 e^{-cL^{-1}d(y,y')}\norm{f}_2\norm{f'}_2.
+\end{align*}
+This proves \eqref{eq:sharp-g0}.  Thus the exponent obtained from scaling is
+\(L^{-1}d(y,y')\), not \(L^{-2}d(y,y')\).
+
+\section*{From \(G^0_{k+1}\) to \(C_k\)}
+
+Equation (361) is
+\begin{equation}
+  C_k(\Omega)
+  =
+  A_k+a_k^2A_kQ_kG^0_{k+1}(\Omega)Q_k^TA_k,
+  \tag{361}
+\end{equation}
+where
+\[
+  A_k=\left[a_k+aL^{-2}Q^TQ\right]_{\Omega}^{-1}.
+\]
+Since \(Q^TQ\) is a projection,
+\[
+  A_k
+  =
+  a_k^{-1}(I-Q^TQ)+(a_k+aL^{-2})^{-1}Q^TQ.
+\]
+Thus \(A_k\) is local, with uniformly bounded operator norms and bounded local
+range.  The operators \(Q_k\) and \(Q_k^T\) are local averaging and extension
+operators.  Consequently, \(A_kQ_k\) and \(Q_k^TA_k\) only smear a delta function
+over a bounded neighborhood of the corresponding unit block, and their \(L^2\)
+norms are uniformly bounded.
+
+For the nonlocal term in (361), apply \eqref{eq:sharp-g0} to
+\[
+  f=Q_k^TA_k\delta_y,\qquad f'=Q_k^TA_k\delta_{y'}.
+\]
+The supports of these functions are within bounded distance of \(\Delta_y\) and
+\(\Delta_{y'}\), respectively, and their \(L^2\) norms are \(O(1)\).  Therefore
+\[
+  |(A_kQ_kG^0_{k+1}(\Omega)Q_k^TA_k)(y,y')|
+  \le
+  C L^2 e^{-cL^{-1}d(y,y')}.
+\]
+The first term \(A_k(y,y')\) is local.  If it is nonzero, then \(d(y,y')=O(1)\),
+and it is also bounded by the same right side after increasing \(C\).  Hence
+\[
+  |C_k(\Omega;y,y')|
+  \le
+  C L^2 e^{-cL^{-1}d(y,y')},
+\]
+which is \eqref{eq:sharp-ck}.
+
+\section*{Consequence for Lemma 32}
+
+Now insert the improved estimate \eqref{eq:sharp-ck} into the proof of Lemma 32.
+Recall
+\[
+  C'_k(\Omega)=H_k(\Omega)C_k(\Omega)H_k(\Omega)^T.
+\]
+Lemma 31 gives, with \(\delta_1=O(1)\),
+\[
+  |H_k(\Omega;x,y)|\le C e^{-\delta_1d(x,y)},
+  \qquad
+  |H_k(\Omega;y',z)|\le C e^{-\delta_1d(y',z)}.
+\]
+Thus, for \(A=\supp f\),
+\begin{align}
+  |(C'_k(\Omega)f)(x)|
+  &\le
+  C_L
+  \sum_{y,y'}
+  e^{-\delta_1d(x,y)}
+  e^{-cL^{-1}d(y,y')}
+  e^{-\delta_1d(y',A)}
+  \norm{f}_{\infty}.
+  \label{eq:cprime-convolution}
+\end{align}
+The prefactor \(C_L\) absorbs the \(L^2\) in \eqref{eq:sharp-ck} and the
+summability constants.  Since
+\[
+  d(x,A)\le d(x,y)+d(y,y')+d(y',A),
+\]
+the convolution in \eqref{eq:cprime-convolution} decays at the slowest of the
+three displayed rates.  Therefore
+\begin{equation}
+  |(C'_k(\Omega)f)(x)|
+  \le C_L e^{-\alpha_Ld(x,\supp f)}\norm{f}_{\infty},
+  \qquad
+  \alpha_L=c_0L^{-1},
+  \label{eq:cprime-improved}
+\end{equation}
+with \(c_0=O(1)\) independent of \(L\).  The same reasoning gives the derivative
+and Holder-derivative estimates, since the corresponding bounds on \(H_k\) have
+the same \(O(1)\) decay rate \(\delta_1\).
+
+Thus the improved Eq. (364) improves Lemma 32 from the paper's
+\(\gamma_0=O(L^{-2})\) to an intermediate one-step rate \(O(L^{-1})\).  It does
+not make Lemma 32 itself \(O(1)\), because \(C_k\) still has only
+\(e^{-cL^{-1}d}\) decay.
+
+\section*{Consequence for Eq. (374)}
+
+The key point is that Eq. (372) contains an additional scaling by
+\(L^{k-j}\).  Write \(n=k-j\), so \(1\le n\le k\), and put
+\[
+  D=d(x,\supp f).
+\]
+The identity (372) is
+\begin{equation}
+  (G_k(\Omega)f)(x)
+  =
+  \sum_{j=0}^{k-1}
+  L^{-2(k-j)}
+  (C'_j(L^{k-j}\Omega)f_{L^{k-j}})(L^{k-j}x).
+  \tag{372}
+\end{equation}
+Equivalently,
+\[
+  (G_k(\Omega)f)(x)
+  =
+  \sum_{n=1}^{k}
+  L^{-2n}
+  (C'_{k-n}(L^n\Omega)f_{L^n})(L^nx).
+\]
+The support rescales as
+\[
+  d(L^nx,\supp f_{L^n})=L^n d(x,\supp f)=L^nD.
+\]
+Applying \eqref{eq:cprime-improved} directly gives
+\begin{align}
+  |(G_k(\Omega)f)(x)|
+  &\le
+  C_L
+  \sum_{n=1}^{k}
+  L^{-2n}e^{-\alpha_LL^nD}\norm{f}_{\infty}.
+  \label{eq:g-sum-improved}
+\end{align}
+Since \(\alpha_L=c_0L^{-1}\),
+\[
+  \alpha_LL^n=c_0L^{n-1}\ge c_0
+  \qquad (n\ge1).
+\]
+Hence each term in \eqref{eq:g-sum-improved} satisfies
+\[
+  e^{-\alpha_LL^nD}\le e^{-c_0D},
+\]
+and
+\[
+  \sum_{n=1}^{k}L^{-2n}\le \sum_{n=1}^{\infty}L^{-2n}
+  \le C.
+\]
+Therefore the final Green-function estimate can be written as
+\begin{equation}
+  |(G_k(\Omega)f)(x)|
+  \le
+  C_L e^{-c_0d(x,\supp f)}\norm{f}_{\infty}.
+  \label{eq:g-final-o1}
+\end{equation}
+The decay rate \(c_0\) is \(O(1)\), independent of \(L\).  The prefactor may
+depend on \(L\), in agreement with the paper's convention that constants denoted
+\(C\) may depend on \(L\).
+
+This conclusion uses \eqref{eq:cprime-improved} sharply.  The printed Eq. (373)
+contains an additional weakening:
+\[
+  e^{-\gamma_0 d(L^nx,\supp f_{L^n})}
+  \quad\hbox{is replaced by}\quad
+  e^{-\gamma_0 L^{-1} d(L^nx,\supp f_{L^n})}.
+\]
+If one makes the analogous weakening after improving Lemma 32, then
+\[
+  e^{-\alpha_L L^{-1}d(L^nx,\supp f_{L^n})}
+  =
+  e^{-c_0L^{n-2}D},
+\]
+and the first term \(n=1\) gives only \(e^{-c_0L^{-1}D}\).  In that weakened
+reading the final rate is \(O(L^{-1})\), not \(O(1)\).
+
+\section*{Where Sharpness Is Lost}
+
+It is useful to separate the rates in the three objects
+\[
+  C_k,\qquad C'_k=H_kC_kH_k^T,\qquad G_k.
+\]
+Let
+\[
+  \beta_L=\hbox{decay rate in }C_k,\qquad
+  \alpha_L=\hbox{decay rate in }C'_k,\qquad
+  \Gamma_L=\hbox{final decay rate in }G_k.
+\]
+The sharp propagation of rates is
+\[
+  \beta_L
+  \quad\Longrightarrow\quad
+  \alpha_L\simeq \min\{\delta_1,\beta_L\}
+  \quad\Longrightarrow\quad
+  \Gamma_L\simeq L\alpha_L.
+\]
+The first implication is just the convolution with the two \(H_k\) kernels.  Since
+the \(H_k\) kernels decay at the \(O(1)\) rate \(\delta_1\), they cannot improve a
+slower \(C_k\) rate; they preserve it up to harmless constants.  The second
+implication comes from the factor
+\[
+  d(L^nx,\supp f_{L^n})=L^n d(x,\supp f)
+\]
+in Eq. (372), and the worst case \(n=1\) gives the gain \(L\).
+
+Thus, if the improved Eq. (364) is used, then
+\[
+  \beta_L\simeq L^{-1},\qquad
+  \alpha_L\simeq L^{-1},\qquad
+  \Gamma_L\simeq L\alpha_L\simeq O(1).
+\]
+
+The first non-sharp step is the printed scaling estimate (363), and hence the
+printed Eq. (364).  Scaling Eq. (348) from \(G_{k+1}(L^{-1}\Omega)\) gives
+\[
+  |\ip{f}{G^0_{k+1}(\Omega)f'}|
+  \le
+  C L^2 e^{-cL^{-1}d(y,y')}\norm{f}_2\norm{f'}_2,
+\]
+because distances are divided by \(L\) under \(\Omega\mapsto L^{-1}\Omega\).
+The printed \(e^{-\delta_0L^{-2}d(y,y')}\) is therefore a weakening by one power
+of \(L\).  Passing from \(G^0_{k+1}\) to \(C_k\) through
+\[
+  C_k=A_k+a_k^2A_kQ_kG^0_{k+1}Q_k^TA_k
+\]
+does not force any further loss, because \(A_k,Q_k,Q_k^T\) are local.  Their
+support enlargement is \(O(L)\), and
+\[
+  e^{-cL^{-1}(d-O(L))}\le C e^{-cL^{-1}d}.
+\]
+
+The second non-sharp step is Eq. (373).  If Lemma 32 gives
+\[
+  |(C'_jF)(X)|\le C_Le^{-\alpha_Ld(X,\supp F)}\norm{F}_\infty,
+\]
+then a sharp substitution into Eq. (372) gives
+\[
+  |(C'_{k-n}(L^n\Omega)f_{L^n})(L^nx)|
+  \le
+  C_Le^{-\alpha_LL^nd(x,\supp f)}\norm{f}_\infty.
+\]
+The printed Eq. (373) instead replaces this by
+\[
+  C_Le^{-\alpha_LL^{-1}d(L^nx,\supp f_{L^n})}\norm{f}_\infty
+  =
+  C_Le^{-\alpha_LL^{n-1}d(x,\supp f)}\norm{f}_\infty.
+\]
+This loses exactly one power of \(L\) in the final rate.  It changes
+\[
+  \Gamma_L=L\alpha_L
+  \quad\hbox{into}\quad
+  \Gamma_L=\alpha_L.
+\]
+Everything after this point is sharp relative to the weakened input; the
+geometric sum in Eq. (374) does not introduce a new decay loss.
+
+The complete rate ledger is therefore:
+\[
+\begin{array}{c|c}
+\hbox{input/procedure} & \hbox{final rate in Eq. (374)}\\
+\hline
+\hbox{printed Eq. (364), used sharply in Eq. (372)} & O(L^{-1})\\
+\hbox{printed Eq. (364), plus printed Eq. (373) weakening} & O(L^{-2})\\
+\hbox{improved Eq. (364), but printed Eq. (373) weakening} & O(L^{-1})\\
+\hbox{improved Eq. (364), used sharply in Eq. (372)} & O(1)
+\end{array}
+\]
+
+\section*{Why the Printed \(L^{-2}\) Is Harmless}
+
+The sharper estimate implies the printed estimate because, for \(L>1\) and
+\(d\ge0\),
+\[
+  e^{-cL^{-1}d}\le e^{-cL^{-2}d}.
+\]
+Thus
+\[
+  C L^2e^{-cL^{-1}d(y,y')}
+  \le
+  C L^2e^{-cL^{-2}d(y,y')}.
+\]
+This explains why the later proof can safely use a decay rate of order \(L^{-2}\).
+Indeed Lemma 32 explicitly sets
+\[
+  \gamma_0=\frac12\delta_0L^{-2}.
+\]
+
+However, Eq. (370) begins with
+\[
+  e^{-\delta_1d(x,y)}
+  e^{-\delta_0L^{-1}d(y,y')}
+  e^{-\delta_1d(y',\supp f)},
+\]
+while saying ``By (364) and (366).''  This line is incompatible with the printed
+form of Eq. (364), but it is exactly compatible with the scaled estimate
+\eqref{eq:sharp-ck}.  The most coherent reading is therefore:
+\begin{itemize}
+  \item the estimate actually obtained by scaling, and apparently used in the
+  first line of Eq. (370), has \(L^{-1}\) in the exponent;
+  \item the weaker \(L^{-2}\) bound is sufficient for the subsequent argument and
+  is the rate finally retained in Lemma 32 and Lemma 33;
+  \item if the improved estimate is propagated sharply through Eq. (372), the
+  final decay rate in Eq. (374) can be taken independent of \(L\).
+\end{itemize}
+
+\end{document}

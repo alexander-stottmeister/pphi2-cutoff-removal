@@ -1,0 +1,175 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{srcfact}[theorem]{Source Fact}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Om}{\Omega}
+\DeclareMathOperator{\supp}{supp}
+
+\title{Gate R2, closed by page-image inspection:\\
+\large the exact Glimm--Jaffe--Spencer norm, and the corrected constants}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Gate R2 concerned the prefactor of the GJS norms (1.1.7)--(1.1.8), illegible in the OCR text
+layer of the JSTOR scan. It is closed by rendering p.~594 of the scan as a 300\,dpi image and
+reading the print directly. The printed norms are
+\[
+  \|Q\|=K_1\Bigl[\prod_\Delta K_2^{2N(\Delta)}\,N(\Delta)!\Bigr]\|w\|_2,
+  \qquad
+  \|Q(x_0)\|=K_1\Bigl[\prod_\Delta K_2^{2N(\Delta)}\,N(\Delta)!\Bigr]\|w(x_0,\cdot)\|_2 .
+\]
+Two findings. \textbf{(i)} $K_1$ enters to the \emph{first} power; the exponent ambiguity is
+resolved as $e_*=1$. \textbf{(ii)} The local weight is $K_2^{2N(\Delta)}$, \emph{not}
+$K_2^{N(\Delta)}$: the OCR had dropped the factor $2$. Consequently the constant correction
+``$K_2^{4p}\to K_2^{2p}$'' made in \texttt{m2-audit.tex}, Remark~5.3(i), was itself an OCR
+artifact and is \textbf{withdrawn}; the original $K_2^{4p'}$ form of
+\texttt{weak-coupling-strategy.tex} is restored. The cell-count correction $32\to9$ stands
+(it was geometry, not OCR). All finiteness and uniformity statements of the programme are
+unaffected --- the exponent never entered any qualitative conclusion --- but every explicit
+constant is now exact; the corrected values are propagated through \texttt{m6/main.tex} and
+listed here, including $M^2=9\cdot8!\,C_8K_1K_2^{16}\lambda^2$ for
+$\mathscr P(\xi)=\xi^4$. The recomputation also caught a second, independent slip in the v1
+manuscript --- a half-degree error ($(2p')!$ for $(4p')!$, $K_2^{4p'}$ for $K_2^{8p'}$) predating
+R2 --- now fixed in \texttt{m6/main.tex}.
+\end{abstract}
+
+\section{Method and evidence}
+
+The JSTOR scan's embedded text layer garbles the displays (1.1.7)--(1.1.8) of \cite{GJS}
+(``\texttt{K1[IaK21N(a)}\dots''), which forced the parametric treatment
+$K_1^{e_*}\prod K_2^{N(\Delta)}N(\Delta)!$, $e_*\in\{1,r,\sum N(\Delta)\}$, in
+\texttt{m2-audit.tex}. Rendering PDF page 11 ($=$ printed p.~594) at 300\,dpi
+(\texttt{pdftoppm}) makes the print unambiguous:
+
+\begin{srcfact}[p.~594, displays (1.1.7)--(1.1.9), read from the page image]\label{sf:norm}
+\[
+  \textup{(1.1.7)}\quad
+  \|Q\|=K_1\Bigl[\prod_\Delta K_2^{2N(\Delta)}N(\Delta)!\Bigr]\|w\|_2,
+  \qquad
+  \textup{(1.1.8)}\quad
+  \|Q(x_0)\|=K_1\Bigl[\prod_\Delta K_2^{2N(\Delta)}N(\Delta)!\Bigr]\|w(x_0,\cdot)\|_2,
+\]
+\[
+  \textup{(1.1.9)}\quad \|Q\|=\sum\nolimits_l\|Q_l\|\ \ \text{(sum over localized pieces)} .
+\]
+\end{srcfact}
+
+\begin{srcfact}[consistency cross-checks]\label{sf:cross}
+(a) p.~614 (rendered likewise): the factors $\mathcal K=\mathcal K_1\mathcal K_2\mathcal K_3
+\mathcal K_4$ and the category weights $K_1^\nu$, $\nu\in\{1,\dots,6\}$ (Table~1), belong to the
+\emph{Chapter-2} norm $(2.4.3)$, not to (1.1.7)--(1.1.8); the Remark preceding Theorem~2.4.1
+relates the two by $|\!|\!|m_\alpha|\!|\!|=K_1^\nu e^{\tau t}\|m_\alpha\|_0$ for initial and
+final terms, which is dimensionally consistent only with a \emph{single} power of $K_1$ inside
+$\|\cdot\|_0$. (b) $\gamma=(n+1)m_0(1-\varepsilon)$ is printed on p.~614, matching the decay
+weight used in the imported machinery. (c) Footnote 9 (p.~593) is unchanged: $\kappa=\infty$ is
+admissible at the price $N(\Delta)!\to(N(\Delta)!)^3$; no $K$-factors are affected.
+\end{srcfact}
+
+\section{Corrected constants}
+
+Throughout, $Q=\prod_{i=1}^r\varphi_0(f_i)$ with $\supp f_i$ in a length-$L$ interval, and the
+localization sum uses at most $L+1$ cells per factor. Since every point has $m_i=1$ and
+$\sum_\Delta N(\Delta)$ equals the number of points, the $K_2$-weight of any localized piece is
+$K_2^{2\cdot\#\text{points}}$ --- additive and independent of how points share cells.
+
+\begin{proposition}[exact norm bounds]\label{prop:norms}
+\begin{align*}
+  \|Q\|_{\rm GJS}&\le K_1K_2^{2r}\,r!\prod_{i=1}^r\sqrt{L+1}\,\|f_i\|_2, &
+  \|Q^2\|_{\rm GJS}&\le K_1K_2^{4r}\,(2r)!\prod_{i=1}^r(L+1)\|f_i\|_2^2 ,\\
+  \intertext{and for the interaction square of \textup{(M$_2$)} (two points, degrees
+  $n,n'\le\deg\mathscr P=2p'$, hence $n+n'\le4p'$; $\le9$ cell pairs):}
+  \|Q_V\|&\le 9\,\mathfrak K(p')\,\lambda^2\Bigl(\sum_n|a_n|\Bigr)^2, &
+  \mathfrak K(p')&=K_1K_2^{8p'}\,(4p')! \,.
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+Immediate from Source Fact~\ref{sf:norm}: $\prod_\Delta K_2^{2N(\Delta)}=K_2^{2\sum N(\Delta)}$,
+$\prod_\Delta N(\Delta)!\le(\sum N(\Delta))!$, Cauchy--Schwarz over $\le L+1$ cells per factor,
+and, for $Q_V$: $\sum_\Delta N(\Delta)=n+n'\le4p'$, so
+$\prod_\Delta K_2^{2N(\Delta)}=K_2^{2(n+n')}\le K_2^{8p'}$ and
+$\prod_\Delta N(\Delta)!\le(n+n')!\le(4p')!$, in both cell configurations (shared or distinct
+squares --- the exponent is additive).
+\end{proof}
+
+\begin{corollary}[(M$_2$) constant, exact form]\label{cor:M2}
+$\displaystyle\sup_{g}\|V(h)\Om_g\|^2\le M^2=9\,C_8\,K_1K_2^{8p'}(4p')!\,\lambda^2
+\Bigl(\sum_{n=0}^{2p'}|a_n|\Bigr)^2$. For $\mathscr P(\xi)=\xi^4$ ($p'=2$, $\sum|a_n|=1$;
+degrees exactly $4{+}4=8$):
+\[
+  M^2=9\cdot8!\;C_8K_1K_2^{16}\lambda^2=362\,880\;C_8K_1K_2^{16}\lambda^2 .
+\]
+\end{corollary}
+
+\begin{corollary}[exponential-moment radius, slight improvement]\label{cor:dense}
+$\E_{\mu_g}[\varphi_0(f)^{2n}]\le C_8K_1\,(K')^{2n}(2n)!$ with $K'=K_2^{2}\sqrt{L+1}\|f\|_2$:
+the prefactor $K_1$ now sits \emph{outside} the geometric base, so the radius of exponential
+integrability $s_0=1/K'$ is independent of $K_1$ --- marginally stronger than the v1 statement,
+where $K_1$ had to be absorbed into the base to cover all readings.
+\end{corollary}
+
+\begin{remark}[a correction corrected]\label{rem:mea}
+\texttt{m2-audit.tex}, Remark~5.3(i), ``corrected'' the constant of
+\texttt{weak-coupling-strategy.tex} from $K_2^{4p}$ to $K_2^{2p}$. That step trusted the OCR
+reading $K_2^{N(\Delta)}$ and is hereby withdrawn: with the printed weight $K_2^{2N(\Delta)}$,
+the \emph{original} $K_2^{4p'}$ was correct. The other half of that remark --- the cell count
+$32\to9$ for supports of length $2$ --- is geometric and stands. Net constant versus the
+original strategy claim: $9/32$ of it, with the factorial and $K_2$-exponent now tracking
+$\deg\mathscr P$ correctly. (The same recomputation exposed a half-degree slip
+--- $(2p')!$, $K_2^{4p'}$ in place of $(4p')!$, $K_2^{8p'}$ --- that had entered
+\texttt{m6/main.tex} at the v0 assembly through a $p$-versus-$2p'$ convention change between
+\texttt{m2-audit.tex} ($p=\deg\mathscr P$) and \texttt{m6} ($2p'=\deg\mathscr P$); fixed.)
+\end{remark}
+
+\begin{remark}[what R2 did and did not affect]\label{rem:scope}
+No statement of \texttt{m6/main.tex} changes its truth value: finiteness and $g$-uniformity of
+(M$_2$), the gap $m_1$ in (G), the rate function $\Psi_{m_1}$, and all conclusions of the Main
+Theorem are exponent-insensitive, as asserted throughout. What R2 closes is the \emph{exact
+form} of every displayed constant; \texttt{m6/main.tex} has been updated in place (norm
+description in \S3, Theorem 4.1's $\mathfrak K$, the (G)-section norm bounds, the density-proof
+radius, the interface checklist). The remaining indeterminacy is irreducible at citation level:
+GJS fix $m_0,K_2,K_1$ ``sufficiently large'' and $\lambda$ ``sufficiently small'' without
+numerical values, so all constants are explicit \emph{in terms of} $(K_1,K_2,C_7,C_8,m_1)$ and
+cannot be more.
+\end{remark}
+
+\section{Status}
+
+\begin{itemize}
+\item \textbf{Closed:} Gate R2, by direct inspection of the page image of p.~594; exponent
+      $e_*=1$; local weight $K_2^{2N(\Delta)}$; cross-checked against p.~614.
+\item \textbf{Corrected:} the $K_2$-exponent correction of \texttt{m2-audit.tex} Rem.~5.3(i) is
+      withdrawn; exact constants propagated through \texttt{m6/main.tex}; explicit $\varphi^4$
+      value $M^2=9\cdot8!\,C_8K_1K_2^{16}\lambda^2$; plus the half-degree convention slip in
+\texttt{m6}, found and fixed.
+\item \textbf{No open gates remain} on the weak-coupling closure: R1 was discharged in
+      \texttt{r1-check.tex}, R2 here. The Main Theorem of \texttt{m6/main.tex} is conditional on
+      the printed theorems of \cite{GJS} at ordinary citation standard, with all displayed
+      constants in exact form.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{GJS} J.~Glimm, A.~Jaffe and T.~Spencer, \emph{The Wightman axioms and particle
+structure in the $\mathscr P(\phi)_2$ quantum field model}, Ann.\ of Math.\ \textbf{100} (1974)
+585--632.
+\end{thebibliography}
+
+\end{document}

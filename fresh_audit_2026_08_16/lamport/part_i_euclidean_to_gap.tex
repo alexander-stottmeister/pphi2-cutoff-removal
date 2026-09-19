@@ -1,0 +1,587 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{auditstyle}
+\lhead{Fresh Glimm--Jaffe proof audit}
+\rhead{16 August 2026}
+\title{Corrected structured proof I\\[3pt]
+GJS Euclidean estimates $\Longrightarrow$ a cutoff-uniform local moment and physical Hamiltonian gap}
+\author{Fresh reconstruction of \texttt{part\_i/main.tex}}
+\date{16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+\textbf{Status.} \Conditional.  The derivation below is valid from the explicitly listed
+cutoff-construction facts and the exact estimates in Glimm--Jaffe--Spencer (GJS),
+Theorems 1.1.7--1.1.8.  It incorporates every local repair found in the audit: the
+dimensionless-coupling reduction, the correct FKN references, signed truncations, the
+two time-sign cases, the corrected unit-cell count, the missing exponential-moment
+prefactor, and the restriction $0\leq\beta<m_1$.
+
+This document proves no part of the GJS cluster expansion itself.  That theorem is an
+import, displayed verbatim by page image in the separate citation dossier.
+\end{resultbox}
+
+\tableofcontents
+
+\section{Objects and exact imports}
+
+Let
+\[
+ \Hh=L^2(\mathcal S'(\R),d\phi_0),\qquad
+ K(g)=H_0+V(g),\qquad H(g)=K(g)-E(g),
+\]
+where $E(g)=\inf\spec K(g)$ and
+\[
+ V(h)=\lambda\int_{\R}h(x){:}\mathscr P(\varphi_0(x)){:}\,dx,
+ \qquad \mathscr P(\xi)=\sum_{n=0}^{2p'}a_n\xi^n,\quad a_{2p'}>0.
+\]
+The scalar product is conjugate-linear in its first argument.  The cutoffs satisfy
+$0\leq g\leq1$ and have compact support.  Write $\Om_0=1$ for the free vacuum.
+
+\begin{assumption}[cutoff Hamiltonian facts]\label{ass:cutoff}
+For every such $g$, $K(g)$ is self-adjoint and bounded below, $E(g)$ is a simple
+eigenvalue, and its normalized eigenvector $\Om_g$ can be chosen strictly positive
+$d\phi_0$-almost everywhere.  Consequently
+\[
+ c_g:=\ip{\Om_g}{\Om_0}>0.
+\]
+For every compactly supported real $h$, the time-zero multiplication operator $V(h)$
+is self-adjoint on its maximal domain.
+\end{assumption}
+
+\begin{assumption}[slab FKN input]\label{ass:fkn}
+For a fixed $g$, the interacting Feynman--Kac--Nelson formula holds on every finite
+time slab.  The correct source locations are Simon, Theorem III.6 for the free FKN
+formula and Corollary V.14/Theorem V.15 for its interacting form; GRS, Theorems
+II.14 and II.16, give the same transfer formula.  Simon's Theorem III.12, cited in
+the audited manuscript, is not an FKN theorem.
+\end{assumption}
+
+Let $d\Phi$ be the Euclidean Gaussian measure with covariance
+$(-\Delta+m_0^2)^{-1}$.  For compactly supported measurable $0\leq h\leq1$, put
+\[
+ dq_h=Z(h)^{-1}\exp\!\left[-\lambda\int h(z){:}\mathscr P(\Phi(z)){:}\,dz\right]d\Phi.
+\]
+GJS define localized sharp-time monomials $Q$ and a norm $\|Q\|_{\rm GJS}$ in
+(1.1.7)--(1.1.9).  If $N(\Delta)$ is the total degree in a unit square $\Delta$, a
+localized term with kernel $w$ has norm
+\[
+ K_1\left[\prod_\Delta K_2^{2N(\Delta)}N(\Delta)!\right]\|w\|_2,
+\]
+and a nonlocalized polynomial is normed by summing its localized pieces.
+
+\begin{assumption}[CE1: GJS Theorem 1.1.8]\label{ass:ce1}
+There is $C_8<\infty$, independent of the cutoff $h$, such that every admissible
+sharp-time polynomial obeys
+\[
+ \left|\int Q(s)\,dq_h\right|\leq C_8\|Q(s)\|_{\rm GJS}.
+\]
+The theorem statement says ``uniformly as $h\uparrow1$''; GJS page 629 explicitly
+states that the estimates of Theorem 1.1.8 are uniform in the space cutoff $h$.
+\end{assumption}
+
+\begin{assumption}[CE2: GJS Theorem 1.1.7]\label{ass:ce2}
+If $Q_1,Q_2$ have disjoint localization squares separated by a strip of maximal
+width $d$, then
+\[
+ \left|\int Q_1Q_2\,dq_h-\int Q_1\,dq_h\int Q_2\,dq_h\right|
+ \leq C_7e^{-m_1d}\|Q_1\|_{\rm GJS}\|Q_2\|_{\rm GJS},                 \tag{CE2}
+\]
+where $m_1>0$ and $C_7$ are independent of $h,Q_1,Q_2$.
+\end{assumption}
+
+\begin{remark}[no circular gap assumption]
+Assumptions \ref{ass:cutoff}--\ref{ass:ce2} include simplicity of the cutoff ground
+state but do not include isolation of its eigenvalue.  The gap proved below is therefore
+not used to obtain the slab limit.
+\end{remark}
+
+\section{The structured proof}
+
+\begin{theorem}[Euclidean estimates imply (M) and (G)]\label{thm:EG}
+There is a dimensionless threshold $\varepsilon_{\mathscr P}>0$ such that, if
+$0\leq\lambda/m_0^2<\varepsilon_{\mathscr P}$, then the following statements hold
+for every cutoff $g$.
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item If $h$ is real, $\|h\|_\infty\leq1$, and $\supp h$ is contained in an
+interval of length $2$, then
+\[
+ \|V(h)\Om_g\|\leq M,
+ \quad
+ M^2=9C_8K_1K_2^{8p'}(4p')!\lambda^2
+       \left(\sum_{n=0}^{2p'}|a_n|\right)^2.                         \tag{M}
+\]
+\item
+\[
+ \spec H(g)\subseteq\{0\}\cup[m_1,\infty),                         \tag{G}
+\]
+and $0$ is a simple eigenvalue.
+\end{enumerate}
+\end{theorem}
+
+\subsection*{Proof in Lamport form}
+
+\LS{1}{1}{Reduce the GJS smallness hypothesis to $\lambda/m_0^2<\varepsilon_{\mathscr P}$.}
+
+\LS{2}{1}{Fix source-admissible numbers $M_*>0$ and $\lambda_*>0$ such that the
+GJS expansion is valid at mass $M_*$ whenever $0\leq\lambda'<\lambda_*$.}
+
+\Because GJS formulate the construction for sufficiently large mass and sufficiently
+small coupling.  Choosing one admissible pair merely names the constants in that
+hypothesis.
+
+\LS{2}{2}{For arbitrary $(m_0,\lambda)$ set $s=m_0/M_*$ and apply the unitary
+space-time dilation stated on GJS page 590.  It sends}
+\[
+ (m_0,\lambda)\longmapsto (s^{-1}m_0,s^{-2}\lambda)
+       =\left(M_*,\frac{M_*^2}{m_0^2}\lambda\right).                 \tag{2.1}
+\]
+
+\LS{2}{3}{The dilation introduces no change in the coefficients of $\mathscr P$ or
+in Wick ordering.}
+
+\Because In two dimensions the scalar field has scaling dimension zero.  More
+explicitly, if $\widetilde\Phi(y)=\Phi(y/m_0)$, then
+\[
+ \E[\widetilde\Phi(y)\widetilde\Phi(y')]
+ =C_{m_0}((y-y')/m_0)=C_1(y-y'),
+\]
+by the substitution $p=m_0q$ in the Fourier integral for $C_{m_0}$.  Equality of
+all covariance contractions implies equality of the corresponding Wick polynomials.
+The Jacobian contributes $m_0^{-2}$ to the interaction.
+
+\LS{2}{4}{Set $\varepsilon_{\mathscr P}=\lambda_*/M_*^2$.  Then
+$\lambda/m_0^2<\varepsilon_{\mathscr P}$ implies
+$s^{-2}\lambda<\lambda_*$, so the transformed model satisfies the source
+hypothesis.}
+
+\LS{2}{5}{This proves $\langle1\rangle1$.}\QedStep
+
+\LS{1}{2}{Establish the exact slab transfer identities without assuming a gap.}
+
+Fix $g$ and define
+\[
+ h_{T,g}(t,x)=\mathbf1_{[-T,T]}(t)g(x),\qquad
+ \psi_a=e^{-aH(g)}\Om_0,\qquad \widehat\psi_a=\psi_a/\|\psi_a\|.
+\]
+
+\LS{2}{1}{For bounded nonnegative time-zero functions $F_1,F_2$, FKN gives, for
+$0\leq t\leq2T$ and $|s|\leq T$,}
+\begin{align}
+ \int F_1(\Phi(-t/2))F_2(\Phi(t/2))\,dq_{h_{T,g}}
+ &=\frac{\ip{F_1\psi_{T-t/2}}{e^{-tH(g)}F_2\psi_{T-t/2}}}
+         {\|\psi_T\|^2},                                           \tag{2.2}\\
+ \int F_1(\Phi(s))\,dq_{h_{T,g}}
+ &=\frac{\ip{\psi_{T-s}}{F_1\psi_{T+s}}}{\|\psi_T\|^2}.          \tag{2.3}
+\end{align}
+
+\Because The unshifted formula contains $K(g)$ and the same factor $e^{-2TE(g)}$
+in numerator and partition function.  Multiplying every semigroup by the corresponding
+$e^{aE(g)}$ replaces $K(g)$ by $H(g)$ and cancels that factor exactly.
+
+\LS{2}{2}{Equations (2.2)--(2.3) hold for bounded signed functions.}
+
+\Because Write $F=F^+-F^-$ and expand bilinearly.  Each of the four terms is a
+finite nonnegative FKN integral, so linearity is legitimate.
+
+\LS{2}{3}{They extend to the unbounded functions used below.}
+
+\Because For a real multiplication function $F$, set
+$F^{[M]}=(-M)\vee(F\wedge M)$.  Apply the bounded identity to $F^{[M]}$.
+Whenever $F\psi_a\in\Hh$, $F^{[M]}\psi_a\to F\psi_a$ by dominated convergence,
+because $|F-F^{[M]}|^2|\psi_a|^2\leq |F|^2|\psi_a|^2$.  On path space, use
+$|F_1F_2|\leq(F_1^2+F_2^2)/2$ after translating both factors to their respective
+time slices.  The CE1 estimates below supply the required square integrability.
+
+\LS{2}{4}{This proves $\langle1\rangle2$.}\QedStep
+
+\LS{1}{3}{Prove the slab vectors converge to the cutoff ground state using simplicity only.}
+
+Let $P_g=|\Om_g\rangle\langle\Om_g|$.  Positivity gives
+$P_g\Om_0=c_g\Om_g$ with $c_g>0$.  Hence
+\[
+ \psi_a=c_g\Om_g+e^{-aH(g)}(1-P_g)\Om_0.                            \tag{3.1}
+\]
+
+\LS{2}{1}{The second term of (3.1) converges to zero in norm.}
+
+\Because If $\mu$ is the spectral measure of $(1-P_g)\Om_0$, then
+\[
+ \|e^{-aH(g)}(1-P_g)\Om_0\|^2
+   =\int_{(0,\infty)}e^{-2aE}\,d\mu(E)\longrightarrow0
+\]
+by dominated convergence.  Simplicity says precisely that $\mu(\{0\})=0$; no
+positive distance from zero is used.
+
+\LS{2}{2}{Consequently}
+\[
+ \widehat\psi_a\to\Om_g,\qquad
+ \|\psi_a\|\downarrow c_g,\qquad
+ 1\leq\frac{\|\psi_b\|}{\|\psi_a\|}\leq c_g^{-1}\quad(0\leq b\leq a), \tag{3.2}
+\]
+and every ratio in (3.2) tends to $1$ when both indices tend to infinity with
+bounded difference.
+
+\Because $e^{-aH(g)}$ is a contraction and $\|\Om_0\|=1$.
+
+\LS{2}{3}{This proves $\langle1\rangle3$.}\QedStep
+
+\LS{1}{4}{Derive the local interaction moment (M).}
+
+Let $h$ satisfy the hypotheses of (M).  In Euclidean notation define
+\[
+ Q_V=\lambda^2\sum_{n,n'=0}^{2p'}a_na_{n'}
+ \iint h(x)h(y){:}\Phi(0,x)^n{:}{:}\Phi(0,y)^{n'}{:}\,dx\,dy.       \tag{4.1}
+\]
+
+\LS{2}{1}{$Q_V$ is exactly the multiplication function $V(h)^2$.}
+
+\Because Expanding the square of
+$\lambda\sum_na_n\int h(x){:}\Phi(0,x)^n{:}dx$ gives (4.1).  No Wick
+reordering of the product is performed or required; GJS (1.1.5) permits products
+of individually Wick-ordered powers.
+
+\LS{2}{2}{The support of $h$ meets at most three half-open unit spatial cells in
+positive measure.}
+
+\Because An interval of length $2$ meets at most three members of the partition
+$[j,j+1)$ except possibly in endpoints, which have zero Lebesgue measure.
+
+\LS{2}{3}{For one ordered pair of cells and degrees $n,n'$, the GJS local weight is
+bounded by $K_1K_2^{8p'}(4p')!$.}
+
+\Because The total local degree is at most $n+n'\leq4p'$.  If both variables
+belong to one square, the weight is
+$K_1K_2^{2(n+n')}(n+n')!$.  If they belong to two squares, it is
+$K_1K_2^{2n}n!K_2^{2n'}n'!$.  In both cases
+\[
+ K_2^{2(n+n')}\leq K_2^{8p'},\qquad n!n'!\leq(n+n')!\leq(4p')!,
+\]
+after increasing $K_2$ to at least $1$, as GJS do.
+
+\LS{2}{4}{Summing the at most $3^2=9$ ordered cell pairs and all coefficients gives}
+\[
+ \|Q_V\|_{\rm GJS}\leq
+ 9K_1K_2^{8p'}(4p')!\lambda^2
+ \left(\sum_{n=0}^{2p'}|a_n|\right)^2=M^2/C_8.                     \tag{4.2}
+\]
+
+\LS{2}{5}{For every $T>0$,}
+\[
+ \|V(h)\widehat\psi_T\|^2
+ =\int V(h)^2\,dq_{h_{T,g}}\leq C_8\|Q_V\|_{\rm GJS}\leq M^2.     \tag{4.3}
+\]
+
+\Because Apply (2.2) at $t=0$ with the two individually nonnegative functions
+$F_1=F_2=|V(h)|$.  Their product is $V(h)^2=Q_V$.  Then apply CE1 and (4.2).
+This is the required correction to the manuscript's invalid phrase
+``$F_1F_2=V(h)^2\geq0$'', which did not specify nonnegative $F_1,F_2$.
+
+\LS{2}{6}{Pass (4.3) to $\Om_g$.}
+
+\Because Choose $T_k\to\infty$ such that
+$\|V(h)\widehat\psi_{T_k}\|$ approaches its liminf.  By (4.3), a subsequence
+converges weakly to some $y$.  The graph of the closed linear operator $V(h)$ is a
+closed linear subspace of $\Hh\oplus\Hh$, hence is weakly closed.  Since
+$\widehat\psi_{T_k}\to\Om_g$ strongly, $(\Om_g,y)$ lies in the graph.  Thus
+$y=V(h)\Om_g$ and weak lower semicontinuity gives
+\[
+ \|V(h)\Om_g\|\leq\liminf_k\|V(h)\widehat\psi_{T_k}\|\leq M.
+\]
+
+\LS{2}{7}{This proves (M).}\QedStep
+
+\LS{1}{5}{Obtain correct GJS norm bounds for polynomial time-zero vectors.}
+
+Let
+$Q=\prod_{i=1}^r\varphi_0(f_i)$ with real $f_i\in C_c^\infty(\R)$, all supported
+in an interval $I$ of length $L$.  Let
+\[
+ N_I:=\#\{j:\ |I\cap[j,j+1)|>0\}.
+\]
+
+\LS{2}{1}{$N_I\leq\lfloor L\rfloor+2\leq L+2$.}
+
+\Because If $j_{\min}$ and $j_{\max}$ are the extreme intersecting cells, then
+$j_{\max}-j_{\min}-1<L$, hence the number
+$j_{\max}-j_{\min}+1$ is at most $\lfloor L\rfloor+2$.  The manuscript's bound
+$L+1$ is false for nonintegral $L$; an interval of length $0.2$ can meet two cells.
+
+\LS{2}{2}{Decomposing each $f_i$ by the unit cells yields}
+\begin{align}
+ \|Q\|_{\rm GJS}
+ &\leq K_1K_2^{2r}r!\,N_I^{r/2}\prod_{i=1}^r\|f_i\|_2,             \tag{5.1}\\
+ \|Q^2\|_{\rm GJS}
+ &\leq K_1K_2^{4r}(2r)!\,N_I^r\prod_{i=1}^r\|f_i\|_2^2
+   =:\mathfrak n(Q)^2.                                             \tag{5.2}
+\end{align}
+
+\Because Expand the kernel into cell assignments.  For any assignment, the product
+of local factorials is at most the factorial of total degree, and the $K_2$ exponents
+sum to twice that degree.  For each $i$,
+\[
+ \sum_{j:I\cap[j,j+1)\ne\varnothing}\|f_i\mathbf1_{[j,j+1)}\|_2
+ \leq N_I^{1/2}\|f_i\|_2
+\]
+by Cauchy--Schwarz.  Multiplying these $r$ estimates proves (5.1); applying it to
+the $2r$ factors in $Q^2$ proves (5.2).
+
+\LS{2}{3}{The norm is independent of the common sharp time $s$.}
+
+\Because At every $s$ all factors occupy one temporal row.  Changing $s$ changes
+only that common row label; the spatial cell assignments, local degrees, kernel norms,
+and product of weights are unchanged.  This is the precise statement; arbitrary time
+translation does not literally preserve the fixed lattice squares.
+
+\LS{2}{4}{This proves $\langle1\rangle5$.}\QedStep
+
+\LS{1}{6}{Transfer CE1 and CE2 to connected cutoff-ground-state semigroup bounds.}
+
+\LS{2}{1}{CE1 and (2.2) at $t=0$ imply}
+\[
+ \sup_T\|Q\widehat\psi_T\|^2\leq C_8\mathfrak n(Q)^2.              \tag{6.1}
+\]
+
+\Because Apply the signed-truncation construction of $\langle2\rangle3$ to $Q$;
+equivalently use $F_1=F_2=|Q|$.  Then the Euclidean integrand is $Q^2$, to
+which CE1 and (5.2) apply.  The weak-graph argument of $\langle1\rangle4$ also gives
+$\Om_g\in D(Q)$.
+
+\LS{2}{2}{For fixed $s\in\R$,}
+\[
+ \int Q(s)\,dq_{h_{T,g}}\longrightarrow\ip{\Om_g}{Q\Om_g}.       \tag{6.2}
+\]
+
+\Because For $T>|s|$, (2.3) gives
+\[
+ \int Q(s)dq_{h_{T,g}}
+ =\ip{\widehat\psi_{T-s}}{Q\psi_{T+s}/\|\psi_T\|}
+   \frac{\|\psi_{T-s}\|}{\|\psi_T\|}.                            \tag{6.3}
+\]
+The first vector tends strongly to $\Om_g$, and the last factor tends to $1$.
+Write the middle vector as
+\[
+ \frac{Q\psi_{T+s}}{\|\psi_T\|}
+ =\frac{\|\psi_{T+s}\|}{\|\psi_T\|}Q\widehat\psi_{T+s}.          \tag{6.4}
+\]
+If $s\geq0$, the scalar ratio in (6.4) is at most $1$.  If $s<0$, it is at
+most $c_g^{-1}$ by (3.2).  Thus (6.4) is bounded in either case.  Every weak
+subsequential limit equals $Q\Om_g$ by weak closedness of the graph and because the
+scalar ratio tends to $1$.  Hence the whole middle vector converges weakly to
+$Q\Om_g$, proving (6.2).  This separate treatment of $s<0$ repairs the false
+inequality $\|\psi_{T+s}\|\leq\|\psi_T\|$ used for both signs in the manuscript.
+
+\LS{2}{3}{For $t\geq0$,}
+\[
+ \ip{Q\Om_g}{e^{-tH(g)}Q\Om_g}
+ \leq\liminf_{T\to\infty}
+ \int Q(-t/2)Q(t/2)\,dq_{h_{T,g}}.                                 \tag{6.5}
+\]
+
+\Because With
+$u_T=Q\psi_{T-t/2}/\|\psi_T\|$, the signed-truncation extension of (2.2) gives
+the exact equality
+\[
+ \int Q(-t/2)Q(t/2)dq_{h_{T,g}}=\|e^{-tH(g)/2}u_T\|^2.             \tag{6.6}
+\]
+The ratio bound (3.2) and (6.1) make $u_T$ bounded.  Write
+$u_T=(\|\psi_{T-t/2}\|/\|\psi_T\|)Q\widehat\psi_{T-t/2}$; the scalar tends to
+$1$ and is uniformly bounded.  From every subsequence choose a further one on
+which $u_T$ converges weakly.  Since
+$\widehat\psi_{T-t/2}\to\Om_g$ strongly, weak closedness of the graph of the
+closed operator $Q$ identifies that weak limit as $Q\Om_g$.  Thus the full net
+converges weakly to $Q\Om_g$.  Boundedness of $e^{-tH/2}$ and weak lower
+semicontinuity of the norm prove (6.5).
+
+\LS{2}{4}{For $t>2$, CE2 implies}
+\[
+ \left|\int Q(-t/2)Q(t/2)dq_h
+ -\int Q(-t/2)dq_h\int Q(t/2)dq_h\right|
+ \leq C_7e^{2m_1}e^{-m_1t}\|Q\|_{\rm GJS}^2.                      \tag{6.7}
+\]
+
+\Because Write the source-prescribed finite localization decomposition as
+$Q=\sum_{a\in A}Q_a$, so that
+$\|Q\|_{\rm GJS}=\sum_a\|Q_a\|_{\rm GJS}$.  The two temporal rows of every
+pair $Q_a(-t/2),Q_b(t/2)$ are separated by a horizontal strip of width at least
+$t-2$.  Therefore CE2 and the triangle inequality give
+\[
+ \begin{split}
+ \left|\operatorname{Cov}_{dq_h}(Q(-t/2),Q(t/2))\right|
+ &\le\sum_{a,b}\left|\operatorname{Cov}_{dq_h}
+       (Q_a(-t/2),Q_b(t/2))\right|\\
+ &\le C_7e^{-m_1(t-2)}\sum_{a,b}
+       \|Q_a\|_{\rm GJS}\|Q_b\|_{\rm GJS}\\
+ &=C_7e^{2m_1}e^{-m_1t}\|Q\|_{\rm GJS}^2.
+ \end{split}
+\]
+This decomposition is required because GJS Theorem 1.1.7 is stated for localized
+monomials; applying it directly to a general $Q$ would be invalid.
+
+\LS{2}{5}{Let
+$\psi_Q=Q\Om_g-\ip{\Om_g}{Q\Om_g}\Om_g$.  Then}
+\[
+ \ip{\psi_Q}{e^{-tH(g)}\psi_Q}
+ \leq\widehat C_Qe^{-m_1t}\qquad(t\geq0),                          \tag{6.8}
+\]
+where
+\[
+ \widehat C_Q=\max\{C_7e^{2m_1}\|Q\|_{\rm GJS}^2,
+                     e^{3m_1}\|\psi_Q\|^2\}.
+\]
+
+\Because For $t>2$, expand the connected expression, use (6.5), then (6.7),
+and use (6.2) for both one-point terms.  Explicitly, if $a_T$ is the connected
+Euclidean difference and $b_T$ the product of one-point functions, then
+\[
+ \liminf_T(a_T+b_T)\leq\sup_T|a_T|+\lim_Tb_T.
+\]
+For $0\leq t\leq3$, positivity of $H(g)$ gives
+$\ip{\psi_Q}{e^{-tH(g)}\psi_Q}\leq\|\psi_Q\|^2
+\leq e^{3m_1}\|\psi_Q\|^2e^{-m_1t}$.
+
+\LS{2}{6}{This proves $\langle1\rangle6$.}\QedStep
+
+\LS{1}{7}{Prove polynomial vectors are dense.}
+
+Define $d\mu_g=|\Om_g|^2d\phi_0$.  Since $\Om_g>0$ almost everywhere,
+multiplication by $\Om_g$ is a unitary map from $L^2(d\mu_g)$ to $\Hh$.
+It therefore suffices to prove that cylinder polynomials are dense in $L^2(d\mu_g)$.
+
+\LS{2}{1}{Every real cylinder variable $X_f=\varphi_0(f)$ has a nonzero
+exponential-moment radius.}
+
+\Because Let $f$ have support in an interval of length $L$, set
+$K'=K_2^2N_I^{1/2}\|f\|_2$, and apply (6.1) to $Q=X_f^n$.  Then
+\[
+ \E_{\mu_g}[X_f^{2n}]
+ \leq C_8K_1(K')^{2n}(2n)!.                                      \tag{7.1}
+\]
+Since $e^{s|x|}\leq2\cosh(sx)$,
+\[
+ \E_{\mu_g}e^{s|X_f|}
+ \leq2\max\{1,C_8K_1\}\sum_{n=0}^\infty(sK')^{2n}<\infty
+ \quad(0\leq s<K'^{-1}).                                         \tag{7.2}
+\]
+The factor $K_1$ in (7.2), omitted in the manuscript, affects only the prefactor,
+not the radius.
+
+\LS{2}{2}{If $\zeta\in L^2(d\mu_g)$ is orthogonal to all cylinder polynomials,
+then its conditional expectation on every finite cylinder sigma-algebra is zero.}
+
+\Because Fix real $e_1,\dots,e_k$ and define
+\[
+ F(z_1,\dots,z_k)=
+ \E_{\mu_g}\left[\overline\zeta\exp\left(\sum_{j=1}^kz_jX_{e_j}\right)\right].
+\]
+By Cauchy--Schwarz, H\"older, and (7.2), $F$ is analytic in a nonempty
+polystrip about $i\R^k$.  Differentiation under the integral is justified by the
+same exponential dominator.  Every derivative at zero is an inner product with a
+polynomial, hence is zero.  Repeated application of the one-variable identity theorem
+gives $F=0$ throughout the connected polystrip, in particular on $i\R^k$.
+Thus the finite complex measure
+\[
+ B\longmapsto\E_{\mu_g}\big[\overline\zeta\,
+ \mathbf1_{\{(X_{e_1},\ldots,X_{e_k})\in B\}}\big]
+\]
+has zero Fourier transform.  Uniqueness of Fourier transforms of finite measures gives
+$\E_{\mu_g}[\zeta\mid\sigma(X_{e_1},\dots,X_{e_k})]=0$.
+
+\LS{2}{3}{A countable increasing family of these finite sigma-algebras exhausts the
+cylinder sigma-algebra.}
+
+\Because Choose $(e_j)$ dense in real $L^2(\R)$.  The free covariance
+$C=(2\sqrt{-\partial_x^2+m_0^2})^{-1}$ is bounded, so
+\[
+ \E_{\phi_0}|X_f-X_e|^2=\ip{f-e}{C(f-e)}\leq\|C\|\|f-e\|_2^2.
+\]
+For an approximating sequence, a subsequence converges $\phi_0$-almost surely and
+hence $\mu_g$-almost surely because $\mu_g\ll\phi_0$.  Therefore every $X_f$ is
+measurable with respect to $\bigvee_k\sigma(X_{e_1},\dots,X_{e_k})$ modulo null sets.
+
+\LS{2}{4}{The martingale convergence theorem now gives $\zeta=0$.}
+
+\Because The conditional expectations in $\langle2\rangle2$ are all zero and converge
+in $L^2$ to the conditional expectation on the exhausted cylinder sigma-algebra, which
+is $\zeta$ itself.  Hence cylinder polynomials, and therefore
+$\Span\{Q\Om_g\}$, are dense.
+
+\LS{2}{5}{This proves $\langle1\rangle7$.}\QedStep
+
+\LS{1}{8}{Deduce the physical Hamiltonian gap (G).}
+
+Fix $0\leq\beta<m_1$ and let $P_\beta=\mathbf1_{[0,\beta]}(H(g))$.
+
+\LS{2}{1}{For every centered polynomial vector $\psi_Q$, $P_\beta\psi_Q=0$.}
+
+\Because The spectral theorem and (6.8) give, for every $t\geq0$,
+\[
+ e^{-\beta t}\|P_\beta\psi_Q\|^2
+ \leq\ip{\psi_Q}{e^{-tH(g)}\psi_Q}
+ \leq\widehat C_Qe^{-m_1t}.
+\]
+Multiply by $e^{\beta t}$ and let $t\to\infty$.  Since $m_1-\beta>0$,
+$\|P_\beta\psi_Q\|=0$.
+
+\LS{2}{2}{$P_\beta\Om_g=\Om_g$.}
+
+\Because $H(g)\Om_g=0$ and $0\in[0,\beta]$.
+
+\LS{2}{3}{$P_\beta=|\Om_g\rangle\langle\Om_g|$.}
+
+\Because By $\langle1\rangle7$, the complex span of $\Om_g$ and the centered
+polynomial vectors is dense.  Steps $\langle2\rangle1$--$\langle2\rangle2$ show that
+$P_\beta$ maps this dense subspace into $\C\Om_g$.  Continuity of the bounded
+projection extends this containment to all of $\Hh$, while
+$P_\beta\Om_g=\Om_g$ shows its range is exactly that line.
+
+\LS{2}{4}{There is no spectrum in $(0,m_1)$.}
+
+\Because If an open interval $J\Subset(0,m_1)$ had a nonzero spectral projection,
+choose $\beta<m_1$ above its right endpoint.  Then
+$\mathbf1_J(H(g))\leq P_\beta-|\Om_g\rangle\langle\Om_g|=0$, a contradiction.
+Thus $\spec H(g)\subseteq\{0\}\cup[m_1,\infty)$; simplicity was imported in
+Assumption \ref{ass:cutoff}.
+
+\LS{2}{5}{This proves (G), hence Theorem \ref{thm:EG}.}\QedStep
+
+\section{Audit map back to the manuscript}
+
+\begin{longtable}{P{1.8cm}P{3.0cm}P{4.5cm}P{5.0cm}}
+\toprule
+Location & Defect & Why the written step fails & Exact correction above\\
+\midrule
+\endhead
+lines 305, 536 & wrong source & Simon III.12 is a projection-product estimate, not FKN. &
+Assumption \ref{ass:fkn}; use Simon III.6 and V.14--V.15 or GRS II.14, II.16.\\
+line 352 & positivity hypothesis unstated & The slab lemma requires each $F_i\geq0$, not merely $F_1F_2\geq0$. &
+$\langle1\rangle4\langle2\rangle5$: $F_1=F_2=|V(h)|$.\\
+lines 376--377 & false cell count & A length-$L$ interval can meet more than $L+1$ unit cells. &
+$\langle1\rangle5$: use $N_I\leq\lfloor L\rfloor+2\leq L+2$.\\
+lines 404--420 & incomplete unbounded passage & Signed observables are outside the stated nonnegative FKN lemma. &
+$\langle1\rangle2\langle2\rangle2$--$\langle2\rangle3$ and
+$\langle1\rangle6$: signed truncations plus an explicit $L^2$ dominator.\\
+line 412 & false for $s<0$ & $\|\psi_{T+s}\|\leq\|\psi_T\|$ holds only for $s\geq0$. &
+$\langle1\rangle6\langle2\rangle2$: split the two signs and use the bound $c_g^{-1}$.\\
+line 455 & missing factor & $C_8K_1$ cannot disappear from the moment series. &
+$\langle1\rangle7\langle2\rangle1$: keep it outside the geometric series.\\
+line 484 & missing range restriction & $P_{[0,\beta]}\Om_g=\Om_g$ is false for $\beta<0$. &
+$\langle1\rangle8$: state $0\leq\beta<m_1$.\\
+standing assumption & scaling suppressed & The source smallness conditions are dimensional until scaling is written. &
+$\langle1\rangle1$: exact dilation and definition of $\varepsilon_{\mathscr P}$.\\
+\bottomrule
+\end{longtable}
+
+\section{Logical conclusion}
+
+The argument establishes (M) and (G) for every cutoff $g$, with constants independent
+of $g$, conditional on the enumerated construction facts and the GJS estimates.  None of
+the identified defects forces a change in the claimed gap $m_1$ or in the qualitative
+local-moment conclusion; each is repaired explicitly above.  The proof does not establish
+the GJS estimates, cutoff-Hamiltonian self-adjointness, ground-state simplicity, or FKN;
+those remain imported theorems and must not be hidden by the phrase ``conditional only on
+GJS Theorems 1.1.7--1.1.8.''
+
+\end{document}

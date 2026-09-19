@@ -1,0 +1,385 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Om}{\Omega}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\spec}{spec}
+
+\title{On (H6): the local second moment of the interaction density\\
+\large what the gap cannot do, and how much less than (H6) suffices}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+(H6) asks for $\sup_{g}\|V_B\Om_g\|<\infty$, $V_B$ a local Wick polynomial. \textbf{I do not have
+a proof.} This note contributes three things.
+
+\smallskip
+\noindent\textbf{(1) A negative result: the gap is the wrong tool, for an ultraviolet reason.}
+The two natural gap-based routes are \emph{vacuous}. Both pass through quantities that are
+UV divergent while $\|V_B\Om_g\|$ itself is finite. The $f$-sum rule gives
+$\ip{V_B\Om_g}{H(g)V_B\Om_g}=\tfrac12\,\omega_g\bigl([V_B,[H_0,V_B]]\bigr)$ --- note the double
+commutator is \emph{$g$-independent}, because $[V(g),V_B]=0$ --- and equals
+$\tfrac12\omega_g\bigl(\int h^2(:\!P'(\varphi)\!:)^2\bigr)$, a Wick square at coincident points.
+In the free case it diverges logarithmically; verified numerically (\S\ref{sec:neg}).
+
+\smallskip
+\noindent\textbf{(2) A positive result: (H6) can be weakened to (H6$'$), uniform
+$L^{1+\delta}$.} Truncating $V_B$ at height $M$ and using that the \emph{exact light cone} makes
+the truncation tail \emph{commute} with $\alpha_t(A)$ for $|t|<R$, one needs only a first moment
+of the tail. This costs a factor $\delta/(1+\delta)$ in the clustering rate
+(Theorem~\ref{thm:trunc}). A first moment alone --- which \emph{is} available, uniformly, from
+Guerra--Rosen--Simon --- is not enough; uniform integrability is exactly what is missing.
+
+\smallskip
+\noindent\textbf{(3) A sharp identification of what remains.} Via H\"older and Nelson
+hypercontractivity, (H6$'$) follows from a uniform local $L^q$ bound on the ground-state density
+for \emph{some} $q>1$, i.e.\ from Problem~1 of \cite{GRS75} verbatim; and via localised $N_\tau$
+estimates, (H6) follows from the $\deg P$-th moment of the local number operator, strictly
+stronger than (H2)-full's first moment (\S\ref{sec:red}).
+\end{abstract}
+
+\section{Setting; (H6) in $Q$-space}
+
+Notation as in \cite{M0,M1,M3}. Let $h\in C_c^\infty(B)$, $|h|\le1$, and
+\[
+  V_B:=\int_B h(x)\,{:}P(\varphi_0(x)){:}\,dx ,
+\]
+a symmetric operator affiliated to $\A(B)$. In the $Q$-space representation $V_B$ is a
+\emph{multiplication} operator and $d\mu_g:=\Om_g^2\,d\varphi_0$ is a probability measure, so
+\begin{equation}\label{eq:qspace}
+  \|V_B\Om_g\|^2=\mathbb E_{\mu_g}\bigl[V_B^2\bigr],
+\end{equation}
+and (H6) reads: \emph{the second moment of a fixed local random variable is bounded uniformly in
+the cutoff}. For each fixed $g$ it is finite, since $\Om_g\in L^p(Q,d\varphi_0)$ for all
+$p<\infty$ and $V_B\in L^p$ for all $p<\infty$ by Nelson's hypercontractive bound; only the
+uniformity in $g$ is at stake.
+
+Two facts are available \emph{uniformly} in $g$ and will be used repeatedly:
+\begin{enumerate}
+\item[\textbf{(F$_1$)}] \emph{Uniform first moment.} By \cite[Thm.~2]{GRS72}, $\pm V_B\le\varepsilon
+      H(g)+c(B)$ with $c$ independent of $g$; taking $\omega_g$ and using $H(g)\Om_g=0$,
+      $|\omega_g(V_B)|\le c(B)$, and moreover
+      $\|(H(g)+c)^{-1/2}V_B(H(g)+c)^{-1/2}\|\le1+\varepsilon$.
+\item[\textbf{(F$_2$)}] \emph{Uniform local excitation energy.} $\|H(g)^{1/2}A\Om_g\|^2
+      =-i\,\omega_g(A^*\delta(A))$ by \cite[Lem.~2.1]{M0}, bounded uniformly in $g$ for $A$ in the
+      class covered by the $\varphi$-bound of \cite{GJIV}.
+\end{enumerate}
+
+\section{The gap cannot prove (H6)}\label{sec:neg}
+
+\begin{proposition}[$f$-sum rule; the double commutator is $g$-independent]\label{prop:fsum}
+For symmetric $X$ with $X\Om_g\in D(H(g)^{1/2})$,
+\[
+  \ip{X\Om_g}{H(g)X\Om_g}=\tfrac12\,\omega_g\bigl([X,[H(g),X]]\bigr).
+\]
+If $X=V_B$ then, because $V_B$ and the interaction $V(g)$ are both functions of $\varphi_0$ alone
+and hence commute,
+\[
+  [V_B,[H(g),V_B]]=[V_B,[H_0,V_B]]=\int h(y)^2\bigl({:}P'(\varphi_0(y)){:}\bigr)^2dy .
+\]
+\end{proposition}
+
+\begin{proof}
+$H(g)\Om_g=0$ gives $\omega_g([X,[H,X]])=2\ip{X\Om_g}{HX\Om_g}$ directly. For the second claim,
+$[V(g),V_B]=0$ and $[E(g),V_B]=0$, so only $H_0$ contributes; only the $\tfrac12\int{:}\pi^2{:}$
+term of $H_0$ fails to commute with a function of $\varphi_0$. With
+$[\,V_B,\pi(y)]=i\,h(y){:}P'(\varphi_0(y)){:}$ one computes
+$[H_0,V_B]=-\tfrac i2\int h(y)\bigl(\pi(y){:}P'{:}+{:}P'{:}\pi(y)\bigr)dy$ and then the stated
+identity.
+\end{proof}
+
+Combining Proposition~\ref{prop:fsum} with the gap $H(g)\ge\gamma(1-P_g)$ gives the tempting
+\begin{equation}\label{eq:tempting}
+  \|V_B\Om_g\|^2\ \le\ \omega_g(V_B)^2+\frac{1}{2\gamma}\,
+  \omega_g\Bigl(\int h^2\bigl({:}P'(\varphi_0){:}\bigr)^2\Bigr),
+\end{equation}
+whose first term is uniformly bounded by (F$_1$) and whose second term is $g$-independent. This
+looks like a proof of (H6). It is not.
+
+\begin{proposition}[the bound is vacuous]\label{prop:vacuous}
+The right-hand side of \eqref{eq:tempting} is $+\infty$. Already for $P(\xi)=\xi^2$ and the Fock
+vacuum,
+\[
+  \ip{V_B\Om_0}{H_0V_B\Om_0}\;=\;c\!\int\!\!\int
+  |\hat h(k_1+k_2)|^2\,\frac{\mu(k_1)+\mu(k_2)}{\mu(k_1)\mu(k_2)}\,dk_1dk_2\;=\;+\infty ,
+\]
+logarithmically divergent, while $\|V_B\Om_0\|^2=c\iint|\hat h(k_1+k_2)|^2(\mu_1\mu_2)^{-1}<\infty$.
+\end{proposition}
+
+\begin{proof}
+$V_B\Om_0$ is the two-particle vector with kernel $\propto\hat h(k_1+k_2)(\mu_1\mu_2)^{-1/2}$.
+Writing $K=k_1+k_2$, the norm integral is $\int|\hat h(K)|^2\!\int dk\,(\mu(k)\mu(K-k))^{-1}$,
+convergent since the inner integrand is $O(k^{-2})$; the energy integral is
+$\int|\hat h(K)|^2\!\int dk\,(\mu(k)^{-1}+\mu(K-k)^{-1})$, whose inner integrand is $O(|k|^{-1})$.
+\end{proof}
+
+\emph{Numerical confirmation} ($m=1$, $|\hat h(K)|^2=e^{-K^2/2}$, symmetric cutoff $|k_i|\le\Lambda$):
+
+\begin{center}
+\begin{tabular}{rrr}
+\toprule
+$\Lambda$ & $\|V_B\Om_0\|^2$ & $\ip{V_B\Om_0}{H_0V_B\Om_0}$\\
+\midrule
+$20$  & $7.2493$ & $36.79$\\
+$80$  & $7.4419$ & $50.84$\\
+$320$ & $7.4892$ & $64.78$\\
+$640$ & $7.4970$ & $71.73$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The norm saturates; the energy increases by $\approx6.96$ per doubling of $\Lambda$ --- exactly
+logarithmic.
+
+\begin{remark}[the resolvent route fails identically]
+From $H(g)V_B\Om_g=[H_0,V_B]\Om_g$ one gets
+$\|(1-P_g)V_B\Om_g\|\le\gamma^{-1}\|[H_0,V_B]\Om_g\|$; but $\|[H_0,V_B]\Om_0\|=\infty$ by the same
+computation. Vacuous again.
+\end{remark}
+
+\begin{remark}[diagnosis]\label{rem:diag}
+$\|V_B\Om_g\|^2$ is \emph{ultraviolet}-sensitive: in $Q$-space it is
+$\mathbb E_{\mu_g}[V_B^2]$, and the Wick reordering
+${:}P(\varphi(x)){:}{:}P(\varphi(y)){:}=\sum_k\frac{C(x-y)^k}{k!}
+{:}P^{(k)}(\varphi(x))P^{(k)}(\varphi(y)){:}$ makes it depend on the short-distance behaviour
+$C(x-y)\sim-\tfrac1{2\pi}\log|x-y|$. The spectral gap is an \emph{infrared} object. Any argument
+routed through $H(g)^{-1}(1-P_g)$ or through a double commutator discards the Wick-ordering
+structure and produces a divergent majorant. \textbf{The tools that can work are
+hypercontractivity, $N_\tau$ estimates and local $L^p$ bounds --- not the gap.}
+\end{remark}
+
+\section{(H6) can be weakened to (H6$'$)}\label{sec:trunc}
+
+\begin{hypothesis}[(H6$'$)]\label{hyp:H6p}
+There are $\delta>0$ and $c_\delta(B)<\infty$ with
+$\displaystyle\sup_{g\in\mathcal G}\ \mathbb E_{\mu_g}\bigl[|V_B|^{1+\delta}\bigr]\le c_\delta(B)$.
+\end{hypothesis}
+
+The point of the next theorem is that the \emph{exact light cone} makes the truncation tail
+commute with the evolved observable, so that only a \emph{first} moment of the tail is needed
+where a Cauchy--Schwarz step would have demanded a second.
+
+\begin{theorem}[truncation]\label{thm:trunc}
+Let $A\in\A(O)$, $R:=\dist(O,B)>0$, and let $g$ satisfy $d(g,O)>R$ and
+$\spec H(g)\subseteq\{0\}\cup[\gamma,\infty)$. Put
+$\Psi(t):=\omega_g\bigl(V_B\alpha_t(A)\bigr)-\omega_g(V_B)\omega_g(A)$. Assume (H6$'$). Then for
+all $|t|<R$,
+\[
+  |\Psi(t)|\ \le\ 2\bigl(1+c_\delta(B)\bigr)\|A\|\;e^{-\gamma'\,(R-|t|)},
+  \qquad \gamma':=\frac{\gamma\,\delta}{2(1+\delta)} .
+\]
+\end{theorem}
+
+\begin{proof}
+Fix $M>0$ and set $V^{(M)}:=V_B\mathbf 1_{\{|V_B|\le M\}}\in\A(B)$, a bounded multiplication
+operator with $\|V^{(M)}\|\le M$, and $Y:=V_B-V^{(M)}=V_B\mathbf 1_{\{|V_B|>M\}}$. Write
+$Y=Y_+-Y_-$ with $Y_\pm\ge0$, both affiliated to $\A(B)$.
+
+\emph{Step 1 (the tail costs only a first moment).} Let $|t|<R$. By the exact light cone
+\cite[Fact~1.3(i)]{M0}, $\alpha_t(A)\in\A(O_{|t|})$ and $O_{|t|}\cap B=\emptyset$, so
+$\alpha_t(A)$ commutes with $Y_\pm$ and hence with $Y_\pm^{1/2}$. Therefore
+\[
+  \bigl|\ip{Y_\pm\Om_g}{\alpha_t(A)\Om_g}\bigr|
+  =\bigl|\ip{Y_\pm^{1/2}\Om_g}{\alpha_t(A)\,Y_\pm^{1/2}\Om_g}\bigr|
+  \le\|A\|\,\bigl\|Y_\pm^{1/2}\Om_g\bigr\|^2=\|A\|\,\mathbb E_{\mu_g}[Y_\pm].
+\]
+Adding the two signs and the disconnected term,
+\[
+  \bigl|\Psi(t)-\Psi^{(M)}(t)\bigr|\ \le\ 2\|A\|\;\mathbb E_{\mu_g}\bigl[|V_B|\mathbf 1_{\{|V_B|>M\}}\bigr]
+  \ \le\ 2\|A\|\,c_\delta(B)\,M^{-\delta},
+\]
+the last step by $|V_B|\mathbf 1_{\{|V_B|>M\}}\le|V_B|^{1+\delta}M^{-\delta}$ and (H6$'$). Here
+$\Psi^{(M)}$ is $\Psi$ with $V_B$ replaced by $V^{(M)}$.
+
+\emph{Step 2 (clustering for the bounded part).} $V^{(M)}\in\A(B)$ and $A\in\A(O)$ with
+$\dist(O,B)=R$; the argument of \cite[Thm.~2.3]{M3} applied at separation $R-|t|$ gives
+$|\Psi^{(M)}(t)|\le2M\|A\|e^{-\gamma(R-|t|)/2}$.
+
+\emph{Step 3 (optimise).} Choose $M:=\exp\bigl(\tfrac{\gamma(R-|t|)}{2(1+\delta)}\bigr)$. Then
+$Me^{-\gamma(R-|t|)/2}=M^{-\delta}=e^{-\gamma'(R-|t|)}$, and adding the two bounds gives the claim.
+\end{proof}
+
+\begin{remark}[a first moment is \emph{not} enough]
+(F$_1$) supplies $\sup_g\mathbb E_{\mu_g}[|V_B|]<\infty$ uniformly. That alone does not bound
+$\mathbb E_{\mu_g}[|V_B|\mathbf 1_{\{|V_B|>M\}}]$ uniformly in $g$: what is required is
+\emph{uniform integrability} of the family $\{V_B\}$ under $\{\mu_g\}$, and (H6$'$) is precisely
+the standard sufficient condition for it. So the gap between what is known and what is needed is
+exactly ``$L^1$ uniformly'' versus ``$L^{1+\delta}$ uniformly''.
+\end{remark}
+
+\begin{lemma}[the far-time regime needs nothing new]\label{lem:fartime}
+For all $t\in\R$, $|\Psi(t)|\le K(A):=\sqrt c\,(1+\varepsilon)\bigl(\|(H(g)+c)^{1/2}A\Om_g\|
++\sqrt c\,\|A\|\bigr)$, uniformly in $g$ and $t$.
+\end{lemma}
+
+\begin{proof}
+$\Psi(t)=\ip{\Om_g}{V_B\bigl(\alpha_t(A)-\omega_g(A)\bigr)\Om_g}$; insert
+$(H+c)^{\pm1/2}$ on both sides of $V_B$ and use (F$_1$), $\|(H+c)^{1/2}\Om_g\|=\sqrt c$, and
+$\|(H+c)^{1/2}\alpha_t(A)\Om_g\|=\|(H+c)^{1/2}e^{itH}A\Om_g\|=\|(H+c)^{1/2}A\Om_g\|$, which is
+$t$-independent and uniformly bounded by (F$_2$).
+\end{proof}
+
+Theorem~\ref{thm:trunc} and Lemma~\ref{lem:fartime} together supply exactly the two regimes the
+M4 estimate needs, with (H6) replaced by (H6$'$) and no other new input.
+
+\section{What (H6$'$) still requires}\label{sec:red}
+
+\begin{proposition}\label{prop:red}
+Let $\mu_g^B,\varphi_0^B$ denote the restrictions to the $\sigma$-algebra generated by the field in
+$B$. If for some $q>1$
+\begin{equation}\label{eq:P1}
+  \sup_{g\in\mathcal G}\ \Bigl\|\frac{d\mu_g^B}{d\varphi_0^B}\Bigr\|_{L^q(\varphi_0^B)}<\infty ,
+\end{equation}
+then \textup{(H6$'$)} holds for every $\delta>0$; and if \eqref{eq:P1} holds for some $q>2$ then
+\textup{(H6)} holds.
+\end{proposition}
+
+\begin{proof}
+$V_B$ is $\A(B)$-measurable, so $\mathbb E_{\mu_g}[|V_B|^{r}]=\mathbb E_{\mu_g^B}[|V_B|^{r}]$.
+By H\"older with $1/p+1/q=1$,
+$\mathbb E_{\mu_g^B}[|V_B|^{r}]\le\||V_B|^{r}\|_{L^p(\varphi_0^B)}\,\|d\mu_g^B/d\varphi_0^B\|_{L^q}$,
+and $\||V_B|^r\|_{L^p(\varphi_0)}=\|V_B\|_{L^{rp}(\varphi_0)}^r<\infty$ for every $rp<\infty$ by
+Nelson's hypercontractive bound, with a constant depending only on $B,P$ and not on $g$.
+\end{proof}
+
+\begin{remark}[this is GRS Problem 1, verbatim]
+\eqref{eq:P1} is Problem~1 of \cite[p.~125]{GRS75}: ``prove that for some fixed $p>1$,
+$\|\nu_{\Lambda\Lambda'}\|_p$ is bounded independently of $\Lambda'$'', with the conjecture
+$\log\|\nu_{\Lambda\Lambda'}\|_p=O(|\Lambda|)$. GRS observe that such a bound would re-prove the
+locally Fock property and give the infinite-volume equal-time vacuum expectation values. So
+(H6$'$) is not a new problem; it is a fifty-year-old one, and Theorem~\ref{thm:trunc} shows the
+weakest form of it ($q>1$, arbitrarily close to $1$) already suffices for M4.
+\end{remark}
+
+\begin{remark}[the $N_\tau$ route, for comparison]
+The localised $N_\tau$ estimates of \cite[(3.2.9), (4.19)]{GJIII} give
+$\|V_B\Om_g\|\le\text{const}\cdot\|w_B\|\cdot\|(N_{B'}+I)^{n/2}\Om_g\|$ for a degree-$n$ Wick
+monomial, so (H6) follows from $\sup_g\omega_g\bigl(N_{B'}^{\,n}\bigr)<\infty$ with
+$n=\deg P$ --- the $\deg P$-th moment of the local number operator, strictly stronger than
+(H2)-full's first moment. This route is therefore worse than Proposition~\ref{prop:red}.
+\end{remark}
+
+\section{Status and what I would try next}
+
+\begin{itemize}
+\item \textbf{Proved:} the gap-based routes are vacuous, for an ultraviolet reason
+      (Props.~\ref{prop:fsum}--\ref{prop:vacuous}, Rem.~\ref{rem:diag}); (H6) may be replaced by
+      the strictly weaker (H6$'$) at a rate cost $\delta/(1+\delta)$ (Thm.~\ref{thm:trunc}); the
+      far-time regime needs no new input (Lem.~\ref{lem:fartime}).
+\item \textbf{Not proved:} (H6$'$). It is implied by, and appears to need, a uniform local $L^q$
+      bound on the ground-state density with $q>1$ --- GRS Problem~1.
+\item \textbf{Most promising input.} Bauerschmidt--Dagallier's log-Sobolev inequality for the
+      $\varphi^4_2$ measure is uniform in the volume \emph{and} in the lattice regularisation.
+      LSI is stable under marginalisation, so a uniform LSI for the space-cutoff Euclidean measure
+      $\nu_g$ descends to its time-zero marginal $\mu_g$; and an LSI yields Gaussian concentration
+      for suitable functionals, which is the natural source of uniform $L^{1+\delta}$ bounds on a
+      fixed local $V_B$. Whether this can be pushed to \eqref{eq:P1}, or directly to (H6$'$) for
+      Wick polynomials rather than Lipschitz functions, is the concrete question. It is already on
+      the M5 critical path, so the cost of checking is shared.
+\end{itemize}
+
+\section{Two candidate routes to (H6$'$), and a pattern}\label{sec:routes}
+
+\subsection*{Route~1: Gaussian domination of moments --- blocked exactly at Wick powers}
+
+For even $P$ in the Griffiths--Simon class the lattice approximation is a genuine ferromagnet
+\cite[\S IV.4]{GRS75}, and there the machinery exists: Sylvester \cite{Syl75} and Shlosman
+\cite{Shl86} give the signs of the Ursell functions ($u_{2n}\le0$ for $n\ge2$), and Newman
+\cite{New75}, Ellis--Monroe--Newman \cite{EMN76} convert these into \emph{Gaussian upper bounds}
+\[
+  \langle\varphi_{x_1}\cdots\varphi_{x_{2n}}\rangle\ \le\
+  \sum_{\text{pairings}}\ \prod\langle\varphi\varphi\rangle .
+\]
+If such a bound survived to the continuum, (H6) would follow \emph{outright}, and with the
+\emph{free-field} value as the uniform constant:
+$\mathbb E_{\mu_g}[V_B^2]\le\mathbb E_{\varphi_0}[V_B^2]=(\deg P)!\iint h\,h\,C^{\deg P}<\infty$,
+finite because $C(x-y)\sim-\tfrac1{2\pi}\log|x-y|$ is locally $L^p$ for every $p$ in one dimension.
+
+\textbf{The obstruction is the Wick subtraction, and it is documented.} On the lattice there is no
+Wick ordering; in the continuum limit the counterterms subtract $C_\varepsilon(0)\sim\log(1/\varepsilon)$,
+and an \emph{inequality} does not survive subtracting a divergent quantity from both sides. This is
+exactly the complaint of \cite[\S V.3]{GRS75}: ``the fact that the interaction involves Wick powers
+limits the applicability of the correlation inequalities \dots we are able to handle only a single
+quadratic power ${:}\varphi^2{:}$''; and the situation has not materially changed.
+
+\emph{The concrete sub-problem}, therefore: does the Gaussian bound survive Wick subtraction, given
+$\langle\varphi(x)^2\rangle_g\le C(0)$ (expected for repulsive $P$)? This is a finite combinatorial
+question --- matching counterterms on the two sides of the inequality --- not an analytic one, and
+is worth an afternoon.
+
+\subsection*{Route~2: chessboard estimates --- and a synergy with M1}
+
+Multiple-reflection (chessboard) estimates in the sense of Fr\"ohlich--Israel--Lieb--Simon convert a
+\emph{local} expectation into a universal bound controlled by the \emph{pressure}, and the pressure
+is uniformly bounded here: $-MV\le E_g\le0$ \cite[Thm.~5.1]{GJIII} and $\alpha(l)\uparrow\alpha_\infty<\infty$
+\cite[Thm.~1]{GRS72}. This route does not care about Wick powers in the way Route~1 does.
+
+\emph{Tension:} reflection positivity requires the cutoff to respect the reflection hyperplanes,
+which a generic $g$ does not. \emph{Resolution:} by \cite[Thm.~3.3]{M1} we are free to choose the
+cofinal family --- the Chebyshev selection already exploits that freedom --- so one may take
+reflection-symmetric or periodic cutoffs. This is a genuine opening and costs nothing structurally.
+
+\subsection*{Dead ends, recorded so they are not repeated}
+
+\begin{enumerate}
+\item \emph{Interpolating from the first moment.} $\mathbb E[|V|^{1+\delta}]\le
+      \mathbb E[|V|]^{1-\theta}\mathbb E[|V|^{r}]^{\theta}$ needs a higher moment: circular.
+\item \emph{\cite[Thm.~2]{GRS72} with $Q=\pm\varepsilon P^2$.} $P+\varepsilon P^2$ is semibounded, so one
+      obtains only $\omega_g(\int h{:}P^2(\varphi){:})\ge-c/\varepsilon$ --- a \emph{lower} bound.
+      $P-\varepsilon P^2$ is not semibounded, so the theorem gives no upper bound. (And
+      $\int h{:}P^2{:}\ne V_B^2$ in any case.)
+\item \emph{Euclidean conditioning.} Writing the local density via the Markov property produces an
+      uncontrolled boundary functional --- that \emph{is} Problem~1.
+\item \emph{The spectral gap.} Dead, for the ultraviolet reason of \S\ref{sec:neg}.
+\end{enumerate}
+
+\subsection*{A pattern worth noticing}
+
+Correlation inequalities are available for ${:}\varphi^2{:}$ and no further. That is the same
+boundary as M2's solvable model (quadratic $P$), and the same boundary as the FKG/Daubechies
+dichotomy of the wavelet programme (ferromagnetic structure at $K=1$, lost for $K\ge2$). Three
+independent places where the difficulty is exactly \emph{``positivity is available at the bottom of
+the hierarchy and lost above''}. This is evidence that the log-Sobolev / Polchinski route --- which
+does not require positivity --- is the structurally correct bet, and it is already the M5 plan.
+
+\begin{thebibliography}{9}
+\bibitem{M0} Milestone M0, \texttt{../m0/m0.tex}.
+\bibitem{M1} Milestone M1, \texttt{../m1/m1.tex}.
+\bibitem{M3} Milestone M3, \texttt{../m3/m3.tex}.
+\bibitem{GJIII} J.~Glimm and A.~Jaffe, Acta Math.\ \textbf{125} (1970) 203--261.
+\bibitem{GJIV} J.~Glimm and A.~Jaffe, J.\ Math.\ Phys.\ \textbf{13} (1972) 1568--1584.
+\bibitem{GRS72} F.~Guerra, L.~Rosen and B.~Simon, Comm.\ Math.\ Phys.\ \textbf{27} (1972) 10--22.
+\bibitem{GRS75} F.~Guerra, L.~Rosen and B.~Simon, Ann.\ of Math.\ \textbf{101} (1975) 111--189,
+191--259.
+\bibitem{Syl75} G.~S.~Sylvester, \emph{Representations and inequalities for Ising model Ursell
+functions}, Comm.\ Math.\ Phys.\ \textbf{42} (1975) 209--220.
+\bibitem{Shl86} S.~B.~Shlosman, \emph{Signs of the Ising model Ursell functions}, Comm.\ Math.\
+Phys.\ \textbf{102} (1986) 679--686.
+\bibitem{New75} C.~M.~Newman, \emph{Gaussian correlation inequalities for ferromagnets},
+Z.\ Wahrsch.\ Verw.\ Gebiete \textbf{33} (1975) 75--93.
+\bibitem{EMN76} R.~S.~Ellis, J.~L.~Monroe and C.~M.~Newman, \emph{The GHS and other correlation
+inequalities for a class of even ferromagnets}, Comm.\ Math.\ Phys.\ \textbf{46} (1976) 167--182.
+\end{thebibliography}
+
+\end{document}

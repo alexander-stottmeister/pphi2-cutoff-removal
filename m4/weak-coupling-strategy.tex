@@ -1,0 +1,504 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.8cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,hypertexnames=false]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\Hh}{\mathcal H_0}
+\newcommand{\Om}{\Omega}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\E}{\mathbb E}
+\newcommand{\CE}{\mathrm{CE}}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\dist}{dist}
+
+\title{A rigorous weak-coupling strategy for the two remaining inputs\\
+in the continuum $P(\varphi)_2$ cutoff problem}
+\author{}
+\date{8 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The corrected continuum LPPL theorem in \texttt{lppl.tex} has exactly two open inputs: a
+Hamiltonian gap uniform in the spatial cutoff and a uniform local second moment of the
+interaction density.  This note gives a single source-backed strategy for both inputs in a
+precisely specified weak-coupling regime.  The required source estimates are the cutoff-uniform
+cluster and polynomial-moment estimates of Glimm--Jaffe--Spencer.  We state those estimates in the
+form actually needed, prove the Euclidean-slab-to-ground-state transfer, derive an explicit
+uniform bound for the local second moment, prove density of the cylinder vectors, and then derive
+the physical Hamiltonian gap by the spectral theorem.  Thus the remaining work is not a new
+spectral-gap argument: it is a finite source-scope audit and a careful normalization check.
+No stochastic-quantisation gap or change of Dirichlet form occurs.
+\end{abstract}
+
+\section{Regime and exact target}
+
+Fix a real semibounded polynomial
+\[
+ \mathscr P(\xi)=\sum_{n=0}^{p}a_n\xi^n,
+ \qquad p\ \text{even},\quad a_p>0,
+\]
+a free mass $m_0>0$, and a coupling $\lambda\ge0$.  Set
+$\mathcal G_0:=C_c^\infty(\R;[0,1])$.  For $g\in\mathcal G_0$, put
+\[
+ K_g=H_0(m_0)+\lambda W(g),\qquad
+ W(f)=\int_\R f(x):\mathscr P(\varphi_0(x)):\,dx,
+\]
+and let $E_g=\inf\spec K_g$, $H_g=K_g-E_g$.  Its normalized positive ground
+state is $\Om_g$ and $P_g=|\Om_g\rangle\langle\Om_g|$.
+
+The weak-coupling regime is the following quantified statement:
+\begin{equation}\label{eq:wc}
+ 0\le \frac{\lambda}{m_0^2}<\varepsilon_{\mathscr P},                 \tag{WC}
+\end{equation}
+where $\varepsilon_{\mathscr P}>0$ is the constant furnished by the norm-decreasing
+cluster expansion in \cite[Thms.~1.1.7--1.1.8]{GJS}.  The statement ``weak coupling'' below
+always means \eqref{eq:wc}; it never means an unspecified neighbourhood.
+
+Define the exact test-function class
+\[
+ \mathcal F_2:=\{f\in C_c^\infty(\R;\R):\|f\|_\infty\le1
+ \text{ and }\supp f\subset I\text{ for some interval }I\text{ with }|I|\le2\}.
+\]
+The two estimates to prove are
+\begin{align}
+ \spec H_g&\subseteq\{0\}\cup[\gamma_*,\infty)
+ &&\text{for every }g,                                             \tag{G}\label{eq:G}\\
+ \sup_{g\in\mathcal G_0,\ f\in\mathcal F_2}
+ \|\lambda W(f)\Om_g\|^2&<\infty .                               \tag{M$_2$}\label{eq:M2}
+\end{align}
+
+\section{The published cutoff-uniform input}
+
+Let $\mu_0^{(2)}$ be the massive free Euclidean field measure on $\mathcal S'(\R^2)$.
+For every measurable compactly supported $h:\R^2\to[0,1]$, define
+\[
+ d\nu_h=Z_h^{-1}\exp\left[-\lambda\int_{\R^2}
+ h(z):\mathscr P(\Phi(z)):\,dz\right]d\mu_0^{(2)}.
+\]
+Glimm--Jaffe--Spencer use unit-square localizations and a norm
+$\|\cdot\|_{\CE}$ on sharp-time polynomial observables.  For a localized monomial of local
+degrees $N(\Delta)$ and smearing kernel $w$, their norm has the form
+\begin{equation}\label{eq:CEnorm}
+ \|Q\|_{\CE}=K_1
+ \left(\prod_\Delta K_2^{2N(\Delta)}N(\Delta)!\right)\|w\|_2,       \tag{2.1}
+\end{equation}
+and a general polynomial is assigned the sum of the norms of its localized pieces.
+
+The source input is exactly:
+
+\begin{hypothesis}[GJS cutoff-uniform estimates]\label{hyp:CE}
+Under \eqref{eq:wc}, there are $C_{\CE}<\infty$ and $m_{\CE}>0$, independent of
+$h$, such that:
+\begin{enumerate}
+\item for every sharp-time polynomial $Q$ in the class of
+\cite[(1.1.5)--(1.1.9)]{GJS},
+\begin{equation}\label{eq:CEmoment}
+ |\nu_h(Q)|\le C_{\CE}\|Q\|_{\CE};                                \tag{CE1}
+\end{equation}
+\item if $Q_1,Q_2$ have unit-square localizations separated by a strip of width $d$, then
+\begin{equation}\label{eq:CEcluster}
+ |\nu_h(Q_1Q_2)-\nu_h(Q_1)\nu_h(Q_2)|
+ \le C_{\CE}e^{-m_{\CE}d}\|Q_1\|_{\CE}\|Q_2\|_{\CE}.             \tag{CE2}
+\end{equation}
+\end{enumerate}
+\end{hypothesis}
+
+Estimate \eqref{eq:CEcluster} is Theorem~1.1.7 of \cite{GJS}, whose statement explicitly says
+that its constants are independent of $h,Q_1,Q_2$.  Estimate \eqref{eq:CEmoment} is
+Theorem~1.1.8; in the proof it is the $B=1,n=0$ case of Theorem~1.1.11, whose error estimate is
+explicitly uniform in $h$.  The allowed cutoff in \cite[(1.8)]{GJS} is an arbitrary compactly
+supported function $0\le h\le1$, not merely a rectangle.  These three source clauses are the
+load-bearing scope checks.
+
+\section{From a Euclidean slab to the cutoff ground state}
+
+Let $\Om_0$ be the free Fock vacuum.  For $T>0$ define
+\[
+ h_{T,g}(t,x)=\mathbf1_{[-T,T]}(t)g(x),\qquad \nu_{T,g}:=\nu_{h_{T,g}}.
+\]
+The characteristic function is admissible in the measurable-cutoff formulation of
+\cite[(1.8)]{GJS}.  In fact, immediately after (1.8) the source itself takes
+$h_j(t,x)=g(x)\chi_{[-j,j]}(t)$; no limiting argument from smooth time cutoffs is required.
+
+\begin{lemma}[one-time slab transfer]\label{lem:one}
+For every bounded time-zero multiplication operator $A$,
+\[
+ \nu_{T,g}(A)=\langle\psi_{T,g},A\psi_{T,g}\rangle,
+ \qquad
+ \psi_{T,g}:=\frac{e^{-TH_g}\Om_0}{\|e^{-TH_g}\Om_0\|},
+\]
+and $\psi_{T,g}\to\Om_g$ in Hilbert norm as $T\to\infty$.
+\end{lemma}
+
+\begin{proof}
+The Feynman--Kac--Nelson formula gives
+\[
+ \nu_{T,g}(A)=
+ \frac{\langle\Om_0,e^{-TK_g}Ae^{-TK_g}\Om_0\rangle}
+      {\langle\Om_0,e^{-2TK_g}\Om_0\rangle}.
+\]
+The factors $e^{-TE_g}$ cancel, giving the first identity.  Positivity improvement in
+$Q$-space implies
+$c_g:=\langle\Om_g,\Om_0\rangle>0$.  The spectral theorem gives
+\[
+ e^{-TH_g}\Om_0=c_g\Om_g+e^{-TH_g}(1-P_g)\Om_0
+ \longrightarrow c_g\Om_g.
+\]
+Indeed, the squared norm of the second term is
+\[
+ \int_{(0,\infty)}e^{-2TE}\,d\mu_g^\perp(E),
+ \qquad
+ \mu_g^\perp(B):=
+ \langle(1-P_g)\Om_0,\mathbf1_B(H_g)(1-P_g)\Om_0\rangle,
+\]
+which tends to zero by dominated convergence.  Thus even isolation of the ground-state
+eigenvalue has not been used.  The norm tends to $c_g$, proving the assertion without any
+gap assumption.
+\end{proof}
+
+\begin{lemma}[two-time slab transfer]\label{lem:two}
+Let $A,B$ be bounded time-zero multiplication operators and $t\ge0$.  If the insertions are at
+Euclidean times $-t/2$ and $t/2$, then
+\[
+ \lim_{T\to\infty}\nu_{T,g}(A(-t/2)B(t/2))
+ =\langle\Om_g,Ae^{-tH_g}B\Om_g\rangle.
+\]
+The assertion remains true for polynomial $A,B$ if
+\begin{equation}\label{eq:UI}
+ \sup_{T\ge t/2+1}\nu_{T,g}(|A(\pm t/2)|^4+|B(\pm t/2)|^4)<\infty. \tag{3.1}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For bounded insertions, FKN and cancellation of the scalar energy give the exact quotient
+\[
+ \frac{\langle u_{T,t},Ae^{-tH_g}Bu_{T,t}\rangle}
+      {\|e^{-TH_g}\Om_0\|^2},
+ \qquad u_{T,t}=e^{-(T-t/2)H_g}\Om_0.
+\]
+Both $u_{T,t}$ and $e^{-TH_g}\Om_0$ tend to $c_g\Om_g$, so the quotient has the asserted limit.
+
+For an unbounded polynomial $A$, put $A_R=A\mathbf1_{\{|A|\le R\}}$, and similarly for $B$.
+The bounded result applies to $A_R,B_R$.  By H\"older and Markov,
+\begin{align*}
+ \nu_{T,g}(|AB|\mathbf1_{\{|A|>R\}})
+ &\le \nu_{T,g}(|A|^4)^{1/4}\nu_{T,g}(|B|^4)^{1/4}
+       \nu_{T,g}(|A|>R)^{1/2}\\
+ &\le R^{-2}\nu_{T,g}(|A|^4)^{3/4}\nu_{T,g}(|B|^4)^{1/4}.
+\end{align*}
+The analogous bound holds with $A,B$ exchanged.  Hypothesis \eqref{eq:UI} makes both errors
+uniformly $O(R^{-2})$.  Moreover $A_R\Om_g\to A\Om_g$ and
+$B_R\Om_g\to B\Om_g$ in norm, since the corresponding second moments are finite.  The
+contraction property of $e^{-tH_g}$ therefore gives convergence of the truncated matrix
+elements on the right.  First take $T\to\infty$, then $R\to\infty$.
+\end{proof}
+
+By \eqref{eq:CEmoment}, condition \eqref{eq:UI} holds for every fixed GJS polynomial: its fourth
+power is again a finite sum of observables of the form (1.1.5), and its $\CE$-norm is finite.
+
+\section{Explicit derivation of the local second moment}
+
+\begin{proposition}[CE1 implies (M$_2$)]\label{prop:M2}
+Hypothesis~\ref{hyp:CE}(CE1) implies \eqref{eq:M2}.  One admissible bound is
+\begin{equation}\label{eq:Mexplicit}
+ \|\lambda W(f)\Om_g\|^2
+ \le 32\lambda^2 C_{\CE}K_1K_2^{4p}(2p)!
+       \left(\sum_{n=0}^p|a_n|\right)^2.                            \tag{4.1}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Write $I$ for an interval of length at most two containing $\supp f$.  It meets at most four
+unit spatial cells.  Expanding the square gives
+\[
+ W(f)^2=\sum_{n,m=0}^pa_na_m
+ \iint f(x)f(y):\varphi_0(x)^n::\varphi_0(y)^m:\,dx\,dy.             \tag{4.2}
+\]
+Split each integral according to the at most $4^2=16$ ordered pairs of cells.  In each localized
+piece the kernel is a restriction of $f\otimes f$, so
+\[
+ \|f\otimes f\|_2=\|f\|_2^2\le |I|\|f\|_\infty^2\le2.
+\]
+The total local degree is $n+m\le2p$.  Therefore
+\[
+ \prod_\Delta N(\Delta)!\le(n+m)!\le(2p)!,
+ \qquad
+ \prod_\Delta K_2^{2N(\Delta)}=K_2^{2(n+m)}\le K_2^{4p}.
+\]
+Enlarge $K_2$ to $\max\{K_2,1\}$ if necessary.  Using \eqref{eq:CEnorm}, summing the sixteen
+pieces and then $n,m$ proves
+\begin{equation}\label{eq:observable-norm}
+ \|W(f)^2\|_{\CE}
+ \le32K_1K_2^{4p}(2p)!\left(\sum_{n=0}^p|a_n|\right)^2.             \tag{4.3}
+\end{equation}
+Thus CE1 bounds $\nu_{T,g}(\lambda^2W(f)^2)$ by the right side of
+\eqref{eq:Mexplicit}, uniformly in $T,g,f$.
+
+Here the equality
+\[
+ \|\lambda W(f)\psi_{T,g}\|^2=\nu_{T,g}(\lambda^2W(f)^2)
+\]
+is also justified for the unbounded observable: apply the bounded FKN identity to
+\[
+ W(f)^2\wedge R:=\min\{W(f)^2,R\},
+\]
+and let $R\uparrow\infty$ by monotone convergence.  The CE1 bound makes the resulting quantity
+finite.
+
+By Lemma~\ref{lem:one}, $\psi_{T,g}\to\Om_g$.  Since $W(f)$ is closed, the quadratic form
+$\xi\mapsto\|W(f)\xi\|^2$ is lower semicontinuous in Hilbert norm.  Hence
+\[
+ \|\lambda W(f)\Om_g\|^2
+ \le\liminf_{T\to\infty}\|\lambda W(f)\psi_{T,g}\|^2,
+\]
+and \eqref{eq:Mexplicit} follows.
+\end{proof}
+
+The numerical constant $32$ is deliberately crude; its purpose is to show that no dependence on
+the position of $I$, the profile $g$, or the derivatives of $f$ is hidden in the argument.
+
+\section{Explicit derivation of the physical Hamiltonian gap}
+
+Let $\mathscr C$ be the complex unital algebra of finite polynomials in compactly smeared real
+sharp-time fields; its self-adjoint part $\mathscr C_{\rm sa}$ consists of the real-valued
+polynomial cylinders.
+
+\begin{lemma}[density of polynomial cylinder vectors]\label{lem:dense}
+For each fixed $g$,
+\[
+ \overline{\{F\Om_g:F\in\mathscr C\}}=\Hh.
+\]
+Consequently $\{(1-P_g)F\Om_g:F\in\mathscr C\}$ has dense span in
+$(1-P_g)\Hh$.
+\end{lemma}
+
+\begin{proof}
+In $Q$-space let $d\mu_g=\Om_g^2d\mu_0$; strict positivity of $\Om_g$ makes
+$U:L^2(\mu_g)\to L^2(\mu_0)$, $UF=F\Om_g$, unitary.
+
+The $n$-point bound following Theorem~1.1.8 of \cite{GJS}, followed by the slab transfer and
+truncation, gives for every compactly smeared real field $X=\varphi_0(f)$ a constant
+$b_f<\infty$ such that
+\[
+ \E_{\mu_g}[X^{2n}]\le(2n)!b_f^{2n}\qquad(n\ge0).                  \tag{5.1}
+\]
+Thus, for $0<a<b_f^{-1}$,
+\begin{equation}\label{eq:exp-moment}
+ \E_{\mu_g}[e^{a|X|}]
+ \le2\E_{\mu_g}[\cosh(aX)]
+ \le2\sum_{n=0}^\infty (ab_f)^{2n}<\infty.                         \tag{5.2}
+\end{equation}
+
+We now prove the finite-dimensional density assertion rather than invoke it.  Let
+$Y=(\varphi_0(f_1),\ldots,\varphi_0(f_d))$ and let $\rho$ be its law under $\mu_g$.
+By H\"older and \eqref{eq:exp-moment}, there is $\alpha>0$ such that
+\begin{equation}\label{eq:vector-exp}
+ \int_{\R^d}\exp\!\left(2\alpha\sum_{j=1}^d|y_j|\right)d\rho(y)<\infty. \tag{5.3}
+\end{equation}
+Suppose $u\in L^2(\rho)$ is orthogonal to every polynomial.  On the connected tube
+\[
+ \mathcal T_\alpha:=\{z\in\mathbb C^d:|\operatorname{Re}z_j|<\alpha
+ \text{ for }1\le j\le d\}
+\]
+define
+\[
+ L(z)=\int_{\R^d}u(y)e^{z\cdot y}\,d\rho(y).
+\]
+Cauchy--Schwarz and \eqref{eq:vector-exp} give an integrable majorant on every compact subset
+of $\mathcal T_\alpha$; the same is true after multiplication by any monomial in $y$.
+Consequently differentiation under the integral is valid and $L$ is holomorphic on
+$\mathcal T_\alpha$.  Orthogonality gives
+\(
+ \partial^\beta L(0)=\int u(y)y^\beta\,d\rho(y)=0
+\)
+for every multi-index $\beta$.  Hence the Taylor series of $L$ at zero vanishes.  The identity
+theorem (applied successively in the $d$ variables) gives $L=0$ throughout
+$\mathcal T_\alpha$.  In particular,
+\[
+ \int u(y)e^{i\xi\cdot y}\,d\rho(y)=0\qquad(\xi\in\R^d).
+\]
+Uniqueness of the Fourier transform of the finite complex measure $u\,d\rho$ implies
+$u=0$ $\rho$-almost everywhere.  Thus polynomials are dense in $L^2(\rho)$.
+
+Choose a countable dense family $(f_j)_{j\ge1}$ of real Schwartz functions.  The coordinate
+maps $\varphi_0(f_j)$ generate the completed Gaussian cylinder sigma-algebra; because
+$\Om_g>0$ $\mu_0$-almost everywhere, $\mu_g$ and $\mu_0$ are equivalent and have the same
+completed null sets.  If $\mathcal F_N=\sigma(\varphi_0(f_1),\ldots,\varphi_0(f_N))$, the
+martingale convergence theorem gives
+\(
+ \E_{\mu_g}[Z\mid\mathcal F_N]\to Z
+\)
+in $L^2(\mu_g)$ for every $Z\in L^2(\mu_g)$.  Each conditional expectation is an $L^2$
+function of the first $N$ coordinates and hence, by the preceding paragraph, is an $L^2$ limit
+of polynomials in those coordinates.  This proves density in $L^2(\mu_g)$.  Applying $U$ proves
+the first assertion, and applying $1-P_g$ proves the second.
+\end{proof}
+
+\begin{proposition}[CE2 implies the uniform physical gap]\label{prop:gap}
+Hypothesis~\ref{hyp:CE}(CE2) implies
+\[
+ \spec H_g\subseteq\{0\}\cup[m_{\CE},\infty)
+ \qquad\text{for every }g.
+\]
+\end{proposition}
+
+\begin{proof}
+Fix $F\in\mathscr C_{\rm sa}$ and decompose it into finitely many localized monomials as
+in \cite[(1.1.9)]{GJS}.  Translate one copy by Euclidean time $t$.  For every pair of localized
+summands, the two collections of unit squares are separated by a horizontal strip of width at
+least $t-2$.  Summing CE2 over the pairs therefore gives, for $t\ge2$ and $T\ge t/2+1$,
+\begin{equation}\label{eq:cluster-time}
+ |\nu_{T,g}(F(-t/2)F(t/2))-
+   \nu_{T,g}(F(-t/2))\nu_{T,g}(F(t/2))|
+ \le C_{\CE}e^{2m_{\CE}}\|F\|_{\CE}^2e^{-m_{\CE}t}.                \tag{5.4}
+\end{equation}
+The fourth-moment version of CE1 verifies the uniform-integrability hypothesis of
+Lemma~\ref{lem:two}.  Letting $T\to\infty$ in \eqref{eq:cluster-time} yields
+\begin{equation}\label{eq:semigroup-decay}
+\begin{aligned}
+0&\le
+ \langle(1-P_g)F\Om_g,e^{-tH_g}(1-P_g)F\Om_g\rangle\\
+ &\le C_Fe^{-m_{\CE}t}\qquad(t\ge0).
+\end{aligned}
+\tag{5.5}
+\end{equation}
+For $0\le t<2$, the left side is at most
+\(
+ \|(1-P_g)F\Om_g\|^2\le C_{\CE}\|F^2\|_{\CE}
+\)
+by CE1 and the slab transfer.  Thus one may take
+\[
+ C_F=e^{2m_{\CE}}C_{\CE}
+ \max\{\|F\|_{\CE}^2,\|F^2\|_{\CE}\},
+\]
+which is independent of $g$.  In particular, the decay exponent is independent of both $g$
+and $F$.
+
+For completeness, fix $0<\varepsilon<m_{\CE}$ and let
+\[
+ R_\varepsilon=
+ \mathbf1_{[0,m_{\CE}-\varepsilon]}(H_g)(1-P_g).
+\]
+The spectral theorem and \eqref{eq:semigroup-decay} give
+\[
+ e^{-(m_{\CE}-\varepsilon)t}\|R_\varepsilon(1-P_g)F\Om_g\|^2
+ \le C_Fe^{-m_{\CE}t}.
+\]
+Multiplication by $e^{(m_{\CE}-\varepsilon)t}$ and $t\to\infty$ show that
+$R_\varepsilon(1-P_g)F\Om_g=0$.  Lemma~\ref{lem:dense} and boundedness of
+$R_\varepsilon$ give $R_\varepsilon=0$: indeed, every $G\in\mathscr C$ is
+$G=(G+G^*)/2+i(G-G^*)/(2i)$, a complex linear combination of two elements of
+$\mathscr C_{\rm sa}$.  As $\varepsilon\downarrow0$, these projections increase strongly to
+$\mathbf1_{[0,m_{\CE})}(H_g)(1-P_g)$; hence that projection is zero, which proves the claimed
+spectral inclusion.
+\end{proof}
+
+\section{Execution order and falsification gates}
+
+The work should be carried out in this order.
+
+\begin{enumerate}
+\item \textbf{Freeze the theorem.}  State the first unconditional result only for the family
+$K_g=H_0(m_0)+\lambda W(g)$ satisfying \eqref{eq:wc}.  Do not write ``away from criticality'';
+that is a larger, unproved region.
+
+\item \textbf{Complete the source-scope audit.}  Check in the proof of
+\cite[Thms.~1.1.8 and 1.1.11]{GJS} that every occurrence of the cutoff is bounded only by
+$0\le h\le1$.  Record the page and equation for each use.  Failure criterion: any constant
+depending on the diameter, shape, derivatives, or time extent of $h$ invalidates the transfer.
+
+\item \textbf{Check conventions.}  Match the free covariance, Wick mass, coefficient $\lambda$,
+and the energy shift between \cite{GJS} and \texttt{lppl.tex}.  If the source Wick mass is
+$\widetilde m\ne m_0$, use the identity
+\[
+ :\!\xi^n\!:\,_{\widetilde m}
+ =\sum_{k=0}^{\lfloor n/2\rfloor}
+   \frac{n!}{2^k k!(n-2k)!}
+   \left(\frac{1}{2\pi}\log\frac{\widetilde m}{m_0}\right)^k
+   :\!\xi^{,n-2k}\!:\,_{m_0}.                                    \tag{6.1}
+\]
+This follows by comparing the generating functions
+$\exp(t\xi-C_m(0)t^2/2)$ and using the finite covariance difference
+$C_{m_0}(0)-C_{\widetilde m}(0)=(2\pi)^{-1}\log(\widetilde m/m_0)$.  Recompute all
+lower-degree coefficients before applying \eqref{eq:wc}; merely renaming the Wick mass is not
+valid.
+
+\item \textbf{Prove the two transfers.}  Insert Lemmas~\ref{lem:one}--\ref{lem:two} into the
+cutoff framework.  The positivity overlap $\langle\Om_g,\Om_0\rangle>0$ and the fourth-moment
+tail bound must be written explicitly; weak convergence alone is insufficient for polynomial
+insertions.
+
+\item \textbf{Discharge (M$_2$) first.}  Verify the observable-norm calculation
+\eqref{eq:observable-norm} directly from \cite[(1.1.7)--(1.1.9)]{GJS}.  This is a finite calculation and is
+the earliest decisive test of the route.
+
+\item \textbf{Discharge (G).}  Transfer CE2, prove Lemma~\ref{lem:dense}, and apply the spectral
+projection argument in Proposition~\ref{prop:gap}.  Do not cite the infinite-volume particle
+mass theorem as a substitute: what is needed is the finite-cutoff estimate uniform in $g$.
+
+\item \textbf{Assemble.}  Substitute $\gamma=m_{\CE}$ and the constant from
+\eqref{eq:Mexplicit} into Theorem~5.3 of \texttt{lppl.tex}.  The conclusion is full-net local-norm
+convergence for the weak-coupling family, not merely convergence of Schwinger distributions.
+\end{enumerate}
+
+\section{Routes not to pursue}
+
+\begin{enumerate}
+\item An unweighted stochastic-quantisation LSI has the wrong Dirichlet form and the wrong
+generator.  It is unnecessary in the weak-coupling route above.
+\item The physical gap cannot control the ultraviolet second moment through a double commutator;
+the resulting coincident-point Wick square diverges.
+\item The infinite-volume mass gap of \cite[Thm.~1.1.2]{GJS} does not by itself imply a gap for
+every inhomogeneous spatial cutoff.  The load-bearing input is the cutoff-uniform finite-volume
+bound \eqref{eq:CEcluster}.
+\item No analytic continuation in $\lambda$ should be used to enlarge \eqref{eq:wc} without a
+uniform lower bound on the gap along the continuation path; analyticity of finite-volume
+quantities does not prevent a full-net gap from closing.
+\end{enumerate}
+
+\section{Precise status}
+
+\begin{theorem}[closure conditional only on the quoted GJS estimates]\label{thm:status}
+Assume Hypothesis~\ref{hyp:CE} with the stated cutoff scope.  Then the two hypotheses (G) and
+(M$_2$) of \texttt{lppl.tex} hold with constants independent of
+$g\in C_c^\infty(\R;[0,1])$.  Consequently the full spatial-cutoff ground-state net converges in
+norm on every local algebra in the weak-coupling regime \eqref{eq:wc}, with all conclusions of
+Theorem~5.3 of \texttt{lppl.tex}.
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{prop:M2} proves (M$_2$), Proposition~\ref{prop:gap} proves (G), and
+Theorem~5.3 of \texttt{lppl.tex} performs the assembly.
+\end{proof}
+
+The only remaining uncertainty in this strategy is documentary rather than conceptual: the
+published $O(1)$ in the moment estimate must be certified as uniform over the entire cutoff class
+used in the slab transfer.  Theorem~1.1.11 says ``uniformly in $h$'', and Theorem~1.1.8 is its
+$B=1,n=0$ specialization, so the expected outcome is positive.  If the line-by-line audit confirms
+that reading, the two formerly open inputs are simultaneously closed in the regime
+\eqref{eq:wc}.  No claim is made outside that regime.
+
+\enlargethispage{2\baselineskip}
+\begin{thebibliography}{9}
+\bibitem{GJS}
+J.~Glimm, A.~Jaffe, and T.~Spencer,
+\emph{The Wightman axioms and particle structure in the $\mathscr P(\varphi)_2$ quantum field
+model}, Ann. of Math. \textbf{100} (1974), 585--632;
+\href{https://doi.org/10.2307/1970959}{doi:10.2307/1970959}.
+\end{thebibliography}
+
+\end{document}

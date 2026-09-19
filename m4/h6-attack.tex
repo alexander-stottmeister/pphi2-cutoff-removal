@@ -1,0 +1,343 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Om}{\Omega}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Ent}{Ent}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\gapop}{gap}
+
+\title{Audit of a proposed attack on (H6) and (H5)\\
+\large withdrawn argument, retained with an explicit diagnosis}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This manuscript is retained as a record of an unsuccessful route.  Its former main claim,
+``covariance-weighted Poincar\'e plus first moments implies (H6)'', is \emph{not proved}.  The
+induction uses the false inequality $\|v\|_\infty^2\lesssim\|v\|_2^2$ on an infinite-dimensional
+$L^2$ space and treats the positive operator $M_uCM_u$ as trace class, whereas its trace diverges
+logarithmically because $C(0)=+\infty$.  The precise countercalculations and a valid replacement
+under additional uniform one-point-density bounds are in \texttt{remaining.tex},
+Propositions~6.1--6.2.
+
+The proposed implication to the physical Hamiltonian gap is also not established.  The
+Bauerschmidt--Dagallier inequality uses the unweighted lattice-gradient Dirichlet form of
+stochastic quantisation, not the covariance-weighted form assumed below, and the corresponding
+Markov generator is not the physical Hamiltonian.  Uniform Euclidean-time decay for a dense
+family of observables would be an additional theorem.
+
+The discussion correcting the proposed wavelet/Polchinski identification remains valid.  All
+statements below that are labelled as a proposed claim or chain must be read as historical
+diagnosis, not as proved inputs to the spatial-cutoff theorem.
+\end{abstract}
+
+\section*{Withdrawal notice (8 August 2026)}
+
+Theorem~\ref{thm:main} and the chain in \S\ref{sec:gap} are withdrawn.  In the proof of the former,
+lines corresponding to the estimate
+\[
+ \sum_\alpha c_\alpha\|v_\alpha\|_\infty^2
+ \lesssim \tr(M_uCM_u)
+\]
+have no valid justification: neither the displayed norm comparison nor the finiteness of the
+trace is true.  The later transfer section is additionally blocked at its first premise because
+the cited LSI has a different Dirichlet form.  See \texttt{remaining.tex} for the corrected proof
+program.
+
+\section{Setting, and the master hypothesis}
+
+Let $C$ denote the time-zero free covariance $(2\mu)^{-1}$, $\mu=(-\partial_x^2+m_0^2)^{1/2}$;
+its kernel is $C(x-y)=\tfrac1{2\pi}K_0(m_0|x-y|)>0$, with $C\in L^p_{\mathrm{loc}}$ for every
+$p<\infty$ and $C(0)=+\infty$ (logarithmic). Let $\varphi_0$ be the Gaussian measure with
+covariance $C$ on $\mathcal S'(\R)$, and $\mu_g=\Om_g^2\,d\varphi_0$ the ground-state measure.
+For real $u\in C_c^\infty$ put
+\[
+  F_n[u]\;:=\;\int u(x)\,{:}\varphi(x)^n{:}\;dx ,
+\]
+Wick-ordered with respect to $C$, so that $V_B=\sum_n a_nF_n[h]$ for $P(\xi)=\sum a_n\xi^n$.
+Write $\nabla$ for the Cameron--Martin gradient, $(\nabla F)(x)=\delta F/\delta\varphi(x)$, and
+$\mathcal E(F):=\E_{\mu_g}\ip{\nabla F}{C\nabla F}$ for the Dirichlet form of the stochastic
+quantisation dynamics with invariant measure $\mu_g$.
+
+\begin{hypothesis}[uniform Poincar\'e, (P-U)]\label{hyp:PU}
+There is $c_P<\infty$ with
+$\Var_{\mu_g}(F)\le c_P\,\E_{\mu_g}\ip{\nabla F}{C\nabla F}$
+for all $g\in\mathcal G$ and all $F$ in the form domain.
+\end{hypothesis}
+
+(P-U) would be implied by a log-Sobolev inequality with this same covariance-weighted form.
+Bauerschmidt--Dagallier \cite{BD} do \emph{not} provide that premise: their Dirichlet form is the
+unweighted lattice $\ell^2$ gradient.  Since the covariance multiplier tends to zero at high
+momentum, the unweighted inequality does not imply (P-U).
+
+We also use, as an input, the uniform first-moment bound of Guerra--Rosen--Simon:
+
+\begin{lemma}[\cite{GRS72}, Thm.~2]\label{lem:first}
+For every $n\le\deg P$ and every real $u$ with $\supp u\subseteq B$ there is $c_n(B)$,
+independent of $g$, with $\bigl|\E_{\mu_g}\bigl[F_n[u]\bigr]\bigr|\le c_n(B)\,\|u\|_\infty$.
+\end{lemma}
+
+\begin{proof}[Why the hypothesis of \cite{GRS72} Thm.~2 is met]
+Apply it with $W=\pm\varepsilon\int u\,{:}\xi^n{:}$; one needs $P\pm\varepsilon\xi^n$ semibounded,
+which holds for $n<\deg P$ because the leading term of $P$ dominates, and for $n=\deg P$ for
+$\varepsilon$ small. Taking $\omega_g$ and using $H(g)\Om_g=0$ gives the bound.
+\end{proof}
+
+\section{Withdrawn claim: (P-U) $\Rightarrow$ (H6)}\label{sec:main}
+
+The two structural facts that make the induction work:
+
+\begin{lemma}[degree lowering]\label{lem:grad}
+$\ip{\nabla F_n[u]}{C\,\nabla F_n[u]}
+ =n^2\!\iint u(x)u(y)\,C(x-y)\;{:}\varphi(x)^{n-1}{:}\;{:}\varphi(y)^{n-1}{:}\;dx\,dy .$
+\end{lemma}
+
+\begin{proof}
+$(\nabla F_n[u])(x)=n\,u(x){:}\varphi(x)^{n-1}{:}$, since $\tfrac{d}{d\varphi}{:}\varphi^n{:}
+=n{:}\varphi^{n-1}{:}$; insert into $\ip{\cdot}{C\cdot}$.
+\end{proof}
+
+\begin{lemma}[positive definiteness]\label{lem:PD}
+For $k\ge1$ the kernel $w_k(x,y):=u(x)u(y)\,C(x-y)^k$ is positive semidefinite. Consequently
+$w_k=\sum_\alpha c_\alpha\,v_\alpha\otimes v_\alpha$ with $c_\alpha\ge0$, and for any $m\ge0$
+\[
+  \sum_\alpha c_\alpha\ip{v_\alpha}{C^{\circ m}v_\alpha}
+  \;=\;\tr\bigl(W_kC^{\circ m}\bigr)\;=\;\iint u(x)u(y)\,C(x-y)^{k+m}\,dx\,dy\;<\;\infty ,
+\]
+where $C^{\circ m}$ denotes the kernel $C(x-y)^m$.
+\end{lemma}
+
+\begin{proof}
+$C$ is a covariance, hence positive definite; by the Schur product theorem the pointwise power
+$C^{\circ k}$ is positive definite; conjugating by multiplication by $u$ preserves this. The trace
+identity is immediate, and the integral is finite because $C^{\circ(k+m)}$ is locally integrable in
+one dimension (only a logarithmic singularity, raised to a finite power) and $u$ has compact
+support.
+\end{proof}
+
+\begin{theorem}[withdrawn claim; not established]\label{thm:main}
+Assume \textup{(P-U)} and Lemma~\ref{lem:first}. Then for every $n\ge0$ there is $K_n<\infty$,
+depending only on $n$, $c_P$, $P$ and $\supp u$, such that
+\begin{equation}\label{eq:IH}
+  \sup_{g\in\mathcal G}\ \E_{\mu_g}\Bigl[F_n[u]^2\Bigr]\ \le\ K_n\,\ip{u}{C^{\circ n}u}
+  \;+\;c_n^2\|u\|_\infty^2 \qquad\text{for all real }u\in C_c^\infty(B).
+\end{equation}
+In particular, taking $n=\deg P$ and $u=h$, \textup{(H6)} holds:
+$\sup_g\|V_B\Om_g\|^2=\sup_g\E_{\mu_g}[V_B^2]<\infty$.
+\end{theorem}
+
+\begin{proof}[Invalid proof, retained to locate the failure]
+Induction on $n$.
+
+\emph{$n=0$:} $F_0[u]=\int u$ is a constant; \eqref{eq:IH} is trivial.
+
+\emph{$n=1$:} $\nabla F_1[u]=u$, so $\ip{\nabla F_1}{C\nabla F_1}=\ip{u}{Cu}$ is a constant and
+(P-U) gives $\Var_{\mu_g}(F_1[u])\le c_P\ip{u}{Cu}$. With Lemma~\ref{lem:first},
+$\E[F_1^2]=\Var+(\E F_1)^2\le c_P\ip{u}{C^{\circ1}u}+c_1^2\|u\|_\infty^2$.
+
+\emph{$n-1\Rightarrow n$:} By (P-U) and Lemma~\ref{lem:grad},
+\[
+  \Var_{\mu_g}\bigl(F_n[u]\bigr)\ \le\ c_P\,n^2\,\E_{\mu_g}\Bigl[
+  \iint w_1(x,y)\,{:}\varphi(x)^{n-1}{:}\,{:}\varphi(y)^{n-1}{:}\,dxdy\Bigr],
+  \qquad w_1=u\otimes u\cdot C .
+\]
+By Lemma~\ref{lem:PD} write $w_1=\sum_\alpha c_\alpha v_\alpha\otimes v_\alpha$ with
+$c_\alpha\ge0$. Since
+$\iint (v_\alpha\otimes v_\alpha)(x,y){:}\varphi(x)^{n-1}{:}{:}\varphi(y)^{n-1}{:}
+=F_{n-1}[v_\alpha]^2\ge0$, monotone convergence permits termwise expectation:
+\[
+  \Var_{\mu_g}\bigl(F_n[u]\bigr)\ \le\ c_Pn^2\sum_\alpha c_\alpha\,
+  \E_{\mu_g}\bigl[F_{n-1}[v_\alpha]^2\bigr].
+\]
+Apply the inductive hypothesis \eqref{eq:IH} at level $n-1$ to each term and use
+Lemma~\ref{lem:PD} twice (with $m=n-1$ for the first summand, $m=0$ for the second, using
+$\|v\|_\infty^2\lesssim\ip{v}{v}$ on the fixed compact $B$):
+\[
+  \Var_{\mu_g}\bigl(F_n[u]\bigr)\ \le\ c_Pn^2\Bigl[K_{n-1}\tr\bigl(W_1C^{\circ(n-1)}\bigr)
+  +c_{n-1}^2\,\kappa_B\tr\bigl(W_1\bigr)\Bigr]
+  \;=\;c_Pn^2\bigl[K_{n-1}+c_{n-1}^2\kappa_B'\bigr]\iint u\,u\,C^{\circ n},
+\]
+which is $\le\text{const}\cdot\ip{u}{C^{\circ n}u}$, finite by Lemma~\ref{lem:PD}. Adding
+$(\E_{\mu_g}F_n[u])^2\le c_n^2\|u\|_\infty^2$ from Lemma~\ref{lem:first} gives \eqref{eq:IH} at
+level $n$.
+\end{proof}
+
+\begin{remark}[what makes this work, and what it avoids]
+Three things. (i) $\nabla$ lowers the Wick degree by exactly one, so the induction is finite and
+terminates at $n=1$, where the Dirichlet form is a \emph{constant}. (ii) The kernel produced by
+the Dirichlet form carries one extra factor of $C$, which is exactly what makes
+$\tr(W_1C^{\circ(n-1)})=\iint uu\,C^{\circ n}$ finite --- the logarithmic singularity of $C$ is
+harmless at any finite power in one space dimension. (iii) Positive definiteness of $C^{\circ k}$
+(Schur) turns the bilocal object into a positive combination of \emph{squares}, so the inductive
+hypothesis applies termwise and no cancellation has to be controlled. Note that no correlation
+inequality, no sign of an Ursell function, and no reflection positivity is used --- consistent
+with the diagnosis of \cite[\S6]{H6} that positivity-based tools stop at ${:}\varphi^2{:}$.
+\end{remark}
+
+\begin{remark}[the constant is not free-field-sharp]
+The bound is $K_n\ip{u}{C^{\circ n}u}$, of the same \emph{form} as the free-field value
+$\E_{\varphi_0}[F_n[u]^2]=n!\ip{u}{C^{\circ n}u}$, but with $K_n$ growing like
+$\prod_{j\le n}c_Pj^2$. Sharpness is not needed for M4.
+\end{remark}
+
+\section{Proposed, unproved chain to (H3) and (H5)}\label{sec:gap}
+
+The following was the proposed chain.  It is not a proof: step 1 is not derived for the measures
+and observables at issue, step 3 requires uniform decay for a dense family rather than only the
+two-point field, and the LSI generator is not the physical Hamiltonian.
+
+\begin{enumerate}
+\item \emph{Uniform LSI $\Rightarrow$ exponential decay of correlations.} For lattice systems the
+      equivalence of a volume-uniform log-Sobolev inequality with strong mixing (complete
+      analyticity) is due to Stroock--Zegarli\'nski; for unbounded continuous spins the relevant
+      versions are Yoshida's and Bodineau--Helffer's. \emph{Caveat:} this is the step whose
+      hypotheses must be checked most carefully in the unbounded-spin setting, and it is not a
+      formal consequence.
+\item \emph{No circularity.} \cite{BD} assume \emph{bounded susceptibility}, i.e.
+      $\int\ip{\varphi(0)}{\varphi(x)}dx<\infty$, which is strictly weaker than exponential decay.
+      So ``bounded susceptibility $\Rightarrow$ LSI $\Rightarrow$ exponential decay'' is a genuine
+      strengthening, not a loop.
+\item \emph{Euclidean decay $\Rightarrow$ mass gap.} By Feynman--Kac--Nelson,
+      $\ip{\varphi(0,x)}{\varphi(t,y)}_{\nu_g}
+      =\ip{\Om_g}{\varphi(x)e^{-|t|H(g)}\varphi(y)\Om_g}$, so exponential decay in the Euclidean
+      \emph{time} direction at rate $\gamma$ bounds the gap of $H(g)$ from below by $\gamma$ on
+      the subspace generated by the fields; since $\Om_g$ is cyclic for the local algebra
+      (local Fockness, \cite{GJIII}), this is the whole gap.
+\item \emph{Uniformity in $N$.} \cite{BD} is uniform in the lattice regularisation, so the decay
+      rate, hence the gap, is uniform in the resolution: this is \textup{(H5)}.
+\end{enumerate}
+
+\section{A correction: wavelets are not a Polchinski decomposition}\label{sec:corr}
+
+The strategy note proposed running the Bauerschmidt--Dagallier criterion ``with the wavelet scale
+decomposition $C=\sum_jC_j$ in place of the Polchinski heat-flow decomposition''. This does not
+work as stated.
+
+A Polchinski-type flow requires $C=\int_0^\infty\dot c_t\,dt$ with each increment $\dot c_t$
+\emph{positive semidefinite}; that is what makes the flow a genuine Gaussian convolution
+semigroup and what the Bakry--\'Emery-type argument integrates along. An orthogonal
+multiresolution analysis supplies projections $Q_j$ and hence
+$C=\sum_jQ_jCQ_j+\sum_{j\ne k}Q_jCQ_k$: the cross terms vanish only if $C$ is diagonal in the
+wavelet basis, which it is not (Daubechies wavelets almost-diagonalise $(-\Delta+m^2)^{-1}$, but
+``almost'' is not enough for a positivity requirement).
+
+\medskip
+\noindent\textbf{The right object} is the Brydges--Guadagni--Mitter \emph{finite-range
+decomposition}: $C=\sum_jC_j$ with every $C_j$ positive semidefinite \emph{and} of finite range
+$L^j$. Such decompositions exist for $(-\Delta+m^2)^{-1}$ on $\R^d$ and on lattices,
+\emph{uniformly in the lattice spacing} (Bauerschmidt). The wavelet resolution then enters not as
+the flow parameter but as the regularisation whose uniformity must be tracked --- which is exactly
+the form in which \cite{BD} state their result. \emph{This replaces Route~$\beta$ of strategy
+\S7.2.}
+
+\section{Why the proposed transfer stops at its premise}\label{sec:transfer}
+
+Before any of the former transfer tasks below, one would need:
+\begin{quote}
+\textbf{(T0)} replace the unweighted Dirichlet form in \cite{BD} by the covariance-weighted form
+in (P-U), with constants uniform in the cutoff and regularisation.
+\end{quote}
+No such implication follows by comparison of forms.  Thus (T0) fails for the cited theorem, and
+the old tasks are retained only as a record of what would follow after a genuinely
+covariance-weighted estimate.
+
+\begin{enumerate}
+\item[\textbf{(T1)}] \emph{Spatial cutoff instead of a box.} \cite{BD} treat finite volume with
+      periodic or free boundary conditions; we need the coupling profile $0\le g\le1$. Since
+      $g\le1$ pointwise, the interaction is dominated by the $g\equiv1$ case. \emph{To check:}
+      that the hypotheses of the BD criterion (bounds on the effective potential along the flow)
+      are monotone in the coupling profile.
+\item[\textbf{(T2)}] \emph{Infinite Euclidean time.} $\nu_g=\lim_{T\to\infty}\nu_{g,T}$ is an
+      increasing limit of finite-volume measures; an LSI constant uniform in $T$ passes to the
+      limit. Routine.
+\item[\textbf{(T3)}] \emph{Marginalisation to time zero.} $\mu_g$ is the time-zero marginal of
+      $\nu_g$. An LSI is stable under pushforward by a linear projection, with the same constant,
+      because $|\nabla_x F|\le|\nabla F|$ for $F$ depending on $x$ only. \emph{To check:} that the
+      projected Dirichlet form is the one appearing in (P-U), i.e. that the $2$-dimensional
+      Cameron--Martin gradient restricted to sharp-time functionals reproduces
+      $\ip{\nabla F}{C\nabla F}$ with $C=(2\mu)^{-1}$.
+\item[\textbf{(T4)}] \emph{Regime.} \cite{BD} require bounded susceptibility, i.e.\ the
+      high-temperature phase. By \cite[Thm.~4.2]{M3} the uniform gap fails in a symmetry-broken
+      phase anyway, so this restriction is not a loss: it coincides with the regime in which the
+      programme can succeed at all.
+\end{enumerate}
+
+\section{Numerical validation, and milestones}
+
+\subsection*{(H6) is true in the solvable case}
+
+For $P(\xi)=\xi^2$ everything is Gaussian and exact:
+$\E_{\mu_g}[V_B^2]=\bigl[\int h\,(C_g-C)_{\mathrm{diag}}\bigr]^2+2\iint h\,h\,C_g^2$, with
+$C_g=(2\mu_g)^{-1}$. Numerically ($m_0=1$, $\lambda=3$, so $m_1=2$; $h$ a normalised Gaussian
+bump; $g=\mathbf 1_{[-\ell,\ell]}$):
+
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$\ell$ & first term & second term & $\E_{\mu_g}[V_B^2]$\\
+\midrule
+$0.5$ & $0.00237$ & $0.04812$ & $0.05049$\\
+$2$   & $0.01109$ & $0.03522$ & $0.04631$\\
+$4$   & $0.01218$ & $0.03499$ & $0.04717$\\
+$8$   & $0.01219$ & $0.03499$ & $0.047175$\\
+$16$  & $0.01219$ & $0.03499$ & $0.047175$\\
+\midrule
+$g\equiv1$ & --- & --- & $0.047175$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The second moment saturates at the $g\equiv1$ value and is stationary to all displayed digits
+beyond $\ell\approx6$.  Thus (H6) holds in this solvable quadratic example.  A numerical example
+does not repair the withdrawn proof for general $P$.
+
+\subsection*{Superseded milestones}
+
+\begin{enumerate}
+\item[\textbf{A}] \emph{Failed.}  The spectral expansion exposes an infinite trace and cannot be
+      repaired by domain bookkeeping.  See \texttt{remaining.tex}, Proposition~6.1.
+\item[\textbf{B}] (T3): the marginalisation lemma. This is the smallest self-contained piece and
+      it is a prerequisite for everything else.
+\item[\textbf{C}] \emph{Blocked before (T1).}  The form in \cite{BD} is unweighted, so (T0) fails.
+\item[\textbf{D}] Replace the gap chain by the dense-family spectral criterion in
+      \texttt{remaining.tex}, Lemma~5.1, and prove its Euclidean-decay premise separately.
+\item[\textbf{E}] Numerical stress test: measure $\E_{\mu_g}[V_B^2]$ for \emph{quartic} $P$ by
+      Monte Carlo on a lattice, as a function of $\ell$ and of the lattice spacing, and check
+      saturation. A failure here would refute (H6) directly and cheaply.
+\end{enumerate}
+
+\begin{thebibliography}{9}
+\bibitem{BD} R.~Bauerschmidt and B.~Dagallier, \emph{Log-Sobolev inequality for the
+$\varphi^4_2$ and $\varphi^4_3$ measures}, Comm.\ Pure Appl.\ Math.\ \textbf{77} (2024)
+2579--2612; arXiv:2202.02295.
+\bibitem{GJIII} J.~Glimm and A.~Jaffe, Acta Math.\ \textbf{125} (1970) 203--261.
+\bibitem{GRS72} F.~Guerra, L.~Rosen and B.~Simon, Comm.\ Math.\ Phys.\ \textbf{27} (1972) 10--22.
+\bibitem{H6} \emph{On (H6)}, \texttt{h6.tex}.
+\bibitem{M3} Milestone M3, \texttt{../m3/m3.tex}.
+\end{thebibliography}
+
+\end{document}

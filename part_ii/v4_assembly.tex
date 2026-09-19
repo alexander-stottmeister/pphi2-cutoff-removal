@@ -1,0 +1,1013 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.9cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs,bm}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs,longtable,array}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+% ------------------------------------------------------------------
+% Phase V4 of the gate-(II.11) execution (scoping: gate_II11_scoping.tex).
+% Contents: Statements A6 (fixed-t convergence of the thermal functionals),
+% A7 (partition functions, Laplace transfer, derived eventual gap), and
+% A8 (assembly: gate (II.11) + Weyl criterion + identification).
+% Everything is assembled from the proved phase documents V1, V2, V3, the
+% two proved lemmas of the scoping note, and the free-rate/Weyl-reduction
+% documents. Two new quantitative lemmas (prefactor and source-phase
+% comparisons under the V2 coupling) are proved here.
+% ------------------------------------------------------------------
+
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\U}{\mathcal U}
+\newcommand{\W}{\mathfrak W}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\Trace}{\mathrm{Tr}}
+\DeclareMathOperator{\cth}{coth}
+\DeclareMathOperator{\sh}{sinh}
+\newcommand{\ch}{\cosh}
+\newcommand{\Gam}{\Gamma}
+\newcommand{\logN}{\log_N}
+\newcommand{\wbar}{\bar w}
+
+\title{Gate (II.11), phase V4:\\[4pt]
+\large Fixed-$t$ convergence, partition functions and the derived gap,
+and the assembly: the gate closes}
+\author{}
+\date{12 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document executes the final phase of the thermal two-torus route:
+Statements A6, A7, A8 of the scoping note are proved, and the gate
+\[
+ \lim_{N\to\infty}\omega_{N,L,\lambda,1}\bigl(\alpha_M^N(W_M(\xi))\bigr)
+ =\omega^{\rm ct}_{L,\lambda}\bigl(\beta_M(W_M(\xi))\bigr)
+ \qquad(\text{every fixed }M,\ \xi)
+ \tag{II.11}
+\]
+is closed after the 16 August repair of V2's four-edge and shifted-symbol
+arguments. A6 (fixed-$t$ convergence of the thermal functionals) is
+assembled from the two mean-shift representations (V1 for the lattice, V3
+for the continuum) compared on the V2 coupling space; the two remaining
+quantitative pieces --- convergence of the action prefactors and of the
+marked-slice source phases --- are proved here from the V1 thermal weight
+bounds and the V2 filter-tail and symbol estimates. A7 (partition
+functions) is proved in the normal-ordered normalization (a recorded
+amendment to the scoping display, whose un-normalized free products vanish
+in the limit); the scoping note's Laplace-transfer lemma then delivers
+eigenvalue convergence $\widetilde E_j(N)\to\mu_j$, the derived eventual
+gap $E_1(N)-E_0(N)\to\gamma_L>0$, and $D_N(t)\to D_\infty(t)$. A8 verifies
+the hypotheses of the scoping note's interchange lemma and invokes the
+proved Weyl criterion and identification corollary: the full-sequence,
+identified, fixed-coarse theorem follows, with the $\Z_2$ symmetry carried
+along. A claim ledger, the erratum register for upstream documents, and
+the remaining phase-closure step (the adversarial pass) conclude the
+document.
+\end{abstract}
+
+\tableofcontents
+
+\section{Setup, deliverables, imports}\label{sec:setup}
+
+\subsection{Objects}
+
+Conventions of the model sheet and the phase documents V1--V3 are used
+unchanged. Fix $L,m>0$, $\lambda\ge0$, the coarse scale $M$ and a coarse
+Weyl symbol $\xi=\eps_Mq+ip\in h_{M,L}$; $N=M+r$ runs over the fine
+scales, $\eps_N=2^{-r}\eps_M$, $\logN:=1+\log(1/\eps_N)$. The lattice
+Hamiltonian is $K_{N,L}$ (model sheet (3.7), $g_N\equiv1$), with
+eigenvalues $E_0(N)<E_1(N)\le\cdots$, ground state
+$\omega_N:=\omega_{N,L,\lambda,1}$ (model sheet (3.18)); the continuum
+Hamiltonian is $K_L$ (V3, Theorem 4.1) with eigenvalues
+$\mu_0<\mu_1\le\cdots$, gap $\gamma_L>0$, and ground state
+$\omega^{\rm ct}_{L,\lambda}$ (V3, Theorem 7.1). Write
+\[
+ e_0(N):=\tfrac12\sum_{k\in\Gamma_N}\gamma_N(k),
+ \qquad
+ \widetilde E_j(N):=E_j(N)-e_0(N),
+ \qquad
+ D_N(t):=\sum_{j\ge1}e^{-t(E_j(N)-E_0(N))},
+\]
+($e_0(N)$ is the ground energy of the model-sheet free operator
+$H^{(0)}_{N,L}$, whose normal ordering is the only normalization used
+below; $D_N$ is shift-invariant), and $D_\infty(t):=\sum_{j\ge1}
+e^{-t(\mu_j-\mu_0)}<\infty$ (V3, Theorem 5.2). The thermal functionals
+are
+\begin{equation}
+ F_N(t;\xi):=\frac{\Trace\bigl(e^{-tK_{N,L}}W_N(R_M^N\xi)\bigr)}
+ {\Trace\,e^{-tK_{N,L}}},
+ \qquad
+ F_\infty(t;\xi):=\frac{\Trace\bigl(e^{-tK_L}W_{\rm ct}(R_M^\infty\xi)
+ \bigr)}{\Trace\,e^{-tK_L}},
+ \label{eq:thermal}
+\end{equation}
+the second well defined by V3, Theorem 5.2; $|F_N(t;\xi)|\le1$ for all
+$N\le\infty$ ($|\Trace(TW)|\le\|W\|\,\Trace\,T$ for $T\ge0$ trace class,
+and the Weyl operators are unitary).
+
+\subsection{Deliverables}
+
+\begin{itemize}
+\item[(A6)] For every fixed $t\ge1/L$ (equivalently, every $t\in[t_0,T]$ with
+$t_0L\ge1$): $F_N(t;\xi)\to F_\infty(t;\xi)$, with an explicit rate
+(Theorem~\ref{thm:A6}).
+\item[(A7)] $\Trace\,e^{-t(K_{N,L}-e_0(N))}\to\Trace\,e^{-tK_L}$ for every
+$t\ge t_*$, $t_*>0$ fixed; $\inf_N\widetilde E_0(N)>-\infty$; consequently
+(scoping Lemma 3.2, whose hypothesis (i) is likewise only for $t\ge t_*$)
+$\widetilde E_j(N)\to\mu_j$ for every $j$, $E_1(N)-E_0(N)\to
+\gamma_L>0$, and $D_N(t)\to D_\infty(t)$ for every $t\ge t_*$
+(Theorem~\ref{thm:A7}).
+\item[(A8)] The gate (II.11) holds pointwise for every $M,\xi$; the Weyl
+criterion and the identification corollary deliver the full-sequence,
+identified, fixed-coarse theorem, $\Z_2$-invariantly
+(Theorems~\ref{thm:gate} and~\ref{thm:final}).
+\end{itemize}
+
+\subsection{Imports}\label{sec:imports}
+
+All are program-internal; no new external source is consumed.
+\begin{itemize}
+\item \emph{Scoping note} (\texttt{gate\_II11\_scoping}): Lemma 3.1
+(interchange of $t\to\infty$ and $N\to\infty$; hypotheses (i)--(iii)),
+Lemma 3.2 (Laplace transfer of spectra; hypotheses (i)--(ii)), both
+proved there.
+\item \emph{V1} (\texttt{v1\_thermal\_representations}): Theorem 5.4 with
+display (14) (lattice mean-shift representation; the path integrand read
+as the interaction $\U_N$ --- see the erratum note,
+Remark~\ref{rem:erratum}), eq.\ (12) (the action $S_N$), Remark 5.5 (the
+ensemble), Lemma 7.1, display (18) (the momentum-weight derivative bound,
+uniform on $t\ge t_0$; its display (19), the position-weight analogue, is
+context and is not consumed here).
+\item \emph{V2} (\texttt{v2\_interaction\_comparison}): Definition 1.1 and
+Prop.\ 1.2 (the coupling; laws), Definition 2.2 and Lemma 2.1
+($\U_{N,t}$, $\U_t$, recombination), Theorem 4.3 (A4(a):
+$\|\U_{N,t}-\U_t\|_{L^2}\le C(1+t)(1+L)\eps_N\logN^{3/2}$), Lemma 3.2
+with eq.\ (9) and the $k_0$-count eq.\ (13), eq.\ (18) (filter tail),
+Definition 6.2 and Lemma 6.3 (shift fields $h^{(N)},h^{(\infty)}$ and
+envelopes), Lemma 6.4 (folded/exact-output/high-output symbols, including
+the representative map), Prop.\ 6.5 (shifted-interaction comparison with the
+real asymmetric-band surrogate, exact $A_{\times,j}$ partition, and separate
+physical-edge bound), Theorem 7.2
+(uniform Nelson bounds, plain and shifted).
+\item \emph{V3} (\texttt{v3\_continuum\_package}): Theorems 4.1, 5.2, 6.2,
+7.1 (the A1 package) and Corollary 6.3 (A2(b): the continuum mean-shift
+representation); Theorem 3.1(ii),(v)--(vi) with Remark 3.2 (the finite-mode
+package for the abstract oscillator class --- applied below \emph{also} to
+the lattice system, whose membership in the class is the model-sheet \S3
+proposition); Proposition 2.6(iii) and Lemma 6.1(iv) (the \emph{continuum}
+uniform Nelson bounds, plain and shifted, used in Lemma~\ref{lem:NandE});
+Remark 4.2 (the A1 normalization of $\omega^{\rm ct}_{L,\lambda}$, consumed
+in Theorem~\ref{thm:gate}); \S1 (the gate endpoint convention
+$(a,b)=(0,0)$).
+\item \emph{Free-rate document}: Lemma 2.1 (envelope) and Lemma 3.1
+(dispersion) --- consumed through V2's re-packaging and, in
+Lemma~\ref{lem:freeproduct}, directly; the band bound
+$\gamma_N\ge\gamma_-:=\max(m,\tfrac2\pi|k|)$ used there is from V2,
+Lemma 2.1's proof. (Free-rate Lemma 2.2 is \emph{not} consumed here: the
+filter tail used below is V2's own eq.\ (18), proved there from the QMF
+telescope.)
+\item \emph{Weyl-reduction document}
+(\texttt{lamport\_part\_ii\_weyl\_reduction}): Theorem 1.1 (full-sequence
+Weyl criterion), Corollary 3.1 (identification on one common algebra),
+Proposition 4.1 (compatible symmetry), all proved there.
+\end{itemize}
+
+\begin{remark}[erratum register for upstream displays]\label{rem:erratum}
+Twelve upstream errata and one normalization amendment are registered here and
+corrected in place; items (3)--(6) were added after the round-5 adversarial pass and
+items (7)--(10) after the round-6 pass (13 Aug 2026). Items (1), (1$'$), (1$''$) do not propagate (item (1) is not merely
+notational: it replaces an import, and the replacement is proved in V3,
+Theorem 3.1(ii)); item (1$'''$) is a substantive correction
+that \emph{did} propagate, and its three propagations (V2 Corollary 5.2 with
+Remark 5.3, V3 \S1's endpoint, the scoping note's clause A4(b)) are recorded
+with it; item (2) is a normalization amendment.
+\emph{(1) V1, Theorem 5.4 --- the reference measure (upgraded 12 Aug 2026,
+after the adversarial pass).} The statement originally introduced ``$U$ the
+full multiplication potential of $K_{N,L}$'' for the path integrand of
+display (14), and V1's import (I1) cited the model sheet's formula (3.16).
+Those are two different Feynman--Kac formulas: (3.16) has the \emph{flat}
+Gaussian kernel, the Brownian bridge, and the full potential, whereas V1's
+jump chain (its Lemmas 5.1--5.3) is built from \emph{Mehler} kernels, for
+which the integrand must be the interaction
+$\mathcal V_N=\lambda\eps_N\sum_x{:}\varphi_x^4{:}_{c_{N,L}}$ alone, the
+harmonic part being carried by the reference. Reading $U$ as
+$\mathcal V_N$ repairs the \emph{statements} (14), (15) and the phase
+cancellation, but not the \emph{import}: the harmonic-reference formula is
+not model-sheet (3.16). It is, however, available in the corpus --- V3,
+Theorem 3.1(ii) proves exactly it (Mehler reference, Trotter for bounded
+truncations, monotone convergence) for the abstract finite-mode class
+containing the lattice system (V3, Remark 3.2). V1's import (I1) has
+accordingly been \emph{restated} as the harmonic-reference formula with that
+proof. Two caveats belong to the restatement and are recorded in (I1)
+itself: V3~3.1(ii) states the identity in the Gaussian ($\mu$-)
+representation, so passing to V1's Lebesgue-kernel form uses the
+ground-state (Doob) conjugation
+$k^{(0)}_t=e^{-tE^{(0)}_N}\Omega_0\otimes\Omega_0\cdot M_t$ (the induced
+bridges coincide); and the acyclicity note is not that V3~3.1(ii) consumes
+\emph{nothing} from V1 --- it does invoke V1's Mehler kernel, Lemma 5.1 ---
+but that Lemma 5.1 is proved independently of (I1), so the order
+V1 Lem.\ 5.1 $\to$ V3~3.1(ii) $\to$ V1 \S3 and Lemmas 5.2--5.3,
+Theorem 5.4 $\to$ V3~3.1(v)--(vi) is acyclic.
+\emph{(1$'$) V1, display (15).} As printed, the Wick-binomial shift carried
+a spurious term $-6c_{N,L}(2H_x\eta_x+H_x^2)$ on top of the Wick-power
+form: by the Appell property,
+${:}(\eta+H)^4{:}_c-{:}\eta^4{:}_c
+=4H{:}\eta^3{:}_c+6H^2{:}\eta^2{:}_c+4H^3\eta+H^4$ exactly, the
+$-6c[2H\eta+H^2]$ of the bare expansion being consumed by
+$\eta^3={:}\eta^3{:}_c+3c\eta$, $\eta^2={:}\eta^2{:}_c+c$. Display (15) and
+its proof have been corrected; every downstream user (V2, Prop.\ 6.5; V3,
+Theorem 3.1(vi); \S\ref{sec:representations} here) already used the correct
+Appell form, so nothing propagated.
+\emph{(1$''$) Symbol-difference exponent.} V2, eq.\ (9) has decay exponent
+$-2$ (one envelope factor times one factor $(m^2+|\kappa|^2)^{-1}$); two
+places transcribed it as $-3$ (V2, Lemma 6.4's proof;
+Lemma~\ref{lem:phase}(ii) here). Both have been recomputed with the correct
+exponent: V2, Lemma 6.4 keeps its bound $B_j'\eps_N^2\log_N^2$ (via the flat
+bound $|\hat c_N-\hat c_\infty|\le C\eps_N^2$ and a band count), and
+Lemma~\ref{lem:phase} keeps $C_\xi\eps_N^2$ (the $D4$ envelope makes the
+mode sum converge).
+\emph{(1$'''$) The convention lock (round 2, breaking).} V2's Corollary 5.2
+asserted that, relative to the truncation convention, the gate's continuum
+polynomial is $\varphi^4-6\delta_\infty\varphi^2+3\delta_\infty^2$, and V3 \S1
+accordingly set the endpoint at $(a,b)=(-6\delta_\infty,3\delta_\infty^2)$.
+This is \emph{false}: the lattice and continuum fields' equal-point variances
+differ by the same $\delta_\infty$ as their Wick constants, so the offsets
+cancel and no counterterm survives. V2, Corollary 5.2 has been restated
+(with Remark 5.3), V3 \S1 now fixes $(a,b)=(0,0)$, and the scoping note's
+clause A4(b) --- whose own sign has since been corrected to
+$-6\delta_\infty$, matching the superseded form of V2, Corollary 5.2, and
+which carried the same underlying trap --- is marked superseded, with
+outcome $(a,b)=(0,0)$. Nothing in the present document changes: A6--A8 were
+written for the $(a,b)=(0,0)$ pair throughout, as the Jensen value in
+Lemma~\ref{lem:NandE}(i) shows.
+\emph{(2) Scoping note, Statement A7:} the parenthetical free-factor
+display $\prod_k(2\sh(t\gamma_N(k)/2))^{-1}\to
+\prod_k(2\sh(t\gamma(k)/2))^{-1}$ is vacuous as written: both sides
+contain the divergent ground-energy factors $e^{-te_0(N)}$, and the
+infinite product on the right diverges to $0$
+($\sum_k\gamma(k)=\infty$). A7 is executed below in the normal-ordered
+normalization $\widetilde K_{N}:=K_{N,L}-e_0(N)$, for which the free
+factor is $\prod_{k\in\Gamma_N}(1-e^{-t\gamma_N(k)})^{-1}\to Z_0(t)$
+(Lemma~\ref{lem:freeproduct}); every quantity consumed by the scoping
+lemmas (eigenvalue \emph{differences}, $D_N$, gaps) is invariant under
+the $c$-number shift. Recorded as an amendment in \texttt{strategy.md}.
+\emph{(3) V2, Definition 1.1 --- the edge column (round 5, moderate).} The
+same-noise coupling defined $\eta_N$ by restricting the $D_\infty$-indexed
+Hermitian family $G$ to $D_N$. Since $\Gamma_N$ is asymmetric, $D_N\ne-D_N$: the
+column $k_e=-\pi/\eps_N$ lies in $D_N$ while $-k_e$ does not, the constraint
+$G(-\kappa)=\overline{G(\kappa)}$ does not close there, and $\eta_N$ was
+consequently \emph{not real} and did \emph{not} carry the law $\mu^{\rm per}_{N,t}$;
+$\E[\eta_N(z)\eta_N(z')]$ omitted the entire edge column, a defect of size
+$\eps_N/(8L)$ at coincident points --- one power of $\eps_N$ larger than every term
+tracked in V2, \S4. This is load-bearing here: Lemma~\ref{lem:phase} closes with
+$|e^{ia}-e^{ib}|\le|a-b|$ for \emph{real} $a,b$, and V2's Lemma 7.1 is a pointwise
+identity between real numbers. V2, Definition 1.1 now symmetrizes that one column,
+$G_N(k_0,k_e):=2^{-1/2}(G(k_0,k_e)+G(k_0,-k_e))$, which is legitimate because
+$e^{ik_ex}=e^{-ik_ex}$ on $\Lambda_N$ and $\gamma_N(k_e)=\gamma_N(-k_e)$; V2,
+Proposition 1.2(i) then holds verbatim, (ii) acquires an explicit edge remainder
+$R_N$, and (iii) records that every second- and fourth-moment sum of V2, \S4 changes
+by $O(t\eps_N^3)$. No statement and no rate in V2 or here changes.
+\emph{(4) Scoping note, Statement A7 --- unshifted symbols (round 5).} The
+normal-ordering amendment of item (2) had been inserted, but A7's \emph{conclusions}
+were left in the un-normal-ordered symbols, in which two of them are false:
+$e_0(N)\ge r_Nm\to\infty$ forces $Z_N(t)\to0\ne Z_\infty(t)$ and
+$E_j(N)\to+\infty\ne\mu_j$. They are now stated in the tilded symbols that
+Theorem~\ref{thm:A7} actually proves; only the shift-invariant conclusions
+($E_1-E_0\to\gamma_L$, $D_N\to D_\infty$) were ever consumed by A8.
+\emph{(5) Scoping note, Lemma 3.2 --- the small-$t$ hypothesis and the density step
+(round 5).} Hypothesis (i) demanded $Z_N(t)\to Z_\infty(t)$ for \emph{every} $t>0$,
+which Theorem~\ref{thm:A7}(a) would have had to supply by invoking V2, Theorem 4.3
+at arbitrarily small $t$ --- where that theorem's standing hypothesis $tL\ge1$ fails
+and its constant genuinely blows up ($\Sigma_1$ saturates as $t\downarrow0$ while
+$tL\to0$). Hypothesis (i) is now required only for $t\ge t_*$ with $t_*>0$ fixed,
+which still yields Stone--Weierstrass density (the span of
+$\{e^{-tE}:t\ge t_*\}$ is an algebra), and Theorem~\ref{thm:A7} is stated for
+$t\ge t_*$; $t_1$ is the only value A8 consumes. Independently, that lemma's proof
+approximated against $\nu_N$ itself, which has infinite total mass, so
+$\|f-g\|_\infty<\eps$ controlled nothing; the weighted argument against
+$e^{-t_*E}d\nu_N$, previously a gloss, is now the proof.
+\emph{(6) Scoping note, Statement A3(b) --- a false tail bound (round 5).} The
+justification clause used $\coth(t\gamma/2)-1\le2e^{-t_0\gamma}$, which is false for
+\emph{all} $t_0,\gamma>0$ (since $2/(e^x-1)-2e^{-x}=2/[e^x(e^x-1)]>0$) and fails by a
+factor $\sim1/(t_0\gamma)$. Corrected to
+$\coth(t\gamma/2)-1\le2e^{-t_0\gamma}/(1-e^{-t_0m})$. The executed proof (V1,
+Theorem 7.2) never used the false form.
+\emph{(7) V2, \S\S4 and 6 --- the amendment was not propagated (round 6).} Round 5
+amended V2's Definition 1.1 but left \S4 and \S6 standing against the old coupling.
+Three consequences, all now corrected in V2: (a) the mixed pairing does \emph{not}
+run over $D_N$ with symbol $\hat c_\times$ but over the \emph{symmetric} band
+$\tilde D_N$ with the edge weight $\chi(\pm\pi/\eps_N)=2^{-1/2}$ --- it is false that
+modes of $\eta$ outside $D_N$ have zero covariance with $\eta_N$, since the
+symmetrization is exactly what couples $+\pi/\eps_N$ to $\eta_N$; (b) the blanket
+claim that this changes every second- and fourth-moment sum by $O(t\eps_N^3)$ is
+wrong on both counts --- the second-moment sums are unchanged \emph{exactly}, and the
+fourth-moment cross sum computed on $D_N^4$ rather than on $(\tilde D_N,\chi)$ has
+one-, two-, and four-edge sectors.  The former two are
+$O(t\eps_N^3\log_N^2)$; the formerly omitted four-edge sector is
+\[
+ 4!(2Lt)^{-2}\frac32
+ \sum_{k_{0,1}+\cdots+k_{0,4}=0}\prod_i
+ \hat c_\times(k_{0,i},\pi/\eps_N)
+ \le\frac{9t}{256L^2}\coth(2t_0)^3\eps_N^5.
+\]
+Exactly three edge factors are impossible, but four are not.  V2 now tracks the
+total correction as $\mathcal E_N^{\rm edge}$ in V2's displays
+\texttt{eq:Eedge}--\texttt{eq:Eedge-bound} and carries it into the
+fourth-chaos norm;
+(c) V2's \S6 has now been re-derived with three different multipliers: the folded
+lattice symbol $K_{N,j}^{\rm fold}$, the exact-output mixed symbol
+$K_{\times,j}$, and the continuum symbol $K_{\infty,j}$.  Since the
+asymmetric-band mixed kernel can be complex at the edge, the scalar surrogate is
+defined as the real part of that pairing.  Its shifted quadratic difference is
+the exact four-term partition containing the displayed mixed-alias
+term $A_{\times,j}$; the former unnamed remainder has been deleted.  The
+physical edge kernel is bounded separately before the Fourier partition.  These
+repairs preserve Proposition 6.5's rate, so Lemma~\ref{lem:NandE}(iii) and A6 remain
+valid with an actual proved input rather than the superseded decomposition.
+\emph{(8) The $D4$ filter annihilates the edge column (round 6, new; scope corrected
+in round 7).} For the $D4$ mask $m_0(\pi)=0$, whence $P_r(\pm\pi2^{\,r})=0$ and the
+coarse coefficients $a_N,b_N$ \emph{vanish} on the edge column for every $r\ge1$. This
+was noticed in no earlier round. It is what makes $h^{(N)}$ real and what licenses
+Lemma~\ref{lem:phase} here (for $r\ge1$; the case $r=0$ is disposed of separately
+there, the identity being genuinely false at $r=0$). It does \emph{not} remove the edge remainder from V2's \S6 at all --- neither in
+general, as round 6 first claimed, nor for $j=3$, as round 7 then claimed. Round 8
+located the actual mechanism: $R_N=\sigma\Psi$ with $\sigma(x)=(-1)^{x/\eps_N}$ on
+$\Lambda_N$, so $\sigma^2\equiv1$ and the expansion of $(C_\times+R_N)^j-C_\times^j$
+contains $\sigma$-free terms as soon as $j\ge2$; those are supported on the whole
+$j$-fold sumset and no vanishing of $a^{(N)}_{k_e}$ touches them. Only a kernel entering
+\emph{linearly} is edge-supported --- which is Lemma~\ref{lem:phase} here, and not any
+chaos of V2, Proposition 6.5, whose remainder is bounded uniformly in $j\in\{1,2,3\}$.
+Recorded in V2 as the remark following Definition 6.2, clause (b). Three successive
+rounds asserted a vanishing here; the lesson recorded in \texttt{strategy.md} is that a
+convolution or a power of vanishing quantities does not vanish.
+\emph{(9) The standing hypothesis $tL\ge1$ (round 6).} Round 5 attached it to V2's
+Theorem 4.3 only. It is consumed just as much by V2's Lemma 4.2, Lemma 6.4,
+Proposition 6.5 and Theorem 7.2, and here by Lemma~\ref{lem:NandE} and
+Theorem~\ref{thm:A6}; erratum item (5) was wrong to say Theorem~\ref{thm:A7}(a) is
+the only consumer. V2 now carries it as the standing convention $(\star)$ of its
+\S1, and Lemma~\ref{lem:NandE}, Theorem~\ref{thm:A6} and Theorem~\ref{thm:gate}
+state it explicitly. Correspondingly Theorem~\ref{thm:gate} no longer fixes
+$t_0=t_1=1$ --- inadmissible when $L<1$, since $t_*L\ge1$ forces $t_*\ge1/L$ --- but
+$t_0=t_1=t_*:=\max(1,1/L)$. Round 7 added two further consumers that had been missed:
+Theorem~\ref{thm:A7}(a) invoked Lemma~\ref{lem:NandE} at $t_0:=t/2$, which violates
+$(\star)$ on the whole window $t\in[t_*,2/L)$ --- exactly where the gate consumes it ---
+and is now $t_0:=\max(t/2,1/L)$; and V3, which imports seven V2 results each stated only
+under $(\star)$ but nowhere assumed it, now carries it as a standing convention of its
+\S1.
+\emph{(10) Scoping note, Lemma 3.2 --- conclusion still quantified over all $t$
+(round 6, breaking as stated).} After the round-5 weakening of hypothesis (i) to
+$t\ge t_*$, the conclusion $D_N(t)\to D_\infty(t)$ was left quantified over every
+$t>0$, where it is false: with $\nu_N=\sum_{j\ge0}\delta_j+\lceil e^N/N\rceil\delta_N$
+all hypotheses hold while $D_N(\tfrac12)-D_\infty(\tfrac12)\sim e^{N/2}/N\to\infty$.
+Restricted to $t\ge t_*$, with the counterexample recorded there. Only $t_1\ge t_*$
+is consumed, by Theorem~\ref{thm:A7}(c).
+\end{remark}
+
+\section{The two representations on the coupling space}
+\label{sec:representations}
+
+Work on the V2 coupling space (V2, Definition 1.1): one Gaussian family
+realizes the lattice field $\eta_N$ (law $=$ V1's periodic ensemble
+$\mu^{\rm per}_{N,t}$; V2, Prop.\ 1.2) and the continuum field $\eta$
+(law $=\mu^{\rm per}_{t,L}$) simultaneously. Let $\U_{N,t},\U_t$ be the
+V2 interactions (V2, Definition 2.2), $h^{(N)},h^{(\infty)}$ the shift
+fields of the symbol $\xi$ (V2, Definition 6.2; $h^{(N)}$ is V1's
+interpolant $\bm H_p$ in the original coordinates, $h^{(\infty)}$ its
+continuum counterpart), and define the amplitude collapses
+\begin{equation}
+ b_N(k):=\eps_M^{1/2}P_r(\eps_Mk)\,\widehat{p}_M(k),\quad
+ a_N(k):=\eps_M^{1/2}P_r(\eps_Mk)\,\widehat{q}_M(k)\qquad(k\in\Gamma_N),
+ \label{eq:amplitudes}
+\end{equation}
+and $b_\infty,a_\infty$ with $P_\infty$ on $\Gamma_\infty$ (the
+$2^{r/2}$-normalizations cancel as in V2, Definition 6.2:
+$\eps_N^{1/2}\widehat{p}_N(k)=b_N(k)$, etc.). The actions and source
+phases are
+\begin{equation}
+ S_N=\frac1{4\cdot2L}\sum_{k\in\Gamma_N}
+ \gamma_N(k)\cth\Bigl(\tfrac{t\gamma_N(k)}2\Bigr)|b_N(k)|^2,
+ \qquad
+ \Phi_N(J_q)=\eps_N\sum_{x\in\Lambda_N}q_N(x)\,\eta_N(0,x),
+ \label{eq:SandPhi}
+\end{equation}
+and $S_\infty$, $\Phi(J_q)=\int_{\T_L}q_\infty(x)\eta(0,x)\,dx$
+analogously ($S_N$ is V1, eq.\ (12), rewritten with
+$(2r_N)^{-1}|\widehat p_N|^2=(2L)^{-1}|b_N|^2$; $S_\infty$ is V3, \S6).
+By V1, Theorem 5.4 (with Remark~\ref{rem:erratum}(1)) and V3, Corollary
+6.3:
+\begin{equation}
+ F_N(t;\xi)=e^{-S_N}\,\frac{\mathcal N_N(t;\xi)}{\mathcal E_N(t)},
+ \qquad
+ F_\infty(t;\xi)=e^{-S_\infty}\,
+ \frac{\mathcal N_\infty(t;\xi)}{\mathcal E_\infty(t)},
+ \label{eq:tworeps}
+\end{equation}
+where, as expectations over the coupling space,
+\begin{gather*}
+ \mathcal N_N:=\E\bigl[e^{i\Phi_N(J_q)}\,
+ e^{-\U_{N,t}(\eta_N+h^{(N)})}\bigr],\qquad
+ \mathcal E_N:=\E\bigl[e^{-\U_{N,t}}\bigr],\\
+ \mathcal N_\infty:=\E\bigl[e^{i\Phi(J_q)}\,
+ e^{-\U_{t}(\eta+h^{(\infty)})}\bigr],\qquad
+ \mathcal E_\infty:=\E\bigl[e^{-\U_{t}}\bigr].
+\end{gather*}
+
+Throughout, $C_\xi$ denotes a finite constant depending on
+$(m,L,\lambda,t_0,T,M,\|\widehat q_M\|_\infty,\|\widehat p_M\|_\infty)$
+but not on $N$ or $t\in[t_0,T]$; $\eta=2-\log_23$ and
+$\wbar:=\cth(t_0m/2)$.
+
+\section{Two comparison lemmas}\label{sec:lemmas}
+
+\begin{lemma}[action prefactors]\label{lem:action}
+For $t\in[t_0,T]$ and $N=M+r$,
+\[
+ 0\le S_N,\ S_\infty\le C_\xi,
+ \qquad
+ |S_N-S_\infty|\ \le\ C_\xi\,2^{-r\eta/2},
+ \qquad
+ |e^{-S_N}-e^{-S_\infty}|\le|S_N-S_\infty| .
+\]
+\end{lemma}
+
+\begin{proof}
+Write $w^p_\bullet(k):=\gamma_\bullet(k)\cth(t\gamma_\bullet(k)/2)$, so
+$4\cdot2L\,S_\bullet=\sum w^p_\bullet|b_\bullet|^2$. Boundedness: $w^p\le
+\wbar\,\gamma(k)$, $|b_\bullet(k)|^2\le C\eps_M\|\widehat
+p_M\|_\infty^2(1+\eps_M|k|)^{-2-\eta}$ ($D4$ envelope, V2 \S6), and
+$\sum_k\gamma(k)(1+\eps_M|k|)^{-2-\eta}<\infty$ since the summand decays
+like $|k|^{-1-\eta}$. For the difference, split at
+$\ell_r:=2^{r/2}$ in the variable $\ell:=\eps_M|k|$, and use, with
+$s_*:=\sup_{x\ge t_0m/2}x/\sh^2x$:
+
+\emph{Low modes ($\ell\le\ell_r$).} Telescope
+$|w^p_N|b_N|^2-w^p|b_\infty|^2|\le
+w^p_N\,\bigl||b_N|^2-|b_\infty|^2\bigr|
++|w^p_N-w^p|\,|b_\infty|^2$. By V1, eq.\ (18),
+$|w^p_N-w^p|\le(\wbar+s_*)\eps_N^2k^4/(24m)$; summing against the
+envelope, $\sum_{\ell\le\ell_r}\eps_N^2k^4(1+\ell)^{-2-\eta}
+\le C(M)\,4^{-r}\,\ell_r^{\,3-\eta}=C\,2^{-r(1+\eta)/2}$
+($\int_0^X\ell^{2-\eta}\,d\ell=X^{3-\eta}/(3-\eta)$, with
+$\eps_N^2k^4=4^{-r}\ell^4\eps_M^{-2}$; the mode density in the variable
+$\ell=\eps_M|k|$ is the constant $2L/(\pi\eps_M)$ and supplies no factor of $\ell$ ---
+the integrand $\ell^{2-\eta}$ is already the large-$\ell$ behaviour of the summand
+$\ell^4(1+\ell)^{-2-\eta}$). By the filter-tail bound (V2, eq.\ (18)):
+$|b_N-b_\infty|(k)\le\eps_M^{1/2}\|\widehat p_M\|_\infty
+C_D^{1/2}L_{m_0}2^{-r}\ell(1+\ell)^{-1-\eta/2}$, so
+$||b_N|^2-|b_\infty|^2|\le|b_N-b_\infty|(|b_N|+|b_\infty|)
+\le C\eps_M\|\widehat p_M\|_\infty^2\,2^{-r}\ell(1+\ell)^{-2-\eta}$,
+and with $w^p_N\le\wbar(m+|k|)\le\wbar(m+\ell/\eps_M)$:
+$\sum_{\ell\le\ell_r}\le C(M)2^{-r}\int_0^{\ell_r}
+\ell^2(1+\ell)^{-2-\eta}d\ell\le C2^{-r}\ell_r^{1-\eta}
+=C2^{-r(1+\eta)/2}$.
+
+\emph{High modes ($\ell>\ell_r$, including $|k|>\pi/\eps_N$).} Bound both
+terms separately by the envelope:
+$\sum_{\ell>\ell_r}\wbar\,\gamma(k)\,
+C\eps_M(1+\ell)^{-2-\eta}\le
+C(M)\int_{\ell_r}^\infty\ell(1+\ell)^{-2-\eta}d\ell
+\le C\,\ell_r^{-\eta}=C2^{-r\eta/2}$.
+Collecting, $|S_N-S_\infty|\le C_\xi(2^{-r(1+\eta)/2}+2^{-r\eta/2})
+\le C_\xi2^{-r\eta/2}$. The last display of the lemma is the mean value
+theorem on $[0,\infty)$.
+\end{proof}
+
+\begin{lemma}[marked-slice source phases]\label{lem:phase}
+On the coupling space, $\Phi_N(J_q)-\Phi(J_q)$ is a centered Gaussian
+variable with
+\[
+ \E\bigl[(\Phi_N(J_q)-\Phi(J_q))^2\bigr]\ \le\ C_\xi\,2^{-r\eta/2},
+ \qquad
+ \bigl\|e^{i\Phi_N(J_q)}-e^{i\Phi(J_q)}\bigr\|_{L^2(\PP)}
+ \le C_\xi\,2^{-r\eta/4}.
+\]
+\end{lemma}
+
+\begin{proof}
+By V2, Definition 1.1 (in its amended form, with the symmetrized family $G_N$),
+\begin{gather*}
+ \eta_N(0,x)=(2Lt)^{-1/2}\sum_{\kappa\in D_N}
+ G_N(\kappa)\,\hat c_N(\kappa)^{1/2}e^{ikx},\\
+ \eps_N\sum_xq_N(x)e^{ikx}=\eps_N^{1/2}\widehat q_N(-k)=a_N(-k),
+\end{gather*}
+so $\Phi_N(J_q)$ is a real Gaussian. \emph{Assume $r\ge1$ for the rest of the proof};
+the case $r=0$ is disposed of at the end. Then \emph{the edge column drops out
+entirely}: $a_N(\pm\pi/\eps_N)=0$, because
+$a_N\propto P_r(\eps_Mk)$ and $P_r(\pm\pi2^{\,r})=0$, the mask factor
+$m_0(\pm\pi)$ vanishing (V2, the remark following Definition 6.2). Hence $G_N$ may be
+replaced by $G$ in the expansion below without changing anything, the two differing
+only on that column, and
+\begin{gather*}
+ \Phi_N(J_q)=(2Lt)^{-1/2}\!\!\sum_{\kappa\in D_N}\!\!
+ G(\kappa)\,\hat c_N(\kappa)^{1/2}a_N(-k),\\
+ \Phi(J_q)=(2Lt)^{-1/2}\!\!\sum_{\kappa\in D_\infty}\!\!
+ G(\kappa)\,\hat c_\infty(\kappa)^{1/2}a_\infty(-k),
+\end{gather*}
+whence, by orthonormality of the $G(\kappa)$,
+\[
+ \E\bigl[(\Phi_N-\Phi)^2\bigr]
+ =\frac1{2Lt}\Bigl[\sum_{\kappa\in D_N}
+ \bigl|\hat c_N^{1/2}a_N-\hat c_\infty^{1/2}a_\infty\bigr|^2(-k)
+ +\sum_{\kappa\in D_\infty\setminus D_N}\hat c_\infty|a_\infty|^2\Bigr].
+\]
+Split $\hat c_N^{1/2}a_N-\hat c_\infty^{1/2}a_\infty
+=\hat c_N^{1/2}(a_N-a_\infty)+(\hat c_N^{1/2}-\hat c_\infty^{1/2})
+a_\infty$ and use $(x+y)^2\le2x^2+2y^2$:
+\emph{(i)} $t^{-1}\sum_{k_0}\hat c_N=\cth(t\gamma_N/2)/(2\gamma_N)
+\le\wbar/2m$ (V2, eq.\ (2) at $\tau=0$), and
+$|a_N-a_\infty|^2\le C\eps_M\|\widehat q_M\|_\infty^2\,
+4^{-r}\ell^2(1+\ell)^{-2-\eta}$ (filter tail, as in
+Lemma~\ref{lem:action}); the mode sum gives
+$C(M)4^{-r}\int_0^{\pi2^r}\ell^2(1+\ell)^{-2-\eta}d\ell\le
+C\,2^{-r(1+\eta)}$.
+\emph{(ii)} $(\hat c_N^{1/2}-\hat c_\infty^{1/2})^2\le|\hat c_N-\hat
+c_\infty|$, and V2, eq.\ (9) reads $|\hat c_N-\hat c_\infty|(\kappa)\le
+\tfrac{\pi^6}{768}\eps_N^2k^4(m^2+|\kappa|^2)^{-2}$ (decay exponent $-2$:
+one factor $\hat c_{\mathrm{env}}$, one factor $(m^2+|\kappa|^2)^{-1}$), so
+the $k_0$-count V2, eq.\ (13) applies at $s=2$ and gives
+\[
+ t^{-1}\sum_{k_0}|\hat c_N-\hat c_\infty|
+ \ \le\ C(m,t_0)\,\eps_N^2\,\frac{k^4}{(m^2+k^2)^{3/2}}
+ \ \le\ C(m,t_0)\,\eps_N^2\,(m+|k|);
+\]
+against the envelope $|a_\infty(k)|^2\le C\eps_M\|\widehat q_M\|_\infty^2
+(1+\ell)^{-2-\eta}$, $\ell=\eps_M|k|$, the summand is $O(\ell^{-1-\eta})$,
+so the mode sum converges and the term is $\le C_\xi\eps_N^2$.
+\emph{(iii)} The missing modes: $t^{-1}\sum_{k_0}\hat c_\infty
+=\cth(t\gamma/2)/(2\gamma)\le\wbar/2m$ and the envelope tail over
+$\Gamma_\infty\setminus\Gamma_N$, i.e.\ $\ell\ge\pi2^r$, is
+$\le C2^{-r(1+\eta)}$ (the extra edge mode $k=+\pi/\eps_N$ obeys the same
+envelope, so no constant changes).
+Collecting: $\E[(\Phi_N-\Phi)^2]\le
+C_\xi(2^{-r(1+\eta)}+\eps_N^2)\le C_\xi2^{-r\eta/2}$ (a deliberately
+crude common exponent). The second display follows from
+$|e^{ia}-e^{ib}|\le|a-b|$ and the $L^2$ bound.
+
+Finally $r=0$, where $P_0\equiv1$ and $a_N(\pm\pi/\eps_N)$ need not vanish, so the
+replacement of $G_N$ by $G$ is not licensed and the displayed variance identity is
+genuinely false (the two sides differ by
+$(2-2\sqrt2)\eps_M|\widehat q_M(\pi/\eps_M)|^2\mathrm{Re}\,P_\infty(-\pi)(2Lt)^{-1}
+\sum_{k_0}\hat c_\times(k_0,k_e)\ne0$, since
+$\mathrm{Re}\,P_\infty(-\pi)=-0.4919\ldots$). Nothing is lost: at $r=0$ the two fields
+are indexed by the single fixed scale $M$, and
+$\E[(\Phi_N-\Phi)^2]\le2\E[\Phi_M^2]+2\E[\Phi^2]\le C_\xi$, both terms being finite by
+the envelope of V2, Lemma 3.1(i); enlarging $C_\xi$ by that one fixed amount
+gives the stated bound at $r=0$ as well.
+\end{proof}
+
+\begin{lemma}[numerators, denominators, and their limits]
+\label{lem:NandE}
+For $t\in[t_0,T]$ with $t_0L\ge1$ (V2's standing hypothesis $(\star)$, inherited
+through V2, Theorem 4.3 and Proposition 6.5, which clauses (ii),(iii) consume), and
+with $\kappa_1:=\min\{\eta/4,\ (1+\eta)/4\}=\eta/4$:
+\emph{(i)} $\mathcal E_N(t)\ge e^{-C_0}>0$ and
+$\mathcal E_\infty(t)\ge e^{-C_0}>0$ with
+$\sup_N\E[\U_{N,t}]\vee\E[\U_t]\le3\lambda\,\bar d^{\,2}\,2LT=:C_0<\infty$;
+\emph{(ii)} $|\mathcal E_N(t)-\mathcal E_\infty(t)|
+\le C(1+t)(1+L)\,\eps_N\logN^{3/2}$;
+\emph{(iii)} $|\mathcal N_N(t;\xi)-\mathcal N_\infty(t;\xi)|
+\le C_\xi\bigl(2^{-r\kappa_1}+\eps_N\logN^{3/2}\bigr)$, and
+$|\mathcal N_\bullet|\le\sup_{N\le\infty}
+\|e^{-\U_{\bullet,t}(\cdot+h^{(\bullet)})}\|_{L^1}=:B_1<\infty$, the
+supremum running over the lattice family \emph{and} its continuum member.
+\end{lemma}
+
+\begin{proof}
+Throughout, the \emph{lattice} uniform Nelson bounds are V2, Theorem 7.2,
+and their \emph{continuum} counterparts $\|e^{-\U_t}\|_{L^p}$,
+$\|e^{-\U_t(\cdot+h^{(\infty)})}\|_{L^p}$ are V3, Prop.\ 2.6(iii) and
+Lemma 6.1(iv); we cite the pair as ``the uniform Nelson bounds''.
+(i) Jensen: $\mathcal E\ge e^{-\E[\U]}$, and by V2, Definition 2.2 the
+ensemble-Wick chaoses are centered, so
+$\E[\U_{N,t}]=3\lambda d_N(t)^2\cdot2Lt\le3\lambda\bar d^22Lt$ (V2,
+Lemma 2.1); likewise in the limit.
+(ii) $|e^{-\alpha}-e^{-\beta}|\le|\alpha-\beta|(e^{-\alpha}+e^{-\beta})$,
+H\"older, V2, Theorem 4.3 and the uniform Nelson bounds:
+$|\mathcal E_N-\mathcal E_\infty|\le\|\U_{N,t}-\U_t\|_{L^2}
+\,\|e^{-\U_{N,t}}+e^{-\U_t}\|_{L^2}$.
+(iii) Split
+\[
+ |\mathcal N_N-\mathcal N_\infty|
+ \le\E\Bigl[\bigl|e^{i\Phi_N(J_q)}-e^{i\Phi(J_q)}\bigr|\,
+ e^{-\U_{N,t}(\eta_N+h^{(N)})}\Bigr]
+ +\E\Bigl[\bigl|e^{-\U_{N,t}(\eta_N+h^{(N)})}
+ -e^{-\U_t(\eta+h^{(\infty)})}\bigr|\Bigr].
+\]
+The first term is $\le\|e^{i\Phi_N}-e^{i\Phi}\|_{L^2}\,
+\|e^{-\U_{N,t}(\cdot+h^{(N)})}\|_{L^2}\le C_\xi2^{-r\eta/4}B_2$
+(Lemma~\ref{lem:phase}; $B_2$ from V2, Theorem 7.2, shifted clause). For
+the second, decompose the exponent difference as
+\[
+ \U_{N,t}(\eta_N+h^{(N)})-\U_t(\eta+h^{(\infty)})
+ =\bigl[\U_{N,t}(\eta_N)-\U_t(\eta)\bigr]
+ +\bigl[\Delta\U_N-\Delta\U\bigr],
+\]
+with $\Delta\U_N:=\U_{N,t}(\cdot+h^{(N)})-\U_{N,t}(\cdot)$ as in V2,
+Prop.\ 6.5; by V2, Theorem 4.3 (contributing $\eps_N\logN^{3/2}$) and Prop.\ 6.5
+(contributing $2^{-r(1+\eta)/4}+\eps_N\logN$) its $L^2$ norm is
+$\le C_\xi(2^{-r(1+\eta)/4}+\eps_N\logN^{3/2})$, and the
+$|e^{-\alpha}-e^{-\beta}|$ inequality with the shifted uniform Nelson
+bounds --- the \emph{pair} named in the preamble, since $\beta$ is the
+continuum member --- closes as in (ii). $B_1<\infty$ holds by the same pair
+(V2, Theorem 7.2 for $N<\infty$; V3, Lemma 6.1(iv) at $p=1$ for the
+continuum member).
+\end{proof}
+
+\section{A6: fixed-$t$ convergence of the thermal functionals}
+\label{sec:A6}
+
+\begin{theorem}[A6]\label{thm:A6}
+For every $0<t_0\le t\le T$ with $t_0L\ge1$, every $M$, and every
+$\xi\in h_{M,L}$,
+\[
+ \bigl|F_N(t;\xi)-F_\infty(t;\xi)\bigr|
+ \ \le\ C_\xi\,\Bigl(2^{-r\eta/4}+\eps_N\logN^{3/2}\Bigr)
+ \ \xrightarrow[N\to\infty]{}\ 0 .
+\]
+In particular $F_N(t;\xi)\to F_\infty(t;\xi)$ for every fixed $t\ge1/L$ (choose
+$t_0:=\max(t/2,1/L)\le t\le T:=2t$). The restriction is real, not formal: the proof
+consumes V2, Theorem 4.3 and Proposition 6.5 through Lemma~\ref{lem:NandE}(ii),(iii),
+and V2's remark following Theorem 4.3 shows the constant there genuinely diverges as
+$tL\downarrow0$. Only $t\ge t_*:=\max(1,1/L)$ is consumed downstream
+(Theorem~\ref{thm:gate}).
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:tworeps},
+\[
+ F_N-F_\infty
+ =\bigl(e^{-S_N}-e^{-S_\infty}\bigr)\frac{\mathcal N_N}{\mathcal E_N}
+ +e^{-S_\infty}\,
+ \frac{\mathcal N_N-\mathcal N_\infty}{\mathcal E_N}
+ +e^{-S_\infty}\,\mathcal N_\infty\,
+ \frac{\mathcal E_\infty-\mathcal E_N}{\mathcal E_N\mathcal E_\infty}.
+\]
+Insert Lemmas~\ref{lem:action}--\ref{lem:NandE}: each denominator is
+$\ge e^{-C_0}$, each numerator factor is bounded by $B_1$ or $1$, and
+the three differences are $O(2^{-r\eta/2})$,
+$O(2^{-r\eta/4}+\eps_N\logN^{3/2})$ and $O(\eps_N\logN^{3/2})$
+respectively.
+\end{proof}
+
+\begin{remark}
+This discharges the scoping note's ``conclude by Vitali'' step in
+quantitative form: the elementary inequality
+$|e^{-\alpha}-e^{-\beta}|\le|\alpha-\beta|(e^{-\alpha}+e^{-\beta})$
+together with the uniform $L^p$ bounds replaces the Vitali convergence
+theorem, and yields rates. No complex-analytic input is used.
+\end{remark}
+
+\section{A7: partition functions, Laplace transfer, the derived gap}
+\label{sec:A7}
+
+\begin{lemma}[free products]\label{lem:freeproduct}
+For every $t>0$,
+\[
+ \widetilde Z^{(0)}_N(t):=\Trace\,e^{-t(H^{(0)}_{N,L}-e_0(N))}
+ =\prod_{k\in\Gamma_N}\bigl(1-e^{-t\gamma_N(k)}\bigr)^{-1}
+ \ \longrightarrow\
+ Z_0(t)=\prod_{k\in\Gamma_\infty}\bigl(1-e^{-t\gamma(k)}\bigr)^{-1},
+\]
+with $|\log\widetilde Z^{(0)}_N(t)-\log Z_0(t)|\le
+C(m,L,t)\,\eps_N^2$.
+\end{lemma}
+
+\begin{proof}
+$-\log$ of the products differ by
+\[
+ \Bigl|\sum_{k\in\Gamma_N}\bigl[\log(1-e^{-t\gamma_N(k)})
+ -\log(1-e^{-t\gamma(k)})\bigr]\Bigr|
+ +\Bigl|\sum_{k\in\Gamma_\infty\setminus\Gamma_N}
+ \log(1-e^{-t\gamma(k)})\Bigr| .
+\]
+For the first sum, the mean value theorem in the variable
+$y=e^{-t\gamma}$ gives per-$k$ bounds
+\[
+ \le\ \frac{t\,e^{-t\gamma_N(k)}}{1-e^{-tm}}\,|\gamma(k)-\gamma_N(k)|
+ \ \le\ C(m,t)\,e^{-t\max(m,\,(2/\pi)|k|)}\,\eps_N^2k^4
+\]
+(free-rate Lemma 3.1 and $\gamma_N\ge\max(m,\tfrac2\pi|k|)$), summable
+to $C\eps_N^2$; the second sum, over
+$\Gamma_\infty\setminus\Gamma_N=\{k\ge\pi/\eps_N\}\cup\{k<-\pi/\eps_N\}$ --- which
+contains $k=+\pi/\eps_N$, the band being asymmetric --- is
+$\le\sum_{|k|\ge\pi/\eps_N}\frac{e^{-t\gamma(k)}}{1-e^{-tm}}
+\le C(m,L,t)e^{-2t/\eps_N}$, since $\gamma(k)\ge|k|\ge\pi/\eps_N>2/\eps_N$ there.
+\end{proof}
+
+\begin{theorem}[A7]\label{thm:A7}
+Fix $t_*>0$ (arbitrary; only $t_*=t_1$ is consumed downstream) and assume
+$t_*L\ge1$.
+\emph{(a)} For every $t\ge t_*$,
+\[
+ \widetilde Z_N(t):=\Trace\,e^{-t(K_{N,L}-e_0(N))}
+ =\widetilde Z^{(0)}_N(t)\;\mathcal E_N(t)
+ \ \longrightarrow\
+ Z_\infty(t)=Z_0(t)\,\mathcal E_\infty(t)=\Trace\,e^{-tK_L}.
+\]
+\emph{(b)} $\inf_N\widetilde E_0(N)\ge-c_\lambda>-\infty$.
+\emph{(c)} Consequently, by the scoping note's Lemma 3.2 applied to the
+shifted eigenvalue measures $\widetilde\nu_N=\sum_j
+\delta_{\widetilde E_j(N)}$ and $\nu_\infty=\sum_j\delta_{\mu_j}$:
+$\widetilde E_j(N)\to\mu_j$ for every $j$;
+$E_1(N)-E_0(N)\to\gamma_L>0$; and $D_N(t)\to D_\infty(t)$ for every
+$t\ge t_*$, in particular $D_N(t_1)\to D_\infty(t_1)<\infty$ at any fixed
+$t_1\ge t_*$.
+\end{theorem}
+
+\begin{proof}
+\emph{(a)} The identity $\widetilde Z_N=\widetilde Z^{(0)}_N\mathcal
+E_N$ is the sourceless periodic trace identity for the lattice system,
+i.e.\ the \emph{finite-mode} instance of V3, Theorem 3.1(v) --- the
+lattice system is purely finite-dimensional, so the identity is the
+finite-mode statement of that theorem's proof before tensoring with any
+free tail, with free factor $\widetilde Z^{(0)}_N$ --- applied with the
+lattice dictionary (dispersions $\gamma_N(k)$, $k\in\Gamma_N$;
+interaction $V_N$; class membership by the model-sheet \S3 proposition,
+cf.\ V3, Remark 3.2). Its ensemble is $\mu^{\rm per}_{N,t}$ by V1,
+Remark 5.5 $=$ V2, Prop.\ 1.2 --- with the edge column symmetrized as in V2,
+Definition 1.1 and the unnumbered remark following it, without which $\eta_N$ would be
+neither real nor of that law --- and its path integrand, in ensemble-Wick form, is $\U_{N,t}$ by V2's
+recombination (Lemma 2.1). Convergence: Lemma~\ref{lem:freeproduct} and
+Lemma~\ref{lem:NandE}(ii) (at $t_0:=\max(t/2,1/L)\le t$, $T:=2t$ --- \emph{not} at
+$t_0:=t/2$, which would give $t_0L=tL/2<1$ and violate that lemma's own hypothesis
+$(\star)$ on the whole window $t\in[t_*,2/L)$, which is where the gate consumes it;
+the present choice is admissible since $t\ge t_*\ge1/L$, and is the one
+Theorem~\ref{thm:A6} already makes. This is where $t\ge t_*$ is
+needed, V2's comparison carrying the standing hypothesis $tL\ge1$ --- see V2,
+the remark following Theorem 4.3 --- and the scoping note's Lemma 3.2 requiring convergence only for
+$t\ge t_*$). The right-hand
+equality is V3, Theorem 6.2(a).
+\emph{(b)} $e^{-t_1\widetilde E_0(N)}\le\widetilde Z_N(t_1)
+\le\widetilde Z^{(0)}_N(t_1)\sup_N\mathcal E_N(t_1)<\infty$ uniformly
+(V2, Theorem 7.2 at $p=1$ and Lemma~\ref{lem:freeproduct}); take
+logarithms.
+\emph{(c)} Hypothesis (i) of the scoping Lemma 3.2 is (a); hypothesis
+(ii) is (b). The limit spectrum is that of $K_L$ (V3, Theorem 5.2), with
+$\mu_0$ simple and $\gamma_L=\mu_1-\mu_0>0$ (V3, Theorem 7.1), so the
+lemma's conclusions read as stated ($E_1(N)-E_0(N)=\widetilde
+E_1(N)-\widetilde E_0(N)$ and $D_N$ are shift-invariant);
+$D_\infty(t_1)<\infty$ by V3, Theorem 5.2.
+\end{proof}
+
+\section{A8: assembly --- the gate closes}\label{sec:A8}
+
+\begin{lemma}[spectral tail bound]\label{lem:tail}
+For every $N\le\infty$, $t>0$, and unitary $W$ on the respective space,
+\[
+ \Bigl|\frac{\Trace(e^{-tK}W)}{\Trace\,e^{-tK}}
+ -\ip{\Omega}{W\Omega}\Bigr|
+ \ \le\ \frac{2D(t)}{1+D(t)}\ \le\ 2D(t),
+\]
+where $K\in\{K_{N,L},K_L\}$, $\Omega$ is the (simple) ground vector and
+$D(t)$ the corresponding tail sum.
+\end{lemma}
+
+\begin{proof}
+With the orthonormal eigenbasis $(\phi_j)$, $\phi_0=\Omega$, and
+$Z=\Trace e^{-tK}=e^{-tE_0}(1+D(t))$:
+\[
+ \frac{\Trace(e^{-tK}W)}Z-\ip\Omega{W\Omega}
+ =\frac1Z\sum_{j\ge1}e^{-tE_j}
+ \bigl(\ip{\phi_j}{W\phi_j}-\ip\Omega{W\Omega}\bigr),
+\]
+and $|\ip{\phi_j}{W\phi_j}-\ip\Omega{W\Omega}|\le2$, so the modulus is
+$\le2e^{-tE_0}D(t)/Z=2D(t)/(1+D(t))$. For $N=\infty$ this uses V3,
+Theorems 5.2 and 7.1 (trace class; simple ground state).
+\end{proof}
+
+\begin{theorem}[the gate (II.11)]\label{thm:gate}
+For every fixed $M$ and $\xi\in h_{M,L}$,
+\[
+ \lim_{N\to\infty}\ \omega_{N,L,\lambda,1}
+ \bigl(\alpha_M^N(W_M(\xi))\bigr)
+ \ =\ \omega^{\rm ct}_{L,\lambda}\bigl(\beta_M(W_M(\xi))\bigr),
+\]
+i.e.\ display (3.4) of the Weyl-reduction document holds, with
+$\omega_{P(\phi)_2,L}:=\omega^{\rm ct}_{L,\lambda}$ the A1-normalized
+continuum state (V3, Remark 4.2).
+\end{theorem}
+
+\begin{proof}
+Apply the scoping note's Lemma 3.1 with
+$t_0:=t_*:=\max(1,1/L)$ --- so that $t_*L\ge1$, as Theorem~\ref{thm:A7} requires, and
+$t_*\ge1/L$, as Theorem~\ref{thm:A6} requires; the lemma admits any $t_0>0$ and any
+fixed $t_1\ge t_0$ ---
+\[
+ a_N(t):=F_N(t;\xi),\quad
+ \ell_N:=\omega_N\bigl(W_N(R_M^N\xi)\bigr),\quad
+ a_\infty(t):=F_\infty(t;\xi),\quad
+ \ell_\infty:=\omega^{\rm ct}_{L,\lambda}
+ \bigl(W_{\rm ct}(R_M^\infty\xi)\bigr),
+\]
+$c_0:=2$. The standing bounds: $|a_N(t)|\le1\le c_0$; the tail
+hypothesis --- eq.\ (4) of the scoping note --- with constant $c_0$ is
+Lemma~\ref{lem:tail}
+(both for $N<\infty$ and $N=\infty$; $\alpha_M^N(W_M(\xi))=W_N(R_M^N\xi)$
+and $\beta_M(W_M(\xi))=W_{\rm ct}(R_M^\infty\xi)$ by the model-sheet
+$D4$ embeddings). The three hypotheses:
+(i) $a_N(t)\to a_\infty(t)$ for every fixed $t\ge t_0=t_*\ge1/L$ is
+Theorem~\ref{thm:A6};
+(ii) $D_N(t_1)\to D_\infty(t_1)<\infty$ at $t_1:=t_0=t_*$ is
+Theorem~\ref{thm:A7}(c), applied with that $t_*$ (admissible, since
+$t_*L\ge1$);
+(iii) $\liminf_N(E_1(N)-E_0(N))=\gamma_L>0$ is Theorem~\ref{thm:A7}(c).
+The lemma yields $\ell_N\to\ell_\infty$, which is the display.
+\end{proof}
+
+\begin{lemma}[the continuum embedding of the inductive limit]
+\label{lem:beta}
+Let $(\beta_M)_M$ be the model-sheet family of injective $*$-homomorphisms
+$\beta_M:\W_M\to\W_{\rm ct}$ with $\beta_N\alpha_M^N=\beta_M$ for $M\le N$
+(model sheet \S2; the scaling equation $R^\infty_NR^N_M=R^\infty_M$). Then
+there is a unique injective $*$-homomorphism $\beta:\W_\infty\to\W_{\rm ct}$
+with $\beta\alpha_M^\infty=\beta_M$ for every $M$ --- the standing datum
+(3.1) of the Weyl-reduction Corollary 3.1.
+\end{lemma}
+
+\begin{proof}
+An injective $*$-homomorphism of $C^*$-algebras is isometric, so every
+$\beta_M$ and every $\alpha_M^N,\alpha_M^\infty$ is isometric. On the dense
+subalgebra $\bigcup_M\alpha_M^\infty(\W_M)$ set
+$\beta(\alpha_M^\infty(A)):=\beta_M(A)$. Well defined: if
+$\alpha_M^\infty(A)=\alpha_{M'}^\infty(A')$ with $M\le M'$, then
+$\alpha_{M'}^\infty(\alpha_M^{M'}(A)-A')=0$ and $\alpha_{M'}^\infty$ is
+isometric, so $A'=\alpha_M^{M'}(A)$ and
+$\beta_{M'}(A')=\beta_{M'}\alpha_M^{M'}(A)=\beta_M(A)$. It is a
+$*$-homomorphism on the union and isometric there, hence extends uniquely to
+the completion $\W_\infty$; the extension is an isometric $*$-homomorphism,
+therefore injective, and satisfies $\beta\alpha_M^\infty=\beta_M$.
+Uniqueness holds by density.
+\end{proof}
+
+\begin{theorem}[full-sequence identified fixed-coarse theorem]
+\label{thm:final}
+Set
+\[
+ \chi_M(\xi):=\lim_{N\to\infty}\omega_N\bigl(\alpha_M^N(W_M(\xi))\bigr);
+\]
+the limit exists for every $M$ and $\xi$ by Theorem~\ref{thm:gate}. Then,
+by the Weyl-reduction document (its Theorem 1.1, Corollary 3.1, and
+Proposition 4.1, all proved there):
+\begin{enumerate}
+\item for every $M$ there is a unique state $\rho_M$ on $\W_M$ with
+$\rho_M(W_M(\xi))=\chi_M(\xi)$, and
+$\omega_N(\alpha_M^N(A))\to\rho_M(A)$ for every $A\in\W_M$;
+\item the family $(\rho_M)_M$ is projectively consistent, and there is a
+unique state $\Omega_\infty$ on the inductive-limit algebra $\W_\infty$
+with $\Omega_\infty\circ\alpha_M^\infty=\rho_M$;
+\item $\Omega_\infty=\omega^{\rm ct}_{L,\lambda}\circ\beta$ on
+$\W_\infty$: the full-sequence fixed-coarse limit of the lattice
+$P(\varphi)_2$ ground states \emph{is} the pullback of the continuum
+torus $P(\varphi)_2$ vacuum;
+\item all these states are invariant under the $\Z_2$ field symmetry
+$\vartheta(W(\zeta))=W(-\zeta)$: $\vartheta$ commutes with the linear
+embeddings $\alpha_M^N$, and $\omega_N\circ\vartheta_N=\omega_N$ by
+simplicity of the lattice ground state and the $\Z_2$ symmetry of
+$K_{N,L}$ (model sheet \S3), so the Weyl-reduction Proposition 4.1
+applies.
+\end{enumerate}
+In particular the interacting fixed-coarse projective cluster state of
+the projective-compactness document is unique and identified: the
+cofinal-subnet statement is superseded by full-sequence convergence.
+\end{theorem}
+
+\begin{proof}
+(1)--(3) are the conclusions of the Weyl-reduction Theorem 1.1 and
+Corollary 3.1. Their hypotheses are: existence of $\chi_M(\xi)$ for every
+$M,\xi$, and the identity
+$\chi_M(\xi)=\omega^{\rm ct}(\beta_M(W_M(\xi)))$ --- both supplied by
+Theorem~\ref{thm:gate} --- together with Corollary 3.1's standing datum
+(its display (3.1)), the injective $*$-homomorphism $\beta$ with
+$\beta\alpha_M^\infty=\beta_M$, which that document takes as given and which
+Lemma~\ref{lem:beta} supplies from the model-sheet family. For (4): $\alpha_M^N$ maps $W_M(\xi)\mapsto
+W_N(R_M^N\xi)$ with $R_M^N$ linear, so
+$\vartheta_N\alpha_M^N=\alpha_M^N\vartheta_M$; $K_{N,L}$ commutes with
+the unitary $\Theta_N$ implementing $\varphi\mapsto-\varphi$ (the
+interaction is even), so by simplicity $\Theta_N\Omega_N=\pm\Omega_N$
+and $\omega_N\circ\vartheta_N=\omega_N$; Proposition 4.1 of the
+Weyl-reduction document transfers the invariance to $\rho_M$ and
+$\Omega_\infty$.
+\end{proof}
+
+\section{Acceptance, ledger, and phase closure}\label{sec:ledger}
+
+\subsection*{Acceptance against the scoping statements}
+
+A6 is Theorem~\ref{thm:A6} (with rate); A7 is Theorem~\ref{thm:A7} (in
+the normal-ordered normalization of Remark~\ref{rem:erratum}(2)); A8 is
+Theorems~\ref{thm:gate} and \ref{thm:final}. The V4 gate condition of
+the scoping phase table --- ``(II.11) closed; Weyl criterion invoked''
+--- is met.  The fresh adversarial pass of 16 August 2026 is also complete:
+it repaired the four-edge count, the real-part defect of the asymmetric mixed
+surrogate, the missing-input $j=3$ derivation, and the $\lambda=0$ compactness
+argument.  Its independent verification record is
+\texttt{repair\_2026\_08\_16/POST\_REPAIR\_AUDIT.md}.
+
+\begin{longtable}{P{6.1cm}P{2.1cm}P{5.5cm}}
+\toprule
+claim & status & ground \\
+\midrule
+\endhead
+Action prefactors: $|S_N-S_\infty|\le C_\xi2^{-r\eta/2}$ & proved &
+Lemma~\ref{lem:action} (V1 eq.\ (18) $+$ V2 filter tail) \\
+Source phases: $\|e^{i\Phi_N}-e^{i\Phi}\|_{L^2}\le C_\xi2^{-r\eta/4}$ &
+proved & Lemma~\ref{lem:phase} (coupling symbols) \\
+Denominators bounded below; $\mathcal E_N\to\mathcal E_\infty$;
+$\mathcal N_N\to\mathcal N_\infty$ & proved & Lemma~\ref{lem:NandE}
+(V2 Thms 4.3, 7.2, Prop.\ 6.5) \\
+A6 with rate $C_\xi(2^{-r\eta/4}+\eps_N\logN^{3/2})$ & proved &
+Theorem~\ref{thm:A6} \\
+Free products $\widetilde Z^{(0)}_N\to Z_0$, rate $\eps_N^2$ & proved &
+Lemma~\ref{lem:freeproduct} \\
+$\widetilde Z_N(t)\to Z_\infty(t)$, all $t\ge t_*$ (with $t_*L\ge1$);
+$\inf_N\widetilde E_0(N)>-\infty$ & proved & Theorem~\ref{thm:A7}(a,b) \\
+$\widetilde E_j(N)\to\mu_j$; $E_1(N)-E_0(N)\to\gamma_L>0$;
+$D_N(t)\to D_\infty(t)$ & proved & Theorem~\ref{thm:A7}(c) (scoping
+Lemma 3.2) \\
+Spectral tail bound, both sides & proved & Lemma~\ref{lem:tail} \\
+Gate (II.11), pointwise in $M,\xi$ & \textbf{proved} &
+Theorem~\ref{thm:gate} (scoping Lemma 3.1) \\
+Full-sequence identified fixed-coarse theorem; $\Z_2$ & proved &
+Theorem~\ref{thm:final} (Weyl-reduction Thm 1.1, Cor 3.1, Prop 4.1) \\
+V1 (14) integrand reading; import (I1) restated on the harmonic reference &
+erratum recorded & Rem.~\ref{rem:erratum}(1) (proved in V3, Thm 3.1(ii)) \\
+V1 (15): spurious $-6c_{N,L}(2H\eta+H^2)$ removed (Appell) & erratum recorded
+& Rem.~\ref{rem:erratum}(1$'$) \\
+V2 eq.\ (9) decay exponent is $-2$ (transcribed $-3$ in two places) & erratum
+recorded & Rem.~\ref{rem:erratum}(1$''$) \\
+\textbf{Convention lock corrected: $(a,b)=(0,0)$, no counterterm; propagated
+to V2 Cor.\ 5.2/Rem.\ 5.3, V3 \S1, scoping A4(b)} & \textbf{breaking erratum
+recorded} & Rem.~\ref{rem:erratum}(1$'''$) \\
+A7 normal-ordered normalization & amendment recorded &
+Rem.~\ref{rem:erratum}(2) \\
+\textbf{V2 Def.\ 1.1: edge column symmetrized; $\eta_N$ real and of the
+periodic-lattice law} & \textbf{erratum recorded} & Rem.~\ref{rem:erratum}(3) \\
+Scoping A7 conclusions restated in the normal-ordered symbols & erratum recorded &
+Rem.~\ref{rem:erratum}(4) \\
+Scoping Lemma 3.2: hypothesis (i) for $t\ge t_*$; density step corrected;
+Thm~\ref{thm:A7} restated for $t\ge t_*$ & erratum recorded &
+Rem.~\ref{rem:erratum}(5) \\
+Scoping A3(b): $\coth(t\gamma/2)-1\le2e^{-t_0\gamma}$ replaced & erratum recorded &
+Rem.~\ref{rem:erratum}(6) \\
+\textbf{V2 \S\S4,6 repaired: four-edge sector restored; real asymmetric-band
+surrogate; folded and exact-output symbols separated; $A_{\times,j}$ explicit;
+no unnamed tail} &
+\textbf{repair propagated} &
+Rem.~\ref{rem:erratum}(7) \\
+$P_r(\pm\pi2^{\,r})=0$: the $D4$ mask kills the edge column & new lemma &
+Rem.~\ref{rem:erratum}(8); V2, remark after Def.\ 6.2 \\
+Standing hypothesis $tL\ge1$ propagated; $t_0=t_1=t_*=\max(1,1/L)$ &
+erratum recorded & Rem.~\ref{rem:erratum}(9) \\
+\textbf{Scoping Lemma 3.2 conclusion restricted to $t\ge t_*$} &
+\textbf{breaking erratum recorded} & Rem.~\ref{rem:erratum}(10) \\
+Fresh adversarial pass over the assembled chain & \textbf{complete}: algebra,
+edge combinatorics, symbol domains, periodic tails, finite-mode normalization,
+trace limits, and all propagated gate imports rechecked & 16 Aug 2026 post-repair
+audit record \\
+\bottomrule
+\end{longtable}
+
+\subsection*{What was consumed}
+
+V1: Thm 5.4 with eqs.\ (12), (14), (15); Rem 5.5; Lem 7.1, eq.\ (18)
+(eq.\ (19) is context, not consumed).
+V2: Def 1.1, Prop 1.2, Lem 2.1, Def 2.2, Lem 3.2/eq.\ (9), eq.\ (13),
+Thm 4.3, eq.\ (18), Def 6.2, Lem 6.3, Prop 6.5, Thm 7.2.
+V3: Thm 3.1(ii),(v)--(vi) $+$ Rem 3.2 (lattice dictionary), Thm 4.1,
+Thm 5.2, Thm 6.2, Thm 7.1, Cor 6.3, Prop 2.6(iii), Lem 6.1(iv), Rem 4.2,
+\S1 (endpoint convention).
+Scoping note: Lemmas 3.1, 3.2 (proved there).
+Free-rate document: Lemmas 2.1, 3.1 (as repackaged in V2).
+Weyl-reduction document: Thm 1.1, Cor 3.1, Prop 4.1 (proved there).
+Model sheet: \S2 ($D4$ embeddings), \S3 (lattice operator, ground state,
+$\Z_2$). No external import is consumed in this document.
+
+\medskip
+\noindent\emph{Phase V4 gate:} A6, A7, A8 proved; (II.11) closed;
+Weyl criterion and identification invoked; erratum register updated.
+The independent adversarial pass over the assembled chain V0--V4 was
+completed on 16 August 2026; its findings and regression checks are recorded
+in \texttt{repair\_2026\_08\_16/POST\_REPAIR\_AUDIT.md}.  Thus Part II's
+fixed-coarse program is complete at the stated import scope and under the
+standing parameter hypotheses.
+
+\end{document}

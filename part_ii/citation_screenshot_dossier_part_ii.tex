@@ -1,0 +1,357 @@
+\documentclass[11pt]{article}
+\usepackage{auditstyle}
+\usepackage{caption}
+\fancyhead[L]{Part II source-evidence dossier}
+\fancyhead[R]{9 August 2026}
+\hypersetup{pdftitle={Part II citation screenshot dossier},pdfauthor={Proof audit}}
+\newcommand{\shot}[1]{%
+  \begin{center}
+  \includegraphics[width=.88\textwidth,height=.73\textheight,keepaspectratio]{#1}
+  \end{center}}
+\newcommand{\evidence}[4]{%
+  \section*{#1}
+  \textbf{Source location.} #2
+
+  \textbf{What the page establishes.} #3
+
+  \textbf{What it does not establish.} #4
+}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Part II Citation Screenshot Dossier}\\[4pt]
+{\large Wavelet resolution / operator-algebraic renormalization}\\[10pt]
+\textbf{Companion to the Lamport proof audit}\\[10pt]
+9 August 2026
+\end{center}
+
+\begin{resultbox}
+This dossier records the exact pages used for the source-scope and normalization assertions
+in the Part II Lamport proof package.  A page image is
+evidence only for the text visible on that page.  Every inference below distinguishes a
+positive statement in the source from a stronger statement that the source does not make.
+The mathematical no-go theorem in the companion document is proved independently and
+does not rest on a numerical experiment or on absence-of-theorem reasoning.
+\end{resultbox}
+
+\subsection*{Source manifest}
+
+\begin{enumerate}
+\item V. Morinelli, G. Morsella, A. Stottmeister, Y. Tanimoto,
+\emph{Scaling limits of lattice quantum fields by wavelets}, CMP 387 (2021),
+1299--1367.  Local file SHA-256:
+{\footnotesize\ttfamily 3882444339413145bae290b8213582cb\newline
+9a388c79b16ac2e2ee4e15dcac79c01e}.
+\href{https://doi.org/10.1007/s00220-021-04152-5}{Publisher DOI}.
+
+\item G. Battle, P. Federbush,
+\emph{Ondelettes and phase cell cluster expansions, a vindication}, CMP 109
+(1987), 417--419.  Local file SHA-256:
+{\footnotesize\ttfamily d68ceaf1e27ca82f0db995e94a7168eb\newline
+2aa448dddbe82d83a553bf0395b94c07}.
+\href{https://doi.org/10.1007/BF01206144}{Publisher DOI}.
+
+\item A. Stottmeister, V. Morinelli, G. Morsella, Y. Tanimoto,
+\emph{Operator-algebraic renormalization and wavelets}, arXiv:2002.01442v2.
+Local file SHA-256:
+{\footnotesize\ttfamily 2db5b30468cba5f073769774838a8925\newline
+d36060809b65ecaf9e57cb5b753c4ec2}.
+\href{https://arxiv.org/abs/2002.01442}{arXiv record}.
+
+\item B. Nachtergaele, H. Raz, B. Schlein, R. Sims,
+\emph{Lieb--Robinson bounds for harmonic and anharmonic lattice systems},
+CMP 286 (2009), 1073--1098.  Local file SHA-256:
+{\footnotesize\ttfamily 613ff5cc8af3f7b9734a2ca1912f33624\newline
+b59050204e108071c4d200285179114}.
+\href{https://arxiv.org/abs/0712.3820}{arXiv record}.
+\end{enumerate}
+
+\textbf{Integrity check.}  Each screenshot was rendered directly from the corresponding
+local PDF.  No OCR text was substituted for a page image.  PDF page numbers below are
+one-based file page numbers; where visible, the printed journal page is also reported.
+
+\clearpage
+
+\evidence{E1. The OAR limit is projective at fixed coarse scale}
+{MMST, PDF page 7, equations (2.8)--(2.11).}
+{Observable algebras form an inductive limit.  A finer state is pulled back to each
+fixed coarse algebra; the horizontal limit is then required at that fixed scale, and a
+projectively consistent family defines the limiting state.}
+{This page states neither convergence in the norm of local state spaces nor a bound
+uniform over a coarse scale that is allowed to equal the fine scale.}
+\shot{evidence/mmst_pdf_page_007.png}
+
+\clearpage
+
+\evidence{E2. The continuum map is an observable embedding}
+{MMST, PDF page 25, Proposition 4.1.}
+{The symplectic one-particle map induces an injective $*$-homomorphism
+$\beta_L:\mathcal W_{\infty,L}\to\mathcal W(h_L)$ and gives its action on Weyl
+generators.}
+{An injective homomorphism of observable algebras does not canonically push a state in
+the reverse direction.  This proposition does not put a lattice Hamiltonian and a
+continuum Hamiltonian on one Hilbert space or one common form domain.}
+\shot{evidence/mmst_pdf_page_025.png}
+
+\clearpage
+
+\evidence{E3. Identification is pointwise on embedded observables}
+{MMST, PDF page 28, Lemma 4.3 and the paragraph following it.}
+{For every observable $W$ belonging to a fixed finite-scale Weyl algebra, the limiting
+state equals the continuum vacuum evaluated on $\beta_L(W)$.  The text then invokes
+projective consistency to obtain a state on the inductive limit.}
+{The equality identifies the already-taken horizontal limit.  It is not a quantitative
+diagonal estimate comparing a level-$N$ state on all level-$N$ local observables with a
+continuum state.}
+\shot{evidence/mmst_pdf_page_028.png}
+
+\clearpage
+
+\evidence{E4. Proposition 4.5 states the free scaling limit}
+{MMST, PDF page 29, Proposition 4.5.}
+{For the specified Daubechies scaling maps and mass renormalization, the sequence of
+free lattice states has a scaling limit, and that limit agrees with the continuum vacuum
+on observables coming from some finite scale.}
+{No rate $C\varepsilon_N^\theta$ and no supremum over the finest-scale unit ball appears.
+The proposition is about free ground states, not interacting $\phi^4_2$ ground states.}
+\shot{evidence/mmst_pdf_page_029.png}
+
+\clearpage
+
+\evidence{E5. The free continuum time-zero net is recovered}
+{MMST, PDF page 35, Theorem 4.11 and Remarks 4.12--4.13.}
+{The scaling-limit state yields a continuum time-zero net unitarily equivalent to the
+massive free-field net.  Remark 4.12 separately describes a diagonal sequence used for
+the dynamics.}
+{The theorem does not identify the finite-scale and continuum Hamiltonians as operators
+on a common Hilbert space, and it does not prove norm convergence of diagonal states.}
+\shot{evidence/mmst_pdf_page_035.png}
+
+\clearpage
+
+\evidence{E6. The cited Lieb--Robinson estimate is harmonic}
+{MMST, PDF page 36, Lemma 4.14.}
+{A commutator estimate is quoted and rescaled for the free harmonic lattice Hamiltonian
+and lattice Weyl observables.  Its constants and distance dependence are displayed.}
+{The lemma is not an interacting quartic Lieb--Robinson theorem.  A bound on the
+derivative of the one-particle dispersion alone cannot replace the commutator estimate.}
+\shot{evidence/mmst_pdf_page_036.png}
+
+\clearpage
+
+\evidence{E7. The LR speed bound is not the exact group velocity}
+{MMST, PDF page 38, Remark 4.17.}
+{The authors explicitly distinguish the scaling-limit Lieb--Robinson velocity obtained
+from their estimate from the physical propagation speed; the displayed optimum is
+approximately $3.59$, whereas the physical speed is $1$.}
+{Consequently the exact free group-velocity calculation in the companion proof is a
+useful check, but it is not itself the LR theorem needed for an interacting model.}
+\shot{evidence/mmst_pdf_page_038.png}
+
+\clearpage
+
+\evidence{E8. Interacting wavelet scaling is stated as future work}
+{MMST, PDF page 54, Section 6.1.}
+{The text says that recovery of interacting dynamics should be generalized to the
+wavelet renormalization group and that one should work with scaling limits of interacting
+lattice ground states.}
+{The modal language is prospective.  This page does not prove an interacting wavelet
+ground-state limit, an $N$-uniform cluster expansion, an $N$-uniform physical gap, or the
+mixed-vertex estimate required by the original Part II program.}
+\shot{evidence/mmst_pdf_page_054.png}
+
+\clearpage
+
+\evidence{E9. Battle--Federbush describes mechanism and an earlier error}
+{Battle--Federbush (1987), PDF page 1 / journal page 417.}
+{The abstract presents wavelet phase-cell expansions as a way to improve earlier work
+and explicitly says that an early error is excised.  Section 1 begins with Meyer-type
+orthonormal modes.}
+{This introductory page contains no theorem in the MMST OAR lattice variables and no
+scale-uniform constants CE1$_N$ or CE2$_N$.}
+\shot{evidence/bf87_pdf_page_001.png}
+
+\clearpage
+
+\evidence{E10. The wavelet bases differ from the MMST finite-scale action}
+{Battle--Federbush (1987), PDF page 2 / journal page 418, Sections 1--5.}
+{The page distinguishes Meyer functions, sharply localized nonsmooth functions, and
+exponentially localized bases; it records their localization and moment properties and
+starts the phase-cell field expansion.}
+{These basis properties do not identify the phase-cell action with the nearest-neighbour
+MMST lattice Hamiltonian.  They also do not provide the OAR Wick constants, local
+observable norms, or a mixed lattice--continuum interpolation.}
+\shot{evidence/bf87_pdf_page_002.png}
+
+\clearpage
+
+\evidence{E11. The phase-cell free action is diagonal in different variables}
+{Battle--Federbush (1987), PDF page 3 / journal page 419, Section 5.}
+{The phase-cell modes are chosen as
+$u_k=(-\Delta+M^2)^{-1/2}\psi_k$, and the authors emphasize that the free action is
+diagonal in those variables.  The note explains how replacing the earlier basis repairs
+the cited phase-cell constructions.}
+{The page does not state the two uniform estimates demanded in Part II for a
+nearest-neighbour OAR action, nor does it prove a uniform interacting Hamiltonian gap or
+an OAR local-state convergence rate.}
+\shot{evidence/bf87_pdf_page_003.png}
+
+\clearpage
+
+\evidence{E12. The short OAR article also labels the interacting step as prospective}
+{Stottmeister--Morinelli--Morsella--Tanimoto, arXiv:2002.01442v2, PDF page 5.}
+{The conclusion says the framework can include interacting lattice systems but would
+need analytic or numerical expansions; it describes an extension to the wavelet setting
+as expected and asks whether explicit error bounds can be proved.}
+{This is an outlook statement, not a proof of the interacting wavelet scaling limit or
+of uniform cluster-expansion, gap, Lieb--Robinson, or local-state-norm estimates.}
+\shot{evidence/smmt_pdf_page_005.png}
+
+\clearpage
+
+\evidence{E13. MMST fixes the lattice Weyl and Fourier normalizations}
+{MMST, PDF page 13, equations (3.5)--(3.10).}
+{In dimension \(d=1\), equation (3.7) reads
+\(\xi=\varepsilon_Nq+ip\); equations (3.8)--(3.9) give the symplectic form
+\(\varepsilon_N\sum_x(qp'-pq')\) and the normalized discrete Fourier variables.
+Equation (3.10) states how a symplectic one-particle map induces the observable
+embedding.}
+{This page does not choose a particular low-pass mask or define an interacting
+Hamiltonian.  Those data must be supplied separately.}
+\shot{evidence/mmst_pdf_page_013.png}
+
+\clearpage
+
+\evidence{E14. The wavelet refinement map and its symplectic property are explicit}
+{MMST, PDF page 16, Definition 3.3 and Lemma 3.4.}
+{For \(d=1\), equation (3.25) gives the one-step factor \(\sqrt2\), the translated
+low-pass coefficients \(h_n\), periodization, and composition across scales.
+Lemma 3.4 states that these maps preserve the scale-dependent symplectic forms.}
+{The lemma concerns observable kinematics.  It does not say that the
+nearest-neighbour Hamiltonians are mapped into one another or that interacting ground
+states converge.}
+\shot{evidence/mmst_pdf_page_016.png}
+
+\clearpage
+
+\evidence{E15. The \(D4\) scaling function has the support used in the model sheet}
+{MMST, PDF page 20, Section 3.3.4.}
+{For the Daubechies member \(K=2\), the source states the filter cutoff \(n\ge4\),
+the scaling-function support \([0,3]\), and regularity sufficient for the continuum
+field and momentum construction.}
+{This page does not display the four numerical coefficients.  The model sheet fixes
+them explicitly and verifies the sum rule and QMF identity by direct algebra rather
+than importing them without a check.}
+\shot{evidence/mmst_pdf_page_020.png}
+
+\clearpage
+
+\evidence{E16. The nearest-neighbour free Hamiltonian and vacuum covariance are fixed}
+{MMST, PDF page 21, equations (4.1)--(4.5).}
+{The page displays the nearest-neighbour lattice Hamiltonian, its dispersion, the Weyl
+vacuum characteristic functional, and the separate \(q\)- and \(p\)-covariance
+multipliers.  In \(d=1\) and after the stated physical-mass reparametrization this gives
+\(\gamma_N(k)^2=m^2+4\varepsilon_N^{-2}\sin^2(\varepsilon_Nk/2)\).}
+{These are free formulas.  They neither fix a Wick-quartic convention nor prove an
+interacting resolution limit.}
+\shot{evidence/mmst_pdf_page_021.png}
+
+\clearpage
+
+\evidence{E17. The fixed-coarse free covariance contains the finite mask product}
+{MMST, PDF page 26, equations (4.17)--(4.20) and Lemma 4.2.}
+{Equation (4.17) displays the finite product
+\(\prod_{n=1}^M m_0(\varepsilon_{N+n}k)\) in the pulled-back free covariance, and
+equation (4.19) displays its scaling-function limit.  Lemma 4.2 proves weak-star
+convergence at each fixed coarse scale.}
+{The source proves convergence, not the explicit power rate.  The companion rate
+document derives that rate from the exact \(D4\) factorization and gives every
+constant.}
+\shot{evidence/mmst_pdf_page_026.png}
+
+\clearpage
+
+\evidence{E18. The cited anharmonic Lieb--Robinson theorem excludes the Wick quartic}
+{Nachtergaele--Raz--Schlein--Sims, PDF page 19, Theorem 4.1, equations (4.4)--(4.5).}
+{The theorem explicitly assumes \(V\in C^1(\mathbb R)\),
+\(V'\in L^1(\mathbb R)\), and
+\(\int |w|\,|\widehat{V'}(w)|\,dw<\infty\), before stating the commutator bound.}
+{For \(V_c(u)=\lambda(u^4-6cu^2+3c^2)\),
+\(|V_c'(u)|\ge2\lambda|u|^3\) on \(|u|\ge\sqrt{6c}\), so the displayed
+\(L^1\) hypothesis fails.  This excludes this theorem as a citation route; it does not
+prove that no quartic Lieb--Robinson estimate can exist.}
+\shot{evidence/nrss_pdf_page_019.png}
+
+\clearpage
+
+\section*{Addendum (12 August 2026): the V3 import cluster}
+
+Phase V3 (\texttt{v3\_continuum\_package.tex}) resolves Statement A1's
+``import audit or proof'' deliverable as \emph{proof}, on the scoping
+note's fallback route; the H{\o}egh-Krohn (1974) and
+Figari--H{\o}egh-Krohn--Nappi (1975) candidates are \emph{not} consumed.
+The only printed import is the $\Gamma(A)$ cluster of Simon, \emph{The
+$P(\phi)_2$ Euclidean (Quantum) Field Theory} (PDF in \texttt{refs/}),
+the same source and theorem (I.17) as Part I's Assumption
+\texttt{A:hyper}. Evidence pages follow.
+
+\evidence{E19. $\Gamma(A)$ is positivity preserving (Theorem I.12)}
+{Simon book, PDF page 48 (printed page 26).}
+{For any contraction $A$ of real Hilbert spaces, $\Gamma(A)$ maps
+nonnegative functions to nonnegative functions.}
+{Nothing about strict positivity (that is Theorem I.16) or about
+$L^p$ bounds (Corollary I.15, Theorem I.17).}
+\shot{dossier_images/simon-gamma-p48-048.png}
+
+\clearpage
+
+\evidence{E20. $\Gamma(A)$ is an $L^p$ contraction (Corollary I.15)}
+{Simon book, PDF page 53 (printed page 31).}
+{For a contraction $A$ on a real Hilbert space, $\Gamma(A)$ is a
+contraction on each $L^p(M,d\mu)$.}
+{No hypercontractive improvement (that is Theorem I.17).}
+\shot{dossier_images/simon-gamma-p53-053.png}
+
+\clearpage
+
+\evidence{E21. $\Gamma(A)$ is positivity improving for $\|A\|<1$
+(Theorem I.16)}
+{Simon book, PDF page 55 (printed page 33); proof concludes on PDF page
+56.}
+{For a strict contraction $A$, $\Gamma(A)$ is positivity improving.
+Used in V3, Theorem 7.1 for the two-time pair positivity
+$\langle\mathbf 1_A,\Gamma(e^{-t\gamma})\mathbf 1_B\rangle>0$.}
+{False at $\|A\|=1$ (the source's Remark 3); V3 applies it only with
+$\|e^{-t\gamma}\|=e^{-tm}<1$.}
+\shot{dossier_images/simon-gamma-p55-055.png}
+
+\clearpage
+
+\evidence{E22. Nelson's hypercontractive bound (Theorem I.17)}
+{Simon book, PDF page 56 (printed page 34), display (I.42)--(I.43);
+remarks continue on PDF page 57.}
+{For a contraction $A:\mathcal H_1\to\mathcal H_2$ with
+$\|A\|\le(p-1)^{1/2}(q-1)^{-1/2}$, $1<p\le q<\infty$:
+$\|\Gamma(A)\psi\|_q\le\|\psi\|_p$. This is the abstract form quoted by
+Part I's \texttt{A:hyper} and consumed by V3's Lemma 5.1 (ladder) and
+the chaos moment bounds.}
+{The optimality remark (violation of (I.42) destroys boundedness) is
+not used.}
+\shot{dossier_images/simon-gamma-p56-056.png}
+
+\clearpage
+
+\evidence{E23. Theorem I.17, continuation page}
+{Simon book, PDF page 57 (printed page 35), Remarks 3--4 and the
+reduction $A=B\|A\|$ to the diagonal case.}
+{The reduction of the general contraction to $A=e^{-t}$ via
+$\Gamma(A)=\Gamma(B)\Gamma(\|A\|)$ with $\Gamma(B)$ an $L^q$
+contraction --- the composition pattern V3 uses for
+$\Gamma(e^{-\tau\gamma})=\Gamma(e^{-\tau(\gamma-m)})
+\Gamma(e^{-\tau m})$.}
+{The weakened-result proof route sketched there is not consumed; only
+the stated Theorem I.17 is.}
+\shot{dossier_images/simon-gamma-p57-057.png}
+
+\end{document}

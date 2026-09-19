@@ -1,0 +1,78 @@
+claim_id,part,document,label_or_location,claim,depends_on,audit_status,finding_id
+I-A1,I,part_i/main.tex,A:cutoff,Cutoff Hamiltonians exist with a simple positive ground state and the stated domains,EXT-GJ2;EXT-GJ71;EXT-ROSEN,verified,
+I-A2,I,part_i/main.tex,A:fkn,The slab Feynman--Kac--Nelson identities hold for the stated cutoff class,I-A1;EXT-GRS;EXT-SIMON,verified,
+I-A3,I,part_i/main.tex,A:stability,Uniform finite-volume exponential stability holds for the interaction,I-A1;EXT-SIMON,verified-import,
+I-A4,I,part_i/main.tex,A:hyper,The free second-quantized semigroup satisfies the displayed hypercontractive bound,EXT-SIMON,verified,
+I-A5,I,part_i/main.tex,A:domain,The interacting semigroup smooths into the interaction domain and the displayed common core is valid,I-A1;EXT-GJEXP;EXT-GJ1;EXT-GJ2;EXT-ROSEN;EXT-SIMON,verified-with-pinpoint,
+I-A6,I,part_i/main.tex,A:patch,Finite propagation patches cutoff dynamics into one cutoff-independent local dynamics,I-A1;EXT-GJ1;EXT-GJ2;EXT-GJEXP,verified,
+I-A7,I,part_i/main.tex,A:covar,Cutoff states and dynamics obey translation and parity covariance,I-A1;EXT-GJ2,verified,
+I-A8a,I,part_i/main.tex,sf:CE2,GJS Theorem 1.1.7 gives exponential clustering for separated localized monomials with constants independent of h,I-A1;EXT-GJS,verified,
+I-A8b,I,part_i/main.tex,sf:CE1,GJS Theorem 1.1.8 supplies the sharp-time one-point/moment bound uniformly over the required cutoff family,I-A1;EXT-GJS,qualified,F-I-01
+I-A8c,I,part_i/main.tex,prop:discharge,The proofs of all named GJS estimates are uniform over every h in the manuscript's class,I-A8a;I-A8b;I-C3,not-established,F-I-01
+I-01,I,part_i/main.tex,lem:classes,The three cutoff classes are compatible with slab and affine-path operations,I-A3,directly-verified,
+I-02,I,part_i/main.tex,prop:scaling,Unitary dilation reduces to the dimensionless weak-coupling regime,I-A8b;EXT-GJS,directly-verified,
+I-03,I,part_i/main.tex,lem:slabFKN--lem:slabvac,Finite-slab Euclidean expectations converge to cutoff ground-state matrix elements,I-A1;I-A2;I-A3,directly-verified,
+I-04,I,part_i/main.tex,thm:M2,The local interaction has a uniform cutoff-ground-state second moment,I-03;I-A8b,directly-verified,
+I-05,I,part_i/main.tex,prop:gjsnorms,The GJS norms of sharp-time polynomial observables obey the displayed cell-count bounds,I-A8a,directly-verified,
+I-06,I,part_i/main.tex,lem:ce2strip,CE2 applies to the manuscript's generally nonlocalized polynomial Q across a strip,I-A8a;I-05,repair-required,F-I-02
+I-07,I,part_i/main.tex,prop:semidecay,Centered polynomial vectors have uniform exponential semigroup decay,I-03;I-06,directly-verified-after-repair,F-I-02
+I-08,I,part_i/main.tex,lem:expmom,The cutoff ground state has the exponential moments needed for truncation,I-04,directly-verified,
+I-09,I,part_i/main.tex,thm:dense,Polynomial vectors are dense in the cutoff Hilbert space,I-08;I-A4,directly-verified,
+I-10,I,part_i/main.tex,thm:G,Every cutoff Hamiltonian has a uniform spectral gap beta,I-07;I-09,directly-verified-after-repair,F-I-02
+I-11,I,part_i/main.tex,prop:pathreg,The semigroup is norm differentiable along admissible affine cutoff paths,I-A4;I-A5;I-04,directly-verified,
+I-12,I,part_i/main.tex,prop:projreg,The ground projection/vector are differentiable and satisfy the resolvent derivative formulas,I-10;I-11,directly-verified,
+I-13,I,part_i/main.tex,lem:filter,The inverse-energy filter equals H^{-1}(1-P) on the gapped spectral subspace,I-10,directly-verified,
+I-14,I,part_i/main.tex,lem:separation,The filtered perturbation is approximated by a spacelike-separated local operator with an explicit tail,I-A6;I-13,directly-verified,
+I-15,I,part_i/main.tex,lem:cluster,Clustering extends to one affiliated unbounded local argument,I-04;I-10;I-14,directly-verified,
+I-16,I,part_i/main.tex,lem:statederiv,The derivative of a local expectation is the real part of a reduced-resolvent matrix element,I-12,directly-verified,
+I-17,I,part_i/main.tex,lem:localize--prop:onepath,One admissible cutoff perturbation changes a distant local state by the explicit LPPL rate,I-14;I-15;I-16,directly-verified,
+I-18,I,part_i/main.tex,lem:rate,The LPPL rate is summable and super-polynomial,I-17,directly-verified,
+I-19,I,part_i/main.tex,thm:cauchy,The entire cutoff net is Cauchy on every local algebra with an explicit rate,I-17;I-18,directly-verified,
+I-20,I,part_i/main.tex,prop:normal,The limiting state is locally normal,I-19,directly-verified,
+I-21,I,part_i/main.tex,prop:spectral,The limiting state is a ground state for the patched dynamics,I-A6;I-10;I-19,directly-verified,
+I-22,I,part_i/main.tex,thm:MAIN,The weak-coupling infinite-volume vacuum exists along the full net and has the listed invariances and local normality,I-19;I-20;I-21;I-A7,conditional-on-import-scope,F-I-01
+I-23,I,part_i/main.tex,cor:canonical,The historical Glimm--Jaffe averaged limit equals the full-net limit locally,I-22;EXT-GJ3,verified-conditional,
+I-24,I,part_i/main.tex,thm:dichotomy,The stated two-phase structure is excluded at weak coupling,I-22;I-B4,conditional-not-unconditional,
+I-B4,I,part_i/main.tex,hyp:broken,Every relevant parity-invariant ground state is the specified midpoint of two clustering pure phases,none,explicit-hypothesis,
+I-C1,I,part_i/main.tex,lem:Z,The Euclidean partition functions obey the displayed normalization bound,I-A3,directly-verified,
+I-C2,I,part_i/main.tex,lem:wick,The Wick-polynomial lower bound is uniform for nonnegative cutoff h,I-A3,directly-verified,
+I-C3,I,part_i/main.tex,lem:uv,The ultraviolet mollifier argument proves the claimed cutoff-uniform difference estimate,I-A4,repair-required,F-I-03
+II-S0,II,part_ii/lamport_part_ii_model_sheet.tex,model sheet,The finite periodic D4 lattice system and Weyl normalizations are internally consistent,EXT-MMST,directly-verified,
+II-O1,II,part_ii/lamport_part_ii_quadratic_obstruction.tex,thm:nogo,No diagonal local-state norm convergence follows from the canonical fixed-scale comparison,II-S0;EXT-MMST,directly-verified,
+II-O2,II,part_ii/lamport_part_ii_projective_compactness.tex,thm:compactness,Compatible finite-level states have a cofinal projective-limit subnet,none,directly-verified,
+II-O3,II,part_ii/lamport_part_ii_free_fixed_coarse_rate.tex,thm:rate,The free pulled-back Weyl functional converges at a fixed coarse scale with the explicit rate,II-S0;EXT-MMST,directly-verified,
+II-O4,II,part_ii/lamport_part_ii_weyl_reduction.tex,thm:weylcriterion,Pointwise convergence on all Weyl generators identifies full-sequence weak-star convergence,none,directly-verified,
+II-G1,II,part_ii/gate_II11_scoping.tex,lem:interchange,Uniform thermal spectral tails permit interchange of N and t limits,none,directly-verified,
+II-G2,II,part_ii/gate_II11_scoping.tex,lem:laplace,Convergence of normalized partition functions for t at least t-star transfers the first spectral gap,none,verified-with-V4-erratum,
+II-V1-01,II,part_ii/v1_thermal_representations.tex,prop:phase,The Schrödinger Weyl action has the displayed exact CCR phase,II-S0,directly-verified,
+II-V1-02,II,part_ii/v1_thermal_representations.tex,prop:traceclass--thm:kernel,Finite lattice Hamiltonians are trace class and satisfy the marked-slice trace kernel identity,II-S0,directly-verified,
+II-V1-03,II,part_ii/v1_thermal_representations.tex,thm:lattice-free,The free lattice thermal Weyl functional has the stated mode-product closed form,II-V1-01,directly-verified,
+II-V1-04,II,part_ii/v1_thermal_representations.tex,lem:mehler--lem:interp,The harmonic Mehler kernel and jump interpolant identities hold mode by mode,none,directly-verified,
+II-V1-05,II,part_ii/v1_thermal_representations.tex,lem:shift--thm:meanshift,The interacting trace ratio equals a shifted periodic Gaussian expectation with the corrected reference ensemble,II-V1-02;II-V1-04,directly-verified-with-V4-erratum,
+II-V1-06,II,part_ii/v1_thermal_representations.tex,thm:cont-free,The continuum free thermal characteristic functional is the convergent infinite-mode product,II-O3,directly-verified,
+II-V1-07,II,part_ii/v1_thermal_representations.tex,thm:thermalrate,The free lattice thermal functional converges to its continuum counterpart uniformly for t at least t-star,II-O3,directly-verified,
+II-V2-01,II,part_ii/v2_interaction_comparison.tex,prop:laws,The same-noise fields have the stated marginal and mixed covariance laws,none,false-as-stated,F-II-01
+II-V2-02,II,part_ii/v2_interaction_comparison.tex,lem:recomb,Changing ensemble Wick order adds exactly the displayed quadratic and scalar corrections,none,directly-verified,
+II-V2-03,II,part_ii/v2_interaction_comparison.tex,prop:Yexists,The continuum Wick chaoses exist in L2 and the relevant mode sums are positive,II-V2-02,directly-verified,
+II-V2-04,II,part_ii/v2_interaction_comparison.tex,lem:envelope,The D4/covariance convolution envelopes and summability bounds hold uniformly,II-O3,directly-verified-with-constant-qualification,F-II-04
+II-V2-05,II,part_ii/v2_interaction_comparison.tex,lem:symdiff,The lattice and continuum covariance symbols differ by the stated rate,II-O3,directly-verified,
+II-V2-06,II,part_ii/v2_interaction_comparison.tex,thm:A4a,The unshifted lattice and continuum interactions converge in L2 at the stated rate,II-V2-01;II-V2-03;II-V2-04;II-V2-05,repair-required,F-II-01
+II-V2-07,II,part_ii/v2_interaction_comparison.tex,thm:dict--cor:lock,The lattice/continuum Wick dictionary cancels the apparent counterterm with the stated rate,II-V2-05,directly-verified,
+II-V2-08,II,part_ii/v2_interaction_comparison.tex,lem:H,The mean-shift fields have the stated uniform envelopes and symbol convergence,II-V1-04;II-O3,directly-verified,
+II-V2-09,II,part_ii/v2_interaction_comparison.tex,lem:symbolsup,The normalized coefficient power-symbols have uniform bounds and differences,II-V2-04;II-V2-08,not-closed,F-II-02
+II-V2-10,II,part_ii/v2_interaction_comparison.tex,prop:shifted,All shifted interaction chaoses converge in L2 at the required uniform rate,II-V2-06;II-V2-09,not-closed-load-bearing,F-II-02
+II-V2-11,II,part_ii/v2_interaction_comparison.tex,thm:A5,Uniform exponential Nelson bounds hold for unshifted and shifted interactions,II-V2-06;II-V2-10,conditional-on-gap,F-II-02
+II-V3-01,II,part_ii/v3_continuum_package.tex,lem:VL2,Continuum sharp-time Wick interactions converge in L2 with the displayed vacuum rate,II-V2-03;II-V2-04,directly-verified,
+II-V3-02,II,part_ii/v3_continuum_package.tex,lem:nelson--prop:nelson3,The abstract Nelson estimate applies in the vacuum periodic and bridge ensembles,EXT-SIMON;II-V3-01,directly-verified,
+II-V3-03,II,part_ii/v3_continuum_package.tex,thm:finitemode,Every finite-mode continuum truncation has the stated FKN trace and shift package,II-V1-02;II-V1-04;II-V2-02,directly-verified-but-compressed,F-II-05
+II-V3-04,II,part_ii/v3_continuum_package.tex,thm:A1i,The continuum interacting semigroup and Hamiltonian K_L exist and obey the FKN formula,II-V3-01;II-V3-02;II-V3-03,directly-verified,
+II-V3-05,II,part_ii/v3_continuum_package.tex,lem:ladder--thm:A1ii,The continuum semigroup is trace class and finite-mode approximants converge in trace norm,II-V3-02;II-V3-04;EXT-SIMON,directly-verified,
+II-V3-06,II,part_ii/v3_continuum_package.tex,lem:shiftlimits,Periodic shifted interactions converge with the stated quantitative N2 rate,II-V2-09;II-V3-01,not-fully-derived,F-II-03
+II-V3-07,II,part_ii/v3_continuum_package.tex,thm:A1iv--cor:A2b,The continuum periodic marked-slice FKN/mean-shift representation holds,II-V3-03;II-V3-05;II-V3-06,conditional-on-repair,F-II-03
+II-V3-08,II,part_ii/v3_continuum_package.tex,thm:A1iii,The continuum Hamiltonian has a unique positive ground state and a positive gap,II-V3-04;II-V3-05;EXT-SIMON,directly-verified,
+II-V4-01,II,part_ii/v4_assembly.tex,lem:action--lem:phase,The lattice and continuum coupled representations have matching action prefactors and phases,II-V1-05;II-V3-07,directly-verified,
+II-V4-02,II,part_ii/v4_assembly.tex,lem:NandE,The coupled numerators denominators and phase insertions converge,II-V2-06;II-V2-10;II-V2-11;II-V3-07,not-closed-load-bearing,F-II-02
+II-V4-03,II,part_ii/v4_assembly.tex,thm:A6,The fixed-time thermal functionals converge for every coarse Weyl symbol,II-V4-02,not-closed-load-bearing,F-II-02
+II-V4-04,II,part_ii/v4_assembly.tex,thm:A7,Partition functions and normalized gaps converge and the lattice gaps are eventually uniform,II-G2;II-V2-06;II-V2-11;II-V3-05;II-V3-08,conditional-on-repairs,F-II-01;F-II-02
+II-V4-05,II,part_ii/v4_assembly.tex,thm:gate,The thermal-to-ground-state gate II.11 closes,II-G1;II-V4-03;II-V4-04,conditional-on-repairs,F-II-01;F-II-02
+II-V4-06,II,part_ii/v4_assembly.tex,thm:final,The full sequence of fixed-coarse interacting lattice states is identified with the continuum vacuum,II-O4;II-V4-05,not-proved-as-written,F-II-02

@@ -1,0 +1,768 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{auditstyle}
+\lhead{Fresh Glimm--Jaffe proof audit}
+\rhead{16 August 2026}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\T}{\mathbb T}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\U}{\mathcal U}
+\newcommand{\Vol}{\operatorname{Vol}}
+
+\title{Part II V2 in Lamport notation\\[3pt]
+\large Same-noise interaction comparison, edge correction, and shifted repair}
+\author{Fresh reconstruction of \texttt{part\_ii/v2\_interaction\_comparison.tex}}
+\date{16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+This reconstruction corrects the false statement that four edge modes cannot conserve
+momentum and replaces the incomplete proof of the shifted comparison by an exact
+fundamental-band/alias partition.  The repaired estimates have the rates claimed in V2.
+The original V2 file is not valid without these additions.
+\end{resultbox}
+\tableofcontents
+
+\section{Definitions}
+
+Fix $t\ge t_0>0$, $L,m>0$, and assume $t_0L\ge1$.  Put
+\[
+ D_N=\frac{2\pi}{t}\mathbb Z\times\Gamma_N,\qquad
+ D_\infty=\frac{2\pi}{t}\mathbb Z\times\frac\pi L\mathbb Z,\qquad
+ R_N=\frac\pi{\eps_N}.
+\]
+For $\kappa=(k_0,k)$ define
+\[
+ c_N(\kappa)=\frac1{k_0^2+\gamma_N(k)^2},\quad
+ c_\infty(\kappa)=\frac1{k_0^2+m^2+k^2},\quad
+ c_\times(\kappa)=\sqrt{c_N(\kappa)c_\infty(\kappa)}.
+\tag{0.1}
+\]
+Let $k_e=-R_N$.  On one real Gaussian Fourier family $G(-\kappa)=\overline{G(\kappa)}$
+set
+\[
+ G_N(k_0,k)=G(k_0,k)\quad(k\ne k_e),\qquad
+ G_N(k_0,k_e)=2^{-1/2}[G(k_0,k_e)+G(k_0,-k_e)].\tag{0.2}
+\]
+Then
+\[
+ \eta_N(z)=(2Lt)^{-1/2}\sum_{D_N}G_N(\kappa)c_N(\kappa)^{1/2}e^{i\kappa z},
+\quad
+ \eta(z)=(2Lt)^{-1/2}\sum_{D_\infty}G(\kappa)c_\infty(\kappa)^{1/2}e^{i\kappa z}.
+\tag{0.3}
+\]
+
+\section{Structured proof}
+
+\LS{1}{1}{Determine the laws and the edge covariance exactly.}
+
+\LS{2}{1}{$\eta_N$ is real.}
+
+\Because Away from the edge, the terms at $\kappa$ and $-\kappa$ are conjugate.  On
+the edge, the lattice characters at $\pm R_N$ agree, and
+\[
+ G_N(-k_0,k_e)=2^{-1/2}[G(-k_0,k_e)+G(-k_0,-k_e)]
+ =\overline{G_N(k_0,k_e)}.
+\]
+
+\LS{2}{2}{The $G_N$ are orthonormal on $D_N$ and have the real-field pairing.}
+
+\Because Off the edge this is the covariance of $G$.  On the edge,
+\[
+ \E[G_N(k_0,k_e)\overline{G_N(k'_0,k_e)}]
+ =\tfrac12(1+1)\delta_{k_0k'_0},
+\]
+while cross terms between $+R_N$ and $-R_N$ noises vanish.  Expanding the two
+two-term averages without conjugation leaves exactly the pairings with
+$k'_0=-k_0$, and therefore
+$\E[G_N(k_0,k_e)G_N(k'_0,k_e)]=\delta_{k_0,-k'_0}$.
+
+\LS{2}{3}{Therefore}
+\[
+ \E[\eta_N(s,x)\eta_N(s',y)]
+ =\frac1{2L}\sum_{k\in\Gamma_N}e^{ik(x-y)}c_{\gamma_N(k)}(s-s'),\tag{1.1}
+\]
+\[
+ c_\omega(\tau)=
+ \frac{\cosh(\omega(t/2-|\tau|_{\T_t}))}{2\omega\sinh(\omega t/2)}.
+\]
+
+\Because Fourier pairing gives the sum, and
+\[
+ \frac1t\sum_{k_0\in(2\pi/t)\mathbb Z}
+ \frac{e^{ik_0\tau}}{k_0^2+\omega^2}=c_\omega(\tau).
+\]
+Both sides solve $(-\partial_\tau^2+\omega^2)c=\delta_{\T_t}$; the derivative
+jump at zero is $-1$, which fixes the Fourier coefficients and normalization.
+
+\LS{2}{4}{The mixed covariance is}
+\[
+ \E[\eta_N(z)\eta(z')]=C_\times(z-z')+\mathcal R_N(z,z'),\tag{1.2}
+\]
+where $C_\times$ is the $D_N$ Fourier sum with symbol $c_\times$ and
+\[
+ \mathcal R_N=(2Lt)^{-1}\sum_{k_0}c_\times(k_0,k_e)e^{ik_0(s-s')}
+ \left[2^{-1/2}(e^{ik_e(x-y)}+e^{ik_e(x+y)})-e^{ik_e(x-y)}\right].
+\tag{1.3}
+\]
+
+\Because Only (0.2) differs from the common-noise pairing.  Pairing its two summands
+with the continuum noises at $\pm R_N$ gives the two characters in (1.3); subtracting
+the surrogate $D_N$ term gives the bracket.
+
+\LS{2}{5}{For $\eps_N\le1/2$,}
+\[
+ \|\mathcal R_N\|_\infty\le
+ \frac{3\coth(2t_0)}{8L}\eps_N.\tag{1.4}
+\]
+
+\Because The bracket is at most $3$, $c_\times(k_0,k_e)\le
+(k_0^2+\gamma_e^2)^{-1}$, $\gamma_e\ge2/\eps_N$, and
+\[
+ \sum_{k_0}\frac1{k_0^2+\gamma_e^2}
+ =\frac{t}{2\gamma_e}\coth(t\gamma_e/2).
+\]
+
+\LS{2}{6}{Equivalently, the true mixed kernel is the Fourier sum over the symmetric
+band $\widetilde\Gamma_N=\Gamma_N\cup\{+R_N\}$ with edge weights
+$\chi(\pm R_N)=2^{-1/2}$ and $\chi=1$ otherwise.}
+
+\Because Combine the two edge characters in (1.3) with the original edge term.  On
+lattice points $e^{iR_Nx}=e^{-iR_Nx}$, so both continuum partners represent the same
+lattice degree of freedom.
+
+\LS{2}{7}{This proves $\langle1\rangle1$.}\QedStep
+
+\LS{1}{2}{Establish Wick recombination and existence of the continuum integrated
+chaoses.}
+
+\LS{2}{1}{For a centered Gaussian $X$ of variance $v$ and any $c$,}
+\[
+ {:}X^4{:}_c={:}X^4{:}_v+6(v-c){:}X^2{:}_v+3(v-c)^2.\tag{2.1}
+\]
+
+\Because Expand both sides using
+${:}X^4{:}_a=X^4-6aX^2+3a^2$ and
+${:}X^2{:}_a=X^2-a$; coefficients of $X^4,X^2,1$ agree.
+
+\LS{2}{2}{With lattice thermal variance $v_N(t)$ and vacuum Wick constant
+$c_{N,L}$,}
+\[
+ d_N(t):=v_N(t)-c_{N,L}
+ =\frac1{2L}\sum_{k\in\Gamma_N}\frac1{\gamma_N(k)(e^{t\gamma_N(k)}-1)}.
+\tag{2.2}
+\]
+Moreover $0\le d_N\le\bar d<\infty$ and
+$|d_N-d_\infty|\le C\eps_N^2$ uniformly for $t\ge t_0$.
+
+\Because $\coth(y/2)-1=2/(e^y-1)$.  On the band,
+$\gamma_N(k)\ge\max(m,2|k|/\pi)$; the positive majorant decays exponentially.
+For common modes apply the mean value theorem to
+$f_t(y)=[y(e^{ty}-1)]^{-1}$ and
+$0\le\gamma(k)-\gamma_N(k)\le\eps_N^2k^4/(24m)$.  The derivative is bounded by
+$C(m,t_0)(1+t)e^{-t\gamma_-(k)/2}$, whose $k^4$-weighted sum is uniform in
+$t\ge t_0$.  Missing spatial modes contribute $O(e^{-2t_0/\eps_N})$.
+
+\LS{2}{3}{For jointly centered Gaussian $X,Y$,}
+\[
+ \E[{:}X^j{:}_{v_X}{:}Y^\ell{:}_{v_Y}]
+ =\delta_{j\ell}j!\E[XY]^j.\tag{2.3}
+\]
+
+\Because Multiply the generating functions
+$e^{\alpha X-\alpha^2v_X/2}$ and
+$e^{\beta Y-\beta^2v_Y/2}$; their expectation is $e^{\alpha\beta\E[XY]}$.
+Compare the absolutely convergent power-series coefficients.
+
+\LS{2}{4}{Let $Y_j^{(K)}=\int_{\T_t\times\T_L}{:}\eta_K^j{:}$ for $j=2,4$.
+Then}
+\[
+ \E[Y_j^{(K)}Y_j^{(K')}]
+ =j!(2Lt)^{-(j-2)}
+ \sum_{\substack{\kappa_i\in D_\infty^{\le K\wedge K'}\\\sum_i\kappa_i=0}}
+ \prod_i c_\infty(\kappa_i).\tag{2.4}
+\]
+
+\Because Apply (2.3) pointwise, expand the covariance Fourier series, and integrate
+over the two spacetime variables.  Each integration supplies $2Lt$ if the total
+momentum is zero and zero otherwise.
+
+\LS{2}{5}{The sums in (2.4) increase with $K$ and are bounded; hence
+$Y_j^{(K)}$ is Cauchy in $L^2$ and defines $Y_j$.}
+
+\Because Put
+$c_{\rm env}(\kappa)=(\pi^2/4)(m^2+|\kappa|^2)^{-1}$.  Step
+$\langle1\rangle3$ proves the convolution bounds that make
+$\sum c_{\rm env}(\kappa)(c_{\rm env}^{*3})(-\kappa)$ and
+$\sum c_{\rm env}^2$ finite.  Positivity gives monotonicity; the polarization
+identity gives the Cauchy norm.
+
+\LS{2}{6}{Define}
+\begin{align*}
+ \U_N&=\lambda[X_4+6d_NX_2+3d_N^2(2Lt)],\\
+ \U&=\lambda[Y_4+6d_\infty Y_2+3d_\infty^2(2Lt)].\tag{2.5}
+\end{align*}
+Then $\U_N$ is exactly the lattice-vacuum Wick quartic integrated over spacetime.
+
+\Because Apply (2.1) at every spacetime point with $v=v_N$ and $c=c_{N,L}$,
+then sum and integrate.
+
+\LS{2}{7}{This proves $\langle1\rangle2$.}\QedStep
+
+\LS{1}{3}{Prove the covariance envelope and convolution estimates.}
+
+\LS{2}{1}{$c_N,c_\times,c_\infty\le c_{\rm env}$.}
+
+\Because On $|\eps_Nk|\le\pi$,
+$\sin(|\eps_Nk|/2)\ge|\eps_Nk|/\pi$, so
+$k_0^2+\gamma_N(k)^2\ge(4/\pi^2)(m^2+k_0^2+k^2)$.  By its definition,
+$c_\infty=(m^2+k_0^2+k^2)^{-1}\le c_{\rm env}$; hence
+$c_\times=(c_Nc_\infty)^{1/2}\le c_{\rm env}$ as well.
+
+\LS{2}{2}{For $R\ge0$, the anisotropic grid satisfies}
+\begin{align*}
+ \sum_{|\kappa|\le R}c_{\rm env}(\kappa)
+ &\le C(m,t_0)tL[1+\log(2+R)],\tag{3.1}\\
+ \sum_{|\kappa|>R}\frac{1+\log(2+|\kappa|)}{(m^2+|\kappa|^2)^2}
+ &\le C(m,t_0)tL\frac{1+\log(2+R)}{m^2+R^2}.\tag{3.2}
+\end{align*}
+
+\Because Cover each grid point by its rectangle of side lengths $2\pi/t$ and
+$\pi/L$.  Outside a fixed disk the radial functions vary by a bounded factor on one
+rectangle and the sum is bounded by the grid density $tL/(2\pi^2)$ times the radial
+integral.  Inside the disk there are finitely many rectangles; the isolated maximum is
+absorbed because $t\ge t_0$ and $tL\ge1$.  The radial integrals are
+$\int_0^Rr(m^2+r^2)^{-1}dr=O(1+\log(2+R))$ and
+$\int_R^\infty r(1+\log(2+r))(m^2+r^2)^{-2}dr
+=O((1+\log(2+R))/(m^2+R^2))$.
+
+\LS{2}{3}{For $F_2=c_{\rm env}*c_{\rm env}$,}
+\[
+ F_2(\chi)\le C(m,t_0)tL
+ \frac{1+\log(2+|\chi|)}{m^2+|\chi|^2}.\tag{3.3}
+\]
+
+\Because Split the summation into
+$|\kappa|\le|\chi|/2$, $|\chi-\kappa|\le|\chi|/2$, and the complement.
+On the first region the second factor is
+$O((m^2+|\chi|^2)^{-1})$ and (3.1) sums the first; the second region is
+symmetric.  On the complement both arguments exceed $|\chi|/2$; replace the product
+by twice the square of the factor with smaller argument and apply (3.2) without its
+logarithm.
+
+\LS{2}{4}{For $F_3=c_{\rm env}*F_2$,}
+\[
+ F_3(\chi)\le C(m,t_0)(tL)^2
+ \frac{[1+\log(2+|\chi|)]^2}{m^2+|\chi|^2}.\tag{3.4}
+\]
+
+\Because Use the same three regions.  In the first, sum $F_2$ up to radius
+$|\chi|/2$; (3.3) and a radial integral produce two logarithms.  In the second,
+bound $F_2$ at radius $|\chi|/2$ and sum $c_{\rm env}$ by (3.1).  In the
+complement, the product is bounded by
+$C tL(1+\log(2+|u|))(m^2+|u|^2)^{-2}$ at the smaller argument; apply (3.2).
+
+\LS{2}{5}{The dispersion-symbol difference obeys}
+\[
+ |c_N-c_\infty|(\kappa)
+ \le\frac{\eps_N^2k^4}{12}c_N(\kappa)c_\infty(\kappa),\quad
+ |c_\times-c_\infty|\le|c_N-c_\infty|.\tag{3.5}
+\]
+
+\Because Subtract the two resolvents and use
+$0\le k^2-4\eps_N^{-2}\sin^2(\eps_Nk/2)\le\eps_N^2k^4/12$.
+For the geometric mean,
+$|\sqrt a-\sqrt b|=|a-b|/(\sqrt a+\sqrt b)$.
+
+\LS{2}{6}{This proves $\langle1\rangle3$.}\QedStep
+
+\LS{1}{4}{Prove the unshifted $L^2$ interaction comparison, including every edge
+sector.}
+
+\LS{2}{1}{Wick--Isserlis and Fourier orthogonality give}
+\begin{align*}
+ \E[X_4^2]&=4!(2Lt)^{-2}
+ \sum_{\substack{\kappa_i\in D_N\\\sum k_{0,i}=0,\ \sum k_i\equiv0\ (2R_N)}}
+ \prod_i c_N(\kappa_i),\tag{4.1}\\
+ \E[Y_4^2]&=4!(2Lt)^{-2}
+ \sum_{\substack{\kappa_i\in D_\infty\\\sum\kappa_i=0}}
+ \prod_i c_\infty(\kappa_i),\tag{4.2}\\
+ \E[X_4Y_4]&=4!(2Lt)^{-2}
+ \sum_{\substack{\kappa_i\in\widetilde D_N\\\sum\kappa_i=0}}
+ \prod_i\chi(k_i)c_\times(\kappa_i).\tag{4.3}
+\end{align*}
+
+\Because The lattice spatial sum enforces conservation modulo $2R_N$; the continuum
+spatial integral enforces exact conservation.  Step $\langle1\rangle1\langle2\rangle6$
+gives the symmetric band and weights in (4.3).
+
+\LS{2}{2}{The four-edge sector omitted in V2 is}
+\[
+ \Delta_{4e}=4!(2Lt)^{-2}\frac32
+ \sum_{k_{0,1}+\cdots+k_{0,4}=0}\prod_i f(k_{0,i}),\quad
+ f(k_0)=c_\times(k_0,R_N).\tag{4.4}
+\]
+
+\Because Exact spatial conservation with four edge inputs requires two $+R_N$ and two
+$-R_N$.  There are $\binom42=6$ orders and their weight is
+$(2^{-1/2})^4=1/4$, hence $6/4=3/2$.  Configurations with exactly three edge inputs
+are impossible, but configurations with four are not.
+
+\LS{2}{3}{The correction satisfies}
+\[
+ 0\le\Delta_{4e}\le
+ \frac{9t}{256L^2}\coth(2t_0)^3\eps_N^5.\tag{4.5}
+\]
+
+\Because Let $A=\sum f$ and $B=\sum f^2$.  From $f\le(k_0^2+\gamma_e^2)^{-1}$
+and $\gamma_e\ge2/\eps_N$,
+\[
+ A\le\frac{t\eps_N}{4}\coth(2t_0),\qquad
+ B\le\gamma_e^{-2}A\le\frac{t\eps_N^3}{16}\coth(2t_0).
+\]
+Furthermore
+$\sum_{\sum k_{0,i}=0}\prod f=\|f*f\|_2^2
+\le\|f*f\|_\infty\|f*f\|_1\le BA^2$.  Insert this into (4.4).
+
+\LS{2}{4}{The remaining one-edge and two-edge differences between the symmetric and
+half-open descriptions are $O(t\eps_N^3\log_N^2)$.}
+
+\Because For one edge, sum its symbol to obtain $O(t\eps_N)$ and bound the remaining
+three-fold constrained sum at spatial momentum $R_N$ by (3.4), namely
+$O((tL)^2\eps_N^2\log_N^2)$; the prefactor gives the claimed order.  For two edges,
+put the temporal edge sequence in $\ell^2$ and use
+$\|f*f\|_\infty\le\sum f^2=O(t\eps_N^3)$; the remaining two-fold sum is bounded by
+(3.3).  There are finitely many placements.  Step $\langle2\rangle3$ covers four
+edges and is smaller.
+
+\LS{2}{5}{The lattice alias contribution in (4.1) obeys}
+\[
+ \mathrm{Al}_N\le C(m,t_0)tL\eps_N^2\log_N^3.\tag{4.6}
+\]
+
+\Because A nonzero alias has total spatial momentum $\sigma\in
+\{\pm2R_N,-4R_N\}$.  Fix $\kappa_1$ and sum the other three factors by (3.4) at
+$\sigma-\kappa_1$, whose spatial modulus is at least $R_N$; this is at most
+$C(tL)^2\eps_N^2\log_N^2$.  Sum the remaining envelope over the band by (3.1),
+giving $CtL\log_N$, and multiply by $4!(2Lt)^{-2}$.
+
+\LS{2}{6}{For the principal fourth-chaos difference, telescope the four products.  Then}
+\[
+ \|X_4-Y_4\|_2^2\le C(m,t_0)tL\eps_N^2\log_N^3.\tag{4.7}
+\]
+
+\Because Each telescoped common-mode term is bounded by
+\[
+ \sum_{\kappa\in D_N}|c_N-c_\infty|(\kappa)F_3(-\kappa).
+\]
+Use (3.5), (3.4), sum $k_0$ in
+$(m^2+k_0^2+k^2)^{-3}$, and then sum
+$k^4\log^2(2+|k|)(m^2+k^2)^{-5/2}$ up to $R_N$; it is
+$O(tL\log_N^3)$.  The common-mode result is
+$O((tL)^3\eps_N^2\log_N^3)$ before the prefactor.  Missing continuum modes use
+$c_{\rm env}F_3$ and the $|k|\ge R_N$ tail, giving one fewer logarithm.  Add
+(4.5), the one/two-edge bound, and (4.6).
+
+\LS{2}{7}{The second-chaos difference satisfies}
+\[
+ \|X_2-Y_2\|_2^2
+ =2\sum_{D_N}(c_N-c_\infty)^2
+ +2\sum_{D_\infty\setminus D_N}c_\infty^2
+ \le C(m,t_0)tL\eps_N^2.\tag{4.8}
+\]
+
+\Because The two symmetric edge pairings have weights $1/2$ and restore full weight;
+the lattice half-open alias replaces the missing opposite edge, so no residual edge term
+remains.  Square (3.5), sum $k_0$ with exponent $4$, and note the remaining band sum
+is $O(LR_N^2)$, giving $O(tL\eps_N^2)$.  The continuum tail of the squared resolvent
+has the same order.
+
+\LS{2}{8}{Combining (2.2), (2.5), (4.7), and (4.8),}
+\[
+ \|\U_N-\U\|_2\le
+ C(m,\lambda,t_0)(1+t)(1+L)\eps_N\log_N^{3/2}.\tag{4.9}
+\]
+
+\Because Apply the triangle inequality to the fourth chaos, the $6dX_2$ term, the
+coefficient difference $(d_N-d_\infty)Y_2$, and the scalar difference
+$3(d_N^2-d_\infty^2)2Lt$.  Use $d_N,d_\infty\le\bar d$ and
+$\|Y_2\|_2^2\le C tL$.
+
+\LS{2}{9}{This proves $\langle1\rangle4$.}\QedStep
+
+\LS{1}{5}{Verify the Wick dictionary and absence of a continuum counterterm.}
+
+\LS{2}{1}{Let}
+\[
+ \delta_N=\frac1{4L}\sum_{k\in\Gamma_N}
+ \left(\frac1{\gamma_N(k)}-\frac1{\gamma(k)}\right).
+\]
+With $u_j=\pi j/(2r_N)$ and $\widetilde\delta=m\eps_N/2$, pair the nonedge
+$\pm j$ terms to obtain
+\[
+ \delta_N=\frac1{2\pi}\sum_{j=1}^{r_N-1}g_{\widetilde\delta}(u_j)\Delta u
+ +E_{\rm edge},\quad
+ g_\delta(u)=\frac1{\sqrt{\delta^2+\sin^2u}}-
+ \frac1{\sqrt{\delta^2+u^2}},\tag{5.1}
+\]
+where $0\le E_{\rm edge}\le\eps_N/(8L)$.
+
+\Because Substitute the two exact dispersions, use $\Delta u=\pi/(2r_N)$, and
+separate the unpaired $j=-r_N$ term.
+
+\LS{2}{2}{$|g_\delta'(u)|\le C_0<6$ uniformly on $[0,\pi/2]$ and $\delta\ge0$.}
+
+\Because Write $g_\delta(u)=\psi(\sin^2u)-\psi(u^2)$ with
+$\psi(a)=(\delta^2+a)^{-1/2}$.  Use
+$u^2-\sin^2u\le u^4/3$, $\sin u\ge2u/\pi$,
+$|\sin2u-2u|\le(2u)^3/6$, and
+$\psi''(a)=3(\delta^2+a)^{-5/2}/4$; the two derivative terms are bounded by
+$\frac12(\pi/2)^5$ and $2/3$.
+
+\LS{2}{3}{The Riemann sum in (5.1) differs from its integral by $O(\eps_N)$, and
+replacing $\widetilde\delta$ by $0$ changes the integral by
+$O(\eps_N^2\log(1/\eps_N))$.}
+
+\Because The first claim is the Lipschitz Riemann bound.  For the second, split the
+integral at $u=\widetilde\delta$; the difference is at most $Cu$ below the split and
+$C\widetilde\delta^2/u$ above it.
+
+\LS{2}{4}{The limiting integral is}
+\[
+ \frac1{2\pi}\int_0^{\pi/2}(\csc u-u^{-1})du
+ =\frac1{2\pi}\log\frac4\pi.\tag{5.2}
+\]
+
+\Because The antiderivative difference is
+$\log\tan(u/2)-\log u$; its lower endpoint is $-\log2$ and its upper endpoint
+is $-\log(\pi/2)$.
+
+\LS{2}{5}{Thus}
+\[
+ \left|\delta_N-\frac1{2\pi}\log\frac4\pi\right|\le C(m,L)\eps_N.
+\tag{5.3}
+\]
+
+\LS{2}{6}{No quadratic or scalar counterterm survives in $\U$.}
+
+\Because At continuum truncation $K$, the field's thermal variance is
+$v_K=c^{\rm ct}_{L,K}+d_K$.  Recombining its own-variance Wick chaos by (2.1)
+with coefficient $d_K$ gives exactly the vacuum-truncation Wick quartic.  Since
+$d_K\to d_\infty$ exponentially, (2.5) is the $K\to\infty$ truncation-convention
+quartic.  The finite offset (5.2) occurs simultaneously in the lattice field variance
+and in its Wick subtraction, so it cancels rather than becoming a mass term.
+
+\LS{2}{7}{This proves $\langle1\rangle5$.}\QedStep
+
+\LS{1}{6}{Establish the shift-field estimates.}
+
+Fix a coarse level $M$, $N=M+r$, and a real coarse momentum symbol $p_M$.  Define
+\[
+ h_N(s,x)=\frac1{2L}\sum_{k\in\Gamma_N}a_N(k,s)e^{ikx},\quad
+ a_N=\frac{\eps_M^{1/2}}2P_r(\eps_Mk)\widehat p_M(k)
+ \frac{\sinh(\gamma_N(k)(s-t/2))}{\sinh(\gamma_N(k)t/2)},\tag{6.1}
+\]
+and $h_\infty$ by replacing $P_r,\gamma_N,\Gamma_N$ with
+$P_\infty,\gamma,\Gamma_\infty$.
+
+\LS{2}{1}{$h_N,h_\infty$ are real and
+$\|h_N\|_\infty,\|h_\infty\|_\infty\le\Sigma_M(p)$.}
+
+\Because Hermitian Fourier coefficients pair except at the half-open edge.  For
+$r\ge1$, $P_r(\pm\pi2^r)=0$ because the product contains $m_0(\pi)=0$; for $r=0$
+the edge coefficient is real.  The hyperbolic ratio in (6.1) has modulus at most one.
+Sum the D4 envelope
+$|P_r(\ell)|\le C_D^{1/2}(1+|\ell|)^{-1-\eta/2}$ by an integral comparison; the
+result is the explicit finite $\Sigma_M(p)$ of V2.
+
+\LS{2}{2}{For every integer $n\ge1$,}
+\[
+ \eps_N\sum_x\int_0^t|h_N|^n\le2Lt\Sigma_M(p)^n,
+\quad
+ \int_{\T_L}\int_0^t|h_\infty|^n\le2Lt\Sigma_M(p)^n.
+\tag{6.2}
+\]
+
+\Because The spatial volumes are both $2L$; integrate the pointwise bound.
+
+\LS{2}{3}{With $\theta_H=(1+\eta)/2$,}
+\[
+ \sup_s\frac1{2L}\left[
+ \sum_{k\in\Gamma_N}|a_N-a_\infty|^2+
+ \sum_{|k|\ge R_N}|a_\infty|^2\right]
+ \le C_H2^{-r\theta_H}.\tag{6.3}
+\]
+
+\Because Split $a_N-a_\infty$ into filter and dispersion differences.  On the band,
+\[
+ |P_r-P_\infty|(\ell)\le C2^{-r}|\ell|(1+|\ell|)^{-1-\eta/2}.
+\]
+Its squared sum is $O(2^{-r(1+\eta)})$.  For the dispersion term use the
+$\gamma$ derivative of the hyperbolic ratio, bounded by
+$t\coth(t_0m/2)$, and
+$|\gamma_N-\gamma|\le\eps_N^2k^4/(24m)$.  Split at
+$|\eps_Mk|=2^{r/2}$: use this Taylor bound below and the trivial bound $2$ above.
+Both pieces are $O(2^{-r(1+\eta)/2})$.  The missing-mode D4 tail is
+$O(2^{-r(1+\eta)})$.  The slowest exponent is $\theta_H$.
+
+\LS{2}{4}{This proves $\langle1\rangle6$.}\QedStep
+
+\LS{1}{7}{Prove the repaired normalized power-symbol estimates.}
+
+Let $B_N=\Gamma_N$, let $[k]_N$ be the representative modulo $2R_N$ in $B_N$, and,
+for $j=1,2,3$, define
+\begin{align*}
+ K_{N,j}^{\rm fold}(p)&=(2Lt)^{-(j-1)}
+ \sum_{\substack{\kappa_i\in D_N\\\sum k_{0,i}=p_0,\ [\sum k_i]_N=p}}
+ \prod_i c_N(\kappa_i),\tag{7.1}\\
+ K_{\times,j}(\kappa)&=(2Lt)^{-(j-1)}
+ \sum_{\substack{\kappa_i\in D_N\\\sum\kappa_i=\kappa}}
+ \prod_i c_\times(\kappa_i),\tag{7.2}\\
+ K_{\infty,j}(\kappa)&=(2Lt)^{-(j-1)}
+ \sum_{\sum\kappa_i=\kappa}\prod_i c_\infty(\kappa_i).\tag{7.3}
+\end{align*}
+
+\LS{2}{1}{$\sup K_{a,j}\le B_j(m,t_0)$ for all three families.}
+
+\Because For $j=1$ use Step $\langle1\rangle3\langle2\rangle1$.  For
+$j=2,3$, dominate by $F_2,F_3$ in (3.3)--(3.4); the factors
+$(tL)^{j-1}$ cancel the normalization $(2Lt)^{j-1}$.  Folded aliases are a
+finite sum of shifted exact outputs and satisfy the same supremum bound.
+
+\LS{2}{2}{On the fundamental band,}
+\begin{align*}
+ \sup_p|K_{N,j}^{\rm fold}(p)-K_{\infty,j}(p)|&\le C\eps_N^2\log_N^2,
+ \tag{7.4}\\
+ \sup_p|K_{\times,j}(p)-K_{\infty,j}(p)|&\le C\eps_N^2\log_N^2.
+ \tag{7.5}
+\end{align*}
+
+\Because Partition (7.1) into exact output and the finitely many nonzero shifts
+$2R_Nn$.  On exact common configurations telescope the $j$ factors and use the flat
+consequence of (3.5), $|c_N-c_\infty|\le C\eps_N^2$, followed by the band sums of
+the remaining $j-1$ envelope convolution; these are $O((tL)^{j-1}\log_N^{j-1})$.
+For a nonzero output shift, one convolution argument has spatial modulus at least
+$R_N$ and (3.3)--(3.4) gives $O(\eps_N^2\log_N^{j-1})$ after normalization.
+For continuum configurations with one input outside the band, fix that input and use
+the same tail convolution; the result is $O(\eps_N^2\log_N)$.  This proves (7.4).
+The proof of (7.5) is identical without folded output and using the second inequality
+in (3.5).
+
+\LS{2}{3}{For every exact output with $|k|\ge R_N$,}
+\[
+ K_{\times,j}(k_0,k)+K_{\infty,j}(k_0,k)
+ \le C\eps_N^2\log_N^{j-1}.\tag{7.6}
+\]
+
+\Because Apply (3.3) or (3.4) at spatial distance at least $R_N$ and divide by
+$(2Lt)^{j-1}$.
+
+\LS{2}{4}{This proves $\langle1\rangle7$.}\QedStep
+
+\LS{1}{8}{Prove the shifted-interaction comparison with no undefined remainder.}
+
+For $j=1,2,3$, put $g_N=h_N^{4-j}$, $g_\infty=h_\infty^{4-j}$ and
+\[
+ T_{N,j}=\eps_N\sum_x\int g_N{:}\eta_N^j{:},\qquad
+ T_{\infty,j}=\int\!\!\int g_\infty{:}\eta^j{:}.
+\]
+
+\LS{2}{1}{The true mixed covariance-power contribution differs from the translation-
+invariant surrogate by at most}
+\[
+ C(2Lt)^2\Sigma_M(p)^{2(4-j)}\eps_N\log_N^{j-1}.\tag{8.1}
+\]
+
+\Because By (1.4), $\|\mathcal R_N\|_\infty\le C\eps_N$, while
+$\|C_\times\|_\infty\le C\log_N$.  Hence
+$|(C_\times+\mathcal R_N)^j-C_\times^j|\le
+C\eps_N\log_N^{j-1}$.  Integrate against the pointwise bounds from (6.2).
+
+\LS{2}{2}{Write $b_N(p,k_0)$ and $b_\infty(k,k_0)$ for the spacetime Fourier
+coefficients of $g_N,g_\infty$.  Extend $b_N$ by zero outside $B_N$ and set
+$\delta b=b_N-b_\infty$ on $B_N$, $\delta b=-b_\infty$ outside.  Then the
+surrogate quadratic difference has the exact decomposition}
+\begin{align*}
+ Q_{N,j}-2Q_{\times,j}+Q_{\infty,j}
+ &=\langle\delta b,K_{\infty,j}\delta b\rangle
+ +\langle b_N,(K_{N,j}^{\rm fold}-K_{\infty,j})b_N\rangle\\
+ &\quad-2\langle b_N,(K_{\times,j}-K_{\infty,j})b_{\infty,B_N}\rangle
+ -2A_{\times,j},\tag{8.2}
+\end{align*}
+where
+\[
+ A_{\times,j}=\frac1{2Lt}\sum_{\substack{p\in B_N,\ n\ne0}}
+ K_{\times,j}(p_0,p+2R_Nn)\overline{b_N(-p,-p_0)}
+ b_\infty(p+2R_Nn,p_0).
+\tag{8.3}
+\]
+
+\Because Expand all three Fourier pairings.  The lattice--lattice spatial sums fold
+the exact output modulo $2R_N$, producing (7.1).  In the mixed pairing, continuum
+integration fixes the exact output $p+2R_Nn$, while the lattice sum sees its
+representative $p$; split $n=0$ and $n\ne0$.  Add and subtract the continuum symbol
+on the fundamental band.  Expanding
+$\langle\delta b,K_{\infty,j}\delta b\rangle$ gives the common-band continuum
+terms plus the entire continuum tail, leaving exactly (8.2)--(8.3).  No term remains
+unnamed.
+
+\LS{2}{3}{The mixed alias-output term obeys}
+\[
+ |A_{\times,j}|\le C\eps_N^2\log_N^2
+ \|b_N\|_2\|b_\infty\|_2.\tag{8.4}
+\]
+
+\Because Only finitely many $n$ occur: the support of a $j$-fold output lies in
+$[-jR_N,jR_N]$.  For $n\ne0$, (7.6) bounds the symbol.  Apply Cauchy--Schwarz to
+the finite repeated coefficient sums; each coefficient occurs at most $2j+1$ times.
+
+\LS{2}{4}{The coefficient norms satisfy}
+\[
+ \|b_N\|_2^2+\|b_\infty\|_2^2\le C t\Sigma_M(p)^{2(4-j)},\quad
+ \|b_N-b_\infty\|_2^2\le Ct\,2^{-r\theta_H}.\tag{8.5}
+\]
+
+\Because Parseval and (6.2) give the first inequality.  For the second, write the
+$(4-j)$-fold convolution difference as
+\[
+ a_N^{*n}-a_\infty^{*n}
+ =\sum_{\ell=0}^{n-1}a_N^{*\ell}*(a_N-a_\infty)*a_\infty^{*(n-1-\ell)}.
+\]
+Use $\ell^2*\ell^1\to\ell^2$, (6.3), and the uniform $\ell^1$ bound from the
+D4 envelope.  For a lattice alias, $|k_1+\cdots+k_n|\ge R_N$ forces one
+$|k_i|\ge R_N/n$; place that factor in the D4 $\ell^2$ tail and the remaining
+factors in $\ell^1$.  Missing continuum modes are identical.  Integrate the uniform
+in $s$ estimate over $[0,t]$.
+
+\LS{2}{5}{Equations (7.4)--(7.6), (8.2)--(8.5), and the Schur bound yield}
+\[
+ \E[(T_{N,j}-T_{\infty,j})^2]
+ \le C\left[t2^{-r\theta_H}+t\eps_N^2\log_N^2
+ +t^2\eps_N\log_N^{j-1}\right].\tag{8.6}
+\]
+
+\Because The first term of (8.2) is at most $B_j\|\delta b\|_2^2$.  The next
+two use (7.4)--(7.5) times the coefficient norms.  The last uses (8.4).  Add the
+physical edge remainder (8.1), with the harmless volume factors absorbed in the fixed
+parameter constant.
+
+\LS{2}{6}{Since $\eps_N=\eps_M2^{-r}$ and $\theta_H<1$,}
+\[
+ \eps_N\log_N^2\le C(\eps_M,\eta)2^{-r\theta_H}.\tag{8.7}
+\]
+
+\Because Divide by $2^{-r\theta_H}$; the ratio is
+$\eps_M2^{-r(1-\theta_H)}(1+\log(1/\eps_M)+r\log2)^2$, whose supremum over
+$r\ge0$ is finite because an exponential with positive exponent dominates a polynomial.
+
+\LS{2}{7}{The deterministic $j=0$ term has absolute difference
+$O(t2^{-r\theta_H/2})$.}
+
+\Because It is the zero Fourier coefficient of $h_N^4-h_\infty^4$.  Use the same
+four-factor convolution telescope and alias/missing-mode estimate as in (8.5), followed
+by Cauchy--Schwarz.
+
+\LS{2}{8}{After Wick-binomial coefficients and the $d_N-d_\infty$ recombination
+errors are included,}
+\[
+ \|[\U_N(\eta_N+h_N)-\U_N(\eta_N)]
+ -[\U(\eta+h_\infty)-\U(\eta)]\|_2
+ \le C(1+t)^{5/2}\left[2^{-r(1+\eta)/4}+\eps_N\log_N\right].
+\tag{8.8}
+\]
+
+\Because Take square roots in (8.6), use
+$\theta_H/2=(1+\eta)/4$, sum $j=0,1,2,3$ with coefficients
+$1,4,6,4$, and use $|d_N-d_\infty|=O(\eps_N^2)$.  The largest volume power is
+bounded by $(1+t)^{5/2}$.
+
+\LS{2}{9}{This proves $\langle1\rangle8$.}\QedStep
+
+\LS{1}{9}{Prove the uniform Nelson exponential bounds.}
+
+\LS{2}{1}{Pointwise, for real $u$,}
+\[
+ {:}u^4{:}_c=(u^2-3c)^2-6c^2\ge-6c^2.
+\]
+Hence
+\[
+ \U_N(\eta_N+h)\ge-c_1t\log_N^2
+\tag{9.1}
+\]
+for every deterministic real shift $h$.
+
+\Because Integrate the pointwise inequality over volume $2Lt$ and use
+$c_{N,L}\le C(m,L)\log_N$.  Replacing $u$ by the real number $u+h$ changes
+nothing.
+
+\LS{2}{2}{For $b\le c_1t\log_N^2$, choose the largest dyadic level $N_b\le N$
+with $1+\log(1/\eps_{N_b})\le L_b=(b/(2c_1t))^{1/2}$.  Then}
+\[
+ \{\U_N\le-b\}\subseteq\{\U_N-\U_{N_b}\le-b/2\}.
+\tag{9.2}
+\]
+
+\Because Dyadic log increments are exactly $\log2$, so for sufficiently large $b$
+the level exists and its logarithm is at least $L_b/2$.  By (9.1),
+$\U_{N_b}\ge-c_1tL_b^2=-b/2$.
+
+\LS{2}{3}{The comparison estimates imply}
+\[
+ \rho_b:=\|\U_N-\U_{N_b}\|_2\le C L_b^{3/2}e^{-cL_b}.
+\tag{9.3}
+\]
+
+\Because Apply (4.9) at levels $N,N_b$ through the common continuum interaction;
+$\eps_{N_b}\le e^{1-L_b/2}$.  In the shifted case also use (8.8); its dyadic term
+is $O(e^{-(1+\eta)L_b/8})$.  Take the smaller positive exponent $c$.
+
+\LS{2}{4}{If $Z$ is a sum of Gaussian chaoses of order at most four, then for
+$q\ge1$,}
+\[
+ \|Z\|_{2q}\le(2q-1)^2\|Z\|_2.\tag{9.4}
+\]
+
+\Because Write $Z=\sum_{j=0}^4Z_j$ orthogonally.  For
+$\tau=\frac12\log(2q-1)$, set $Y=\sum e^{j\tau}Z_j$; then
+$Z=\Gamma(e^{-\tau})Y$.  Nelson hypercontractivity gives
+$\|Z\|_{2q}\le\|Y\|_2\le e^{4\tau}\|Z\|_2=(2q-1)^2\|Z\|_2$.
+
+\LS{2}{5}{Chebyshev with $(2q)^2=e^{cL_b/2}$ gives}
+\[
+ \PP(\U_N\le-b)\le\exp[-e^{cL_b/4}]
+\tag{9.5}
+\]
+for all sufficiently large $b$, uniformly in $N$; the same holds for shifted
+interactions on bounded coarse-symbol sets.
+
+\Because By (9.2)--(9.4),
+\[
+ \PP(\U_N\le-b)\le
+ \left[\frac2b(2q)^2\rho_b\right]^{2q}.
+\]
+Insert (9.3); for large $b$ the bracket is at most $e^{-1}$, and
+$2q=e^{cL_b/4}$.
+
+\LS{2}{6}{For every $p<\infty$ and $t\in[t_0,T]$,}
+\[
+ \sup_N\E[e^{-p\U_N}]<\infty,\qquad
+ \sup_N\E[e^{-p\U_N(\eta_N+h_N)}]<\infty.
+\tag{9.6}
+\]
+
+\Because The layer-cake formula integrates
+$pe^{pb}\PP(\U_N\le-b)$.  The double-exponential tail (9.5) dominates
+$e^{pb}$; the bounded $b$ interval contributes a finite uniform constant.
+
+\LS{2}{7}{This proves $\langle1\rangle9$.}\QedStep
+
+\section{V2 conclusion}
+
+The repaired V2 outputs are (4.9), the Wick dictionary (5.3) with no residual
+counterterm, the shift-field convergence (6.3), the fully accounted shifted comparison
+(8.8), and the unshifted/shifted Nelson bounds (9.6).  The original four-edge assertion
+and the original $R_{\rm tail}$ line must not be used; equations (4.4)--(4.5) and
+(8.2)--(8.4) replace them.
+
+\end{document}

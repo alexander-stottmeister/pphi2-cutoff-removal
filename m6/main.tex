@@ -1,0 +1,1475 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.9cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{srcfact}[theorem]{Source Fact}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\Q}{\mathcal{Q}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\Om}{\Omega}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\Span}{span}
+
+\title{Removal of the spatial cutoff for weakly coupled $P(\varphi)_2$:\\
+norm convergence of the ground-state net on the quasi-local algebra\\[4pt]
+\large (M6, v2 --- audited repair)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $H(g)$ be the spatially cutoff $P(\varphi)_2$ Hamiltonian, $\Om_g$ its ground state, and
+$\omega_g$ the induced state on the time-zero quasi-local algebra $\A$. Glimm and Jaffe (1970)
+constructed an infinite-volume vacuum as a $w^*$ \emph{limit point} of space-averaged $\omega_g$;
+the cited construction does not prove convergence of the net itself. Guerra--Rosen--Simon
+(1975) formulated analogous Euclidean local-convergence questions as their Problems~1--2.
+We prove: in the Glimm--Jaffe--Spencer weak-coupling region
+$0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$, the \emph{full net} $(\omega_g)$ --- no subnets, no
+averaging --- converges in norm on every local algebra,
+\[
+  \lim_{g\in\G}\bigl\|(\omega_g-\omega_\infty)|_{\A(O)}\bigr\|=0 ,
+\]
+with an explicit super-polynomial rate in $\dist(O,\{g<1\})$; the limit is locally normal,
+translation invariant, $\Z_2$-invariant for even $\mathscr P$, and is a ground state of the
+Glimm--Jaffe dynamics $(\A,\alpha)$ in the spectral sense. The proof is Hamiltonian: a
+local-perturbations-perturb-locally estimate built on an exact spectral filter and the exact
+light cone makes the net Cauchy; its two hypotheses --- a cutoff-uniform gap
+$\spec H(g)\subseteq\{0\}\cup[m_1,\infty)$ and a uniform local interaction moment --- are derived
+from the two printed cluster-expansion theorems of Glimm--Jaffe--Spencer (Ann.\ of Math.\ 100
+(1974), Thms.~1.1.7 and 1.1.8), whose cutoff-uniformity is both printed (p.~629) and audited.
+The proof also imports, and explicitly identifies below, the standard cutoff-construction
+results on self-adjointness and the simple positive ground state, Feynman--Kac--Nelson transfer,
+finite-volume stability and hypercontractivity, domain smoothing and a common core, finite
+propagation and patching, and covariance. No Euclidean uniqueness theorem, global Markov
+property for the infinite-volume measure, or reverse Osterwalder--Schrader reconstruction is
+used. We do not claim uniqueness of $\omega_\infty$ among all locally normal ground states, a
+sharp exponential rate, or anything outside the weak-coupling region.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}\label{sec:intro}
+
+\subsection{The problem}
+
+The $\lambda\varphi^4_2$ (more generally $P(\varphi)_2$) model was constructed by Glimm and
+Jaffe in the series I--IV \cite{GJ1,GJ2,GJ3,GJ4}. Paper III builds the physical vacuum as
+follows: the finite-volume ground states $\Om_g$ of the cutoff Hamiltonians $H(g)$ induce states
+$\omega_g$ on the quasi-local algebra $\A$; after a space-translation averaging, a $w^*$-compactness
+argument produces a \emph{limit point} $\omega$, which is shown to be locally Fock
+\cite[Thms.~2.1--2.3]{GJ3}. Whether the net $(\omega_g)$ \emph{converges} --- so that the vacuum
+is canonical rather than selected by a limit procedure --- was not proved there; the Expositions volume states plainly that
+the $g\to1$ limit of the vacuum expectation values ``has not been proved''
+\cite[\S4]{GJExp}. Guerra, Rosen and Simon list analogous \emph{Euclidean} local $L^p$ and
+finite-volume Gibbs-state convergence statements as Problems~1--2 of \cite[pp.~125--126]{GRS75};
+their note added on p.~128 records Newman's solution of the small-coupling $p=1$ versions.
+(Some later surveys state the Hamiltonian cutoff limit as a convergence; the cited primary
+construction itself is unambiguously a limit-point construction.)
+
+On the Euclidean side, convergence of \emph{Schwinger functions} at weak coupling follows from
+the cluster expansion of Glimm--Jaffe--Spencer \cite{GJS}. Albeverio--H\o egh-Krohn--Zegarlinski
+prove Euclidean Gibbs uniqueness under their stated hypotheses \cite{AHZ}; Bauerschmidt--Dagallier--
+Weber prove uniqueness of the invariant measure for the $\Phi^4_2$ stochastic-quantization
+equation above the critical temperature \cite{BDW}. Neither statement is, by itself, a theorem
+about norm convergence of this Hamiltonian ground-state cutoff net. The cited primary
+construction does not prove that local-norm convergence, and no such theorem is identified in
+the references reviewed here. The Hamiltonian-renormalisation programme of Rodriguez
+Zarate--Thiemann cited here is explicitly restricted to finite volume \cite{RZT}.
+
+\subsection{The result}
+
+\begin{quote}
+\emph{In the GJS weak-coupling region, the full net $(\omega_g)_{g\in\G}$ converges in norm on
+every local algebra; the limit is locally normal, translation and (for even $\mathscr P$)
+$\Z_2$ invariant, and is a ground state of the Glimm--Jaffe dynamics. An explicit rate holds:
+$\|(\omega_g-\omega_\infty)|_{\A(O)}\|\le\Psi_{m_1}(d)$ for $g\equiv1$ on $O_d$, with
+$\Psi_{m_1}$ decaying faster than every inverse power.}
+\end{quote}
+
+See Theorem~\ref{thm:MAIN}. The logical structure is deliberately Hamiltonian and
+compactness-free:
+
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+step & content & where proved\\
+\midrule
+(i) & printed GJS cluster/moment theorems, cutoff-uniform & \cite{GJS} + audit \S\ref{sec:sources}\\
+(ii) & uniform local moment (M$_2$) & \S\ref{sec:M2}\\
+(iii) & uniform gap (G): $\spec H(g)\subseteq\{0\}\cup[m_1,\infty)$ & \S\ref{sec:G}\\
+(iv) & LPPL/Cauchy: (G)+(M$_2$) $\Rightarrow$ full-net convergence + rate & \S\ref{sec:lppl}\\
+(v) & the limit is an $\alpha$-ground state; invariances & \S\ref{sec:ground}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Steps (ii)--(iii) convert Euclidean input to Hamiltonian statements through slab
+Feynman--Kac--Nelson transfers in which every limit is taken at fixed $g$; no uniform gap is
+presupposed anywhere in their proofs (the gap of step (iii) is an output). Step (iv) replaces
+the compactness of \cite{GJ3} by a Cauchy argument: the same gap that yields clustering also
+yields a local-perturbations-perturb-locally estimate, which bounds
+$\|(\omega_g-\omega_{g'})|_{\A(O)}\|$ whenever both cutoffs equal $1$ on $O_d$. Step (v) is the
+exact spectral identity of the companion note M0: the ground-state property of the limit costs
+an identity, not an estimate.
+
+\subsection{What is not claimed}
+
+(a) \emph{Uniqueness}: Theorem~\ref{thm:MAIN} identifies the limit of \emph{this} cutoff family;
+it does not show that every locally normal ground state of $(\A,\alpha)$ equals $\omega_\infty$.
+(b) \emph{Sharp rate}: in the exactly solvable quadratic model the true rate is
+$e^{-2m_1d}$ (companion note M2); $\Psi_{m_1}$ is super-polynomial but not exponential, and this
+is intrinsic to the filter method used. (c) \emph{Beyond weak coupling}: under the explicit
+phase-classification hypotheses stated in Corollary~\ref{cor:nobreak}, a cutoff-uniform gap is
+incompatible with that two-phase structure. Thus an extension to such a broken phase would have
+to abandon the uniform-gap input; no claim is made outside
+$0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. (d) \emph{Wavelet uniformity}: uniformity in a
+lattice/wavelet resolution is a separate theorem (Part II) and is not addressed here.
+
+\subsection*{Provenance}
+
+This is the v2 audited repair: all components are stated and proved in this document. The LPPL machinery
+of \S\ref{sec:lppl} originates in the companion files \texttt{m4/lppl.tex} and
+\texttt{m4/remaining.tex} and has been re-verified line by line during the merge (two sign/constant
+slips in the v0 pointers were corrected: the filter transform is $+E^{-1}$, the one-path bound
+carries no factor $\tfrac12$). This version additionally repairs the source pinpoints, the
+dimensionless scaling reduction, signed and unbounded FKN passages, the unit-cell count, the
+negative-time norm ratio, the exponential-moment prefactor, the spectral-projection range, and
+the hypotheses of the symmetry-breaking corollary. External inputs are the printed theorems of
+\cite{GJS} (with the uniformity audit summarised in Remark~\ref{rem:audit}) and the explicitly
+cited construction results from \cite{SimonBook}, \cite{GRS75}, and \cite{GJExp}; companion notes
+are used only for provenance and extended discussion. Gate R2 (the norm prefactor of
+\cite[(1.1.7)--(1.1.8)]{GJS}) is closed by direct inspection of the page images: $K_1$ occurs once
+and the local weight is $K_2^{2N(\Delta)}$.
+
+\section{Setting and standing assumptions}\label{sec:setting}
+
+\subsection{The model}
+
+$\HH=L^2(\mathcal S'(\R),d\phi_0)$ is $Q$-space over the time-zero free field of mass $m_0>0$:
+$d\phi_0$ is Gaussian with covariance $C=(2\mu)^{-1}$, $\mu=(-\partial_x^2+m_0^2)^{1/2}$. Weyl
+operators $W(f,h)=\exp i(\varphi_0(f)+\pi_0(h))$ generate the local net
+\[
+  \A(O)=\{W(f,h):f,h\in C_c^\infty(O)\ \text{real}\}'',\qquad
+  \A=\overline{\textstyle\bigcup_O\A(O)}^{\;\|\cdot\|} .
+\]
+Let $\mathscr P(\xi)=\sum_{n=0}^{2p'}a_n\xi^n$, $a_{2p'}>0$, and for real $h\in C_c^\infty$
+\[
+  V(h):=\lambda\int h(x)\,{:}\mathscr P(\varphi_0(x)){:}_C\,dx ,
+\]
+a self-adjoint multiplication operator in $Q$-space, affiliated with $\A(U)$ for
+$U\supseteq\supp h$, finitely additive on common domains ($V(\sum h_j)\xi=\sum V(h_j)\xi$).
+
+\[
+  \G:=\{g\in C_c^\infty(\R):0\le g\le1,\ g\equiv1\text{ on a nonempty bounded interval}\},
+\]
+with $g\preccurlyeq g'$ exactly when
+$\{g=1\}^\circ\subseteq\{g'=1\}^\circ$. For a bounded interval $O$ and $r\ge0$, set
+\[
+ O_0:=O,\qquad O_r:=\{x\in\R:\dist(x,O)<r\}\quad(r>0),\qquad
+ d(g,O):=\dist\bigl(O,\R\setminus\{g=1\}^\circ\bigr).
+\]
+\[
+  K(g):=H_0+V(g),\quad E(g):=\inf\spec K(g),\quad H(g):=K(g)-E(g),
+\]
+with ground state $\Om_g$, $\omega_g:=\ip{\Om_g}{\cdot\,\Om_g}$,
+$\beta^g_t=\mathrm{Ad}\,e^{itH(g)}$.
+
+\subsection{Standing assumption (weak coupling)}
+
+Fix source-admissible constants $M_*>0$ and $\lambda_*>0$ such that the
+Glimm--Jaffe--Spencer expansion is valid at bare mass $M_*$ whenever
+$0\le\lambda'<\lambda_*$. Define
+\[
+  \varepsilon_{\mathscr P}:=\frac{\lambda_*}{M_*^2}.
+\]
+Throughout, $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. After transport back to the original
+coordinates, $m_1>0$ and $C_7,C_8,K_1,K_2$ denote the constants in GJS
+Theorems 1.1.7--1.1.8 and their observable norms; only their positivity or finiteness and their
+cutoff independence will be used.
+
+\begin{proposition}[dimensionless weak-coupling reduction]\label{prop:scaling}
+The preceding inequality implies the source smallness hypothesis. More precisely, the GJS
+unitary dilation with $s=m_0/M_*$ sends
+\[
+  (m_0,\lambda)\longmapsto
+  (s^{-1}m_0,s^{-2}\lambda)
+  =\left(M_*,\frac{M_*^2}{m_0^2}\lambda\right),
+\]
+and the transformed coupling is strictly smaller than $\lambda_*$.
+\end{proposition}
+
+\begin{proof}
+For $m>0$, write the Euclidean covariance, as an identity of tempered distributions, as
+\[
+  C_m(z)=\frac1{(2\pi)^2}\int_{\R^2}\frac{e^{ip\cdot z}}{p^2+m^2}\,dp .
+\]
+Since $sM_*=m_0$, the substitution $q=sp$ gives, without an omitted power of $s$,
+\begin{align*}
+  C_{M_*}(sz)
+  &=\frac1{(2\pi)^2}\int_{\R^2}
+      \frac{e^{ip\cdot sz}}{p^2+M_*^2}\,dp \\
+  &=\frac1{(2\pi)^2}\int_{\R^2}
+      \frac{s^{-2}e^{iq\cdot z}}{s^{-2}q^2+M_*^2}\,dq
+    =C_{m_0}(z).
+\end{align*}
+Thus the centered generalized Gaussian fields $\Phi_{m_0}(x)$ and $\Phi_{M_*}(sx)$ have
+identical joint covariances after smearing. This also fixes Wick ordering without a hidden
+constant. Indeed, for every regularized centered Gaussian variable $X$,
+\[
+ {:}e^{tX}{:}=\exp\!\left(tX-\tfrac12t^2\E[X^2]\right),
+\]
+and the coefficient of $t^n$ is ${:}X^n{:}/n!$. Apply the identity to a common mollifier,
+transported by $x\mapsto sx$, and then take the defining distributional limit. Equality of the
+regularized covariances shows that the unitary Gaussian identification sends
+${:}\mathscr P(\Phi_{m_0}(x)){:}_{m_0}$ to
+${:}\mathscr P(\Phi_{M_*}(sx)){:}_{M_*}$ with the coefficients of $\mathscr P$ unchanged.
+For a Euclidean cutoff $h$ the change of variables $y=sx$ therefore gives
+\[
+ \lambda\int_{\R^2}h(x){:}\mathscr P(\Phi_{m_0}(x)){:}_{m_0}\,dx
+ =s^{-2}\lambda\int_{\R^2}h(y/s){:}\mathscr P(\Phi_{M_*}(y)){:}_{M_*}\,dy .
+\]
+The transformed cutoff $h_s(y):=h(y/s)$ still satisfies $0\le h_s\le1$ and has compact
+support. Hence the transformed parameters are exactly those displayed in the proposition,
+as stated in \cite[p.~590]{GJS}. Finally,
+\[
+ s^{-2}\lambda=\frac{M_*^2}{m_0^2}\lambda
+ <M_*^2\varepsilon_{\mathscr P}=\lambda_*.
+\]
+This is precisely the source smallness condition. If the source decay rate in the scaled
+coordinate $y=sx$ is $m_{1,*}>0$, then
+$e^{-m_{1,*}d_y}=e^{-sm_{1,*}d_x}$; thus the rate in the original coordinates is
+$m_1:=sm_{1,*}>0$. The transported finite prefactors are the constants named above.
+\end{proof}
+
+\subsection{Facts of the cutoff construction}\label{subsec:facts}
+
+\begin{srcfact}\label{fact:sa}
+$K(g)$ is essentially self-adjoint and bounded below, and $E(g)$ is a \emph{simple} eigenvalue,
+for every measurable $0\le g\le1$ of compact support; $\Om_g$ may be chosen $>0$ a.e.\ in
+$Q$-space. \cite[p.~588]{GJS}; \cite{GJ1,GJ2,Rosen70,GJ71}
+\end{srcfact}
+
+\begin{srcfact}[dynamics; the side conditions (P), (T)]\label{fact:PT}
+There is a one-parameter automorphism group $\alpha$ of $\A$, independent of $g$, with
+\begin{align}
+  &\alpha_t(\A(O))\subseteq\A(O_{|t|}),\qquad
+  \alpha_t(A)=\beta^g_t(A)\ \ \text{if } g\equiv1 \text{ on } O_{|t|};
+  \tag{P}\label{eq:P}\\
+  &\omega_{\tau_ag}=\omega_g\circ\tau_{-a},
+  \tag{T}\label{eq:T}
+\end{align}
+$\tau_a$ the spatial translation. \eqref{eq:P} is the Glimm--Jaffe patching construction
+\cite[\S III]{GJ1}, \cite[\S3.5--3.6]{GJ2}, \cite[\S4.1]{GJExp}; \eqref{eq:T} follows from
+$K(\tau_ag)=U_aK(g)U_a^*$ and simplicity (companion M0, Lem.~3.2 --- three lines).
+\end{srcfact}
+
+\begin{proposition}[domain smoothing; cutoff propagation]\label{prop:standard-main}
+\emph{(i)} $\Om_g\in D(V(h))$ for every $g\in\G$ and real $h\in C_c^\infty$.
+\emph{(ii)} $\beta^g_t(\A(O))\subseteq\A(O_{|t|})$ for every $g$, with speed $\le1$ independent
+of $g$.
+\end{proposition}
+
+\begin{proof}
+(i) The model-specific smoothing theorem \cite[Ch.~7, Thm.~7.4]{GJExp} states that, for every
+$t>0$, the range of the cutoff semigroup is contained in the domain of each relevant polynomial
+multiplication operator; in the present notation,
+$\mathrm{Ran}\,e^{-tK(g)}\subseteq D(V(h))$. (Replacing $K(g)$ by $H(g)=K(g)-E(g)$ multiplies
+the semigroup by the nonzero scalar $e^{tE(g)}$ and does not change its range.) Since
+$K(g)\Om_g=E(g)\Om_g$,
+\[
+  \Om_g=e^{tE(g)}e^{-tK(g)}\Om_g\in\mathrm{Ran}\,e^{-tK(g)}\subseteq D(V(h)).
+\]
+(ii) The interaction automorphism $\mathrm{Ad}\,e^{itV(g)}$ has speed zero: for $A$ generated by
+Weyl operators supported in $B\Subset O$ pick $\chi\in C_c^\infty(O)$, $\chi=1$ near $B$; then
+$V(g)=V(\chi g)+V((1-\chi)g)$ strongly commuting, $e^{itV(\chi g)}\in\A(O)$,
+$e^{itV((1-\chi)g)}\in\A(B)'$, so $\mathrm{Ad}\,e^{itV(g)}(A)\in\A(O)$; extend by strong density.
+The free dynamics has speed one (Klein--Gordon). The $n$-th Trotter approximant of $\beta^g_t(A)$
+then lies in $\A(O_{|t|})$, which is strongly closed, and the Trotter formula converges
+strongly. \cite[Ch.~4]{GJExp}
+\end{proof}
+
+\section{The source theorems and their cutoff-uniformity}\label{sec:sources}
+
+The Euclidean input is \cite{GJS}. Let $d\Phi$ be the Gaussian with covariance
+$(-\Delta_{\R^2}+m_0^2)^{-1}$ and, for $h$ in the class
+$\mathcal C=\{0\le h\le1,\ \supp h\ \text{compact}\}$ \cite[p.~589]{GJS},
+\[
+  dq_h=Z(h)^{-1}e^{-V(h)}d\Phi,\qquad V(h)=\lambda\int{:}\mathscr P(\Phi(z)){:}\,h(z)\,dz .
+\]
+The observable class (1.1.5) consists of sharp-time monomials
+$Q(x^0)=\int d\vec x\,w(\vec x)\prod_i{:}\Phi(x_i)^{m_i}{:}$ with $L^2$ kernels, equal times
+allowed, normed by (1.1.8)--(1.1.9) (kernel $L^2$ norms with local-degree weights
+$K_2^{2N(\Delta)}N(\Delta)!$ and a single overall prefactor $K_1$; printed forms
+verified against the page image of p.~594:
+$\|Q\|=K_1[\prod_\Delta K_2^{2N(\Delta)}N(\Delta)!]\,\|w\|_2$ and likewise at fixed times).
+Replacing $K_2$ by $\max\{1,K_2\}$ only enlarges the right sides of all source estimates, so
+we fix, from now on, $K_2\ge1$.
+
+\begin{srcfact}[CE2 = {\cite[Thm.~1.1.7]{GJS}}, p.~594]\label{sf:CE2}
+For localized monomials $Q_1,Q_2$ with disjoint localization squares separated by a strip of
+width $d$ bounded by two parallel lines (any orientation),
+\[
+  \Bigl|\int Q_1Q_2\,dq_h-\int Q_1dq_h\int Q_2dq_h\Bigr|\le C_7e^{-m_1d}\|Q_1\|\|Q_2\| ,
+\]
+with $m_1,C_7$ \emph{independent of $h$, $Q_1$, $Q_2$} (so stated).
+\end{srcfact}
+
+\begin{srcfact}[CE1 = {\cite[Thm.~1.1.8]{GJS}}, p.~595]\label{sf:CE1}
+$\bigl|\int Q(x^0)\,dq_h\bigr|\le C_8\|Q(x^0)\|$, uniformly in $h\in\mathcal C$.
+\end{srcfact}
+
+\begin{remark}[the uniformity audit]\label{rem:audit}
+The class-uniformity of Source Facts \ref{sf:CE2}--\ref{sf:CE1} over all of $\mathcal C$ ---
+not merely along $h\uparrow1$ --- is (a) \emph{printed}: \cite[p.~629]{GJS} states ``the
+estimates of Theorems 1.1.8, 1.1.11, 3.1 and 4.1 are uniform in the space cutoff $h$'';
+(b) \emph{structural}: the convergence proof is a kernel-norm argument in which $h$ enters
+quantitatively only through vertex factors majorised by $|\lambda h(x)|\le\lambda$ at first
+contact, while every $e^{-V(h)}$ cancels against the normalisation in the final division
+(their (4.3)--(4.4)), so no stability estimate enters any constant; and (c) the only
+$h$-sensitive analytic prerequisites --- $e^{-\lambda|a_0||K|}\le Z(h)<\infty$ and
+$\sup_{h\in\mathcal C,\supp h\subseteq K}\|e^{-V(h)}\|_{L^p(d\Phi)}<\infty$ --- are proved,
+self-contained, in the companion audit (\texttt{m4/r1-check.tex}, Lem.~4.2, Thm.~4.5), the two
+halves of $0\le h\le1$ entering complementarily (positivity in the Wick lower bound
+${:}\mathscr P{:}_c\ge-b(1+c)^{p'}$, boundedness in the UV kernel estimates). The formerly
+illegible prefactor of the norm (Gate R2) has been settled by direct inspection of the page
+image: $K_1$ enters to the first power and the local weight is $K_2^{2N(\Delta)}$; see
+\texttt{m4/r2-check.tex}. All constants below use this exact reading.
+\end{remark}
+
+\begin{remark}[conventions lock]\label{rem:conv}
+The sharp-time restriction of the Euclidean covariance equals $C$:
+$\int\frac{dk_0}{2\pi}(k_0^2+\mu(k)^2)^{-1}=(2\mu(k))^{-1}$ exactly. Hence sharp-time
+$d\Phi$-Wick ordering coincides, constant by constant, with the $C$-Wick ordering used in
+$V(h)$, and sharp-time functionals of $\Phi(0,\cdot)$ are multiplication operators on $\HH$. No
+Wick-mass conversion arises. (Companion \texttt{m4/t3.tex}, Lem.~2.1; \texttt{m2-audit.tex},
+Prop.~2.7.)
+\end{remark}
+
+Throughout \S\S\ref{sec:M2}--\ref{sec:G}, $g\in\G$ is fixed where limits $T\to\infty$ are taken;
+\emph{no uniformity in $g$ beyond the printed constants is used, and no gap is assumed}. Set
+\[
+  h_{T,g}:=\mathbf 1_{[-T,T]}\otimes g\in\mathcal C,\qquad
+  \psi_s:=e^{-sH(g)}\Om_0,\quad\hat\psi_s:=\psi_s/\|\psi_s\|,\quad
+  c_g:=\ip{\Om_g}{\Om_0}>0
+\]
+($c_g>0$ by Source Fact~\ref{fact:sa}: $\Om_g>0$ a.e., $\Om_0\equiv1$).
+
+\begin{lemma}[slab FKN]\label{lem:FKN-main}
+For $T>0$, $t\in[0,2T]$, $s\in[-T,T]$, and nonnegative measurable functions $F_1,F_2$ of the
+time-zero field:
+\begin{align}
+  \int F_1\bigl(\Phi(-\tfrac t2,\cdot)\bigr)F_2\bigl(\Phi(\tfrac t2,\cdot)\bigr)dq_{h_{T,g}}
+  &=\frac{\ip{F_1\psi_{T-t/2}}{e^{-tH(g)}F_2\psi_{T-t/2}}}{\|\psi_T\|^2},\label{eq:fkn2}\\
+  \int F_1\bigl(\Phi(s,\cdot)\bigr)\,dq_{h_{T,g}}
+  &=\frac{\ip{\psi_{T-s}}{F_1\,\psi_{T+s}}}{\|\psi_T\|^2},\label{eq:fkn1}
+\end{align}
+as identities in $[0,\infty]$; energy shifts cancel in the ratios.
+\end{lemma}
+
+\begin{proof}
+For bounded $F_i$ this is the Feynman--Kac--Nelson formula for
+$Z^{-1}e^{-V(h_{T,g})}d\Phi$ (Markov property of $d\Phi$ along constant-time lines;
+\cite[Thm.~III.6, Cor.~V.14, Thm.~V.15]{SimonBook};
+\cite[Thms.~II.14, II.16]{GRS75}; the identification of sharp-time Wick functionals with
+$Q$-space multiplications is Remark~\ref{rem:conv}). For bounded nonnegative $F_i$ both sides
+are finite. For bounded signed real $F_i$, write $F_i=F_i^+-F_i^-$ and expand both sides into
+the same four finite nonnegative terms; bilinearity proves the identities.
+
+For nonnegative measurable $F_i$, apply the bounded formula to $F_i\wedge M$ and let
+$M\uparrow\infty$; monotone convergence on both sides gives the displayed identities in
+$[0,\infty]$. For the signed unbounded functions used below, define the clipped truncation
+\[
+  F^{[M]}:=(-M)\vee(F\wedge M).
+\]
+Whenever $F\psi_a\in\HH$, Hilbert-space convergence follows from
+\[
+ \|(F-F^{[M]})\psi_a\|^2
+ =\int |F-F^{[M]}|^2|\psi_a|^2\,d\phi_0\longrightarrow0,
+ \qquad |F-F^{[M]}|^2|\psi_a|^2\le |F|^2|\psi_a|^2.
+\]
+For two path-space factors the pointwise estimate
+\[
+ |F_1(\Phi(s_1))F_2(\Phi(s_2))|
+ \le\tfrac12\bigl(F_1(\Phi(s_1))^2+F_2(\Phi(s_2))^2\bigr)
+\]
+provides a dominated-convergence majorant whenever the two square moments are finite. Source
+Fact~\ref{sf:CE1} supplies precisely those square moments for every later application. Thus the
+signed identities used below are limits of the bounded signed identities, with no formal
+manipulation of products of unbounded operators.
+\end{proof}
+
+\begin{lemma}[slab vacuum; simplicity only]\label{lem:vac-main}
+$\hat\psi_s\to\Om_g$ in norm, $\|\psi_s\|\downarrow c_g$, and
+$\|\psi_{s'}\|/\|\psi_s\|\in[1,1/c_g]$ for $0\le s'\le s$; the ratio tends to $1$ whenever
+$s,s'\to\infty$.
+\end{lemma}
+
+\begin{proof}
+Set $P_g=|\Om_g\rangle\langle\Om_g|$. Since
+$P_g\Om_0=c_g\Om_g$,
+\[
+ \psi_s=c_g\Om_g+e^{-sH(g)}(1-P_g)\Om_0,
+\]
+and the two summands are orthogonal. If $\mu_g^\perp$ is the spectral measure of
+$(1-P_g)\Om_0$, then
+\[
+ \|e^{-sH(g)}(1-P_g)\Om_0\|^2
+ =\int_{(0,\infty)}e^{-2sE}\,d\mu_g^\perp(E)\longrightarrow0
+\]
+by dominated convergence. The measure has no atom at $0$ by simplicity alone
+(Source Fact~\ref{fact:sa}); no isolation and hence no gap is used. It follows that
+$\psi_s\to c_g\Om_g$, $\|\psi_s\|\to c_g$, and $\hat\psi_s\to\Om_g$. The spectral formula also
+shows that $s\mapsto\|\psi_s\|$ is decreasing. Since
+$c_g\le\|\psi_s\|\le\|\psi_0\|=1$, for $0\le s'\le s$,
+\[
+ 1\le\frac{\|\psi_{s'}\|}{\|\psi_s\|}\le\frac1{c_g}.
+\]
+If both indices tend to infinity, numerator and denominator tend to $c_g>0$, so their ratio
+tends to $1$.
+\end{proof}
+
+\section{The uniform local interaction moment}\label{sec:M2}
+
+\begin{theorem}[(M$_2$)]\label{thm:M2-main}
+There is $M=M(\lambda,\mathscr P,K_1,K_2,C_8)<\infty$ such that for every $g\in\G$ and every
+real $h\in C_c^\infty(\R)$ with $\|h\|_\infty\le1$ and $\supp h$ contained in an interval of
+length $2$,
+\[
+  \|V(h)\Om_g\|\ \le\ M .
+\]
+Explicitly $M^2=9\,C_8\,\mathfrak K(p')\,\lambda^2(\sum_n|a_n|)^2$ with
+$\mathfrak K(p')=K_1K_2^{8p'}(4p')!$ (per-point degree $\le\deg\mathscr P=2p'$, so the local degrees sum to $n+n'\le4p'$).
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1 (class membership and norm).} On path space set
+\[
+  Q_V:=\lambda^2\!\!\sum_{n,n'=0}^{2p'}\!\!a_na_{n'}\iint h(x)h(y)\,
+  {:}\Phi(0,x)^n{:}\,{:}\Phi(0,y)^{n'}{:}\,dx\,dy ,
+\]
+a sum of equal-time monomials of the class (1.1.5) with $r=2$ and kernels
+$a_na_{n'}h\otimes h\in L^2$ --- \emph{no Wick recombination occurs}, the product of two
+individually ordered powers being literally of the form (1.1.5); per-point degrees are
+$\le2p'$, admissible by \cite[fn.~9]{GJS}. Let
+$J:=\{j\in\Z:\|h\mathbf1_{[j,j+1)}\|_2>0\}$ and decompose
+$h=\sum_{j\in J}h\mathbf1_{[j,j+1)}$. An interval of length $2$ meets at most three half-open
+unit cells in positive measure, so $|J|\le3$, while
+$\|h\mathbf1_{[j,j+1)}\|_2\le\|h\|_\infty\le1$. A localized piece with both points in one square carries
+$K_2^{2(n+n')}(n+n')!\le K_2^{8p'}(4p')!$; with points in distinct squares,
+$K_2^{2n}n!\,K_2^{2n'}n'!\le K_2^{8p'}(4p')!$ --- the $K_2$ exponent $2\sum_\Delta N(\Delta)
+=2(n+n')\le8p'$ is additive and case-independent, and $(n+n')!\le(4p')!$ since each degree is
+at most $\deg\mathscr P=2p'$. Summing the $\le9$ pairs and the degrees,
+$\|Q_V\|\le9\mathfrak K(p')\lambda^2(\sum|a_n|)^2$.
+
+\emph{Step 2 (uniform slab bound).} Apply \eqref{eq:fkn2} at $t=0$ first to
+$F_1=F_2=|V(h)|\wedge R$. Both functions are nonnegative. Monotone convergence as
+$R\uparrow\infty$, followed by Source Fact~\ref{sf:CE1}, gives
+(Remark~\ref{rem:conv} identifies the sharp-time functional with the operator)
+\[
+  \|V(h)\hat\psi_T\|^2=\int Q_V\,dq_{h_{T,g}}\ \le\ C_8\|Q_V\|\ \le\ M^2
+  \qquad\text{for all }T>0,\ g\in\G ,
+\]
+since $h_{T,g}\in\mathcal C$.
+
+\emph{Step 3 (closedness limit).} $V(h)$ is multiplication by a real measurable function,
+hence self-adjoint on its maximal domain and closed. Its graph is a norm-closed linear subspace
+of $\HH\oplus\HH$, hence is weakly closed. Choose $T_k\to\infty$ so that
+$\|V(h)\hat\psi_{T_k}\|$ tends to its liminf. Step 2 gives a weakly convergent subsequence,
+say $V(h)\hat\psi_{T_{k_\ell}}\rightharpoonup y$, while
+Lemma~\ref{lem:vac-main} gives $\hat\psi_{T_{k_\ell}}\to\Om_g$ strongly. Weak closedness of the
+graph yields $\Om_g\in D(V(h))$ and $y=V(h)\Om_g$. Therefore weak lower semicontinuity gives
+\[
+ \|V(h)\Om_g\|\le\liminf_{\ell\to\infty}
+ \|V(h)\hat\psi_{T_{k_\ell}}\|
+ =\liminf_{T\to\infty}\|V(h)\hat\psi_T\|\le M.
+\]
+\end{proof}
+
+\section{The uniform gap}\label{sec:G}
+
+Let $\Q$ be the set of finite products $Q=\prod_{i=1}^r\varphi_0(f_i)$, $f_i\in C_c^\infty$
+real, viewed simultaneously as multiplication operators on $\HH$ and, at Euclidean time $s$, as
+class-(1.1.5) monomials $Q(s)$ with kernel $f_1\otimes\cdots\otimes f_r$ and all $m_i=1$. Write
+$\|Q\|_{\rm GJS}$ for the (1.1.9)-norm of $Q(s)$. Let $I$ be a bounded interval of length
+$L$ containing every $\supp f_i$, and define
+\[
+ J_I:=\{j\in\Z:|I\cap[j,j+1)|>0\},\qquad N_I:=\#J_I .
+\]
+If $j_{\min}$ and $j_{\max}$ are the extreme elements of $J_I$, then points of positive-measure
+intersection can be chosen arbitrarily close to the two extreme cells' interiors; consequently
+$j_{\max}-j_{\min}-1<L$. Since $N_I=j_{\max}-j_{\min}+1$ is an integer,
+\[
+  N_I\le\lfloor L\rfloor+2\le L+2.
+\]
+Decompose $f_i=\sum_{j\in J_I}f_i\mathbf1_{[j,j+1)}$. For every cell assignment, the product
+of the local factorials is at most $r!$, because
+$\prod_\Delta N(\Delta)!\le(\sum_\Delta N(\Delta))!=r!$, and the $K_2$ exponent is $2r$.
+Moreover Cauchy--Schwarz gives
+\[
+ \sum_{j\in J_I}\|f_i\mathbf1_{[j,j+1)}\|_2
+ \le N_I^{1/2}\Bigl(\sum_{j\in J_I}
+       \|f_i\mathbf1_{[j,j+1)}\|_2^2\Bigr)^{1/2}
+ =N_I^{1/2}\|f_i\|_2.
+\]
+Summing all cell assignments, and applying the same calculation to the $2r$ factors of $Q^2$,
+yields the exact bounds
+\begin{equation}\label{eq:normbound}
+  \|Q\|_{\rm GJS}\le K_1K_2^{2r}r!\,N_I^{r/2}\prod_{i=1}^r\|f_i\|_2,\qquad
+  \|Q^2\|_{\rm GJS}\le K_1K_2^{4r}(2r)!\,N_I^r\prod_i\|f_i\|_2^2
+  =:\mathfrak n(Q)^2 .
+\end{equation}
+This norm is independent of the common sharp time $s$: at every $s$ all factors occupy one
+temporal row, and changing $s$ changes only that common row label. The spatial cell assignments,
+local degrees, kernel norms, and local weights in the preceding calculation are unchanged; no
+invariance of a fixed unit lattice under arbitrary continuous translation is asserted.
+
+For $t>2$, the pieces of $Q(-t/2)$ and of $\tilde Q(t/2)$ are separated by a horizontal strip of
+width $\ge t-2$ (unit lattice rows), so Source Fact~\ref{sf:CE2} and bilinearity give the
+\emph{two-time cluster bound}
+\begin{equation}\label{eq:2time}
+  \Bigl|\int Q(-\tfrac t2)\tilde Q(\tfrac t2)dq_h-\int Q(-\tfrac t2)dq_h
+  \int\tilde Q(\tfrac t2)dq_h\Bigr|
+  \le C_7e^{2m_1}e^{-m_1t}\|Q\|_{\rm GJS}\|\tilde Q\|_{\rm GJS},\quad h\in\mathcal C .
+\end{equation}
+
+\begin{lemma}\label{lem:Gaux}
+Fix $g\in\G$ and $Q\in\Q$. Then:
+\begin{enumerate}
+\item[\rm(i)] $\sup_T\|Q\hat\psi_T\|^2\le C_8\,\mathfrak n(Q)^2$;
+      $\Om_g\in D(Q)$ and $\|Q\Om_g\|^2\le C_8\mathfrak n(Q)^2$;
+      for every $a>0$, the clipped truncations
+      $Q^{[M]}:=(-M)\vee(Q\wedge M)$ satisfy
+      $\|(Q-Q^{[M]})\psi_a\|\to0$;
+\item[\rm(ii)] for every fixed $s\in\R$,
+      $\int Q(s)\,dq_{h_{T,g}}\to\omega_g(Q)$ as $T\to\infty$ through $T>|s|$;
+\item[\rm(iii)] for every $t\ge0$,
+      $\displaystyle
+      \ip{Q\Om_g}{e^{-tH(g)}Q\Om_g}\le\liminf_{T\to\infty}\int Q(-\tfrac t2)Q(\tfrac t2)
+      \,dq_{h_{T,g}}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\emph{(i).} Apply \eqref{eq:fkn2} at $t=0$ to
+$F_1=F_2=|Q|\wedge M$. Monotone convergence and Source Fact~\ref{sf:CE1}, applied to the
+class-(1.1.5) observable $Q^2$, give
+\begin{equation}\label{eq:Gaux-bound}
+ \|Q\hat\psi_T\|^2
+ =\int Q(0)^2\,dq_{h_{T,g}}
+ \le C_8\|Q^2\|_{\rm GJS}
+ =C_8\mathfrak n(Q)^2.
+\end{equation}
+Choose a sequence attaining the liminf as $T\to\infty$ and repeat the weak-graph argument of
+Theorem~\ref{thm:M2-main}, Step 3; this proves $\Om_g\in D(Q)$ and, by weak lower
+semicontinuity, $\|Q\Om_g\|^2\le C_8\mathfrak n(Q)^2$. For fixed $a>0$,
+\eqref{eq:Gaux-bound} with
+$T=a$ gives $Q\psi_a\in\HH$, and dominated convergence on $Q$-space gives
+\[
+ \|(Q-Q^{[M]})\psi_a\|^2
+ =\int |Q-Q^{[M]}|^2|\psi_a|^2\,d\phi_0\longrightarrow0,
+ \quad |Q-Q^{[M]}|^2|\psi_a|^2\le Q^2|\psi_a|^2.
+\]
+
+\emph{(ii).} Apply the bounded signed identity \eqref{eq:fkn1} to $Q^{[M]}$ and pass
+$M\to\infty$ using part (i) on the Hilbert-space side. On path space, the positive and negative
+parts are integrable because
+$\int|Q(s)|\,dq\le(\int Q(s)^2\,dq)^{1/2}$ and Source Fact~\ref{sf:CE1} bounds the square.
+Thus, for $T>|s|$,
+\begin{equation}\label{eq:onepoint-transfer}
+ \int Q(s)\,dq_{h_{T,g}}
+ =\Bigl\langle\hat\psi_{T-s},
+      \frac{Q\psi_{T+s}}{\|\psi_T\|}\Bigr\rangle
+      \frac{\|\psi_{T-s}\|}{\|\psi_T\|}.
+\end{equation}
+The first vector tends strongly to $\Om_g$, and the final scalar tends to $1$ by
+Lemma~\ref{lem:vac-main}. For the middle vector, write
+\begin{equation}\label{eq:Gaux-middle}
+ \frac{Q\psi_{T+s}}{\|\psi_T\|}
+ =\frac{\|\psi_{T+s}\|}{\|\psi_T\|}\,Q\hat\psi_{T+s}.
+\end{equation}
+The scalar ratio in \eqref{eq:Gaux-middle} is at most $1$ when $s\ge0$. When $s<0$,
+$T+s<T$ and Lemma~\ref{lem:vac-main} gives instead
+\[
+ 1\le\frac{\|\psi_{T+s}\|}{\|\psi_T\|}\le c_g^{-1}.
+\]
+Hence \eqref{eq:Gaux-bound} makes the middle vectors bounded in both sign cases. The scalar ratio tends to
+$1$ for fixed $s$. Every weakly convergent subsequence of
+$Q\hat\psi_{T+s}$ has limit $Q\Om_g$: indeed,
+$\hat\psi_{T+s}\to\Om_g$ strongly and the graph of $Q$ is weakly closed. Thus
+$Q\hat\psi_{T+s}\rightharpoonup Q\Om_g$, and \eqref{eq:Gaux-middle} has the same weak limit. Taking the
+strong--weak pairing in \eqref{eq:onepoint-transfer} proves
+$\int Q(s)\,dq_{h_{T,g}}\to\ip{\Om_g}{Q\Om_g}$.
+
+\emph{(iii).} Apply \eqref{eq:fkn2} first to the bounded signed functions $Q^{[M]}$ at the
+two time slices. The path-space products converge in $L^1$ because
+\[
+ |Q^{[M]}(-t/2)Q^{[M]}(t/2)|
+ \le\tfrac12\bigl(Q(-t/2)^2+Q(t/2)^2\bigr),
+\]
+whose integral is finite by Source Fact~\ref{sf:CE1}. Part (i) gives convergence of the
+Hilbert-space vectors. Consequently, for $T>t/2$,
+\begin{equation}\label{eq:Gaux-two}
+ \int Q(-t/2)Q(t/2)\,dq_{h_{T,g}}
+ =\|e^{-tH(g)/2}u_T\|^2,\qquad
+ u_T:=\frac{Q\psi_{T-t/2}}{\|\psi_T\|}.
+\end{equation}
+Here
+\[
+ \|u_T\|
+ =\frac{\|\psi_{T-t/2}\|}{\|\psi_T\|}\,
+   \|Q\hat\psi_{T-t/2}\|
+ \le c_g^{-1}C_8^{1/2}\mathfrak n(Q)
+\]
+by Lemma~\ref{lem:vac-main} and \eqref{eq:Gaux-bound}. The ratio tends to $1$, and the same weak-graph
+argument as in (ii) gives $u_T\rightharpoonup Q\Om_g$. Since $e^{-tH(g)/2}$ is bounded,
+$e^{-tH(g)/2}u_T\rightharpoonup e^{-tH(g)/2}Q\Om_g$. Weak lower semicontinuity of the norm
+in \eqref{eq:Gaux-two} now yields
+\[
+ \ip{Q\Om_g}{e^{-tH(g)}Q\Om_g}
+ =\|e^{-tH(g)/2}Q\Om_g\|^2
+ \le\liminf_{T\to\infty}\int Q(-t/2)Q(t/2)\,dq_{h_{T,g}}.
+\]
+\end{proof}
+
+\begin{proposition}[connected decay]\label{prop:decay-main}
+For real $Q\in\Q$ and $\psi_Q:=Q\Om_g-\omega_g(Q)\Om_g$:
+\[
+  \ip{\psi_Q}{e^{-tH(g)}\psi_Q}\le\widehat C_Qe^{-m_1t}\quad(t\ge0),\qquad
+  \widehat C_Q=\max\bigl(C_7e^{2m_1}\|Q\|_{\rm GJS}^2,\ e^{3m_1}\|\psi_Q\|^2\bigr).
+\]
+\end{proposition}
+
+\begin{proof}
+$\ip{\psi_Q}{e^{-tH}\psi_Q}=\ip{Q\Om_g}{e^{-tH}Q\Om_g}-\omega_g(Q)^2$ (using
+$e^{-tH}\Om_g=\Om_g$ and $Q$ symmetric). For $t>2$, Lemma~\ref{lem:Gaux}(iii), then
+\eqref{eq:2time} with $h=h_{T,g}$ uniformly in $T$, then Lemma~\ref{lem:Gaux}(ii) for the
+disconnected part, give
+\[
+  \ip{Q\Om_g}{e^{-tH}Q\Om_g}\le C_7e^{2m_1}e^{-m_1t}\|Q\|_{\rm GJS}^2+\omega_g(Q)^2 ,
+\]
+via $\liminf(a_T+b_T)\le\sup_Ta_T+\lim_Tb_T$. For $t\le3$ use monotonicity of
+$t\mapsto\|e^{-tH/2}\psi_Q\|^2$ and $e^{-m_1t}\ge e^{-3m_1}$.
+\end{proof}
+
+\begin{theorem}[density]\label{thm:dense-main}
+$\Span_{\mathbb C}\{Q\Om_g:Q\in\Q\}$ is dense in $\HH$, for every $g\in\G$.
+\end{theorem}
+
+\begin{proof}
+Equivalently (unitarity of $\psi\mapsto\psi/\Om_g$ onto $L^2(d\mu_g)$, $d\mu_g=\Om_g^2d\phi_0$):
+polynomials in $\{\varphi_0(f)\}$ are dense in $L^2(d\mu_g)$.
+
+\emph{Exponential moments.} Let $f$ be real and supported in an interval $I$; use the integer
+$N_I$ defined above and set
+\[
+ X_f:=\varphi_0(f),\qquad K_f:=K_2^2N_I^{1/2}\|f\|_2.
+\]
+If $f=0$, then $X_f=0$ and all exponential moments are finite; hence assume $f\ne0$, so
+$K_f>0$.
+For every $n\ge1$, Lemma~\ref{lem:Gaux}(i), applied to $Q=X_f^n$, and
+\eqref{eq:normbound} give
+\[
+ \E_{\mu_g}[X_f^{2n}]
+ =\|X_f^n\Om_g\|^2
+ \le C_8K_1K_2^{4n}(2n)!\,N_I^n\|f\|_2^{2n}
+ =C_8K_1K_f^{2n}(2n)!.
+\]
+Since $e^{s|x|}\le e^{sx}+e^{-sx}=2\cosh(sx)$, Tonelli's theorem and
+$\E_{\mu_g}1=1$ yield, for $0\le s<K_f^{-1}$,
+\[
+ \E_{\mu_g}e^{s|X_f|}
+ \le2\left(1+C_8K_1\sum_{n=1}^{\infty}(sK_f)^{2n}\right)
+ \le2\max\{1,C_8K_1\}\sum_{n=0}^{\infty}(sK_f)^{2n}<\infty.
+\]
+Thus $K_1$ affects the prefactor but not the nonzero radius of exponential integrability.
+
+\emph{Orthogonality kills conditional expectations.} Suppose
+$\zeta\in L^2(d\mu_g)$ is orthogonal to every cylinder polynomial. Fix real
+$e_1,\dots,e_k\in C_c^\infty$, put $X_j=\varphi_0(e_j)$, and choose $r_j>0$ with
+$\E_{\mu_g}e^{r_j|X_j|}<\infty$ by the preceding paragraph. Choose $\sigma>0$ so that
+$2k\sigma<\min_j r_j$. For $|\operatorname{Re}z_j|<\sigma$ define
+\[
+ F(z_1,\dots,z_k)
+ :=\E_{\mu_g}\!\left[\overline\zeta\,
+       \exp\!\left(\sum_{j=1}^kz_jX_j\right)\right].
+\]
+Cauchy--Schwarz followed by H\"older with $k$ equal exponents gives the explicit dominator
+\begin{align*}
+ \E_{\mu_g}\!\left[|\zeta|e^{\sum_j\operatorname{Re}z_jX_j}\right]
+ &\le\|\zeta\|_2
+       \left(\E_{\mu_g}e^{2\sigma\sum_j|X_j|}\right)^{1/2}\\
+ &\le\|\zeta\|_2
+       \prod_{j=1}^k\left(\E_{\mu_g}e^{2k\sigma|X_j|}\right)^{1/(2k)}
+ <\infty.
+\end{align*}
+On every closed smaller polystrip, derivatives are dominated by the same expression with a
+slightly larger exponent, because for $a>0$ and $n\in\mathbb N$,
+$|x|^n\le n!a^{-n}e^{a|x|}$. Hence differentiation under the integral is justified and $F$ is
+jointly analytic. Every derivative at the origin equals the inner product of $\zeta$ with a
+cylinder monomial and therefore vanishes. Applying the one-variable identity theorem
+successively in $z_1,\ldots,z_k$ gives $F\equiv0$ on the connected polystrip, in particular
+on $(i\R)^k$.
+
+Define the finite complex Borel measure on $\R^k$
+\[
+ \nu(B):=\E_{\mu_g}\!\left[\overline\zeta\,
+   \mathbf1_{\{(X_1,\ldots,X_k)\in B\}}\right].
+\]
+Its Fourier transform is $F(it_1,\ldots,it_k)=0$. Uniqueness of Fourier transforms of finite
+measures gives $\nu=0$, which is equivalent to
+$\E_{\mu_g}[\zeta\mid\Sigma_k]=0$ for
+$\Sigma_k:=\sigma(X_1,\ldots,X_k)$.
+
+\emph{Martingale exhaustion.} Choose a sequence
+$(e_j)\subset C_c^\infty(\R;\R)$ dense in real $L^2(\R)$ and let
+$\Sigma_k=\sigma(\varphi_0(e_1),\ldots,\varphi_0(e_k))$. The bounded free covariance
+$C=(2\sqrt{-\partial_x^2+m_0^2})^{-1}$ gives
+\[
+ \E_{\phi_0}|\varphi_0(f)-\varphi_0(e)|^2
+ =\ip{f-e}{C(f-e)}
+ \le\|C\|\,\|f-e\|_2^2.
+\]
+For any $f\in L^2(\R;\R)$, an approximating sequence has a subsequence converging
+$\phi_0$-almost surely and therefore $\mu_g$-almost surely, because
+$d\mu_g=\Om_g^2d\phi_0\ll d\phi_0$. Thus every cylinder coordinate is measurable modulo
+$\mu_g$-null sets with respect to $\Sigma_\infty:=\bigvee_k\Sigma_k$, so
+$\Sigma_\infty$ is the full cylinder sigma-algebra. The $L^2$ martingale convergence theorem
+now gives
+\[
+ \zeta=\E_{\mu_g}[\zeta\mid\Sigma_\infty]
+ =\lim_{k\to\infty}\E_{\mu_g}[\zeta\mid\Sigma_k]=0.
+\]
+\end{proof}
+
+\begin{theorem}[(G)]\label{thm:G-main}
+For every $g\in\G$:\quad
+$\spec H(g)\subseteq\{0\}\cup[m_1,\infty)$, and $0$ is simple.
+\end{theorem}
+
+\begin{proof}
+Let $D=\{\psi_Q:Q\in\Q\text{ real}\}$. The complex span of
+$D\cup\{\Om_g\}$ equals the complex span of $\{Q\Om_g:Q\in\Q\}$ and is dense by
+Theorem~\ref{thm:dense-main}. Fix $0\le\beta<m_1$ and write
+$P_\beta:=\mathbf1_{[0,\beta]}(H(g))$. For $\psi_Q\in D$, the spectral theorem and
+Proposition~\ref{prop:decay-main} give, for every $t\ge0$,
+\[
+ e^{-\beta t}\|P_\beta\psi_Q\|^2
+ \le\ip{\psi_Q}{e^{-tH(g)}\psi_Q}
+ \le\widehat C_Qe^{-m_1t}.
+\]
+Multiplication by $e^{\beta t}$ and passage to $t\to\infty$ yield
+$P_\beta\psi_Q=0$, because $m_1-\beta>0$. On the other hand,
+$P_\beta\Om_g=\Om_g$ because $0\in[0,\beta]$. Thus $P_\beta$ maps a dense subspace into
+$\mathbb C\Om_g$. Continuity of the bounded projection extends this containment to all of
+$\HH$, and $P_\beta\Om_g=\Om_g$ shows
+\[
+ P_\beta=|\Om_g\rangle\langle\Om_g|\qquad(0\le\beta<m_1).
+\]
+If $\spec H(g)$ met $(0,m_1)$, an open interval
+$J\Subset(0,m_1)$ meeting the spectrum would have a nonzero spectral projection. Choosing
+$\beta<m_1$ above $\sup J$ would give
+\[
+ 0\ne\mathbf1_J(H(g))
+ \le P_\beta-|\Om_g\rangle\langle\Om_g|=0,
+\]
+a contradiction. Hence $\spec H(g)\subseteq\{0\}\cup[m_1,\infty)$; simplicity of the zero
+eigenvalue is Source Fact~\ref{fact:sa}.
+\end{proof}
+
+\begin{remark}\label{rem:indep}
+The constants $\widehat C_Q$ of Proposition~\ref{prop:decay-main} are in fact $g$-uniform, but
+this is never used: the spectral argument needs only the \emph{rate} to be $g$-independent.
+Accordingly (M$_2$) and (G) are logically independent consequences of the same source pair.
+No gap, and no isolation of $E(g)$, was assumed at any point of
+\S\S\ref{sec:sources}--\ref{sec:G}; isolation with the uniform bound $m_1$ is part of the
+conclusion of Theorem~\ref{thm:G-main}.
+\end{remark}
+
+\section{The Cauchy step (LPPL)}\label{sec:lppl}
+
+Throughout this section, (G) and (M) denote the statements supplied by
+Theorems~\ref{thm:G-main} and \ref{thm:M2-main}: $\spec H(g)\subseteq\{0\}\cup[\gamma,\infty)$
+for every $g\in\G$ with $\gamma:=m_1$, and $\sup_{g}\|V(h)\Om_g\|\le M$ for real
+$h\in C_c^\infty$ with $\|h\|_\infty\le1$ and support in an interval of length $2$.
+
+\subsection{Affine-path regularity from FKN}
+
+\begin{proposition}[path regularity]\label{prop:FKNpath-main}
+Let $g,g'\in\G$ be equal to one on a common nonempty interval, $g_s=(1-s)g+sg'$, $v=g'-g$, and
+\[
+  K_s=K(g_s),\quad E_s=E(g_s),\quad H_s=K_s-E_s,\quad
+  P_s=|\Om_s\rangle\langle\Om_s|,\quad Q_s=1-P_s .
+\]
+Under \textup{(G)}, $s\mapsto P_s$ is norm-continuous on $[0,1]$ and $C^1$ on $(0,1)$; locally
+on $(0,1)$ normalized ground states can be chosen $C^1$ in the parallel gauge, and then
+\begin{equation}\label{eq:HFmain}
+  \dot E_s=\ip{\Om_s}{V(v)\Om_s},\qquad
+  \dot\Om_s=-H_s^{-1}Q_s\,V(v)\,\Om_s .
+\end{equation}
+In particular $s\mapsto\omega_{g_s}(A)=\operatorname{Tr}(P_sA)$ is continuous on $[0,1]$ for
+every $A\in B(\HH)$.
+\end{proposition}
+
+\begin{proof}
+Fix $T>0$. On the free Euclidean path space $(\mathcal S'(\R^2),d\mu_0)$, $d\mu_0=d\Phi$, let
+$J_t$ denote the time-$t$ slice embedding, $(J_tf)(\Phi)=f(\Phi(t,\cdot))$ for bounded cylinder
+$f$, and set
+\[
+  \mathcal U_s=\lambda\int_0^T\!\!\int_\R g_s(x)\,{:}\mathscr P(\Phi(t,x)){:}\,dx\,dt,
+  \qquad w_s=e^{-\mathcal U_s},\qquad \mathcal U_v=\mathcal U_1-\mathcal U_0 .
+\]
+The Feynman--Kac--Nelson formula reads
+$\ip{f}{e^{-TK_s}h}=\int\overline{J_Tf}\,(J_0h)\,w_s\,d\mu_0$ for bounded time-zero $f,h$
+\cite[Cor.~V.14, Thm.~V.15]{SimonBook}; \cite[Thm.~II.16]{GRS75}.
+
+\emph{Time-slice product estimate.} Put $q_T=2/(1-e^{-m_0T})$ and $r_T=q_T/(q_T-1)=
+2/(1+e^{-m_0T})$, so $p_T:=2/r_T=1+e^{-m_0T}$ has conjugate $p_T'=1+e^{m_0T}$ and
+$(p_T'-1)/(p_T-1)=e^{2m_0T}$ --- exactly the Nelson hypercontractivity condition for the free
+Markov semigroup $\mathsf P_T=e^{-TH_0}$ on the time-zero Gaussian $\nu_0$:
+$\|\mathsf P_TF\|_{p_T'}\le\|F\|_{p_T}$ \cite[Thms.~I.17, III.17]{SimonBook}. The Markov property
+and H\"older then give
+\[
+  \|(J_Tf)(J_0h)\|_{r_T}^{r_T}
+  =\int|h|^{r_T}\,\mathsf P_T(|f|^{r_T})\,d\nu_0
+  \le\||h|^{r_T}\|_{p_T}\,\||f|^{r_T}\|_{p_T}
+  =\|h\|_2^{r_T}\|f\|_2^{r_T},
+\]
+using $r_Tp_T=2$; hence
+\begin{equation}\label{eq:timeslice-main}
+  \|(J_Tf)(J_0h)\|_{r_T}\le\|f\|_2\,\|h\|_2 .
+\end{equation}
+
+\emph{Weight regularity.} $\mathcal U_v\in L^p(\mu_0)$ for every $p<\infty$, and since
+$g,g'\ge0$ and $\mathscr P$ is semibounded, $e^{-a\mathcal U_0},e^{-a\mathcal U_1}\in L^1(\mu_0)$
+for every $a<\infty$ \cite[Thm.~V.7]{SimonBook} (this is the $h$-uniform stability of
+Remark~\ref{rem:audit}(c)). By $\mathcal U_s=(1-s)\mathcal U_0+s\mathcal U_1$ and H\"older,
+\begin{equation}\label{eq:wmoments}
+  \|w_s\|_a^a\le\Bigl(\int e^{-a\mathcal U_0}d\mu_0\Bigr)^{1-s}
+  \Bigl(\int e^{-a\mathcal U_1}d\mu_0\Bigr)^{s},
+\end{equation}
+so $\sup_{0\le s\le1}\|w_s\|_a<\infty$. If $s_n\to s$ then $\mathcal U_{s_n}\to\mathcal U_s$ in
+every $L^p$, so $w_{s_n}\to w_s$ in probability; \eqref{eq:wmoments} at a larger exponent makes
+$(|w_{s_n}|^a)$ uniformly integrable, and Vitali gives $\|w_{s_n}-w_s\|_a\to0$. Pointwise on
+path space,
+\[
+  \frac{w_{s+h}-w_s}{h}=-\mathcal U_v\int_0^1w_{s+\theta h}\,d\theta ,
+\]
+so for $0<s<1$, choosing $p,a<\infty$ with $q_T^{-1}=p^{-1}+a^{-1}$,
+\[
+  \Bigl\|\frac{w_{s+h}-w_s}{h}+\mathcal U_vw_s\Bigr\|_{q_T}
+  \le\|\mathcal U_v\|_p\sup_{0\le\theta\le1}\|w_{s+\theta h}-w_s\|_a\to0 :
+\]
+$s\mapsto w_s$ is continuous $[0,1]\to L^{q_T}$ and $C^1$ $(0,1)\to L^{q_T}$ with continuous
+derivative $-\mathcal U_vw_s$.
+
+\emph{Transfer to the semigroup.} Since $1/r_T+1/q_T=1$, FKN and
+\eqref{eq:timeslice-main} give
+$\|e^{-TK_s}-e^{-TK_r}\|\le\|w_s-w_r\|_{q_T}$ (first on bounded $f,h$, then by $L^2$ density),
+and the same estimate for difference quotients: $s\mapsto L_s:=e^{-TK_s}$ is norm-continuous on
+$[0,1]$, norm-$C^1$ on $(0,1)$.
+
+\emph{Spectral consequences.} The largest spectral value of $L_s$ is the simple eigenvalue
+$\lambda_s=e^{-TE_s}=\|L_s\|$, hence continuous; by (G),
+$\spec L_s\setminus\{\lambda_s\}\subseteq[0,e^{-T\gamma}\lambda_s]$, a relative separation
+locally bounded below. The Riesz integral over a circle about $\lambda_s$ yields norm continuity
+of $P_s$ on $[0,1]$ and $C^1$ on $(0,1)$. Near $s_0\in(0,1)$,
+$\widetilde\Om_s=P_s\Om_{s_0}/\|P_s\Om_{s_0}\|$ is $C^1$; a $C^1$ phase puts it in the parallel
+gauge $\ip{\Om_s}{\dot\Om_s}=0$; and $E_s=-T^{-1}\log\ip{\Om_s}{L_s\Om_s}$ is $C^1$.
+
+\emph{Identification of the derivatives.} On the common core $\mathscr C=C^\infty(H_0)$,
+$K_s\xi=K_{s_0}\xi+(s-s_0)V(v)\xi$ \cite[Thm.~V.12(a)]{SimonBook}. Differentiating
+$\ip{K_s\xi}{\Om_s}=E_s\ip{\xi}{\Om_s}$ at fixed $\xi\in\mathscr C$, using
+$\Om_s\in D(V(v))$ (Proposition~\ref{prop:standard-main}) and self-adjointness of $V(v)$,
+\[
+  \ip{H_s\xi}{\dot\Om_s}=\ip{\xi}{(\dot E_s-V(v))\Om_s}\qquad(\xi\in\mathscr C).
+\]
+$\mathscr C$ is a core for $H_s$, so $\dot\Om_s\in D(H_s)$ and
+$H_s\dot\Om_s=(\dot E_s-V(v))\Om_s$; pairing with $\Om_s$ gives the first identity of
+\eqref{eq:HFmain}, and the parallel gauge with $\|H_s^{-1}Q_s\|\le\gamma^{-1}$ gives the second.
+Finally $|\operatorname{Tr}((P_s-P_r)A)|\le\|P_s-P_r\|_1\|A\|\le2\|P_s-P_r\|\|A\|$ (rank
+$\le2$), which yields the endpoint continuity assertion.
+\end{proof}
+
+\subsection{The exact spectral filter}
+
+\begin{lemma}[filter]\label{prop:filter-main}
+For every $\gamma>0$ there is $W_\gamma\in L^1(\R)$ with
+$\widehat W_\gamma(E):=\int W_\gamma(t)e^{itE}dt$ satisfying
+\[
+  \widehat W_\gamma(0)=0,\qquad \widehat W_\gamma(E)=\frac1E\ \ (|E|\ge\gamma),\qquad
+  \int(1+|t|)^q|W_\gamma(t)|\,dt<\infty\ \ (\forall q\ge0).
+\]
+Consequently, if $H\ge0$, $\spec H\subseteq\{0\}\cup[\gamma,\infty)$, $Q=1-P_{\ker H}$, then
+$H^{-1}Q=\int W_\gamma(t)e^{itH}Q\,dt$ as a norm-convergent Bochner integral. Write
+$T_\gamma(r):=\int_{|t|>r}|W_\gamma|\,dt\le C_{q,\gamma}(1+r)^{-q}$.
+\end{lemma}
+
+\begin{proof}
+Pick an even $\chi\in C^\infty(\R;[0,1])$, $\chi=0$ on $[-\gamma/2,\gamma/2]$, $\chi=1$ off
+$(-\gamma,\gamma)$, and set $\widehat W_\gamma(E)=\chi(E)/E$ ($=0$ at $E=0$): a smooth odd
+function whose $k$-th derivative is integrable for every $k\ge1$ (smooth on the compact
+transition region, $O(E^{-k-1})$ outside). Define
+$W_\gamma(t)=\frac1{2\pi}\int e^{-itE}\widehat W_\gamma(E)dE$ as an oscillatory integral; by
+oddness, $W_\gamma(t)=-\frac i\pi\int_0^\infty\sin(tE)\chi(E)E^{-1}dE$, which is uniformly
+bounded for $0<|t|\le1$ (absolute bound on $[0,\gamma]$; substitution $u=|t|E$ and Dirichlet's
+test on $[\gamma,\infty)$). For $|t|\ge1$, $k$ integrations by parts give
+$|W_\gamma(t)|\le\|\widehat W_\gamma^{(k)}\|_{L^1}/(2\pi|t|^k)$, all boundary terms vanishing;
+$k>q+1$ gives the moment bound and $W_\gamma\in L^1$. Fourier inversion in $\mathcal S'$ plus
+continuity of the transform of an $L^1$ function give
+$\mathcal FW_\gamma=\widehat W_\gamma$ pointwise, and the spectral theorem yields
+$\int W_\gamma(t)e^{itH}Q\,dt=\widehat W_\gamma(H)Q=H^{-1}Q$, norm-convergent since
+$W_\gamma\in L^1$, $\|e^{itH}Q\|\le1$. The tail bound is Markov's inequality.
+\end{proof}
+
+\subsection{Clustering with one unbounded local observable}
+
+\begin{lemma}[spectral separation]\label{lem:spectral-main}
+Let
+\[
+ F(t)=\int_{[\gamma,\infty)}e^{itE}d\rho(E),\qquad
+ G(t)=\int_{(-\infty,-\gamma]}e^{itE}d\sigma(E),
+\]
+with
+$|\rho|(\R),|\sigma|(\R)\le M_0$. If $F=G$ on $(-R,R)$ and $\gamma R\ge1$, then
+$|F(0)|\le2M_0e^{-\gamma R/2}$.
+\end{lemma}
+
+\begin{proof}
+For $a,\varepsilon>0$ let $f_{a,\varepsilon}(t)=\frac1{2\pi i}e^{-t^2/2a}(t-i\varepsilon)^{-1}$;
+residues and Gaussian convolution give
+$\check f_{a,\varepsilon}(E)=\int_0^\infty\sqrt{a/2\pi}\,e^{-a(E-E')^2/2}e^{-\varepsilon E'}dE'
+\in[0,1]$, with $\check f_{a,\varepsilon}\to\Phi(\sqrt aE)$ as $\varepsilon\downarrow0$
+($\Phi$ = normal distribution function), and
+$\int_{|t|\ge R}|f_{a,\varepsilon}|\le\frac a{\pi R^2}e^{-R^2/2a}$. Fubini, $F=G$ on $(-R,R)$,
+and the variation bounds give
+$|\int\Phi(\sqrt aE)d\rho-\int\Phi(\sqrt aE)d\sigma|\le\frac{2M_0a}{\pi R^2}e^{-R^2/2a}$
+after $\varepsilon\downarrow0$. With $1-\Phi(x),\Phi(-x)\le\frac12e^{-x^2/2}$ and the support
+conditions, $|F(0)|\le M_0e^{-a\gamma^2/2}+\frac{2M_0a}{\pi R^2}e^{-R^2/2a}$; $a=R/\gamma$ and
+$\gamma R\ge1$ give the claim.
+\end{proof}
+
+\begin{lemma}[one unbounded argument]\label{prop:unbdd-main}
+Let $H\ge0$ have simple normalized ground state $\Om$,
+$\spec H\subseteq\{0\}\cup[\gamma,\infty)$, and dynamics $\beta_t=\mathrm{Ad}\,e^{itH}$ with
+exact finite propagation for the net $\A(\cdot)$. Let $B\subset\R$ be compact, $X=X^*$
+affiliated with $\A(U)$ for every bounded open $U\supseteq B$, $\Om\in D(X)$, and
+$A\in\A(O)$. If $R:=\dist(B,O)>0$ and $\gamma R\ge1$, then
+\[
+  \bigl|\ip{X\Om}{A\Om}-\ip{X\Om}{\Om}\ip{\Om}{A\Om}\bigr|
+  \le2\,\|X\Om\|\,\|A\|\,e^{-\gamma R/2} .
+\]
+\end{lemma}
+
+\begin{proof}
+Set $P_0=|\Om\rangle\langle\Om|$,
+$F(t)=\ip{X\Om}{(e^{itH}-P_0)A\Om}$, $G(t)=\ip{A^*\Om}{(e^{-itH}-P_0)X\Om}$: complex spectral
+measures supported in $[\gamma,\infty)$, $(-\infty,-\gamma]$, variations $\le M_0=\|X\Om\|\|A\|$.
+For $|t|<R$ choose a bounded open $U\supseteq B$ disjoint from $O_{|t|}$; finite propagation
+puts $\beta_t(A)\in\A(O_{|t|})\subseteq\A(U)'$, and affiliation makes every element of $\A(U)'$
+preserve $D(X)$ and commute with $X$ there. With $e^{-itH}\Om=\Om$,
+\[
+  \ip{X\Om}{e^{itH}A\Om}=\ip{\Om}{X\beta_t(A)\Om}=\ip{\Om}{\beta_t(A)X\Om}
+  =\ip{A^*\Om}{e^{-itH}X\Om},
+\]
+and the $P_0$ terms agree since $\ip{X\Om}{\Om}\in\R$. So $F=G$ on $(-R,R)$;
+Lemma~\ref{lem:spectral-main} bounds $F(0)$, which is the displayed left side.
+\end{proof}
+
+\subsection{The state derivative}
+
+\begin{lemma}[state derivative]\label{lem:derivative-main}
+Assume \textup{(G)}. In the setting of Proposition~\ref{prop:FKNpath-main}, for $0<s<1$ and
+self-adjoint $A\in B(\HH)$, with $V:=V(g'-g)$:
+\begin{equation}\label{eq:statederiv-main}
+  \frac d{ds}\,\omega_{g_s}(A)
+  =-2\,\mathrm{Re}\int_\R W_\gamma(t)\Bigl[
+  \ip{V\Om_s}{\beta^{g_s}_t(A)\Om_s}-\ip{V\Om_s}{\Om_s}\,\omega_{g_s}(A)\Bigr]dt ,
+\end{equation}
+absolutely convergent.
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:HFmain} and the parallel gauge,
+$\frac d{ds}\omega_{g_s}(A)=2\mathrm{Re}\ip{\dot\Om_s}{A\Om_s}
+=-2\mathrm{Re}\ip{V\Om_s}{H_s^{-1}Q_sA\Om_s}$ (all pairings defined by
+Proposition~\ref{prop:standard-main}). Insert the filter
+(Lemma~\ref{prop:filter-main}): $H_s^{-1}Q_sA\Om_s=\int W_\gamma(t)e^{itH_s}Q_sA\Om_s\,dt$;
+since $e^{itH_s}A\Om_s=\beta^{g_s}_t(A)\Om_s$ and $P_sA\Om_s=\omega_{g_s}(A)\Om_s$, the
+integrand is the bracket of \eqref{eq:statederiv-main}. Absolute convergence:
+$|\ip{V\Om_s}{e^{itH_s}Q_sA\Om_s}|\le\|V\Om_s\|\|A\|$ and $W_\gamma\in L^1$.
+\end{proof}
+
+\subsection{The cell estimate and the Cauchy theorem}
+
+Fix $\rho\in C_c^\infty((-1,1))$, $0\le\rho\le1$, $\rho>0$ on $[-\frac12,\frac12]$; put
+$D(x)=\sum_k\rho(x-k)>0$ (smooth, $1$-periodic) and $\eta_j=\rho(\cdot-j)/D$: a smooth
+partition of unity with $0\le\eta_j\le1$, $\supp\eta_j\subset(j-1,j+1)$, $\sum_j\eta_j=1$.
+For $v=g'-g$ set $h_j=\eta_jv$, $V_j=V(h_j)$; finitely many are nonzero,
+$V(v)\xi=\sum_jV_j\xi$ on common domains, and --- since $|v|\le1$, $\|h_j\|_\infty\le1$,
+$\supp h_j\subset(j-1,j+1)$ --- hypothesis \textup{(M)} gives
+\begin{equation}\label{eq:cellmoment-main}
+  \|V_j\Om_s\|\le M\qquad(0\le s\le1).
+\end{equation}
+
+\begin{proposition}[one path]\label{prop:path-main}
+Assume \textup{(G)} and \textup{(M)}. Let $O$ be a bounded interval and $g,g'\in\G$ with
+$g=g'=1$ on $O_d$, $d\ge d_0:=4+2/\gamma$. Then
+\begin{equation}\label{eq:pathbound-main}
+  \bigl\|(\omega_g-\omega_{g'})|_{\A(O)}\bigr\|
+  \ \le\ 32M\sum_{n\ge\lfloor d\rfloor}
+  \Bigl(\|W_\gamma\|_1e^{-\gamma n/4}+T_\gamma(n/2)\Bigr).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+It suffices to bound $|\omega_g(A)-\omega_{g'}(A)|$ for self-adjoint $A\in\A(O)$, $\|A\|\le1$
+($\omega_g-\omega_{g'}$ is hermitian). Since $0\le g,g'\le1$,
+$g_s(x)=1\Leftrightarrow g(x)=g'(x)=1$; hence $g_s\in\G$ and $g_s=1$ on $O_d$ for all $s$, so
+\textup{(G)}, \textup{(M)} and Proposition~\ref{prop:FKNpath-main} apply along the whole path.
+Every nonzero $h_j$ is supported at distance $r_j:=\dist(B_j,O)\ge d$ from $O$,
+$B_j:=\supp h_j$.
+
+Fix $s\in(0,1)$, $j$, and set
+$C_{j,s}(t):=\ip{V_j\Om_s}{\beta^{g_s}_t(A)\Om_s}-\ip{V_j\Om_s}{\Om_s}\omega_{g_s}(A)$.
+For $|t|\le r_j/2$: Proposition~\ref{prop:standard-main}(ii) gives
+$\beta^{g_s}_t(A)\in\A(O_{|t|})$ with $\dist(B_j,O_{|t|})\ge r_j/2$, and
+$\gamma r_j/2\ge1$ (as $r_j\ge d\ge2/\gamma$); Lemma~\ref{prop:unbdd-main} with $X=V_j$
+(affiliation and $\Om_s\in D(V_j)$ by \S\ref{sec:setting} and
+Proposition~\ref{prop:standard-main}(i)) and \eqref{eq:cellmoment-main} give
+\begin{equation}\label{eq:near-main}
+  |C_{j,s}(t)|\le2Me^{-\gamma r_j/4}.
+\end{equation}
+For all $t$, Cauchy--Schwarz gives $|C_{j,s}(t)|\le2M$. Substituting $V=\sum_jV_j$ into
+\eqref{eq:statederiv-main} and splitting each $t$-integral at $|t|=r_j/2$,
+\[
+  \Bigl|\frac d{ds}\omega_{g_s}(A)\Bigr|
+  \le4M\sum_j\Bigl(\|W_\gamma\|_1e^{-\gamma r_j/4}+T_\gamma(r_j/2)\Bigr).
+\]
+\emph{Shell count.} Write $O=(a,b)$. Since $d\ge4$ and $B_j\subset[j-1,j+1]$, a nonzero $B_j$
+lies on one side of $O_d$; if on the right with $r_j\in[n,n+1)$, compactness gives $x_j\in B_j$
+with $x_j-b=r_j$, and $|j-x_j|\le1$ forces $j\in[b+n-1,b+n+2]$ --- at most four integers; same
+on the left: at most eight $j$ per shell. Both $r\mapsto e^{-\gamma r/4}$ and
+$r\mapsto T_\gamma(r/2)$ are decreasing and $r_j\ge d$, so the sum over $j$ is at most
+$8\sum_{n\ge\lfloor d\rfloor}(\cdots)$, giving the bound $32M\sum_{n\ge\lfloor d\rfloor}(\cdots)$
+for the derivative. Integrate over $[\varepsilon,1-\varepsilon]$ and use the endpoint norm
+continuity of $P_s$ (Proposition~\ref{prop:FKNpath-main}), then $\varepsilon\downarrow0$ and the
+supremum over the unit ball.
+\end{proof}
+
+Define
+\begin{equation}\label{eq:Psi-main}
+ \Psi_\gamma(d):=
+ \begin{cases}
+  \displaystyle 32M\sum_{n\ge\lfloor d\rfloor}
+  \Bigl(\|W_\gamma\|_1e^{-\gamma n/4}+T_\gamma(n/2)\Bigr),&d\ge d_0,\\[6pt]
+  \max\{2,\Psi_\gamma(d_0)\},&0\le d<d_0.
+ \end{cases}
+\end{equation}
+
+\begin{lemma}[decay of the rate function]\label{lem:Psitail-main}
+For every $N\ge1$ there is $C_{N,\gamma,M}$ with $\Psi_\gamma(d)\le C_{N,\gamma,M}(1+d)^{-N}$.
+\end{lemma}
+
+\begin{proof}
+The exponential series has an exponentially decaying tail; for the other,
+$T_\gamma(r)\le r^{-q}\int|t|^q|W_\gamma|$ (Lemma~\ref{prop:filter-main}), take $q=N+2$ and sum
+$n^{-q}$.
+\end{proof}
+
+\begin{theorem}[Cauchy/LPPL]\label{thm:lppl-main}
+Assume \textup{(G)} and \textup{(M)} --- supplied here by Theorems~\ref{thm:G-main} and
+\ref{thm:M2-main} with $\gamma=m_1$. Then there is a state $\omega_\infty$ on $\A$ with
+$\lim_{g\in\G}\|(\omega_g-\omega_\infty)|_{\A(O)}\|=0$ for every bounded interval $O$;
+for $g\equiv1$ on $O_d$,
+\[
+  \|(\omega_g-\omega_\infty)|_{\A(O)}\|\ \le\ \Psi_{m_1}(d);
+\]
+and $\omega_\infty|_{\A(O)}$ is normal for every $O$.
+\end{theorem}
+
+\begin{proof}
+Fix $O$, $\varepsilon>0$; by Lemma~\ref{lem:Psitail-main} pick $d\ge d_0$ with
+$\Psi_{m_1}(d)<\varepsilon$, and $g_0\in\G$ with $g_0\equiv1$ on $O_d$. If
+$g,g'\succcurlyeq g_0$ then both equal $1$ on $O_d$ (in particular on a common interval), so
+Proposition~\ref{prop:path-main} applies directly to the pair and gives
+$\|(\omega_g-\omega_{g'})|_{\A(O)}\|\le\Psi_{m_1}(d)<\varepsilon$. Hence
+$(\omega_g|_{\A(O)})_{g\in\G}$ is Cauchy in $\A(O)^*$; the limits are compatible under isotony
+and extend by norm continuity to a state $\omega_\infty$ on $\A$. The rate follows by fixing
+$g\equiv1$ on $O_d$ and letting $g'$ run through the cofinal tail of cutoffs equal to $1$ on
+$O_d$; for $d<d_0$ the bound is trivial. Normality: normal functionals form a norm-closed
+subspace of $\A(O)^*$ --- if $0\le A_i\uparrow A$ in $\A(O)$ and
+$\|(\omega_g-\omega_\infty)|_{\A(O)}\|<\delta$, then
+$0\le\omega_\infty(A)-\omega_\infty(A_i)\le2\delta\|A\|+\omega_g(A-A_i)$; let $i\uparrow$ (normality
+of $\omega_g$), then $\delta\downarrow0$.
+\end{proof}
+
+\section{The limit is a ground state; invariances}\label{sec:ground}
+
+We import from companion M0 (proofs there are complete and short):
+
+\begin{proposition}[exact spectral passage; M0]\label{prop:M0-main}
+\emph{(i)} If $(g_n)\subseteq\G$ satisfies $d(g_n,O)\to\infty$ for every bounded $O$, and
+$\omega_{g_n}\to\omega$ in norm on every $\A(O)$, then $\omega$ is a ground state of
+$(\A,\alpha)$ in the spectral sense: $\omega\circ\alpha_t=\omega$, the function
+$t\mapsto\omega(A\alpha_t(B))$ is continuous and bounded for all $A,B\in\A$, and
+$\int f(t)\,\omega(A\alpha_t(B))\,dt=0$ for every $f\in L^1(\R)$ whose transform
+$\check f(E)=\int f(t)e^{itE}dt$ vanishes on $[0,\infty)$.
+\emph{(ii)} $\omega_{\tau_ag}=\omega_g\circ\tau_{-a}$ for all $a\in\R$, $g\in\G$.
+\emph{(iii)} For even $\mathscr P$, $\omega_g\circ\theta=\omega_g$ for every $g$, where
+$\theta=\mathrm{Ad}\,\Gamma(-1)$.
+\end{proposition}
+
+\begin{proof}
+\emph{(ii)} $U_aK(g)U_a^*=K(\tau_ag)$ (the free part commutes with translations; the
+interaction transforms covariantly), so by simplicity (Source Fact~\ref{fact:sa})
+$\Om_{\tau_ag}=U_a\Om_g$ up to a phase, which cancels in the state.
+
+\emph{(iii)} $\Theta:=\Gamma(-1)$ is unitary, self-adjoint, commutes with $H_0$, and for even
+$\mathscr P$ satisfies $\Theta V(g)\Theta=V(g)$; hence $\Theta\Om_g=c\Om_g$ with $c\in\{\pm1\}$
+by simplicity and $\Theta^2=1$. In $Q$-space $(\Theta\psi)(q)=\psi(-q)$, so $\Theta\Om_g>0$
+a.e.\ together with $\Om_g>0$ forces $c=+1$.
+
+\emph{(i)} \emph{Exact identity.} Fix a bounded interval $O$, $A,B\in\A(O)$,
+$M_0:=\|A\|\|B\|$, and $g\in\G$; let
+$\rho_g(\cdot):=\ip{A^*\Om_g}{P_{H(g)}(\cdot)B\Om_g}$, a complex measure with
+$\supp\rho_g\subseteq\spec H(g)\subseteq[0,\infty)$ and $|\rho_g|(\R)\le M_0$, and
+$G_g(t):=\int e^{itE}d\rho_g(E)$. For $|t|<d(g,O)$, the cutoff equals one on $O_{|t|}$, so by
+\eqref{eq:P} and $e^{-itH(g)}\Om_g=\Om_g$,
+\[
+  \omega_g\bigl(A\alpha_t(B)\bigr)
+  =\ip{\Om_g}{Ae^{itH(g)}Be^{-itH(g)}\Om_g}
+  =\ip{A^*\Om_g}{e^{itH(g)}B\Om_g}=G_g(t) .
+\]
+Moreover $\int_\R f\,G_g\,dt=\int_{[0,\infty)}\check f\,d\rho_g=0$ for the stated class of $f$
+(Fubini; $\check f=0$ on the support).
+
+\emph{Invariance.} For $A\in\A(O)$ and fixed $t$, take $n$ so large that
+$d(g_n,O)>|t|$. Then \eqref{eq:P} and $e^{-itH(g_n)}\Om_{g_n}=\Om_{g_n}$ give directly
+\[
+ \omega_{g_n}(\alpha_t(A))
+ =\ip{\Om_{g_n}}{e^{itH(g_n)}Ae^{-itH(g_n)}\Om_{g_n}}
+ =\omega_{g_n}(A).
+\]
+Both $\alpha_t(A)$ and $A$ belong to $\A(O_{|t|})$, so norm convergence on
+$\A(O_{|t|})$ passes to the limit:
+$\omega(\alpha_t(A))=\omega(A)$, and by density on $\A$.
+
+\emph{Continuity and vanishing.} Fix $A,B\in\A(O)$ and $T>0$. For $n$ with $d(g_n,O)>T$ and
+$|t|\le T$: $A\alpha_t(B)\in\A(O_T)$ with norm $\le M_0$, so
+\[
+  \sup_{|t|\le T}\bigl|\omega(A\alpha_t(B))-\omega_{g_n}(A\alpha_t(B))\bigr|
+  \le M_0\,\bigl\|(\omega-\omega_{g_n})|_{\A(O_T)}\bigr\|\longrightarrow0 :
+\]
+$t\mapsto\omega(A\alpha_t(B))$ is a locally uniform limit of the continuous functions $G_{g_n}$,
+hence continuous, bounded by $M_0$. For $f$ as stated and
+$\varepsilon(T):=\int_{|t|>T}|f|$:
+\[
+  \int_\R f\,\omega(A\alpha_\cdot(B))
+  =\underbrace{\int_{|t|\le T}f\,[\omega-\omega_{g_n}](A\alpha_t(B))}_{\le\|f\|_1M_0
+  \|(\omega-\omega_{g_n})|_{\A(O_T)}\|}
+  +\underbrace{\int_{|t|\le T}f\,G_{g_n}}_{=\,-\int_{|t|>T}f\,G_{g_n}}
+  +\int_{|t|>T}f\,\omega(A\alpha_t(B)) ,
+\]
+so its modulus is $\le\|f\|_1M_0\|(\omega-\omega_{g_n})|_{\A(O_T)}\|+2M_0\varepsilon(T)$;
+let $n\to\infty$, then $T\to\infty$. Joint norm continuity in $(A,B)$ extends the conclusion
+from local $A,B$ to $\A$.
+\end{proof}
+
+\begin{theorem}[Main Theorem]\label{thm:MAIN}
+Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. Then there is a state $\omega_\infty$ on $\A$
+such that:
+\begin{enumerate}
+\item[\rm(1)] \emph{(full-net convergence with rate)} for every bounded open interval $O$,
+      $\lim_{g\in\G}\|(\omega_g-\omega_\infty)|_{\A(O)}\|=0$, and
+      $\|(\omega_g-\omega_\infty)|_{\A(O)}\|\le\Psi_{m_1}(d)$ whenever $g\equiv1$ on $O_d$,
+      with $\Psi_{m_1}$ decaying faster than every inverse power;
+\item[\rm(2)] \emph{(local normality)} $\omega_\infty|_{\A(O)}$ is normal for every $O$;
+\item[\rm(3)] \emph{(ground state)} $\omega_\infty$ is a ground state of $(\A,\alpha)$ in the
+      spectral sense;
+\item[\rm(4)] \emph{(invariances)} $\omega_\infty\circ\tau_a=\omega_\infty$ for all $a\in\R$;
+      and for even $\mathscr P$, $\omega_\infty\circ\theta=\omega_\infty$;
+\item[\rm(5)] \emph{(spectra and local moment)}
+      \[
+       \spec H(g)\subseteq\{0\}\cup[m_1,\infty)\quad(g\in\G),
+       \qquad \dim\ker H(g)=1,
+      \]
+      and $\sup_g\|V(h)\Om_g\|\le M$ for unit-bounded $h$ supported in length-$2$ intervals.
+\end{enumerate}
+The only nonstandard weak-coupling estimates imported are the printed GJS
+Theorems 1.1.7--1.1.8 (Source Facts \ref{sf:CE2}--\ref{sf:CE1}, with the cutoff uniformity of
+Remark~\ref{rem:audit}). In addition, the proof uses the separately identified standard
+cutoff-construction inputs: self-adjointness and the simple positive cutoff ground state
+(Source Fact~\ref{fact:sa}); FKN transfer, finite-volume stability, and free
+hypercontractivity (Lemma~\ref{lem:FKN-main} and Proposition~\ref{prop:FKNpath-main});
+model-specific domain smoothing and the common core
+(Propositions~\ref{prop:standard-main} and \ref{prop:FKNpath-main}); finite propagation and
+cutoff patching; and translation/parity covariance (Source Fact~\ref{fact:PT} and
+Proposition~\ref{prop:M0-main}). Proposition~\ref{prop:scaling} verifies that the dimensionless
+weak-coupling hypothesis implies the source smallness condition.
+\end{theorem}
+
+\begin{proof}
+(5) is Theorems~\ref{thm:G-main} and \ref{thm:M2-main}. These supply (G), (M) with
+$\gamma=m_1$, so Theorem~\ref{thm:lppl-main} gives (1)--(2). For (3): choose
+$\widetilde g_n\in\G$ with $\widetilde g_n\equiv1$ on $(-n,n)$; then $d(\widetilde g_n,O)\to\infty$
+for every $O$ and, by (1), $\omega_{\widetilde g_n}\to\omega_\infty$ in norm on every $\A(O)$;
+Proposition~\ref{prop:M0-main}(i) applies. For (4): translation is an order isomorphism of
+$\G$ with cofinal range, so by \eqref{eq:T} and (1),
+$\omega_\infty(A)=\lim_g\omega_{\tau_ag}(A)=\lim_g\omega_g(\tau_{-a}A)
+=\omega_\infty(\tau_{-a}A)$ for local $A$, and by density on $\A$. The $\Z_2$ statement is the
+local norm limit of Proposition~\ref{prop:M0-main}(iii).
+\end{proof}
+
+\begin{corollary}[the Glimm--Jaffe vacuum is canonical at weak coupling]\label{cor:canonical}
+Every $w^*$ limit point of the (averaged or unaveraged) finite-volume ground states constructed
+in \cite[\S2]{GJ3} coincides on each $\A(O)$ with $\omega_\infty$; in particular the
+construction of \cite{GJ3} is subsequence- and averaging-independent in the weak-coupling
+region.
+\end{corollary}
+
+\begin{proof}
+For the unaveraged net this is Theorem~\ref{thm:MAIN}(1). For the averaged states of
+\cite[(2.3)--(2.5)]{GJ3}: with $g_n=g(\cdot/n)$, $g\equiv1$ on $[-3,3]$, and $h\ge0$,
+$\supp h\subseteq[-1,1]$, $\int h=1$,
+\begin{align*}
+  \omega_n(A)
+  &=\frac1n\int\ip{\Om_{g_n}}{\sigma_\alpha(A)\Om_{g_n}}\,
+      h(\alpha/n)\,d\alpha\\
+  &=\int_{-1}^{1}h(u)\,\omega_{g_n}\bigl(\tau_{\epsilon nu}A\bigr)\,du\\
+  &=\int_{-1}^{1}h(u)\,\omega_{\tau_{-\epsilon nu}g_n}(A)\,du ,
+\end{align*}
+by \eqref{eq:T}, where $\epsilon\in\{\pm1\}$ fixes the direction convention of $\sigma_\alpha$
+(the estimate below is invariant under $\epsilon\to-\epsilon$). Since $g_n\equiv1$ on
+$[-3n,3n]$, the shifted cutoff $\tau_{-\epsilon nu}g_n$ equals $1$ on an interval containing
+$[-2n,2n]$ for every $|u|\le1$; hence for $O\subseteq[-R,R]$,
+$d(\tau_{-\epsilon nu}g_n,O)\ge2n-R$ \emph{uniformly in $u$}, and Theorem~\ref{thm:MAIN}(1)
+gives
+\[
+  \|(\omega_n-\omega_\infty)|_{\A(O)}\|
+  \le\int_{-1}^1h(u)\,\bigl\|(\omega_{\tau_{-\epsilon nu}g_n}-\omega_\infty)|_{\A(O)}\bigr\|\,du
+  \le\Psi_{m_1}(2n-R)\longrightarrow0 .
+\]
+No translation invariance of $\omega_\infty$ is needed for this bound.
+\end{proof}
+
+\begin{corollary}[conditional exclusion of a two-phase structure]\label{cor:nobreak}
+Assume that $\mathscr P$ is even and $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. The following
+four assertions cannot hold simultaneously:
+\begin{enumerate}
+\item[\rm(B1)] there are translation-invariant ground states $\omega_+$ and $\omega_-$ of
+      $(\A,\alpha)$ such that, for all bounded local $X,Y$,
+      \[
+       \omega_\pm(X\tau_a(Y))-\omega_\pm(X)\omega_\pm(\tau_a(Y))
+       \longrightarrow0\qquad(|a|\to\infty);
+      \]
+\item[\rm(B2)] $\omega_+\circ\theta=\omega_-$ and $\omega_-\circ\theta=\omega_+$;
+\item[\rm(B3)] there are a bounded local observable $B=B^*\in\A(O)$ and $m\ne0$ such that
+      $\omega_\pm(B)=\pm m$;
+\item[\rm(B4)] every $\theta$-invariant ground state of $(\A,\alpha)$ equals
+      $\frac12(\omega_++\omega_-)$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Assume (B1)--(B4). Choose $\widetilde g_n\in\G$ with
+$\widetilde g_n\equiv1$ on $(-n,n)$ and write $\omega_n=\omega_{\widetilde g_n}$. Fix
+$a\in\R$ such that
+\[
+ R_a:=\dist(O,O+a)>0,\qquad m_1R_a\ge1.
+\]
+For the cutoff Hamiltonian $H(\widetilde g_n)$ apply Lemma~\ref{prop:unbdd-main} with
+unbounded-argument slot $X=B$, bounded-argument slot $A=\tau_a(B)$, localization set
+$\overline O$, and $\gamma=m_1$. The bounded operator $B$ has domain $\HH$; because
+$B\in\A(O)\subseteq\A(U)$ for every bounded open $U\supseteq\overline O$, it is affiliated
+with every such $\A(U)$. Thus all hypotheses of that lemma hold. Since
+$\|B\Om_{\widetilde g_n}\|\le\|B\|$ and $\|\tau_a(B)\|=\|B\|$, it gives, uniformly in $n$,
+\begin{equation}\label{eq:cutoff-bounded-cluster}
+ \left|\omega_n(B\tau_a(B))-\omega_n(B)\omega_n(\tau_a(B))\right|
+ \le2\|B\|^2e^{-m_1R_a/2}.
+\end{equation}
+For fixed $a$, all three observables in \eqref{eq:cutoff-bounded-cluster} belong to the local
+algebra of one bounded interval containing $O\cup(O+a)$. The local-norm convergence of
+Theorem~\ref{thm:MAIN}(1) therefore permits passage to $n\to\infty$. Translation invariance
+of $\omega_\infty$ then yields
+\[
+ \left|\omega_\infty(B\tau_a(B))-\omega_\infty(B)^2\right|
+ \le2\|B\|^2e^{-m_1R_a/2}\xrightarrow[|a|\to\infty]{}0.
+\]
+By Theorem~\ref{thm:MAIN}(3)--(4), $\omega_\infty$ is a $\theta$-invariant ground state.
+Assumption (B4) consequently gives
+\[
+ \omega_\infty=\tfrac12(\omega_++\omega_-),\qquad
+ \omega_\infty(B)=\tfrac12(m-m)=0.
+\]
+By (B1), translation invariance and clustering of each $\omega_\pm$ imply
+\[
+ \omega_\pm(B\tau_a(B))
+ -\omega_\pm(B)\omega_\pm(\tau_a(B))\longrightarrow0,\qquad
+ \omega_\pm(\tau_a(B))=\omega_\pm(B)=\pm m.
+\]
+Hence
+\[
+ \omega_\infty(B\tau_a(B))
+ =\tfrac12\!\left(\omega_+(B\tau_a(B))+\omega_-(B\tau_a(B))\right)
+ \longrightarrow\tfrac12(m^2+m^2)=m^2\ne0,
+\]
+contradicting the preceding cluster bound, whose left side tends to zero because
+$\omega_\infty(B)=0$.
+\end{proof}
+
+\section{Discussion}\label{sec:discussion}
+
+\emph{Relation to GRS Problems 1--2.} Problem 2 of \cite[p.~126]{GRS75} asks for local
+convergence of Euclidean Gibbs states; Theorem~\ref{thm:MAIN}(1) is a Hamiltonian counterpart,
+in norm on local von Neumann algebras, for the vacuum family. Problem 1 asks for uniform local
+$L^p$ bounds on the Euclidean vacuum density. The note added on \cite[p.~128]{GRS75} records
+Newman's solution of the small-coupling $p=1$ versions, so the printed problems must not be read
+as an unqualified current open-problem claim. The present proof neither establishes nor needs
+Problem 1: the identification step uses the exact spectral identity of
+Proposition~\ref{prop:M0-main}, and the convergence step uses the Cauchy estimate.
+
+\emph{Sharpness.} In the quadratic model the exact rate is $\mathrm{poly}(d)\,e^{-2m_1d}$
+(companion M2: round trip through the region where the Hamiltonians differ, at the local Agmon
+mass). $\Psi_{m_1}$ is super-polynomial but sub-exponential. The present filter argument does
+not obtain the sharp exponential rate; a proof of such a rate would require an additional
+resolvent or Combes--Thomas input not supplied here.
+
+\emph{Uniqueness.} $\omega_\infty$ is canonical for the cutoff family, and translation
+invariant without averaging. The theorem does not identify every locally normal
+translation-invariant ground state of $(\A,\alpha)$ with $\omega_\infty$. In particular, the
+Euclidean results \cite{AHZ,BDW} do not by themselves provide the reverse reconstruction and
+state-space identification needed for that Hamiltonian conclusion; companion M3 records that
+missing implication as (R3).
+
+\emph{Beyond weak coupling.} Corollary~\ref{cor:nobreak} is conditional on (B1)--(B4).
+Under exactly those hypotheses, a proof based on a cutoff-uniform gap cannot extend to that
+two-phase regime. The phase-transition results \cite{GJS75,GJS76}, as cited here, are not used
+as a substitute for (B4), and this manuscript makes no unconditional assertion that its
+Hamiltonian state space has the classification (B1)--(B4).
+
+\emph{Part II.} Uniformity in a wavelet resolution --- the OAR programme --- is a
+separate problem.  For the MMST free nearest-neighbour model and its Daubechies
+observable embedding \cite{MMST}, the companion Lamport proof constructs local Weyl
+unitaries for which
+\[
+ \liminf_{N\to\infty}
+ \|\omega_N-\omega_\infty\mathbin\circ\beta_N\|_{\mathfrak W_N(O)}
+ \ge e^{-\sqrt{2+\sqrt2}/4}-e^{-3\pi/16}>0.
+\]
+Thus no diagonal local-state-norm error $C\varepsilon_N^\theta$, $\theta>0$, is possible.
+The implemented replacement fixes a torus $\mathbb T_L$, the MMST nearest-neighbour
+Hamiltonian, the exact $D4$ observable maps, and the finite-torus Wick convention.
+The finite-resolution interacting Schr\"odinger form is closed and lower bounded; its
+operator has compact resolvent and a simple ground state.
+
+For these interacting ground states, weak-star compactness gives a cofinal subnet
+$N(i)$ and a state $\Omega_{L,\lambda}^{\mathrm{cl}}$ on the inductive-limit algebra such
+that, for every fixed $M$ and $A\in\mathfrak W_{M,L}$,
+\[
+ \lim_i\omega_{N(i),L,\lambda,1}
+   \bigl(\alpha_M^{N(i)}(A)\bigr)
+ =\Omega_{L,\lambda}^{\mathrm{cl}}\bigl(\alpha_M^\infty(A)\bigr).
+\]
+This proves existence of a projective interacting cluster state, not convergence of the
+full sequence or its identification with the continuum vacuum.  In the free case the
+full sequence satisfies the explicit estimate
+\[
+\begin{split}
+ &\left|\omega_{M+r,L}^{(0)}\!\circ\alpha_M^{M+r}(W_M(\xi))
+ -\omega_L^{(0)}\!\circ\beta_M(W_M(\xi))\right|\\
+ &\hspace{35mm}\le\frac{C_{M,L,m,\xi}}4\,2^{-\theta r},
+ \qquad
+ \theta=\frac{4(1-\log_2\sqrt3)}{7-2\log_2\sqrt3}>0.
+\end{split}
+\]
+
+For the static interacting theorem, the exact remaining assertion is
+\[
+ \lim_{N\to\infty}
+ \omega_{N,L,\lambda,1}\bigl(\alpha_M^N(W_M(\xi))\bigr)
+ =
+ \omega_{P(\phi)_2,L}\bigl(\beta_M(W_M(\xi))\bigr)
+ \quad\text{for every fixed }M,\xi.                              \tag{PII}\label{eq:PII}
+\]
+The companion Weyl criterion proves that \eqref{eq:PII}, by itself, extends to every
+$A\in\mathfrak W_{M,L}$, gives projective consistency, and identifies the
+inductive-limit state.  A uniform gap, local second moment, and interacting
+Lieb--Robinson bound are therefore not prerequisites for this static fixed-torus
+criterion.  They remain necessary for stronger quantitative-locality or dynamical
+claims.  In particular, Theorem~4.1 of \cite{NRSS} assumes $V'\in L^1(\mathbb R)$
+and cannot be applied to the Wick quartic, since
+$|V_c'(u)|\ge2\lambda|u|^3$ for $|u|\ge\sqrt{6c}$.
+No full-sequence identified interacting resolution-limit theorem is asserted here.
+The proofs and exact ledgers are in \texttt{strategy.md} and the five Lamport documents
+in \texttt{part\_ii/}.
+
+\appendix
+\section{Interface checklist}\label{app:checklist}
+
+\begin{itemize}
+\item (G), (M) of \texttt{lppl.tex}: supplied with $\gamma=m_1$, $M$ as in
+      Theorem~\ref{thm:M2-main}. Hypothesis classes match ($\G$; $\|h\|_\infty\le1$, support in
+      length-$2$ intervals). $\checkmark$
+\item \eqref{eq:P}, \eqref{eq:T}: supplied by Source Fact~\ref{fact:PT}. $\checkmark$
+\item Simplicity of $E(g)$ (used in Lemma~\ref{lem:vac-main} and
+      Prop.~\ref{prop:M0-main}(iii)): Source Fact~\ref{fact:sa}. No isolation input anywhere.
+      $\checkmark$
+\item $\Om_g\in D(V(h))$ (used in Prop.~\ref{prop:unbdd-main}):
+      Prop.~\ref{prop:standard-main}(i), and independently re-proved in
+      Theorem~\ref{thm:M2-main} Step 3. $\checkmark$
+\item Wick/covariance conventions between \cite{GJS} and \S\ref{sec:setting}:
+      Remark~\ref{rem:conv}. $\checkmark$
+\item Gate R2: \emph{closed by page-image inspection} (\texttt{m4/r2-check.tex}) ---
+      $K_1$ to the first power, local weight $K_2^{2N(\Delta)}$; all displayed constants use
+      the exact reading. $\checkmark$
+\end{itemize}
+
+\begin{thebibliography}{99}
+\bibitem{GJ1} J.~Glimm, A.~Jaffe, Phys.\ Rev.\ \textbf{176} (1968) 1945--1951.
+\bibitem{GJ2} J.~Glimm, A.~Jaffe, Ann.\ of Math.\ \textbf{91} (1970) 362--401.
+\bibitem{GJ3} J.~Glimm, A.~Jaffe, Acta Math.\ \textbf{125} (1970) 203--267.
+\bibitem{GJ4} J.~Glimm, A.~Jaffe, J.\ Math.\ Phys.\ \textbf{13} (1972) 1568--1584.
+\bibitem{GJ71} J.~Glimm, A.~Jaffe, Comm.\ Math.\ Phys.\ \textbf{22} (1971) 253--258.
+\bibitem{GJExp} J.~Glimm, A.~Jaffe, \emph{Quantum Field Theory and Statistical Mechanics:
+Expositions}, Birkh\"auser, 1985.
+\bibitem{GJS} J.~Glimm, A.~Jaffe, T.~Spencer, Ann.\ of Math.\ \textbf{100} (1974) 585--632.
+\bibitem{GJS75} J.~Glimm, A.~Jaffe, T.~Spencer, Comm.\ Math.\ Phys.\ \textbf{45} (1975) 203--216.
+\bibitem{GJS76} J.~Glimm, A.~Jaffe, T.~Spencer, Ann.\ Physics \textbf{101} (1976) 610--669.
+\bibitem{GRS75} F.~Guerra, L.~Rosen, B.~Simon, Ann.\ of Math.\ \textbf{101} (1975) 111--259.
+\bibitem{Rosen70} L.~Rosen, Comm.\ Math.\ Phys.\ \textbf{16} (1970) 157--183.
+\bibitem{SimonBook} B.~Simon, \emph{The $P(\Phi)_2$ Euclidean (Quantum) Field Theory},
+Princeton UP, 1974.
+\bibitem{AHZ} S.~Albeverio, R.~H\o egh-Krohn, B.~Zegarlinski, Comm.\ Math.\ Phys.\ \textbf{123}
+(1989) 377--424.
+\bibitem{BDW} R.~Bauerschmidt, B.~Dagallier, H.~Weber, arXiv:2504.08606.
+\bibitem{RZT} M.~Rodriguez Zarate, T.~Thiemann, arXiv:2505.13030.
+\bibitem{MMST} V.~Morinelli, G.~Morsella, A.~Stottmeister, Y.~Tanimoto,
+Commun. Math. Phys. \textbf{387} (2021) 1299--1367.
+\bibitem{NRSS} B.~Nachtergaele, H.~Raz, B.~Schlein, R.~Sims,
+Commun. Math. Phys. \textbf{286} (2009) 1073--1098.
+\end{thebibliography}
+
+\end{document}

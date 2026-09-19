@@ -1,0 +1,518 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{srcfact}[theorem]{Source Fact}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Om}{\Omega}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\Q}{\mathcal{Q}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\Span}{span}
+
+\title{(G) from the Glimm--Jaffe--Spencer cluster estimate:\\ explicit derivation of the uniform physical gap}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Update (9 August 2026)}
+Gate R2 is closed (\texttt{r2-check.tex}): the GJS norm carries $K_2^{2N(\Delta)}$ and a single $K_1$. In Lemma~2.1(ii) and (5.1) below, read $K_1K_2^{2r}$ for $K_1^{e_*}K_2^{\,r}$ and $K_1K_2^{4r}$ for $K_1^{e_*}K_2^{2r}$; all conclusions are unchanged.
+
+
+\begin{abstract}
+This note executes the (G) side of the weak-coupling closure: from the printed
+Glimm--Jaffe--Spencer cluster estimate (their Theorem~1.1.7, stated with constants
+\emph{independent of the cutoff}) we derive
+\[
+  \spec H_g\ \subseteq\ \{0\}\cup[m_1,\infty)
+  \qquad\text{for \emph{every} } g\in\G,
+\]
+with $m_1>0$ the (cutoff-independent) decay rate of the cluster estimate, and $0$ a simple
+eigenvalue. All steps are proved: the two-time slab Feynman--Kac transfer, the removal of the
+$T\to\infty$ limit by a lower-semicontinuity argument that needs only \emph{second} moments, a
+density theorem for polynomial cylinder vectors from the factorial moment bound, and the spectral
+lemma. Three structural simplifications over the sketch in
+\texttt{weak-coupling-strategy.tex} are recorded: (i) the per-vector constants in the decay
+estimate are allowed to depend on $g$ --- only the \emph{rate} must be uniform, so no uniform
+second moment (M$_2$) enters the (G) side at all; (ii) no per-$g$ isolation of the ground state is
+used anywhere (the slab limit $\hat\psi_T\to\Om_g$ needs only simplicity of the eigenvalue at the
+bottom); (iii) the fourth-moment truncation of the sketch is replaced by weak lower
+semicontinuity of the quadratic form $\|e^{-tH_g/2}\cdot\|^2$, which is one-sided in exactly the
+direction needed. The result is conditional on the printed Theorem~1.1.7 and, for auxiliary
+second moments, on the class-uniform reading of Theorem~1.1.8 (Gate~R1 of
+\texttt{m2-audit.tex}); no other unproved input occurs.
+\end{abstract}
+
+\section{Inputs}\label{sec:inputs}
+
+Notation as in \texttt{lppl.tex} and \texttt{m2-audit.tex}. In particular
+$K_g=H_0+\lambda\int g\,{:}\mathscr P(\phi_0){:}_C\,dx$ on $\HH=L^2(\mathcal S'(\R),d\phi_0)$,
+$E_g=\inf\spec K_g$, $H_g:=K_g-E_g\ge0$, $\Om_g$ the ground state; $d\Phi$ the Euclidean Gaussian
+with covariance $(-\Delta_{\R^2}+m_0^2)^{-1}$, and for a cutoff $h$ in the class
+$\{0\le h\le1,\ \supp h\ \text{compact}\}$,
+\[
+  dq_h=\frac{e^{-V(h)}d\Phi}{\int e^{-V(h)}d\Phi},\qquad
+  V(h)=\lambda\int{:}\mathscr P(\Phi(z)){:}\,h(z)\,dz ,
+\]
+with the slab cutoffs $h_{T,g}(t,x)=\mathbf 1_{[-T,T]}(t)g(x)$, $g\in\G$, $T>0$. Throughout,
+$\lambda/m_0^2$ lies in the GJS weak-coupling region.
+
+The audited source facts used (page references to \cite{GJS}; see \texttt{m2-audit.tex} \S2):
+
+\begin{srcfact}[CE2; printed class-uniform]\label{sf:CE2}
+(p.~594, Thm.~1.1.7.) For localized monomials $Q_1,Q_2$ of the class (1.1.5) with disjoint
+localization squares, separated by a strip of width $d$ bounded by two parallel lines
+\emph{(any orientation; p.~594)},
+\[
+  \Bigl|\int Q_1Q_2\,dq_h-\int Q_1\,dq_h\int Q_2\,dq_h\Bigr|
+  \ \le\ C_7\,e^{-m_1 d}\,\|Q_1\|\,\|Q_2\|,
+\]
+with $m_1>0$ and $C_7$ \emph{independent of $h$, $Q_1$, $Q_2$}. The time-separated situation is
+native to the source: their Thms.~1.1.10--1.1.11 (p.~596) treat observables ``localized at times
+$>T$''.
+\end{srcfact}
+
+\begin{srcfact}[CE1; Gate R1]\label{sf:CE1}
+(p.~595, Thm.~1.1.8.) $|\int Q(x^0)\,dq_h|\le C_8\|Q(x^0)\|$, in the class-uniform reading of
+Gate~R1 of \texttt{m2-audit.tex}. Used below only for auxiliary second moments.
+\end{srcfact}
+
+\begin{srcfact}[conventions]\label{sf:conv}
+(\texttt{m2-audit.tex}, Prop.~2.7.) Sharp-time $d\Phi$-Wick ordering coincides exactly with
+$C$-Wick ordering of the time-zero field, $C=(2\mu)^{-1}$; sharp-time functionals of
+$\Phi(0,\cdot)$ are multiplication operators on $\HH$.
+\end{srcfact}
+
+\section{The observable class and its norm}\label{sec:class}
+
+\begin{definition}\label{def:class}
+$\Q$ is the set of finite products
+\[
+  Q=\prod_{i=1}^{r}\phi_0(f_i),\qquad f_i\in C_c^\infty(\R)\ \text{real},\ r\in\mathbb N_0 ,
+\]
+($Q=1$ for $r=0$), regarded as multiplication operators on $\HH$, self-adjoint on their maximal
+domains. For $s\in\R$ let $Q(s)$ denote the corresponding Euclidean sharp-time monomial
+$\prod_i\Phi(s,f_i):=\prod_i\int\Phi(s,x)f_i(x)\,dx$ --- a monomial of the GJS class (1.1.5) with
+$r$ points, all $m_i=1$, equal times $s$, and kernel $w=f_1\otimes\cdots\otimes f_r\in L^2$.
+\end{definition}
+
+Since all $m_i=1$, the degree restriction $m_i\le\kappa$, $\kappa=\deg\mathscr P$, of the GJS
+class is trivially met, and no Wick ordering ambiguity arises: ${:}\Phi(x){:}=\Phi(x)$.
+
+\begin{lemma}[norm facts]\label{lem:norm}
+Let $Q\in\Q$ with all $\supp f_i$ contained in an interval of length $L$, and let
+$\|Q\|_s$ denote the GJS norm (1.1.9) of $Q(s)$ (sum over the canonical unit-cell localization).
+Then:
+\begin{enumerate}
+\item[\rm(i)] \emph{(time-shift invariance)} $\|Q\|_s=\|Q\|_0=:\|Q\|_{\rm GJS}$ for every
+      $s\in\R$;
+\item[\rm(ii)] \emph{(explicit bound)}
+      $\displaystyle \|Q\|_{\rm GJS}\ \le\ K_1^{e_*}\,K_2^{\,r}\,r!\,\prod_{i=1}^r
+      \bigl(\sqrt{L+1}\,\|f_i\|_{L^2}\bigr)$, with $e_*$ the Gate-R2 exponent;
+\item[\rm(iii)] \emph{(separation)} for $t>2$, every localized piece of $Q(-t/2)$ is separated
+      from every localized piece of $\tilde Q(t/2)$, $\tilde Q\in\Q$, by a horizontal strip of
+      width $\ge t-2$, and the localization squares are disjoint.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) The time shift moves every point's time coordinate equally, so each point lands in a shifted
+unit square; the multiset of local degrees $\{N(\Delta)\}$ and the kernel $L^2$ norms of the
+localized pieces are unchanged; the sum (1.1.9) has identical terms.
+
+(ii) Decompose $f_i=\sum_{j}f_i\chi_{[j,j+1)}$; at most $L+1$ terms are nonzero. A localized
+piece has kernel $\otimes_i f_i\chi_{j_i}$ and norm
+$K_1^{e_*}\prod_\Delta K_2^{N(\Delta)}N(\Delta)!\,\prod_i\|f_i\chi_{j_i}\|_2
+\le K_1^{e_*}K_2^{\,r}r!\prod_i\|f_i\chi_{j_i}\|_2$, using $\sum_\Delta N(\Delta)=r$ and
+$\prod_\Delta N(\Delta)!\le r!$. Summing over the $j_i$ and applying Cauchy--Schwarz per factor,
+$\sum_j\|f_i\chi_j\|_2\le\sqrt{L+1}\,\|f_i\|_2$.
+
+(iii) A point at time $-t/2$ lies in a lattice square whose time interval is contained in
+$[-t/2-1,\,-t/2+1]$; a point at time $t/2$, in one contained in $[t/2-1,\,t/2+1]$. For $t>2$ the
+open horizontal strip $\{-t/2+1<\text{time}<t/2-1\}$ of width $t-2$ separates all squares of the
+first family from all of the second, and the families are disjoint.
+\end{proof}
+
+\begin{corollary}[two-time cluster bound]\label{cor:cluster}
+For $Q,\tilde Q\in\Q$, $t>2$, and every cutoff $h$ in the class,
+\[
+  \Bigl|\int Q(-t/2)\,\tilde Q(t/2)\,dq_h
+  -\int Q(-t/2)\,dq_h\int \tilde Q(t/2)\,dq_h\Bigr|
+  \ \le\ C_7\,e^{2m_1}\,e^{-m_1t}\,\|Q\|_{\rm GJS}\|\tilde Q\|_{\rm GJS} .
+\]
+\end{corollary}
+
+\begin{proof}
+Write $Q(-t/2)=\sum_aQ_a$, $\tilde Q(t/2)=\sum_b\tilde Q_b$ in localized pieces (finite sums).
+The connected expectation is bilinear, so it equals $\sum_{a,b}$ of connected pieces; each pair is
+separated by the strip of Lemma~\ref{lem:norm}(iii), so Source Fact~\ref{sf:CE2} applies with
+$d=t-2$; summing, $\sum_a\|Q_a\|=\|Q\|_{\rm GJS}$ by (1.1.9) and Lemma~\ref{lem:norm}(i).
+\end{proof}
+
+\section{Slab transfer}\label{sec:slab}
+
+Throughout this section $g\in\G$ is \emph{fixed}; no uniformity in $g$ is claimed or needed. Set
+\[
+  \psi_s:=e^{-sH_g}\Om_0\quad(s\ge0),\qquad \hat\psi_s:=\psi_s/\|\psi_s\|,\qquad
+  c_g:=\ip{\Om_g}{\Om_0}=\int\Om_g\,d\phi_0>0 ,
+\]
+positivity of $c_g$ because $\Om_g>0$ a.e.\ in $Q$-space and $\Om_0\equiv1$.
+
+\begin{lemma}[slab FKN, one and two times]\label{lem:FKN}
+Let $T>0$, $t\in[0,2T]$, and let $F_1,F_2$ be nonnegative measurable functions of the time-zero
+field. Then
+\begin{align}
+  \int F_1\bigl(\Phi(-\tfrac t2,\cdot)\bigr)\,F_2\bigl(\Phi(\tfrac t2,\cdot)\bigr)\,dq_{h_{T,g}}
+  &=\frac{\ip{F_1\,\psi_{T-t/2}}{\,e^{-tH_g}\,F_2\,\psi_{T-t/2}}}{\|\psi_T\|^2},
+  \label{eq:FKN2}\\
+  \int F_1\bigl(\Phi(s,\cdot)\bigr)\,dq_{h_{T,g}}
+  &=\frac{\ip{\psi_{T-s}}{\,F_1\,\psi_{T+s}}}{\|\psi_T\|^2}\qquad(|s|\le T),
+  \label{eq:FKN1}
+\end{align}
+as identities in $[0,\infty]$. Both extend to $F_i=Q_i\in\Q$ (and finite real linear combinations)
+whenever the right-hand sides are finite, by the truncation argument of
+Lemma~\ref{lem:moments}\textup{(iii)}.
+\end{lemma}
+
+\begin{proof}
+For bounded $F_i$ this is the Feynman--Kac--Nelson formula for the measure
+$Z^{-1}e^{-V(h_{T,g})}d\Phi$: the Markov property of $d\Phi$ with respect to constant-time lines
+gives, for $-T\le t_1\le t_2\le T$,
+\[
+  \int F_1(\Phi(t_1,\cdot))F_2(\Phi(t_2,\cdot))\,e^{-V(h_{T,g})}\,d\Phi
+  =\ip{\Om_0}{e^{-(T+t_1)K_g}F_1e^{-(t_2-t_1)K_g}F_2e^{-(T-t_2)K_g}\Om_0},
+\]
+(Nelson; \cite[Thm.~III.12]{SimonBook}; \cite{GRS75}); dividing by the same expression with
+$F_i=1$ and cancelling the factors $e^{-2TE_g}$ gives \eqref{eq:FKN2}--\eqref{eq:FKN1} with
+$t_1=-t/2$, $t_2=t/2$, resp.\ a single time $s$, after using self-adjointness of $e^{-aK_g}$ to
+move semigroup factors to the left slot. Monotone convergence extends both identities to
+nonnegative measurable $F_i$, in $[0,\infty]$.
+\end{proof}
+
+\begin{lemma}[convergence of the slab vacuum; no isolation used]\label{lem:vac}
+$\hat\psi_s\to\Om_g$ in norm and $\|\psi_s\|\downarrow c_g>0$ as $s\to\infty$. Moreover
+$\|\psi_{s'}\|/\|\psi_s\|\in[1,\|\Om_0\|/c_g]$ for all $0\le s'\le s$, and
+$\to1$ when $s,s'\to\infty$.
+\end{lemma}
+
+\begin{proof}
+$0$ is a simple eigenvalue of $H_g\ge0$ with eigenvector $\Om_g$ (GJS p.~588 for measurable $g$;
+GJ~II for smooth $g$). Let $P_0=|\Om_g\rangle\langle\Om_g|$. Then
+$\psi_s=c_g\Om_g+e^{-sH_g}(1-P_0)\Om_0$ and, by the spectral theorem and dominated convergence,
+$\|e^{-sH_g}(1-P_0)\Om_0\|^2=\int_{(0,\infty)}e^{-2sE}\,d\mu_{(1-P_0)\Om_0}(E)\to0$: the spectral
+measure of $(1-P_0)\Om_0$ has no atom at $0$ \emph{by simplicity alone}; no gap is invoked.
+Monotonicity of $s\mapsto\|\psi_s\|$ is $\|e^{-sH}\|\le1$; the limit is $c_g$; the ratio bounds
+follow with $\|\Om_0\|=1$.
+\end{proof}
+
+\begin{lemma}[second moments and domains]\label{lem:moments}
+Let $Q\in\Q$. Then, with $C_8$ as in Source Fact~\ref{sf:CE1}:
+\begin{enumerate}
+\item[\rm(i)] $Q^2$ is (a finite sum of) monomials of the class (1.1.5) at one time, and
+      $\|Q^2\|_{\rm GJS}\le K_1^{e_*}K_2^{2r}(2r)!\prod_i(L+1)\|f_i\|_2^2=:\mathfrak n(Q)^2$;
+\item[\rm(ii)] $\displaystyle\sup_{T>0}\ \|Q\hat\psi_T\|^2
+      =\sup_{T>0}\int Q(0)^2\,dq_{h_{T,g}}\ \le\ C_8\,\mathfrak n(Q)^2$;
+      in particular $\psi_T\in D(Q)$ for every $T$, and $\Om_g\in D(Q)$ with
+      $\|Q\Om_g\|^2\le C_8\mathfrak n(Q)^2$;
+\item[\rm(iii)] for every $a\ge0$ and $M>0$, with $Q^{(M)}:=Q\mathbf 1_{\{|Q|\le M\}}$:
+      $\|(Q-Q^{(M)})\psi_a\|\to0$ as $M\to\infty$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) is Lemma~\ref{lem:norm}(ii) applied to the $2r$ factors of $Q^2$, all at one time.
+(ii): the first equality is \eqref{eq:FKN2} with $t=0$, $F_1F_2=Q^2\ge0$ (monotone-class version);
+the bound is Source Fact~\ref{sf:CE1} plus (i), uniformly in $T$ since $h_{T,g}$ stays in the
+class. The statement for $\Om_g$ follows as in \texttt{m2-audit.tex}, Lemma~4.3: $Q$ is a closed
+operator (real multiplication), its graph is weakly closed, $\hat\psi_T\to\Om_g$ by
+Lemma~\ref{lem:vac}, and $\sup_T\|Q\hat\psi_T\|<\infty$.
+(iii): $\|(Q-Q^{(M)})\psi_a\|^2=\int|Q|^2\mathbf 1_{\{|Q|>M\}}\psi_a^2\,d\phi_0\to0$ by dominated
+convergence, the dominator $|Q|^2\psi_a^2$ being integrable by (ii).
+\end{proof}
+
+\begin{lemma}[one-point limit]\label{lem:onepoint}
+For $Q\in\Q$ and fixed $t\ge0$:
+$\displaystyle\lim_{T\to\infty}\int Q(\pm t/2)\,dq_{h_{T,g}}=\ip{\Om_g}{Q\,\Om_g}=:\omega_g(Q)$.
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:FKN1} (extended to $Q$ via Lemma~\ref{lem:moments}(iii) and dominated convergence,
+the dominator $|Q|(\psi_{T-s}^2+\psi_{T+s}^2)$ being integrable by Lemma~\ref{lem:moments}(ii) and
+Cauchy--Schwarz),
+\[
+  \int Q(s)\,dq_{h_{T,g}}
+  =\Bigl\langle\hat\psi_{T-s},\ \frac{Q\,\psi_{T+s}}{\|\psi_T\|}\Bigr\rangle
+  \cdot\frac{\|\psi_{T-s}\|}{\|\psi_T\|}.
+\]
+As $T\to\infty$: $\hat\psi_{T-s}\to\Om_g$ \emph{strongly}; $v_T:=Q\psi_{T+s}/\|\psi_T\|$ satisfies
+$\|v_T\|=\|Q\hat\psi_{T+s}\|\,(\|\psi_{T+s}\|/\|\psi_T\|)\le C_8^{1/2}\mathfrak n(Q)$ and
+$v_T\rightharpoonup Q\Om_g$ weakly (bounded, and any weak limit point is $Q\Om_g$ by weak
+closedness of the graph of $Q$, since $\psi_{T+s}/\|\psi_T\|\to\Om_g$ by Lemma~\ref{lem:vac});
+a strongly convergent paired with a weakly convergent sequence gives
+$\ip{\hat\psi_{T-s}}{v_T}\to\ip{\Om_g}{Q\Om_g}$; and $\|\psi_{T-s}\|/\|\psi_T\|\to1$.
+\end{proof}
+
+\begin{lemma}[two-point upper bound by lower semicontinuity]\label{lem:lsc}
+For $Q\in\Q$ (real) and $t\ge0$:
+\[
+  \ip{Q\Om_g}{\,e^{-tH_g}\,Q\Om_g}\ \le\ \liminf_{T\to\infty}\
+  \int Q(-t/2)\,Q(t/2)\,dq_{h_{T,g}} .
+\]
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:FKN2} (extended to $Q$ by Lemma~\ref{lem:moments}(iii): truncate both insertions,
+use $|Q^{(M)}(-\frac t2)Q^{(M)}(\frac t2)|\le\frac12(Q(-\frac t2)^2+Q(\frac t2)^2)$ as an
+integrable dominator on the $dq$ side and norm convergence $Q^{(M)}\psi_{T-t/2}\to Q\psi_{T-t/2}$
+on the Hilbert side),
+\[
+  \int Q(-t/2)\,Q(t/2)\,dq_{h_{T,g}}=\|\,e^{-tH_g/2}\,u_T\,\|^2,
+  \qquad u_T:=\frac{Q\,\psi_{T-t/2}}{\|\psi_T\|}.
+\]
+By Lemmas \ref{lem:vac} and \ref{lem:moments}(ii), $\|u_T\|\le C_8^{1/2}\mathfrak n(Q)\cdot
+(\|\psi_{T-t/2}\|/\|\psi_T\|)$ is bounded in $T\ge t$, and $u_T\rightharpoonup Q\Om_g$ (weak
+closedness of the graph again). Hence $e^{-tH_g/2}u_T\rightharpoonup e^{-tH_g/2}Q\Om_g$, and weak
+lower semicontinuity of the norm gives
+$\|e^{-tH_g/2}Q\Om_g\|^2\le\liminf_T\|e^{-tH_g/2}u_T\|^2$.
+\end{proof}
+
+\begin{remark}
+Lemma~\ref{lem:lsc} is the replacement for the fourth-moment truncation step proposed in
+\texttt{weak-coupling-strategy.tex}: the quadratic form is bounded \emph{from above} in the limit
+by the slab quantities, which is the only direction the gap proof uses, and it costs only second
+moments. Equality in Lemma~\ref{lem:lsc} is true but not needed.
+\end{remark}
+
+\section{The decay estimate}\label{sec:decay}
+
+\begin{proposition}[connected decay in real time]\label{prop:decay}
+Let $Q\in\Q$ be real, $\psi_Q:=Q\Om_g-\omega_g(Q)\Om_g$. Then for all $t\ge0$,
+\begin{equation}\label{eq:decay}
+  \ip{\psi_Q}{\,e^{-tH_g}\,\psi_Q}\ \le\ \widehat C_Q\ e^{-m_1t},
+  \qquad
+  \widehat C_Q:=\max\Bigl(C_7e^{2m_1}\|Q\|_{\rm GJS}^2,\ e^{3m_1}\|\psi_Q\|^2\Bigr),
+\end{equation}
+where $m_1$ and $C_7$ are the ($g$- and $Q$-independent) constants of Source Fact~\ref{sf:CE2},
+and $\|\psi_Q\|^2\le C_8\mathfrak n(Q)^2$ is finite (possibly $g$-dependent bounds are harmless).
+\end{proposition}
+
+\begin{proof}
+$\psi_Q\perp\Om_g$ by construction. Since $Q$ is a real multiplication operator and
+$e^{-tH_g}\Om_g=\Om_g$,
+\[
+  \ip{\psi_Q}{e^{-tH_g}\psi_Q}
+  =\ip{Q\Om_g}{e^{-tH_g}Q\Om_g}-\omega_g(Q)^2 .
+\]
+Let $t>2$. By Lemma~\ref{lem:lsc}, then Corollary~\ref{cor:cluster} (with $h=h_{T,g}$, constants
+independent of $T$ and $g$), then Lemma~\ref{lem:onepoint},
+\begin{align*}
+  \ip{Q\Om_g}{e^{-tH_g}Q\Om_g}
+  &\le\liminf_{T\to\infty}\int Q(-\tfrac t2)Q(\tfrac t2)\,dq_{h_{T,g}}\\
+  &\le C_7e^{2m_1}e^{-m_1t}\|Q\|_{\rm GJS}^2
+    +\lim_{T\to\infty}\int Q(-\tfrac t2)dq_{h_{T,g}}\int Q(\tfrac t2)dq_{h_{T,g}}\\
+  &=C_7e^{2m_1}e^{-m_1t}\|Q\|_{\rm GJS}^2+\omega_g(Q)^2 ,
+\end{align*}
+using $\liminf(a_T+b_T)\le\sup_Ta_T+\lim_Tb_T$ for the convergent disconnected part. This proves
+\eqref{eq:decay} for $t>2$ with constant $C_7e^{2m_1}\|Q\|^2_{\rm GJS}$. For $0\le t\le3$,
+$t\mapsto\ip{\psi_Q}{e^{-tH_g}\psi_Q}=\|e^{-tH_g/2}\psi_Q\|^2$ is nonincreasing and bounded by
+$\|\psi_Q\|^2\le e^{3m_1}\|\psi_Q\|^2e^{-m_1t}$. Taking the maximum of the two constants covers
+all $t\ge0$.
+\end{proof}
+
+\section{Density of polynomial cylinder vectors}\label{sec:dense}
+
+Let $d\mu_g=\Om_g^2\,d\phi_0$, so $\ip{Q\Om_g}{Q'\Om_g}=\E_{\mu_g}[QQ']$ for $Q,Q'\in\Q$.
+
+\begin{lemma}[factorial moments $\Rightarrow$ exponential moments]\label{lem:expmom}
+Let $f\in C_c^\infty(\R)$ be real with $\supp f$ in an interval of length $L$. Then for all
+$n\in\mathbb N$,
+\[
+  \E_{\mu_g}\bigl[\phi_0(f)^{2n}\bigr]\ \le\ C_8\,K_1^{e_*(2n)}\,\bigl(K_2\sqrt{L+1}\,\|f\|_2\bigr)^{2n}(2n)! ,
+\]
+and consequently there is $s_0=s_0(f)>0$ (independent of $g$) with
+$\E_{\mu_g}\bigl[e^{s|\phi_0(f)|}\bigr]<\infty$ for $0\le s<s_0$.
+\end{lemma}
+
+\begin{proof}
+Apply Lemma~\ref{lem:moments}(ii) to $Q=\phi_0(f)^n$ (an element of $\Q$ with $r=n$ equal factors):
+$\E_{\mu_g}[\phi_0(f)^{2n}]=\|Q\Om_g\|^2\le C_8\mathfrak n(Q)^2$ with
+$\mathfrak n(Q)^2\le K_1^{e_*}K_2^{2n}(2n)!\,\bigl((L+1)\|f\|_2^2\bigr)^{n}$ by
+Lemma~\ref{lem:moments}(i). Under every Gate-R2 reading, $K_1^{e_*}\le K_1^{\max(2,2n)}$, so the
+displayed bound holds with a geometric constant $K':=K_1K_2\sqrt{L+1}\,\|f\|_2$ (absorbing
+$K_1$). Then
+\[
+  \E_{\mu_g}\bigl[\cosh(s\phi_0(f))\bigr]=\sum_{n\ge0}\frac{s^{2n}}{(2n)!}\,
+  \E_{\mu_g}[\phi_0(f)^{2n}]\ \le\ C_8\sum_{n\ge0}(sK')^{2n}<\infty
+  \quad\text{for } s<1/K' ,
+\]
+and $e^{s|x|}\le 2\cosh(sx)$.
+\end{proof}
+
+\begin{theorem}[density]\label{thm:dense}
+$\Span_{\mathbb C}\{\,Q\Om_g:\ Q\in\Q\,\}$ is dense in $\HH$.
+\end{theorem}
+
+\begin{proof}
+Since $\Om_g>0$ a.e., $\HH\ni\psi\mapsto\psi/\Om_g$ is unitary from $\HH$ onto $L^2(d\mu_g)$, and
+the claim is equivalent to density of the polynomials in the variables
+$\{\phi_0(f):f\in C_c^\infty\ \text{real}\}$ in $L^2(d\mu_g)$.
+
+Fix a countable family $(e_j)_{j\ge1}\subset C_c^\infty(\R)$, real, dense in $L^2(\R)$, and let
+$\Sigma_k:=\sigma(\phi_0(e_1),\dots,\phi_0(e_k))$.
+
+\emph{Step 1: orthogonality kills conditional expectations.} Let $\psi\in L^2(d\mu_g)$ be
+orthogonal to all polynomials in $\phi_0(e_1),\dots,\phi_0(e_k)$. Set, for
+$z=(z_1,\dots,z_k)\in\mathbb C^k$,
+\[
+  F(z):=\E_{\mu_g}\Bigl[\overline\psi\,\exp\Bigl(\sum_{j=1}^kz_j\phi_0(e_j)\Bigr)\Bigr].
+\]
+By Lemma~\ref{lem:expmom} and Cauchy--Schwarz,
+$\E_{\mu_g}[|\psi|e^{s\sum_j|\phi_0(e_j)|}]\le\|\psi\|_{L^2(\mu_g)}\,
+\E_{\mu_g}[e^{2s\sum|\phi_0(e_j)|}]^{1/2}<\infty$ for $s<s_1(k)$ (H\"older splits the sum), so $F$
+is defined and, by dominated convergence and Morera, analytic in each variable on the polystrip
+$\{|\mathrm{Re}\,z_j|<s_1/k\}$, jointly continuous, hence analytic there. All derivatives at
+$z=0$ are $\E[\overline\psi\prod\phi_0(e_j)^{\alpha_j}]=0$. By iterated application of the
+one-variable identity theorem along coordinate directions, $F\equiv0$ on the polystrip; in
+particular on $(i\R)^k$:
+\[
+  \E_{\mu_g}\Bigl[\overline\psi\,e^{\,i\sum t_j\phi_0(e_j)}\Bigr]=0\qquad\forall t\in\R^k .
+\]
+The finite complex measure $\rho(B):=\E_{\mu_g}[\overline\psi\,\mathbf 1_B(\phi_0(e_1),\dots,
+\phi_0(e_k))]$ on $\R^k$ has vanishing Fourier transform, hence $\rho=0$, hence
+$\E_{\mu_g}[\overline\psi\,G]=0$ for every bounded $\Sigma_k$-measurable $G$; that is,
+$\E_{\mu_g}[\psi\,|\,\Sigma_k]=0$.
+
+\emph{Step 2: martingale exhaustion.} The variance of $\phi_0(f)-\phi_0(e)$ under $d\phi_0$ is
+$\ip{f-e}{C(f-e)}\le\|C\|\,\|f-e\|_2^2$, and $\mu_g\ll\phi_0$; hence for every real
+$f\in C_c^\infty$, $\phi_0(f)$ is measurable, modulo $\mu_g$-null sets, with respect to
+$\bigvee_k\Sigma_k$. Since the $\phi_0(f)$ generate the Borel $\sigma$-algebra of
+$\mathcal S'(\R)$ (cylinder sets), $\bigvee_k\Sigma_k$ is the full $\sigma$-algebra mod
+$\mu_g$-null sets. If now $\psi\perp$ \emph{all} polynomials in all variables, Step~1 gives
+$\E_{\mu_g}[\psi|\Sigma_k]=0$ for every $k$, and the martingale convergence theorem gives
+$\psi=\lim_k\E_{\mu_g}[\psi|\Sigma_k]=0$ in $L^2(d\mu_g)$.
+\end{proof}
+
+\section{The spectral lemma and the theorem}\label{sec:main}
+
+\begin{lemma}[spectral lemma]\label{lem:spectral}
+Let $H\ge0$ be self-adjoint on $\HH$ with $H\Om=0$, $\|\Om\|=1$. Suppose $D\subset\HH$ is a set
+of vectors with $\ip{\Om}{\psi}=0$ and
+$\ip{\psi}{e^{-tH}\psi}\le C_\psi e^{-\gamma t}$ $(t\ge0)$ for each $\psi\in D$, and that
+$\Span(D\cup\{\Om\})$ is dense. Then
+\[
+  \spec H\subseteq\{0\}\cup[\gamma,\infty),\qquad 0\ \text{a simple eigenvalue.}
+\]
+\end{lemma}
+
+\begin{proof}
+Let $\beta<\gamma$ and $P:=P_{[0,\beta]}(H)$. For $\psi\in D$, with $\mu_\psi$ the spectral
+measure of $\psi$,
+\[
+  \|P\psi\|^2=\mu_\psi([0,\beta])\le e^{\beta t}\!\int_{[0,\beta]}e^{-tE}d\mu_\psi(E)
+  \le e^{\beta t}\,C_\psi e^{-\gamma t}\xrightarrow[t\to\infty]{}0 ,
+\]
+so $P\psi=0$; also $P\Om=\Om$. Hence $P$ maps the dense subspace $\Span(D\cup\{\Om\})$ into
+$\mathbb C\Om$; by continuity and closedness of $\mathbb C\Om$,
+$\mathrm{ran}\,P\subseteq\mathbb C\Om$, and since $P\Om=\Om$, $P=|\Om\rangle\langle\Om|$. Thus
+$\spec H\cap[0,\beta]=\{0\}$, simple, for every $\beta<\gamma$.
+\end{proof}
+
+\begin{theorem}[(G), conditional]\label{thm:G}
+Assume the printed Theorem~1.1.7 of \cite{GJS} (Source Fact~\ref{sf:CE2}) and the class-uniform
+reading of Theorem~1.1.8 (Gate~R1). Then, in the GJS weak-coupling region, for \emph{every}
+$g\in\G$,
+\[
+  \spec H_g\ \subseteq\ \{0\}\cup[m_1,\infty),
+\]
+with $m_1>0$ the cluster rate, independent of $g$, and $0$ a simple eigenvalue of $H_g$.
+\end{theorem}
+
+\begin{proof}
+Fix $g$. Let $D:=\{\psi_Q=Q\Om_g-\omega_g(Q)\Om_g:\ Q\in\Q\ \text{real}\}$. Each $\psi_Q$
+satisfies the hypothesis of Lemma~\ref{lem:spectral} with $\gamma=m_1$ and
+$C_\psi=\widehat C_Q<\infty$, by Proposition~\ref{prop:decay}. Since
+$Q\Om_g=\psi_Q+\omega_g(Q)\Om_g$ and complex spans of real $Q$'s exhaust $\Q$,
+$\Span(D\cup\{\Om_g\})\supseteq\Span_{\mathbb C}\{Q\Om_g:Q\in\Q\}$, which is dense by
+Theorem~\ref{thm:dense}. Lemma~\ref{lem:spectral} applies.
+\end{proof}
+
+\begin{remark}[where uniformity does and does not enter]\label{rem:unif}
+Only the \emph{rate} $m_1$ and the cluster constant $C_7$ are $g$-uniform, and these come printed
+in Source Fact~\ref{sf:CE2}. The per-vector constants $\widehat C_Q$ contain
+$\|\psi_Q\|^2$, which the proof bounds via Gate~R1 uniformly in $g$ --- but $g$-dependence here
+would be harmless: Lemma~\ref{lem:spectral} never sums over $\psi$. Consequently \emph{(M$_2$) is
+not an input to (G)}; the two hypotheses of \texttt{lppl.tex} are logically independent
+downstream of the same source estimates. This corrects the impression left by the execution order
+of \texttt{weak-coupling-strategy.tex} that the moment bound had to be discharged first.
+\end{remark}
+
+\begin{remark}[no circularity]\label{rem:circ}
+Nothing in \S\S3--6 assumes any gap: Lemma~\ref{lem:vac} uses only simplicity of the lowest
+eigenvalue (an audited statement of the source for measurable $g$), and all limits are taken at
+fixed $g$ with the gap appearing only in the \emph{conclusion}. In particular the argument does
+not use, and does not need, per-$g$ isolation of $E_g$ as an a priori input --- isolation, with
+the uniform bound $m_1$, is part of the output.
+\end{remark}
+
+\begin{remark}[consistency anchors]\label{rem:anchor}
+(i) Free field ($\lambda=0$): $\ip{\phi_0(f)\Om_0}{e^{-tH_0}\phi_0(f)\Om_0}
+=\ip{f}{(2\mu)^{-1}e^{-t\mu}f}\le e^{-m_0t}\ip{f}{(2\mu)^{-1}f}$; the rate equals the gap $m_0$,
+and Theorem~\ref{thm:G} with $m_1\uparrow m_0(1-\varepsilon)$ (GJS Thm.~1.1.2 as $\lambda\to0$) is
+consistent. (ii) \texttt{m3/m3.tex} Thm.~2.3 provides the converse direction (gap $\Rightarrow$
+clustering) with rate $\gamma/2$; the present derivation (clustering $\Rightarrow$ gap) loses
+nothing in the rate, reflecting the general fact that Euclidean decay transfers to the spectrum
+without the factor-$2$ cost of the real-time filter argument.
+(iii) By \texttt{m3/m3.tex} Thm.~4.2 (the $\mathbb Z_2$ dichotomy), Theorem~\ref{thm:G} implies
+that in the GJS weak-coupling region the $\mathbb Z_2$ symmetry is \emph{unbroken} along every
+cofinal sequence --- as expected, and a useful cross-check that the weak-coupling region is on
+the right side of the dichotomy.
+\end{remark}
+
+\section{Status}
+
+\begin{itemize}
+\item \textbf{Proved here} (per fixed $g$, constants explicit): the two-time slab transfer
+      (Lemma~\ref{lem:FKN}); $\hat\psi_T\to\Om_g$ without isolation (Lemma~\ref{lem:vac});
+      second-moment domains (Lemma~\ref{lem:moments}); one-point limits
+      (Lemma~\ref{lem:onepoint}); the lsc two-point upper bound (Lemma~\ref{lem:lsc}); the decay
+      estimate (Proposition~\ref{prop:decay}); the density theorem (Theorem~\ref{thm:dense});
+      the spectral lemma (Lemma~\ref{lem:spectral}); and Theorem~\ref{thm:G}.
+\item \textbf{Inputs}: printed GJS Thm.~1.1.7 (class-uniform as stated); Gate~R1 for the
+      auxiliary second moments; the conventions lock of \texttt{m2-audit.tex}. Gate~R2 affects
+      only constants.
+\item \textbf{Consequence}: together with \texttt{m2-audit.tex}, both hypotheses (G) and (M$_2$)
+      of \texttt{lppl.tex} are now derived from the same two printed source theorems, modulo the
+      single bounded verification Gate~R1. The weak-coupling closure of
+      \texttt{weak-coupling-strategy.tex}, Thm.~7.1, is therefore conditional on Gate~R1 alone.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{GJS} J.~Glimm, A.~Jaffe and T.~Spencer, \emph{The Wightman axioms and particle structure
+in the $\mathscr P(\phi)_2$ quantum field model}, Ann.\ of Math.\ \textbf{100} (1974) 585--632.
+\bibitem{GRS75} F.~Guerra, L.~Rosen and B.~Simon, \emph{The $P(\phi)_2$ Euclidean quantum field
+theory as classical statistical mechanics}, Ann.\ of Math.\ \textbf{101} (1975) 111--189, 191--259.
+\bibitem{SimonBook} B.~Simon, \emph{The $P(\Phi)_2$ Euclidean (Quantum) Field Theory}, Princeton
+University Press, 1974.
+\end{thebibliography}
+
+\end{document}

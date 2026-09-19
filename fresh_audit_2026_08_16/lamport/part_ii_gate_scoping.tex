@@ -1,0 +1,260 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{auditstyle}
+\lhead{Fresh Glimm--Jaffe proof audit}
+\rhead{16 August 2026}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\T}{\mathbb T}
+\newcommand{\W}{\mathfrak W}
+\newcommand{\U}{\mathcal U}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+\title{Part II gate scoping in Lamport notation\\[3pt]
+\large Minimal logic, momentum-source obstruction, and executed route}
+\author{Fresh reconstruction of \texttt{part\_ii/gate\_II11\_scoping.tex}}
+\date{16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{resultbox}
+This module records the exact logical gate and the obstruction that dictates the
+thermal mean-shift method.  The two transfer lemmas proposed by the scoping document
+are not left as promises: their complete proofs appear as Steps
+$\langle1\rangle10$ and $\langle1\rangle13$ of the V4 Lamport module.
+\end{resultbox}
+\tableofcontents
+
+\section{The gate and what is logically sufficient}
+
+For fixed coarse scale $M$, let $\alpha_M^N$ be the D4 lattice refinement and
+$\beta_M$ the continuum embedding.  The gate is
+\[
+ \lim_{N\to\infty}\omega_N(\alpha_M^N(W_M(\xi)))
+ =\omega^{\rm ct}_{L,\lambda}(\beta_M(W_M(\xi)))
+ \qquad(\xi\in h_{M,L}).
+\tag{G}
+\]
+
+\LS{1}{1}{Identify the minimum statement that must be proved.}
+
+\LS{2}{1}{It is enough to prove (G) pointwise for every pair $(M,\xi)$.}
+
+\Because The Weyl-reduction module proves that the finite linear span of Weyl
+operators is norm dense in each coarse Weyl algebra.  If the state values converge
+on each generator, linearity gives convergence on that span.  Given $A$ and an
+approximant $A_0$ in the span with $\|A-A_0\|<\delta$, the state norm-one bound gives
+\[
+ |\omega_N(\alpha_M^N(A))-\rho_M(A)|
+ \le2\delta+|\omega_N(\alpha_M^N(A_0))-\rho_M(A_0)|.
+\]
+Let $N\to\infty$, then $\delta\downarrow0$.  Positivity, normalization, projective
+consistency, and continuum identification follow in that module from the same
+pointwise limits.
+
+\LS{2}{2}{Uniformity in $\xi$ on bounded sets is therefore not a hypothesis of the
+gate.}
+
+\Because Step $\langle2\rangle1$ uses only one fixed approximant, hence finitely
+many fixed Weyl symbols.  Quantitative uniform estimates are useful outputs but not
+logical prerequisites.
+
+\LS{2}{3}{An $N$-uniform interacting gap is not an input.}
+
+\Because V4 first derives eigenvalue convergence from normal-ordered partition
+functions and only then obtains
+$E_1(N)-E_0(N)\to\gamma_L>0$.  The eventual gap is an output used in the final
+thermal-to-ground interchange.
+
+\LS{2}{4}{The right side of (G) denotes the ground state of the specific $K_L$
+constructed as the V3 strong semigroup limit.}
+
+\Because V3 identifies $H_0+V_L$ on the cylinder core but does not prove essential
+self-adjointness of that core restriction.  Part II neither needs nor proves
+uniqueness among other possible realizations.  The gate is an identification with
+the constructed object, in convention $(a,b)=(0,0)$.
+
+\LS{2}{5}{This proves $\langle1\rangle1$.}\QedStep
+
+\section{Why momentum cannot be inserted as a sharp-time Gaussian source}
+
+\LS{1}{2}{Prove the sharp-time momentum-source obstruction.}
+
+Let $0\ne h\in C^\infty(\T_L)$ be real and
+$C=(-\partial_t^2-\partial_x^2+m^2)^{-1}$ on
+$\R_t\times\T_L$.  The formal momentum insertion would use
+$J=\delta_0'\otimes h$.
+
+\LS{2}{1}{The Fourier transform of $J$ is}
+\[
+ \widehat J(k_0,k)=ik_0\widehat h(k).
+\tag{2.1}
+\]
+
+\Because Distributional differentiation in time multiplies the Fourier transform by
+$ik_0$; the spatial tensor factor supplies $\widehat h(k)$.
+
+\LS{2}{2}{Its covariance norm is}
+\[
+ \|J\|_{H^{-1}}^2
+ =\frac1{2L}\sum_{k\in(\pi/L)\mathbb Z}|\widehat h(k)|^2
+ \int_{\R}\frac{dk_0}{2\pi}
+ \frac{k_0^2}{k_0^2+m^2+k^2}.
+\tag{2.2}
+\]
+
+\Because The first-chaos norm of a source is
+$\ip J{CJ}$; in Fourier variables, $C$ multiplies by
+$(k_0^2+m^2+k^2)^{-1}$.  Insert (2.1) and Parseval's factor $1/(2L)$.
+
+\LS{2}{3}{The right side of (2.2) is infinite.}
+
+\Because Choose $k_*$ with $\widehat h(k_*)\ne0$.  For
+$|k_0|\ge\sqrt{m^2+k_*^2}$,
+\[
+ \frac{k_0^2}{k_0^2+m^2+k_*^2}\ge\frac12.
+\]
+The corresponding $k_0$ integral dominates the integral of $1/2$ over two
+unbounded rays and therefore diverges.  All summands are nonnegative, so one
+divergent term makes the sum infinite.
+
+\LS{2}{4}{The same obstruction holds for every spatial lattice.}
+
+\Because Only the spatial momentum set and the value of the positive dispersion
+change.  Time remains continuous, and for each nonzero spatial coefficient
+$k_0^2/(k_0^2+\gamma_N(k)^2)\to1$ as $|k_0|\to\infty$.
+
+\LS{2}{5}{Hence $\Phi(\delta_0'\otimes h)$ is not a Gaussian first-chaos random
+variable and $e^{i\Pi(h)}$ cannot be represented as $e^{i\Phi(J)}$ with an
+$H^{-1}$ source.}
+
+\Because A Gaussian source functional exists in $L^2$ precisely when its covariance
+norm is finite; (2.2) violates that condition.
+
+\LS{2}{6}{This proves $\langle1\rangle2$.}\QedStep
+
+\LS{1}{3}{Replace the impossible momentum source by the exact jump mean shift.}
+
+\LS{2}{1}{At the free thermal level, compute momentum insertions by the oscillator
+trace formula.}
+
+\Because V1 derives the one-mode expression
+$\Tr(e^{-tH}D(z))/\Tr e^{-tH}=e^{-|z|^2\coth(t\gamma/2)/2}$ and takes its finite or
+trace-dominated infinite product.  No path-space derivative source is introduced.
+
+\LS{2}{2}{At the interacting level, let $e^{i\Pi(p)}$ translate the marked
+configuration and shift the Gaussian bridge by the unique harmonic path $H_p$.}
+
+\Because V1 solves
+$-\ddot H+\gamma^2H=0$, $H(t)-H(0)=\rho$,
+$\dot H(t)=\dot H(0)$ and proves the exact Mehler-chain identity.  The shifted
+interaction is the finite Appell sum
+\[
+ \U(\varphi+H)-\U(\varphi)
+ =\lambda\int[4H{:}\varphi^3{:}+6H^2{:}\varphi^2{:}
+ +4H^3\varphi+H^4].
+\tag{2.3}
+\]
+Thus the momentum variable enters only through a deterministic, bounded harmonic
+interpolant.
+
+\LS{2}{3}{This proves $\langle1\rangle3$.}\QedStep
+
+\section{The executed thermal two-torus route}
+
+\LS{1}{4}{Reduce the gate to eight explicit packages.}
+
+\begin{center}
+\begin{tabularx}{0.96\textwidth}{P{1.0cm}Y Y}
+\toprule
+Item & Required statement & Executed proof \\
+\midrule
+A1 & Continuum $K_L$, trace class, simple ground, positive gap & V3 Steps
+$\langle1\rangle9$--$\langle1\rangle16$ \\
+A2 & Lattice and continuum marked-slice mean-shift traces & V1 Step
+$\langle1\rangle6$; V3 Step $\langle1\rangle15$ \\
+A3 & Exact free thermal forms and fixed-coarse rate & V1 Steps
+$\langle1\rangle3$, $\langle1\rangle7$--$\langle1\rangle8$ \\
+A4 & Same-noise interaction comparison, Wick dictionary, shifted terms & repaired V2
+Steps $\langle1\rangle1$--$\langle1\rangle8$ \\
+A5 & Uniform plain and shifted exponential integrability & repaired V2 Step
+$\langle1\rangle9$; V3 Steps $\langle1\rangle5$--$\langle1\rangle6$ \\
+A6 & Fixed-$t$ thermal convergence & V4 Steps
+$\langle1\rangle1$--$\langle1\rangle7$ \\
+A7 & Normal-ordered partition convergence, Laplace spectral transfer, derived gap &
+V4 Steps $\langle1\rangle8$--$\langle1\rangle11$ \\
+A8 & Thermal-to-ground interchange and $C^*$ assembly & V4 Steps
+$\langle1\rangle12$--$\langle1\rangle16$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\LS{2}{1}{A1--A5 imply A6.}
+
+\Because A2 writes both thermal functionals on the common A4 probability space.
+A3 compares deterministic free factors; A4 compares all random exponents in $L^2$;
+A5 gives uniform integrability; A1 supplies the valid continuum trace identity.
+V4 performs the three-term quotient subtraction explicitly.
+
+\LS{2}{2}{A5 and the sourceless part of A6 imply the partition convergence in
+A7 after subtracting the lattice zero-point energy.}
+
+\Because The free normal-ordered product converges by the dispersion estimate, and
+the interacting factor is $\E e^{-\U_N}$.  The unshifted free product with its
+zero-point factor has no nonzero continuum limit; V4 uses only
+$\prod_k(1-e^{-t\gamma_N(k)})^{-1}$.
+
+\LS{2}{3}{A7 and the A1 continuum gap imply the uniform spectral-tail input for
+A8.}
+
+\Because The exact Laplace-transfer proof gives
+$E_1(N)-E_0(N)\to\gamma_L>0$ and
+$D_N(t_*)\to D_\infty(t_*)$.  For $t\ge t_*$,
+\[
+ D_N(t)\le e^{-(t-t_*)[E_1(N)-E_0(N)]}D_N(t_*).
+\]
+
+\LS{2}{4}{A6 plus this tail input permits the order of limits to be interchanged,
+and the Weyl criterion then proves (G) on the whole inductive-limit algebra.}
+
+\Because V4 Step $\langle1\rangle13$ writes the three-term triangle inequality,
+first chooses $t$ uniformly large by the derived gap, and only then sends
+$N\to\infty$ using fixed-$t$ convergence.  Its final two steps invoke the proved
+Weyl-reduction module.
+
+\LS{2}{5}{This proves $\langle1\rangle4$.}\QedStep
+
+\LS{1}{5}{Explain why the slab-diagonal fallback is not load bearing.}
+
+\LS{2}{1}{A slab approximation at time length $T$ has an error controlled by the
+individual lattice gap $\gamma_{N,L}$.}
+
+\Because Spectral expansion gives an excited-state tail with leading factor
+$e^{-T\gamma_{N,L}}$.
+
+\LS{2}{2}{Interchanging $T\to\infty$ and $N\to\infty$ on that route would require
+an independent eventual uniform lower bound on $\gamma_{N,L}$.}
+
+\Because Without such a bound, no single $T$ makes
+$e^{-T\gamma_{N,L}}$ small for all sufficiently large $N$.
+
+\LS{2}{3}{The thermal route is stronger because the trace partition functions
+derive precisely that gap through Laplace transfer.}
+
+\Because The compact time circle gives trace identities, and convergence of all
+large-time Laplace transforms determines the ordered atoms of the spectrum.  The
+slab route has no corresponding normalized trace input.  It is therefore a fallback,
+not part of the executed proof chain.
+
+\LS{2}{4}{This proves $\langle1\rangle5$.}\QedStep
+
+\section{Scope conclusion}
+
+The scoping document contributes one substantive negative result, Step
+$\langle1\rangle2$, and the dependency architecture in Step
+$\langle1\rangle4$.  Its tentative A4 coupling and tentative counterterm were
+superseded: the executed coupling is V2's edge-symmetrized same-noise construction,
+and the equal-point variance offset cancels the tadpole offset, leaving
+$(a,b)=(0,0)$.  The repaired V2 module further supplies the four-edge term and the
+fundamental-band/alias partition required for A4 to be true at proof level.
+
+\end{document}

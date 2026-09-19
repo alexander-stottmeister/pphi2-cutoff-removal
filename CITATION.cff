@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: >-
+  If you refer to this work, please cite it as below, and please state that the
+  main theorem is conditional on the imported interface U_GJS (Assumption A8(vi)).
+title: >-
+  Removal of the spatial cutoff for weakly coupled P(phi)_2: norm convergence of
+  the ground-state net on the quasi-local algebra (Part I)
+abstract: >-
+  Let H(g) be the spatially cutoff P(phi)_2 Hamiltonian, Omega_g its ground state,
+  and omega_g the induced state on the time-zero quasi-local algebra. Assuming the
+  slab-uniform moment interface U_GJS of Assumption A8(vi), imported at the scope at
+  which Glimm, Jaffe and Spencer (Ann. of Math. 100 (1974)) state and use it, the
+  full net (omega_g) converges in norm on every local algebra in the weak-coupling
+  region, with an explicit super-polynomial rate; the limit is locally normal,
+  translation and Z_2 invariant, and a ground state of the Glimm-Jaffe dynamics in
+  the spectral sense. The proof is Hamiltonian, via a local-perturbations-perturb-
+  locally estimate built on an exact spectral filter and the exact light cone. The
+  repository also contains the working drafts and the adversarial audit trail.
+type: software
+authors:
+  - family-names: Stottmeister
+    given-names: Alexander
+    affiliation: >-
+      Institut fuer Theoretische Physik, Leibniz Universitaet Hannover, Germany
+    # orcid: "https://orcid.org/0000-0000-0000-0000"   # fill in before the first release
+version: "1.0.0"
+date-released: "2026-09-20"
+license:
+  - CC-BY-4.0
+  - MIT
+keywords:
+  - constructive quantum field theory
+  - P(phi)_2
+  - spatial cutoff
+  - infinite volume limit
+  - ground state
+  - quasi-local algebra
+  - cluster expansion
+  - mathematical physics
+# repository-code: "https://github.com/<user>/<repo>"   # fill in once the repository exists
+# doi: "10.5281/zenodo.XXXXXXX"                          # fill in after the first Zenodo release
