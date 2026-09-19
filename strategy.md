@@ -2308,3 +2308,19 @@ duplicates a document already in the tree, one of which an MD5 comparison would 
 missed because it was a rebuild differing only in timestamp bytes. The private workspace
 repo `testing-ground` stays private and now ignores `/glimm_jaffe/`.
 
+Private companion repository, same day: `pphi2-cutoff-removal-sources` (private, 255
+files, 183 MiB) holds `refs/`, the three page-image corpora, `part_ii/dossier_images`
+and the five dossier PDFs. It shares the working tree with the public repository through
+a separate git dir at `../glimm_jaffe-private.git` with a relative `core.worktree`, so no
+file moved and no path changed. Because the tree's `.gitignore` is the public repository's
+and outranks `info/exclude`, the private side cannot select its content by ignore rules:
+it stages an explicit manifest with `git add -Af` through the `../gjp` wrapper (`gjp sync`).
+Two traps found while building it, both recorded in the wrapper's comments: a
+`:(exclude)` pathspec combined with an ignored directory silently matches nothing, and
+`git ls-files` quotes non-ASCII and backslash paths, which breaks naive set comparisons
+unless `-z` is used. Verified: 593 files on disk, 121 public, 255 private, zero overlap,
+remainder rebuildable; the manuscript and the dossier still build unchanged;
+`render_evidence.sh` still resolves its sources; and deleting a source file is recoverable
+with `gjp checkout -- .`, which was tested. Correction made in passing: `m6/main 2.pdf`
+is not a macOS duplicate but a distinct later revision, and is now tracked publicly.
+

@@ -190,6 +190,13 @@ Part II liminf constant, and the abstract-to-theorem promise map.
   16 files, 6 have rendered text identical to a document already in the tree and are
   excluded by name, while 10 are unique and are kept. Comparing MD5 alone would have
   missed one of the six, a rebuild differing only in its timestamp bytes.
+- **Private companion repository (20 September 2026).** The excluded material is now
+  version-controlled privately at `pphi2-cutoff-removal-sources`. The two repositories
+  share the single working tree `glimm_jaffe/` and track disjoint file sets; nothing was
+  moved, so every relative path, build and script is unaffected. Accounting over all 593
+  files on disk: 121 public, 255 private, zero in both, and the 217 remainder are
+  rebuildable LaTeX artifacts plus the six verified duplicate PDFs. Operational details
+  are in `PRIVATE.md`, which the public repository does not track.
 - **Not published.** Source PDFs (`refs/`) and every citation page image
   (`**/evidence/`, `part_ii/dossier_images/`) stay out of any repository: third-party
   copyright, and the JSTOR images carry a watermark naming the downloading institution.
