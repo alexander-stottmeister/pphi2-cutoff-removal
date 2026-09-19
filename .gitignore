@@ -23,8 +23,8 @@ part_ii/dossier_images/
 *.synctex.gz
 .DS_Store
 
-# macOS duplicate
-m6/main 2.pdf
+# tracked by the private companion repository instead
+PRIVATE.md
 
 # output/pdf/ re-publishes some documents unchanged; keep only the unique ones
 output/pdf/glimm-jaffe-main-theorem-repaired.pdf
