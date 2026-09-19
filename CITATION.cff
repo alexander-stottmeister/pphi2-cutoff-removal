@@ -37,5 +37,5 @@ keywords:
   - quasi-local algebra
   - cluster expansion
   - mathematical physics
-# repository-code: "https://github.com/<user>/<repo>"   # fill in once the repository exists
+repository-code: "https://github.com/alexander-stottmeister/pphi2-cutoff-removal"
 # doi: "10.5281/zenodo.XXXXXXX"                          # fill in after the first Zenodo release
