@@ -1335,9 +1335,9 @@ of them corrections to §7 above:
    ξ therefore never enters path space as a source; it enters through exact finite-mode
    Mehler formulas (free/thermal level) and through an explicit smooth mean shift of the
    periodic ensemble whose effect on the interaction is the finite Wick-binomial
-   𝒰(φ+H_p) − 𝒰(φ).
+   `\mathcal U(φ+H_p)` − `\mathcal U(φ)`.
 3. **The route: thermal two-torus (Route A).** Both sides of (II.11) are represented by
-   Gibbs traces over 𝕋_t × 𝕋_L; the t→∞/N→∞ interchange is closed by a proved two-line
+   Gibbs traces over `\mathbb T_t` × `\mathbb T_L`; the t→∞/N→∞ interchange is closed by a proved two-line
    spectral lemma whose inputs are fixed-t convergence (A6) and partition-function
    convergence (A7); the latter *derives* an eventual uniform lattice gap via a proved
    Laplace/Stone–Weierstrass spectral-transfer lemma — the uniform gap is an output, not
@@ -1429,7 +1429,7 @@ Proved in full:
   (|∂_γ(γcoth(tγ/2))| ≤ w̄+s*, |∂_γ(coth/γ)| ≤ (w̄+s*)/m², w̄ = coth(t₀m/2),
   s* = sup_{x≥t₀m/2}x/sinh²x); explicit constants C^{th}_low, C^{th}_* = w̄C_*.
 - **A2(b)** in final conditional form: the single unproved ingredient is isolated as the
-  new clause **(A1-iv)** — the periodic FK representation of e^{−tK_L} over 𝕋_t×𝕋_L —
+  new clause **(A1-iv)** — the periodic FK representation of e^{−tK_L} over `\mathbb T_t`×`\mathbb T_L` —
   added to Statement A1's V3 deliverable (amendment recorded; Høegh-Krohn 1974 is the
   import candidate for precisely this clause). Everything else in A2(b) is proved
   (kernel identity needs only trace-class; the shift lemma is mode-wise and
@@ -1451,7 +1451,7 @@ scoping note are **proved**. Contents:
   ĉ_× = (ĉ_Nĉ_∞)^{1/2}; the lattice field's law is verified against V1's periodic
   ensemble via the Mittag-Leffler sum t^{-1}Σ e^{ik₀τ}/(k₀²+ω²) = c_ω(τ) (proved by
   the distributional jump argument).
-- **Wick structure (§2).** Ensemble-Wick + finite recombination: 𝒰_N = λ[X₄+6d_N X₂
+- **Wick structure (§2).** Ensemble-Wick + finite recombination: `\mathcal U_N` = λ[X₄+6d_N X₂
   +3d_N²·Vol] with d_N(t) = (2L)^{-1}Σ 1/(γ_N(e^{tγ_N}−1)) ≥ 0, uniformly summable,
   |d_N−d_∞| ≤ Cε_N² uniformly on t ≥ t₀. Continuum chaoses Y₂,Y₄ exist by monotone
   positive mode sums (no hypercontractivity needed for existence).
@@ -1459,7 +1459,7 @@ scoping note are **proved**. Contents:
   decay F₂ ≤ C₂tL·log/(m²+|χ|²), F₃ ≤ C₃(tL)²log²/(m²+|χ|²) — honest three-region
   proofs (the naive "sum the other factor" step diverges; region III pairs both decays
   on the smaller-modulus argument); symbol difference |ĉ_N−ĉ_∞| ≤ (π⁶/768)ε²k⁴/(m²+|κ|²)³.
-- **A4(a) (§4).** ‖𝒰_N−𝒰‖_{L²} ≤ C(m,λ,t₀)(1+t)(1+L)·ε_N·log_N^{3/2} — **better than
+- **A4(a) (§4).** ‖`\mathcal U_N`−`\mathcal U`‖_{L²} ≤ C(m,λ,t₀)(1+t)(1+L)·ε_N·log_N^{3/2} — **better than
   the ε^{1/2} target**: dispersion T₁ ≤ C(tL)³ε²log³ (the k-sum of k⁴log²/(m²+k²)^{5/2}
   is O(log³), not linear in the band radius), missing modes T₂ ≤ C(tL)³ε²log², alias
   ≤ C tL ε²log³ (F₃-decay at spatial distance ≥ π/ε). Second chaos: principal part is
@@ -1482,13 +1482,13 @@ scoping note are **proved**. Contents:
   derived from the D4 mask (telescoping |1−Πz_j| ≤ Σ|1−z_j| on |z_j| ≤ 1), dispersion
   split at ℓ = 2^{r/2}, missing modes 2^{−r(1+η)}. Normalized power-symbol sup bounds
   B_j and differences ≤ B_j'ε²log² (Lemma 6.4) feed a Parseval/Schur comparison:
-  ‖Δ𝒰_N−Δ𝒰‖_{L²} ≤ C(1+t)^{5/2}[2^{−r(1+η)/4} + ε_N log_N].
-- **A5 (§7).** sup_N ‖e^{−𝒰_N}‖_{L^p} < ∞, plain AND shifted (uniform over
-  Σ_M(p) ≤ R): pointwise 𝒰_N ≥ −c₁t·log_N² (shift-invariant); dyadic comparison scale
+  ‖Δ`\mathcal U_N`−Δ`\mathcal U`‖_{L²} ≤ C(1+t)^{5/2}[2^{−r(1+η)/4} + ε_N log_N].
+- **A5 (§7).** sup_N ‖`e^{−\mathcal U_N}`‖_{L^p} < ∞, plain AND shifted (uniform over
+  Σ_M(p) ≤ R): pointwise `\mathcal U_N` ≥ −c₁t·log_N² (shift-invariant); dyadic comparison scale
   1+log(1/ε_{N_b}) ∈ (L_b/2, L_b], L_b = (b/2c₁t)^{1/2}; ρ_b ≤ C e^{−c₂L_b}L_b^{3/2}
   (c₂ = 1/2 plain, (1+η)/8 shifted); Part-I App-C Γ(e^{−τ}) hypercontractive comparison
   ‖Y‖_{2q} ≤ (2q−1)²‖Y‖₂ for chaos order ≤ 4 + Chebyshev at (2q)² = e^{c₂L_b/2} ⟹
-  ℙ[𝒰_N ≤ −b] ≤ exp(−exp((c₂/4)(b/2c₁t)^{1/2})), doubly exponential, N-uniform;
+  ℙ[`\mathcal U_N` ≤ −b] ≤ exp(−exp((c₂/4)(b/2c₁t)^{1/2})), doubly exponential, N-uniform;
   layer-cake closes.
 - **Imports (§8 register):** free-rate Lemma 2.1/(2.4) + Lemma 3.1/(3.1); V1 Lemma 5.2,
   Theorem 5.4, Remark 5.5; Part I App C thm:stability proof pattern. Nothing else.
@@ -1540,12 +1540,12 @@ the truncation convention and the A4b lattice-matched polynomial (a,b) =
   transplant points verified inline (μ-weighted Rellich; μ-Mehler kernel), discharge
   note Rem 3.2. Deliverables per K: closed form, compact resolvent, simple ground
   state, FK kernel, OU matrix elements, periodic trace identity
-  Tr T_K = Z₀E[e^{−𝒰^{(K)}}], mean-shift Weyl identity.
+  Tr T_K = Z₀E[`e^{−\mathcal U^{(K)}}`], mean-shift Weyl identity.
 - **§4 K_L (Thm 4.1 = A1-i).** T_K(t) strongly Cauchy via conditional Cauchy–Schwarz
   on the OU FK + |e^{−a}−e^{−b}| ≤ |a−b|(e^{−a}+e^{−b}) + uniform Nelson ⟹ C₀
   self-adjoint semigroup e^{−tK_L}; K_L ≥ −c_λ, K_L ≥ ½H₀−c_{1/2}; K_Lψ = H₀ψ+V_Lψ on
-  bounded smooth cylinders 𝒟 (generator computation with explicit O(t) remainder via
-  ‖𝒲‖_{L⁸} ≤ 49t‖V_L‖₂); form values = form sum on 𝒟 (monotone t↓0 interchange with
+  bounded smooth cylinders `\mathcal D` (generator computation with explicit O(t) remainder via
+  ‖`\mathcal W`‖_{L⁸} ≤ 49t‖V_L‖₂); form values = form sum on `\mathcal D` (monotone t↓0 interchange with
   the t-linear uniform bound). Scope fence (Rem 4.2): ESA/Segal uniqueness NOT proved,
   NOT consumed — all downstream uses go through this semigroup; ω^{ct} is DEFINED by
   this K_L, as the scoping note normalized.
@@ -1556,20 +1556,20 @@ the truncation convention and the A4b lattice-matched polynomial (a,b) =
   t₂ = 2s₄ (split ¼+½+¼ Hölder, smoothed factor on the long side) ⟹
   ‖T_K(t₂)−T_{K'}(t₂)‖ ≤ 18t₂M₀e^{2ct₂}‖ΔV‖₂ ⟹ NORM convergence ⟹ eigenvalue
   convergence (Weyl) + min-max domination μ_j^{(K)} ≥ ½ν_j−c_{1/2} ⟹ eigenvalue-DCT:
-  trace class ∀t, Tr T_K(t) → Tr T(t), then 𝒥₂-identity + mixed-trace DCT ⟹
-  **𝒥₁-norm convergence** ⟹ weighted traces for all bounded insertions.
-- **§6 (A1-iv) (Thm 6.2) + A2(b) (Cor 6.3).** (a) Z_∞(t) = Z₀(t)E_{per}[e^{−𝒰_t}];
-  (b) cylinder compatibility = 𝒥₁-convergence; (c) the Weyl mean-shift identity for
+  trace class ∀t, Tr T_K(t) → Tr T(t), then `\mathcal J_2`-identity + mixed-trace DCT ⟹
+  **`\mathcal J_1`-norm convergence** ⟹ weighted traces for all bounded insertions.
+- **§6 (A1-iv) (Thm 6.2) + A2(b) (Cor 6.3).** (a) Z_∞(t) = Z₀(t)E_{per}[`e^{−\mathcal U_t}`];
+  (b) cylinder compatibility = `\mathcal J_1`-convergence; (c) the Weyl mean-shift identity for
   e^{−tK_L} in V1 Def 8.1's exact display, all D4-refined symbols — via finite-mode
   identities + Euclidean limits (Lem 6.1: action tails K^{−η}, source phases, shifted
-  interaction K^{−1/2}log², uniform shifted Nelson) + operator limits (𝒥₁ + strong
+  interaction K^{−1/2}log², uniform shifted Nelson) + operator limits (`\mathcal J_1` + strong
   Weyl continuity via the explicit Fock formula + eigenbasis DCT). A2(b) closed; V1
   Rem 8.2's amendment discharged.
-- **§7 gap (Thm 7.1 = A1-iii).** Positivity improving via the limit FK: e^{−𝒲} > 0
+- **§7 gap (Thm 7.1 = A1-iii).** Positivity improving via the limit FK: e^{−`\mathcal W`} > 0
   a.s. + two-time pair positivity P[X₀∈A, X_t∈B] = ⟨1_A,Γ(e^{−tγ})1_B⟩ > 0 by Simon
   Thm I.16 (‖e^{−tγ}‖ = e^{−tm} < 1) — no Feldman–Hájek/Kakutani machinery needed.
   Perron–Frobenius (model-sheet LS 1.5 transplant) ⟹ simple ground state Ω_L > 0 a.e.;
-  discreteness ⟹ **γ_L > 0**; ω^{ct}_{L,λ} = ⟨Ω_L,·Ω_L⟩ on 𝔚(T_L).
+  discreteness ⟹ **γ_L > 0**; ω^{ct}_{L,λ} = ⟨Ω_L,·Ω_L⟩ on `\mathfrak W(T_L)`.
 
 Corrections during drafting: V1 citation numbers fixed against the aux (Def/Rem
 A2(b) are 8.1/8.2 not 7.1/7.2; continuum free theorem is 6.1 not 4.4; V2 shifted
@@ -1619,10 +1619,10 @@ V1's pre-existing 11.8pt cosmetic overfull).
    formula — a different identity. Repair: (I1) restated as the harmonic-reference FK
    with proof = V3 Thm 3.1(ii) under the lattice dictionary, plus an explicit
    **acyclicity note** (V3 3.1(ii) consumes nothing from V1 §§5–7; order is
-   V3 3.1(ii) → V1 5.1–5.3, 5.4 → V3 3.1(v)–(vi)). U renamed to 𝒱_N throughout §5 with
+   V3 3.1(ii) → V1 5.1–5.3, 5.4 → V3 3.1(v)–(vi)). U renamed to `\mathcal V_N` throughout §5 with
    its pointwise lower bound displayed.
 3. **V3 Thm 4.1(i)'s form-inequality extension was broken** — lower semicontinuity runs
-   the wrong way, and the fix it silently needed (𝒟 a form core) is exactly the
+   the wrong way, and the fix it silently needed (`\mathcal D` a form core) is exactly the
    fenced-off ESA. Repaired without any core: a Legendre identity
    q_S(ψ) = sup_φ[2Re⟨ψ,φ⟩ − ⟨φ,S⁻¹φ⟩] (and its dual) gives *form monotonicity ⟺
    reverse resolvent monotonicity* in two lines; strong semigroup convergence ⟹ strong
@@ -1630,7 +1630,7 @@ V1's pre-existing 11.8pt cosmetic overfull).
    Q(K_L) ⊆ Q(H₀). Self-contained, no Kato citation needed.
 4. **V3 Lemma 2.5 (abstract Nelson) was false as stated for sparse index families** —
    the scale-selection step needs consecutive ℓ-increments ≤ log 2; counterexample
-   𝒦 = {(π/L)4^{4ⁿ}} makes the layer-cake integral diverge. Hypothesis (N0) added, and
+   `\mathcal K` = {(π/L)4^{4ⁿ}} makes the layer-cake integral diverge. Hypothesis (N0) added, and
    verified for the full tails actually used (increment = log(1+(π/L)/(m+K)) < log 2).
 5. **Symbol-difference exponent −2 mis-transcribed as −3** in V4 Lemma 3.2(ii) and
    (traced upstream by the same reviewer) V2 Lemma 6.4's proof — numerically the −3
@@ -1642,14 +1642,14 @@ V1's pre-existing 11.8pt cosmetic overfull).
 confirmed); V3 ladder's r_j intermediate inequality (false at the top rungs — replaced
 by r_jτm ≤ 6+2e^{τm} < 12; Σ1/r_j ≤ 1 with corrected constants, M₀ = D∨1); V3 Lemma 2.3
 quartic prefactor (2L)^{−2} and the quadratic diagonal tail (variance off by 2L,
-L-scaling corrected); V3 Thm 6.2 Jensen value (E[𝒰_t] = 2Ltλ(3d_∞²+ad_∞+b), not
+L-scaling corrected); V3 Thm 6.2 Jensen value (E[`\mathcal U_t`] = 2Ltλ(3d_∞²+ad_∞+b), not
 2Ltλb); V3 Thm 4.1(iii)'s false "P_uψ → ψ uniformly on Q" (restated in L⁴, which is all
 that is used); V3 Prop 2.6(iii)'s κ (extra logarithm absorbed, κ = ½−ς); scoping
 Lemma 3.1's unjustified "(including N=∞)" (the N=∞ tail now handled separately from the
 standing strict inequality E₀(∞)<E₁(∞)); V4 Lemma 3.3's log power (log^{3/2}, not log)
 and the mis-attribution of the *continuum* Nelson bounds to V2 Thm 7.2 (they are V3
 Prop 2.6(iii)/Lemma 6.1(iv)); **V4 Thm 6.3's "sole hypothesis" claim** — Weyl-reduction
-Cor 3.1 has a standing datum, the injective *-hom β: 𝔚_∞ → 𝔚_ct with βα_M^∞ = β_M,
+Cor 3.1 has a standing datum, the injective *-hom β: `\mathfrak W_∞` → `\mathfrak W_{ct}` with βα_M^∞ = β_M,
 discharged nowhere in the chain: new **Lemma 6.3** in v4_assembly supplies it from the
 model-sheet family (injective *-homs are isometric ⟹ well-defined on the dense union ⟹
 unique isometric extension).
@@ -1688,10 +1688,10 @@ and the error had propagated into V3's gate endpoint.**
   equal-point variance exceeds the same-mode continuum field's by **exactly the same
   δ_∞** — my own check: v_N − v^{(K)} = 0.0383444, 0.0384364, 0.0384454, 0.0384461,
   0.0384462 at r_N = 16…4096 vs δ_∞ = 0.0384461803, while d_N − d^{(K)} → 0 like ε².
-  The two offsets cancel: 𝒰 of V2 Def 2.2 IS the truncation-convention quartic.
+  The two offsets cancel: `\mathcal U` of V2 Def 2.2 IS the truncation-convention quartic.
 - Consequence had it stood: V4 Thm 6.4(3) would identify the lattice limit with the
   ground state of the *wrong* operator (a spurious counterterm −6λδ_∞∫:φ²:). Internal
-  symptom the reviewers used: V4 Lem 3.3(i) and V3 Thm 6.2(a) computed the same E[𝒰_t]
+  symptom the reviewers used: V4 Lem 3.3(i) and V3 Thm 6.2(a) computed the same E[`\mathcal U_t`]
   with a 23.8% discrepancy.
 - **Repaired: the gate endpoint is (a,b) = (0,0); the gate's continuum polynomial is
   plain φ⁴.** V2 Cor 5.2 rewritten with a correct proof + new Remark 5.3 recording what
@@ -1715,11 +1715,11 @@ and the error had propagated into V3's gate endpoint.**
   V1 Lemma 5.1). Both repaired: conjugation display + Jacobian remark added, acyclicity
   restated as V1 Lem 5.1 → V3 3.1(ii) → V1 §3, Lems 5.2–5.3, Thm 5.4 → V3 3.1(v)–(vi).
 - R2 INCOMPLETE: four residual "U" symbols survived the rename (incl. inside the FK
-  display the repair existed to disambiguate), 𝒰_N was never defined, and — worst —
+  display the repair existed to disambiguate), `\mathcal U_N` was never defined, and — worst —
   the newly *numbered* display shifted every V1 equation number by +1, silently
   breaking 8 citations in V4. Fixed by **de-numbering** that display (restoring
   meanshift=14, wickshift=15, contfree=17, Dp=18, Dq=19), which repairs all 8 citations
-  without touching V4; plus the rename completed and 𝒰_N defined.
+  without touching V4; plus the rename completed and `\mathcal U_N` defined.
 - R7/R8/R12/R17 INCOMPLETE: sparse-family witness strengthened to K_n = (π/L)e^{n!};
   (N0)+κ recorded at the fourth invocation site (Lem 6.1(iv)); quartic display
   prefactor and diagonal-tail constant (C L/K, not C L m/K) fixed; erratum register
@@ -2038,7 +2038,7 @@ Theorem 7.2's scale threshold (23), too weak for three separate steps it is used
 V3's (N2) clause, Step-1a citation (the finite-mode bound is Cor 2.7, not Thm 4.1(i),
 which is about K_L), c_K's constant (needs L), and a stale cross-reference; V1's continuum
 Weyl data, wrong in TWO ways — a spurious ε_M in the parametrisation (which would make β_M
-not a ∗-homomorphism) and a one-particle space L²(𝕋_L) too large for Π(p) to be defined,
+not a ∗-homomorphism) and a one-particle space L²(`\mathbb T_L`) too large for Π(p) to be defined,
 now H^{−1/2} ⊕ iH^{1/2}, with R_M^∞ξ shown to land in it.
 
 **Verification.** 43/43 repairs presence-checked; all 113 by-number cross-document
@@ -2224,7 +2224,7 @@ unaudited change in the chain.
 
 **Question answered.** "What matters for an unconditional theorem in Part I?" The sole
 conditional element of thm:MAIN is A8(vi) U_GJS (one C₈ for the whole slab family
-h_{T,g}, T>0, g∈𝒞_H). §7 (gap) needs only fixed-g, T-uniform finiteness; §5 (M₂) needs
+h_{T,g}, T>0, g∈`\mathcal C_H`). §7 (gap) needs only fixed-g, T-uniform finiteness; §5 (M₂) needs
 g-uniformity along the affine paths g_s=(1−s)g+sg′ (lem:localize). **The Hamiltonian
 bypass for (M₂) is dead:** Expositions p. 57 leaves "N_loc ≤ const(H(g)+1) uniformly in g"
 open; Lemma 4.2.2/Thm 4.2.1 and London-1971 Thm 10.4 give g-uniform local bounds only
@@ -2324,3 +2324,23 @@ remainder rebuildable; the manuscript and the dossier still build unchanged;
 with `gjp checkout -- .`, which was tested. Correction made in passing: `m6/main 2.pdf`
 is not a macOS duplicate but a distinct later revision, and is now tracked publicly.
 
+
+### Notation rendering repair (22 September 2026)
+
+The symbols this record took from the Unicode Mathematical Alphanumeric Symbols block —
+script U for the interaction, double-struck T for the tori, script J for the trace
+ideals, and script C, D, G, K, V, W with fraktur W — are outside the Basic Multilingual
+Plane, and the font stacks GitHub serves largely do not cover them. A reader of the
+published repository saw a blank box wherever one of them stood. They are written as
+their LaTeX commands in code spans instead, as `\mathcal U_N`, `\mathfrak W(T_L)`,
+`\mathbb T_L`, carrying any sub- or superscript inside the span so that no underscore is
+left loose in running prose; three exponents that contained one are now a single span
+each.
+
+37 occurrences on 30 lines. Notation only: no claim, date, number, verdict, section
+number or ordering changed anywhere in this file, and nothing was reworded. The same
+repair was made the same day in `part_i/README.md` (24), `part_ii/README.md` (8) and
+`part_i/C5_reading_record.md` (7), and earlier in `README.md` and under `docs/`.
+
+Recorded here rather than made silently, because this file's own discipline is to say
+what was done to it.
