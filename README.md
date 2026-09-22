@@ -25,15 +25,15 @@ Direction, mathematical judgement and final responsibility are the author's.
 ## Status: the main theorem is conditional. Please read this first.
 
 **Part I** (`part_i/main.tex`, 40 pp, document of record) proves Theorem 12.2. In the
-Glimm–Jaffe–Spencer weak-coupling region 0 ≤ λ/m₀² < ε_𝒫, the full net (ω_g) of cutoff
+Glimm–Jaffe–Spencer weak-coupling region 0 ≤ λ/m₀² < ε_P, the full net (ω_g) of cutoff
 ground states, with no subnets and no space averaging, converges in norm on every local
-algebra 𝔄(O),
+algebra A(O),
 
-    lim_{g∈𝒢} ‖(ω_g − ω_∞)|_{𝔄(O)}‖ = 0,
+    lim_{g∈G} ‖(ω_g − ω_∞)|_{A(O)}‖ = 0,
 
 with an explicit super-polynomial rate in dist(O, {g < 1}). The limit is locally normal,
-translation invariant, ℤ₂ invariant for even 𝒫, and a ground state of the Glimm–Jaffe
-dynamics (𝔄, α) in the spectral sense.
+translation invariant, ℤ₂ invariant for even P, and a ground state of the Glimm–Jaffe
+dynamics (A, α) in the spectral sense.
 
 The proof is an implication from the imports A1–A8 enumerated in §2. **It is not a proof
 of those imports.** One of them is not a literal quotation of a printed theorem:
