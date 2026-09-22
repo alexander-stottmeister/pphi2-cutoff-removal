@@ -1,0 +1,95 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>The plateau net — Definition 2.1</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/figure.css">
+<main>
+  <h1>The net you take the limit along</h1>
+  <p class="sub">Definition 2.1 · <span class="mono">def:classes</span> · page 6</p>
+  <figure>
+    <svg id="stage" viewBox="0 0 760 300" role="img"
+         aria-label="Two cutoff functions with plateau value one and different plateau
+                     widths, with the distances from O to each plateau edge."></svg>
+    <div class="controls" id="ctl"></div>
+    <div class="readout" id="out"></div>
+  </figure>
+  <h2>What is happening</h2>
+  <p>The net class is
+  G = { g ∈ C<sub>c</sub><sup>∞</sup>(ℝ) : 0 ≤ g ≤ 1, g ≡ 1 on a nonempty open
+  interval }, directed by g ⪯ g′ ⟺ {g = 1}° ⊆ {g′ = 1}°. Both functions take the value
+  <b>1</b> on their plateau — that is what makes them cutoffs — so what orders them is
+  the <em>width</em> of the plateau, never the height.</p>
+  <p>The rate is a function of d(g, O) = dist(O, ℝ ∖ {g = 1}°) alone: how far the
+  observable sits inside the region where the cutoff is already switched fully on. Widen
+  a plateau and that distance grows; Theorem 11.1 then says the states get closer in
+  norm on A(O), at a rate faster than every inverse power of d.</p>
+  <p>This is a net, not a sequence, and the convergence is along the net itself — no
+  subnet, and no space averaging. That is the difference from the 1970 construction,
+  which produced an infinite-volume vacuum only as a weak-* limit point of space-averaged
+  states.</p>
+  <p class="cite">Drag the two plateaux past each other: when neither contains the other
+  the pair is simply not comparable, which is normal in a directed set and costs nothing,
+  since some third cutoff dominates both.</p>
+</main>
+<script type="module">
+import { svg, clear, slider, banner, crumbs, guard } from "../assets/figure.js";
+const main = document.querySelector("main");
+banner(main); crumbs(main, "Plateau net");
+const stage = document.getElementById("stage"), ctl = document.getElementById("ctl"),
+      out = document.getElementById("out");
+const W = 760, H = 300, base = H - 76, hgt = 104, L = 56, R = 34, O = 1.7;
+const X = (x) => L + (W - L - R) * (x + 12) / 24;
+const pg  = slider(ctl, { label: "plateau of  g", min: .5, max: 11, step: .1, value: 4,
+                          fmt: (v) => v.toFixed(1) });
+const pg2 = slider(ctl, { label: "plateau of  g′", min: .5, max: 11, step: .1, value: 8,
+                          fmt: (v) => v.toFixed(1) });
+const ramp = slider(ctl, { label: "ramp width", min: .4, max: 4, step: .1, value: 1.7,
+                           fmt: (v) => v.toFixed(1) });
+[pg, pg2, ramp].forEach((s) => s.on(() => guard(draw, out)));
+function txt(x, y, s, o = {}) {
+  const e = svg("text", Object.assign({ x, y, "font-size": 11, fill: "var(--fg)" }, o), stage);
+  e.textContent = s; return e;
+}
+function draw() {
+  clear(stage);
+  const rm = ramp.value;
+  svg("line", { x1: L, y1: base, x2: W - R, y2: base, stroke: "var(--line)" }, stage);
+  svg("line", { x1: L, y1: base - hgt, x2: W - R, y2: base - hgt, stroke: "var(--line)",
+                "stroke-width": .5, "stroke-dasharray": "4 3" }, stage);
+  txt(L - 8, base - hgt + 4, "1", { "text-anchor": "end", fill: "var(--mut)", "font-size": 9.5 });
+  txt(L - 8, base + 4, "0", { "text-anchor": "end", fill: "var(--mut)", "font-size": 9.5 });
+  const specs = [[pg.value, "var(--mut)", "g", 18], [pg2.value, "var(--ok)", "g′", 38]];
+  for (const [pl, col, lab, dy] of specs) {
+    svg("path", { d: `M${X(-12)} ${base} L${X(-pl - rm)} ${base} L${X(-pl)} ${base - hgt} ` +
+                     `L${X(pl)} ${base - hgt} L${X(pl + rm)} ${base} L${X(12)} ${base}`,
+                  fill: "none", stroke: col, "stroke-width": 2 }, stage);
+    txt(X(Math.min(pl + rm + .3, 11.4)), base - 8, lab, { "font-weight": 600, fill: col });
+    const d = Math.max(0, pl - O), y = base - hgt + dy;
+    if (d > 0) {
+      svg("line", { x1: X(O), y1: y, x2: X(pl), y2: y, stroke: col, "stroke-width": 1,
+                    "stroke-dasharray": "3 2" }, stage);
+      for (const xx of [O, pl])
+        svg("line", { x1: X(xx), y1: y - 4, x2: X(xx), y2: y + 4, stroke: col,
+                      "stroke-width": 1 }, stage);
+      txt(X((O + pl) / 2), y - 5, `d(${lab}, O) = ${d.toFixed(1)}`,
+          { "text-anchor": "middle", "font-size": 9.5, fill: col });
+    }
+  }
+  svg("rect", { x: X(-O), y: base - 4, width: X(O) - X(-O), height: 8, rx: 2,
+                fill: "var(--acc)" }, stage);
+  txt(X(0), base + 20, "O", { "text-anchor": "middle", "font-weight": 600, fill: "var(--acc)" });
+  const a = pg.value, b = pg2.value;
+  const rel = a <= b ? "g ⪯ g′" : "g′ ⪯ g";
+  out.textContent =
+    `{g = 1}° = (−${a.toFixed(1)}, ${a.toFixed(1)})   ` +
+    `{g′ = 1}° = (−${b.toFixed(1)}, ${b.toFixed(1)})\n` +
+    `${rel} — the smaller plateau is contained in the larger, so the net order ` +
+    `compares them\n` +
+    `d(g, O) = ${Math.max(0, a - O).toFixed(2)}   ` +
+    `d(g′, O) = ${Math.max(0, b - O).toFixed(2)}` +
+    (Math.min(a, b) <= O
+      ? `\nthe smaller plateau no longer contains O: d = 0 and the rate gives nothing here`
+      : ``);
+}
+guard(draw, out);
+</script>

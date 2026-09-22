@@ -9,7 +9,7 @@ in the [result inventory](results.md); this page is the orientation.
 
 ## The model (§2.1)
 
-ℋ = L²(𝒮′(ℝ), dφ₀) is Q-space over the time-zero free field of mass m₀ > 0, with dφ₀
+ℋ = L²(S′(ℝ), dφ₀) is Q-space over the time-zero free field of mass m₀ > 0, with dφ₀
 Gaussian of covariance C = (2μ)⁻¹, μ = (−∂ₓ² + m₀²)^{1/2}. Weyl operators
 W(f,h) = exp i(φ₀(f) + π₀(h)) generate the local net
 
@@ -19,14 +19,14 @@ W(f,h) = exp i(φ₀(f) + π₀(h)) generate the local net
 \mathfrak A=\overline{\textstyle\bigcup_O \mathfrak A(O)}^{\,\|\cdot\|} ,
 ```
 
-with O ranging over bounded open intervals. For 𝒫(ξ) = Σ_{n≤2p′} a_n ξⁿ with a_{2p′} > 0
+with O ranging over bounded open intervals. For P(ξ) = Σ_{n≤2p′} a_n ξⁿ with a_{2p′} > 0
 and p′ ≥ 1, and real compactly supported h ∈ L¹ ∩ L²,
 
 ```latex
 V(h):=\lambda\int h(x)\,{:}\mathscr P(\varphi_0(x)){:}_C\,dx ,
 ```
 
-a self-adjoint multiplication operator affiliated with 𝔄(U) for every bounded open
+a self-adjoint multiplication operator affiliated with A(U) for every bounded open
 U ⊇ supp h, and finitely additive on common domains. For a cutoff g,
 
 ```latex
@@ -57,9 +57,9 @@ organised around:
 
 | class | what quantifies over it |
 |---|---|
-| 𝒞_E | the Euclidean estimates of A8 |
-| 𝒞_H | the uniform moment (§5) and the uniform gap (§7) |
-| 𝒢 ⊂ 𝒞_H | the convergence theorem (§11, §12) |
+| C_E | the Euclidean estimates of A8 |
+| C_H | the uniform moment (§5) and the uniform gap (§7) |
+| G ⊂ C_H | the convergence theorem (§11, §12) |
 
 For a bounded interval O and r ≥ 0,
 

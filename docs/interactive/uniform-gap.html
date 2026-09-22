@@ -1,0 +1,92 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>The uniform gap — Theorem 7.8</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/figure.css">
+<main>
+  <h1>One gap for the whole class</h1>
+  <p class="sub">Theorem 7.8 · <span class="mono">thm:G</span> · page 21</p>
+  <figure>
+    <svg id="stage" viewBox="0 0 760 340" role="img"
+         aria-label="Spectra of the cutoff Hamiltonian for growing cutoffs, with the
+                     gap held open by one constant."></svg>
+    <div class="controls" id="ctl"></div>
+    <div class="readout" id="out"></div>
+  </figure>
+  <h2>What is happening</h2>
+  <p>For each cutoff g, spec H(g) ⊆ {0} ∪ [γ, ∞): the ground state is simple and the
+  rest of the spectrum starts at γ. The content of Theorem 7.8 is the word
+  <b>uniform</b> — one γ that works for every g in the class, not a γ(g) that may shrink
+  as the cutoff grows.</p>
+  <p>Everything downstream needs exactly that. The inverse-energy filter of Lemma 9.1
+  is built from a function that vanishes on [−γ/2, γ/2], so it inverts H only on the
+  complement of the kernel, and its time kernel decays at a rate set by γ. If γ were
+  allowed to shrink with the cutoff, the kernel would spread, the two-regime bound would
+  weaken, and the rate would degrade to nothing in the limit.</p>
+  <p>Switch on the counterfactual to see it: a gap closing like 1/n is still positive
+  for every single cutoff, and still useless, because no fixed γ serves the whole net.</p>
+  <p class="cite">In §11 the abstract parameter γ is instantiated as the GJS mass
+  m₁.</p>
+</main>
+<script type="module">
+import { svg, clear, slider, toggle, banner, crumbs, guard } from "../assets/figure.js";
+const main = document.querySelector("main");
+banner(main); crumbs(main, "Uniform gap");
+const stage = document.getElementById("stage"), ctl = document.getElementById("ctl"),
+      out = document.getElementById("out");
+const W = 760, H = 340, L = 92, R = 44, EMAX = 6;
+const X = (e) => L + (W - L - R) * e / EMAX;
+const nS = slider(ctl, { label: "cutoffs shown", min: 3, max: 8, step: 1, value: 5,
+                         fmt: (v) => v.toFixed(0) });
+const gS = slider(ctl, { label: "gap  γ", min: .3, max: 3, step: .05, value: 1.6,
+                         fmt: (v) => v.toFixed(2) });
+const cf = toggle(ctl, { label: "counterfactual: let the gap close like γ/n",
+                         checked: false });
+[nS, gS].forEach((s) => s.on(() => guard(draw, out))); cf.on(() => guard(draw, out));
+function txt(x, y, t, o = {}) {
+  const e = svg("text", Object.assign({ x, y, "font-size": 11, fill: "var(--fg)" }, o), stage);
+  e.textContent = t; return e;
+}
+function draw() {
+  clear(stage);
+  const n = nS.value, g0 = gS.value, closing = cf.checked;
+  const rows = [];
+  for (let i = 1; i <= n; i++) rows.push(closing ? g0 / i : g0);
+  const gmin = Math.min(...rows);
+  const y0 = 66, dy = Math.min(40, (H - y0 - 70) / n);
+  for (let i = 0; i < n; i++) {
+    const y = y0 + i * dy, g = rows[i];
+    txt(L - 14, y + 4, `g${"₁₂₃₄₅₆₇₈"[i]}`,
+        { "text-anchor": "end", fill: "var(--mut)", "font-size": 10 });
+    svg("line", { x1: L, y1: y, x2: W - R, y2: y, stroke: "var(--line)",
+                  "stroke-width": .5, opacity: .6 }, stage);
+    svg("rect", { x: X(g), y: y - 7, width: X(EMAX) - X(g), height: 14, rx: 2,
+                  fill: "var(--fill)" }, stage);
+    svg("line", { x1: X(g), y1: y - 8, x2: X(g), y2: y + 8,
+                  stroke: closing ? "var(--warn)" : "var(--ok)", "stroke-width": 2 }, stage);
+    svg("circle", { cx: X(0), cy: y, r: 4.5, fill: "var(--acc)" }, stage);
+  }
+  const yb = y0 + (n - 1) * dy;
+  svg("line", { x1: X(gmin), y1: y0 - 18, x2: X(gmin), y2: yb + 22,
+                stroke: closing ? "var(--warn)" : "var(--ok)", "stroke-width": 1,
+                "stroke-dasharray": "4 3" }, stage);
+  txt(X(gmin), y0 - 24, closing ? "inf γ(g) → 0" : "γ",
+      { "text-anchor": "middle", "font-weight": 600,
+        fill: closing ? "var(--warn)" : "var(--ok)" });
+  txt(X(0), y0 - 24, "0", { "text-anchor": "middle", "font-weight": 600, fill: "var(--acc)" });
+  txt(L, H - 30, "spec H(g) ⊆ {0} ∪ [γ, ∞)", { "font-weight": 600 });
+  txt(L, H - 14, closing
+      ? "each cutoff has a gap, but no single γ serves them all — the filter spreads and the rate dies"
+      : "one γ for the whole class — the filter kernel has a fixed decay scale",
+      { fill: "var(--mut)", "font-size": 10.5 });
+  out.textContent = closing
+    ? `γ(gₙ) = γ₀/n:  ${rows.map((r) => r.toFixed(2)).join(", ")}\n` +
+      `inf over the class = ${gmin.toFixed(3)} and falls to 0 — Theorem 7.8 is exactly ` +
+      `the statement that this does NOT happen.\nWithout it, d₀ = 4 + 2/γ ` +
+      `blows up and Ψ_γ degrades: the limit would not be reached in norm.`
+    : `γ(g) = ${g0.toFixed(2)} for every cutoff shown; inf over the class = ` +
+      `${g0.toFixed(2)} > 0.\nd₀ = 4 + 2/γ = ${(4 + 2 / g0).toFixed(2)};  ` +
+      `the filter's exponential factor is e^(−γ n/4).`;
+}
+guard(draw, out);
+</script>

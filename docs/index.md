@@ -16,16 +16,16 @@ published paper.
 ## The result
 
 For the spatially cutoff P(φ)₂ Hamiltonian H(g) with ground state Ω_g, and ω_g the
-induced state on the time-zero quasi-local algebra 𝔄, in the Glimm–Jaffe–Spencer
-weak-coupling region 0 ≤ λ/m₀² < ε_𝒫 the **full net** (ω_g) — no subnets, no space
-averaging — converges in norm on every local algebra 𝔄(O),
+induced state on the time-zero quasi-local algebra A, in the Glimm–Jaffe–Spencer
+weak-coupling region 0 ≤ λ/m₀² < ε_P the **full net** (ω_g) — no subnets, no space
+averaging — converges in norm on every local algebra A(O),
 
 ```latex
 \lim_{g\in\mathcal G}\ \bigl\|(\omega_g-\omega_\infty)|_{\mathfrak A(O)}\bigr\| = 0 ,
 ```
 
 with an explicit super-polynomial rate in dist(O, {g < 1}). The limit is locally normal,
-translation invariant, ℤ₂ invariant for even 𝒫, and a ground state of the Glimm–Jaffe
+translation invariant, ℤ₂ invariant for even P, and a ground state of the Glimm–Jaffe
 dynamics in the spectral sense.
 
 ## Where to go
@@ -38,7 +38,7 @@ dynamics in the spectral sense.
 | [Definitions](definitions.md) | the model, the three cutoff classes, the plateau net |
 | [Notation](notation.md) | the frozen notation table |
 | [Provenance](provenance.md) | gates, corrections history, the citation dossiers |
-| [Figures](interactive/) | interactive illustrations of the main results |
+| [Figures](interactive/index.html) | eight interactive illustrations of the main results (on the published site) |
 
 The manuscript itself is [`part_i/main.pdf`](../part_i/main.pdf) (40 pp, document of
 record).

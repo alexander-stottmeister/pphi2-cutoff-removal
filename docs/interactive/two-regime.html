@@ -1,0 +1,145 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>The two-regime bound — Lemma 10.3</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/figure.css">
+<main>
+  <h1>The two regimes</h1>
+  <p class="sub">Lemma 10.3 · <span class="mono">lem:tworegime</span> · page 27</p>
+
+  <figure>
+    <svg id="stage" viewBox="0 0 760 420" role="img"
+         aria-label="Spacetime diagram: the light cone spreading from O, with the cell
+                     B_j outside it until the switching time."></svg>
+    <div class="controls" id="ctl"></div>
+    <div class="readout" id="out"></div>
+  </figure>
+
+  <h2>What is happening</h2>
+  <p>The cutoff dynamics has an <b>exact</b> light cone: by Proposition 2.7,
+  β<sup>g</sup><sub>t</sub>(A) lies in A(O<sub>|t|</sub>) whenever A ∈ A(O). So as |t|
+  grows, the observable spreads at unit speed and nothing outside the cone has heard of
+  it yet.</p>
+
+  <p>Take a cell B<sub>j</sub> at distance r<sub>j</sub> from O. While
+  |t| ≤ r<sub>j</sub>/2 the cone has not reached it — in fact
+  dist(B<sub>j</sub>, O<sub>|t|</sub>) ≥ r<sub>j</sub> − |t| ≥ r<sub>j</sub>/2 — and the
+  clustering lemma applies with the uniform gap γ, giving a bound that is
+  <b>exponentially small in r<sub>j</sub></b>. Past that time the argument is gone and
+  only the trivial bound ‖V<sub>j</sub>Ω‖·‖A‖ ≤ 2M is available.</p>
+
+  <p>Drag <i>t</i> across r<sub>j</sub>/2 and watch which bound is in force. The whole
+  content of Lemma 10.3 is that <em>both</em> are available simultaneously, so the
+  one-path estimate can integrate the good bound over the short times and pay the
+  trivial one only over the rest. Summing that trade-off over the cells is what produces
+  the rate function Ψ<sub>γ</sub> of Lemma 10.5.</p>
+
+  <p class="cite">Statement and proof:
+  <a href="../results.html">result inventory</a>. The constant M is the uniform local
+  moment of Theorem 5.1; γ is the uniform gap of Theorem 7.8.</p>
+</main>
+
+<script type="module">
+import { svg, clear, slider, banner, crumbs } from "../assets/figure.js";
+banner(document.querySelector("main"));
+crumbs(document.querySelector("main"), "Two regimes");
+
+const stage = document.getElementById("stage"), ctl = document.getElementById("ctl"),
+      out = document.getElementById("out");
+const W = 760, H = 420, cx = 250, base = H - 78, top = 54, sc = 19, a = 1.4;
+const tmaxView = (base - top) / sc;
+const X = (x) => cx + x * sc, Y = (t) => base - t * sc;
+
+const t  = slider(ctl, { label: "time  |t|", min: 0, max: 16, step: 0.05, value: 2.2,
+                         fmt: (v) => v.toFixed(2) });
+const rj = slider(ctl, { label: "distance  rⱼ", min: 1, max: 15, step: 0.1, value: 7,
+                         fmt: (v) => v.toFixed(1) });
+const g  = slider(ctl, { label: "gap  γ", min: 0.2, max: 4, step: 0.05, value: 1,
+                         fmt: (v) => v.toFixed(2) });
+const M  = slider(ctl, { label: "moment  M", min: 0.5, max: 4, step: 0.1, value: 1,
+                         fmt: (v) => v.toFixed(1) });
+[t, rj, g, M].forEach((s) => s.on(draw));
+
+function txt(x, y, s, o = {}) {
+  const e = svg("text", Object.assign({ x, y, "font-size": 11, fill: "var(--fg)" }, o), stage);
+  e.textContent = s; return e;
+}
+
+function draw() {
+  clear(stage);
+  const T = t.value, R = rj.value, half = R / 2, inside = T <= half;
+  const bound = inside ? 2 * M.value * Math.exp(-g.value * R / 4) : 2 * M.value;
+
+  // regions: exponential below the switching time, trivial above
+  svg("rect", { x: X(-11.5), y: Y(Math.min(half, tmaxView)), width: X(11.5) - X(-11.5),
+                height: base - Y(Math.min(half, tmaxView)), fill: "var(--ok)",
+                opacity: .08 }, stage);
+  if (half < tmaxView)
+    svg("rect", { x: X(-11.5), y: top, width: X(11.5) - X(-11.5),
+                  height: Y(half) - top, fill: "var(--line)", opacity: .18 }, stage);
+
+  // the cone, drawn only up to the current time
+  const tc = Math.min(T, tmaxView);
+  svg("path", { d: `M${X(-a)} ${Y(0)} L${X(-a - tc)} ${Y(tc)} L${X(a + tc)} ${Y(tc)} L${X(a)} ${Y(0)} Z`,
+                fill: "var(--fill)", opacity: .75 }, stage);
+  // the cone it will become, clipped to the drawing area
+  const tEdge = Math.min(tmaxView, 11.5 - a);
+  for (const s of [-1, 1])
+    svg("line", { x1: X(s * a), y1: Y(0), x2: X(s * (a + tEdge)), y2: Y(tEdge),
+                  stroke: "var(--acc)", "stroke-width": 1.6, "stroke-dasharray": "4 3",
+                  opacity: .45 }, stage);
+  for (const s of [-1, 1])
+    svg("line", { x1: X(s * a), y1: Y(0), x2: X(s * (a + tc)), y2: Y(tc),
+                  stroke: "var(--acc)", "stroke-width": 2.2 }, stage);
+
+  // axes, O, B_j
+  svg("line", { x1: X(-11.5), y1: Y(0), x2: X(11.5), y2: Y(0), stroke: "var(--line)" }, stage);
+  svg("line", { x1: cx, y1: base + 8, x2: cx, y2: top - 8, stroke: "var(--line)" }, stage);
+  txt(X(11.5) + 8, Y(0) + 4, "x", { fill: "var(--mut)" });
+  txt(cx + 8, top - 2, "t", { fill: "var(--mut)" });
+  svg("rect", { x: X(-a), y: Y(0) - 4, width: X(a) - X(-a), height: 8, rx: 2,
+                fill: "var(--acc)" }, stage);
+  txt(cx, Y(0) + 20, "O", { "text-anchor": "middle", "font-weight": 600, fill: "var(--acc)" });
+  svg("rect", { x: X(a + R), y: Y(0) - 5, width: sc, height: 10, rx: 2,
+                fill: "var(--warn)" }, stage);
+  txt(X(a + R) + sc / 2, Y(0) + 20, "Bⱼ",
+      { "text-anchor": "middle", "font-weight": 600, fill: "var(--warn)" });
+
+  // the switching time
+  if (half <= tmaxView) {
+    svg("line", { x1: X(-11.5), y1: Y(half), x2: X(11.5), y2: Y(half),
+                  stroke: "var(--warn)", "stroke-width": 1.2, "stroke-dasharray": "5 3" }, stage);
+    txt(X(-11.3), Y(half) - 6, "|t| = rⱼ / 2",
+        { fill: "var(--warn)", "font-weight": 600 });
+  }
+  // the current time
+  svg("line", { x1: X(-11.5), y1: Y(tc), x2: X(11.5), y2: Y(tc), stroke: "var(--fg)",
+                "stroke-width": 1 }, stage);
+  txt(X(11.5) + 8, Y(tc) + 4, "now", { fill: "var(--mut)", "font-size": 10 });
+
+  // the gap the cone still has to cross
+  const gap = Math.max(0, R - tc);
+  if (gap > 0.05) {
+    const y = Y(tc) - 12;
+    svg("line", { x1: X(a + tc), y1: y, x2: X(a + R), y2: y, stroke: "var(--ok)",
+                  "stroke-width": 1.4 }, stage);
+    txt(X(a + tc + gap / 2), y - 5, `dist = ${gap.toFixed(2)}`,
+        { "text-anchor": "middle", "font-size": 10, fill: "var(--ok)", "font-weight": 600 });
+  }
+
+  const regime = inside
+    ? `|t| ≤ rⱼ/2  —  exponential regime`
+    : `|t| > rⱼ/2   —  trivial bound only`;
+  out.textContent =
+    `${regime}\n` +
+    `dist(Bⱼ, O_|t|) ≥ ${Math.max(0, R - T).toFixed(2)}` +
+    `   (≥ rⱼ/2 = ${half.toFixed(2)} while the cone has not arrived)\n` +
+    `|Cⱼ(t)|  ≤  ` +
+    (inside ? `2M e^(−γ rⱼ/4) = ${bound.toExponential(3)}`
+            : `2M = ${bound.toFixed(3)}`) +
+    (inside ? `\n           the trivial bound here would be 2M = ${(2 * M.value).toFixed(3)}, ` +
+              `a factor ${(2 * M.value / bound).toExponential(2)} worse`
+            : ``);
+}
+draw();
+</script>

@@ -17,27 +17,27 @@
 <text x="283.00" y="47.00" class="xs" fill="#1a7f37">independent of A8</text>
 <rect x="400.00" y="38.00" width="10.00" height="10.00" fill="#ffffff" stroke="#d0d7de" stroke-width="1.2" rx="2"/>
 <text x="415.00" y="47.00" class="xs mut">imported hypothesis</text>
-<path d="M400.0 420.0 C 400.0 242.5, 632.0 242.5, 632.0 65.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M222.0 83.0 C 222.0 74.0, 632.0 74.0, 632.0 65.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M100.0 159.0 C 100.0 112.0, 632.0 112.0, 632.0 65.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
+<path d="M400.0 420.0 C 400.0 242.5, 632.0 242.5, 632.0 65.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M632.0 83.0 C 632.0 112.0, 100.0 112.0, 100.0 141.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M632.0 83.0 C 632.0 126.5, 400.0 126.5, 400.0 170.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M58.0 83.0 C 58.0 141.0, 100.0 141.0, 100.0 199.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M100.0 275.0 C 100.0 280.5, 400.0 280.5, 400.0 286.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M400.0 304.0 C 400.0 309.5, 100.0 309.5, 100.0 315.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M400.0 246.0 C 400.0 280.5, 100.0 280.5, 100.0 315.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
-<path d="M400.0 304.0 C 400.0 324.0, 400.0 324.0, 400.0 344.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M100.0 333.0 C 100.0 338.5, 400.0 338.5, 400.0 344.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
+<path d="M400.0 304.0 C 400.0 324.0, 400.0 324.0, 400.0 344.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M400.0 362.0 C 400.0 382.0, 400.0 382.0, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M632.0 83.0 C 632.0 242.5, 400.0 242.5, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
-<path d="M100.0 159.0 C 100.0 280.5, 400.0 280.5, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
-<path d="M100.0 217.0 C 100.0 309.5, 400.0 309.5, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
-<path d="M58.0 83.0 C 58.0 242.5, 400.0 242.5, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
-<path d="M400.0 188.0 C 400.0 295.0, 400.0 295.0, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M100.0 391.0 C 100.0 396.5, 400.0 396.5, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
+<path d="M100.0 159.0 C 100.0 280.5, 400.0 280.5, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M550.0 83.0 C 550.0 242.5, 400.0 242.5, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
-<path d="M100.0 217.0 C 100.0 324.0, 100.0 324.0, 100.0 431.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
+<path d="M100.0 217.0 C 100.0 309.5, 400.0 309.5, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
+<path d="M400.0 188.0 C 400.0 295.0, 400.0 295.0, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
+<path d="M58.0 83.0 C 58.0 242.5, 400.0 242.5, 400.0 402.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <path d="M400.0 420.0 C 400.0 425.5, 100.0 425.5, 100.0 431.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
+<path d="M100.0 217.0 C 100.0 324.0, 100.0 324.0, 100.0 431.0" fill="none" stroke="#d0d7de" stroke-width="1"/>
 <rect x="21.00" y="63.00" width="74.00" height="22.00" fill="#ffffff" stroke="#d0d7de" stroke-width="1.4" rx="4"/>
 <text x="58.00" y="78.00" class="sm b" text-anchor="middle" fill="#1f2328">A1</text>
 <rect x="103.00" y="63.00" width="74.00" height="22.00" fill="#ffffff" stroke="#d0d7de" stroke-width="1.4" rx="4"/>

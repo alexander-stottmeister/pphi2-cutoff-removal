@@ -1,0 +1,97 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>The affine path — §4 and §8</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/figure.css">
+<main>
+  <h1>The path the estimate runs along</h1>
+  <p class="sub">§4 slab transfer, §8 affine-path regularity — and the mechanism U_GJS is
+  imported at</p>
+  <figure>
+    <svg id="stage" viewBox="0 0 760 320" role="img"
+         aria-label="Two cutoffs and the affine interpolation between them, which stays
+                     inside the cutoff class at every parameter value."></svg>
+    <div class="controls" id="ctl"></div>
+    <div class="readout" id="out"></div>
+  </figure>
+  <h2>What is happening</h2>
+  <p>To compare ω<sub>g</sub> with ω<sub>g′</sub> the manuscript does not jump between
+  them. It joins them by the straight line
+  g<sub>s</sub> = (1−s)g + s g′, s ∈ [0,1], differentiates the state along it
+  (Lemma 10.1), and integrates the derivative. That is why the estimate is called a
+  <em>one-path</em> estimate.</p>
+  <p>The path has to stay in the class for this to mean anything, and it does:
+  0 ≤ g<sub>s</sub> ≤ 1 pointwise because the constraint is convex, and the support is
+  contained in the union of the two supports, so it stays compact. That is Lemma 3.1.</p>
+  <p><b>This is also where U_GJS lives.</b> The source proves its Theorem 1.1.1 along
+  exactly this construction — the affine path h₁ + α(h₂ − h₁) between two arbitrary
+  cutoffs of its class — and applies its Theorem 1.1.7 at <em>every</em> cutoff of that
+  path with one h-independent constant. The cutoff-uniform quantifier the manuscript
+  imports as A8(vi) is the one the printed proof uses here, which is what the scope
+  amendment of 5 September 2026 records.</p>
+  <p class="cite">The passages are quoted verbatim in A8(vii′); see
+  <a href="../imports.html">imports</a>.</p>
+</main>
+<script type="module">
+import { svg, clear, slider, banner, crumbs, guard } from "../assets/figure.js";
+const main = document.querySelector("main");
+banner(main); crumbs(main, "Affine path");
+const stage = document.getElementById("stage"), ctl = document.getElementById("ctl"),
+      out = document.getElementById("out");
+const W = 760, H = 320, L = 56, Rm = 34, base = H - 84, hgt = 110;
+const X = (x) => L + (W - L - Rm) * (x + 12) / 24;
+const sS = slider(ctl, { label: "path parameter  s", min: 0, max: 1, step: .01, value: .38,
+                         fmt: (v) => v.toFixed(2) });
+const aS = slider(ctl, { label: "plateau of  g", min: 1, max: 9, step: .1, value: 3.2,
+                         fmt: (v) => v.toFixed(1) });
+const bS = slider(ctl, { label: "plateau of  g′", min: 1, max: 9, step: .1, value: 7.4,
+                         fmt: (v) => v.toFixed(1) });
+[sS, aS, bS].forEach((x) => x.on(() => guard(draw, out)));
+const prof = (x, pl, rm) => {
+  const a = Math.abs(x);
+  if (a <= pl) return 1;
+  if (a >= pl + rm) return 0;
+  const u = 1 - (a - pl) / rm;
+  const f = (z) => (z > 0 ? Math.exp(-1 / z) : 0);
+  return f(u) / (f(u) + f(1 - u));
+};
+function txt(x, y, t, o = {}) {
+  const e = svg("text", Object.assign({ x, y, "font-size": 11, fill: "var(--fg)" }, o), stage);
+  e.textContent = t; return e;
+}
+const curve = (fn, o) => {
+  const p = [];
+  for (let x = -12; x <= 12; x += 0.06) p.push(`${X(x).toFixed(1)} ${(base - hgt * fn(x)).toFixed(1)}`);
+  svg("path", Object.assign({ d: "M" + p.join(" L"), fill: "none" }, o), stage);
+};
+function draw() {
+  clear(stage);
+  const s = sS.value, A = aS.value, B = bS.value, rm = 1.6;
+  svg("line", { x1: L, y1: base, x2: W - Rm, y2: base, stroke: "var(--line)" }, stage);
+  svg("line", { x1: L, y1: base - hgt, x2: W - Rm, y2: base - hgt, stroke: "var(--line)",
+                "stroke-width": .5, "stroke-dasharray": "4 3" }, stage);
+  txt(L - 8, base - hgt + 4, "1", { "text-anchor": "end", fill: "var(--mut)", "font-size": 9.5 });
+  txt(L - 8, base + 4, "0", { "text-anchor": "end", fill: "var(--mut)", "font-size": 9.5 });
+  curve((x) => prof(x, A, rm), { stroke: "var(--mut)", "stroke-width": 1.4, opacity: .8 });
+  curve((x) => prof(x, B, rm), { stroke: "var(--ok)", "stroke-width": 1.4, opacity: .8 });
+  curve((x) => (1 - s) * prof(x, A, rm) + s * prof(x, B, rm),
+        { stroke: "var(--cond)", "stroke-width": 2.6 });
+  txt(X(Math.min(A + rm + .3, 11)), base - 10, "g", { "font-weight": 600, fill: "var(--mut)" });
+  txt(X(Math.min(B + rm + .3, 11)), base - 10, "g′", { "font-weight": 600, fill: "var(--ok)" });
+  txt(L, 24, `g_s = (1 − s)·g + s·g′    at s = ${s.toFixed(2)}`,
+      { "font-weight": 600, fill: "var(--cond)" });
+  let mx = 0, mn = 1, supp = 0;
+  for (let x = -12; x <= 12; x += 0.02) {
+    const v = (1 - s) * prof(x, A, rm) + s * prof(x, B, rm);
+    mx = Math.max(mx, v); mn = Math.min(mn, v); if (v > 1e-6) supp = Math.max(supp, Math.abs(x));
+  }
+  out.textContent =
+    `0 ≤ g_s ≤ 1 :  min = ${mn.toFixed(3)}, max = ${mx.toFixed(3)}  ` +
+    `— convexity of the constraint, so the path never leaves the class\n` +
+    `supp g_s ⊆ supp g ∪ supp g′ :  |x| ≤ ${supp.toFixed(2)} ` +
+    `≤ ${(Math.max(A, B) + rm).toFixed(2)}  — still compact\n` +
+    `the source applies its Theorem 1.1.7 at every s along this path, with one constant ` +
+    `independent of the cutoff`;
+}
+guard(draw, out);
+</script>

@@ -1,0 +1,49 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Interactive figures</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/figure.css">
+<main>
+  <h1>Interactive figures</h1>
+  <p class="sub">Each one illustrates a numbered statement of
+  <a href="../../part_i/main.pdf">Part I</a>. None of them is evidence.</p>
+  <ul class="figs">
+    <li><a href="imports.html">What Theorem 12.2 rests on</a>
+      <p>The proof graph, generated from the manuscript's own references. Withdraw
+      U_GJS and watch what falls. <b>Start here.</b></p></li>
+    <li><a href="two-regime.html">The two regimes</a>
+      <p>Lemma 10.3. Drag time across r<sub>j</sub>/2 and watch the light cone swallow
+      the gap that made the exponential bound available.</p></li>
+    <li><a href="rate.html">Why the rate beats every polynomial</a>
+      <p>Lemmas 9.1 and 10.5. The filter kernel's envelope, its measured slope, and the
+      two summands of the rate function. Computed, not drawn.</p></li>
+    <li><a href="uniform-gap.html">One gap for the whole class</a>
+      <p>Theorem 7.8, and a counterfactual in which the gap closes, so you can see what
+      uniformity is buying.</p></li>
+    <li><a href="plateau.html">The net you take the limit along</a>
+      <p>Definition 2.1. The plateau order, and the distance the rate is a function
+      of.</p></li>
+    <li><a href="weak-coupling.html">Why the hypothesis is dimensionless</a>
+      <p>Proposition 3.2. The dilation orbit through the printed region.</p></li>
+    <li><a href="affine-path.html">The path the estimate runs along</a>
+      <p>§4 and §8, and the mechanism U_GJS is imported at.</p></li>
+    <li><a href="dichotomy.html">No two phases at weak coupling</a>
+      <p>Theorem 13.2. Where the clustering bound collides with symmetry breaking.</p></li>
+  </ul>
+  <p class="note" style="margin-top:22px">All eight are plain HTML, inline SVG and
+  vanilla JavaScript, with no framework, no bundler and nothing loaded from a CDN. The
+  numerical curves come from
+  <a href="../figures/make_figures.py"><span class="mono">docs/figures/make_figures.py</span></a>
+  and the proof graph from
+  <a href="../extract.py"><span class="mono">docs/extract.py</span></a>, both of which
+  read the manuscript directly.</p>
+</main>
+<script type="module">
+import { banner, crumbs } from "../assets/figure.js";
+const main = document.querySelector("main");
+banner(main);
+const n = document.createElement("nav");
+n.className = "crumbs";
+n.innerHTML = '<a href="../index.html">Overview</a> &rsaquo; Figures';
+main.prepend(n);
+</script>

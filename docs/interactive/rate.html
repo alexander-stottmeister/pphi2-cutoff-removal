@@ -1,0 +1,194 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>The rate function — Lemmas 9.1 and 10.5</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/figure.css">
+<main>
+  <h1>Why the rate beats every polynomial</h1>
+  <p class="sub">Lemma 9.1 (<span class="mono">lem:filter</span>, p. 24) and Lemma 10.5
+  (<span class="mono">lem:rate</span>, p. 28)</p>
+
+  <figure>
+    <svg id="stage" viewBox="0 0 760 360" role="img"
+         aria-label="Left: the filter kernel and its envelope on log-log axes. Right: the
+                     two summands of the rate function."></svg>
+    <div class="controls" id="ctl"></div>
+    <div class="readout" id="out"></div>
+  </figure>
+
+  <h2>What is happening</h2>
+  <p>Lemma 9.1 builds an exact kernel W<sub>γ</sub> with
+  Ŵ<sub>γ</sub>(E) = χ(E)/E, where χ is smooth, vanishes on [−γ/2, γ/2] and equals 1
+  outside (−γ, γ). Because Ŵ<sub>γ</sub> is smooth and every derivative of order ≥ 1 is
+  integrable, repeated integration by parts gives
+  |W<sub>γ</sub>(t)| ≤ ‖Ŵ<sub>γ</sub><sup>(k)</sup>‖₁ / 2π|t|<sup>k</sup> for
+  <em>every</em> k. That is what the left panel shows: no fixed power describes the
+  envelope, whose local slope keeps climbing.</p>
+
+  <p>Lemma 10.5 sums that kernel against the light-cone geometry. Its rate function
+  splits into an exponential summand and a filter-tail summand. The exponential part
+  dies quickly; the tail is what remains, and it is the part that is bounded by
+  C<sub>N</sub>(1+d)<sup>−N</sup> for every N.</p>
+
+  <p class="note"><b>Read the heights with care.</b> χ is not determined by the lemma —
+  only its support conditions are — and the constants depend on the choice. These curves
+  use one admissible χ, built from the standard exp(−1/u) step. γ enters the kernel
+  itself, so it cannot be a free slider: the three values offered are the ones
+  <span class="mono">docs/figures/make_figures.py</span> actually computed. M is an exact
+  prefactor and stays continuous. Ψ<sub>γ</sub> is an upper bound on
+  ‖(ω<sub>g</sub> − ω<sub>g′</sub>)|<sub>A(O)</sub>‖, never a measured decay.</p>
+
+  <p class="cite">An independent check on the numerics: W<sub>γ</sub>(t) = W₁(γt) forces
+  ‖W<sub>γ</sub>‖₁·γ to be constant, and the three computed values agree to 0.7%.</p>
+</main>
+
+<script type="module">
+import { svg, clear, slider, banner, crumbs, guard } from "../assets/figure.js";
+import { CURVES } from "../figures/curves.js";
+const main = document.querySelector("main");
+banner(main); crumbs(main, "Rate function");
+
+const stage = document.getElementById("stage"), ctl = document.getElementById("ctl"),
+      out = document.getElementById("out");
+const DATA = CURVES;
+
+let gkey = "1";
+const gsel = document.createElement("div");
+gsel.className = "ctl";
+gsel.innerHTML = '<label>gap γ <b></b></label>';
+const row = document.createElement("div");
+row.style.cssText = "display:flex;gap:6px";
+for (const k of Object.keys(DATA.series).sort((a, b) => a - b)) {
+  const b = document.createElement("button");
+  b.textContent = k; b.type = "button";
+  b.style.cssText = "flex:1;padding:4px 0;border:1px solid var(--line);border-radius:5px;" +
+                    "background:var(--bg);color:var(--fg);cursor:pointer";
+  b.onclick = () => { gkey = k; paint(); draw(); };
+  b.dataset.k = k; row.appendChild(b);
+}
+gsel.appendChild(row); ctl.appendChild(gsel);
+const paint = () => row.querySelectorAll("button").forEach((b) => {
+  b.style.background = b.dataset.k === gkey ? "var(--fill)" : "var(--bg)";
+  b.style.borderColor = b.dataset.k === gkey ? "var(--acc)" : "var(--line)";
+});
+
+const M = slider(ctl, { label: "moment  M", min: .5, max: 5, step: .1, value: 1,
+                        fmt: (v) => v.toFixed(1) });
+const D = slider(ctl, { label: "read off at  d", min: 0, max: 60, step: .5, value: 20,
+                        fmt: (v) => v.toFixed(1) });
+const N = slider(ctl, { label: "compare with  (1+d)⁻ᴺ,  N", min: 1, max: 8,
+                        step: 1, value: 3, fmt: (v) => v.toFixed(0) });
+[M, D, N].forEach((s) => s.on(draw));
+
+const H = 360, TOP = 44, BOT = 62;
+function axes(L, R, ymin, ymax, xticks, xlab, X, Y) {
+  for (let e = Math.ceil(ymin); e <= Math.floor(ymax); e += 2) {
+    svg("line", { x1: L, y1: Y(10 ** e), x2: R, y2: Y(10 ** e), stroke: "var(--line)",
+                  "stroke-width": .5, opacity: .6 }, stage);
+    const t = svg("text", { x: L - 6, y: Y(10 ** e) + 3.5, "font-size": 9.5,
+                            "text-anchor": "end", fill: "var(--mut)" }, stage);
+    t.textContent = "1e" + e;
+  }
+  for (const v of xticks) {
+    svg("line", { x1: X(v), y1: TOP, x2: X(v), y2: H - BOT, stroke: "var(--line)",
+                  "stroke-width": .5, opacity: .6 }, stage);
+    const t = svg("text", { x: X(v), y: H - BOT + 14, "font-size": 9.5,
+                            "text-anchor": "middle", fill: "var(--mut)" }, stage);
+    t.textContent = v;
+  }
+  svg("line", { x1: L, y1: H - BOT, x2: R, y2: H - BOT, stroke: "var(--line)" }, stage);
+  svg("line", { x1: L, y1: TOP, x2: L, y2: H - BOT, stroke: "var(--line)" }, stage);
+  const t = svg("text", { x: (L + R) / 2, y: H - BOT + 32, "font-size": 11,
+                          "text-anchor": "middle", fill: "var(--mut)" }, stage);
+  t.textContent = xlab;
+}
+const poly = (pts, o) => svg("path",
+  Object.assign({ d: "M" + pts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join(" L"),
+                  fill: "none" }, o), stage);
+function label(x, y, s, o = {}) {
+  const e = svg("text", Object.assign({ x, y, "font-size": 10.5, fill: "var(--fg)" }, o), stage);
+  e.textContent = s; return e;
+}
+
+function draw() {
+  clear(stage);
+  const S = DATA.series[gkey], g = parseFloat(gkey);
+
+  // ---------- left: the kernel and its envelope
+  const L1 = 52, R1 = 360, lx = Math.log10(160);
+  const X1 = (t) => L1 + (R1 - L1) * Math.log10(Math.max(t, 1)) / lx;
+  const Y1 = (v) => TOP + (H - TOP - BOT) * (0 - Math.log10(Math.max(v, 1e-30))) / 8;
+  axes(L1, R1, -8, 0, [1, 10, 100], "t", X1, Y1);
+  poly(S.t.map((t, i) => [X1(t), Y1(S.absW[i])]).filter(([, y]) => y < H - BOT && y > TOP),
+       { stroke: "var(--acc)", "stroke-width": .7, opacity: .3 });
+  poly(S.envT.map((t, i) => [X1(t), Y1(S.envW[i])]),
+       { stroke: "var(--acc)", "stroke-width": 2.2 });
+  label(L1, TOP - 22, `|W_γ(t)| and its envelope   (γ = ${gkey})`,
+        { "font-weight": 600, fill: "var(--acc)" });
+  // measured local slope of the envelope
+  // Measure the slope across a factor of two in t, not between neighbouring samples:
+  // adjacent points sit near the cancellation floor and give wild readings there.
+  const slopeAt = (i) => {
+    const j = S.envT.findIndex((t) => t >= S.envT[i] * 2);
+    if (j < 0 || S.envW[j] <= 0 || S.envW[i] <= 1e-7) return null;
+    return -Math.log(S.envW[j] / S.envW[i]) / Math.log(S.envT[j] / S.envT[i]);
+  };
+  for (const target of [6, 20, 60]) {
+    let i = 0;
+    S.envT.forEach((t, k) => { if (Math.abs(t - target) < Math.abs(S.envT[i] - target)) i = k; });
+    const sv = slopeAt(i);
+    if (sv === null) continue;
+    const best = [S.envT[i], sv];
+    svg("circle", { cx: X1(S.envT[i]), cy: Y1(S.envW[i]), r: 2.6, fill: "var(--warn)" }, stage);
+    label(X1(S.envT[i]) + 5, Y1(S.envW[i]) - 5, best[1].toFixed(1),
+          { "font-weight": 600, fill: "var(--warn)", "font-size": 9.5 });
+  }
+  label(L1, TOP - 8, "orange: the envelope's local log-log slope", { fill: "var(--warn)",
+        "font-size": 9.5 });
+
+  // ---------- right: the rate function
+  const L2 = 440, R2 = 742;
+  const X2 = (d) => L2 + (R2 - L2) * d / 60;
+  const Y2 = (v) => TOP + (H - TOP - BOT) * (3 - Math.log10(Math.max(v, 1e-30))) / 8;
+  axes(L2, R2, -5, 3, [0, 20, 40, 60], "d = dist(O, {g < 1})", X2, Y2);
+  const m = M.value;
+  const tot = S.d.map((d, i) => m * (S.psiExp[i] + S.psiTail[i]));
+  poly(S.d.map((d, i) => [X2(d), Y2(m * S.psiTail[i])]),
+       { stroke: "var(--acc)", "stroke-width": 2 });
+  poly(S.d.map((d, i) => [X2(d), Y2(m * S.psiExp[i])]).filter(([, y]) => y < H - BOT),
+       { stroke: "var(--warn)", "stroke-width": 1.8, "stroke-dasharray": "4 2" });
+  poly(S.d.map((d, i) => [X2(d), Y2(tot[i])]),
+       { stroke: "var(--fg)", "stroke-width": 1, opacity: .55 });
+  // C_N is the SMALLEST constant for which C_N (1+d)^-N dominates Psi on the plotted
+  // range, which is what "for every N there is a C_N" means.  Normalising at d = 0
+  // instead would draw an envelope that Psi crosses, i.e. a picture of the lemma
+  // failing.
+  const n = N.value;
+  const C = Math.max(...S.d.map((d, i) => tot[i] * Math.pow(1 + d, n)));
+  poly(S.d.map((d) => [X2(d), Y2(C * Math.pow(1 + d, -n))]).filter(([, y]) => y < H - BOT),
+       { stroke: "var(--mut)", "stroke-width": 1, "stroke-dasharray": "2 3" });
+  svg("line", { x1: X2(S.d0), y1: TOP, x2: X2(S.d0), y2: H - BOT, stroke: "var(--ok)",
+                "stroke-width": 1, "stroke-dasharray": "3 3" }, stage);
+  label(X2(S.d0) + 4, TOP + 10, "d₀", { fill: "var(--ok)", "font-size": 9.5 });
+  label(L2, TOP - 22, "Ψ_γ(d)", { "font-weight": 600 });
+  label(L2 + 42, TOP - 22, "filter tail", { fill: "var(--acc)", "font-size": 9.5 });
+  label(L2 + 108, TOP - 22, "exponential", { fill: "var(--warn)", "font-size": 9.5 });
+  label(L2 + 174, TOP - 22, `Cₙ(1+d)⁻${n}`, { fill: "var(--mut)", "font-size": 9.5 });
+  const d = D.value, i = Math.round(d / 0.5);
+  const ex = m * S.psiExp[i], tl = m * S.psiTail[i], ps = ex + tl;
+  svg("line", { x1: X2(d), y1: TOP, x2: X2(d), y2: H - BOT, stroke: "var(--fg)",
+                "stroke-width": 1, opacity: .4 }, stage);
+  svg("circle", { cx: X2(d), cy: Y2(ps), r: 3.2, fill: "var(--fg)" }, stage);
+
+  out.textContent =
+    `γ = ${gkey}   M = ${m.toFixed(1)}   d = ${d.toFixed(1)}   ` +
+    `d₀ = 4 + 2/γ = ${S.d0.toFixed(2)}   ||W_γ||₁ = ${S.L1}\n` +
+    `Ψ_γ(${d.toFixed(1)}) = ${ps.toExponential(3)}` +
+    `   =  ${ex.toExponential(2)} (exponential)  +  ${tl.toExponential(2)} (filter tail)\n` +
+    `the tail is ${(100 * tl / ps).toFixed(1)}% of it` +
+    (d > 12 ? " — the exponential part has already stopped mattering" : "") +
+    `\nbound on the states: ||(ω_g − ω_g′)|A(O)|| ≤ ` +
+    `min{ 2, Ψ_γ(d) } = ${Math.min(2, ps).toExponential(3)}`;
+}
+paint(); guard(draw, out);
+</script>

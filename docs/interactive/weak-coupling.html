@@ -1,0 +1,111 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>The weak-coupling reduction — Proposition 3.2</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/figure.css">
+<main>
+  <h1>Why the hypothesis is dimensionless</h1>
+  <p class="sub">Proposition 3.2 · <span class="mono">prop:scaling</span> · page 13</p>
+  <figure>
+    <svg id="stage" viewBox="0 0 760 380" role="img"
+         aria-label="The (m0, lambda) plane with the printed weak-coupling region and the
+                     dilation orbit of a point."></svg>
+    <div class="controls" id="ctl"></div>
+    <div class="readout" id="out"></div>
+  </figure>
+  <h2>What is happening</h2>
+  <p>The source states its smallness hypothesis at one fixed mass: λ &lt; λ<sub>*</sub>
+  at m₀ = M<sub>*</sub>. The manuscript's standing hypothesis is instead
+  0 ≤ λ/m₀² &lt; ε<sub>P</sub>, a <em>dimensionless</em> condition. Proposition 3.2 is
+  what connects them, and it is a scaling argument, not a strengthening.</p>
+  <p>The GJS unitary dilation with s = m₀/M<sub>*</sub> sends
+  (m₀, λ) ↦ (s<sup>−1</sup>m₀, s<sup>−2</sup>λ) = (M<sub>*</sub>,
+  λM<sub>*</sub>²/m₀²). Drag s and watch the point slide along the curve
+  λ/m₀² = const — the whole orbit has one value of the dimensionless coupling, which is
+  exactly why the condition can be stated that way. The orbit crosses the vertical line
+  m₀ = M<sub>*</sub> at a single point, and that point lies below λ<sub>*</sub> precisely
+  when λ/m₀² &lt; ε<sub>P</sub> = λ<sub>*</sub>/M<sub>*</sub>².</p>
+  <p class="note">The axes are dimensionless multiples of M<sub>*</sub> and λ<sub>*</sub>.
+  Nothing numerical here is taken from the source: λ<sub>*</sub> and M<sub>*</sub> are
+  whatever GJS fix them to be, and only the shape of the argument is on display.</p>
+</main>
+<script type="module">
+import { svg, clear, slider, banner, crumbs, guard } from "../assets/figure.js";
+const main = document.querySelector("main");
+banner(main); crumbs(main, "Weak coupling");
+const stage = document.getElementById("stage"), ctl = document.getElementById("ctl"),
+      out = document.getElementById("out");
+const W = 760, H = 380, L = 64, R = 30, TOP = 34, B = 62;
+const XM = 3.0, YM = 3.0;
+const X = (m) => L + (W - L - R) * m / XM;
+const Y = (l) => H - B - (H - TOP - B) * l / YM;
+const m0 = slider(ctl, { label: "mass  m₀ / M*", min: .3, max: 2.8, step: .01,
+                         value: 1.8, fmt: (v) => v.toFixed(2) });
+const lam = slider(ctl, { label: "coupling  λ / λ*", min: .05, max: 2.9,
+                          step: .01, value: 2.2, fmt: (v) => v.toFixed(2) });
+const s = slider(ctl, { label: "dilation  s", min: .35, max: 2.8, step: .01, value: 1,
+                        fmt: (v) => v.toFixed(2) });
+[m0, lam, s].forEach((x) => x.on(() => guard(draw, out)));
+function txt(x, y, t, o = {}) {
+  const e = svg("text", Object.assign({ x, y, "font-size": 11, fill: "var(--fg)" }, o), stage);
+  e.textContent = t; return e;
+}
+function draw() {
+  clear(stage);
+  // admissible region: lambda/m0^2 < eps_P, i.e. lambda < m0^2 in these units
+  const pts = [];
+  for (let m = 0; m <= XM; m += 0.02) pts.push([X(m), Y(Math.min(YM, m * m))]);
+  svg("path", { d: "M" + X(0) + " " + Y(0) + " L" +
+                   pts.map(([a, b]) => `${a.toFixed(1)} ${b.toFixed(1)}`).join(" L") +
+                   ` L${X(XM)} ${Y(0)} Z`, fill: "var(--ok)", opacity: .10 }, stage);
+  svg("path", { d: "M" + pts.map(([a, b]) => `${a.toFixed(1)} ${b.toFixed(1)}`).join(" L"),
+                fill: "none", stroke: "var(--ok)", "stroke-width": 1.6 }, stage);
+  for (const g of [0, 1, 2, 3]) {
+    svg("line", { x1: X(g), y1: TOP, x2: X(g), y2: H - B, stroke: "var(--line)",
+                  "stroke-width": .5, opacity: .6 }, stage);
+    svg("line", { x1: L, y1: Y(g), x2: W - R, y2: Y(g), stroke: "var(--line)",
+                  "stroke-width": .5, opacity: .6 }, stage);
+    txt(X(g), H - B + 15, g, { "text-anchor": "middle", fill: "var(--mut)", "font-size": 9.5 });
+    txt(L - 7, Y(g) + 4, g, { "text-anchor": "end", fill: "var(--mut)", "font-size": 9.5 });
+  }
+  svg("line", { x1: L, y1: H - B, x2: W - R, y2: H - B, stroke: "var(--line)" }, stage);
+  svg("line", { x1: L, y1: TOP, x2: L, y2: H - B, stroke: "var(--line)" }, stage);
+  txt((L + W - R) / 2, H - B + 34, "m₀ / M*", { "text-anchor": "middle", fill: "var(--mut)" });
+  txt(L - 44, TOP + 4, "λ / λ*", { fill: "var(--mut)" });
+  // the printed hypothesis: the single point (M*, lambda) with lambda < lambda*
+  svg("line", { x1: X(1), y1: TOP, x2: X(1), y2: H - B, stroke: "var(--acc)",
+                "stroke-width": 1.2, "stroke-dasharray": "5 3" }, stage);
+  txt(X(1) + 6, TOP + 12, "m₀ = M*  (the printed mass)", { fill: "var(--acc)",
+      "font-size": 9.5 });
+  // the orbit of the chosen point
+  const M = m0.value, Lm = lam.value, k = Lm / (M * M);
+  const orb = [];
+  for (let m = 0.05; m <= XM; m += 0.02) if (k * m * m <= YM) orb.push([X(m), Y(k * m * m)]);
+  svg("path", { d: "M" + orb.map(([a, b]) => `${a.toFixed(1)} ${b.toFixed(1)}`).join(" L"),
+                fill: "none", stroke: "var(--cond)", "stroke-width": 1.6,
+                "stroke-dasharray": "4 3" }, stage);
+  const sv = s.value, mm = M / sv, ll = Lm / (sv * sv);
+  svg("circle", { cx: X(M), cy: Y(Lm), r: 4, fill: "var(--mut)" }, stage);
+  txt(X(M) + 8, Y(Lm) - 6, "start", { fill: "var(--mut)", "font-size": 9.5 });
+  if (mm <= XM && ll <= YM) {
+    svg("circle", { cx: X(mm), cy: Y(ll), r: 5.5, fill: "var(--cond)" }, stage);
+    txt(X(mm) + 9, Y(ll) + 4, "after dilation", { fill: "var(--cond)", "font-weight": 600,
+        "font-size": 9.5 });
+  }
+  const inside = k < 1;
+  txt(W - R - 6, H - B - 12, inside ? "inside: λ/m₀² < ε_P"
+                                    : "outside the weak-coupling region",
+      { "text-anchor": "end", "font-weight": 600,
+        fill: inside ? "var(--ok)" : "var(--warn)" });
+  out.textContent =
+    `λ/m₀² = ${k.toFixed(3)} · ε_P   ` +
+    `(invariant along the orbit — that is the point)\n` +
+    `dilation s = ${sv.toFixed(2)}:  (m₀, λ) = ` +
+    `(${M.toFixed(2)}, ${Lm.toFixed(2)}) ↦ (${mm.toFixed(2)}, ${ll.toFixed(2)})\n` +
+    `at s = m₀/M* = ${M.toFixed(2)} the orbit reaches m₀ = M* with ` +
+    `λ = ${k.toFixed(3)}·λ*, ` +
+    (inside ? "strictly below λ*: the printed hypothesis holds"
+            : "at or above λ*: the printed hypothesis fails");
+}
+guard(draw, out);
+</script>

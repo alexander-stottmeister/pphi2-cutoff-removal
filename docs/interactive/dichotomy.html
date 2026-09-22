@@ -1,0 +1,108 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>No two phases at weak coupling — Theorem 13.2</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../assets/figure.css">
+<main>
+  <h1>No two phases at weak coupling</h1>
+  <p class="sub">Theorem 13.2 · <span class="mono">thm:dichotomy</span> · page 31</p>
+  <figure>
+    <svg id="stage" viewBox="0 0 760 330" role="img"
+         aria-label="The uniform clustering bound falling exponentially in the
+                     separation, against the constant an order parameter would need."></svg>
+    <div class="controls" id="ctl"></div>
+    <div class="readout" id="out"></div>
+  </figure>
+  <h2>What is happening</h2>
+  <p>Suppose the weak-coupling theory did break the ℤ₂ symmetry: a bounded order
+  parameter B localized in O, with |ω(B)| ≥ δ &gt; 0 in each phase. Translate it far
+  away by a, and clustering applies to the pair.</p>
+  <p>The uniform gap gives the truncated correlator a bound that holds
+  <em>uniformly in the cutoff</em>,
+  |ω<sub>n</sub>(B τ<sub>a</sub>(B)) − ω<sub>n</sub>(B) ω<sub>n</sub>(τ<sub>a</sub>(B))|
+  ≤ 2‖B‖² e<sup>−m₁R<sub>a</sub>/2</sup>, and it survives the limit. Push R<sub>a</sub>
+  out and the correlations are forced to zero — but a broken phase needs them to persist
+  at δ². Beyond the crossing the two requirements cannot both hold, which is the
+  contradiction that proves the theorem.</p>
+  <p class="note">Theorem 13.2 is stated as the impossibility of (B1)–(B4) holding
+  together, conditional on the same imports as Theorem 12.2 — so it inherits U_GJS. It
+  excludes a two-phase structure of that specific form; it is not a uniqueness theorem
+  for ω<sub>∞</sub> among all locally normal ground states, which the manuscript
+  explicitly does not claim.</p>
+</main>
+<script type="module">
+import { svg, clear, slider, banner, crumbs, guard } from "../assets/figure.js";
+const main = document.querySelector("main");
+banner(main); crumbs(main, "Dichotomy");
+const stage = document.getElementById("stage"), ctl = document.getElementById("ctl"),
+      out = document.getElementById("out");
+const W = 760, H = 330, L = 68, R = 150, TOP = 40, B = 58, RMAX = 20;
+const X = (r) => L + (W - L - R) * r / RMAX;
+const Y = (v) => TOP + (H - TOP - B) * (0 - Math.log10(Math.max(v, 1e-9))) / 9;
+const m1 = slider(ctl, { label: "GJS mass  m₁", min: .2, max: 3, step: .05, value: 1.1,
+                         fmt: (v) => v.toFixed(2) });
+const nb = slider(ctl, { label: "‖B‖", min: .5, max: 3, step: .1, value: 1,
+                         fmt: (v) => v.toFixed(1) });
+const dl = slider(ctl, { label: "order parameter  δ", min: .02, max: .9, step: .01,
+                         value: .3, fmt: (v) => v.toFixed(2) });
+const ra = slider(ctl, { label: "separation  R_a", min: .5, max: RMAX, step: .1, value: 8,
+                         fmt: (v) => v.toFixed(1) });
+[m1, nb, dl, ra].forEach((s) => s.on(() => guard(draw, out)));
+const bound = (r) => 2 * nb.value * nb.value * Math.exp(-m1.value * r / 2);
+function txt(x, y, t, o = {}) {
+  const e = svg("text", Object.assign({ x, y, "font-size": 11, fill: "var(--fg)" }, o), stage);
+  e.textContent = t; return e;
+}
+function draw() {
+  clear(stage);
+  for (let e = 0; e >= -9; e -= 3) {
+    svg("line", { x1: L, y1: Y(10 ** e), x2: W - R, y2: Y(10 ** e), stroke: "var(--line)",
+                  "stroke-width": .5, opacity: .6 }, stage);
+    txt(L - 7, Y(10 ** e) + 3.5, "1e" + e, { "text-anchor": "end", fill: "var(--mut)",
+        "font-size": 9.5 });
+  }
+  for (const r of [0, 5, 10, 15, 20]) {
+    svg("line", { x1: X(r), y1: TOP, x2: X(r), y2: H - B, stroke: "var(--line)",
+                  "stroke-width": .5, opacity: .6 }, stage);
+    txt(X(r), H - B + 15, r, { "text-anchor": "middle", fill: "var(--mut)", "font-size": 9.5 });
+  }
+  svg("line", { x1: L, y1: H - B, x2: W - R, y2: H - B, stroke: "var(--line)" }, stage);
+  svg("line", { x1: L, y1: TOP, x2: L, y2: H - B, stroke: "var(--line)" }, stage);
+  txt((L + W - R) / 2, H - B + 34, "separation  R_a", { "text-anchor": "middle",
+      fill: "var(--mut)" });
+  const pts = [];
+  for (let r = 0; r <= RMAX; r += .1) pts.push(`${X(r).toFixed(1)} ${Y(bound(r)).toFixed(1)}`);
+  svg("path", { d: "M" + pts.join(" L"), fill: "none", stroke: "var(--acc)",
+                "stroke-width": 2.2 }, stage);
+  const need = dl.value * dl.value;
+  svg("line", { x1: L, y1: Y(need), x2: W - R, y2: Y(need), stroke: "var(--warn)",
+                "stroke-width": 1.8, "stroke-dasharray": "5 3" }, stage);
+  txt(W - R - 6, Y(need) - 6, `a broken phase needs ≥ δ² = ${need.toExponential(1)}`,
+      { "text-anchor": "end", fill: "var(--warn)", "font-size": 9.5, "font-weight": 600 });
+  txt(L, TOP - 16, "clustering bound  2‖B‖² e^(−m₁R_a/2), uniform in the cutoff",
+      { fill: "var(--acc)", "font-weight": 600, "font-size": 10.5 });
+  const rc = (2 / m1.value) * Math.log(2 * nb.value * nb.value / need);
+  if (rc > 0 && rc < RMAX) {
+    svg("line", { x1: X(rc), y1: TOP, x2: X(rc), y2: H - B, stroke: "var(--ok)",
+                  "stroke-width": 1, "stroke-dasharray": "3 3" }, stage);
+    txt(X(rc) + 5, TOP + 12, "contradiction beyond here", { fill: "var(--ok)", "font-size": 9.5 });
+  }
+  const r0 = ra.value;
+  svg("circle", { cx: X(r0), cy: Y(bound(r0)), r: 4, fill: "var(--fg)" }, stage);
+  svg("line", { x1: X(r0), y1: TOP, x2: X(r0), y2: H - B, stroke: "var(--fg)",
+                "stroke-width": 1, opacity: .35 }, stage);
+  const ok = bound(r0) < need;
+  out.textContent =
+    `R_a = ${r0.toFixed(1)}:  bound = ${bound(r0).toExponential(3)},  ` +
+    `δ² = ${need.toExponential(3)}\n` +
+    (ok
+      ? `the bound is already below what a broken phase requires — (B1)–(B4) ` +
+        `cannot all hold`
+      : `no contradiction yet at this separation; push R_a out past ` +
+        `${rc > 0 ? rc.toFixed(1) : "—"}`) +
+    `\ncrossing at R_a = (2/m₁) log(2‖B‖²/δ²) = ` +
+    `${rc > 0 ? rc.toFixed(2) : "—"}   ` +
+    `(the theorem needs only that some admissible a exists, with m₁R_a ≥ 1)`;
+}
+guard(draw, out);
+</script>
