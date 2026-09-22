@@ -180,11 +180,11 @@ cluster state with the continuum \(P(\phi)_2\) vacuum remains open.
 
 ## Reproduction
 
-From `/Users/alex/Documents/codex`:
+From the repository root:
 
 ```sh
-.venv/bin/python glimm_jaffe/part_ii/m2_ii_checkpoint.py
-.venv/bin/python glimm_jaffe/part_ii/free_rate_checkpoint.py
+python3 part_ii/m2_ii_checkpoint.py
+python3 part_ii/free_rate_checkpoint.py
 ```
 
 The scripts require NumPy; the first also requires SciPy.  Their assertions check only

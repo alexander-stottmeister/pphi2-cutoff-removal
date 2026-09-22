@@ -22,7 +22,7 @@ authors:
     given-names: Alexander
     affiliation: >-
       Institut fuer Theoretische Physik, Leibniz Universitaet Hannover, Germany
-    # orcid: "https://orcid.org/0000-0000-0000-0000"   # fill in before the first release
+    orcid: "https://orcid.org/0000-0002-0145-0877"
 version: "1.0.0"
 date-released: "2026-09-20"
 license:
@@ -38,4 +38,5 @@ keywords:
   - cluster expansion
   - mathematical physics
 repository-code: "https://github.com/alexander-stottmeister/pphi2-cutoff-removal"
-# doi: "10.5281/zenodo.XXXXXXX"                          # fill in after the first Zenodo release
+# No DOI is minted for this record.  It is an ongoing research project rather than a
+# released artifact; cite it by repository URL and commit.

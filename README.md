@@ -4,6 +4,24 @@ Manuscript, working notes, and the full adversarial audit trail for a Hamiltonia
 that the net of spatially cutoff P(φ)₂ ground states converges in norm on every local
 algebra. This is a research record, not a published paper.
 
+## What this is: an AI-assisted, experimental open-science project
+
+This repository is an **experiment in open science, and the work in it is AI-assisted.**
+The manuscript, the working notes and the audit documents were drafted by the author
+working with Anthropic's Claude as an interactive assistant, and the entire working
+method — every phase, gate and adversarial round, including the rounds that found errors
+in earlier rounds' repairs — is published alongside the result rather than discarded.
+That is the experiment: the record of how the proof was arrived at is part of what is
+being released.
+
+**Human verification of the output is ongoing.** Nothing here has been refereed, and the
+author's own line-by-line check of the machine-assisted material is still in progress:
+open audit item C5 (a second human reader for the source page images, see below) is
+unclosed, and the main theorem is conditional on an imported hypothesis. Read every
+statement in this repository as a claim under active verification, not as a settled
+result, and check anything you intend to rely on against the cited sources yourself.
+Direction, mathematical judgement and final responsibility are the author's.
+
 ## Status: the main theorem is conditional. Please read this first.
 
 **Part I** (`part_i/main.tex`, 40 pp, document of record) proves Theorem 12.2. In the
@@ -64,11 +82,23 @@ redistributed here. Two consequences:
   placeholders, and every claim, page reference, and finding remains in the text.
 - `fresh_audit_2026_08_16/render_evidence.sh` regenerates the audit's page-image corpus
   from your own copies of the sources. Each call is pinned to a one-based page number, so
-  the images are reproducible for anyone with legal access to the papers.
+  the images are reproducible for anyone with legal access to the papers. The script
+  names the file it expects for each source, under `refs/`; those names are the script's
+  own contract, and the simplest way to satisfy it is to read the `render` lines and put
+  your PDFs where they point.
 
 Short quotations from the sources appear in the manuscript with page citations, as usual
 in scholarly work, and each transcribed display carries a `% src:` comment naming its
 origin.
+
+The boundary is enforced mechanically rather than by care alone. `.gitignore` excludes
+the source and image paths, and every raster format a page image could arrive in;
+`.githooks/pre-commit` then refuses any commit that stages one regardless. Enable the
+hook in a fresh clone with
+
+```sh
+git config core.hooksPath .githooks
+```
 
 ## Building
 
@@ -80,13 +110,21 @@ cd part_i && pdflatex main.tex && pdflatex main.tex && pdflatex main.tex
 
 A clean build is 40 pages with zero errors and zero undefined references.
 
+The three citation dossiers (`audit_2026/`, `fresh_audit_2026_08_16/`, `part_ii/`) build
+the same way, from their own directory. Without the page-image corpus each image is
+replaced by a framed placeholder naming the missing file, and the build still completes
+with zero errors.
+
 The printed date is pinned in the preamble to the last mathematical change, so it does
-not drift between builds. The PDF bytes still carry pdftex's own build timestamp. For
-byte-identical output, build with
+not drift between builds. The PDF bytes would otherwise still carry pdftex's own build
+timestamp, so the committed `part_i/main.pdf` is built with that timestamp pinned too:
 
 ```sh
-SOURCE_DATE_EPOCH=1788566400 FORCE_SOURCE_DATE=1 pdflatex main.tex
+SOURCE_DATE_EPOCH=1788566400 FORCE_SOURCE_DATE=1 pdflatex main.tex   # x3
 ```
+
+Three passes of this command reproduce the committed PDF byte for byte under pdfTeX
+1.40.29 (TeX Live 2026).
 
 ## License
 
@@ -96,14 +134,17 @@ Quoted third-party material remains under its own copyright and is used as citat
 
 ## How this record was produced
 
-This is an AI-assisted research record, and it is worth saying so plainly. The
-manuscript, the working notes and the audit documents were produced by the author
-working with Anthropic's Claude as an interactive assistant: drafting and transcribing
-source passages, recomputing constants by hand and by machine, running the adversarial
-verification passes recorded in `strategy.md`, and maintaining the citation dossiers.
-Direction, mathematical judgement and final responsibility are the author's. Commits
-where the assistant contributed carry a `Co-Authored-By` trailer, so the git history
-shows the division of labour.
+As stated at the top, this is an AI-assisted research record. Concretely, the assistant
+drafted and transcribed source passages, recomputed constants by hand and by machine, ran
+the adversarial verification passes recorded in `strategy.md`, and maintained the citation
+dossiers. Direction, mathematical judgement and final responsibility are the author's.
+Commits where the assistant contributed carry a `Co-Authored-By` trailer, so the git
+history shows the division of labour.
+
+Because the output is machine-assisted, the verification standard applied to it is higher
+than usual, not lower: every imported statement is pinned to a page of a source, the
+dossiers reproduce those pages, and `part_i/README.md` records which gate each section
+passed. That verification is still running — see the note at the top of this file.
 
 The working method is itself part of the record. `strategy.md` logs every phase, gate
 and adversarial round, including the rounds that found errors in earlier rounds' repairs,
