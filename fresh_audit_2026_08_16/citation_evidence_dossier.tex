@@ -7,9 +7,26 @@
 \author{Independent source and scope cross-check}
 \date{16 August 2026}
 
+
+% --- Page images that are not distributed with this repository ------------------
+% The citation page images are third-party copyrighted material and are kept out of
+% the public repository (see the README).  Each image is therefore looked up before
+% it is included, and a framed placeholder naming the file is drawn when it is
+% absent, so this document builds without errors either way.
+\newcommand{\missingshot}[1]{%
+  \fbox{\begin{minipage}[c][0.28\textheight][c]{0.86\textwidth}%
+    \centering
+    \textbf{Page image not distributed with this repository}\par\medskip
+    \texttt{\detokenize{#1}}\par\medskip
+    {\small Third-party copyrighted material.  Regenerate the corpus from your own
+     copies of the sources with
+     \texttt{fresh\_audit\_2026\_08\_16/render\_evidence.sh}.}%
+  \end{minipage}}}
 \newcommand{\shot}[1]{%
   \begin{center}
-  \includegraphics[width=\textwidth,height=.72\textheight,keepaspectratio]{#1}
+  \IfFileExists{evidence/#1}{%
+    \includegraphics[width=\textwidth,height=.72\textheight,keepaspectratio]{#1}}{%
+    \missingshot{evidence/#1}}
   \end{center}}
 \newcommand{\evidence}[6]{%
   \clearpage
@@ -539,7 +556,9 @@ Hamiltonian ground state or a cutoff-uniform finite-volume gap.}
 \textbf{Manuscript claim checked.} Identity of the wavelet scaling/OAR source.\par
 \textbf{Scope verdict.} Manifest evidence.\par
 \begin{center}
-\includegraphics[width=\textwidth,height=.62\textheight,keepaspectratio]{mmst-001.png}
+\IfFileExists{evidence/mmst-001.png}{%
+  \includegraphics[width=\textwidth,height=.62\textheight,keepaspectratio]{mmst-001.png}}{%
+  \missingshot{evidence/mmst-001.png}}
 \end{center}
 
 \evidence{II02}{Projective fixed-coarse architecture}

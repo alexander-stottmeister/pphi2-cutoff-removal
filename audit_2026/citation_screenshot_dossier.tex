@@ -6,6 +6,21 @@
 \author{}
 \date{9 August 2026}
 
+
+% --- Page images that are not distributed with this repository ------------------
+% The citation page images are third-party copyrighted material and are kept out of
+% the public repository (see the README).  Each image is therefore looked up before
+% it is included, and a framed placeholder naming the file is drawn when it is
+% absent, so this document builds without errors either way.
+\newcommand{\missingshot}[1]{%
+  \fbox{\begin{minipage}[c][0.28\textheight][c]{0.86\textwidth}%
+    \centering
+    \textbf{Page image not distributed with this repository}\par\medskip
+    \texttt{\detokenize{#1}}\par\medskip
+    {\small Third-party copyrighted material.  Regenerate the corpus from your own
+     copies of the sources with
+     \texttt{fresh\_audit\_2026\_08\_16/render\_evidence.sh}.}%
+  \end{minipage}}}
 \newcommand{\evidence}[5]{%
   \clearpage
   \phantomsection\addcontentsline{toc}{section}{#1 --- #2}
@@ -15,7 +30,9 @@
   \textbf{Finding.} #4\par
   \vspace{3pt}
   \begin{center}
-  \includegraphics[width=\textwidth,height=.76\textheight,keepaspectratio]{#5}
+  \IfFileExists{evidence/#5}{%
+    \includegraphics[width=\textwidth,height=.76\textheight,keepaspectratio]{#5}}{%
+    \missingshot{evidence/#5}}
   \end{center}
 }
 

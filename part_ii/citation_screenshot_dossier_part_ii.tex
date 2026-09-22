@@ -1,12 +1,54 @@
 \documentclass[11pt]{article}
-\usepackage{auditstyle}
+% Self-contained preamble.  This document previously loaded audit_2026/auditstyle.sty,
+% which is not on the TeX search path when pdflatex is run in this directory, so the
+% build stopped before producing any output.  Everything it used from that file --
+% the package set, the page style and the resultbox environment -- is reproduced here.
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.35cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
 \usepackage{caption}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,citecolor=blue!55!black]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlist{nosep,leftmargin=2em}
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\cfoot{\thepage/\pageref*{LastPage}}
+\newenvironment{resultbox}{\begin{center}\begin{minipage}{0.94\textwidth}\hrule\vspace{6pt}}{\vspace{6pt}\hrule\end{minipage}\end{center}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \fancyhead[L]{Part II source-evidence dossier}
 \fancyhead[R]{9 August 2026}
 \hypersetup{pdftitle={Part II citation screenshot dossier},pdfauthor={Proof audit}}
+
+% --- Page images that are not distributed with this repository ------------------
+% The citation page images are third-party copyrighted material and are kept out of
+% the public repository (see the README).  Each image is therefore looked up before
+% it is included, and a framed placeholder naming the file is drawn when it is
+% absent, so this document builds without errors either way.
+\newcommand{\missingshot}[1]{%
+  \fbox{\begin{minipage}[c][0.28\textheight][c]{0.86\textwidth}%
+    \centering
+    \textbf{Page image not distributed with this repository}\par\medskip
+    \texttt{\detokenize{#1}}\par\medskip
+    {\small Third-party copyrighted material.  Regenerate the corpus from your own
+     copies of the sources with
+     \texttt{fresh\_audit\_2026\_08\_16/render\_evidence.sh}.}%
+  \end{minipage}}}
 \newcommand{\shot}[1]{%
   \begin{center}
-  \includegraphics[width=.88\textwidth,height=.73\textheight,keepaspectratio]{#1}
+  \IfFileExists{#1}{%
+    \includegraphics[width=.88\textwidth,height=.73\textheight,keepaspectratio]{#1}}{%
+    \missingshot{#1}}
   \end{center}}
 \newcommand{\evidence}[4]{%
   \section*{#1}
