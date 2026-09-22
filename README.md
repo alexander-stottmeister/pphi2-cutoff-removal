@@ -61,10 +61,13 @@ weak-coupling region.
 
 ## The proof in five pictures
 
-Each figure links to an interactive version. Three of them are computed from the
-manuscript's own formulas by [`docs/figures/make_figures.py`](docs/figures/make_figures.py),
-not drawn, so they are checkable artifacts rather than illustrations of a mood. All of
-them illustrate; none of them is evidence.
+Each figure links to an interactive version. One of them, the rate figure, has its
+curves computed from the manuscript's own formulas by
+[`docs/figures/make_figures.py`](docs/figures/make_figures.py) rather than drawn, which
+makes it a checkable artifact; a second, the import graph, is generated from the
+manuscript's own reference graph. The remaining three are drawn to scale from the
+statements they illustrate and evaluate nothing. All of them illustrate; none of them is
+evidence.
 
 ### What Theorem 12.2 rests on
 

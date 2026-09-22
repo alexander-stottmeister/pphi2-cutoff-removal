@@ -75,10 +75,12 @@ audiences -- the docs are read on GitHub, the figures are driven on Pages.
 | 8 | affine path (4, 8) | `alpha: 0 -> 1` along `h_1 + alpha(h_2 - h_1)`, the mechanism U_GJS is imported at |
 | 9 | two-phase dichotomy (Thm 13.2) | `R_a` slider; the truncated correlator decays like `e^{-m_1 R_a / 2}`, contradicting (B1)-(B4) |
 
-Figures 3, 4 and 7 are computed from the paper's own formulas by
+Figures 3 and 4 are computed from the paper's own formulas by
 `docs/figures/make_figures.py`, which emits both the static SVGs and a sampled-curve
-JSON, so the pictures are checkable artifacts under the same gate discipline as the rest
-of the repository rather than drawings. `m2/m2_rate.py` is the precedent.
+JSON, so those pictures are checkable artifacts under the same gate discipline as the
+rest of the repository rather than drawings. `m2/m2_rate.py` is the precedent. Figure 7
+was listed here as computed as well, and is not: it draws four spectra at a chosen gap
+and evaluates nothing.
 
 **Honesty rules.** A persistent banner on every page: conditional on U_GJS, C5 open,
 AI-assisted, verification ongoing. Every figure is labelled an illustration, not
