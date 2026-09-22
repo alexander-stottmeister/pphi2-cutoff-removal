@@ -9,8 +9,19 @@
 refs/
 **/evidence/
 part_ii/dossier_images/
-*.png
 *dossier*.pdf
+# Every raster format a page image could arrive in, not just the one it does.
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+*.webp
+*.gif
+*.bmp
+*.djvu
+# The second line of defence is .githooks/pre-commit; enable it in a fresh clone
+# with: git config core.hooksPath .githooks
 
 # LaTeX build artifacts
 *.aux

@@ -1,0 +1,80 @@
+#!/bin/sh
+# pre-commit -- publication boundary guard for the PUBLIC repository.
+#
+# This working tree is shared by two git repositories that track disjoint sets of
+# files.  The public one must never acquire third-party source material: the source
+# PDFs under refs/, the citation page images, or a dossier PDF that embeds them.
+# .gitignore is the first line of defence.  This hook is the second, because `git
+# add -f`, an editor, a script, or an unattended commit can each step around an
+# ignore rule, and a public repository does not forgive that twice.
+#
+# Enable it in every clone (core.hooksPath is per-clone local config):
+#
+#     git config core.hooksPath .githooks
+#
+# Deliberate override, when you really mean it:  git commit --no-verify
+set -eu
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+[ -n "$staged" ] || exit 0
+
+MANIFEST=../manifests/glimm_jaffe-private.txt   # present on the author's machines only
+tmp=$(mktemp) || exit 1
+trap 'rm -f "$tmp"' EXIT
+
+oldifs=$IFS
+IFS='
+'
+for f in $staged; do
+  IFS=$oldifs
+  lower=$(printf '%s' "$f" | tr '[:upper:]' '[:lower:]')
+  case "$lower" in
+    (refs/*)                    echo "$f|source PDFs live in the private companion" ;;
+    (evidence/*|*/evidence/*)   echo "$f|citation page images are third-party material" ;;
+    (part_ii/dossier_images/*)  echo "$f|citation page images are third-party material" ;;
+    (private.md)                echo "$f|tracked by the private companion, not here" ;;
+    (*.png|*.jpg|*.jpeg|*.tif|*.tiff|*.webp|*.djvu|*.gif|*.bmp)
+                                echo "$f|page image, or an image needing a deliberate exception" ;;
+    (*dossier*.pdf)             echo "$f|dossier PDFs embed the page images" ;;
+    (*.pdf)
+      # A new PDF with no source of the same name beside it is almost certainly an
+      # acquired paper.  A PDF rebuilt from a tracked .tex is fine.
+      if ! git rev-parse --verify -q HEAD >/dev/null 2>&1 || ! git cat-file -e "HEAD:$f" 2>/dev/null; then
+        stem=${f%.pdf}
+        [ -f "$stem.tex" ] || echo "$f|new PDF with no .tex beside it: third-party source?"
+      fi ;;
+  esac >> "$tmp"
+  # Belt and braces: anything the private manifest claims, by name.
+  if [ -f "$MANIFEST" ]; then
+    while IFS= read -r p; do
+      [ -n "$p" ] || continue
+      case "$f" in
+        ("$p"|"$p"/*) echo "$f|claimed by the private manifest ($p)" >> "$tmp" ;;
+      esac
+    done < "$MANIFEST"
+  fi
+  IFS='
+'
+done
+IFS=$oldifs
+
+[ -s "$tmp" ] || exit 0
+
+{
+  echo "pre-commit: refusing to commit to the PUBLIC repository."
+  echo
+  sort -u "$tmp" | while IFS='|' read -r f why; do
+    printf '  %-56s  %s\n' "$f" "$why"
+  done
+  cat <<'MSG'
+
+These paths belong outside the public repository.  Either
+
+  git restore --staged <path>          drop it from this commit, or
+  ../gjp sync && ../gjp commit ...     commit it to the private companion, or
+  edit .gitignore                      if this really is public material.
+
+Override deliberately with:  git commit --no-verify
+MSG
+} >&2
+exit 1
