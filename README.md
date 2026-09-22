@@ -130,7 +130,8 @@ Three passes of this command reproduce the committed PDF byte for byte under pdf
 ## License
 
 Manuscript, notes, and all prose: [CC BY 4.0](LICENSE).
-Scripts (`*.py`, `*.sh`) and the LaTeX style files: [MIT](LICENSE-CODE).
+Code -- scripts (`*.py`, `*.sh`), the LaTeX style files, and the documentation site
+under `docs/` (`*.js`, `*.html`, `*.css`, `*.svg`): [MIT](LICENSE-CODE).
 Quoted third-party material remains under its own copyright and is used as citation.
 
 ## How this record was produced

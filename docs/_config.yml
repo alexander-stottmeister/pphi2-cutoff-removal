@@ -1,0 +1,17 @@
+# GitHub Pages configuration.  Documentation markdown carries front matter and is
+# rendered as a site page; the interactive figures under interactive/ carry none and
+# Jekyll copies them through verbatim, scripts intact.
+title: "Removal of the spatial cutoff for weakly coupled P(phi)_2"
+description: "Manuscript, working notes and adversarial audit trail. Theorem 12.2 is conditional on the imported interface U_GJS; human verification is ongoing."
+theme: jekyll-theme-primer
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: false
+# Working files that should not become site pages.
+exclude:
+  - PLAN.md
+  - extract.py
+  - figures/make_figures.py
+  - results.json
