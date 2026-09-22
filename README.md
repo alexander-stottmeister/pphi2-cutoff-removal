@@ -102,7 +102,8 @@ git config core.hooksPath .githooks
 
 ## Building
 
-No external dependencies, no BibTeX, no graphics. Three passes resolve all references.
+Part I has no external dependencies, no BibTeX and no graphics; three passes resolve
+all references.
 
 ```sh
 cd part_i && pdflatex main.tex && pdflatex main.tex && pdflatex main.tex
