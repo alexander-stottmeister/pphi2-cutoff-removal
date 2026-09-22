@@ -38,7 +38,7 @@ closed forms, two independent proofs agreeing), and A3(b) (thermal fixed-coarse 
 uniform on [t₀,∞]); A2(b) is reduced to the single clause (A1-iv) (periodic FK for
 e^{−tK_L}), reassigned to V3. Phase V2 **complete 2026-08-12**:
 `v2_interaction_comparison.tex` (16 pp) proves A4(a) (same-noise coupling;
-‖𝒰_N−𝒰‖_{L²} ≤ C(1+t)(1+L)·ε_N·log_N^{3/2}, all three error mechanisms —
+‖`\mathcal U_N`−`\mathcal U`‖_{L²} ≤ C(1+t)(1+L)·ε_N·log_N^{3/2}, all three error mechanisms —
 dispersion/missing-modes/aliasing — at O(ε²log^{2–3}) of the squared norm; the second
 chaos via an exact-square identity), A4(b) (dictionary |δ_N − log(4/π)/(2π)| ≤ C(m,L)ε_N
 with explicit constant; convention lock: truncation-convention polynomial is
@@ -52,11 +52,11 @@ Phase V3 **complete 2026-08-12**: `v3_continuum_package.tex` (15 pp) proves Stat
 A1 in full and closes A2(b) — (A1-i) K_L constructed as the strong limit of mode-truncated
 semigroups, self-adjoint, ≥ −c_λ and ≥ ½H₀−c, acting as H₀+V_L on cylinder vectors
 (operator and form sum; ESA/Segal uniqueness scope-fenced as not consumed); (A1-ii)
-e^{−tK_L} trace class ∀t>0 with 𝒥₁-norm cylinder approximation, discrete spectrum,
+e^{−tK_L} trace class ∀t>0 with `\mathcal J_1`-norm cylinder approximation, discrete spectrum,
 μ_j ≥ ½ν_j−c, eigenvalue convergence (hypercontractive ladder + one Duhamel at t₂=2s₄
 ⟹ norm convergence; eigenvalue-DCT); (A1-iii) positivity improving (limit FK + Simon
 Thm I.16 two-time pair positivity) ⟹ simple ground state Ω_L > 0, gap γ_L > 0,
-ω^{ct}_{L,λ} = its vector state on 𝔚(T_L); (A1-iv) Z_∞(t) = Z₀(t)E_per[e^{−𝒰_t}] and
+ω^{ct}_{L,λ} = its vector state on `\mathfrak W(T_L)`; (A1-iv) Z_∞(t) = Z₀(t)E_per[e^{−`\mathcal U_t`}] and
 the Weyl mean-shift identity for e^{−tK_L} in V1 Def 8.1's exact form for all D4-refined
 symbols — A2(b) closed (Cor 6.3). Import decision: **proof, not import** — Høegh-Krohn
 (1974)/FHN (1975) not consumed; only printed import = Simon-book Γ(A) cluster
@@ -69,7 +69,7 @@ source-phase lemmas), A7 (normal-ordered partition convergence Z̃_N(t) → Tr e
 the derived eventual gap — and D_N(t) → D_∞(t)), and A8 (spectral tail bound + scoping
 Lemma 3.1 ⟹ **gate (II.11) closed** pointwise in M, ξ; Weyl-reduction Thm 1.1 +
 Cor 3.1 + Prop 4.1 ⟹ full-sequence identified fixed-coarse theorem: unique Ω_∞ on
-𝔚_∞ with Ω_∞ = ω^{ct}_{L,λ}∘β, ℤ₂-invariant; the cofinal-subnet cluster statement is
+`\mathfrak W_∞` with Ω_∞ = ω^{ct}_{L,λ}∘β, ℤ₂-invariant; the cofinal-subnet cluster statement is
 superseded). Errata register (v4 Rem 1.1): V1 (14) integrand reading (interaction only);
 scoping A7 free-factor display must be normal-ordered. **Phase closure: NOT yet reached.** The adversarial pass over V0–V4 was run
 2026-08-12 but was cut short by usage-credit exhaustion: reviewers for V1, V3 and
@@ -86,7 +86,7 @@ self-contained Legendre/resolvent-antitonicity argument needing no form core; V3
 Lemma 2.5 needed hypothesis (N0) (ℓ-increments ≤ log 2, automatic for the full tails
 used); the symbol-difference exponent is −2, not −3 (V4 Lemma 3.2(ii), V2 Lemma 6.4 —
 both conclusions survive). New V4 Lemma 6.3 supplies the injective *-hom
-β: 𝔚_∞ → 𝔚_ct that Weyl-reduction Cor 3.1 assumes. **Round 2 (12 Aug 2026) closed those coverage gaps** — V2 review, interface/citation
+β: `\mathfrak W_∞` → `\mathfrak W_{ct}` that Weyl-reduction Cor 3.1 assumes. **Round 2 (12 Aug 2026) closed those coverage gaps** — V2 review, interface/citation
 audit, 4 audits of the round-1 repairs, and the verification layer; 11 agents, all
 completed. It found **one BREAKING defect, independently by both reviewers and
 confirmed by four verifiers: V2 Corollary 5.2 (the "convention lock") was false.** The

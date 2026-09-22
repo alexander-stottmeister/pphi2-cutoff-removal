@@ -69,7 +69,7 @@ re-verified (3× pdflatex clean, 35 pp, forbidden-string gate pass, labels stabl
   the new Remark 3.3 (coordinate transport dictionary) — the fourth `[new]` item,
   authorized by the U4 plan amendment in strategy.md.
 - Thm 13.2 dropped the evenness premise its proof uses via MAIN(4) (R3; audit-P1 defect
-  class). Fixed: "Assume 𝒫 even and …" in statement and proof.
+  class). Fixed: "Assume `\mathcal P` even and …" in statement and proof.
 - A8's "uniformly bounded degree" sentence was false for §7's observables (R5, R1).
   Settled by page image gjs-theorems-10 (printed p. 593): GJS bound only the per-factor
   degree n_i < n̄, "Q still may have an arbitrarily large degree" (printed). Fixed with
@@ -88,7 +88,7 @@ whitelisted); abstract's p. 629 misattribution dropped; Lamport bib entry now ci
 (App B); BDW/RZT titles added (verified against arXiv, 2026-08-10); Lemma 7.6 n = 0 case
 and f = 0 excluded; Lemma 10.5 small-d covering constant Ψ_γ(0) (not Ψ_γ(d₀⁻));
 truncation level renamed ℓ; prop:pathreg generic exponent renamed ϱ; Cor 12.3 rebuilt
-(σ_{a′} defined, weight h̄, g ∈ 𝒢 stated, integration variable a′).
+(σ_{a′} defined, weight h̄, g ∈ `\mathcal G` stated, integration variable a′).
 
 **Nit (14) — all fixed.** Four-cell argument via extreme indices; Lemma 7.3 slab
 qualifier T ≥ t/2; Thm 7.8 parenthetical ("Step 2 fails", not "vacuous"); square-moment
@@ -100,12 +100,12 @@ App C: dμ_{0,C} defined, M2 hedge restored, C₀ → C_*, λ = 0 guard, subsect
 un-numbered; A6 dossier double-wrap; freeze-table slab row; header comment; §13 and
 thm:MAIN src comments corrected.
 
-**Accepted as-is (3) — documented, no change.** thm:MAIN(5) quantifies over 𝒞_H where
-m6 stated 𝒢 (strengthening, delivered by Thms 5.1/7.8; noted in src comment); Prop C.7's
-𝒢 → 𝒞_H widening (correct; matches usage); local notation shadows listed by R5 (each
+**Accepted as-is (3) — documented, no change.** thm:MAIN(5) quantifies over `\mathcal C_H` where
+m6 stated `\mathcal G` (strengthening, delivered by Thms 5.1/7.8; noted in src comment); Prop C.7's
+`\mathcal G` → `\mathcal C_H` widening (correct; matches usage); local notation shadows listed by R5 (each
 locally announced, none load-bearing).
 
-**Reviewer-verified clean:** all constant chains (M², 𝔎(p′), 9·8! = 362 880, K′, Ĉ_Q,
+**Reviewer-verified clean:** all constant chains (M², `\mathfrak K(p′)`, 9·8! = 362 880, K′, Ĉ_Q,
 32M, shell count 8, d₀, exponent identities, separation optimization), the filter sign
 (+1/E), all cross-references and tags, the γ/m₁ and class-quantifier regimes, App A
 values, App B register, §13's clustering application, §14's factual claims incl. the
@@ -218,9 +218,9 @@ Part II liminf constant, and the abstract-to-theorem promise map.
 
 | frozen source symbol | unified symbol | reason |
 |---|---|---|
-| `M_0` (variation bound, `lamport_gap_to_main.tex` ⟨1⟩3–⟨1⟩4) | `𝔪` (`\mathfrak m`) | collision with moment constant `M`; **plan amendment**: strategy.md D4 originally said `Θ`, which collides with the parity unitary `Θ = Γ(−1)`; `𝔪` adopted instead (recorded also in strategy.md) |
-| `p` with `deg 𝒫 = 2p` (`m4/m2-audit.tex`) | `2p'` with `deg 𝒫 = 2p'` | m6/r2-check convention; the p-vs-2p′ change caused the v0 half-degree slip — single convention frozen |
-| `𝒞` (`m6` §3, cutoff class) | `𝒞_E` | three classes named apart (`𝒞_E`, `𝒞_H`, `𝒢`) |
+| `M_0` (variation bound, `lamport_gap_to_main.tex` ⟨1⟩3–⟨1⟩4) | `\mathfrak m` | collision with moment constant `M`; **plan amendment**: strategy.md D4 originally said `Θ`, which collides with the parity unitary `Θ = Γ(−1)`; `\mathfrak m` adopted instead (recorded also in strategy.md) |
+| `p` with `deg \mathcal P = 2p` (`m4/m2-audit.tex`) | `2p'` with `deg \mathcal P = 2p'` | m6/r2-check convention; the p-vs-2p′ change caused the v0 half-degree slip — single convention frozen |
+| `\mathcal C` (`m6` §3, cutoff class) | `\mathcal C_E` | three classes named apart (`\mathcal C_E`, `\mathcal C_H`, `\mathcal G`) |
 | `γ` in final statements | `m_1` | `γ` reserved for the abstract gap parameter of §§8–10; instantiated once in §11 |
 | `K` (compact support region, `m4/r1-check.tex`) | `Λ` | App C only; avoids clash with `K(g)`, `K₁`, `K₂` |
 | truncation level `M` (clipped truncations, sources) | `ℓ` | Lemma 4.3; avoids clash with the moment constant `M` (U4) |
@@ -269,12 +269,12 @@ No unmapped ⟨i⟩⟨j⟩ step remains; the only §3–§7 environment not sour
 ### G3a record (2026-08-10) — constants recomputed by hand
 
 - Step 3 weight: n+n′ ≤ 4p′; one square K₁K₂^{2(n+n′)}(n+n′)!, two squares
-  K₁K₂^{2n}n!K₂^{2n′}n′!; both ≤ K₁K₂^{8p′}(4p′)! = 𝔎(p′) (K₂≥1, n!n′!≤(n+n′)!). ✓
+  K₁K₂^{2n}n!K₂^{2n′}n′!; both ≤ K₁K₂^{8p′}(4p′)! = `\mathfrak K(p′)` (K₂≥1, n!n′!≤(n+n′)!). ✓
 - Per-pair kernel ‖h1_Δ‖₂‖h1_Δ′‖₂ ≤ 1 (‖h‖∞≤1, unit cells); 3² = 9 ordered pairs;
-  ‖Q_V‖ ≤ 9𝔎(p′)λ²(Σ|aₙ|)² = M²/C₈. ✓ matches r2-check Prop. 2.1.
+  ‖Q_V‖ ≤ 9`\mathfrak K(p′)`λ²(Σ|aₙ|)² = M²/C₈. ✓ matches r2-check Prop. 2.1.
 - φ⁴ (p′=2): (4p′)! = 8! = 40320; 9·40320 = 362880; K₂^{8p′} = K₂^16. ✓ matches
   r2-check Cor. 2.2.
-- 𝔫(X_f^n)² = K₁K₂^{4n}(2n)!N_I^n‖f‖₂^{2n} = K₁(K′)^{2n}(2n)! with
+- `\mathfrak n(X_f^n)`² = K₁K₂^{4n}(2n)!N_I^n‖f‖₂^{2n} = K₁(K′)^{2n}(2n)! with
   K′ = K₂²N_I^{1/2}‖f‖₂ since (K₂²N_I^{1/2}‖f‖₂)^{2n} = K₂^{4n}N_I^n‖f‖₂^{2n}. ✓
 - Ĉ_Q branches: t>2 gives C₇e^{2m₁}e^{−m₁t}‖Q‖²; 0≤t≤3 gives ‖ψ_Q‖² ≤
   e^{3m₁}e^{−m₁t}‖ψ_Q‖² (e^{3m₁−m₁t} ≥ 1 for t ≤ 3); branches cover [0,∞). ✓
@@ -291,7 +291,7 @@ No unmapped ⟨i⟩⟨j⟩ step remains; the only §3–§7 environment not sour
 | ⟨1⟩1⟨2⟩1 (semigroup path regularity) | Prop. 8.1 `prop:pathreg` | done |
 | ⟨1⟩1⟨2⟩2–⟨2⟩3 (projection/gauge/derivatives) | Prop. 8.2 `prop:projreg` | done |
 | ⟨1⟩2 (filter) | Lemma 9.1 `lem:filter` | done |
-| ⟨1⟩3 (separation) | Lemma 9.2 `lem:separation` (M₀ → 𝔪) | done |
+| ⟨1⟩3 (separation) | Lemma 9.2 `lem:separation` (M₀ → `\mathfrak m`) | done |
 | ⟨1⟩4 (unbounded clustering) | Lemma 9.3 `lem:cluster` | done |
 | ⟨1⟩5⟨2⟩1 (state derivative) | Lemma 10.1 `lem:statederiv` | done |
 | ⟨1⟩5⟨2⟩2 (localization) | Lemma 10.2 `lem:localize` | done |
@@ -327,7 +327,7 @@ Lemma 2.8 (landed in U0), thm:MAIN → 12.2, cor:canonical → 12.3.
 - Exponents: 1/r_T+1/q_T = (1+a)/2+(1−a)/2 = 1; r_T·p_T = 2; (p′_T−1)/(p_T−1) = a⁻² =
   e^{2m₀T}; Hölder pair 1/p_T+1/p′_T = 1/(1+a)+a/(1+a) = 1. ✓
 - Separation: a = R/γ ⇒ both exponentials e^{−γR/2}; 2a/(πR²) = 2/(πγR) ≤ 2/π < 1 for
-  γR ≥ 1; 1+2/π < 2 ⇒ prefactor 2𝔪. Gaussian tail ∫_{|t|≥R}|f| ≤ (a/πR²)e^{−R²/(2a)}
+  γR ≥ 1; 1+2/π < 2 ⇒ prefactor 2`\mathfrak m`. Gaussian tail ∫_{|t|≥R}|f| ≤ (a/πR²)e^{−R²/(2a)}
   via t⁻¹ ≤ t/R². ✓
 - Two-regime threshold: γd₀/2 = γ(4+2/γ)/2 = 2γ+1 ≥ 1. ✓
 - One-path: 2 (outer Re factor) × 2M (bracket) = 4M per j; shells: j ∈ [b+n−1, b+n+2]
@@ -373,7 +373,7 @@ Lemma 2.8 (landed in U0), thm:MAIN → 12.2, cor:canonical → 12.3.
   Prop. C.1 structural uniformity, Lemma C.2 (Z(h) ≥ e^{−λ|a₀||Λ|}), Lemma C.3 (Wick
   lower bound, h≥0 entry), Lemma C.4 (UV difference, h≤1 entry), Thm. C.5 (h-uniform
   stability, 2q = e^{L/(4p′)}), Remark C.6, Prop. C.7 (discharge). Notation conversions:
-  V(h)→𝒰_h (Euclidean), 𝒞→𝒞_E, compact set K→Λ (avoids K(g)/K₁/K₂ clash — logged
+  V(h)→`\mathcal U_h` (Euclidean), `\mathcal C`→`\mathcal C_E`, compact set K→Λ (avoids K(g)/K₁/K₂ clash — logged
   below). The chaos moment comparison ‖X‖_q ≤ (q−1)^{r/2}‖X‖₂ is derived in two lines
   from the abstract form of A4's source (P_t = Γ(e^{−t}), P_tX = e^{−rt}X) rather than
   imported blind.

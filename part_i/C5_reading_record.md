@@ -37,8 +37,8 @@ Manuscript build the record refers to: `part_i/main.tex`, Scope amendment of
   phrase describing the limit is "h → 1 through rectangular cutoffs" (or record the exact
   wording); (d) footnote 5: "The construction [17] of the measure dq assumes Theorem 1.1.7,
   and consequently the n = 0 case of Theorem 1.1.11."
-- Manuscript sites: A8(i) (class 𝒞_E, `lem:classes`), A8(vi) (slab family
-  𝒞_E^slab ⊂ 𝒞_E), Scope paragraph step (a).
+- Manuscript sites: A8(i) (class `\mathcal C_E`, `lem:classes`), A8(vi) (slab family
+  `\mathcal C_E^{slab}` ⊂ `\mathcal C_E`), Scope paragraph step (a).
 - Verdict: ________  Notes: ______________________________________________
 
 ### 2. Localized monomials, localization squares, N(Δ) — p. 593 (PDF 10)
@@ -73,7 +73,7 @@ Manuscript build the record refers to: `part_i/main.tex`, Scope amendment of
 - Image: `gjs-theorems-12.png`.
 - To confirm: "THEOREM 1.1.8. For Q(x₀) of the form (1.1.5), |∫Q(x₀)dq_h| ≤ O(1)‖Q(x₀)‖,
   uniformly as h → 1."; the Feynman–Kac identity ∫Q(x₀)dq = ⟨Ω, θ⟩ with θ from (1.1.13);
-  the Remark's n-point bound |S_h(f₁⊗…⊗f_n)| ≤ n! ∏|f_i|_𝒮 with the norm "independent of h".
+  the Remark's n-point bound |S_h(f₁⊗…⊗f_n)| ≤ n! ∏`|f_i|_{\mathcal S}` with the norm "independent of h".
 - Manuscript sites: Source Fact 2.3 (`sf:CE1`). The one-sentence statement is a
   limit-uniformity statement; the scope actually used is fixed by items 6, 8, 9.
 - Verdict: ________  Notes: ______________________________________________
@@ -105,13 +105,13 @@ Manuscript build the record refers to: `part_i/main.tex`, Scope amendment of
 
 ### 8. Affine-path application of Theorem 1.1.7 — pp. 594–595 (PDF 11–12)
 - Images: `gjs-theorems-11.png` (foot of p. 594), `gjs-theorems-12.png` (top of p. 595).
-- To confirm, against Assumption A8(vii′)(a): (a) "For test functions f_i ∈ C₀^∞(𝒪) and for
+- To confirm, against Assumption A8(vii′)(a): (a) "For test functions f_i ∈ C₀^∞(`\mathcal O`) and for
   cutoff functions h₁ and h₂, we assert that (1.1.11) … ≤ O(1)e^{−m₁d/2} where
-  d = dist(𝒪, suppt h₁ − h₂) [sic: "suppt" as printed], and then Theorem 1.1.1 follows."; (b) "let g = h₂ − h₁, and
+  d = dist(`\mathcal O`, suppt h₁ − h₂) [sic: "suppt" as printed], and then Theorem 1.1.1 follows."; (b) "let g = h₂ − h₁, and
   define g_i = gχ_{Δ_i}"; (c) (1.1.12): the derivative is taken along h₁ + αg, α ∈ [0, 1],
   and the three displayed lines match the manuscript's transcription (V(g), V(g_i),
   ⟨·⟩_{h₁+αg}); (d) "We apply Theorem 1.1.7 to each term in the sum to obtain
-  |⟨Q⟩_{h₂} − ⟨Q⟩_{h₁}| ≤ Σ_{i∈Z²∩supp g} O(1)e^{−m₁ dist(𝒪,Δ_i)} ≤ O(1)e^{−m₁d/2}."; (e) "As a
+  |⟨Q⟩_{h₂} − ⟨Q⟩_{h₁}| ≤ Σ_{i∈Z²∩supp g} O(1)e^{−m₁ dist(`\mathcal O`,Δ_i)} ≤ O(1)e^{−m₁d/2}."; (e) "As a
   special case, the cutoff Schwinger functions S_h converge as h → 1."
 - What this settles: the source applies Theorem 1.1.7 with its h-independent constant at
   every cutoff h₁ + α(h₂ − h₁) of an affine path between **arbitrary** cutoff functions of the
