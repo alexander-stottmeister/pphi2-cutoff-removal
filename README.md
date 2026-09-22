@@ -140,7 +140,9 @@ below by one γ for the whole cutoff class.
 
 ## Documentation
 
-[`docs/`](docs/) is the navigable index, and is also published as a site.
+[`docs/`](docs/) is the navigable index. It is also published as a site:
+**<https://alexander-stottmeister.github.io/pphi2-cutoff-removal/>**, where the eight
+figures below are interactive.
 
 | | |
 |---|---|

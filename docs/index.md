@@ -38,7 +38,7 @@ dynamics in the spectral sense.
 | [Definitions](definitions.md) | the model, the three cutoff classes, the plateau net |
 | [Notation](notation.md) | the frozen notation table |
 | [Provenance](provenance.md) | gates, corrections history, the citation dossiers |
-| [Figures](interactive/index.html) | eight interactive illustrations of the main results (on the published site) |
+| [Figures](interactive/index.html) | eight interactive illustrations of the main results |
 
 The manuscript itself is [`part_i/main.pdf`](../part_i/main.pdf) (40 pp, document of
 record).
