@@ -59,6 +59,94 @@ The manuscript states its own negative scope in the abstract: no uniqueness of �
 all locally normal ground states, no sharp exponential rate, and no claim outside the
 weak-coupling region.
 
+## The proof in five pictures
+
+Each figure links to an interactive version. Three of them are computed from the
+manuscript's own formulas by [`docs/figures/make_figures.py`](docs/figures/make_figures.py),
+not drawn, so they are checkable artifacts rather than illustrations of a mood. All of
+them illustrate; none of them is evidence.
+
+### What Theorem 12.2 rests on
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/imports-dag-dark.svg">
+  <img alt="Dependency graph of Part I: assumptions A1-A8 above, the spine of results below, with every statement whose proof chain reaches A8 marked as conditional on U_GJS." src="docs/figures/imports-dag.svg">
+</picture>
+
+Generated from `part_i/main.tex`: the nodes are the spine of Part I, the edges are its
+own `\ref` graph, and the shading is computed, not asserted. A statement is marked
+conditional exactly when its proof chain reaches A8, the GJS package whose item (vi) is
+U_GJS. Twenty-four of the sixty-one numbered statements are; the [result
+inventory](docs/results.md) lists which. The exact inverse-energy filter is not among
+them, which is as it should be — it is operator theory and Fourier analysis.
+
+### Where the rate comes from, and what survives
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/rate-dark.svg">
+  <img alt="Two panels. Left: the filter kernel |W_gamma(t)| on log-log axes with its envelope, whose local slope grows from 1.2 to 6.7. Right: the exponential and filter-tail summands of the rate function Psi_gamma(d)." src="docs/figures/rate.svg">
+</picture>
+
+Left, Lemma 9.1(i): the filter kernel and its envelope, whose local log-log slope grows
+through 1.2, 3.1, 6.7 — no fixed power bounds it. Right, Lemma 10.5: the two summands of
+the rate function. The exponential part collapses; the filter tail is what remains, and
+it is what makes the rate super-polynomial rather than merely exponential-then-stuck.
+Both are computed for one admissible χ, which Lemma 9.1 leaves free; the shapes are the
+content, not the heights. Ψ_γ is an upper bound, never a measured decay of any state.
+
+### The two regimes
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/light-cone-dark.svg">
+  <img alt="Spacetime diagram of the two-regime bound: the light cone O_|t| spreads from O at unit speed; while |t| <= r_j/2 the cell B_j lies outside it and the bound is exponentially small." src="docs/figures/light-cone.svg">
+</picture>
+
+The exact light cone of Proposition 2.7 confines a time-evolved local observable, and
+the exact filter converts the gap into a decaying time kernel. While |t| ≤ r_j/2 the
+cell B_j is still outside O_|t|, and clustering gives an exponentially small bound; past
+that time only the trivial bound survives. Summing the two regimes over cells produces
+Ψ_γ. This lemma is where the geometry and the spectrum meet.
+
+### The net, and the gap that does not close
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/plateau-net-dark.svg">
+  <img alt="Two cutoffs g and g' with plateau value 1 and nested plateaux, showing the net order and the distances d(g,O) and d(g',O)." src="docs/figures/plateau-net.svg">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/uniform-gap-dark.svg">
+  <img alt="The spectrum of H(g) for four cutoffs: an isolated point at 0 and a continuum from gamma on, with the same gamma in every row." src="docs/figures/uniform-gap.svg">
+</picture>
+
+Convergence is along the plateau order — the full net, no subnet, no space averaging —
+and the rate is a function of d(g, O) alone. It is available because the gap is bounded
+below by one γ for the whole cutoff class.
+
+## Documents
+
+| document | | what it is |
+|---|---|---|
+| [`part_i/main.pdf`](part_i/main.pdf) | 40 pp | **the document of record.** Theorem 12.2 and its full proof from the imports |
+| [`part_ii/gate_II11_scoping.pdf`](part_ii/gate_II11_scoping.pdf) | 11 pp | the open Part II programme at gate (II.11) |
+| [`audit_2026/critical_proof_audit.pdf`](audit_2026/critical_proof_audit.pdf) | 10 pp | the independent audit, frozen against the v1 hash |
+| [`fresh_audit_2026_08_16/critical_audit_parts_i_ii.pdf`](fresh_audit_2026_08_16/critical_audit_parts_i_ii.pdf) | 11 pp | a second, independent audit of both parts |
+| [`fresh_audit_2026_08_16/lamport_reconstruction_parts_i_ii.pdf`](fresh_audit_2026_08_16/lamport_reconstruction_parts_i_ii.pdf) | 114 pp | the whole chain rebuilt in Lamport's hierarchical proof format |
+| [`output/pdf/glimm-jaffe-lamport-euclidean-to-gap.pdf`](output/pdf/glimm-jaffe-lamport-euclidean-to-gap.pdf) | 9 pp | fully explicit: GJS ⟹ (M₂) + (G) |
+| [`output/pdf/glimm-jaffe-lamport-gap-to-main-theorem.pdf`](output/pdf/glimm-jaffe-lamport-gap-to-main-theorem.pdf) | 10 pp | fully explicit: (M₂) + (G) ⟹ the main theorem |
+
+## Documentation
+
+[`docs/`](docs/) is the navigable index, and is also published as a site.
+
+| | |
+|---|---|
+| [status](docs/status.md) | what is proved, what is conditional, what is open; the gate record |
+| [results](docs/results.md) | all 61 numbered statements with dependencies — generated, never hand-edited |
+| [imports](docs/imports.md) | A1–A8, and exactly what U_GJS is and is not |
+| [definitions](docs/definitions.md) · [notation](docs/notation.md) | the objects and the frozen symbol table |
+| [provenance](docs/provenance.md) | frozen sources, corrections history, the dossiers |
+
 ## Layout
 
 | path | what it is |
@@ -71,6 +159,8 @@ weak-coupling region.
 | `repair_2026_08_16/` | post-repair checks and artifact hashes |
 | `output/pdf/` | compiled snapshots of the documents above |
 | `strategy.md` | the living plan and chronological record of every phase and gate |
+| `docs/` | the navigable documentation and the figure site; `docs/extract.py` regenerates the inventory |
+| `.githooks/` | the publication-boundary guard and its self-test |
 
 ## What is deliberately not in this repository
 

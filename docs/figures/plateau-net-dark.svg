@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" width="720" height="300" role="img" aria-labelledby="figtitle figdesc">
+<title id="figtitle">The plateau net</title>
+<desc id="figdesc">Two cutoffs g and g' in the net class, both with plateau value 1. {g = 1} is contained in {g' = 1}, and the rate is expressed in d(g, O), the distance from O to the edge of the plateau.</desc>
+<style>
+  text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+       fill:#1f2328}
+  .mut{fill:#6e7781} .sm{font-size:11px} .xs{font-size:9.5px} .b{font-weight:600}
+  .ax{stroke:#d0d7de;stroke-width:1;fill:none}
+  .gr{stroke:#d0d7de;stroke-width:.5;fill:none;opacity:.6}
+</style>
+<rect width="720" height="300" fill="#0d1117"/>
+<line x1="56.00" y1="222.00" x2="686.00" y2="222.00" class="ax"/>
+<line x1="56.00" y1="126.00" x2="686.00" y2="126.00" class="gr" stroke-dasharray="4 3"/>
+<text x="48.00" y="130.00" class="xs mut" text-anchor="end">1</text>
+<text x="48.00" y="226.00" class="xs mut" text-anchor="end">0</text>
+<text x="694.00" y="226.00" class="mut sm">x</text>
+<path d="M56.00 222.00 L221.38 222.00 L266.00 126.00 L476.00 126.00 L520.62 222.00 L686.00 222.00" fill="none" stroke="#8d96a0" stroke-width="2"/>
+<text x="526.62" y="216.00" class="b" fill="#8d96a0">g</text>
+<line x1="415.62" y1="142.00" x2="476.00" y2="142.00" class="" stroke="#8d96a0" stroke-width="1" stroke-dasharray="3 2"/>
+<line x1="415.62" y1="138.00" x2="415.62" y2="146.00" class="" stroke="#8d96a0" stroke-width="1"/>
+<line x1="476.00" y1="138.00" x2="476.00" y2="146.00" class="" stroke="#8d96a0" stroke-width="1"/>
+<text x="445.81" y="137.00" class="xs" text-anchor="middle" fill="#8d96a0">d(g, O)</text>
+<path d="M56.00 222.00 L116.38 222.00 L161.00 126.00 L581.00 126.00 L625.62 222.00 L686.00 222.00" fill="none" stroke="#3fb950" stroke-width="2"/>
+<text x="631.62" y="216.00" class="b" fill="#3fb950">g′</text>
+<line x1="415.62" y1="160.00" x2="581.00" y2="160.00" class="" stroke="#3fb950" stroke-width="1" stroke-dasharray="3 2"/>
+<line x1="415.62" y1="156.00" x2="415.62" y2="164.00" class="" stroke="#3fb950" stroke-width="1"/>
+<line x1="581.00" y1="156.00" x2="581.00" y2="164.00" class="" stroke="#3fb950" stroke-width="1"/>
+<text x="498.31" y="155.00" class="xs" text-anchor="middle" fill="#3fb950">d(g′, O)</text>
+<rect x="326.38" y="218.00" width="89.25" height="8.00" fill="#4493f8" rx="2"/>
+<text x="371.00" y="242.00" class="b" text-anchor="middle" fill="#4493f8">O</text>
+<text x="56.00" y="24.00" class="b">g ⪯ g′ in the net class: the plateau widens, d(g, O) grows with it</text>
+<text x="686.00" y="24.00" class="mut sm" text-anchor="end">Definition 2.1</text>
+<text x="56.00" y="274.00" class="mut sm">Directed by inclusion of plateau interiors. Convergence is along this order — the full net,</text>
+<text x="56.00" y="290.00" class="mut sm">with no subnet and no space averaging — and the rate is a function of d(g, O) alone.</text>
+</svg>

@@ -23,6 +23,10 @@ part_ii/dossier_images/
 # The second line of defence is .githooks/pre-commit; enable it in a fresh clone
 # with: git config core.hooksPath .githooks
 
+# Python caches
+__pycache__/
+*.pyc
+
 # LaTeX build artifacts
 *.aux
 *.log

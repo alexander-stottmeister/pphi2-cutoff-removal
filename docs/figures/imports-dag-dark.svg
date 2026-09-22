@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" width="720" height="470" role="img" aria-labelledby="figtitle figdesc">
+<title id="figtitle">The import graph</title>
+<desc id="figdesc">A1-A8 and the spine of Part I. Everything whose proof chain reaches A8, the GJS package, inherits the conditionality of Theorem 12.2.</desc>
+<style>
+  text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+       fill:#1f2328}
+  .mut{fill:#6e7781} .sm{font-size:11px} .xs{font-size:9.5px} .b{font-weight:600}
+  .ax{stroke:#d0d7de;stroke-width:1;fill:none}
+  .gr{stroke:#d0d7de;stroke-width:.5;fill:none;opacity:.6}
+</style>
+<rect width="720" height="470" fill="#0d1117"/>
+<text x="28.00" y="26.00" class="b">What Theorem 12.2 rests on</text>
+<text x="696.00" y="26.00" class="mut xs" text-anchor="end">generated from part_i/main.tex</text>
+<rect x="28.00" y="38.00" width="10.00" height="10.00" fill="#2a1f45" stroke="#c297ff" stroke-width="1.2" rx="2"/>
+<text x="43.00" y="47.00" class="xs" fill="#c297ff">proof chain reaches A8 — conditional on U_GJS</text>
+<rect x="268.00" y="38.00" width="10.00" height="10.00" fill="#0d1117" stroke="#3fb950" stroke-width="1.2" rx="2"/>
+<text x="283.00" y="47.00" class="xs" fill="#3fb950">independent of A8</text>
+<rect x="400.00" y="38.00" width="10.00" height="10.00" fill="#0d1117" stroke="#30363d" stroke-width="1.2" rx="2"/>
+<text x="415.00" y="47.00" class="xs mut">imported hypothesis</text>
+<path d="M400.0 420.0 C 400.0 242.5, 632.0 242.5, 632.0 65.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M222.0 83.0 C 222.0 74.0, 632.0 74.0, 632.0 65.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M100.0 159.0 C 100.0 112.0, 632.0 112.0, 632.0 65.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M632.0 83.0 C 632.0 112.0, 100.0 112.0, 100.0 141.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M632.0 83.0 C 632.0 126.5, 400.0 126.5, 400.0 170.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M58.0 83.0 C 58.0 141.0, 100.0 141.0, 100.0 199.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M100.0 275.0 C 100.0 280.5, 400.0 280.5, 400.0 286.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M400.0 304.0 C 400.0 309.5, 100.0 309.5, 100.0 315.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M400.0 246.0 C 400.0 280.5, 100.0 280.5, 100.0 315.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M400.0 304.0 C 400.0 324.0, 400.0 324.0, 400.0 344.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M100.0 333.0 C 100.0 338.5, 400.0 338.5, 400.0 344.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M400.0 362.0 C 400.0 382.0, 400.0 382.0, 400.0 402.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M632.0 83.0 C 632.0 242.5, 400.0 242.5, 400.0 402.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M100.0 159.0 C 100.0 280.5, 400.0 280.5, 400.0 402.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M100.0 217.0 C 100.0 309.5, 400.0 309.5, 400.0 402.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M58.0 83.0 C 58.0 242.5, 400.0 242.5, 400.0 402.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M400.0 188.0 C 400.0 295.0, 400.0 295.0, 400.0 402.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M100.0 391.0 C 100.0 396.5, 400.0 396.5, 400.0 402.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M550.0 83.0 C 550.0 242.5, 400.0 242.5, 400.0 402.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M100.0 217.0 C 100.0 324.0, 100.0 324.0, 100.0 431.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<path d="M400.0 420.0 C 400.0 425.5, 100.0 425.5, 100.0 431.0" fill="none" stroke="#30363d" stroke-width="1"/>
+<rect x="21.00" y="63.00" width="74.00" height="22.00" fill="#0d1117" stroke="#30363d" stroke-width="1.4" rx="4"/>
+<text x="58.00" y="78.00" class="sm b" text-anchor="middle" fill="#e6edf3">A1</text>
+<rect x="103.00" y="63.00" width="74.00" height="22.00" fill="#0d1117" stroke="#30363d" stroke-width="1.4" rx="4"/>
+<text x="140.00" y="78.00" class="sm b" text-anchor="middle" fill="#e6edf3">A2</text>
+<rect x="185.00" y="63.00" width="74.00" height="22.00" fill="#0d1117" stroke="#30363d" stroke-width="1.4" rx="4"/>
+<text x="222.00" y="78.00" class="sm b" text-anchor="middle" fill="#e6edf3">A3</text>
+<rect x="267.00" y="63.00" width="74.00" height="22.00" fill="#0d1117" stroke="#30363d" stroke-width="1.4" rx="4"/>
+<text x="304.00" y="78.00" class="sm b" text-anchor="middle" fill="#e6edf3">A4</text>
+<rect x="349.00" y="63.00" width="74.00" height="22.00" fill="#0d1117" stroke="#30363d" stroke-width="1.4" rx="4"/>
+<text x="386.00" y="78.00" class="sm b" text-anchor="middle" fill="#e6edf3">A5</text>
+<rect x="431.00" y="63.00" width="74.00" height="22.00" fill="#0d1117" stroke="#30363d" stroke-width="1.4" rx="4"/>
+<text x="468.00" y="78.00" class="sm b" text-anchor="middle" fill="#e6edf3">A6</text>
+<rect x="513.00" y="63.00" width="74.00" height="22.00" fill="#0d1117" stroke="#30363d" stroke-width="1.4" rx="4"/>
+<text x="550.00" y="78.00" class="sm b" text-anchor="middle" fill="#e6edf3">A7</text>
+<rect x="595.00" y="63.00" width="74.00" height="22.00" fill="#2a1f45" stroke="#c297ff" stroke-width="1.4" rx="4"/>
+<text x="632.00" y="78.00" class="sm b" text-anchor="middle" fill="#c297ff">A8</text>
+<rect x="16.00" y="139.00" width="168.00" height="22.00" fill="#2a1f45" stroke="#c297ff" stroke-width="1.4" rx="4"/>
+<text x="100.00" y="154.00" class="sm b" text-anchor="middle" fill="#c297ff">Prop 3.2</text>
+<text x="192.00" y="154.00" class="xs mut">dimensionless weak-coupling reduction</text>
+<rect x="316.00" y="168.00" width="168.00" height="22.00" fill="#2a1f45" stroke="#c297ff" stroke-width="1.4" rx="4"/>
+<text x="400.00" y="183.00" class="sm b" text-anchor="middle" fill="#c297ff">Thm 5.1</text>
+<text x="492.00" y="183.00" class="xs mut">uniform local interaction moment (M$_2$)</text>
+<rect x="16.00" y="197.00" width="168.00" height="22.00" fill="#2a1f45" stroke="#c297ff" stroke-width="1.4" rx="4"/>
+<text x="100.00" y="212.00" class="sm b" text-anchor="middle" fill="#c297ff">Thm 7.8</text>
+<text x="192.00" y="212.00" class="xs mut">uniform gap (G)</text>
+<rect x="316.00" y="226.00" width="168.00" height="22.00" fill="#0d1117" stroke="#3fb950" stroke-width="1.4" rx="4"/>
+<text x="400.00" y="241.00" class="sm b" text-anchor="middle" fill="#3fb950">Lemm 9.1</text>
+<text x="492.00" y="241.00" class="xs mut">exact inverse-energy filter</text>
+<rect x="16.00" y="255.00" width="168.00" height="22.00" fill="#2a1f45" stroke="#c297ff" stroke-width="1.4" rx="4"/>
+<text x="100.00" y="270.00" class="sm b" text-anchor="middle" fill="#c297ff">Lemm 10.3</text>
+<text x="192.00" y="270.00" class="xs mut">two-regime bound</text>
+<rect x="316.00" y="284.00" width="168.00" height="22.00" fill="#2a1f45" stroke="#c297ff" stroke-width="1.4" rx="4"/>
+<text x="400.00" y="299.00" class="sm b" text-anchor="middle" fill="#c297ff">Prop 10.4</text>
+<text x="492.00" y="299.00" class="xs mut">one-path estimate</text>
+<rect x="16.00" y="313.00" width="168.00" height="22.00" fill="#2a1f45" stroke="#c297ff" stroke-width="1.4" rx="4"/>
+<text x="100.00" y="328.00" class="sm b" text-anchor="middle" fill="#c297ff">Lemm 10.5</text>
+<text x="192.00" y="328.00" class="xs mut">the rate function is super-polynomial</text>
+<rect x="316.00" y="342.00" width="168.00" height="22.00" fill="#2a1f45" stroke="#c297ff" stroke-width="1.4" rx="4"/>
+<text x="400.00" y="357.00" class="sm b" text-anchor="middle" fill="#c297ff">Thm 11.1</text>
+<text x="492.00" y="357.00" class="xs mut">full-net convergence with rate</text>
+<rect x="16.00" y="371.00" width="168.00" height="22.00" fill="#0d1117" stroke="#3fb950" stroke-width="1.4" rx="4"/>
+<text x="100.00" y="386.00" class="sm b" text-anchor="middle" fill="#3fb950">Prop 12.1</text>
+<text x="192.00" y="386.00" class="xs mut">exact spectral passage</text>
+<rect x="316.00" y="400.00" width="168.00" height="22.00" fill="#2a1f45" stroke="#c297ff" stroke-width="1.4" rx="4"/>
+<text x="400.00" y="415.00" class="sm b" text-anchor="middle" fill="#c297ff">Thm 12.2</text>
+<text x="492.00" y="415.00" class="xs mut">Main Theorem</text>
+<rect x="16.00" y="429.00" width="168.00" height="22.00" fill="#2a1f45" stroke="#c297ff" stroke-width="1.4" rx="4"/>
+<text x="100.00" y="444.00" class="sm b" text-anchor="middle" fill="#c297ff">Thm 13.2</text>
+<text x="192.00" y="444.00" class="xs mut">conditional exclusion of a two-phase…</text>
+<text x="632.00" y="56.00" class="xs b" text-anchor="middle" fill="#c297ff">U_GJS is item (vi)</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 430" width="720" height="430" role="img" aria-labelledby="figtitle figdesc">
+<title id="figtitle">The two-regime bound</title>
+<desc id="figdesc">Spacetime diagram. The cone O_|t| spreads from O at unit speed. While |t| &lt;= r_j/2 the cell B_j is outside it and the bound is exponentially small; beyond that only the trivial bound 2M is available.</desc>
+<style>
+  text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+       fill:#1f2328}
+  .mut{fill:#6e7781} .sm{font-size:11px} .xs{font-size:9.5px} .b{font-weight:600}
+  .ax{stroke:#d0d7de;stroke-width:1;fill:none}
+  .gr{stroke:#d0d7de;stroke-width:.5;fill:none;opacity:.6}
+</style>
+<rect width="720" height="430" fill="#ffffff"/>
+<text x="28.00" y="24.00" class="b">Exact light cone, exact filter: the two regimes</text>
+<text x="696.00" y="24.00" class="mut sm" text-anchor="end">Lemma 10.3</text>
+<rect x="38.00" y="58.00" width="424.00" height="228.00" fill="#d0d7de" opacity="0.16"/>
+<rect x="38.00" y="286.00" width="424.00" height="70.00" fill="#1a7f37" opacity="0.07"/>
+<path d="M222.00 356.00 L-76.00 58.00 L576.00 58.00 L278.00 356.00" fill="#ddf4ff" opacity="0.55" stroke="none"/>
+<line x1="222.00" y1="356.00" x2="-76.00" y2="58.00" class="" stroke="#0969da" stroke-width="1.8"/>
+<line x1="278.00" y1="356.00" x2="576.00" y2="58.00" class="" stroke="#0969da" stroke-width="1.8"/>
+<line x1="38.00" y1="356.00" x2="462.00" y2="356.00" class="ax"/>
+<line x1="250.00" y1="364.00" x2="250.00" y2="52.00" class="ax"/>
+<text x="470.00" y="360.00" class="mut sm">x</text>
+<text x="258.00" y="56.00" class="mut sm">t</text>
+<rect x="222.00" y="352.00" width="56.00" height="8.00" fill="#0969da" rx="2"/>
+<text x="250.00" y="376.00" class="b" text-anchor="middle" fill="#0969da">O</text>
+<rect x="418.00" y="351.00" width="20.00" height="10.00" fill="#bc4c00" rx="2"/>
+<text x="428.00" y="376.00" class="b" text-anchor="middle" fill="#bc4c00">B_j</text>
+<line x1="278.00" y1="336.00" x2="418.00" y2="336.00" class="" stroke="#6e7781" stroke-width="1"/>
+<line x1="278.00" y1="332.00" x2="278.00" y2="340.00" class="" stroke="#6e7781" stroke-width="1"/>
+<line x1="418.00" y1="332.00" x2="418.00" y2="340.00" class="" stroke="#6e7781" stroke-width="1"/>
+<text x="348.00" y="331.00" class="sm mut" text-anchor="middle">r_j</text>
+<line x1="38.00" y1="286.00" x2="462.00" y2="286.00" class="" stroke="#bc4c00" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="42.00" y="279.00" class="sm b" fill="#bc4c00">|t| = r_j / 2</text>
+<text x="230.00" y="304.00" class="sm" text-anchor="middle" fill="#0969da">O_|t|</text>
+<text x="694.00" y="312.00" class="sm b" text-anchor="end" fill="#1a7f37">|C_j(t)|  ≤  2M e^(−γ r_j / 4)</text>
+<text x="694.00" y="328.00" class="xs mut" text-anchor="end">B_j is still outside the cone:</text>
+<text x="694.00" y="341.00" class="xs mut" text-anchor="end">dist(B_j, O_|t|) ≥ r_j / 2</text>
+<text x="694.00" y="252.00" class="sm b" text-anchor="end" fill="#6e7781">|C_j(t)|  ≤  2M</text>
+<text x="694.00" y="266.00" class="xs mut" text-anchor="end">only the trivial bound</text>
+<text x="28.00" y="404.00" class="mut sm">The gap enters through the filter, the geometry through the cone; the lemma is where they meet.</text>
+<text x="28.00" y="420.00" class="mut sm">Summing the two regimes over the cells B_j gives the rate function Ψ_γ of Lemma 10.5.</text>
+</svg>
