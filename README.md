@@ -187,12 +187,16 @@ in scholarly work, and each transcribed display carries a `% src:` comment namin
 origin.
 
 The boundary is enforced mechanically rather than by care alone. `.gitignore` excludes
-the source and image paths, and every raster format a page image could arrive in;
-`.githooks/pre-commit` then refuses any commit that stages one regardless. Enable the
-hook in a fresh clone with
+the source and image paths, every raster image extension and every archive format.
+`.githooks/pre-commit` then refuses any commit that stages one regardless, and judges
+each staged file by its bytes as well as its name: a page image under a new or false
+name, a PDF that embeds a raster image, a PDF or PostScript file under another name, and
+a figure carrying a raster inside it as a data URI are refused as well. Enable the hook
+in a fresh clone, and test both files as they stand in the working tree, with
 
 ```sh
 git config core.hooksPath .githooks
+sh .githooks/selftest.sh
 ```
 
 ## Building

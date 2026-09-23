@@ -3,76 +3,188 @@
 #
 # This working tree is shared by two git repositories that track disjoint sets of
 # files.  The public one must never acquire third-party source material: the source
-# PDFs under refs/, the citation page images, or a dossier PDF that embeds them.
+# papers under refs/, the citation page images, or a document that embeds them.
 # .gitignore is the first line of defence.  This hook is the second, because `git
 # add -f`, an editor, a script, or an unattended commit can each step around an
 # ignore rule, and a public repository does not forgive that twice.
+#
+# Every staged file is judged twice, by its name and by its bytes.  A name can be
+# new or can lie -- a page image saved as .avif, a scan renamed to .dat, a figure
+# that carries a raster inside it -- so the content test is the one that renaming
+# cannot get past.
+#
+#   by name     refs/, any evidence/ directory, part_ii/dossier_images/, PRIVATE.md,
+#               anything the private manifest claims, *dossier*.pdf, every raster
+#               image extension, every archive extension, and a new PDF or
+#               PostScript file with no tracked .tex of the same name beside it
+#   by content  the signatures of PNG, JPEG, GIF, TIFF, BMP, WebP, AVIF and HEIF,
+#               JPEG XL, JPEG 2000, PSD and DjVu; a PDF or PostScript file under
+#               another name; zip, gzip, bzip2, xz, 7z, rar, zstd and tar archives;
+#               a PDF that embeds a raster image; and a raster image carried inside
+#               any file as a data URI, an SVG included
+#
+# The PDF test needs `pdfimages` from poppler.  Without it every staged PDF is
+# refused, not waved through.
 #
 # Enable it in every clone (core.hooksPath is per-clone local config):
 #
 #     git config core.hooksPath .githooks
 #
-# Deliberate override, when you really mean it:  git commit --no-verify
+# Test the rules in the working tree, edited or not:  sh .githooks/selftest.sh
+# Deliberate override, when you really mean it:        git commit --no-verify
 set -eu
-
-staged=$(git diff --cached --name-only --diff-filter=ACMR)
-[ -n "$staged" ] || exit 0
+export LC_ALL=C   # names and bytes are matched byte by byte, never as text
 
 MANIFEST=../manifests/glimm_jaffe-private.txt   # present on the author's machines only
-tmp=$(mktemp) || exit 1
-trap 'rm -f "$tmp"' EXIT
+tmp=$(mktemp -d) || exit 1
+trap 'rm -rf "$tmp"' EXIT
+: > "$tmp/hits"
+hit() { printf '%s|%s\n' "$1" "$2" >> "$tmp/hits"; }
 
-oldifs=$IFS
-IFS='
-'
-for f in $staged; do
-  IFS=$oldifs
-  lower=$(printf '%s' "$f" | tr '[:upper:]' '[:lower:]')
-  case "$lower" in
-    (refs/*)                    echo "$f|source PDFs live in the private companion" ;;
-    (evidence/*|*/evidence/*)   echo "$f|citation page images are third-party material" ;;
-    (part_ii/dossier_images/*)  echo "$f|citation page images are third-party material" ;;
-    (private.md)                echo "$f|tracked by the private companion, not here" ;;
-    (*.png|*.jpg|*.jpeg|*.tif|*.tiff|*.webp|*.djvu|*.gif|*.bmp)
-                                echo "$f|page image, or an image needing a deliberate exception" ;;
-    (*dossier*.pdf)             echo "$f|dossier PDFs embed the page images" ;;
-    (*.pdf)
-      # A new PDF with no source of the same name beside it is almost certainly an
-      # acquired paper.  A PDF rebuilt from a tracked .tex is fine.
-      if ! git rev-parse --verify -q HEAD >/dev/null 2>&1 || ! git cat-file -e "HEAD:$f" 2>/dev/null; then
-        stem=${f%.pdf}
-        [ -f "$stem.tex" ] || echo "$f|new PDF with no .tex beside it: third-party source?"
+# Names are read with quoting off.  Under git's default core.quotePath=true a name
+# holding a non-ASCII byte arrives as "refs/Gl\303\274ck.pdf", quotes and escapes
+# included, and no pattern below matched it: a source PDF or a page image with an
+# accented name walked straight through.  With quoting off git still quotes a name
+# holding a control character, a double quote or a backslash, and such a name is
+# refused outright rather than guessed at.
+git -c core.quotePath=false diff --cached --name-only --diff-filter=ACMRT > "$tmp/staged"
+[ -s "$tmp/staged" ] || exit 0
+
+tr '[:upper:]' '[:lower:]' < "$tmp/staged" > "$tmp/lower"
+pdfimages_ok=0
+if command -v pdfimages >/dev/null 2>&1; then pdfimages_ok=1; fi
+TARPAT=$(printf '%514s' '' | tr ' ' '?')   # any 257 bytes, as hex digits
+
+# sniff <the first 264 bytes, as lower-case hex>: prints image, pdf, ps, archive,
+# or nothing.  Each signature is anchored at offset 0, except tar's at 257.
+sniff() {
+  case $1 in
+    89504e470d0a1a0a*|ffd8ff*|474946383761*|474946383961*)
+      echo image ;;
+    49492a00*|4d4d002a*|49492b00*|4d4d002b*)
+      echo image ;;
+    424d????????00000000*)
+      echo image ;;
+    52494646????????57454250*)
+      echo image ;;
+    ????????6674797061766966*|????????6674797061766973*|????????6674797068656963*|\
+    ????????6674797068656978*|????????667479706865696d*|????????6674797068656973*|\
+    ????????6674797068657663*|????????6674797068657678*|????????667479706d696631*|\
+    ????????667479706d736631*|????????667479706d696632*|????????6674797063727820*)
+      echo image ;;
+    ff0a*|0000000c4a584c200d0a870a*|0000000c6a5020200d0a870a*|ff4fff51*)
+      echo image ;;
+    38425053*|41542654464f524d*)
+      echo image ;;
+    255044462d3[0-9]2e*)
+      echo pdf ;;
+    252150532d41646f6265*|c5d0d3c6*)
+      echo ps ;;
+    504b0304*|504b0506*|504b0708*|1f8b*|fd377a585a00*|377abcaf271c*|526172211a07*|28b52ffd*)
+      echo archive ;;
+    425a683[1-9]314159265359*|425a683[1-9]177245385090*|${TARPAT}7573746172*)
+      echo archive ;;
+  esac
+}
+# In order: PNG, JPEG, GIF; TIFF and BigTIFF, which most camera raw formats are;
+# BMP ('BM', a size, then a reserved word that is always zero); WebP; the ISO
+# media brands of AVIF, HEIF and HEIC (and Canon's CR3); JPEG XL and JPEG 2000,
+# each as container and as bare codestream; PSD and DjVu; %PDF-n.; %!PS-Adobe and
+# the binary EPS header; zip, gzip, xz, 7z, rar, zstd; bzip2; and ustar.
+
+while IFS= read -r f <&3 && IFS= read -r lower <&4; do
+  case $lower in
+    (\"*) hit "$f" "git has to quote this name (a control character, a quote or a backslash): rename it"
+          continue ;;
+  esac
+
+  # --- by name --------------------------------------------------------------
+  case $lower in
+    (refs/*)                    hit "$f" "source papers live in the private companion" ;;
+    (evidence/*|*/evidence/*)   hit "$f" "citation page images are third-party material" ;;
+    (part_ii/dossier_images/*)  hit "$f" "citation page images are third-party material" ;;
+    (private.md)                hit "$f" "tracked by the private companion, not here" ;;
+    (*dossier*.pdf)             hit "$f" "dossier PDFs embed the page images" ;;
+  esac
+  case $lower in
+    (*.png|*.apng|*.jpg|*.jpeg|*.jpe|*.jfif|*.pjpeg|*.pjp|*.gif|*.bmp|*.dib|*.tif|*.tiff|\
+     *.webp|*.avif|*.avifs|*.heic|*.heics|*.heif|*.heifs|*.hif|*.jxl|*.jp2|*.j2k|*.j2c|\
+     *.jpf|*.jpx|*.jpm|*.mj2|*.jxr|*.wdp|*.psd|*.psb|*.xcf|*.ico|*.icns|*.pnm|*.pbm|\
+     *.pgm|*.ppm|*.pcx|*.tga|*.qoi|*.exr|*.dng|*.cr2|*.cr3|*.nef|*.arw|*.orf|*.rw2|\
+     *.raf|*.djvu|*.djv)
+      hit "$f" "raster image, by name" ;;
+    (*.zip|*.tar|*.tgz|*.tbz|*.tbz2|*.txz|*.gz|*.bz2|*.xz|*.7z|*.rar|*.zst)
+      hit "$f" "archive: what it holds cannot be checked" ;;
+    (*.pdf|*.ps|*.eps)
+      # A new document with no source of the same name beside it is almost
+      # certainly an acquired paper; one built from a tracked or staged .tex is
+      # fine.  The .tex has to be in the index, not merely on disk.
+      if ! git cat-file -e "HEAD:$f" 2>/dev/null; then
+        if ! git cat-file -e ":0:${f%.*}.tex" 2>/dev/null; then
+          hit "$f" "new document with no tracked .tex beside it: third-party source?"
+        fi
       fi ;;
-  esac >> "$tmp"
-  # Belt and braces: anything the private manifest claims, by name.
+  esac
   if [ -f "$MANIFEST" ]; then
     while IFS= read -r p; do
       [ -n "$p" ] || continue
-      case "$f" in
-        ("$p"|"$p"/*) echo "$f|claimed by the private manifest ($p)" >> "$tmp" ;;
-      esac
+      case $f in ("$p"|"$p"/*) hit "$f" "claimed by the private manifest ($p)" ;; esac
     done < "$MANIFEST"
   fi
-  IFS='
-'
-done
-IFS=$oldifs
 
-[ -s "$tmp" ] || exit 0
+  # --- by content: what the staged bytes are, whatever the name says ---------
+  git cat-file blob ":0:$f" > "$tmp/blob" 2>/dev/null || continue   # a gitlink has no bytes
+  kind=$(sniff "$(od -An -v -tx1 -N 264 "$tmp/blob" | tr -d ' \n')")
+  is_pdf=0
+  case $lower in (*.pdf) is_pdf=1 ;; esac
+  case $kind in
+    (image)   hit "$f" "raster image, by content" ;;
+    (archive) hit "$f" "archive, by content: what it holds cannot be checked" ;;
+    (pdf)     # A PDF header alone is not proof: a .tex can open with a %PDF-1.5
+              # comment.  A real PDF also has indirect objects.
+              if [ "$is_pdf" = 0 ] && grep -a -q endobj "$tmp/blob"; then
+                hit "$f" "a PDF under a name that does not say so"; is_pdf=1
+              fi ;;
+    (ps)      case $lower in
+                (*.ps|*.eps) ;;
+                (*) hit "$f" "PostScript under a name that does not say so" ;;
+              esac ;;
+  esac
+  if [ "$is_pdf" = 1 ]; then
+    if [ "$pdfimages_ok" = 0 ]; then
+      hit "$f" "pdfimages (poppler) is not installed, so this PDF cannot be checked for page images"
+    elif pdfimages -list "$tmp/blob" > "$tmp/list" 2>/dev/null; then
+      n=$(awk 'NR > 2 && $3 == "image"' "$tmp/list" | wc -l | tr -d ' ')
+      if [ "$n" -gt 0 ]; then hit "$f" "PDF embeds $n raster image(s): a compiled page image?"; fi
+    else
+      hit "$f" "pdfimages cannot read this PDF, so its images cannot be checked"
+    fi
+  fi
+  # A raster carried inside a text file: an SVG, HTML or Markdown page can hold a
+  # whole page image as base64.  SVG-in-SVG is fine.  (The bracket keeps this
+  # pattern from matching its own source.)
+  if grep -a -q -i 'data[:]image/' "$tmp/blob" &&
+     grep -a -o -i -E 'data[:]image/[a-z0-9.+-]+[;,]' "$tmp/blob" | grep -q -v -i 'svg+xml'; then
+    hit "$f" "carries a raster image inside it as a data URI"
+  fi
+done 3< "$tmp/staged" 4< "$tmp/lower"
+
+[ -s "$tmp/hits" ] || exit 0
 
 {
   echo "pre-commit: refusing to commit to the PUBLIC repository."
   echo
-  sort -u "$tmp" | while IFS='|' read -r f why; do
+  sort -u "$tmp/hits" | while IFS='|' read -r f why; do
     printf '  %-56s  %s\n' "$f" "$why"
   done
   cat <<'MSG'
 
-These paths belong outside the public repository.  Either
+These belong outside the public repository.  Either
 
   git restore --staged <path>          drop it from this commit, or
   ../gjp sync && ../gjp commit ...     commit it to the private companion, or
-  edit .gitignore                      if this really is public material.
+  a narrow exception in .gitignore     if it really is public material, then
+  and in this hook                     run sh .githooks/selftest.sh
 
 Override deliberately with:  git commit --no-verify
 MSG

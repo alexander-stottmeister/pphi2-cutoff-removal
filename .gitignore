@@ -10,18 +10,80 @@ refs/
 **/evidence/
 part_ii/dossier_images/
 *dossier*.pdf
-# Every raster format a page image could arrive in, not just the one it does.
+# Every raster format a page image could arrive in, not just the ones it does: a
+# browser saves WebP or AVIF, a phone HEIC, a scanner TIFF or JPEG 2000.  This list
+# keeps them out of `git add -A` and out of an unattended commit; the hook tests
+# content as well, so a renamed or unlisted format is caught there.
 *.png
+*.apng
 *.jpg
 *.jpeg
+*.jpe
+*.jfif
+*.pjpeg
+*.pjp
+*.gif
+*.bmp
+*.dib
 *.tif
 *.tiff
 *.webp
-*.gif
-*.bmp
+*.avif
+*.avifs
+*.heic
+*.heics
+*.heif
+*.heifs
+*.hif
+*.jxl
+*.jp2
+*.j2k
+*.j2c
+*.jpf
+*.jpx
+*.jpm
+*.mj2
+*.jxr
+*.wdp
+*.psd
+*.psb
+*.xcf
+*.ico
+*.icns
+*.pnm
+*.pbm
+*.pgm
+*.ppm
+*.pcx
+*.tga
+*.qoi
+*.exr
+*.dng
+*.cr2
+*.cr3
+*.nef
+*.arw
+*.orf
+*.rw2
+*.raf
 *.djvu
-# The second line of defence is .githooks/pre-commit; enable it in a fresh clone
-# with: git config core.hooksPath .githooks
+*.djv
+# Archives: whatever they hold cannot be inspected.
+*.zip
+*.tar
+*.tgz
+*.tbz
+*.tbz2
+*.txz
+*.gz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+# The second line of defence is .githooks/pre-commit.  Enable it in every clone
+# with `git config core.hooksPath .githooks`, and test both files, edited or not,
+# with `sh .githooks/selftest.sh`.
 
 # Python caches
 __pycache__/
