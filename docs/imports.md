@@ -12,7 +12,7 @@ for, and what its status is.
 |---|---|---|
 | A1 | cutoff construction | existence and normalization of the ground state Ω_g of H(g) |
 | A2 | Feynman–Kac–Nelson transfer | the slab objects h_{T,g}, ψ_s, c_g and the Euclidean ↔ Hamiltonian passage |
-| A3 | finite-volume stability | the lower bound making E(g) finite |
+| A3 | finite-volume stability | U_h in every L^p and e^{−ϱU_h} integrable, so 0 < Z(h) < ∞ and the interacting measures dq_h are well defined |
 | A4 | free hypercontractivity | the L^p smoothing used in the moment estimates |
 | A5 | domain smoothing; common core | Ω_g ∈ D(V_j), and a core on which the algebra acts |
 | A6 | free propagation; patching; the dynamics α | the **exact light cone** and the patched limit dynamics |
