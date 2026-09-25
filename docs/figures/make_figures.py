@@ -158,9 +158,9 @@ def fig_rate(curves):
     s.text(L, Tp - 12, "dashed: the fixed powers t^\u22122 and t^\u22126, anchored on the envelope",
            "xs mut")
     s.text((L + R) / 2, H - B + 32, "t", "mut sm", text_anchor="middle")
-    s.text(L, H - 26, "No fixed power bounds it: shallower than t^\u22122 early, steeper",
+    s.text(L, H - 26, "Computed: shallower than t^\u22122 early, steeper than t^\u22126 late.",
            "xs mut")
-    s.text(L, H - 12, "than t^\u22126 late. Lemma 9.1(i), independent of A8.", "xs mut")
+    s.text(L, H - 12, "Lemma 9.1(i): every moment finite. Independent of A8.", "xs mut")
 
     # ---- right panel: the two summands of Psi
     L2, R2 = 452, W - 26

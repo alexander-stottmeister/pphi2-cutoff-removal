@@ -38,8 +38,8 @@
 <text x="60.00" y="36.00" class="sm b" fill="#4493f8">|W_γ(t)|, the filter kernel, and its envelope</text>
 <text x="60.00" y="50.00" class="xs mut">dashed: the fixed powers t^−2 and t^−6, anchored on the envelope</text>
 <text x="226.00" y="358.00" class="mut sm" text-anchor="middle">t</text>
-<text x="60.00" y="374.00" class="xs mut">No fixed power bounds it: shallower than t^−2 early, steeper</text>
-<text x="60.00" y="388.00" class="xs mut">than t^−6 late. Lemma 9.1(i), independent of A8.</text>
+<text x="60.00" y="374.00" class="xs mut">Computed: shallower than t^−2 early, steeper than t^−6 late.</text>
+<text x="60.00" y="388.00" class="xs mut">Lemma 9.1(i): every moment finite. Independent of A8.</text>
 <line x1="452.00" y1="62.00" x2="694.00" y2="62.00" class="gr"/>
 <text x="446.00" y="65.50" class="mut xs" text-anchor="end">1e3</text>
 <line x1="452.00" y1="128.00" x2="694.00" y2="128.00" class="gr"/>
