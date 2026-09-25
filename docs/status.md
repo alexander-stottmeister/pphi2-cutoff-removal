@@ -45,13 +45,13 @@ No claim outside the weak-coupling region.
 | G6 | adversarial pass; zero confirmed findings, or all fixed and re-verified | passed 10 Aug 2026 |
 
 The full records, including the findings G6 raised and their dispositions, are in
-[`part_i/README.md`](../part_i/README.md).
+[`part_i/README.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/README.md).
 
 ## Open audit item C5
 
 **No second human reader has yet checked the source page images against the
 transcriptions in §2.** The itemized checklist is
-[`part_i/C5_reading_record.md`](../part_i/C5_reading_record.md); all nine verdict fields
+[`part_i/C5_reading_record.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/C5_reading_record.md); all nine verdict fields
 are blank. Items 8–9 were added on 5 September 2026 for the affine-path application of
 Theorem 1.1.7 on p. 595 and the derivation of Theorem 1.1.7 from Theorem 1.1.8 on
 pp. 596–597.
@@ -62,7 +62,7 @@ not of the mathematics.
 ## Part II — open at gate (II.11)
 
 Nothing in Part I depends on Part II. The preparatory scoping pass is
-[`part_ii/gate_II11_scoping.pdf`](../part_ii/gate_II11_scoping.pdf); phases V0–V4 are
+[`part_ii/gate_II11_scoping.pdf`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_ii/gate_II11_scoping.pdf); phases V0–V4 are
 recorded in `strategy.md`.
 
 | claim | status |

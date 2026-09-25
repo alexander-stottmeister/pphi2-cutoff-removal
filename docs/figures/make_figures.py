@@ -149,18 +149,18 @@ def fig_rate(curves):
         if pts:
             s.poly(pts, fill="none", stroke="var(--mut)", stroke_width=1, stroke_dasharray="3 3")
             s.text(X(lab_at), Y(c * lab_at ** -N) - 4, "t^\u2212%d" % N, "mut xs")
-    for t_at, slope in ((8.4, 1.2), (20.9, 3.1), (150.8, 6.7)):
-        t0, v0 = min(env, key=lambda q: abs(q[0] - t_at))
-        s.circle(X(t0), Y(v0), 2.6, fill="var(--warn)")
-        s.text(X(t0) + 5, Y(v0) - 5, "%.1f" % slope, "xs b", fill="var(--warn)")
+    # No slope numbers on this panel.  Three typed-in labels once stood here, and the
+    # measured local slope of the envelope does not grow monotonically: across a factor
+    # of two in t it runs 1.15, 3.11, 5.28, 2.70, 3.31, 1.28, 6.70, ... at gamma = 1.
+    # The two fixed powers above carry the claim the lemma makes; rate.html measures.
     s.text(L, Tp - 26, "|W_\u03b3(t)|, the filter kernel, and its envelope", "sm b",
            fill="var(--acc)")
-    s.text(L, Tp - 12, "orange: the envelope's local log-log slope, which keeps growing",
-           "xs", fill="var(--warn)")
-    s.text((L + R) / 2, H - B + 32, "t", "mut sm", text_anchor="middle")
-    s.text(L, H - 26, "No fixed power bounds it: shallower than t\u207b\u00b2 early, steeper",
+    s.text(L, Tp - 12, "dashed: the fixed powers t^\u22122 and t^\u22126, anchored on the envelope",
            "xs mut")
-    s.text(L, H - 12, "than t\u207b\u2076 late. Lemma 9.1(i), independent of A8.", "xs mut")
+    s.text((L + R) / 2, H - B + 32, "t", "mut sm", text_anchor="middle")
+    s.text(L, H - 26, "No fixed power bounds it: shallower than t^\u22122 early, steeper",
+           "xs mut")
+    s.text(L, H - 12, "than t^\u22126 late. Lemma 9.1(i), independent of A8.", "xs mut")
 
     # ---- right panel: the two summands of Psi
     L2, R2 = 452, W - 26

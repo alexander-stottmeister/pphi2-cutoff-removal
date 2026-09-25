@@ -35,17 +35,11 @@
 <text x="131.87" y="75.56" class="mut xs">t^−2</text>
 <path d="M228.81 65.11 L234.44 72.50 L240.07 79.90 L245.69 87.30 L251.32 94.70 L256.95 102.09 L262.58 109.49 L268.20 116.89 L273.83 124.28 L279.46 131.68 L285.08 139.08 L290.71 146.47 L296.34 153.87 L301.97 161.27 L307.59 168.66 L313.22 176.06 L318.85 183.46 L324.47 190.85 L330.10 198.25 L335.73 205.65 L341.36 213.05 L346.98 220.44 L352.61 227.84 L358.24 235.24 L363.86 242.63 L369.49 250.03 L375.12 257.43 L380.75 264.82 L386.37 272.22 L392.00 279.62" fill="none" stroke="#8d96a0" stroke-width="1" stroke-dasharray="3 3"/>
 <text x="327.84" y="191.28" class="mut xs">t^−6</text>
-<circle cx="199.23" cy="109.07" r="2.60" fill="#db6d28"/>
-<text x="204.23" y="104.07" class="xs b" fill="#db6d28">1.2</text>
-<circle cx="258.89" cy="149.77" r="2.60" fill="#db6d28"/>
-<text x="263.89" y="144.77" class="xs b" fill="#db6d28">3.1</text>
-<circle cx="388.11" cy="274.51" r="2.60" fill="#db6d28"/>
-<text x="393.11" y="269.51" class="xs b" fill="#db6d28">6.7</text>
 <text x="60.00" y="36.00" class="sm b" fill="#4493f8">|W_γ(t)|, the filter kernel, and its envelope</text>
-<text x="60.00" y="50.00" class="xs" fill="#db6d28">orange: the envelope's local log-log slope, which keeps growing</text>
+<text x="60.00" y="50.00" class="xs mut">dashed: the fixed powers t^−2 and t^−6, anchored on the envelope</text>
 <text x="226.00" y="358.00" class="mut sm" text-anchor="middle">t</text>
-<text x="60.00" y="374.00" class="xs mut">No fixed power bounds it: shallower than t⁻² early, steeper</text>
-<text x="60.00" y="388.00" class="xs mut">than t⁻⁶ late. Lemma 9.1(i), independent of A8.</text>
+<text x="60.00" y="374.00" class="xs mut">No fixed power bounds it: shallower than t^−2 early, steeper</text>
+<text x="60.00" y="388.00" class="xs mut">than t^−6 late. Lemma 9.1(i), independent of A8.</text>
 <line x1="452.00" y1="62.00" x2="694.00" y2="62.00" class="gr"/>
 <text x="446.00" y="65.50" class="mut xs" text-anchor="end">1e3</text>
 <line x1="452.00" y1="128.00" x2="694.00" y2="128.00" class="gr"/>

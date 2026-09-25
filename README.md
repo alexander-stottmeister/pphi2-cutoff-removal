@@ -87,11 +87,11 @@ them, which is as it should be — it is operator theory and Fourier analysis.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/figures/rate-dark.svg">
-  <img alt="Two panels. Left: the filter kernel |W_gamma(t)| on log-log axes with its envelope, whose local slope grows from 1.2 to 6.7. Right: the exponential and filter-tail summands of the rate function Psi_gamma(d)." src="docs/figures/rate.svg">
+  <img alt="Two panels. Left: the filter kernel |W_gamma(t)| on log-log axes with its envelope, which is shallower than t^-2 early and steeper than t^-6 late. Right: the exponential and filter-tail summands of the rate function Psi_gamma(d)." src="docs/figures/rate.svg">
 </picture>
 
-Left, Lemma 9.1(i): the filter kernel and its envelope, whose local log-log slope grows
-through 1.2, 3.1, 6.7 — no fixed power bounds it. Right, Lemma 10.5: the two summands of
+Left, Lemma 9.1(i): the filter kernel and its envelope, shallower than t⁻² early and
+steeper than t⁻⁶ late, so no fixed power bounds it. Right, Lemma 10.5: the two summands of
 the rate function. The exponential part collapses; the filter tail is what remains, and
 it is what makes the rate super-polynomial rather than merely exponential-then-stuck.
 Both are computed for one admissible χ, which Lemma 9.1 leaves free; the shapes are the

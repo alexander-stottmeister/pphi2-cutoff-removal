@@ -6,7 +6,7 @@ title: Notation
 
 The frozen notation table of the manuscript (§2.3). Every symbol imported from a frozen
 source is converted to this notation at transcription time; the conversion log is in
-[`part_i/README.md`](../part_i/README.md).
+[`part_i/README.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/README.md).
 
 | symbol | meaning / convention |
 |---|---|

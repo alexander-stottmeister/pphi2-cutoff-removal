@@ -40,7 +40,7 @@ dynamics in the spectral sense.
 | [Provenance](provenance.md) | gates, corrections history, the citation dossiers |
 | [Figures](interactive/index.html) | eight interactive illustrations of the main results |
 
-The manuscript itself is [`part_i/main.pdf`](../part_i/main.pdf) (40 pp, document of
+The manuscript itself is [`part_i/main.pdf`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/main.pdf) (40 pp, document of
 record).
 
 ## The shape of the proof
