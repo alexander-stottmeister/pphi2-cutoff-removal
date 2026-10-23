@@ -24,9 +24,9 @@ that reaches the displayed inequality itself.
 | `A6` | Assumption | free propagation; patching; the dynamics $\alpha$ | 2 Setting, notation, and standing imports | 9 | - | - |
 | `A7` | Assumption | covariance data | 2 Setting, notation, and standing imports | 9 | - | - |
 | `A8` | Assumption | the GJS package | 2 Setting, notation, and standing imports | 9 | yes | yes |
-| `2.2` | Source Fact | CE2 $=$ {\cite[Thm.~1.1.7]{GJS}}, p.~594 | 2 Setting, notation, and standing imports | 10 | - | - |
-| `2.3` | Source Fact | CE1 $=$ {\cite[Thm.~1.1.8]{GJS}}, p.~595 | 2 Setting, notation, and standing imports | 10 | - | - |
-| `2.4` | Source Fact | {\cite[p.~629, \S4]{GJS}} | 2 Setting, notation, and standing imports | 10 | - | - |
+| `2.2` | Source Fact | CE2 $=$ {\cite[Thm.~1.1.7]{GJS}}, p.~594 | 2 Setting, notation, and standing imports | 10 | yes | - |
+| `2.3` | Source Fact | CE1 $=$ {\cite[Thm.~1.1.8]{GJS}}, p.~595 | 2 Setting, notation, and standing imports | 10 | yes | - |
+| `2.4` | Source Fact | {\cite[p.~629, \S4]{GJS}} | 2 Setting, notation, and standing imports | 10 | yes | - |
 | `2.5` | Remark | conventions lock | 2 Setting, notation, and standing imports | 12 | - | - |
 | `2.6` | Proposition | domain smoothing at the ground state | 2 Setting, notation, and standing imports | 12 | - | - |
 | `2.7` | Proposition | cutoff propagation, uniformly in $g$ | 2 Setting, notation, and standing imports | 12 | - | - |
@@ -46,7 +46,7 @@ that reaches the displayed inequality itself.
 | `7.1` | Lemma | moment transfer | 7 The uniform gap | 18 | yes | yes |
 | `7.2` | Lemma | one-point limit | 7 The uniform gap | 18 | yes | yes |
 | `7.3` | Lemma | two-point lower semicontinuity | 7 The uniform gap | 19 | yes | yes |
-| `7.4` | Lemma | CE2 across a horizontal strip | 7 The uniform gap | 19 | - | - |
+| `7.4` | Lemma | CE2 across a horizontal strip | 7 The uniform gap | 19 | yes | - |
 | `7.5` | Proposition | semigroup decay of centered observables | 7 The uniform gap | 20 | yes | yes |
 | `7.6` | Lemma | exponential moments | 7 The uniform gap | 20 | yes | yes |
 | `7.7` | Theorem | density of polynomial vectors | 7 The uniform gap | 21 | yes | yes |
@@ -74,7 +74,7 @@ that reaches the displayed inequality itself.
 | `C.3` | Lemma | Wick lower bound; the $h\ge0$ entry | C $h$-uniformity: source audit and analytic prerequisites | 37 | - | - |
 | `C.4` | Lemma | ultraviolet difference; the $h\le1$ entry | C $h$-uniformity: source audit and analytic prerequisites | 37 | - | - |
 | `C.5` | Theorem | $h$-uniform stability | C $h$-uniformity: source audit and analytic prerequisites | 38 | - | - |
-| `C.6` | Remark | why the class is what it is | C $h$-uniformity: source audit and analytic prerequisites | 38 | - | - |
+| `C.6` | Remark | why the class is what it is | C $h$-uniformity: source audit and analytic prerequisites | 38 | yes | - |
 | `C.7` | Proposition | coverage of every CE application | C $h$-uniformity: source audit and analytic prerequisites | 38 | yes | yes |
 
 ## Statements
@@ -780,7 +780,7 @@ Uses: `A:stability`, `lem:ce2strip`, `prop:discharge`, `prop:scaling`, `sf:print
 
 #### Source Fact 2.2 (CE2 $=$ {\cite[Thm.~1.1.7]{GJS}}, p.~594)
 
-`sf:CE2` &middot; page 10
+`sf:CE2` &middot; page 10 &middot; imports A8
 
 ```latex
 For localized monomials $Q_1,Q_2$ with disjoint localization squares separated by a strip of
@@ -792,10 +792,11 @@ with $m_1>0$ and $C_7$ \emph{independent of $h$, $Q_1$, $Q_2$} (so stated in the
 ```
 
 Provenance: `src: m6/main.tex sf:CE2 (v2), transcribed.`
+Uses: `A:gjs`
 
 #### Source Fact 2.3 (CE1 $=$ {\cite[Thm.~1.1.8]{GJS}}, p.~595)
 
-`sf:CE1` &middot; page 10
+`sf:CE1` &middot; page 10 &middot; imports A8
 
 ```latex
 The printed estimate is
@@ -809,10 +810,11 @@ in item~(vi) rather than being silently inserted here.
 ```
 
 Provenance: `src: m6/main.tex sf:CE1 (v2), transcribed.`
+Uses: `A:gjs`
 
 #### Source Fact 2.4 ({\cite[p.~629, \S4]{GJS}})
 
-`sf:printed` &middot; page 10
+`sf:printed` &middot; page 10 &middot; imports A8
 
 ```latex
 ``It is important to work with a translation invariant Hamiltonian, in order that time
@@ -823,6 +825,7 @@ limit $h=1$.''
 ```
 
 Provenance: `src: m4/r1-check.tex sf:printed (page image of p.629), transcribed.`
+Uses: `A:gjs`
 
 #### Remark 2.5 (conventions lock)
 
@@ -1151,7 +1154,7 @@ Uses: `lem:slabunbdd`, `lem:slabvac`, `lem:transfer`, `rem:row`
 
 #### Lemma 7.4 (CE2 across a horizontal strip)
 
-`lem:ce2strip` &middot; page 19 &middot; proof in the manuscript
+`lem:ce2strip` &middot; page 19 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 For $t>2$ and every $h\in\CE$,
@@ -1416,7 +1419,7 @@ Uses: `A:hyper`, `lem:uv`, `lem:wick`
 
 #### Remark C.6 (why the class is what it is)
 
-`rem:whyclass` &middot; page 38
+`rem:whyclass` &middot; page 38 &middot; imports A8
 
 ```latex
 The two halves of the constraint $0\le h\le1$ are used in complementary places:

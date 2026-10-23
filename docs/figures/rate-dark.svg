@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="720" height="400" role="img" aria-labelledby="figtitle figdesc">
 <title id="figtitle">Where the super-polynomial rate comes from</title>
-<desc id="figdesc">Left: the filter kernel |W_gamma(t)| on log-log axes, crossing the t^-2 and t^-5 guides, so its effective power grows. Right: the exponential and filter-tail summands of Psi_gamma(d).</desc>
+<desc id="figdesc">Left: the filter kernel |W_gamma(t)| on log-log axes with its envelope and the fixed powers t^-2 and t^-6 anchored on it. Right: the exponential and filter-tail summands of Psi_gamma(d), with the trivial bound 2 dashed.</desc>
 <style>
   text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
        fill:#1f2328}
@@ -64,6 +64,8 @@
 <path d="M452.00 80.28 L456.03 83.86 L460.07 87.44 L464.10 91.03 L468.13 94.61 L472.17 98.19 L476.20 101.77 L480.23 105.36 L484.27 108.94 L488.30 112.52 L492.33 116.11 L496.37 119.69 L500.40 123.27 L504.43 126.86 L508.47 130.44 L512.50 134.02 L516.53 137.60 L520.57 141.19 L524.60 144.77 L528.63 148.35 L532.67 151.94 L536.70 155.52 L540.73 159.10 L544.77 162.68 L548.80 166.27 L552.83 169.85 L556.87 173.43 L560.90 177.02 L564.93 180.60 L568.97 184.18 L573.00 187.77 L577.03 191.35 L581.07 194.93 L585.10 198.51 L589.13 202.10 L593.17 205.68 L597.20 209.26 L601.23 212.85 L605.27 216.43 L609.30 220.01 L613.33 223.59 L617.37 227.18 L621.40 230.76 L625.43 234.34 L629.47 237.93 L633.50 241.51 L637.53 245.09 L641.57 248.67 L645.60 252.26 L649.63 255.84 L653.67 259.42 L657.70 263.01 L661.73 266.59 L665.77 270.17 L669.80 273.76 L673.83 277.34 L677.87 280.92 L681.90 284.50 L685.93 288.09 L689.97 291.67 L694.00 295.25" fill="none" stroke="#db6d28" stroke-width="2" stroke-dasharray="4 2"/>
 <line x1="476.20" y1="62.00" x2="476.20" y2="326.00" class="" stroke="#3fb950" stroke-width="1" stroke-dasharray="3 3"/>
 <text x="480.20" y="72.00" class="xs" fill="#3fb950">d₀</text>
+<line x1="452.00" y1="151.07" x2="694.00" y2="151.07" class="" stroke="#8d96a0" stroke-width="1" stroke-dasharray="6 3"/>
+<text x="690.00" y="146.07" class="xs mut" text-anchor="end">trivial bound 2</text>
 <text x="452.00" y="40.00" class="sm b">Ψ_γ(d) , split into its two summands</text>
 <text x="452.00" y="54.00" class="xs" fill="#4493f8">filter tail</text>
 <text x="514.00" y="54.00" class="xs" fill="#db6d28">exponential part</text>

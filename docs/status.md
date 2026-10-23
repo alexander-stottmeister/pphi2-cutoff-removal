@@ -23,10 +23,15 @@ source. It remains a **named hypothesis** of Theorem 12.2. The manuscript does n
 re-derive the cluster expansion: Appendix C audits the source mechanism and proves two
 analytic prerequisites only. See [imports](imports.md).
 
-Of the 61 numbered statements, **24 reach A8 through their own proof chain** and
-therefore inherit this conditionality; the rest do not. Which are which is computed, not
-asserted — see the `imports A8` column of the [result inventory](results.md). The
-inverse-energy filter (Lemma 9.1), for instance, is independent of A8 entirely.
+Of the 61 numbered statements, **29 reach A8 through their own `\ref` chain** (since
+23 October 2026 this counts the three Source Facts printed inside A8, and with them
+Lemma 7.4 and Remark C.6) and therefore inherit this conditionality by that index; the
+rest do not. Which are which is computed from the manuscript's reference graph, not
+asserted — see the `imports A8` column of the [result inventory](results.md). The index
+is mechanical: it counts forward references and misses a dependence stated in prose only
+(the standing hypothesis (G_γ) of §§8–10, which Theorem 7.8 supplies), so it is not a
+verdict on any single proof. The inverse-energy filter (Lemma 9.1), for instance, is
+independent of A8 entirely.
 
 ### Negative scope, stated by the manuscript itself
 

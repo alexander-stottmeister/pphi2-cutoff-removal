@@ -79,24 +79,30 @@ evidence.
 Generated from `part_i/main.tex`: the nodes are the spine of Part I, the edges are its
 own `\ref` graph, and the shading is computed, not asserted. A statement is marked
 conditional exactly when its proof chain reaches A8, the GJS package whose item (vi) is
-U_GJS. Twenty-four of the sixty-one numbered statements are; the [result
-inventory](docs/results.md) lists which. The exact inverse-energy filter is not among
-them, which is as it should be — it is operator theory and Fourier analysis.
+U_GJS. Twenty-nine of the sixty-one numbered statements are, the three Source Facts
+printed inside A8, Lemma 7.4 and Remark C.6 among them; the [result
+inventory](docs/results.md) lists which. The flag is `\ref`-reachability, a mechanical
+index of the reference graph: it counts forward references and misses a dependence
+stated in prose only (the standing hypothesis (G_γ) of §§8–10, which Theorem 7.8
+supplies), so it is not a verdict on any single proof. The exact inverse-energy filter is
+not among them, which is as it should be — it is operator theory and Fourier analysis.
 
 ### Where the rate comes from, and what survives
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/figures/rate-dark.svg">
-  <img alt="Two panels. Left: the filter kernel |W_gamma(t)| on log-log axes with its envelope, which is shallower than t^-2 early and steeper than t^-6 late. Right: the exponential and filter-tail summands of the rate function Psi_gamma(d)." src="docs/figures/rate.svg">
+  <img alt="Two panels. Left: the filter kernel |W_gamma(t)| on log-log axes with its envelope, which is shallower than t^-2 early and steeper than t^-6 late. Right: the exponential and filter-tail summands of the rate function Psi_gamma(d), with the trivial bound 2 dashed." src="docs/figures/rate.svg">
 </picture>
 
 Left, the filter kernel and its envelope, computed: shallower than t⁻² early, steeper than
 t⁻⁶ late. What Lemma 9.1(i) proves is that the kernel has finite moments of every order, so
 its tail falls below every power. Right, Lemma 10.5: the two summands of
-the rate function. The exponential part collapses; the filter tail is what remains, and
-it is what makes the rate super-polynomial rather than merely exponential-then-stuck.
-Both are computed for one admissible χ, which Lemma 9.1 leaves free; the shapes are the
-content, not the heights. Ψ_γ is an upper bound, never a measured decay of any state.
+the rate function. Both decay faster than every inverse power; the exponential summand
+decays faster, so the filter-tail summand sets the rate. The dashed line is the trivial
+bound ‖ω_g − ω_g′‖ ≤ 2: at γ = M = 1 the computed Ψ_γ stays above it on the whole range
+shown, so the content is the decay in d, not the size at any d. Both panels are computed
+for one admissible χ, which Lemma 9.1 leaves free; the shapes are the content, not the
+heights. Ψ_γ is an upper bound, never a measured decay of any state.
 
 ### The two regimes
 
@@ -106,10 +112,11 @@ content, not the heights. Ψ_γ is an upper bound, never a measured decay of any
 </picture>
 
 The exact light cone of Proposition 2.7 confines a time-evolved local observable, and
-the exact filter converts the gap into a decaying time kernel. While |t| ≤ r_j/2 the
-cell B_j is still outside O_|t|, and clustering gives an exponentially small bound; past
-that time only the trivial bound survives. Summing the two regimes over cells produces
-Ψ_γ. This lemma is where the geometry and the spectrum meet.
+the exact filter converts the gap into a decaying time kernel. For |t| ≤ r_j/2 the cell
+B_j stays at distance ≥ r_j/2 from O_|t|, and clustering gives an exponentially small
+bound; beyond that, Lemma 10.3 uses only the trivial bound 2M (by choice; the cone
+reaches B_j at |t| = r_j). Summing the two regimes over cells produces Ψ_γ. This lemma is
+where the geometry and the spectrum meet.
 
 ### The net, and the gap that does not close
 
@@ -176,9 +183,12 @@ redistributed here. Two consequences:
 
 - The dossier sources still build. Missing page images are replaced by framed
   placeholders, and every claim, page reference, and finding remains in the text.
-- `fresh_audit_2026_08_16/render_evidence.sh` regenerates the audit's page-image corpus
-  from your own copies of the sources. Each call is pinned to a one-based page number, so
-  the images are reproducible for anyone with legal access to the papers. The script
+- `fresh_audit_2026_08_16/render_evidence.sh` regenerates the page-image corpus of the
+  16 August 2026 audit (`fresh_audit_2026_08_16/evidence/`) from your own copies of the
+  sources. Each call is pinned to a one-based page number, so the images are reproducible
+  for anyone with legal access to the papers. The older dossier `audit_2026/evidence/`,
+  the one `part_i/main.tex` §2.4 names, has no render script; its page list is the
+  dossier's own `.tex`. The script
   names the file it expects for each source, under `refs/`; those names are the script's
   own contract, and the simplest way to satisfy it is to read the `render` lines and put
   your PDFs where they point.

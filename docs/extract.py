@@ -115,6 +115,7 @@ def extract():
         sec = section_of(secs, m.start())
         statement = "\n".join(l for l in body.splitlines() if not l.strip().startswith("%")).strip()
         results.append({
+            "_span": (m.start(), end),
             "label": label, "kind": KINDS[kind], "title": title,
             "number": nums.get(label, {}).get("number"), "page": nums.get(label, {}).get("page"),
             "section": {"title": sec["title"], "number": nums.get(sec["label"], {}).get("number"),
@@ -124,6 +125,15 @@ def extract():
             "proof_uses": sorted({r for r in refs_in(proof) if r != label}),
             "has_proof": bool(proof),
         })
+
+    # a statement printed inside an assumption (the Source Facts 2.2-2.4 inside A8) is an
+    # item of that assumption: give it the edge its text does not spell out
+    for r in results:
+        for q in results:
+            if q["kind"] == "Assumption" and q["_span"][0] < r["_span"][0] < q["_span"][1]:
+                r["uses"] = sorted(set(r["uses"]) | {q["label"]})
+    for r in results:
+        del r["_span"]
 
     # transitive dependence on the GJS package and on U_GJS itself
     by_label = {r["label"]: r for r in results}

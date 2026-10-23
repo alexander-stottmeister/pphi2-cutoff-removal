@@ -267,10 +267,12 @@
    "provenance": [
     "src: m6/main.tex sf:CE2 (v2), transcribed."
    ],
-   "uses": [],
+   "uses": [
+    "A:gjs"
+   ],
    "proof_uses": [],
    "has_proof": false,
-   "imports_A8": false,
+   "imports_A8": true,
    "cites_UGJS": false
   },
   {
@@ -288,10 +290,12 @@
    "provenance": [
     "src: m6/main.tex sf:CE1 (v2), transcribed."
    ],
-   "uses": [],
+   "uses": [
+    "A:gjs"
+   ],
    "proof_uses": [],
    "has_proof": false,
-   "imports_A8": false,
+   "imports_A8": true,
    "cites_UGJS": false
   },
   {
@@ -309,10 +313,12 @@
    "provenance": [
     "src: m4/r1-check.tex sf:printed (page image of p.629), transcribed."
    ],
-   "uses": [],
+   "uses": [
+    "A:gjs"
+   ],
    "proof_uses": [],
    "has_proof": false,
-   "imports_A8": false,
+   "imports_A8": true,
    "cites_UGJS": false
   },
   {
@@ -813,7 +819,7 @@
     "sf:CE2"
    ],
    "has_proof": true,
-   "imports_A8": false,
+   "imports_A8": true,
    "cites_UGJS": false
   },
   {
@@ -1523,7 +1529,7 @@
    ],
    "proof_uses": [],
    "has_proof": false,
-   "imports_A8": false,
+   "imports_A8": true,
    "cites_UGJS": false
   },
   {

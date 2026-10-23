@@ -100,23 +100,26 @@ def psi(d, g, M, l1, T, nmax=400):
 def fig_rate(curves):
     """Two panels: where the super-polynomial decay comes from, and what it gives.
 
-    Left, Lemma 9.1(i): |W_gamma(t)| against fixed power laws.  The curve crosses one
-    guide after another -- its effective power keeps growing, which is what "faster than
-    every polynomial" looks like when it is measured rather than asserted.
+    Left, Lemma 9.1(i): |W_gamma(t)| with its envelope, and two fixed powers anchored on
+    the envelope: it is shallower than one and steeper than the other, so no single power
+    describes it.  The lemma proves finite moments of every order and nothing about the
+    local slope, which is not monotone (see the comment in the code below).
 
-    Right, Lemma 10.5: the two summands of Psi_gamma.  The exponential part dies; the
-    filter tail is what is left, and it is the part that carries the super-polynomial
-    character.  Both panels are computed for ONE admissible chi.  The lemma leaves chi
-    free and the constants depend on it, so the shapes are the content here, not the
-    heights.
+    Right, Lemma 10.5: the two summands of Psi_gamma.  Both decay faster than every
+    inverse power; the exponential summand decays faster, so the filter-tail summand sets
+    the rate.  A dashed line marks the trivial bound 2: at gamma = M = 1 the computed
+    Psi_gamma exceeds it on the whole plotted range, so the content is the decay in d,
+    not the size at any d.  Both panels are computed for ONE admissible chi.  The lemma
+    leaves chi free and the constants depend on it, so the shapes are the content here,
+    not the heights.
     """
     g, M = 1.0, 1.0
     ts, ws, l1, T = curves
     W, H = 720, 400
     s = Svg(W, H, "Where the super-polynomial rate comes from", 
-            "Left: the filter kernel |W_gamma(t)| on log-log axes, crossing the t^-2 and "
-            "t^-5 guides, so its effective power grows. Right: the exponential and "
-            "filter-tail summands of Psi_gamma(d).")
+            "Left: the filter kernel |W_gamma(t)| on log-log axes with its envelope and "
+            "the fixed powers t^-2 and t^-6 anchored on it. Right: the exponential and "
+            "filter-tail summands of Psi_gamma(d), with the trivial bound 2 dashed.")
     s.text(24, 20, "Two decay mechanisms, and which one survives", "b")
     s.text(W - 20, 20, "computed from Lemmas 9.1 and 10.5", "mut xs", text_anchor="end")
 
@@ -185,6 +188,11 @@ def fig_rate(curves):
     s.line(X2(d0), Tp, X2(d0), H - B, "", stroke="var(--ok)", stroke_width=1,
            stroke_dasharray="3 3")
     s.text(X2(d0) + 4, Tp + 10, "d\u2080", "xs", fill="var(--ok)")
+    # the trivial bound ||omega_g - omega_g'|| <= 2, so that the heights are read against
+    # it: at gamma = M = 1 the computed Psi_gamma stays above it for every d <= 60.
+    s.line(L2, Y2(2.0), R2, Y2(2.0), "", stroke="var(--mut)", stroke_width=1,
+           stroke_dasharray="6 3")
+    s.text(R2 - 4, Y2(2.0) - 5, "trivial bound 2", "xs mut", text_anchor="end")
     s.text(L2, Tp - 22, "\u03a8_\u03b3(d) , split into its two summands", "sm b")
     s.text(L2, Tp - 8, "filter tail", "xs", fill="var(--acc)")
     s.text(L2 + 62, Tp - 8, "exponential part", "xs", fill="var(--warn)")
@@ -200,9 +208,9 @@ def fig_cone():
 
     The content is the hypothesis of Lemma 10.3.  While |t| <= r_j/2 the cell B_j lies
     outside O_|t|, dist(B_j, O_|t|) >= r_j/2, and the clustering lemma gives an
-    exponentially small bound.  Past that time the cone has swallowed the gap and only
-    the trivial bound 2M is available.  Summing the two regimes over cells is what
-    produces the rate function.
+    exponentially small bound.  Beyond that time Lemma 10.3 uses only the trivial bound
+    2M, by choice: the cone reaches B_j only at |t| = r_j.  Summing the two regimes over
+    cells is what produces the rate function.
     """
     W, H, sc = 720, 430, 20
     a, rj = 1.4, 7.0                     # half-width of O, and dist(B_j, O)
@@ -213,7 +221,8 @@ def fig_cone():
     s = Svg(W, H, "The two-regime bound",
             "Spacetime diagram. The cone O_|t| spreads from O at unit speed. While "
             "|t| <= r_j/2 the cell B_j is outside it and the bound is exponentially "
-            "small; beyond that only the trivial bound 2M is available.")
+            "small; beyond that Lemma 10.3 uses only the trivial bound 2M, by choice, "
+            "although the cone reaches B_j only at |t| = r_j.")
     s.text(28, 24, "Exact light cone, exact filter: the two regimes", "b")
     s.text(W - 24, 24, "Lemma 10.3", "mut sm", text_anchor="end")
     half = rj / 2
@@ -251,7 +260,8 @@ def fig_cone():
     s.text(W - 26, Y(half) + 55, "dist(B_j, O_|t|) \u2265 r_j / 2", "xs mut", text_anchor="end")
     s.text(W - 26, Y(half) - 34, "|C_j(t)|  \u2264  2M", "sm b", text_anchor="end",
            fill="var(--mut)")
-    s.text(W - 26, Y(half) - 20, "only the trivial bound", "xs mut", text_anchor="end")
+    s.text(W - 26, Y(half) - 20, "the trivial bound, used by choice", "xs mut", text_anchor="end")
+    s.text(W - 26, Y(half) - 7, "(the cone reaches B_j only at |t| = r_j)", "xs mut", text_anchor="end")
     s.text(28, H - 26, "The gap enters through the filter, the geometry through the cone; "
                        "the lemma is where they meet.", "mut sm")
     s.text(28, H - 10, "Summing the two regimes over the cells B_j gives the rate function "
