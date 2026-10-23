@@ -1,0 +1,52 @@
+% F1: the architecture of the proof in two layers (record: table in section 1.2 and
+% the dependency displays, p. 3).  Violet = conditional on U_GJS; dashed = imported,
+% not re-derived; neutral boxes hold under their stated hypothesis alone.  Drawn
+% from the statements; evaluates nothing.
+\begin{tikzpicture}[font=\footnotesize,
+  box/.style={draw=gline,rounded corners=1pt,fill=white,align=center,inner sep=3pt,
+              text width=4.1cm,minimum height=7mm},
+  cbox/.style={box,draw=cond,fill=cfill},
+  imp/.style={cbox,dashed,line width=0.8pt},
+  arr/.style={-{Latex[length=1.8mm]},line width=0.6pt,draw=mut},
+  carr/.style={arr,draw=cond},
+  lab/.style={font=\scriptsize,color=mut,fill=white,inner sep=1pt}]
+  % ---- bands
+  \fill[gline!18!white] (-7.1,3.75) rectangle (7.3,-0.1);
+  \fill[gline!8!white]  (-7.1,-0.3) rectangle (7.3,-7.75);
+  \node[anchor=north west,font=\scriptsize\bfseries,color=mut] at (-7.05,3.8)
+    {Euclidean layer: two cutoff-uniform estimates from the GJS cluster expansion};
+  \node[anchor=north west,font=\scriptsize\bfseries,color=mut] at (-7.05,-0.35)
+    {Hamiltonian layer: a Cauchy argument in every local dual $\A(O)^*$};
+  % ---- layer 1
+  \node[box] (ce2) at (-4.6,2.4) {CE2, printed (A8(iv), Source Fact 2.2):\\ exponential clustering, GJS Thm 1.1.7};
+  \node[imp] (ugjs) at (4.6,2.4) {$\UGJS$ (A8(vi)): slab-uniform moment estimate, imported at the source's scope, not re-derived};
+  \node[cbox] (g) at (-4.6,0.55) {(G) Thm 7.8: one gap $m_1$ for every $g\in\CH$};
+  \node[cbox] (m2) at (4.6,0.55) {(M$_2$) Thm 5.1: $\|V(h)\Om_g\|\le M$ for every $g\in\CH$};
+  \draw[arr] (ce2) -- node[lab,right] {$m_1$ independent of $h$} (g);
+  \draw[carr] (ugjs.south west) -- node[lab,pos=0.62,below right] {at fixed $g$, uniform in $T$} (g.north east);
+  \draw[carr] (ugjs) -- node[lab,right] {uniform in $g$ and $T$} (m2);
+  \draw[gline,dashed] (-7.1,-0.2) -- (7.3,-0.2);
+  % ---- layer 2, rows A/B: the tools
+  \node[box] (deriv) at (-4.6,-1.55) {Prop 8.2, eq.\,(15): $\dot\Om_s=-H_s^{-1}Q_sV(v)\Om_s$ along $g_s$ \,[under (G$_\gamma$)]};
+  \node[box] (clus) at (0,-1.55) {Lemma 9.3, eq.\,(23): clustering with one unbounded argument \,[under (G$_\gamma$)]};
+  \node[box] (spec) at (4.6,-1.55) {Prop 12.1: spectral passage via the identity (P); for any norm limit};
+  \node[box] (filt) at (-4.6,-3.2) {Lemma 9.1, eq.\,(18): exact inverse-energy filter; independent of A8};
+  \node[box] (cone) at (0,-3.2) {Prop 2.7: exact light cone $\beta^g_t(\A(O))\subseteq\A(O_{|t|})$, from A6};
+  \node[cbox] (norm) at (4.6,-3.2) {Prop 11.2: local normality of $\omega_\infty$};
+  % ---- rows C/D: the chain
+  \node[cbox] (lppl) at (-2.3,-4.85) {Prop 10.4, eq.\,(27): one-path estimate $\|(\omega_g-\omega_{g'})|_{\A(O)}\|\le\Psi_\gamma(d)$};
+  \node[cbox] (cauchy) at (-2.3,-6.45) {Thm 11.1, eq.\,(31): the net is Cauchy; the limit $\omega_\infty$ and its rate};
+  \node[cbox] (main) at (4.6,-6.45) {Thm 12.2, items (1)--(5)};
+  \draw[carr] (g.south) -- node[lab,right] {$\gamma=m_1$} (deriv.north);
+  \draw[carr] (m2.south west) -- node[lab,pos=0.55,above left] {$\|V_j\Om_s\|\le M$ (Lemma 10.2)} (clus.north east);
+  \draw[arr] (deriv.south east) -- (lppl.north west);
+  \draw[arr] (filt.east) -- (lppl.west);
+  \draw[arr] (clus.south west) -- (lppl.north east);
+  \draw[arr] (cone.south west) -- (lppl.north east);
+  \draw[carr] (lppl) -- (cauchy);
+  \draw[carr] (cauchy) -- node[lab] {(1)} (main);
+  \draw[carr] (cauchy.north east) -- node[lab,pos=0.5,above left] {(2)} (norm.south west);
+  \draw[carr] (norm) -- node[lab,right] {(2)} (main);
+  \draw[arr] (spec.east) -- ++(0.4,0) |- node[lab,pos=0.25,left] {(3)} (main.east);
+  \node[lab,anchor=north west,text width=13.9cm,align=left,fill=none] at (-7.0,-7.05) {(3): the ground-state property is an identity, not an estimate; (4): covariance (T) and Lemma 2.8, through (1); (5): restates (G) and (M$_2$).};
+\end{tikzpicture}

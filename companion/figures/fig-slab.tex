@@ -1,0 +1,34 @@
+% F5: slab transfer, section 4 of the record (pp. 14-15).  Left: the slab cutoff
+% h_{T,g} = 1_{[-T,T]} (x) g in the Euclidean plane with the two sharp times of
+% Lemma 4.1, display (2).  Right: the Hamiltonian side of that identity, and the
+% T -> infinity limit of Lemma 4.4, which uses simplicity of the ground state only.
+% Drawn from the statements; evaluates nothing.
+\begin{tikzpicture}[font=\small,
+  box/.style={draw=gline,rounded corners=1pt,fill=white,align=center,inner sep=4pt,font=\small},
+  arr/.style={-{Latex[length=2mm]},line width=0.7pt,draw=mut}]
+  \begin{scope}[x=0.5cm,y=0.5cm]
+    \def\T{3}\def\p{1.6}\def\q{2.6}
+    \fill[acc!10!white] (-\q,-\T) rectangle (\q,\T);
+    \fill[acc!25!white] (-\p,-\T) rectangle (\p,\T);
+    \draw[acc,line width=0.8pt] (-\q,-\T) rectangle (\q,\T);
+    \draw[gline,->] (-4.2,0) -- (4.4,0) node[right,mut] {$x^1$};
+    \draw[gline,->] (0,-4.2) -- (0,4.4) node[above,mut] {$x^0$};
+    \draw[mut] (-0.15,\T) -- (0.15,\T) node[right,font=\scriptsize] {$T$};
+    \draw[mut] (-0.15,-\T) -- (0.15,-\T) node[right,font=\scriptsize] {$-T$};
+    \node[font=\scriptsize,anchor=south east] at (-0.3,{\T+0.5}) {$h_{T,g}=\mathbf 1_{[-T,T]}\otimes g$};
+    \node[font=\scriptsize,mut,anchor=north] at (0,{-\T-0.6}) {dark: $\{g=1\}$; light: $0<g<1$};
+    \draw[warn,line width=1.2pt] (-\q,1) -- (\q,1);
+    \draw[warn,line width=1.2pt] (-\q,-1) -- (\q,-1);
+    \node[font=\scriptsize,anchor=west] at ({\q+0.15},1) {$F_2(\Phi(\tfrac t2,\cdot))$};
+    \node[font=\scriptsize,anchor=west] at ({\q+0.15},-1) {$F_1(\Phi(-\tfrac t2,\cdot))$};
+  \end{scope}
+  \node[box,anchor=west] (e) at (4.6cm,2.3cm)
+    {Euclidean side: $\displaystyle\int F_1F_2\,dq_{h_{T,g}}$};
+  \node[box,anchor=west,align=left,font=\footnotesize] (h) at (4.6cm,0cm)
+    {Hamiltonian side: $\dfrac{\ip{F_1\psi_{T-t/2}}{e^{-tH(g)}F_2\psi_{T-t/2}}}{\|\psi_T\|^2}$\\[2pt]
+     with $\psi_s:=e^{-sH(g)}\Om_0$, all limits at fixed $g$};
+  \node[box,anchor=west] (l) at (4.6cm,-2.2cm)
+    {$T\to\infty$: $\psi_T/\|\psi_T\|\to\Om_g$ in norm};
+  \draw[arr] (e.south west) ++(0.4cm,0) -- node[right,font=\scriptsize,mut] {FKN identity, Lemma 4.1} ($(h.north west)+(0.4cm,0)$);
+  \draw[arr] (h.south west) ++(0.4cm,0) -- node[right,font=\scriptsize,mut] {Lemma 4.4: simplicity of $\Om_g$ only, no gap assumed} ($(l.north west)+(0.4cm,0)$);
+\end{tikzpicture}

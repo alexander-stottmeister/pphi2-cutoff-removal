@@ -1,0 +1,81 @@
+% Preamble of the reader's companion.  Shared with the figure test builds.
+\usepackage[margin=30mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{microtype,booktabs,enumitem}
+\usepackage{xcolor}
+% Colours: the documentation site's palette (docs/figures/svg.py, LIGHT), so that
+% "conditional on U_GJS" is the same violet in the README, on the site and here.
+\definecolor{noteBlue}{RGB}{30,72,110}
+\definecolor{acc}{RGB}{9,105,218}     % #0969da  primary series / emphasis
+\definecolor{warn}{RGB}{188,76,0}     % #bc4c00  second series / caution
+\definecolor{cond}{RGB}{130,80,223}   % #8250df  conditional on U_GJS -- reserved
+\definecolor{ok}{RGB}{26,127,55}      % #1a7f37  unconditional / closed
+\definecolor{mut}{RGB}{110,119,129}   % #6e7781  muted ink, guides
+\definecolor{gline}{RGB}{208,215,222} % #d0d7de  grid and frames
+\definecolor{cfill}{RGB}{243,238,252} % #f3eefc  conditional fill
+\definecolor{afill}{RGB}{221,244,255} % #ddf4ff  accent fill
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,decorations.pathreplacing}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,linkcolor=noteBlue,citecolor=noteBlue,urlcolor=noteBlue]{hyperref}
+\usepackage[most]{tcolorbox}
+
+\pagestyle{fancy}\fancyhf{}
+\lhead{\small Reader's companion: cutoff removal for weakly coupled $P(\varphi)_2$}
+\rhead{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+
+% ---- the record's own macros, verbatim from part_i/main.tex lines 21-47 ----
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{idea}{Idea}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\CE}{\mathcal{C}_{\mathrm E}}
+\newcommand{\CH}{\mathcal{C}_{\mathrm H}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\Om}{\Omega}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Ran}{Ran}
+
+% ---- companion-specific ----
+% A locator into the document of record [R]: \rec{Theorem~12.2}{30}.
+\newcommand{\rec}[2]{[\hyperlink{bib-record}{R}, #1, p.\,#2]}
+\newcommand{\UGJS}{U_{\mathrm{GJS}}}
+\newcommand{\condtext}[1]{\textcolor{cond}{#1}}
+% Boxes.  recordbox: a statement quoted from the record.  checkpoint: the displayed
+% statement a reader holds on to at the end of a short chain.  statusnotice: page 1.
+\newtcolorbox{recordbox}[1]{enhanced,breakable,colback=white,colframe=gline,
+  coltitle=black,colbacktitle=gline!40!white,fonttitle=\bfseries\small,title={#1},
+  boxrule=0.5pt,arc=1pt,left=6pt,right=6pt,top=4pt,bottom=4pt}
+\newtcolorbox{checkpoint}[1][Checkpoint]{enhanced,colback=afill!60!white,colframe=acc,
+  coltitle=white,colbacktitle=acc,fonttitle=\bfseries\small,title={#1},
+  boxrule=0.5pt,arc=1pt,left=6pt,right=6pt,top=4pt,bottom=4pt}
+\newtcolorbox{statusnotice}{enhanced,colback=warn!6!white,colframe=warn,
+  boxrule=0.6pt,arc=1pt,left=6pt,right=6pt,top=4pt,bottom=4pt}
+\newenvironment{context}{\par\noindent\textsc{Context, not part of the record.}\ }{\par}
+
+% pgfplots house style: recessive grid, thin marks, text in ink colours.
+\pgfplotsset{companion/.style={width=0.48\textwidth,height=0.36\textwidth,
+  axis line style={gline},tick style={gline},grid=major,grid style={gline!60!white},
+  tick label style={font=\scriptsize,color=mut},label style={font=\small},
+  every axis plot/.append style={line width=0.9pt},
+  legend style={font=\scriptsize,draw=none,fill=none},legend cell align=left}}
+

@@ -1,0 +1,14 @@
+sec total cond uncond title
+2 16 1 15 {Setting, notation, and standing imports}
+3 3 2 1 {Dimensionless weak-coupling reduction}
+4 4 1 3 {Slab transfer}
+5 2 1 1 {The uniform local interaction moment}
+6 3 1 2 {GJS norms of sharp-time polynomial observables}
+7 8 7 1 {The uniform gap}
+8 2 0 2 {Affine-path regularity}
+9 3 0 3 {Filter, spectral separation, and clustering}
+10 5 4 1 {The one-path LPPL estimate}
+11 2 2 0 {Convergence of the full net; local normality}
+12 3 2 1 {Ground state, invariances, and the Main Theorem}
+13 3 2 1 {The two-phase dichotomy}
+C 7 1 6 {$h$-uniformity: source audit and analytic prerequisites}

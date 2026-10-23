@@ -1,0 +1,16 @@
+% F2b: the three moves that control the derivative along the path (record: Lemma 10.1,
+% p. 26; Prop 10.4 Step 2, p. 27).  A diagram of displayed formulas; evaluates nothing.
+\begin{tikzpicture}[font=\small,
+  mv/.style={draw=gline,rounded corners=1pt,fill=white,align=left,inner sep=5pt,
+             text width=0.28\textwidth,font=\footnotesize}]
+  \node[draw=gline,rounded corners=1pt,fill=afill!50!white,inner sep=5pt,align=center,
+        text width=0.9\textwidth,font=\small] (top) at (0,0)
+    {$\dfrac{d}{ds}\,\omega_{g_s}(A)=-2\,\mathrm{Re}\displaystyle\sum_j\int_\R W_\gamma(t)\,C_{j,s}(t)\,dt$,
+     \quad $C_{j,s}(t)=\ip{V_j\Om_s}{\beta^{g_s}_t(A)\Om_s}-\ip{V_j\Om_s}{\Om_s}\,\omega_{g_s}(A)$};
+  \node[mv,anchor=north east] (f) at ($(top.south west)!0.33!(top.south east)+(0,-4mm)$)
+    {\textbf{(1) exact filter}, Lemma 9.1\\ $H_s^{-1}Q_s=\int W_\gamma(t)\,e^{itH_s}Q_s\,dt$;\\ $W_\gamma$ has finite moments of every order.};
+  \node[mv,anchor=north] (c) at ($(top.south)+(0,-4mm)$)
+    {\textbf{(2) exact light cone}, Prop.~2.7\\ $\beta^{g_s}_t(A)\in\A(O_{|t|})$:\\ speed one, no Lieb--Robinson input.};
+  \node[mv,anchor=north west] (k) at ($(top.south west)!0.67!(top.south east)+(0,-4mm)$)
+    {\textbf{(3) clustering}, Lemmas 9.3, 10.3\\ $|C_{j,s}(t)|\le 2Me^{-\gamma r_j/4}$ for $|t|\le r_j/2$;\\ $\|V_j\Om_s\|\le M$ is the moment (M$_2$).};
+\end{tikzpicture}
