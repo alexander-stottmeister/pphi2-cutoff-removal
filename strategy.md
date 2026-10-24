@@ -2374,7 +2374,7 @@ Fig. 1 attributing the identity (P) to the proof of Proposition 2.7, which uses 
 one MAJOR item (an arrow whose hidden origin made it read as coming from Appendix C) and
 eighteen MINOR items, mostly overlaps in the figures, notation and page budgets, while
 every number, quotation, GJ3 fact, status word, the Part II table and the Appendix A
-classification passed; each item was fixed or recorded on 24 October 2026 (PLAN Part 10).
+classification passed; each item was fixed or recorded on 23–24 October 2026 (PLAN Part 10).
 The memos, returns and reports are in `companion/council/`.
 
 The rules that shaped the text, because they are the point of the exercise: no

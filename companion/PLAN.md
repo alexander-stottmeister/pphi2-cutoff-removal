@@ -738,7 +738,7 @@ Corrections to this PLAN's own locators, found by the drafters and checked again
 | N3 | `part_ii/README.md` ll. 70, 74, 238–240 | l. 70 and ll. 238–240 say "(II.11) closed", l. 74 "Phase closure: NOT yet reached"; ll. 3–4 say the 16 August addendum supersedes earlier closure statements (the F23 family) | MINOR (Part II) | ed | ed-read; R5 read ll. 70, 74, 238 |
 | N4 | main.tex App. B l. 2644; `docs/status.md` l. 61 | "on p. 595" for the affine-path application of Thm 1.1.7, where A8(vii′)(a) and C5 item 8 (`C5_reading_record.md` l. 106) say pp. 594–595 (the F25 family) | MINOR | ed | ed-read |
 | N5 | abstract ll. 117–118; §1.3(a) ll. 233–234; §14 ll. 2516–2517 | the scope of the uniqueness non-claim is worded three ways ("among all locally normal ground states" / "every locally normal ground state" / "every locally normal translation-invariant ground state"); not a contradiction | MINOR (wording) | aqft; ed | ed-read |
-| O1 | `docs/imports.md` l. 18 (A6) | "the exact light cone" credited to A6, while A6's Scope (ll. 603–605) says the cutoff cone is derived (Prop. 2.7) | MINOR (documentation) | R5 | **V**; fixed 24 October (Part 10) |
+| O1 | `docs/imports.md` l. 18 (A6) | "the exact light cone" credited to A6, while A6's Scope (ll. 603–605) says the cutoff cone is derived (Prop. 2.7) | MINOR (documentation) | R5 | **V**; fixed 23 October, committed 24 October in 3233fdc (Part 10) |
 | O2 | main.tex ll. 1018–1020 (Remark 3.3) | the remark mixes the dilation transport, which §2.6 consumes as an input (ll. 892–897), with a forward claim about Thm 12.2's conclusions, so the mechanical index flags it as A8-dependent | MINOR (presentation) | R5 | R5-read |
 | O3 | `README.md` | the github.com repository URL appears only in `CITATION.cff` l. 40, not in the README | note | R5 | R5-read |
 | O4 | GJ3 p. 210 vs Thm 2.1 (p. 211) | p. 210 prints "subnet", Thm 2.1 "subsequence" (= F29); confirmed on the page images; the companion's Table 2 follows Thm 2.1 | note | aqft; R5 | **V** by R5 |
@@ -766,10 +766,10 @@ The verifier's report is `council/r5-verifier-report.md`; the editor's R4 report
 | V20 | MINOR | **Fixed in part.** The label "exact cone" sits on the Proposition 2.7 → Lemma 10.3 edge; the Proposition 2.7 → Lemma 9.3 edge stays unlabelled, since the two boxes are 4 mm apart and no label fits (Part 3's edge list is amended accordingly). The caption now says "its Euclidean layer, §§4–7; … its Hamiltonian layer, §§8–11; the identification, §12", so the numbers read as the record's. |
 | N2 | note | **Recorded.** The Fig. 4 caption's "No automorphism or spectral flow is constructed" is a mandatory sentence of Part 3 and states what is not done; rule 10 is read as allowing it there. |
 | N3 | note | **Recorded.** The abstract as built (see above) supersedes Part 6.4, O1. |
-| O1 | record | **Fixed in the documentation.** `docs/imports.md`, A6 row: "free propagation at speed one, the Trotter formula, and the patched limit dynamics α; the cutoff light cone itself is derived (Proposition 2.7)". The KB import node for A6 is corrected the same way. |
+| O1 | record | **Fixed in the documentation (23 October).** `docs/imports.md`, A6 row: "free propagation at speed one, the Trotter formula, and the patched limit dynamics α; the cutoff light cone itself is derived (Proposition 2.7)". The KB import node for A6 is corrected the same way. |
 | O2–O4 | record | **Recorded** in Part 7.2 below. |
 
-Besides these, the underfull boxes of Fig. 3 and the label of the trivial bound in Fig. 5(d), which crossed the γ = 2 curve, were fixed on 23 October before R5. The verifier's one deviation (a read-only `git ls-files`, reported by it) changed nothing.
+Besides these, the underfull boxes of Fig. 3 and the label of the trivial bound in Fig. 5(d), which crossed the γ = 2 curve, were fixed on 23 October before R5. The verifier's one deviation (a read-only `git ls-files`, reported by it) changed nothing. The verifier's outcome line counts "20 MINOR items"; its findings V3–V20 are eighteen, which is the number used in this record.
 
 ### 10.2 Text (a fresh editor agent, 24 October 2026; its report is `council/r5-fix-editor-report.md`)
 
