@@ -1,0 +1,61 @@
+% s8b-part2.tex -- Section 8.2 of the reader's companion (drafter: cqft, R3; edited in R4).
+% Text: PLAN.md Part 6.3; the inconsistency sentence keeps D1's "not yet reached" and is
+% otherwise trimmed to BRIEF.md Section 3 (R5-fix, note N1); table verbatim from
+% docs/status.md. The closing line covers Sections 8.1 and 8.2.
+\subsection{Part II: open at gate (II.11)}\label{sec:part2}
+
+Nothing in Part~I depends on Part~II; \S14 of the record states that the two problems have
+``no mathematical dependence in either direction'' \rec{\S14}{33}. Part~II asks a
+different question: uniformity in a lattice or wavelet resolution, in the
+operator-algebraic renormalisation programme over the wavelet maps of \cite{MMST}
+\rec{\S1.3(d)}{4}, \rec{\S14}{33}. Its gate (II.11) asks that the lattice ground states,
+evaluated on each fixed coarse Weyl generator, converge as the resolution is refined to
+the vector state of the ground vector of a continuum torus operator constructed in phase
+V3 (\texttt{part\_ii/gate\_II11\_scoping.pdf}, \S1); the scoping pass ``proves no part of
+(II.11)''. Already for the free model, no finest-scale local-state-norm error of order
+$\varepsilon_N^{\vartheta}$, $\vartheta>0$, is possible \rec{\S14}{33}, so the comparison
+is made at a fixed coarse scale. Status per claim, verbatim from \texttt{docs/status.md}:
+
+{\footnotesize
+\setlength{\tabcolsep}{4pt}
+\setlength{\LTpre}{4pt}\setlength{\LTpost}{4pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.43\linewidth}
+                   >{\raggedright\arraybackslash}p{0.53\linewidth}@{}}
+\toprule
+claim & status\\
+\midrule
+\endfirsthead
+\toprule
+claim & status\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+finest-scale diagonal norm convergence & \textbf{disproved}\\
+exact finite-torus interacting model and ground state & \textbf{constructed}\\
+interacting fixed-coarse projective cluster state along a cofinal subnet &
+  \textbf{proved unconditionally}\\
+MMST free fixed-coarse / projective convergence & proved in the source,
+  \textbf{strengthened here} to an explicit D4 power rate\\
+exact free gap, group-velocity bound, Wick logarithm & \textbf{proved} in the Lamport
+  note\\
+Battle--Federbush as a source for OAR-uniform CE1/CE2 & \textbf{not available} --- the
+  cited note treats different phase-cell variables\\
+full-sequence interacting convergence and identification with the continuum
+  $P(\varphi)_2$ state & \textbf{open}, exactly at the coarse Weyl
+  characteristic-functional limit\\
+interacting scale-uniform gap, local second moment, Lieb--Robinson & \textbf{open}\\
+the cited Nachtergaele--Raz--Schlein--Sims theorem & \textbf{inapplicable} to the Wick
+  quartic: it assumes $V'\in L^1(\R)$\\
+the former path $(1-s)H_N+sH$ & \textbf{undefined} without a common Hilbert-space/form
+  realization; removed from the corrected program\\
+\end{longtable}
+}
+
+The record is not consistent about this gate: \texttt{strategy.md} and the ledger of
+phase V4 record (II.11) as closed at the stated import scope, \texttt{part\_ii/README.md}
+says that phase closure was not yet reached, and the repository README says the gate is
+open; this companion uses the README's wording.
+
+\noindent\emph{In the record:} abstract, p.~2; \S1.3, p.~4; \S13 with Hypothesis~13.1,
+Theorem~13.2 and Remark~13.3, pp.~31--32; \S14, p.~33.

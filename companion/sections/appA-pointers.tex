@@ -1,0 +1,111 @@
+% appA-pointers.tex -- Appendix A of the reader's companion (drafter: cqft, R3; edited in R4).
+\section*{Appendix A. Where every statement lives}
+
+One row per numbered statement of the record, in order, with its number, title and
+printed page. \emph{Depends on}, read from the proofs: \textcolor{cond}{U}, consumes
+$\UGJS$ directly or through a statement of class U, including via (M$_2$) or (G), hence
+\condtext{conditional on $\UGJS$}; G$_\gamma$, assumes (G$_\gamma$), nothing of class U;
+P, uses a printed A8 item (CE2, the norms, or the dilation) and nothing of class U; --,
+none of these; import, A1--A8 and Source Facts 2.2--2.4. Last column: the section of this
+companion that treats the statement, or why it is routine or bookkeeping.
+
+{\small
+\setlength{\tabcolsep}{3pt}
+\setlength{\LTpre}{4pt}\setlength{\LTpost}{0pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.8cm}
+                   >{\raggedright\arraybackslash}p{7.1cm}
+                   >{\raggedleft\arraybackslash}p{0.75cm}
+                   >{\centering\arraybackslash}p{1.25cm}
+                   >{\raggedright\arraybackslash}p{4.2cm}@{}}
+\toprule
+no. & title & page & depends\newline on & treated in, or why routine\\
+\midrule
+\endfirsthead
+\toprule
+no. & title & page & depends\newline on & treated in, or why routine\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+2.1 & cutoff classes & 6 & -- & \S\ref{sec:result}\\
+A1 & cutoff construction & 7 & import & \S\S\ref{sec:import}, \ref{sec:euclidean}\\
+A2 & Feynman--Kac--Nelson transfer & 8 & import & \S\S\ref{sec:import}, \ref{sec:euclidean}\\
+A3 & finite-volume stability & 8 & import & \S\ref{sec:import}\\
+A4 & free hypercontractivity & 8 & import & \S\ref{sec:import}\\
+A5 & domain smoothing; common core & 8 & import & \S\ref{sec:import}\\
+A6 & free propagation; patching; the dynamics $\alpha$ & 9 & import &
+  \S\S\ref{sec:import}, \ref{sec:lppl}, \ref{sec:identification}\\
+A7 & covariance data & 9 & import & \S\ref{sec:import}\\
+A8 & the GJS package & 9 & import & \S\ref{sec:import}\\
+2.2 & CE2 $=$ \cite[Thm.~1.1.7]{GJS}, p.~594 & 10 & import &
+  \S\S\ref{sec:architecture}, \ref{sec:import}, \ref{sec:euclidean}\\
+2.3 & CE1 $=$ \cite[Thm.~1.1.8]{GJS}, p.~595 & 10 & import & \S\ref{sec:import}\\
+2.4 & \cite[p.~629, \S4]{GJS} & 10 & import & \S\ref{sec:import}\\
+2.5 & conventions lock & 12 & -- & Wick order equals $C$-order\\
+2.6 & domain smoothing at the ground state & 12 & -- &
+  $\Om_g\in D(V(h))$ in two lines\\
+2.7 & cutoff propagation, uniformly in $g$ & 12 & -- & \S\ref{sec:lppl}\\
+2.8 & covariance and parity of the cutoff states & 12 & -- &
+  \S\ref{sec:identification}\\
+3.1 & class compatibility & 13 & -- & \S\ref{sec:lppl}\\
+3.2 & dimensionless weak-coupling reduction & 13 & P &
+  dilation into the printed region\\
+3.3 & coordinate convention and transport of the conclusions & 14 & P &
+  on working coordinates\\
+4.1 & slab FKN; bounded nonnegative arguments & 15 & -- & \S\ref{sec:euclidean}\\
+4.2 & signed bounded extension & 15 & -- & bounded, then signed\\
+4.3 & unbounded extension & 15 & -- & unbounded, by truncation\\
+4.4 & slab vacuum; simplicity only & 16 & -- & \S\ref{sec:euclidean}\\
+5.1 & uniform local interaction moment (M$_2$) & 16 & \textcolor{cond}{U} &
+  \S\ref{sec:euclidean}\\
+5.2 & $\varphi^4$ instance & 17 & \textcolor{cond}{U} &
+  $\varphi^4$ arithmetic\\
+6.1 & cell count & 17 & -- & cell counting\\
+6.2 & GJS norms of polynomial observables & 18 & P & GJS norms\\
+6.3 & row independence & 18 & P & GJS norms\\
+7.1 & moment transfer & 18 & \textcolor{cond}{U} & \S\ref{sec:euclidean}\\
+7.2 & one-point limit & 18 & \textcolor{cond}{U} & \S\ref{sec:euclidean}\\
+7.3 & two-point lower semicontinuity & 19 & \textcolor{cond}{U} &
+  \S\ref{sec:euclidean}\\
+7.4 & CE2 across a horizontal strip & 19 & P & \S\ref{sec:euclidean}\\
+7.5 & semigroup decay of centered observables & 20 & \textcolor{cond}{U} &
+  \S\ref{sec:euclidean}\\
+7.6 & exponential moments & 20 & \textcolor{cond}{U} & \S\ref{sec:euclidean}\\
+7.7 & density of polynomial vectors & 21 & \textcolor{cond}{U} &
+  \S\ref{sec:euclidean}\\
+7.8 & uniform gap (G) & 21 & \textcolor{cond}{U} & \S\ref{sec:euclidean}\\
+8.1 & path regularity of the semigroup & 22 & -- & H\"older bookkeeping\\
+8.2 & projection and eigenvector regularity; derivative formulas & 23 &
+  G$_\gamma$ & \S\ref{sec:lppl}\\
+9.1 & exact inverse-energy filter & 24 & -- & \S\ref{sec:lppl}\\
+9.2 & spectral separation & 25 & -- & \S\ref{sec:lppl}\\
+9.3 & clustering with one unbounded local argument & 25 & G$_\gamma$ &
+  \S\ref{sec:lppl}\\
+10.1 & state derivative & 26 & G$_\gamma$ & \S\ref{sec:lppl}\\
+10.2 & localization of the perturbation & 26 & \textcolor{cond}{U} &
+  \S\ref{sec:lppl}\\
+10.3 & two-regime bound & 27 & \textcolor{cond}{U} & \S\ref{sec:lppl}\\
+10.4 & one-path estimate & 27 & \textcolor{cond}{U} & \S\ref{sec:lppl}\\
+10.5 & the rate function is super-polynomial & 28 & \textcolor{cond}{U} &
+  \S\ref{sec:lppl}\\
+11.1 & full-net convergence with rate & 28 & \textcolor{cond}{U} &
+  \S\ref{sec:identification}\\
+11.2 & local normality & 29 & \textcolor{cond}{U} & \S\ref{sec:identification}\\
+12.1 & exact spectral passage & 29 & -- & \S\ref{sec:identification}\\
+12.2 & Main Theorem & 30 & \textcolor{cond}{U} & \S\ref{sec:result}\\
+12.3 & the Glimm--Jaffe vacuum is canonical at weak coupling & 31 &
+  \textcolor{cond}{U} & \S\ref{sec:identification}\\
+13.1 & structure of a broken phase & 31 & -- & \S\ref{sec:notclaimed}\\
+13.2 & conditional exclusion of a two-phase structure & 31 & \textcolor{cond}{U} &
+  \S\ref{sec:notclaimed}\\
+13.3 & scope of the phase-transition literature & 32 & -- & \S\ref{sec:notclaimed}\\
+C.1 & consequence of the audited source mechanisms & 36 & -- & \S\ref{sec:import}\\
+C.2 & normalisation & 37 & -- & \S\ref{sec:import}\\
+C.3 & Wick lower bound; the $h\ge0$ entry & 37 & -- & not consumed by Thm~12.2\\
+C.4 & ultraviolet difference; the $h\le1$ entry & 37 & -- & not consumed by Thm~12.2\\
+C.5 & $h$-uniform stability & 38 & -- & \S\ref{sec:import}\\
+C.6 & why the class is what it is & 38 & -- & source-mechanism audit\\
+C.7 & coverage of every CE application & 38 & \textcolor{cond}{U} &
+  \S\ref{sec:import}\\
+\end{longtable}
+}

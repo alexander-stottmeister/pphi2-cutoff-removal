@@ -2,7 +2,7 @@
 \usepackage[margin=30mm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
-\usepackage{microtype,booktabs,enumitem}
+\usepackage{microtype,booktabs,enumitem,longtable,array}
 \usepackage{xcolor}
 % Colours: the documentation site's palette (docs/figures/svg.py, LIGHT), so that
 % "conditional on U_GJS" is the same violet in the README, on the site and here.
@@ -16,13 +16,17 @@
 \definecolor{cfill}{RGB}{243,238,252} % #f3eefc  conditional fill
 \definecolor{afill}{RGB}{221,244,255} % #ddf4ff  accent fill
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,decorations.pathreplacing}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,decorations.pathreplacing,patterns}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usepackage{fancyhdr}
 \usepackage[colorlinks=true,linkcolor=noteBlue,citecolor=noteBlue,urlcolor=noteBlue]{hyperref}
 \usepackage[most]{tcolorbox}
 
+% Floats: let a tall figure share a page with text instead of waiting for a float page.
+\renewcommand{\topfraction}{0.92}\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.06}\renewcommand{\floatpagefraction}{0.85}
+\setcounter{topnumber}{2}\setcounter{totalnumber}{3}
 \pagestyle{fancy}\fancyhf{}
 \lhead{\small Reader's companion: cutoff removal for weakly coupled $P(\varphi)_2$}
 \rhead{\small\thepage}
@@ -57,7 +61,8 @@
 
 % ---- companion-specific ----
 % A locator into the document of record [R]: \rec{Theorem~12.2}{30}.
-\newcommand{\rec}[2]{[\hyperlink{bib-record}{R}, #1, p.\,#2]}
+\DeclareRobustCommand{\rec}[2]{[\hyperlink{bib-record}{R}, #1, p.\,#2]}
+\DeclareRobustCommand{\recpp}[2]{[\hyperlink{bib-record}{R}, #1, pp.\,#2]}
 \newcommand{\UGJS}{U_{\mathrm{GJS}}}
 \newcommand{\condtext}[1]{\textcolor{cond}{#1}}
 % Boxes.  recordbox: a statement quoted from the record.  checkpoint: the displayed

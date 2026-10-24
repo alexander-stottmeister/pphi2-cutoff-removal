@@ -1,0 +1,141 @@
+% s6-lppl.tex -- Section 6 of the reader's companion (drafter: qi, R3; edited in R4).
+\section{Hamiltonian layer: local perturbations perturb locally}\label{sec:lppl}
+
+\emph{An exact filter turns the gap into decay in time; an exact light cone turns time
+into distance.}\par\nopagebreak
+
+For $g,g'\in\G$, every $\gamma>0$ satisfying (G$_\gamma$) \rec{\S8}{22}, and $M$ the
+moment constant of (M$_2$), the record's \S\S8--10 prove the following contract, with
+$\Psi_\gamma$ the rate function of \rec{(29)}{28}, assembled at the end of this section;
+through $M$ it is \condtext{conditional on $\UGJS$}.
+\begin{checkpoint}[The contract, Lemma 10.5]
+\vspace{-1ex}
+\begin{equation*}
+ \|(\omega_g-\omega_{g'})|_{\A(O)}\|\le\Psi_\gamma(d)\quad\text{whenever }
+ g\equiv g'\equiv1\text{ on }O_d,\ d\ge0 ,
+ \tag*{\rec{Lemma~10.5}{28}}
+\end{equation*}
+and for every $N\ge1$ there is $C_{N,\gamma,M}<\infty$ with
+\begin{equation*}
+ \Psi_\gamma(d)\le C_{N,\gamma,M}\,(1+d)^{-N}\qquad(d\ge0) .
+ \tag*{\rec{(30)}{28}}
+\end{equation*}
+\end{checkpoint}
+Fig.~\ref{fig:lppl} draws the three moves that prove it.
+
+\emph{V. The derivative along a path.} Put $g_s:=(1-s)g+sg'$ and $v:=g'-g$,
+$s\in[0,1]$. If $g\equiv g'\equiv1$ on $O_d$, every $g_s$ lies in $\G$ and equals~$1$
+on $O_d$ \rec{Lemma~3.1(iii)}{13}; $s$ is a path parameter, not a time.
+Proposition~8.2, an implication under (G$_\gamma$), differentiates the ground vector
+$\Om_s:=\Om_{g_s}$ of $H_s:=H(g_s)$ in the parallel gauge:
+$\dot\Om_s=-H_s^{-1}Q_sV(v)\Om_s$, with $Q_s:=1-|\Om_s\rangle\langle\Om_s|$ and
+$\|H_s^{-1}Q_s\|\le\gamma^{-1}$ \rec{Proposition~8.2, eq.~(15)}{23}. The exact
+inverse-energy filter of \rec{Lemma~9.1}{24} trades this reduced resolvent for real-time
+evolution: for an even $\chi\in C^\infty(\R;[0,1])$ with $\chi=0$ on
+$[-\gamma/2,\gamma/2]$ and $\chi=1$ outside $(-\gamma,\gamma)$, let $W_\gamma$ be the
+inverse Fourier transform of $\widehat W_\gamma(E):=\chi(E)/E$ ($E\ne0$),
+$\widehat W_\gamma(0):=0$ \rec{eq.~(17)}{24}. If $H$ is self-adjoint with
+$\spec H\subseteq\{0\}\cup[\gamma,\infty)$, then
+\begin{equation*}
+ H^{-1}(1-P_{\ker H})=\int_\R W_\gamma(t)\,e^{itH}(1-P_{\ker H})\,dt ,
+ \tag*{\rec{Lemma~9.1(ii), eq.~(18)}{24}}
+\end{equation*}
+an integral identity applied to vectors. Lemma~10.1, an implication under (G$_\gamma$),
+applies it with $H=H_s$ to the single vector $Q_sA\Om_s$; for self-adjoint
+$A\in B(\HH)$ and $0<s<1$:
+\begin{checkpoint}[Checkpoint: the state derivative, Lemma 10.1]
+\vspace{-1ex}
+\begin{equation*}
+ \frac d{ds}\,\omega_{g_s}(A)
+ =-2\,\mathrm{Re}\int_\R W_\gamma(t)
+ \Bigl[\ip{V(v)\Om_s}{\beta^{g_s}_t(A)\Om_s}
+ -\ip{V(v)\Om_s}{\Om_s}\,\omega_{g_s}(A)\Bigr]dt .
+ \tag*{\rec{(24)}{26}}
+\end{equation*}
+\end{checkpoint}
+
+\emph{VI. From time to distance.} Every cutoff dynamics has an exact light cone:
+$\beta^g_t(\A(O))\subseteq\A(O_{|t|})$ for all $g\in\CH$ and $t\in\R$, with speed
+$\le1$ independent of $g$, from A6(i) \rec{Proposition~2.7}{12}. The perturbation
+$V(v)$ is unbounded, and (M$_2$) controls only pieces supported in intervals of length~$2$, so it is cut into cells
+$V_j:=V(\eta_jv)$, $B_j:=\supp(\eta_jv)$, by a smooth partition of unity
+$\sum_j\eta_j=1$ with $0\le\eta_j\le1$ and $\supp\eta_j\subset(j-1,j+1)$: then
+$V(v)\xi=\sum_jV_j\xi$ on common domains and $\|V_j\Om_s\|\le M$ for $0\le s\le1$
+\rec{Lemma~10.2, eq.~(25)}{26}, a lemma conditional on $\UGJS$ through Theorem~5.1.
+Only $V_j\Om_s$ enters, never $\|V_j\|$. Lemma~9.3, an implication under (G$_\gamma$),
+allows one unbounded argument $X$: its proof bounds at
+$t=0$ two functions of $t$ with spectral supports in $[\gamma,\infty)$ and
+$(-\infty,-\gamma]$, which the light cone makes agree for $|t|<R$, by the spectral
+separation \rec{Lemma~9.2, eq.~(19)}{25}; the bound needs $\|X\Om\|$, not $\|X\|$:
+\begin{checkpoint}[Checkpoint: clustering with one unbounded argument, Lemma 9.3]
+Let $g\in\CH$, write $H=H(g)$, $\Om=\Om_g$, $\beta_t=\beta^g_t$, and assume
+(G$_\gamma$). Let $B\subset\R$ be compact, let $X=X^*$ be affiliated with $\A(U)$ for
+every bounded open $U\supseteq B$, with $\Om\in D(X)$, and let $A\in\A(O)$ for a bounded
+interval $O$. If $R:=\dist(B,O)>0$ satisfies $\gamma R\ge1$, then
+\begin{equation*}
+ \bigl|\ip{X\Om}{A\Om}-\ip{X\Om}{\Om}\ip{\Om}{A\Om}\bigr|
+ \le2\,\|X\Om\|\,\|A\|\,e^{-\gamma R/2} .
+ \tag*{\rec{(23)}{25}}
+\end{equation*}
+\end{checkpoint}
+
+\emph{VII. Two regimes, then shells.} Fix $A=A^*\in\A(O)$ with $\|A\|\le1$. For a
+nonzero cell put $r_j:=\dist(B_j,O)$ and
+$C_{j,s}(t):=\ip{V_j\Om_s}{\beta^{g_s}_t(A)\Om_s}-\ip{V_j\Om_s}{\Om_s}\,\omega_{g_s}(A)$,
+the cell's share of the bracket in (24). If $\gamma r_j/2\ge1$, Lemma~10.3, conditional
+on $\UGJS$ through $M$, applies (23) with $X=V_j$ and gives
+\begin{equation*}
+ |C_{j,s}(t)|\le
+ \begin{cases}
+ 2Me^{-\gamma r_j/4},&|t|\le r_j/2,\\[2pt]
+ 2M,&t\in\R .
+ \end{cases}
+ \tag*{\rec{Lemma~10.3, eq.~(26)}{27}}
+\end{equation*}
+For $|t|\le r_j/2$ the cell stays at distance $\ge r_j/2$ from $O_{|t|}$; beyond that,
+Lemma~10.3 uses only the trivial bound $2M$ (by choice; the cone reaches $B_j$ at
+$|t|=r_j$). If $d\ge d_0:=4+2/\gamma$ and $g\equiv g'\equiv1$ on $O_d$, every cell has
+$r_j\ge d$, so $\gamma r_j/2\ge2\gamma+1$ and Lemma~10.3 applies to every cell.
+Splitting each time integral of (24) at $|t|=r_j/2$ weights the inner bound by
+$\|W_\gamma\|_1$ and the outer one by the filter tail $T_\gamma(r_j/2)$, where
+$T_\gamma(r):=\int_{|t|>r}|W_\gamma(t)|\,dt$. Summing the cells shell by shell, at most
+eight with $r_j$ in any unit shell $[n,n+1)$, four on each side
+(Fig.~\ref{fig:lppl}(b)), and integrating over $s$ gives Proposition~10.4, conditional
+on $\UGJS$ through $M$ (Steps~3--4 of its proof):
+\begin{checkpoint}[Checkpoint: the one-path estimate, Proposition 10.4]
+For $d\ge d_0$ and $g\equiv g'\equiv1$ on $O_d$,
+\begin{equation*}
+ \|(\omega_g-\omega_{g'})|_{\A(O)}\|
+ \le32M\sum_{n\ge\lfloor d\rfloor}
+ \Bigl(\|W_\gamma\|_1e^{-\gamma n/4}+T_\gamma(n/2)\Bigr) .
+ \tag*{\rec{(27)}{27}}
+\end{equation*}
+\end{checkpoint}
+
+\emph{The rate.} Lemma~10.5 names the right side of (27) $\Psi_\gamma(d)$ for $d\ge d_0$,
+and sets $\Psi_\gamma(d):=\max\{2,\text{the same expression}\}$ for $0\le d<d_0$
+\rec{eq.~(29)}{28}. The exponential summand is at most a constant times
+$e^{-\gamma d/4}$. Lemma~9.1(i) is credited only with $W_\gamma\in L^1$ and finite
+moments of every order, hence $T_\gamma(r)\le C_{q,\gamma}(1+r)^{-q}$; this controls the
+filter-tail summand. Together they give (30), the second display of the contract above.
+These constants, and $\Psi_\gamma$ itself, depend on the fixed choice of $\chi$.
+Both summands decay faster than every inverse power; the exponential summand decays
+faster, so the filter-tail summand sets the rate. $W_\gamma$ cannot have exponential
+tails, because $\widehat W_\gamma$ vanishes on $[-\gamma/2,\gamma/2]$ by construction and
+a transform analytic in a strip cannot vanish on an interval without vanishing
+identically \rec{\S1.4}{5}. The record states that ``$\Psi_{m_1}$ is super-polynomial but
+not exponential, and this is intrinsic to the filter method used'' \rec{\S1.3(b)}{4}.
+$\Psi_\gamma$ is an upper bound on a norm difference, never a measured decay of any
+state; Fig.~\ref{fig:rate} draws its ingredients for one admissible $\chi$.
+
+\begin{context}
+The machinery of \cite{Hastings,BMNS} ``does not start'' here, because $V(g')-V(g)$ has
+infinite norm (\S\ref{sec:open}; \rec{\S1.4}{4}). No automorphism or spectral flow is
+constructed: the derivative of the state is bounded and integrated along the path. And
+no Lieb--Robinson bound is needed: the light cone of Proposition~2.7 is exact.
+\end{context}
+
+\noindent\emph{In the record:} \S\S1.3(b) and 1.4, pp.~4--5; Proposition~2.7, p.~12;
+Lemma~3.1(iii), p.~13; (G$_\gamma$), Proposition~8.2, Lemmas~9.1--9.3 and 10.1--10.3,
+Proposition~10.4 and Lemma~10.5, with eqs.~(15), (17)--(19), (23)--(27) and (29)--(30),
+pp.~22--28.

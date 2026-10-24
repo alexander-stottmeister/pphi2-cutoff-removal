@@ -1,0 +1,118 @@
+% s4-import.tex -- Section 4 of the reader's companion (drafter: cqft, R3; edited in R4).
+\section{The one import that is not a quotation}\label{sec:import}
+
+\emph{$\UGJS$ is the source's own quantifier, assembled from four pages and not
+re-derived; that is why the theorem is conditional.}
+
+Of the record's eight imports \rec{\S2.4}{7}, A1--A7 quote printed construction
+theorems (table below). A8 packages the cluster-expansion input of Glimm--Jaffe--Spencer
+\cite{GJS} for the interacting Euclidean measures $dq_h$, $h\in\CE$, of A3 and for
+observables $Q(x^0)$ at sharp Euclidean time $x^0$; its items include the printed norms
+$\|\cdot\|_{\rm GJS}$, the clustering estimate CE2 (Source Fact~2.2), the moment bound
+CE1 (Source Fact~2.3), the dilation, and one item not read off a single theorem:
+
+\begin{recordbox}{Assumption A8(vi) of the record (p.\,10)}
+For
+\[
+ \CE^{\rm slab}:=\{h_{T,g}=\mathbf1_{[-T,T]}\otimes g:T>0,\ g\in\CH\}\subset\CE,
+\]
+one and the same constant $C_8$ satisfies
+\begin{equation*}
+ \left|\int Q(x^0)\,dq_{h_{T,g}}\right|\le C_8\|Q(x^0)\|_{\rm GJS}\quad(T>0,\ g\in\CH) .
+ \tag*{\rec{$(\UGJS)$}{10}}
+\end{equation*}
+\end{recordbox}
+
+$\UGJS$ (A8(vi)) is the cutoff-uniform form of GJS Thm~1.1.8 on the slab family
+$h_{T,g}$; since 5~September 2026 it is imported at the scope at which the source states
+it (p.~629) and uses it (pp.~594--597: the affine path and the derivation of Thm~1.1.7
+from 1.1.8); it is not a quantifier strengthened beyond the source; it is still a named
+hypothesis, because it is assembled from four pages and the cluster expansion is not
+re-derived (Appendix~C audits the mechanism and proves two analytic prerequisites only).
+
+\emph{Why it is not literal.} As printed, GJS Theorem~1.1.8 is ``stated uniformly as the
+source cutoff tends to one'' \rec{Source Fact~2.3}{10}. The record needs it on another
+family: its limits $T\to\infty$ are taken at fixed $g$ \rec{\S4}{15}, the bound must hold
+along every affine cutoff $g_s=(1-s)g+sg'$ \rec{A8(vi)}{10}, and the slab cutoffs
+$h_{T,g}$, with $g$ of compact support, do not tend to one. Hence Theorem~12.2 is proved,
+\condtext{conditional on $\UGJS$} \rec{Theorem~12.2}{30}.
+
+\emph{The record's reading.} The Scope paragraph of A8 argues from the passages that
+A8(vii$'$) quotes \recpp{A8(vii$'$)}{10--11}, in three steps (Fig.~\ref{fig:quantifier}):
+\begin{enumerate}[label=(\alph*),leftmargin=2em,itemsep=1pt,topsep=2pt]
+\item the record reads GJS pp.~594--595 as proving Theorem~1.1.1 along the affine path
+  $h_1+\alpha(h_2-h_1)$, $\alpha\in[0,1]$, for arbitrary cutoffs $h_1,h_2$ of the
+  source's class (p.~589: compact support, $0\le h\le1$), with Theorem~1.1.7 applied at
+  every cutoff of that path with one $h$-independent constant; the record's path
+  $h_{T,g_s}=(1-s)h_{T,g}+s\,h_{T,g'}$ is this family with $\alpha=s$
+  \rec{A8, Scope~(a)}{11};
+\item it reads GJS pp.~596--597 as taking the $h$-independent constant of
+  Theorem~1.1.7 from Theorem~1.1.8 and (1.1.16) at the same $h$; since Lemma~7.4 uses
+  Theorem~1.1.7 as printed at $h=h_{T,g}$, it concludes that consistency requires the
+  constant of Theorem~1.1.8 to be uniform on the same class, which is $(\UGJS)$
+  \recpp{A8, Scope~(b)}{11--12};
+\item it reads GJS p.~629, as quoted in \rec{Source Fact~2.4}{10}, as stating the
+  uniformity of Theorems~1.1.8 and 1.1.11 in the space cutoff $h$, with Theorem~1.1.8 the
+  case $B=I$, $n=0$ \rec{A8, Scope~(c)}{12}.
+\end{enumerate}
+
+\emph{Where it is consumed.} Proposition~C.7 of the record, conditional on $\UGJS$ like
+Theorem~5.1 and Lemmas~7.1--7.3, lists every application \rec{Proposition~C.7}{38}: CE1,
+through $(\UGJS)$, in Theorem~5.1 and Lemmas~7.1--7.3, each time at a slab cutoff; CE2 in
+Lemma~7.4 only, as printed, with constants independent of $h$.
+
+\emph{What Appendix~C of the record does.} It audits five source mechanisms, and its
+Proposition~C.1 is ``deliberately limited to the audited mechanisms''
+\rec{Proposition~C.1}{36}; it proves $h$-uniform normalisation and stability
+\rec{Lemma~C.2}{37}, \rec{Theorem~C.5}{38}. It re-derives neither the expansion nor
+$\UGJS$ \rec{Appendix~C}{35}, and Theorem~12.2 does not consume it.
+
+\emph{C5 and the routes out.} Audit item C5, a second human reading of the GJS page images
+against the transcriptions, is open \rec{Appendix~B, ``External residue''}{35}: its nine
+items have blank verdicts (\texttt{part\_i/C5\_reading\_record.md}). It is a transcription
+check; closing it leaves $\UGJS$ a hypothesis (\texttt{docs/status.md}). The only
+proportionate route, which \texttt{strategy.md} calls Level~2, is recorded in
+\texttt{docs/imports.md}: an $h$-trace of the printed expansion on GJS pp.~598--629,
+completing Prop~C.1 (not scheduled). The Hamiltonian bypass for (M$_2$) is recorded as
+dead in \texttt{strategy.md}, since $g$-uniform local moments were open in the 1970--71
+literature; \texttt{docs/imports.md} calls this ``a verdict on the printed record, not a
+no-go theorem''.
+
+\emph{The seven literal imports} \rec{\S2.4}{7}:
+
+\begin{center}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.04\linewidth}
+                >{\raggedright\arraybackslash}p{0.6\linewidth}
+                >{\raggedright\arraybackslash}p{0.3\linewidth}@{}}
+\toprule
+& import: what it supplies & source pinpoint\\
+\midrule
+A1 & \emph{cutoff construction:} the ground state $\Om_g$ of $H(g)$; the closure of $K(g)$
+``has $E(g)=\inf\spec K(g)$ as a \emph{simple} eigenvalue'' & \cite[p.~588]{GJS};
+\cite[Thms.~2.2.1, 2.3.1]{GJ2}; \cite{GJ71}; \cite[Thm.~5.3]{Rosen70}\\
+A2 & \emph{Feynman--Kac--Nelson transfer:} the slab objects $h_{T,g}$, $\psi_s$, $c_g$
+and the Euclidean $\leftrightarrow$ Hamiltonian passage &
+\cite[Thm.~III.6, Cor.~V.14, Thm.~V.15]{SimonBook}; \cite[Thms.~II.14, II.16]{GRS75}\\
+A3 & \emph{finite-volume stability:} the Euclidean interaction $\mathcal U_h$ in every
+$L^p$, $e^{-\varrho\,\mathcal U_h}$ integrable ($\varrho>0$), so the measures $dq_h$ are
+well defined & \cite[Thm.~V.7]{SimonBook}\\
+A4 & \emph{free hypercontractivity:} the $L^p$ smoothing used in the pairing bound (the
+record's \S8) and in Appendix~C & \cite[Thms.~I.17, III.17]{SimonBook}\\
+A5 & \emph{domain smoothing; common core:} $\Om_g\in D(V(h))$, and a common core for all
+$K(g_s)$ along an affine path & (i) \cite[Ch.~7, Thm.~7.4]{GJExp}; (ii)
+\cite[Thm.~V.12]{SimonBook}, \cite[Thm.~5.3]{Rosen70}, \cite{GJ2}\\
+A6 & \emph{free propagation; patching; the dynamics $\alpha$:} (i) speed one, the
+Trotter formula; (ii) (P): $\alpha_t(\A(O))\subseteq\A(O_{|t|})$,
+$\alpha_t(A)=\beta^g_t(A)$ if $g\equiv1$ on $O_{|t|}$ ($A\in\A(O)$); the cutoff cone is
+Proposition~2.7 &
+\cite[\S III]{GJ1}; \cite[\S\S3.5--3.6]{GJ2}; \cite[\S4.1 and Ch.~4]{GJExp}\\
+A7 & \emph{covariance data:} translation covariance and parity & \cite[p.~398]{GJ2}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\emph{In the record:} A1--A8 with Source Facts~2.2--2.4, eq.~($\UGJS$), item
+(vii$'$) and the Scope paragraph, pp.~7--12; Appendix~B, p.~35; Appendix~C with
+Proposition~C.1, Lemma~C.2, Theorem~C.5 and Proposition~C.7, pp.~35--38.

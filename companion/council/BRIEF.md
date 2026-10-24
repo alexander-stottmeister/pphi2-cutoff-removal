@@ -73,8 +73,10 @@ companion.
   dim ker H(g) = 1, and the uniform local moment. Status: **proved, conditional on U_GJS**
   (and on the literal imports A1-A7).
 - Imports: A1-A7 are literal quotations of printed theorems; A8 is the GJS package (CE1,
-  CE2, the printed norms, U_GJS). Of the 61 numbered statements, 24 reach A8 through
-  their proof chain (computed by `docs/extract.py`). Lemma 9.1 does not.
+  CE2, the printed norms, U_GJS). Of the 61 numbered statements, 29 reach A8 through
+  their `\ref` chain (computed by `docs/extract.py`; 24 before 23 October 2026, when the
+  extractor learned that the Source Facts printed inside A8 are items of A8, finding F1(b)
+  of PLAN.md). Lemma 9.1 does not.
 - U_GJS, in the record's wording: A8(vi), the cutoff-uniform form of GJS Thm 1.1.8 on the
   slab family h_{T,g}; since 5 September 2026 imported at the scope at which the source
   states it (p. 629) and uses it (pp. 594-597: the affine path and the derivation of

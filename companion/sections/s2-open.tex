@@ -1,0 +1,96 @@
+% s2-open.tex -- Section 2 of the reader's companion (drafter: aqft, R3; edited in R4).
+% GJ3 facts appear only in the table's GJ3 column (context); each such cell is marked (R5).
+% The "selection" cell of that column is a quotation of the record (main.tex l. 255),
+% attributed to [R]; R5 checks it against main.tex, not against GJ3's pages.
+\section{Why it was open}\label{sec:open}
+
+\emph{Compactness gave Glimm and Jaffe a vacuum; it did not give convergence.}
+
+Glimm and Jaffe constructed the model in the series I--IV \cite{GJ1,GJ2,GJ3,GJ4}. In
+paper III, as the record recounts it, the cutoff states are averaged over space
+translations and a $w^*$-compactness argument produces a limit point; whether the net
+$(\omega_g)$ itself converges ``was not proved there'' \rec{\S1.1}{3}. The record quotes
+the Expositions volume: the $g\to1$ limit of vacuum expectation values ``has not been
+proved'' \cite[\S4]{GJExp}. It also cites Guerra, Rosen and Simon, who pose Euclidean
+analogues (local $L^p$ bounds on the Euclidean vacuum density, local convergence of
+Gibbs states) as Problems~1--2 \cite[pp.~125--126]{GRS75}; their note added on p.~128
+records Newman's solution of the small-coupling $p=1$ versions, so ``the printed problems
+must not be read as an unqualified current open-problem claim'' \rec{\S14}{32}.
+
+Table~\ref{tab:gj3} sets the statements of GJ3 (context) beside those of the record.
+What the record adds is in the rows \emph{limit} and \emph{selection}, and in the rate of
+the row \emph{local norm}.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.12\textwidth}
+                >{\raggedright\arraybackslash}p{0.41\textwidth}
+                >{\raggedright\arraybackslash}p{0.41\textwidth}@{}}
+\toprule
+property & GJ3 (context) & the record (weak coupling, \condtext{conditional on $\UGJS$})\\
+\midrule
+states &
+% (R5)
+$\omega_n$: averages of $\omega_{g_n}$ over space translations, $g_n=g(\cdot/n)$,
+$g\equiv1$ on $[-3,3]$ \cite[(2.3)--(2.5), p.~210]{GJ3}
+& $\omega_g$ for every $g\in\G$; no averaging \rec{Theorem~12.2}{30}\\[2pt]
+limit &
+% (R5)
+a $w^*$ limit point; a subsequence of $(\omega_n)$ converges $w^*$ to it
+\cite[Thm.~2.1, p.~211]{GJ3}
+& the limit of the full net in each $\A(O)^*$ \rec{Theorem~12.2(1)}{30}\\[2pt]
+local norm &
+% (R5)
+on each local algebra, $(\omega_n)$ lies in a norm-compact subset of the local dual
+\cite[Thm.~2.3, p.~211]{GJ3}
+& Cauchy in each $\A(O)^*$; rate $\Psi_{m_1}(d)$ when $g\equiv1$ on $O_d$
+\rec{Theorem~11.1}{28}\\[2pt]
+normality &
+% (R5)
+every limit point is normal on each local algebra \cite[Thm.~2.3, p.~211]{GJ3}
+& $\omega_\infty|_{\A(O)}$ is normal \rec{Proposition~11.2}{29}\\[2pt]
+energy &
+% (R5)
+in the representation of a $w^*$ limit point, the generator of time translations has
+spectrum in $[0,\infty)$ \cite[Thm.~2.1, p.~211]{GJ3}
+& $\omega_\infty$ is a ground state of $(\A,\alpha)$ in the spectral sense of
+\rec{Proposition~12.1}{29}\\[2pt]
+selection &
+% (R5)
+the record's reading: compactness ``selects a state but proves neither convergence nor
+canonicity'' \rec{\S1.4}{4}
+& every $w^*$ limit point of GJ3's states equals $\omega_\infty$ on each $\A(O)$
+\rec{Corollary~12.3}{31}\\
+\bottomrule
+\end{tabular}
+\caption{GJ3 and the record, statement by statement. The GJ3 column is context; its
+last cell quotes the record.}
+\label{tab:gj3}
+\end{table}
+
+Moments are not enough. Convergence of Schwinger functions at weak coupling follows
+from the GJS cluster expansion \rec{\S1.1}{3}: along an affine path of Euclidean cutoffs
+$h\in\CE$, GJS bound the change of the moments of products of smeared fields by
+$O(1)e^{-m_1d/2}$, with $d$ the distance from the test functions to the change of cutoff,
+eq.~(1.1.11) of \cite{GJS} as quoted in \rec{A8(vii$'$)(a)}{11}. In the record's words,
+such convergence ``lives in the wrong topology'': ``there is no soft passage from moments
+to norms on local von Neumann algebras'' \rec{\S1.4}{4}.
+
+\begin{context}
+The difference $V(g')-V(g)$ has infinite norm, so the machinery for gapped lattice
+systems of \cite{Hastings,BMNS} ``does not start'' \rec{\S1.4}{4}.
+\end{context}
+
+Later work does not supply the norm statement either, as the record reads it
+\rec{\S1.1}{3}. Albeverio--H\o egh-Krohn--Zegarlinski prove Euclidean Gibbs uniqueness
+under their stated hypotheses \cite{AHZ}, and Bauerschmidt--Dagallier--Weber prove
+uniqueness of the invariant measure for the $\Phi^4_2$ stochastic-quantization equation
+above the critical temperature \cite{BDW}; neither is, by itself, a theorem about
+local-norm convergence of this Hamiltonian cutoff net. The Hamiltonian renormalisation programme of
+Rodriguez Zarate--Thiemann is restricted to finite volume \cite{RZT}. The record
+identifies no theorem of local-norm convergence ``in the references reviewed here''; this
+is not a priority claim.
+
+\noindent\emph{In the record:} \S\S1.1 and 1.4, pp.~3--4; A8(vii$'$)(a), p.~11;
+Theorem~11.1, Propositions~11.2 and 12.1, Theorem~12.2 and Corollary~12.3, pp.~28--31;
+\S14, p.~32.

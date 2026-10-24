@@ -15,7 +15,7 @@ for, and what its status is.
 | A3 | finite-volume stability | U_h in every L^p and e^{−ϱU_h} integrable, so 0 < Z(h) < ∞ and the interacting measures dq_h are well defined |
 | A4 | free hypercontractivity | the L^p smoothing used in the moment estimates |
 | A5 | domain smoothing; common core | Ω_g ∈ D(V_j), and a core on which the algebra acts |
-| A6 | free propagation; patching; the dynamics α | the **exact light cone** and the patched limit dynamics |
+| A6 | free propagation; patching; the dynamics α | free propagation at speed one, the Trotter formula, and the patched limit dynamics α; the cutoff light cone itself is derived (Proposition 2.7) |
 | A7 | covariance data | translation covariance and parity |
 | A8 | the GJS package | the cluster-expansion estimates: CE1, CE2, the printed norms, and **U_GJS** |
 

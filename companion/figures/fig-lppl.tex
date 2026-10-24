@@ -1,0 +1,94 @@
+% Fig. 4: the derivative along the path, three panels (PLAN Part 3, Fig. 4).
+% (a) the three moves that control the derivative (Lemma 10.1, eq. (24); Prop 10.4, Step 2);
+% (b) the affine path g_s and the cells B_j = supp(eta_j v) of Lemma 10.2, clipped to supp v,
+%     with the unit shells of Prop 10.4, Step 3 (drawing values: O = (-1.2, 1.2), d = 6,
+%     g = 1 on [-8, 8] and 0 outside (-10, 10), g' = 1 on [-12, 12] and 0 outside (-14, 14));
+% (c) the two-regime bound of Lemma 10.3 (drawing values a = 1.4, r_j = 7), with the exact
+%     light cone of Prop 2.7.  Drawn from the statements; evaluates nothing.
+\begin{tikzpicture}[font=\small,
+  mv/.style={draw=gline,rounded corners=1pt,fill=white,align=left,inner sep=5pt,text width=0.28\textwidth,font=\footnotesize},
+  pl/.style={font=\footnotesize\bfseries,anchor=north west,inner sep=1pt}]
+  % ================= (a) the three moves
+  \node[draw=gline,rounded corners=1pt,fill=afill!50!white,inner sep=5pt,align=center,text width=0.9\textwidth,font=\small] (top) at (0,0)
+    {$\dfrac{d}{ds}\,\omega_{g_s}(A)=-2\,\mathrm{Re}\displaystyle\sum_j\int_\R W_\gamma(t)\,C_{j,s}(t)\,dt$,
+     \quad $C_{j,s}(t)=\ip{V_j\Om_s}{\beta^{g_s}_t(A)\Om_s}-\ip{V_j\Om_s}{\Om_s}\,\omega_{g_s}(A)$};
+  \node[pl] at ($(top.north west)+(-0.3,0.3)$) {(a)};
+  \node[mv,anchor=north east] (f) at ($(top.south west)!0.33!(top.south east)+(0,-4mm)$)
+    {\textbf{(1) exact filter}, Lemma 9.1\\ $H_s^{-1}Q_s=\int W_\gamma(t)\,e^{itH_s}Q_s\,dt$;\\ $W_\gamma\in L^1$ with finite moments of every order.};
+  \node[mv,anchor=north] (c) at ($(top.south)+(0,-4mm)$)
+    {\textbf{(2) exact light cone}, Prop.~2.7\\ $\beta^{g_s}_t(A)\in\A(O_{|t|})$: speed $\le1$ for every $g\in\CH$; no Lieb--Robinson bound is needed.};
+  \node[mv,anchor=north west] (k) at ($(top.south west)!0.67!(top.south east)+(0,-4mm)$)
+    {\textbf{(3) clustering}, Lemmas 9.3, 10.3\\ $|C_{j,s}(t)|\le 2Me^{-\gamma r_j/4}$ for $|t|\le r_j/2$;\\ $\|V_j\Om_s\|\le M$ is the moment (M$_2$).};
+  % ================= (b) the path and the cells
+  \begin{scope}[shift={(0,-6.6cm)},x=0.40cm,y=0.95cm,font=\scriptsize]
+    \def\d{6}\def\o{1.2}
+    \node[pl,font=\footnotesize\bfseries] at (-15.6,2.0) {(b)};
+    \draw[gline,->] (-15,0) -- (15.6,0) node[right,mut] {$x$};
+    \draw[gline] (-15,1) -- (15,1);
+    \node[left,mut,font=\tiny] at (-15,1) {$1$};
+    \node[left,mut,font=\tiny] at (-15,0) {$0$};
+    \draw[acc,line width=2.2pt] (-\o,0) -- (\o,0); \node[above=1pt] at (0,0) {$O$};
+    \draw[acc!55!white,line width=1pt] ({-\o-\d},-0.3) -- ({\o+\d},-0.3);
+    \node[anchor=east] at ({-\o-\d-0.2},-0.3) {$O_d$};
+    \draw[mut,line width=1pt] (-15,0) -- (-10,0) -- (-8,1) -- (8,1) -- (10,0) -- (15,0);
+    \draw[ok,line width=1pt] (-15,0) -- (-14,0) -- (-12,1) -- (12,1) -- (14,0) -- (15,0);
+    \draw[mut!70!black,line width=0.8pt,dashed] (-14,0) -- (-12,0.5) -- (-10,0.5) -- (-8,1) (8,1) -- (10,0.5) -- (12,0.5) -- (14,0);
+    \node[anchor=west] at (9.3,0.82) {$g$};
+    \node[anchor=west] at (13.3,0.82) {$g'$};
+    \node[anchor=west] at (11.0,0.63) {$g_{1/2}$};
+    % cells B_j = supp(eta_j v), clipped to supp v = [-14,-8] u [8,14]
+    \foreach \j/\lft/\rgt in {8/8/9, 9/8/10, 10/9/11, 11/10/12, 12/11/13, 13/12/14, 14/13/14} {
+      \pgfmathsetmacro{\yy}{-0.52 - 0.09*mod(\j,2)}
+      \draw[warn,line width=1.4pt] (\lft,\yy) -- (\rgt,\yy);
+      \draw[warn,line width=1.4pt] (-\rgt,\yy) -- (-\lft,\yy); }
+    
+    % unit shells from O
+    \foreach \n in {6,...,12} {
+      \draw[mut] ({\o+\n},-0.78) -- ({\o+\n},-0.9);
+      \draw[mut] ({-\o-\n},-0.78) -- ({-\o-\n},-0.9); }
+    \draw[mut] ({\o+6},-0.84) -- ({\o+12},-0.84);
+    \draw[mut] ({-\o-12},-0.84) -- ({-\o-6},-0.84);
+    \node[anchor=south west,align=left,text width=5.9cm] at (1.0,1.2) {bars: $B_j=\supp(\eta_jv)$, $j=\pm8,\dots,\pm14$ (Lemma 10.2); ticks: the unit shells \mbox{$r_j\in[n,n+1)$}, $n=d,\dots,d+6$; $\le4$ cells per shell per side (Prop 10.4, Step 3)};
+    \draw[mut] (\o,-1.15) -- ({\o+\d},-1.15);
+    \draw[mut] (\o,-1.2) -- (\o,-1.1); \draw[mut] ({\o+\d},-1.2) -- ({\o+\d},-1.1);
+    \node[below,mut] at ({\o+\d/2},-1.16) {$d$};
+    \node[anchor=south west,align=left,text width=5.4cm] at (-14,1.2)
+      {$V(v)$, $v=g'-g$: unbounded, not small; only $V_j\Om_s$ enters (Lemma 10.2).\\ plateau of $g_s\supseteq\{g=1\}^\circ\cap\{g'=1\}^\circ$ (Lemma 3.1(iii)).};
+  \end{scope}
+  % ================= (c) the two regimes
+  \begin{scope}[shift={(-2.9cm,-13.4cm)},x=0.34cm,y=0.34cm,font=\scriptsize]
+    \def\a{1.4}\def\rj{7}\def\tmax{9.4}\def\xmin{-11.5}\def\xmax{11.5}
+    \node[pl,font=\footnotesize\bfseries] at ({\xmin-0.3},{\tmax+1.0}) {(c)};
+    \fill[ok!8!white] (\xmin,0) rectangle (\xmax,{\rj/2});
+    \fill[gline!25!white] (\xmin,{\rj/2}) rectangle (\xmax,\rj);
+    \fill[gline!45!white] (\xmin,\rj) rectangle (\xmax,\tmax);
+    \fill[afill] (-\a,0) -- ({-\a-\tmax},\tmax) -- ({\a+\tmax},\tmax) -- (\a,0) -- cycle;
+    \draw[acc,line width=0.9pt] (-\a,0) -- ({-\a-\tmax},\tmax);
+    \draw[acc,line width=0.9pt] (\a,0) -- ({\a+\tmax},\tmax);
+    \draw[gline,->] (\xmin,0) -- ({\xmax+0.6},0) node[right,mut] {$x$};
+    \draw[gline,->] (0,-0.6) -- (0,{\tmax+0.6}) node[above,mut] {$|t|$};
+    \draw[acc,line width=2.2pt] (-\a,0) -- (\a,0);
+    \node[below=3pt] at (0,0) {$O$};
+    \draw[warn,line width=2.2pt] ({\a+\rj},0) -- ({\a+\rj+2},0);
+    \node[below=3pt] at ({\a+\rj+1},0) {$B_j$};
+    \draw[mut] (\a,-1.3) -- ({\a+\rj},-1.3);
+    \draw[mut] (\a,-1.55) -- (\a,-1.05); \draw[mut] ({\a+\rj},-1.55) -- ({\a+\rj},-1.05);
+    \node[below,mut] at ({\a+\rj/2},-1.35) {$r_j=\dist(B_j,O)$};
+    \draw[warn,line width=0.7pt] (\xmin,{\rj/2}) -- (\xmax,{\rj/2});
+    \node[anchor=west,inner sep=1.5pt] at ({\xmax+0.2},{\rj/2}) {$|t|=r_j/2$: the bound switches};
+    \draw[mut,line width=0.7pt] (\xmin,\rj) -- (\xmax,\rj);
+    \fill[warn] ({\a+\rj},\rj) circle (2pt);
+    \node[anchor=west,inner sep=1.5pt,color=mut] at ({\xmax+0.2},\rj) {$|t|=r_j$: the cone reaches $B_j$};
+    \node[acc] at (0,5.0) {$O_{|t|}$};
+    \node[acc,anchor=west,align=left] at (4.3,2.2) {exact, speed $\le1$\\ (Prop 2.7)};
+    \draw[mut] ({\xmax+0.2},{1.75}) -- ({\xmax+0.9},{1.75});
+    \node[align=left,anchor=west] at ({\xmax+1.0},{1.75})
+      {$|C_{j,s}(t)|\le 2Me^{-\gamma r_j/4}$ (Lemma 9.3):\\ $B_j$ outside the cone, $\dist(B_j,O_{|t|})\ge r_j/2$};
+    \draw[mut] ({\xmax+0.2},{5.25}) -- ({\xmax+0.9},{5.25});
+    \node[align=left,anchor=west] at ({\xmax+1.0},{5.25})
+      {$B_j$ still outside the cone;\\ the lemma uses $2M$ here by choice};
+    \draw[mut] ({\xmax+0.2},{8.4}) -- ({\xmax+0.9},{8.4});
+    \node[align=left,anchor=west] at ({\xmax+1.0},{8.4})
+      {Lemma 10.3 uses only the trivial bound $2M$};
+  \end{scope}
+\end{tikzpicture}

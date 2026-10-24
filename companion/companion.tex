@@ -1,90 +1,161 @@
-% Reader's companion to the cutoff-removal theorem -- SCAFFOLD (R0, 23 October 2026).
-% Everything below the preamble is placeholder structure for the toolchain test; the
-% editor's PLAN.md (round R2) replaces it.  Build: pdflatex x3 from this folder.
+% A reader's companion to the cutoff-removal theorem for weakly coupled P(phi)_2.
+% Assembled in round R3 (23 October 2026): front matter per companion/PLAN.md Part 6.4,
+% sections drafted by the council (companion/sections/), figures in companion/figures/;
+% edited in R4, verified in R5 and corrected on 23-24 October 2026 (PLAN.md Part 10).
+% Build from this folder: pdflatex twice.  Reproducible build for the tracked PDF:
+%   SOURCE_DATE_EPOCH=<epoch> FORCE_SOURCE_DATE=1 pdflatex -interaction=nonstopmode companion.tex
 \documentclass[11pt,a4paper]{article}
 \input{preamble}
 
-\title{A reader's companion to the cutoff-removal theorem\\[4pt]
-  \large (scaffold: structure and toolchain test only)}
+\title{A reader's companion to the cutoff-removal theorem\\ for weakly coupled $P(\varphi)_2$}
 \author{Alexander Stottmeister\\[3pt]
   \normalsize Institut f\"ur Theoretische Physik, Leibniz Universit\"at Hannover,\\
   \normalsize Appelstra\ss e 2, 30167 Hannover, Germany}
-\date{Draft of 23 October 2026}
+\date{24 October 2026}
 
 \begin{document}
 \maketitle
 
 \begin{statusnotice}
-\textbf{Status notice (placeholder; the editor's wording replaces it).} The result this
-companion explains, Theorem~12.2 of the record \rec{Theorem~12.2}{30}, is proved
-\condtext{conditional on $\UGJS$}, one imported hypothesis. Nothing in the record has been
-refereed; audit item C5 is open; the record is AI-assisted and its human verification is
-ongoing.
+\emph{Read this first.} This companion explains a research record and proves nothing new.
+The record is AI-assisted and has not been refereed; human verification is ongoing. Its
+main result, Theorem~12.2, is proved conditional on the imported hypothesis $\UGJS$
+(Assumption A8(vi)), which is not re-derived. Audit item C5, a second human reading of the
+source page images, is open. Statement numbers refer to \texttt{part\_i/main.tex}; figures
+are illustrations, not evidence.
 \end{statusnotice}
 
-\section{Scaffold: figure toolchain test}
+\begin{abstract}
+\noindent A reading guide to a 40-page research record on the spatially cutoff
+$P(\varphi)_2$ model; it proves nothing new. The record's Theorem~12.2 states that, for
+$0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$, the full net of cutoff ground states $\omega_g$ (plateau
+order, no subnets, no averaging) converges in norm on every local algebra $\A(O)$. The rate
+is faster than every inverse power of the distance from $O$ to the plateau edge. The limit
+is locally normal, translation and (for even $\mathscr P$) $\Z_2$ invariant, and a ground state of
+the Glimm--Jaffe dynamics in the spectral sense. The theorem is proved conditional on
+$\UGJS$, a cutoff-uniform Glimm--Jaffe--Spencer moment estimate. The record imports it at
+the scope at which the source states and uses it, without re-deriving it. We explain
+why the question was open, how a uniform gap and an exact light cone replace compactness,
+and what is not claimed.
+\end{abstract}
 
-\begin{figure}[ht]
+\paragraph*{How to read.}
+Fifteen minutes: this page, \S\ref{sec:result} (what is proved, under what),
+\S\ref{sec:architecture} with Fig.~\ref{fig:spine} (the architecture) and
+\S\ref{sec:boundaries} (what is not claimed). Forty-five minutes: everything except
+Appendix~A, which points into the record for every step not explained here. Every claim
+carries its locator in the record: statement number and printed page.
+
+\input{sections/s1-result}
+\input{sections/s2-open}
+
+\begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm and 8mm,
-  box/.style={draw=gline,rounded corners=1pt,fill=white,align=center,font=\small,
-              inner sep=4pt,minimum height=8mm},
-  cbox/.style={box,draw=cond,fill=cfill},
-  arr/.style={-{Latex[length=2mm]},line width=0.7pt,draw=mut}]
-\node[cbox] (ce1) {CE1 as $\UGJS$\\[-1pt]{\scriptsize A8(vi), import}};
-\node[box,right=of ce1] (ce2) {CE2 printed\\[-1pt]{\scriptsize A8(iv)}};
-\node[cbox,below=of ce1] (m2) {(M$_2$) Thm 5.1};
-\node[cbox,below=of ce2] (g) {(G) Thm 7.8};
-\node[cbox,below=of $(m2)!0.5!(g)$] (lppl) {LPPL Prop 10.4};
-\node[cbox,below=of lppl] (cauchy) {Cauchy Thm 11.1};
-\node[cbox,below=of cauchy] (main) {Theorem 12.2};
-\draw[arr] (ce1) -- (m2); \draw[arr] (ce2) -- (g); \draw[arr] (ce1) -- (g);
-\draw[arr] (m2) -- (lppl); \draw[arr] (g) -- (lppl);
-\draw[arr] (lppl) -- (cauchy); \draw[arr] (cauchy) -- (main);
-\end{tikzpicture}
-\caption{Scaffold test of the F1 spine (final design pending the council).
-Violet: conditional on $\UGJS$. Illustration, not evidence.}
+\input{figures/fig-spine}
+\caption{The two layers of the proof and what crosses between them. Boxes name the
+statements of the record (its Euclidean layer, \S\S4--7; the interface; its Hamiltonian
+layer, \S\S8--11; the identification, \S12); arrows say what each proof consumes.
+Shading records what each proof consumes, read from the record's proofs:
+violet fill, conditional on $\UGJS$; violet outline, an implication under a hypothesis
+that for $P(\varphi)_2$ only a violet node supplies; grey, independent of A8. The light-filled
+inputs of the top row and the two interface nodes carry no class. No arrow from Appendix C
+closes the dashed box. Drawn from the table of \rec{\S1.2}{3} and the
+proofs named on each node; nothing is computed. Illustration, not evidence.}
+\label{fig:spine}
 \end{figure}
 
-\begin{figure}[ht]
+\input{sections/s3-architecture}
+
+\begin{figure}[htbp]
 \centering
-\begin{tikzpicture}
-\begin{loglogaxis}[companion,xlabel={$t$},ylabel={$|W_\gamma(t)|$},
-  xmin=1,xmax=160,ymin=1e-8,ymax=1,title={\small filter kernel, $\gamma=1$}]
-\addplot[acc!50!white,line width=0.5pt] table[x=t,y=absW]{figures/filter_g1.dat};
-\addplot[acc,line width=1.1pt] table[x=t,y=absW]{figures/filter_env_g1.dat};
-\end{loglogaxis}
-\end{tikzpicture}\hfill
-\begin{tikzpicture}
-\begin{semilogyaxis}[companion,xlabel={$d$},ylabel={summands of $\Psi_\gamma(d)$},
-  xmin=0,xmax=60,ymin=1e-5,ymax=1e3,title={\small rate function, $\gamma=M=1$},
-  legend pos=south west]
-\addplot[warn,dashed] table[x=d,y=exp]{figures/psi_g1.dat};
-\addlegendentry{exponential part}
-\addplot[acc] table[x=d,y=tail]{figures/psi_g1.dat};
-\addlegendentry{filter tail}
-\end{semilogyaxis}
-\end{tikzpicture}
-\caption{Scaffold test of the computed curves (F3 right, F6), from
-\texttt{figures/*.dat}, themselves from \texttt{docs/figures/curves.json}.
-One admissible $\chi$; $\Psi_\gamma$ is an upper bound, not a measured decay.
+\input{figures/fig-quantifier}
+\caption{Two affine paths, one quantifier. Left: the source's path between two cutoffs
+$h_1,h_2$ of its class (top) and the record's slab path $h_{T,g_s}$ (bottom); $h$ is a
+spacetime cutoff, $g$ a spatial one. Right: the three steps of the record's reading,
+\recpp{A8, Scope paragraph}{11--12}. The source states this quantifier (p.\,629) and uses it
+(pp.\,594--597); the record imports it at that scope and does not re-derive it, so
+$\UGJS$ remains a named hypothesis of Theorem~12.2. Audit item C5, a second human
+reading of these pages, is open. Nothing is computed, and no page image is reproduced.
 Illustration, not evidence.}
+\label{fig:quantifier}
 \end{figure}
 
-\begin{checkpoint}
-Test of the checkpoint box: $\|(\omega_g-\omega_{g'})|_{\A(O)}\|\le\Psi_\gamma(d)$ whenever
-$g\equiv g'\equiv1$ on $O_d$ \rec{Lemma~10.5}{28}.
-\end{checkpoint}
+\input{sections/s4-import}
 
-\begin{recordbox}{Theorem 12.2 of the record (p.\,30), item (1)}
-For every bounded open interval $O$, $\lim_{g\in\G}\|(\omega_g-\omega_\infty)|_{\A(O)}\|=0$.
-\end{recordbox}
+\begin{figure}[htbp]
+\centering
+\input{figures/fig-slab}
+\caption{Slab transfer, and the gap as an output. Left: the slab cutoff $h_{T,g}$, the
+two sharp times of \rec{Lemma~4.1, eq.~(2)}{15}, and the strip across which CE2 is
+applied \rec{Lemma~7.4}{19}. Right: the Hamiltonian side of (2), the limit $T\to\infty$
+\rec{Lemma~4.4}{16}, and the output, \rec{Proposition~7.5}{20} and
+\rec{Theorem~7.8}{21}, conditional on $\UGJS$ through Lemmas 7.1--7.3. Every limit
+$T\to\infty$ is taken at fixed $g$, and no gap is assumed: the gap of Theorem~7.8 is the
+output of this picture. Working coordinates; lengths are not physical. Nothing is
+computed. Illustration, not evidence.}
+\label{fig:slab}
+\end{figure}
 
-\begin{context}
-Test of the context environment.
-\end{context}
+\input{sections/s5-euclidean}
 
-\begin{thebibliography}{9}\small
-\bibitem{record}\hypertarget{bib-record}{}A.~Stottmeister, \emph{Removal of the spatial cutoff for weakly coupled $P(\varphi)_2$: norm convergence of the ground-state net on the quasi-local algebra, Part~I}, document of record \texttt{part\_i/main.pdf}, 40~pp., version of 5~September 2026, \url{https://github.com/alexander-stottmeister/pphi2-cutoff-removal}.
-\end{thebibliography}
+\begin{figure}[t]
+\centering
+\input{figures/fig-lppl}
+\caption{The derivative of the state along the path. (a) The three moves that control
+it, \rec{Lemma~10.1, eq.~(24)}{26} and \rec{Proposition~10.4, Step~2}{27}. (b) The path
+$g_s$ and the cells $B_j$ of \rec{Lemma~10.2}{26}, drawn only where $v=g'-g\ne0$, with
+the unit shells of \rec{Proposition~10.4, Step~3}{27}. (c) The two-regime bound of
+\rec{Lemma~10.3}{27}, drawn to scale for one cell, with the exact light cone of
+\rec{Proposition~2.7}{12}. The switch at $|t|=r_j/2$ is a switch of the bound, not of
+the correlation; the cone reaches $B_j$ only at $|t|=r_j$. No automorphism or spectral
+flow is constructed: the derivative of the state is bounded and integrated along the
+path. Nothing is computed. Illustration, not evidence.}
+\label{fig:lppl}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\input{figures/fig-rate}
+\caption{Filter, tail and rate. (a) $\widehat W_\gamma(E)=\chi(E)/E$ of
+\rec{Lemma~9.1, eq.~(17)}{24} with its notch; (b) the tail $T_\gamma(r)$ of
+\rec{Lemma~9.1(i)}{24}; (c) the two summands of $\Psi_\gamma(d)$,
+\rec{Lemma~10.5, eq.~(29)}{28}; (d) $\Psi_\gamma(d)$ with the trivial bound and
+$d_0=4+2/\gamma$. Computed by \texttt{docs/figures/make\_figures.py} for one admissible
+$\chi$, $\gamma\in\{1,2\}$ and $M=1$, on a time grid up to $t=160$, with values of
+$|W_\gamma|$ below $10^{-9}$ set to zero. Lemma 9.1(i) proves only that $W_\gamma\in L^1$
+with finite moments of every order, hence $T_\gamma(r)\le C_{q,\gamma}(1+r)^{-q}$; the
+curves are numerical and claim no decay law. $\Psi_\gamma$ is an upper bound on
+$\|(\omega_g-\omega_{g'})|_{\A(O)}\|$, never a measured decay of any state; $M=1$ is a
+placeholder, not the record's $M$, which depends on unquantified GJS constants. At
+$\gamma=1$, $\Psi_\gamma(d)$ exceeds the trivial bound 2 at every $d$ shown; at
+$\gamma=2$ it falls below 2 from $d=35$ on: the content is the decay in $d$, not the size
+at any $d$. Both summands decay faster than every inverse power; the exponential summand
+decays faster, so the filter-tail summand sets the rate. Illustration, not evidence.}
+\label{fig:rate}
+\end{figure}
+
+\input{sections/s6-lppl}
+
+\input{sections/s7-identification}
+
+\begin{figure}[t]
+\centering
+\input{figures/fig-window}
+\caption{The identity window. The plateau interior $\{g=1\}^\circ$ of a cutoff $g$ on
+the axis $t=0$, a bounded interval $O$ inside it, the cone $O_{|t|}$, and the band
+$|t|<d(g,O)$ on which the patching identity (P) of \rec{A6}{9} makes
+$\alpha_t(A)=\beta^g_t(A)$ for $A\in\A(O)$. Inside the window the spectral condition is
+an identity at each cutoff; norm convergence on each $\A(O_T)$ carries it to
+$\omega_\infty$ (Proposition 12.1). $\alpha$ is Glimm--Jaffe's patched dynamics, imported
+in A6(ii); the record does not construct it. Drawn from \rec{A6, eq.~(P)}{9} and the
+proof of \rec{Proposition~12.1}{29}; nothing is computed. Illustration, not evidence.}
+\label{fig:window}
+\end{figure}
+
+\input{sections/s8a-boundaries}
+\input{sections/s8b-part2}
+\input{sections/s9-record}
+\input{sections/appA-pointers}
+\input{sections/appB-notation}
+\input{bib}
 \end{document}

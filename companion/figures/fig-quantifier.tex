@@ -1,0 +1,54 @@
+% Fig. 2: "two affine paths, one quantifier" (PLAN Part 3, Fig. 2).  Left: the source's
+% affine path between two arbitrary cutoffs of its class (GJS pp. 594-595, as quoted in
+% A8(vii')(a)) and the record's slab path (A8 Scope (a), p. 11).  Right: the three steps of
+% the record's reading (Scope paragraph, p. 11), the imported quantifier, and Appendix C
+% without an arrow.  Drawn from the record's quotations; nothing is computed; no page image.
+\begin{tikzpicture}[font=\scriptsize,
+  lbox/.style={draw=mut,rounded corners=1pt,fill=white,align=left,inner sep=4pt,text width=2.95cm},
+  dbox/.style={draw=cond,dashed,line width=0.8pt,rounded corners=1pt,fill=cfill,align=left,inner sep=4pt,text width=6.2cm},
+  arr/.style={-{Latex[length=1.6mm]},line width=0.55pt,draw=mut}]
+  % ---------- left, top: the source's path
+  \begin{scope}[x=0.28cm,y=0.28cm]
+    \draw[gline,->] (-4.2,0) -- (4.4,0) node[right,mut] {$x^1$};
+    \draw[gline,->] (0,-3.4) -- (0,3.6) node[above,mut] {$x^0$};
+    \draw[mut,line width=0.9pt,rounded corners=3pt] (-1.5,-1.3) rectangle (1.3,1.3);
+    \node[mut,anchor=north west,inner sep=1pt] at (-1.45,1.25) {$h_1$};
+    \draw[ok,line width=0.9pt,rounded corners=4pt] (-3.2,-2.6) rectangle (3.0,2.8);
+    \node[anchor=south west,inner sep=1pt] at (-3.2,2.85) {$h_2$};
+    \draw[mut!70!black,dashed,rounded corners=3pt] (-2.4,-2.0) rectangle (2.2,2.2);
+    \node[anchor=north west,inner sep=0.5pt,fill=white,font=\tiny] at (-2.3,2.1) {$h_1+\alpha(h_2-h_1)$};
+    \draw[acc,line width=2pt] (-0.5,0) -- (0.5,0);
+    \node[anchor=north,inner sep=1pt] at (0,-0.1) {$\mathcal O$};
+    \node[align=center,anchor=north,text width=4.0cm,font=\tiny] at (0,-3.7)
+      {GJS pp.\,594--595: Thm 1.1.7 applied at every cutoff of the path, one constant (quoted in A8(vii$'$)(a)); $h_1,h_2$ arbitrary, compact support, $0\le h\le1$};
+  \end{scope}
+  % ---------- left, bottom: the record's slab path
+  \begin{scope}[shift={(0,-5.9cm)},x=0.28cm,y=0.28cm]
+    \draw[gline,->] (-4.2,0) -- (4.4,0) node[right,mut] {$x^1$};
+    \draw[gline,->] (0,-3.4) -- (0,3.6) node[above,mut] {$x^0$};
+    \fill[afill] (-3.0,-2.6) rectangle (3.0,2.6);
+    \draw[mut,line width=0.9pt] (-1.5,-2.6) rectangle (1.5,2.6);
+    \node[mut,anchor=south east,inner sep=1pt] at (-1.5,2.65) {$h_{T,g}$};
+    \draw[ok,line width=0.9pt] (-3.0,-2.6) rectangle (3.0,2.6);
+    \node[anchor=south west,inner sep=1pt] at (1.6,2.65) {$h_{T,g'}$};
+    \draw[acc,dashed,line width=0.9pt] (-2.25,-2.6) rectangle (2.25,2.6);
+    \node[acc,anchor=west,inner sep=1pt] at (3.1,1.3) {$h_{T,g_s}$};
+    \node[anchor=south east,inner sep=1pt] at (-0.2,2.65) {$T$};
+    \node[anchor=north east,inner sep=1pt] at (-0.2,-2.65) {$-T$};
+    \draw[acc,line width=2pt] (-0.5,0) -- (0.5,0);
+    \node[anchor=north,inner sep=1pt] at (0,-0.1) {$O$};
+    \node[align=center,anchor=north,text width=4.0cm,font=\tiny] at (0,-3.7)
+      {the same family: $h_1=h_{T,g}$, $h_2=h_{T,g'}$, $\alpha=s$ (A8 Scope (a), p.\,11); CE1 used at every slab cutoff: Thm 5.1, Lemmas 7.1--7.3; $h$ is a spacetime cutoff, $g$ a spatial one};
+  \end{scope}
+  % ---------- right: the logic of the evidence
+  \node[lbox] (sa) at (3.95,-1.0) {(a) pp.\,594--595: Thm 1.1.7 at every cutoff of an affine path};
+  \node[lbox] (sb) at (7.5,-1.0) {(b) pp.\,596--597: 1.1.7's $h$-independent constant taken from 1.1.8 at the same $h$; (1.1.16) ``uniformly in $h$''};
+  \node[lbox] (sc) at (11.05,-1.0) {(c) p.\,629: Thms 1.1.8, 1.1.11, 3.1, 4.1 ``uniform in the space cutoff $h$''; 1.1.8 is the case $B=I$, $n=0$};
+  \node[dbox] (u) at (7.5,-4.0) {$\UGJS$: one $C_8$ for all $h_{T,g}$, $T>0$, $g\in\CH$ --- imported at the source's scope, not re-derived (A8(vi))};
+  \node[align=left,text width=6.2cm,color=mut,anchor=north] at (7.5,-4.9)
+    {as stated, Thm 1.1.8 holds uniformly as the source cutoff tends to one (Source Fact 2.3); the assembled quantifier is a named hypothesis of Thm 12.2};
+  \node[lbox,text width=1.45cm,anchor=west] (appc) at (10.95,-4.0) {App.\,C: mechanism audit, two prerequisites; no arrow};
+  \draw[arr] (sa.south) -- ([xshift=5mm]u.north west);
+  \draw[arr] (sb.south) -- (u.north);
+  \draw[arr] (sc.south) -- ([xshift=-6mm]u.north east);
+\end{tikzpicture}

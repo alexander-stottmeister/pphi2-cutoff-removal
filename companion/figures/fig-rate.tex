@@ -1,0 +1,47 @@
+% Fig. 5: filter, tail, rate (PLAN Part 3, Fig. 5; author decision 3 of 23 Oct 2026: gamma in
+% {1, 2}).  Four computed panels from the tables of make_tables.py, themselves from
+% docs/figures/make_figures.py (one admissible chi; M = 1; time grid to t = 160; |W| below
+% 1e-9 set to zero).  No reference powers, no slopes (rulings R13, R14, R15).
+\pgfplotsset{rate/.style={companion,width=0.47\textwidth,height=0.31\textwidth,
+  title style={font=\scriptsize,yshift=-2pt},xlabel style={yshift=3pt}}}
+\begin{tikzpicture}
+\begin{axis}[rate,xlabel={$E$},ylabel={$\widehat W_\gamma(E)$},xmin=-3,xmax=3,ymin=-1.75,ymax=1.75,
+  title={(a) $\widehat W_\gamma(E)=\chi(E)/E$ of (17), $\gamma=1$},
+  ytick={-1,0,1},xtick={-3,-2,-1,0,1,2,3}]
+  \fill[afill] (axis cs:-0.5,-1.75) rectangle (axis cs:0.5,1.75);
+  \addplot[acc] table[x=E,y=hatW]{figures/hatW_g1.dat};
+  \draw[mut,line width=2.2pt] (axis cs:1,-1.5) -- (axis cs:3,-1.5);
+  \fill[mut] (axis cs:0,-1.5) circle (1.6pt);
+  \node[font=\tiny,color=mut,anchor=south east] at (axis cs:2.95,-1.42) {$\spec H(g)\subseteq\{0\}\cup[\gamma,\infty)$};
+  \node[font=\tiny,anchor=south,align=center] at (axis cs:0,0.95) {notch\\ $[-\tfrac\gamma2,\tfrac\gamma2]$};
+  \node[font=\tiny,anchor=east,align=right] at (axis cs:2.9,-0.45) {$\widehat W_\gamma(E)=1/E$ on $[\gamma,\infty)$};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{semilogyaxis}[rate,xlabel={$r$},ylabel={$T_\gamma(r)$},xmin=0,xmax=60,ymin=1e-6,ymax=10,
+  title={(b) $T_\gamma(r)=\int_{|t|>r}|W_\gamma|$, Lemma 9.1(i)},legend pos=north east]
+  \addplot[acc] table[x=r,y=T]{figures/tail_g1.dat}; \addlegendentry{$\gamma=1$}
+  \addplot[warn] table[x=r,y=T]{figures/tail_g2.dat}; \addlegendentry{$\gamma=2$}
+\end{semilogyaxis}
+\end{tikzpicture}\\[4pt]
+\begin{tikzpicture}
+\begin{semilogyaxis}[rate,xlabel={$d$},ylabel={summands of $\Psi_\gamma(d)$},xmin=0,xmax=60,ymin=1e-5,ymax=1e3,
+  title={(c) summands of $\Psi_\gamma(d)$ in (29); $\gamma=1$, $M=1$},legend pos=south west]
+  \addplot[acc] table[x=d,y=tail]{figures/psi_g1.dat}; \addlegendentry{filter-tail summand}
+  \addplot[acc,dashed] table[x=d,y=exp]{figures/psi_g1.dat}; \addlegendentry{exponential summand}
+  \draw[mut,dotted] (axis cs:6,1e-5) -- (axis cs:6,1e3);
+  \node[font=\tiny,color=mut,anchor=west] at (axis cs:6.5,1e-2) {$d_0=4+2/\gamma$};
+\end{semilogyaxis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{semilogyaxis}[rate,xlabel={$d$},ylabel={$\Psi_\gamma(d)$},xmin=0,xmax=60,ymin=1e-1,ymax=2e3,
+  title={(d) $\Psi_\gamma(d)$ of (29), $M=1$; dashed: the bound $2$},legend pos=north east]
+  \addplot[acc] table[x=d,y=psi]{figures/psi_g1.dat}; \addlegendentry{$\gamma=1$}
+  \addplot[warn] table[x=d,y=psi]{figures/psi_g2.dat}; \addlegendentry{$\gamma=2$}
+  \draw[mut,dashed] (axis cs:0,2) -- (axis cs:60,2);
+  \node[font=\tiny,color=mut,anchor=north west] at (axis cs:8,1.7) {trivial bound 2};
+  \draw[acc!60!white,dotted] (axis cs:6,1e-1) -- (axis cs:6,2e3);
+  \draw[warn!60!white,dotted] (axis cs:5,1e-1) -- (axis cs:5,2e3);
+  \node[font=\tiny,color=mut,anchor=south west] at (axis cs:6.5,1.3e-1) {$d_0$};
+\end{semilogyaxis}
+\end{tikzpicture}

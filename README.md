@@ -140,6 +140,7 @@ below by one γ for the whole cutoff class.
 |---|---|---|
 | [`part_i/main.pdf`](part_i/main.pdf) | 40 pp | **the document of record.** Theorem 12.2 and its full proof from the imports |
 | [`part_ii/gate_II11_scoping.pdf`](part_ii/gate_II11_scoping.pdf) | 11 pp | the open Part II programme at gate (II.11) |
+| [`companion/companion.pdf`](companion/companion.pdf) | 20 pp | **a reader's companion:** what is proved, under what, and why; it explains the record and proves nothing new |
 | [`audit_2026/critical_proof_audit.pdf`](audit_2026/critical_proof_audit.pdf) | 10 pp | the independent audit, frozen against the v1 hash |
 | [`fresh_audit_2026_08_16/critical_audit_parts_i_ii.pdf`](fresh_audit_2026_08_16/critical_audit_parts_i_ii.pdf) | 11 pp | a second, independent audit of both parts |
 | [`fresh_audit_2026_08_16/lamport_reconstruction_parts_i_ii.pdf`](fresh_audit_2026_08_16/lamport_reconstruction_parts_i_ii.pdf) | 114 pp | the whole chain rebuilt in Lamport's hierarchical proof format |
@@ -166,6 +167,7 @@ figures below are interactive.
 |---|---|
 | `part_i/` | document of record, its `README.md` with gates G0–G6 and step maps, and the C5 reading record |
 | `part_ii/` | the open programme, gate (II.11) scoping, phases V0–V4 |
+| `companion/` | the reader's companion (20 pp), its sections and figures, and the council of agents that wrote it (`companion/council/`) |
 | `m0/`–`m6/` | historical working drafts, superseded by `part_i/main.tex` and kept for provenance |
 | `audit_2026/` | citation screenshot dossier and the 2026 critical proof audit |
 | `fresh_audit_2026_08_16/` | independent audit, Lamport-style reconstruction, evidence ledgers |
@@ -236,6 +238,18 @@ SOURCE_DATE_EPOCH=1788566400 FORCE_SOURCE_DATE=1 pdflatex main.tex   # x3
 
 Three passes of this command reproduce the committed PDF byte for byte under pdfTeX
 1.40.29 (TeX Live 2026).
+
+The reader's companion builds from its own folder with pdfTeX plus TikZ and pgfplots
+(its figures are drawn, never rasterised); `make_bib.py` first copies the bibliography
+entries it cites from `part_i/main.tex`:
+
+```sh
+cd companion && python3 make_bib.py && pdflatex companion.tex   # x3
+```
+
+A clean build is 20 pages with zero errors, zero overfull boxes and zero undefined
+references. The committed `companion/companion.pdf` is built with
+`SOURCE_DATE_EPOCH=1792800000 FORCE_SOURCE_DATE=1` on the same three passes.
 
 ## License
 

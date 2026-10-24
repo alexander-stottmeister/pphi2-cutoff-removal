@@ -694,3 +694,111 @@ The verifier did not draft the companion. Work from the built `companion/compani
     - Each section within +10 % of its Part 2 page budget.
     - The build log shows 0 errors, 0 Overfull and 0 undefined, and `pdftotext companion.pdf - | grep -nE '\?\?|TODO'` prints nothing.
 14. **Notation.** App B has ≤ 25 rows. Each symbol of App B is defined in the body before its first use; check by grepping first occurrences. m₁ is used only for the GJS constant.
+
+---
+
+## 9. Checkpoint 1 (author, 23 October 2026) and the orchestrator's amendments in R3
+
+The author approved the plan with the orchestrator's recommendations on the five decisions:
+
+1. **Fig. 6** is kept.
+2. **GJ3 context** (Thms 2.1, 2.3; (2.3)–(2.5); Thm 5.1 of GJ3) is cited as context only, after the R5 page check (Part 8, item 6); the record's §1.1/§1.4 wording is left to the author.
+3. **Fig. 5** shows γ ∈ {1, 2} with M = 1 and draws the trivial bound 2. It has four computed panels: (a) Ŵ_γ(E) = χ(E)/E at γ = 1; (b) T_γ(r) for γ ∈ {1, 2}; (c) the two summands of Ψ_γ at γ = 1; (d) Ψ_γ(d) for γ ∈ {1, 2} with the line at 2 and d₀ = 4 + 2/γ marked. Two new tables, `tail_g1.dat` and `tail_g2.dat` (columns `r T`), are written by `companion/figures/make_tables.py` from `make_figures.filter_curves(γ)`. Caption sentence 1 of Part 3 therefore reads "… for one admissible χ, γ ∈ {1, 2} and M = 1, on a time grid up to t = 160, with values of |W_γ| below 10⁻⁹ set to zero" (the grid of `filter_curves` ends at t = 160; the subsampled `curves.json` ends at 159.197), and sentence 4 reads "At γ = 1, Ψ_γ(d) exceeds the trivial bound 2 at every d shown; at γ = 2 it falls below 2 from d = 35 on: the content is the decay in d, not the size at any d" (`psi_g2.dat`: Ψ(34.5) = 2.0363, Ψ(35) = 1.8573; `psi_g1.dat`: Ψ(60) = 11.7441).
+4. **Documentation fixes** (README, site texts, `docs/extract.py`; findings F1, F12, F13, F14, F15) are made in this session in a separate commit. `part_i/main.tex` is not edited: F2–F11 and F16–F20 remain for the author.
+5. **Part II**: the companion uses the README's "open"; the record's wording is left to the author.
+
+Orchestrator's amendments to Part 3 while drawing (all content as specified; layout only):
+- Fig. 1: the band labels are one word each (inputs, Euclidean, m₁ and M, Hamiltonian, identification), with the section ranges in the caption; the edges A1 → Lemma 4.4, A1 → Prop 8.2, A6 → Prop 2.7 and A6 → Prop 12.1 are drawn as labelled stubs; the items (1)–(5) of Thm 12.2 are listed inside its node, each with its cost; Cor 12.3 is a node "by (1) and averaging"; Appendix C is a grey node without any arrow.
+- Fig. 2: the two geometry panels are stacked at the left; the three evidence boxes are in a row above the dashed box.
+- Fig. 3: as specified (sharp times at ±2 with T = 3, hatched strip |x⁰| < 1, fourth box in `cond`).
+- Fig. 4: three stacked full-width panels; (b) uses d = 6, g = 1 on [−8, 8] (0 outside (−10, 10)), g′ = 1 on [−12, 12] (0 outside (−14, 14)), cells j = ±8, …, ±14 clipped to supp v, shells n = d, …, d + 6; (c) carries the line labels at the right.
+- Fig. 6: as specified, with the text in the two pockets left of the cone.
+
+### 7.1 Addendum after R3 (23 October 2026, orchestrator; items reported by the drafters and re-checked at the source)
+
+| ID | locator | finding (one line) | sev. | by | status |
+|---|---|---|---|---|---|
+| F24 | `README.md`, "What is deliberately not in this repository" | "`render_evidence.sh` regenerates the audit's page-image corpus": the script renders a fixed page list into `fresh_audit_2026_08_16/evidence/` only; `audit_2026/evidence/`, the dossier main.tex §2.4 names, has no render script | MINOR (documentation) | qi | **V**; README reworded in this session |
+| F25 | l. 689 (Source Fact 2.3, p. 10) | "uses on pp. 595–597", while ll. 79, 110, 728 and 2656 say pp. 594–597 | MINOR | aqft | **V** |
+| F26 | l. 299 (§1.4) vs l. 1803 (Lemma 9.1(ii)) | the filter identity is written with P₀ in §1.4 and with P_{ker H} in the lemma | MINOR | qi | R |
+| F27 | ll. 192, 354, 2390, 2598, 2625 | the 9 August 2026 audit is called "independent" although the README says the audit documents were drafted with the assistant | MINOR (wording) | qi | **V** (the five lines) |
+| F28 | `docs/status.md`, gate table | six rows carry eight gate names (G1/G2, G3a/G3b share rows), so "seven gates" is not a count the table supports | MINOR (documentation) | qi | **V** |
+| F29 | GJ3 p. 210 vs Thm 2.1 (p. 211) | p. 210 says "subnet", Thm 2.1 "subsequence" (context only; the §2 table follows Thm 2.1) | note | aqft | R5 |
+| F1 (update) | `docs/extract.py` | item (b) fixed in this session: a statement printed inside an assumption gets the edge to it; the count is now 29 (Source Facts 2.2–2.4, Lemma 7.4, Remark C.6 added); items (a), (c)–(f) remain and are stated as limits of the index in README and `docs/status.md` | — | — | (b) fixed |
+
+Corrections to this PLAN's own locators, found by the drafters and checked against `part_i/main.pdf`: display (1.1.11) of A8(vii′)(a) is printed on p. 11, not p. 10 (T2.1 row, §2 item 4); the paragraph naming C5 in App B is on p. 35, not p. 34 (T1.2 row, §4 item 6).
+- Superseded files removed in R3: the R0 drafts `fig-moves.tex`, `fig-path.tex`, `fig-two-regime.tex` (folded into `fig-lppl.tex`) and `fig-two-paths.tex` (folded into `fig-quantifier.tex`), and `make_status.py` with `status_part_i.dat` (the dropped F7).
+
+### 7.2 Addendum after R4 and R5 (24 October 2026; items reported by the editor and the verifier, each marked with who checked it at the source)
+
+| ID | locator | finding (one line) | sev. | by | status |
+|---|---|---|---|---|---|
+| N1 | `docs/imports.md` l. 16 (A4) | "the L^p smoothing used in the moment estimates", while A4's "Used in" line (main.tex ll. 557–558) names §8 (the pairing bound) and App. C (the tail estimate), not Thm 5.1 | MINOR (documentation) | cqft; ed | ed-read |
+| N2 | `docs/imports.md` l. 17 (A5) | "a core on which the algebra acts", while A5(ii) (ll. 571–573) is a common core for all K(g_s) with K(g_s)ξ = K(g_{s₀})ξ + (s−s₀)V(g′−g)ξ | MINOR (documentation) | cqft; ed | ed-read |
+| N3 | `part_ii/README.md` ll. 70, 74, 238–240 | l. 70 and ll. 238–240 say "(II.11) closed", l. 74 "Phase closure: NOT yet reached"; ll. 3–4 say the 16 August addendum supersedes earlier closure statements (the F23 family) | MINOR (Part II) | ed | ed-read; R5 read ll. 70, 74, 238 |
+| N4 | main.tex App. B l. 2644; `docs/status.md` l. 61 | "on p. 595" for the affine-path application of Thm 1.1.7, where A8(vii′)(a) and C5 item 8 (`C5_reading_record.md` l. 106) say pp. 594–595 (the F25 family) | MINOR | ed | ed-read |
+| N5 | abstract ll. 117–118; §1.3(a) ll. 233–234; §14 ll. 2516–2517 | the scope of the uniqueness non-claim is worded three ways ("among all locally normal ground states" / "every locally normal ground state" / "every locally normal translation-invariant ground state"); not a contradiction | MINOR (wording) | aqft; ed | ed-read |
+| O1 | `docs/imports.md` l. 18 (A6) | "the exact light cone" credited to A6, while A6's Scope (ll. 603–605) says the cutoff cone is derived (Prop. 2.7) | MINOR (documentation) | R5 | **V**; fixed 24 October (Part 10) |
+| O2 | main.tex ll. 1018–1020 (Remark 3.3) | the remark mixes the dilation transport, which §2.6 consumes as an input (ll. 892–897), with a forward claim about Thm 12.2's conclusions, so the mechanical index flags it as A8-dependent | MINOR (presentation) | R5 | R5-read |
+| O3 | `README.md` | the github.com repository URL appears only in `CITATION.cff` l. 40, not in the README | note | R5 | R5-read |
+| O4 | GJ3 p. 210 vs Thm 2.1 (p. 211) | p. 210 prints "subnet", Thm 2.1 "subsequence" (= F29); confirmed on the page images; the companion's Table 2 follows Thm 2.1 | note | aqft; R5 | **V** by R5 |
+
+## 10. R5 outcome and the corrections of 23–24 October 2026 (orchestrator)
+
+The verifier's report is `council/r5-verifier-report.md`; the editor's R4 report is `council/r4-editor-report.md`. Every finding below names the verifier's ID. "Fixed" means changed in the companion and rebuilt; "recorded" means left as it is, with the reason here. The round-R4 text fixes requested by the editor (its report, section 6) were applied before R5: the Fig. 2 locator (pp. 11–12), the abstract (ε_𝒫, "(for even 𝒫)", "in the spectral sense", "without re-deriving it"; the built abstract supersedes the text of Part 6.4, O1), and the Fig. 1 caption's duplicated clause.
+
+### 10.1 Figures, captions, bibliography (orchestrator)
+
+| ID | severity | disposition |
+|---|---|---|
+| V1 | CRITICAL | **Fixed.** The stub into Proposition 2.7 in Fig. 1 now reads "A6(i): speed 1, Trotter"; the stub into Proposition 12.1 keeps "(P)". Verified at the source: main.tex ll. 849–858 (the proof of Prop. 2.7 uses A6(i) twice) and ll. 603–605 (A6's Scope: the cutoff propagation bound "is not imported but derived"). Part 3's edge list ("A6 → Prop 2.7 and Prop 12.1: '(P)'") was wrong for Prop. 2.7 and is corrected by this entry. |
+| V2 | MAJOR | **Fixed.** The U_GJS → Theorem 7.8 edge now leaves the U_GJS box at its bottom-left corner, runs horizontally beneath Appendix C with its label "fixed g, uniform in T" in the empty slot above Proposition 2.7, and enters (G) at its top-right; the (M₂) edge's label moved to the right of its arrow and reads "uniform in g, T". Appendix C still has no arrow. |
+| V3 | MINOR | **Fixed.** `make_bib.py` writes `\bibitem[R]{record}`; the reference list prints the record as [R]. |
+| V4 | MINOR | **Fixed.** The Proposition 12.1 node is three lines ("ground state in the spectral sense, via (P)"); the "(31) as hypothesis" edge bends above the node; the "(3)" edge leaves the node's bottom-right so that the tag "any norm limit" is clear. |
+| V5 | MINOR | **Fixed.** The input boxes (A1–A7, CE2, Appendix C) have sharp corners and a light fill, the interface nodes (G_γ) and M a neutral outline, and the caption says "The top row (inputs, light fill) and the two interface nodes carry no class." |
+| V6 | MINOR | **Fixed.** Top panel: smaller h₁ box, the path label at the top of the dashed box with a white background. Bottom panel: T and −T right of the axis outside the frame, h_{T,g} below the frame; the slab path h_{T,g_s} and its tint in the accent colour (violet reserved for U_GJS); the arrows from (a) and (c) enter the dashed box 5–6 mm inside its corners, clear of Appendix C. |
+| V7 | MINOR | **Fixed.** The strip label sits above the x¹ axis; T and −T outside the frame; the caption now says "Nothing is computed." |
+| V8 | MINOR | **Fixed.** O is labelled above its segment; both annotation blocks are raised clear of the plateau line. |
+| V9 | MINOR | **Fixed.** The spectrum label in Fig. 5(a) is right-aligned inside the axis. |
+| V10 | MINOR | **Fixed.** The two pocket texts of Fig. 6 stand at the far left in small type, outside the cone at every line; the plateau label stands at the right end of the plateau, above the axis. |
+| V11 | MINOR | **Recorded.** Total 20 pp, the ceiling of Checkpoint 1. The per-section overruns (§3 +17 %, §4 +17 %, §5 +15 %, §6 +22 %, §7 +15 %, App. B +33 %, references +143 %) come from the figures' real heights (Part 2 budgeted 0.4 pp per figure; Figs. 1, 4 and 5 take 0.85, 0.85 and 0.60 pp with their captions) and from the sixteen verbatim bibliography entries; the prose is within budget. Not cut: the three sections that could be cut (§§5–6, App. B) carry the checkpoints and the notation. |
+| V19 | MINOR | **Fixed.** The record's entry carries the full title ("… algebra. Part I — unified manuscript"); the URL stays (it is the one in `CITATION.cff` and `docs/status.md`). |
+| V20 | MINOR | **Fixed in part.** The label "exact cone" sits on the Proposition 2.7 → Lemma 10.3 edge; the Proposition 2.7 → Lemma 9.3 edge stays unlabelled, since the two boxes are 4 mm apart and no label fits (Part 3's edge list is amended accordingly). The caption now says "its Euclidean layer, §§4–7; … its Hamiltonian layer, §§8–11; the identification, §12", so the numbers read as the record's. |
+| N2 | note | **Recorded.** The Fig. 4 caption's "No automorphism or spectral flow is constructed" is a mandatory sentence of Part 3 and states what is not done; rule 10 is read as allowing it there. |
+| N3 | note | **Recorded.** The abstract as built (see above) supersedes Part 6.4, O1. |
+| O1 | record | **Fixed in the documentation.** `docs/imports.md`, A6 row: "free propagation at speed one, the Trotter formula, and the patched limit dynamics α; the cutoff light cone itself is derived (Proposition 2.7)". The KB import node for A6 is corrected the same way. |
+| O2–O4 | record | **Recorded** in Part 7.2 below. |
+
+Besides these, the underfull boxes of Fig. 3 and the label of the trivial bound in Fig. 5(d), which crossed the γ = 2 curve, were fixed on 23 October before R5. The verifier's one deviation (a read-only `git ls-files`, reported by it) changed nothing.
+
+### 10.2 Text (a fresh editor agent, 24 October 2026; its report is `council/r5-fix-editor-report.md`)
+
+| ID | severity | disposition |
+|---|---|---|
+| V12 | MINOR | **Fixed.** §5 Piece II, §5 Piece IV and §6 Piece VII each make three steps before their checkpoint: Piece II treats Steps 1–4 of the proof of Theorem 5.1 as one step ending in (5), then (2) with U_GJS gives (6), then weak closedness; Piece IV cites Theorem 7.7 as one step ("with Ω_g, they span a dense subspace", which also corrects the draft's "these vectors are total": the centred vectors are orthogonal to Ω_g), then Checkpoint III, then density; Piece VII follows the record's Steps 1–4 of Proposition 10.4. Checked by the orchestrator at main.tex ll. 1538–1543 (Theorem 7.7) and ll. 1212–1215 (eq. (5), ‖Q_V‖_GJS ≤ M²/C₈). |
+| V13 | MINOR | **Fixed.** §9: "The scope amendment of 5 September 2026 gave U_GJS (A8(vi)) the status described in §4" (the amendment changed the status, not the inequality: title page, l. 76). |
+| V14 | MINOR | **Fixed.** Checkpoint (23) transcribes main.tex ll. 1908–1911 in full, including g ∈ 𝒞_H, "assume (G_γ)" and "for a bounded interval O". |
+| V15 | MINOR | **Fixed.** §1 defines φ₀, C = (2μ)⁻¹, λ and the C-Wick order at the first display, glosses α as the g-independent automorphism group of A6(ii), and says that Ψ_γ is an explicit function of the distance stated in §6; the A3 cell names the Euclidean interaction 𝒰_h and the integrability of e^{−ϱ𝒰_h} in words. |
+| V16 | MINOR | **Fixed.** Table 1: "d(g_n,O) → ∞ for every bounded interval O". |
+| V17 | MINOR | **Fixed.** §8.1(c) carries both locators, Remark 13.3 (p. 32) and §14 *Beyond weak coupling* (p. 33). |
+| V18 | MINOR | **Fixed.** Table 2: "converges w* to it". |
+| N1 | note | **Fixed.** The §8.2 inconsistency sentence is back to the content of BRIEF §3 (strategy.md and V4's ledger; part_ii/README.md's "not yet reached"; the repository README's "open"); the clause about part_ii/README.md's own contradiction (N3 of 7.2) is out. |
+| N4 | note | **Fixed.** The A6 cell reads "(i) speed one, the Trotter formula; (ii) (P): …; the cutoff cone is Proposition 2.7". |
+
+Rule 11 paid for the longer checkpoint and glosses from §§5–6 (three shortenings listed in the editor's report). The editor's own caution stands: the pagination is fragile at three spots (before §7, around Fig. 2, before §6); any later edit of more than two lines needs the figure placements re-checked (Part 8, item 13).
+
+### 10.3 Final build (24 October 2026)
+
+`python3 make_bib.py`, then `SOURCE_DATE_EPOCH=1792800000 FORCE_SOURCE_DATE=1 pdflatex -interaction=nonstopmode companion.tex` three times: 0 errors, 0 Overfull, 0 undefined, 0 Underfull; `pdftotext | grep -nE '\?\?|TODO|Hmm|wait,'` empty; 20 pages; `pdfimages -list`: no embedded image; a second run of the same three passes reproduces the PDF byte for byte. Start pages from `companion.aux`: §1 p. 1, Table 1 p. 3, §2 p. 3, Table 2 p. 4, §3 p. 4, Fig. 1 p. 5, §4 p. 6, Fig. 2 p. 7, §5 p. 8, Fig. 3 p. 9, Fig. 4 and §6 p. 11, Fig. 5 p. 12, §7 p. 14, Fig. 6 p. 15, §8 p. 16, §9 p. 17. Front matter by `pdftotext | wc -w`: notice 69, abstract 149, how-to-read 53. The printed date is 24 October 2026.
+
+### 10.4 Re-verification (24 October 2026)
+
+The same verifier re-checked the rebuilt PDF against V1–V20, N1 and N4 (its second report is appended to `council/r5-verifier-report.md`): every item fixed as 10.1–10.2 record; the locators re-extracted (159, none failing), the quotations unchanged, the colour classes correct, the build reproduced byte for byte. Three new MINOR items, fixed by the orchestrator the same day and rebuilt under the same gates (20 pages; start pages unchanged):
+
+| ID | disposition |
+|---|---|
+| W1 | **Fixed.** The U_GJS → Theorem 7.8 edge in Fig. 1 now runs between Appendix C and the tops of (G) and (M₂) and enters (G) from its right side, 2.5 mm below its top, so the arrowhead points into (G). |
+| W2 | **Fixed.** Fig. 2, bottom panel: T and −T stand left of the x⁰ axis; h_{T,g} is labelled at the top-left corner of its frame and h_{T,g′} at the top-right, so no label pair reads as a formula. |
+| W3 | **Fixed.** §3: "for every bounded interval O and ω_{g_n} converging in norm on every local algebra 𝔄(O)" (the V16 wording; main.tex l. 2228). |
+
+The verifier's optional note on the Fig. 1 caption was taken: "The light-filled inputs of the top row and the two interface nodes carry no class." The final PDF is the build after these three fixes; its gates and placements are those of 10.3.

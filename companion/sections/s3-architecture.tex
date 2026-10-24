@@ -1,0 +1,60 @@
+% s3-architecture.tex -- Section 3 of the reader's companion (drafter: qi, R3; edited in R4).
+\section{The architecture}\label{sec:architecture}
+
+\emph{Two cutoff-uniform numbers, the gap $m_1$ and the moment $M$, make the net Cauchy.}
+
+The record proves Theorem~12.2, \condtext{conditional on $\UGJS$}, in five steps
+\rec{\S1.2}{3}. Step~(i) is the GJS input: the printed clustering estimate CE2 (A8(iv)) and $\UGJS$
+(A8(vi); \S\ref{sec:import}). The Euclidean layer (the record's \S\S4--7) derives the
+uniform local moment (M$_2$) and the uniform gap (G) by Feynman--Kac--Nelson (FKN)
+formulas on slabs, steps (ii)--(iii); from these two the Hamiltonian layer (its
+\S\S8--11) derives a local-perturbations-perturb-locally (LPPL) estimate that makes the net Cauchy, with a
+rate, step~(iv); its \S12 shows that the limit is a ground state of $(\A,\alpha)$ in
+the spectral sense (Proposition~12.1), with its invariances, step~(v). The
+convergence argument is Hamiltonian; its two inputs come from Euclidean estimates through
+slab FKN transfer.
+
+Fig.~\ref{fig:spine} shades each node by what its proof consumes, read from the record's
+proofs: violet fill, conditional on $\UGJS$; violet outline, an implication under a
+hypothesis that for $P(\varphi)_2$ only a violet node supplies; grey, independent of A8.
+The outlined nodes are Proposition~8.2 and Lemmas~9.3 and~10.1, implications under the
+hypothesis (G$_\gamma$) \rec{\S8}{22} that $\spec H(g)\subseteq\{0\}\cup[\gamma,\infty)$
+and $\dim\ker H(g)=1$ for every $g\in\CH$, supplied for $P(\varphi)_2$ only by
+Theorem~7.8, itself conditional on $\UGJS$; and Proposition~12.1, which holds for any
+sequence $(g_n)$ in $\G$ with $d(g_n,O)\to\infty$ for every bounded interval $O$ and
+$\omega_{g_n}$ converging in norm on every local algebra $\A(O)$.
+
+Theorems~5.1 and~7.8, both conditional on $\UGJS$, deliver the two numbers, which
+Theorem~12.2(5) restates for the cutoff Hamiltonians $H(g)$, $g\in\CH$
+(\S\ref{sec:result}): the moment bound $\|V(h)\Om_g\|\le M$ for every real $h$ with
+$\|h\|_\infty\le1$ supported in an interval of length~$2$
+\rec{Theorem~5.1, (M$_2$)}{16}, and the gap $\spec H(g)\subseteq\{0\}\cup[m_1,\infty)$
+\rec{Theorem~7.8, (G)}{21}.
+
+The record's proofs show where each uniformity comes from. The $g$-independence of $m_1$
+is CE2's printed $h$-independence \rec{Source Fact~2.2}{10}, applied across a horizontal
+strip \rec{Lemma~7.4}{19}. In the record's \S7, $\UGJS$ is used at one fixed $g$,
+uniformly in $T$ \rec{\S7, opening sentence}{18}, by Lemmas~7.1--7.3, which are thus
+conditional on $\UGJS$. Across $g$, $\UGJS$ makes $M$ independent of $g$;
+Lemma~10.2, conditional on $\UGJS$ through Theorem~5.1, uses this at every cutoff $g_s$
+of an affine path \rec{Lemma~10.2}{26}.
+
+The record's \S\S8--10 work with an abstract gap $\gamma$ under (G$_\gamma$), and its
+\S\S8--11 use the GJS package only through $m_1$ and $M$: Lemma~10.2 calls
+Theorem~5.1, and $\gamma$ is instantiated as $m_1$ in \rec{\S11}{28}. Their output,
+the one-path estimate \rec{Proposition~10.4, eq.~(27)}{27}, conditional on
+$\UGJS$ through $M$, bounds $\|(\omega_g-\omega_{g'})|_{\A(O)}\|$ whenever
+$g\equiv g'\equiv1$ on $O_d$, $d\ge d_0:=4+2/\gamma$. Plateaus are cofinal and local
+duals are complete, so the net converges in norm in each $\A(O)^*$, at a rate
+$\Psi_{m_1}$ faster than every inverse power (\S\ref{sec:lppl}):
+\begin{checkpoint}[Checkpoint: Theorem 11.1, conditional on $\UGJS$]
+\begin{equation*}
+ \|(\omega_g-\omega_\infty)|_{\A(O)}\|\le\Psi_{m_1}(d)
+ \qquad\text{whenever }g\equiv1\text{ on }O_d .
+ \tag*{\rec{Theorem~11.1, eq.~(31)}{28}}
+\end{equation*}
+\end{checkpoint}
+
+\noindent\emph{In the record:} \S1.2, p.~3; Source Fact~2.2, p.~10; Theorem~5.1,
+Lemmas~7.1--7.4 and Theorem~7.8, pp.~16--21; (G$_\gamma$), p.~22; Lemma~10.2,
+Proposition~10.4 and Theorem~11.1, pp.~26--28.

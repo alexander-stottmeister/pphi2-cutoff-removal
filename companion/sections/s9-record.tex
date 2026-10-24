@@ -1,0 +1,45 @@
+% s9-record.tex -- Section 9 of the reader's companion (drafter: qi, R3; edited in R4).
+\section{The record and how to check it}\label{sec:record}
+
+\emph{Every import is pinned to a page of its source; nothing here has been refereed.}
+
+The record's repository is ``an experiment in open science'', and the work in it is
+AI-assisted: the author drafted it with Anthropic's Claude as an interactive assistant
+and published the working method, including the rounds that found errors in earlier
+rounds' repairs (\texttt{README.md}, ``What this is''). Human verification is ongoing.
+
+\emph{Gates.} The gate table of \texttt{docs/status.md} lists the Part~I gates, all
+passed on 10~August 2026:
+\begin{itemize}[nosep,leftmargin=*]
+\item G0: it compiles; citations and references resolve; every import names its users;
+\item G1/G2: each step of the two structured proof reconstructions maps to one environment
+or display; no unmapped step, no orphan;
+\item G3a/G3b: constants recomputed by hand; a forbidden-string check;
+\item G4: citations and dossier entries correspond one to one; regression greps;
+\item G5: three \texttt{pdflatex} passes, nothing unresolved, every page inspected;
+\item G6: an adversarial pass; no confirmed finding, or every one fixed and re-checked.
+\end{itemize}
+The adversarial passes in \texttt{strategy.md}, which the README says the assistant ran,
+are published.
+
+\emph{Corrections.} The corrections history includes audit item P1 (a missing premise,
+now (B4) of Hypothesis~13.1), S1--S3 (citation pinpoints: FKN transfer,
+hypercontractivity, domain smoothing) and L1--L6 (local repairs, from a cell count to a
+spectral-parameter range) \rec{Appendix~B}{35}, and gate R2 (the printed-norm prefactor,
+read from the page image of GJS p.~594) \rec{Appendix~B}{34}. The scope amendment of
+5~September 2026 gave $\UGJS$ (A8(vi)) the status described in \S\ref{sec:import}; ``No proof
+in the manuscript changed'' \rec{title page}{1}.
+
+\emph{C5.} Audit item C5 (\S\ref{sec:import}) is open \rec{Appendix~B}{35}: all nine
+verdicts of \texttt{part\_i/\allowbreak C5\_reading\_record.md} are blank. It checks transcription,
+not mathematics; closing it does not change the status of $\UGJS$
+(\texttt{docs/status.md}).
+
+\emph{How to check.} Every transcribed display of \texttt{part\_i/main.tex} carries a
+\texttt{\% src:} comment naming its origin, and every import names its pinpoint source and
+the page images documenting it in the audit dossier \rec{\S2.4}{7}. The page images are
+third-party material and are not redistributed; \texttt{README.md} names a script that
+regenerates those of the 16~August 2026 audit from a reader's own copies of the sources.
+Statement and equation numbers here come from \texttt{part\_i/main.aux}.
+
+\noindent\emph{In the record:} title page, p.~1; \S2.4, p.~7; Appendix~B, pp.~34--35.

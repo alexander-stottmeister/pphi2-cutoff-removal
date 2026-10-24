@@ -1,0 +1,98 @@
+% s5-euclidean.tex -- Section 5 of the reader's companion (drafter: cqft, R3; edited in R4).
+\section{Euclidean layer: the moment and the gap}\label{sec:euclidean}
+
+\emph{The gap is an output: simplicity of the ground state is the only spectral input.}
+
+This layer produces, one cutoff $g\in\CH$ at a time, the moment $M$ and the gap $m_1$
+that \S\ref{sec:lppl} consumes; every limit $T\to\infty$ is taken at fixed $g$, and no gap
+is assumed \rec{\S4}{15}. Theorem~5.1, Lemmas~7.1--7.3, Proposition~7.5, Lemma~7.6 and
+Theorems~7.7--7.8 are \condtext{conditional on $\UGJS$} (A8(vi); \S\ref{sec:import});
+Fig.~\ref{fig:slab} draws the slab.
+
+\emph{I. Slab transfer.} With $\Om_0\equiv1$ the free vacuum,
+$\psi_s:=e^{-sH(g)}\Om_0$ and $c_g:=\ip{\Om_g}{\Om_0}>0$, the FKN import A2 turns
+sharp-time moments of the Euclidean field $\Phi$ under the normalised slab measure
+$dq_{h_{T,g}}$ into matrix elements of $e^{-tH(g)}$ \rec{Lemma~4.1}{15}. As $T\to\infty$, $\hat\psi_T:=\psi_T/\|\psi_T\|$
+converges to $\Om_g$: $\psi_s$ is $c_g\Om_g$ plus $e^{-sH(g)}$ applied to the component
+of $\Om_0$ orthogonal to $\Om_g$, whose spectral measure has no atom at $0$ by simplicity
+(A1).
+
+\begin{checkpoint}[Checkpoint I: transfer at fixed $g$]
+For $T>0$, $t\in[0,2T]$ and bounded nonnegative measurable $F_1,F_2$ of the time-zero
+field,
+\begin{equation*}
+ \int F_1\bigl(\Phi(-\tfrac t2,\cdot)\bigr)F_2\bigl(\Phi(\tfrac t2,\cdot)\bigr)dq_{h_{T,g}}
+ =\frac{\ip{F_1\psi_{T-t/2}}{e^{-tH(g)}F_2\psi_{T-t/2}}}{\|\psi_T\|^2},
+ \tag*{\rec{(2)}{15}}
+\end{equation*}
+and, as $s\to\infty$, ``$\hat\psi_s\to\Om_g$ in norm, $\|\psi_s\|\downarrow c_g$'';
+``\emph{No isolation of the ground-state eigenvalue is used.}'' \rec{Lemma~4.4}{16}
+\end{checkpoint}
+
+\emph{II. The moment.} For $h$ as in (M$_2$) below, Steps~1--4 of the proof of
+Theorem~5.1 treat $Q_V=V(h)^2$ as one observable of the GJS class, which admits
+products of individually Wick-ordered powers at equal times \rec{A8(ii)}{9}: the support
+of $h$ meets at most three unit cells, hence at most nine ordered cell pairs, and the
+printed norm, with constants $K_1$ and $K_2\ge1$ \rec{A8(iii)}{10}, gives
+$\|Q_V\|_{\rm GJS}\le M^2/C_8$ \rec{Theorem~5.1, eq.~(5)}{17}. Eq.~(2) at $t=0$ with
+$F_1=F_2=|V(h)|$ and $(\UGJS)$ at $h_{T,g}$ give $\|V(h)\hat\psi_T\|\le M$ for every $T$
+\rec{eq.~(6)}{17}; the graph of $V(h)$ is weakly closed and $\hat\psi_T\to\Om_g$, so it
+passes to $\Om_g$:
+
+\begin{checkpoint}[Checkpoint II: the uniform local moment]
+Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. For every $g\in\CH$ and every real
+measurable $h$ with $\|h\|_\infty\le1$ and $\supp h$ contained in an interval of length
+$2$,
+\begin{equation*}
+ \|V(h)\Om_g\|\le M,\qquad
+ M^2:=9\,C_8\,\mathfrak K(p')\,\lambda^2\Bigl(\sum_{n=0}^{2p'}|a_n|\Bigr)^2,
+ \qquad
+ \mathfrak K(p'):=K_1K_2^{8p'}(4p')! .
+ \tag*{\rec{(M$_2$)}{16}}
+\end{equation*}
+\end{checkpoint}
+
+\emph{III. Decay at fixed $g$.} Lemmas~7.1--7.3 pass the moments of a cylinder monomial
+$Q$ of sharp-time fields from the slab measures to $\Om_g$ as $T\to\infty$, with
+$(\UGJS)$ bounding the square moments at one $g$, uniformly in $T$
+\recpp{Lemmas~7.1--7.3}{18--19}.
+Separately, CE2, with constants $C_7$ and $m_1$ \rec{Source Fact~2.2}{10}, applied across
+the strip $\{|x^0|<t/2-1\}$ of width $t-2$, bounds the connected correlation of
+$Q(-t/2)$ and $Q(t/2)$ by $C_7e^{2m_1}e^{-m_1t}\|Q\|_{\rm GJS}^2$ for $t>2$ and every
+cutoff \rec{Lemma~7.4}{19}. Together, at fixed $g$:
+
+\begin{checkpoint}[Checkpoint III: semigroup decay of centered observables]
+Let $\psi_Q:=Q\Om_g-\ip{\Om_g}{Q\Om_g}\Om_g$. Then
+\begin{equation*}
+ \ip{\psi_Q}{e^{-tH(g)}\psi_Q}\le\widehat C_Q\,e^{-m_1t}\quad(t\ge0),
+ \qquad
+ \widehat C_Q:=\max\bigl\{C_7e^{2m_1}\|Q\|_{\rm GJS}^2,\;e^{3m_1}\|\psi_Q\|^2\bigr\} .
+ \tag*{\rec{Proposition~7.5}{20}}
+\end{equation*}
+\end{checkpoint}
+
+\emph{IV. The gap.} Decay on centred vectors controls the spectrum only if, with
+$\Om_g$, they span a dense subspace. They do \rec{Theorem~7.7}{21}, by exponential
+moments of the sharp-time fields in the vector state of $\Om_g$ \rec{Lemma~7.6}{20},
+which use powers of every total degree as the source's class admits \rec{A8(ii)}{9},
+strip-analytic characteristic functionals, Fourier uniqueness and martingale
+convergence. For every $0\le\beta<m_1$,
+Checkpoint~III forces $\mathbf 1_{[0,\beta]}(H(g))$ to annihilate every $\psi_Q$, so by
+density it is the projection onto $\C\Om_g$; that is, $H(g)$ has no spectrum in
+$(0,m_1)$ \rec{Theorem~7.8}{21}:
+
+\begin{checkpoint}[Checkpoint IV: the uniform gap]
+Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. For every $g\in\CH$,
+\begin{equation*}
+ \spec H(g)\subseteq\{0\}\cup[m_1,\infty),
+ \tag*{\rec{(G)}{21}}
+\end{equation*}
+and $0$ is a simple eigenvalue.
+\end{checkpoint}
+
+No gap entered Pieces I--III; (G) is their output. The slab limits use weak compactness in
+$\HH$, and each limit is identified by a closed graph, so nothing is selected.
+
+\noindent\emph{In the record:} A8(ii)--(iii) and Source Fact~2.2, pp.~9--10; Lemmas~4.1
+and 4.4, Theorem~5.1 and eqs.~(2), (5), (6), (M$_2$), pp.~15--17; Lemmas~7.1--7.4 and
+7.6, Proposition~7.5, Theorems~7.7--7.8 and (G), pp.~18--21.

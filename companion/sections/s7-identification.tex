@@ -1,0 +1,65 @@
+% s7-identification.tex -- Section 7 of the reader's companion (drafter: aqft, R3; edited in R4).
+% Displays transcribed from part_i/main.tex carry \tag*{\rec{...}{...}}.
+\section{From Cauchy to the theorem}\label{sec:identification}
+
+\emph{The ground-state property costs an identity, not an estimate.}
+
+Everything in this section is \condtext{conditional on $\UGJS$} through Theorem~11.1,
+except Proposition~12.1 and Lemma~2.8, which do not use A8. Theorem~11.1 turns the
+one-path estimate of \S\ref{sec:lppl} into convergence \rec{Theorem~11.1}{28}. Step~1:
+if $\Psi_{m_1}(d)<\varepsilon$, all $g,g'\in\G$ whose plateau interiors contain $O_d$
+satisfy $\|(\omega_g-\omega_{g'})|_{\A(O)}\|\le\Psi_{m_1}(d)<\varepsilon$ \rec{(32)}{28},
+so the net is Cauchy in each $\A(O)^*$. Step~2: completeness of each $\A(O)^*$ gives
+limits, compatible under restriction, that define a state $\omega_\infty$ on $\A$.
+Step~3: the cutoffs equal to $1$ on $O_d$ are cofinal in $\G$, so the bound passes to
+the limit; this is the checkpoint (31) displayed at the end of \S\ref{sec:architecture}
+\rec{(31)}{28}.
+
+Local normality comes with the topology: Proposition~11.2 obtains it from the
+normality of the vector states $\omega_g$ on the von Neumann algebra $\A(O)$
+\rec{Proposition~11.2}{29}.
+
+The dynamics $\alpha$ is imported: A6(ii) supplies a one-parameter automorphism group of
+$\A$, independent of $g$, with $\alpha_t(\A(O))\subseteq\A(O_{|t|})$ and the patching
+property (P): $\alpha_t(A)=\beta^g_t(A)$ for $A\in\A(O)$ whenever $g\equiv1$ on
+$O_{|t|}$ \rec{A6}{9}. No continuity of $\alpha$ is imported or used. If $|t|<d(g,O)$,
+then $g\equiv1$ on $O_{|t|}$, and (P) with $e^{-itH(g)}\Om_g=\Om_g$ gives, for
+$A,B\in\A(O)$, the identity of Fig.~\ref{fig:window}:
+\begin{equation*}
+  \omega_g\bigl(A\alpha_t(B)\bigr)
+  =\ip{\Om_g}{Ae^{itH(g)}Be^{-itH(g)}\Om_g}
+  =\ip{A^*\Om_g}{e^{itH(g)}B\Om_g}=G_g(t) .
+  \tag*{\rec{proof of Proposition~12.1}{29}}
+\end{equation*}
+Here $G_g(t):=\int e^{itE}\,d\rho_g(E)$, where, with $P_{H(g)}$ the spectral measure of
+$H(g)$, $\rho_g(\cdot):=\ip{A^*\Om_g}{P_{H(g)}(\cdot)B\Om_g}$ is a complex measure with
+$\supp\rho_g\subseteq\spec H(g)\subseteq[0,\infty)$: inside the window, each two-point
+function is the Fourier--Stieltjes transform of a measure on $[0,\infty)$. For
+$|t|\le T$, $A\alpha_t(B)\in\A(O_T)$ has norm at most $\|A\|\|B\|$, so norm convergence
+on $\A(O_T)$ makes these functions converge uniformly on $|t|\le T$, and the definition
+passes to the limit:
+\begin{recordbox}{Proposition 12.1 of the record (p.\,29)}
+If $(g_n)\subseteq\G$ satisfies $d(g_n,O)\to\infty$ for every bounded interval $O$, and
+$\omega_{g_n}\to\omega$ in norm on every $\A(O)$, then $\omega$ is a ground state of
+$(\A,\alpha)$ in the spectral sense: $\omega\circ\alpha_t=\omega$ for all $t$; the
+function $t\mapsto\omega(A\alpha_t(B))$ is continuous and bounded for all $A,B\in\A$; and
+\[
+ \int_\R f(t)\,\omega(A\alpha_t(B))\,dt=0
+\]
+for every $f\in L^1(\R)$ whose transform $\check f(E)=\int f(t)e^{itE}\,dt$ vanishes on
+$[0,\infty)$.
+\end{recordbox}
+
+Translation invariance needs no averaging: $g\mapsto\tau_ag$ is an order isomorphism of
+$\G$ with cofinal range, so (T), $\omega_{\tau_ag}=\omega_g\circ\tau_{-a}$
+\rec{Lemma~2.8}{12}, and Theorem~12.2(1) give $\omega_\infty\circ\tau_a=\omega_\infty$;
+parity follows likewise for even $\mathscr P$ \rec{proof of Theorem~12.2}{30}.
+
+By Corollary~12.3, every $w^*$ limit point of the averaged or unaveraged cutoff states of
+\cite[\S2]{GJ3} coincides with $\omega_\infty$ on each $\A(O)$ \rec{Corollary~12.3}{31}.
+Its proof takes GJ3's cutoff function $g$ in $\G$ and applies Theorem~12.2(1), uniformly
+in the shift, to each shifted cutoff in the average. So $\omega_\infty$ is canonical for
+the cutoff family; its uniqueness is not claimed (\S\ref{sec:notclaimed}).
+
+\noindent\emph{In the record:} A6, p.~9; Lemma~2.8, p.~12; Theorem~11.1 with
+eqs.~(31)--(32), Propositions~11.2 and 12.1, Theorem~12.2 and Corollary~12.3, pp.~28--31.

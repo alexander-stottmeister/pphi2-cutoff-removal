@@ -2344,3 +2344,66 @@ repair was made the same day in `part_i/README.md` (24), `part_ii/README.md` (8)
 
 Recorded here rather than made silently, because this file's own discipline is to say
 what was done to it.
+
+
+### A reader's companion, written by a council of agents (23–24 October 2026)
+
+`companion/companion.pdf` (20 pp, source `companion/companion.tex` with
+`companion/sections/` and `companion/figures/`) is a reading guide to Part I for a human
+reader: what Theorem 12.2 proves and under what, why the question was open, the
+architecture of the proof, the one import that is not a quotation, the Euclidean and
+Hamiltonian layers, the identification of the limit, what is not claimed, and how the
+record can be checked. It explains and proves nothing new. Every statement number and page
+it cites comes from `part_i/main.aux` through a generated table
+(`companion/council/labels.md`); its six figures are TikZ and pgfplots, with one
+computed figure whose data come from `docs/figures/make_figures.py`; it embeds no raster
+and no page image, so the publication guard accepts it.
+
+How it was made. A brief (`companion/council/BRIEF.md`) went to four agents with
+distinct roles -- an algebraic quantum field theorist, a quantum-information theorist, a
+constructive quantum field theorist and a handling editor -- each of which read the
+record and wrote a memo (round R1). The editor synthesised the memos into a plan
+(`companion/PLAN.md`, round R2): three tiers of material by weight for a human reader,
+an outline with page budgets, the six figures with their mandatory caption sentences,
+editorial rules, a register of 38 rulings on the members' disagreements, and a checklist
+for an adversarial verifier. The author approved the plan with five decisions (Part 9).
+The three domain members drafted their sections (R3), the editor rewrote the twelve
+fragments in one voice and cut the document to the 20-page ceiling (R4), and a fresh
+agent that had drafted nothing ran the verification checklist (R5): it found one CRITICAL item (an arrow label in
+Fig. 1 attributing the identity (P) to the proof of Proposition 2.7, which uses A6(i)),
+one MAJOR item (an arrow whose hidden origin made it read as coming from Appendix C) and
+eighteen MINOR items, mostly overlaps in the figures, notation and page budgets, while
+every number, quotation, GJ3 fact, status word, the Part II table and the Appendix A
+classification passed; each item was fixed or recorded on 24 October 2026 (PLAN Part 10).
+The memos, returns and reports are in `companion/council/`.
+
+The rules that shaped the text, because they are the point of the exercise: no
+paragraph makes more than three inferential steps without a displayed checkpoint
+transcribed from `part_i/main.tex` with its locator; U_GJS is described, wherever a
+section first describes it, by one frozen sentence that says exactly at what scope it is
+imported and why it is still a hypothesis; the status words are the workspace's
+(Theorem 12.2 is "proved, conditional on U_GJS", never "proved" bare; Proposition 8.2 and
+Lemmas 9.3 and 10.1 are implications under (G_gamma)); a list of banned words (unique
+vacuum, mass gap of the limit, exponential rate, unconditional, verified, compactness-free,
+...) is grepped in the rendered text; every caption ends "Illustration, not evidence."; and
+anything a member found wrong or unclear in the record goes to a findings register for the
+author (PLAN Parts 7 and 7.1; the editor's report, section 7) and never into the companion.
+
+What changed in the record because of it. Nothing in `part_i/main.tex`. The
+documentation was corrected in the preceding commit (55b5ab4): the count of statements
+whose proof chain reaches A8 is 29, not 24, after `docs/extract.py` learned that a
+statement printed inside an assumption (the Source Facts inside A8) depends on it, and the
+README and `docs/status.md` now say what the `\ref`-closure index does not see (forward
+references, the prose-only dependence on (G_gamma)); the README's description of the two
+summands of the rate function and of the two regimes of Lemma 10.3 was reworded (the
+exponential summand decays faster, so the filter-tail summand sets the rate; the switch
+at |t| = r_j/2 is a choice of the bound, the cone reaches B_j only at |t| = r_j); and the
+sentence about `render_evidence.sh` now says which corpus the script renders. The items
+that concern `part_i/main.tex` itself -- all MINOR, none changing a theorem; among them
+`\|le` printed as "le" in Lemma 7.1, "Assume U_GJS" missing from the statements of the
+theorems whose proofs consume it, the phrase "compactness-free" where weak compactness in
+the Hilbert space is used, and pp. 595-597 against 594-597 in Source Fact 2.3 -- are left
+to the author.
+
+Build: `cd companion && python3 make_bib.py && pdflatex companion.tex` three times; the
+tracked PDF is built with `SOURCE_DATE_EPOCH=1792800000 FORCE_SOURCE_DATE=1`.
