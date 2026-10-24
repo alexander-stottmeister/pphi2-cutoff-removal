@@ -49,6 +49,8 @@ has been refereed.
 6. **R6, record.** The companion's PDF is tracked beside its source, built with the
    timestamp pinned (`../companion.tex`, first lines); README row, `strategy.md` entry,
    knowledge-base nodes, commit (24 October 2026).
+7. **Checkpoint 2.** The author reads the built PDF; open at the time of writing
+   (`../PLAN.md`, Part 10.5).
 
 Reports of rounds R4 and R5 were handed back as text, because the agent harness refuses
 report files written by subagents; the orchestrator saved each under the name above,

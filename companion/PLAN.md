@@ -802,3 +802,7 @@ The same verifier re-checked the rebuilt PDF against V1–V20, N1 and N4 (its se
 | W3 | **Fixed.** §3: "for every bounded interval O and ω_{g_n} converging in norm on every local algebra 𝔄(O)" (the V16 wording; main.tex l. 2228). |
 
 The verifier's optional note on the Fig. 1 caption was taken: "The light-filled inputs of the top row and the two interface nodes carry no class." The final PDF is the build after these three fixes; its gates and placements are those of 10.3.
+
+### 10.5 Checkpoint 2
+
+The plan approved on 23 October 2026 had two author checkpoints: Checkpoint 1 (Part 9, before drafting) and Checkpoint 2, the author's own reading of the built PDF after the adversarial verification. Checkpoint 2 is open at the time of writing (24 October 2026); nothing in the companion is settled until it has passed, and the companion's title page says so ("human verification is ongoing").
