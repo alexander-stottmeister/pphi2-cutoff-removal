@@ -155,6 +155,11 @@ The verifier's report (`r3-verifier-report.md`: verdict "not yet"; 1 CRITICAL, 4
 (1.1.16), printed "uniformly in h"; "We shall choose t_j = j, j in Z") and p. 600 ("Proof
 of Theorem 1.1.8, assuming Theorem 1.1.10 [sic]. Choose T = 0 and B = I in Theorem 1.1.11.
 Then Q = 0, so Theorem 1.1.8 is a special case of Theorem 1.1.10 [sic]") on the images.
+Earlier the same day the orchestrator also read pp. 622 and 624 on the images (`gjs74/p-39`,
+`gjs74/p-41`): Lemma 2.4.6 with "K_2 = K_2(m_0, K_3)", and (2.4.34)-(2.4.35) with "a
+constant K_3, independent of C, m_0 and lambda", "These are standard estimates for such
+integrals (see [1])" and "which yields (2.4.28), for K_2 >= K_3^2"; this is the reading the
+plan's finding F1 attributes to the orchestrator.
 
 - R9 (C1: one standard). The record has one import standard, that of A1-A7: a printed
   statement, used at the scope at which it is printed. A "proof-reached scope" is not a
@@ -165,7 +170,7 @@ Then Q = 0, so Theorem 1.1.8 is a special case of Theorem 1.1.10 [sic]") on the 
   Theorem 1.1.7 remains a disclosure (sentence F-T), not a second standard; the plan may
   offer the author the option of naming it as a hypothesis "A8(iv)-T" for transparency, but
   must say that this is not a different standard and that A8(iv)-T and U_GJS are different
-  statements, neither implying the other (M4).
+  statements, neither known to imply the other (M4; wording per the R3b verifier's n7).
 - R10 (M1: the literal re-sourcing, adopted as Phase 0'). Under the record's standard, the
   content of U_GJS is a printed statement: Theorem 1.1.11, (1.1.16), "uniformly in h", at
   B = I, n = 0, T = 0, which is exactly the specialization GJS print as their proof of

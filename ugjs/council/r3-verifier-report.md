@@ -517,3 +517,266 @@ logic, the "reach" of the parallel case (C1).
   look.
 - **Scratch file.** The only file I wrote apart from this report is `<scratch>/gjs74-verifier.txt`,
   a `pdftotext` extraction used to locate V(Y) and reference [1] before reading the pages.
+
+---
+
+## R3b. Re-verification of the revised plan (round R2b), 30 October 2026
+
+Same verifier. Read for this round:
+- rulings R9–R13 (`r1c-orchestrator-rulings.md` §5, ll. 151–204);
+- the revised `ugjs/PLAN.md`, all 958 lines (10,773 words);
+- the council `README.md`.
+
+I re-read GJS p. 596 (`gjs74/p-13`) on the image. Pages 593–595, 597, 600, 622, 624, 628, 629
+and 631 were read on the images earlier in this session (section 3B above). I ran the gates'
+grep commands on `part_i/main.tex` myself. Line numbers "l." below are those of the revised
+`PLAN.md` unless "main.tex" is said.
+
+### R3b.1 Verdict
+
+**After the listed fixes.** Every R3 item is resolved as R9–R13 say. Two items are only partly
+resolved:
+- the M1 resolution introduces N1;
+- the M2 resolution introduces N2.
+
+Both MAJOR items are text fixes that need no new ruling.
+
+Counts for the revision: **CRITICAL 0, MAJOR 2, MINOR 14.**
+
+### R3b.2 Check (a): the R3 items, one by one
+
+| R3 item | ruling | resolved? | where in the revised plan |
+|---|---|---|---|
+| C1 | R9 | yes. One standard and one status table. "Under both standards" is withdrawn. The paragraph has one wording slip (n6). | l. 26–29; l. 690–727; D12 l. 916; D15 l. 919; F8 row l. 875; Part 5 l. 578 |
+| M1 | R10, R11 | yes, as Phase 0′. New: N1 (MAJOR), n1–n5, n11, n12 | S0′ l. 104–129; Part 0 l. 31–39; Part 3 l. 351–398; Part 4 l. 505; Part 7 l. 694–701, 740–750; F-0′ l. 787–789; Q1 l. 927–929; D16 l. 920 |
+| M2 | R13 | patterns fixed. The expected-survivor list is wrong (N2) | GB1 l. 439–447; G-0′ l. 390 |
+| M3 | R12 | yes | l. 317–319; GA8 l. 421; GB2 l. 448–449; fallback l. 452–454; l. 574–576; l. 684–686; l. 765 |
+| M4 | R9 | yes, but "neither implies the other" overclaims (n7) | l. 729–738; trap 6 l. 816–817 |
+| m1 | R13 | yes | l. 160–163 |
+| m2 | R13 | yes | l. 90–93 |
+| m3 | R13 | yes | l. 134, 141, 410 |
+| m4 | R13 | yes (A_f := A + B′K₁; Σ₃ₓ₅ defined) | l. 171, 186 |
+| m5 | R13 | yes | l. 136, 404, 413–414, 515 |
+| m6 | R13 | yes | l. 342–344 |
+| m7 | R13 | yes | l. 782–783 |
+| m8 | R13 | partly. Marked as abbreviations, but two paraphrase (n8) | l. 62–67 |
+| m9 | R13 | yes | l. 291–294, 507, 580–582 |
+| m10 | R13 | yes | l. 632–634 |
+| m11 | R13 | yes, but Theorem 1.1.11's statement prints no smallness hypothesis (n3) | l. 376, 635–638 |
+| m12 | R13 | yes | l. 221, 223 |
+| m13 | R13 | yes | l. 668–675, and in place at l. 310, 339, 364, 371, 617, 627, 630, 868, 871, 880 |
+| m14 | R13 | yes. The h6 numbers are right: the `m4/h6.pdf` text layer prints Proposition 2.1, Proposition 2.2, Theorem 3.2 and Lemma 3.4 | l. 839–841 |
+| m15 | R13 | yes | l. 465–467 |
+| m16 | R13 | yes | l. 58–60 |
+| m17 | R13 | yes | l. 269–270 |
+| m18 | R13 | yes | l. 422–427 |
+| m19 | R13 | yes | l. 855–856, 890–891 |
+| m20 | R13 | yes (three dated notices) | l. 656–661 |
+
+### R3b.3 New findings
+
+#### MAJOR
+
+**N1. Phase 0′ states its literal basis at T = 0, a value p. 596 does not cover.**
+- *Locators.* Part 0 l. 32–34; S0′ l. 114–118; Part 4 l. 505; Part 7 table l. 699; F-0′
+  l. 787–789; Checkpoint 1 question 1, l. 927–929.
+- *Sentences.*
+  - l. 114–116: "Then apply (1.1.16) … with B = I, n = 0, T = 0. This is p. 600: 'Choose T = 0
+    and B = I in Theorem 1.1.11. Then Q = 0.'"
+  - l. 117–118: "The variant 0 < T < 1 (the verifier's) gives the same bound".
+  - F-0′: "Its moment input A8(vi) is GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0, T = 0,
+    the specialization GJS print as their proof of Theorem 1.1.8 (p. 600)".
+- *What is wrong.*
+  - p. 596 (image, re-read) fixes the range of T before Theorems 1.1.10–1.1.11: "Let B_T
+    denote the translate of B at time T > 0, so that B_T is localized at times ≧ T."
+    Theorem 1.1.10 repeats "T > 0" in its own hypothesis.
+  - T = 0 is the value GJS choose in their *proof* of Theorem 1.1.8 (p. 600). Their
+    *statement* prints only T > 0.
+  - The plan's one standard is "a printed statement, used at the scope at which it is
+    printed" (l. 26–27, 690–691), and Phase 0′ is "a re-sourcing, not a proof" (trap 2,
+    l. 807–808). Such a re-sourcing cannot rest on a parameter value that only the proof
+    uses.
+  - The in-scope values 0 < T < 1 give the identical bound. In my check, the sum
+    Q = Σ_{0<t_j<T} Q_n(t_j) is empty because t_j = j; I_T = I; and e^{−γT} ≤ 1. The plan
+    already says this (l. 117–118), but only as a variant.
+- *Repair.*
+  - In all six places, make "(1.1.16) at B = I, n = 0 and any 0 < T < 1" the literal basis.
+  - Cite p. 600's T = 0 as GJS's own choice, which gives the same bound.
+  - Add to S0′ a fourth objection, "T = 0 lies outside the printed T > 0", answered by this.
+- *Severity.* MAJOR. The frozen sentence and Checkpoint 1 would otherwise put a
+  statement-versus-proof slip into the one claim that rests on that distinction.
+
+**N2. Gate GB1's expected surviving hits are incomplete, so the gate cannot pass with the
+plan's own edits.**
+- *Locator.* Part 3 l. 439–447: "The surviving hits must be exactly: A8(vi), marked retired,
+  with its tag and label kept for provenance; the Scope paragraph's history sentences;
+  Appendix B's corrections history and External residue; Appendix C's introduction, as
+  history. Any other hit fails the gate."
+- *What is wrong.*
+  - On today's main.tex the gate's grep gives 54 hits: the 36 of the old pattern plus the 18
+    lines that carry `U_{\rm GJS}` and nothing else matched. `grep -c 'Assume \$U_{\\rm GJS}'`
+    prints 2 (main.tex ll. 2295, 2921).
+  - I matched every hit against the plan's own edit map (Parts 3 and 6). These would survive
+    Phase B, and none is in the list:
+    - the title-page notices, main.tex ll. 68, 72, 76, 81. They are kept "marked superseded"
+      (l. 372).
+    - A8(v) at main.tex l. 685 (C₈ in CE1's display) and A8(vii′) at l. 722
+      (`\eqref{eq:UGJS}`). They are kept "as corroboration" (l. 368) and then moved "to
+      provenance" (l. 626).
+    - The notation table at main.tex l. 436 and the standing assumption at l. 897 ("C_7, C_8,
+      K_1, K_2 denote the printed constants"). No edit is planned for either.
+    - Eq. (5) at main.tex l. 1214, "… = M²/C₈". It sits in Step 4, which the plan keeps
+      (l. 199, 624), and it becomes false once M = M_B (n14).
+    - Corollary 5.2 at main.tex l. 1247, if it is "retired" rather than restated (l. 201,
+      624–625).
+  - Every other hit is either removed by a planned edit or in the list.
+    - Removed by a planned edit: main.tex ll. 93, 108, 157, 173, 199, 280, 1111, 1117, 1163,
+      1222, 1225, 1331–1350, 1364–1365, 1403, 1510–1532, 2295, 2317, 2325, 2568, 2574–2575,
+      2921 and 2923.
+    - In the list: main.tex ll. 693–708, 796, 800, 2631, 2643, 2654 and 2660.
+- *Repair.*
+  - Write the expected survivors as line ranges of the edited file. Add the title notices,
+    A8(v) and A8(vii′) (as provenance), and Corollary 5.2 if it is kept.
+  - Add edits for main.tex ll. 436, 897 and 1214 to Part 6.
+- *Severity.* MAJOR. The gate is wrong in a way that forces either a false failure or the
+  deletion of history that the plan says to keep.
+
+#### MINOR
+
+- **n1. "n = 0" is attributed to p. 600.** F-0′ (l. 788–789) and Part 0 (l. 33–34) attribute
+  "B = I, n = 0, T = 0" to p. 600. But p. 600 prints only T = 0 and B = I, with no n; "n = 0"
+  comes from p. 629 ("the special case B = I, n = 0"). *Repair:* cite both pages.
+- **n2. S0′ does not fix ε.** Theorem 1.1.11 begins "Let n and ε > 0 be given" (p. 596), and
+  its O(1) depends on n and ε. *Repair:* name both when C₈ is defined (l. 107–109).
+- **n3. Theorem 1.1.11 prints no smallness hypothesis.**
+  - Its statement (p. 596) says only "Let n and ε > 0 be given", unlike Theorem 1.1.7
+    (p. 594).
+  - The rewording of ε_𝒫 is to "name the printed hypotheses of the theorems actually
+    imported: Theorems 1.1.7 and 1.1.11" (l. 376, 635–638). For 1.1.11 it must say where GJS
+    print them:
+    - Theorem 4.1, p. 628: "Let m₀, K₂ and K₁ be sufficiently large, and let λ be
+      sufficiently small". Theorems 1.1.8 and 1.1.11 are proved from it on pp. 628–629.
+    - p. 600: "convergence of our expansions requires both sufficiently small λ and
+      sufficiently large m₀".
+  - *Repair:* cite those pages, and add this as a further objection in the Scope paragraph.
+- **n4. The localization step is missing.** S0′'s derivation (l. 110–118) applies (1.1.16),
+  which is stated for localized A, to "every sharp-time monomial". *Repair:* add one line: a
+  general monomial is a sum of localized pieces, and its norm is the sum of theirs by
+  (1.1.9).
+- **n5. A quotation is truncated without marking.** l. 115–116 closes the p. 600 quotation with
+  "Then Q = 0.". p. 600 prints "Then Q = 0, so Theorem 1.1.8 is a special case of Theorem
+  1.1.10." *Repair:* mark the truncation, as l. 361 and l. 589 do.
+- **n6. "The record can take neither" contradicts the recommendation.** Part 7 l. 720–724 says
+  "There are two ways to avoid this, and the record can take neither". But the second way
+  ("Reading the h-uniform Theorem 1.1.8 off a printed statement is exactly Phase 0′") is the
+  one the plan recommends. *Repair:* "neither keeps proof-reached scope a second standard.
+  The first is the asymmetry the record rejected; the second is the one standard itself
+  (Phase 0′)."
+- **n7. "Neither implies the other" asserts an unproved negative.** Part 7 l. 733 and trap 6
+  (l. 817) say it. What is shown is less: U_GJS is a moment bound that states no clustering,
+  and the comparison route does not give U_GJS from A8(iv)-T, since A grows with the
+  observable's box. *Repair:* "neither is known to imply the other". Ruling R9 uses the same
+  words, and the same correction applies there.
+- **n8. Two Part 0 "abbreviations" paraphrase the frozen sentences.**
+  - "… one GJS theorem imported, Theorem 1.1.7, also used across transverse strips …" (l. 66)
+    is not a fragment of F-B (l. 796–799).
+  - "… its transverse use is a theorem of the record." (l. 67) is not in F-C (l. 800–801).
+  - *Repair:* use verbatim fragments.
+- **n9. The table row "GJS statements imported" counts only theorems.** In every column the
+  record also imports printed GJS statements A8(i)–(iii) (the p. 589 class, the p. 593
+  observables, the p. 594 norms) and A8(viii) (the p. 590 dilation). So "(none, if Lemma 7.4
+  is re-based on S3)" (l. 701) is wrong as worded. *Repair:* rename the row "GJS theorems
+  imported", or list the four items.
+- **n10. A page reading is attributed to the orchestrator without a record of it.** Part 2
+  l. 264 says "`cqft`, `editor` and the orchestrator read pp. 622 and 624", and the F1 row
+  (l. 868) says "the orchestrator (30 October)". But r1c §§1 and 5 and the council README
+  record the orchestrator reading only pp. 593–597, 596 and 600, and the R2 plan said "not
+  re-checked by the orchestrator". *Repair:* record that reading, or drop the attribution.
+- **n11. Phase 0′ rests on two more checklist items than it names.**
+  - p. 596's preamble: "monomials of type (1.1.5)" (the admissibility of a degree-zero B) and
+    "B_T … at time T > 0". This is new item 12, which Part 5 (l. 586–587) and D9 (l. 913)
+    assign to Phases A/B only.
+  - p. 593's "Since there is no restriction on r" (item 2).
+  - *Repair:* name items 2 and 12 among Phase 0′'s readings (Part 5 l. 579; G-0′ l. 387–388;
+    D9).
+- **n12. G-0′'s grep misses two status sentences.**
+  - Its pattern `'Assume \$U_{\\rm GJS}'` (l. 390) misses "Assuming the exact slab-uniform
+    interface $U_{\rm GJS}$" (main.tex l. 93) and "\emph{Assuming $U_{\rm GJS}$" (l. 157).
+    Both are sentences that Phase 0′ must rewrite.
+  - `grep -n -i 'assum[a-z]*[^.]*U_{\\rm GJS}' part_i/main.tex` finds all four (ll. 93, 157,
+    2295, 2921).
+- **n13. Two phases edit the same paragraph.** Phase 0 ("The A8(iv) Scope gains F-T", l. 333)
+  and Phase 0′ ("The Scope paragraph, ll. 779–809, is rewritten", l. 364) both edit A8's single
+  Scope paragraph (main.tex l. 779), and both are recommended "now" (l. 69–70). *Repair:* say
+  that the two edits are made in one pass, or in which order.
+- **n14. One planned edit is missing.** The Phase B edits keep Steps 1–4 of Theorem 5.1
+  (l. 624–625). But Step 4's display, eq. (5), ends "= M²/C₈" (main.tex l. 1214), which is
+  false once M = M_B; C₈ also stays at main.tex ll. 436 and 897. *Repair:* add these edits
+  (they are also needed for N2).
+
+### R3b.4 Checks (b)–(g)
+
+- **(b) Phase 0′ and S0′.**
+  - *Quotations.* p. 596's (1.1.16), "uniformly in h", and "We shall choose t_j = j, j ∈ Z"
+    are verbatim (image re-read). The p. 600 quotations at l. 361 and l. 589 are verbatim,
+    with "[sic]" correctly marked (but see n5 for l. 115–116). p. 629's "Theorem 1.1.8 is the
+    special case B = I, n = 0" (l. 238) is verbatim.
+  - *B = I and n = 0.* Both are admissible by GJS's own use (pp. 597, 600, 629) and by p. 593
+    ("no restriction on r").
+  - *T.* See N1.
+  - *Integer time translation.* Right. It maps the time into (−1, 0]. It preserves GJS
+    squares, the norm (1.1.8), 𝒞_E, μ₀ and the Wick ordering, and the cutoff moves with the
+    observable.
+  - *Constants.* ‖I‖ = K₁ by (1.1.7) (empty product, w = 1). C₈ = O(1)K₁, with O(1)
+    depending on n = 0 and ε (n2).
+  - *Objections.* The three are answered as R3 proposed. Two more are needed: T (N1) and
+    Theorem 1.1.11's unprinted smallness hypotheses (n3).
+  - *Is "literal under the record's standard" justified by the plan's own definition?* Yes
+    for 0 < T < 1, given the two readings the plan names (degree-zero B; "uniformly in h"
+    read over the class, as the record already reads Theorem 1.1.7). Not as worded for T = 0.
+- **(c) The single table** (l. 694–701).
+  - It is consistent with its definition (l. 703–704), and its columns are cumulative.
+  - The declined-0′ note (l. 709–714) agrees with F-A\* and with Part 1 l. 226–229.
+  - The row "GJS statements imported" needs n9.
+- **(d) The proof-reached paragraph and A8(iv)-T.**
+  - The paragraph's argument is right and matches R9 (p. 597 "at the same h"; p. 595 "as
+    h → 1"; `strategy.md` ll. 2250–2252, checked). Its wording needs n6.
+  - The A8(iv)-T text is correct ("not a different standard, not a narrower form") except
+    for n7.
+- **(e) Gates, run on main.tex.**
+  - GB1's grep gives 54 hits; the `Assume` grep gives 2.
+  - After the planned Phase 0′ edits (Theorem 12.2 at main.tex l. 2295; Proposition C.7 at
+    l. 2921), the `Assume` grep prints 0, as G-0′ and GB1 require.
+  - The expected-survivor list fails: N2. G-0′'s pattern is too narrow: n12.
+- **(f) Internal consistency.**
+  - *Frozen sentences, Part 0 against Part 8.* F-0, F-0′ and F-A appear as verbatim
+    fragments. F-B and F-C do not (n8).
+  - *Phase names* are consistent: 0, 0′, A, B, C and integration, with rounds V0, V0′ and
+    V1–V5.
+  - *Checkpoint questions* are consistent. Part 0 l. 73–74 summarises Part 11 l. 926–958.
+    D10 points to Q3, which exists. Q8 matches the F-T variant at l. 782–783.
+  - One overlap in the map of edits: n13.
+  - Part 4's "after Phase B, A8(vi) and Theorem 1.1.11 are no longer used" (l. 517–518)
+    agrees with the table.
+- **(g) Locators.**
+  - All seven m13 corrections are right, both in Part 6 (l. 668–675) and in place.
+  - The new locators are also right:
+    - main.tex ll. 767–768, 797–799, 802–803, 2295, 2316–2325, 59, 93–111, 157–163, 173,
+      199, 278–284, 342, 2639–2648, 2653–2663, 887–888, 290–293 and 2546 (checked against
+      main.tex);
+    - `strategy.md` ll. 2250–2252.
+
+### R3b.5 What I checked, and what I could not
+
+- **Checked.**
+  - The revised plan, all of it, and r1c §5.
+  - p. 596 on the image, re-read in this round.
+  - GB1's grep, the `Assume` grep and a broader `Assum*` grep, all run on main.tex.
+  - main.tex ll. 2495–2556 and 2620–2664.
+  - The `m4/h6.pdf` text layer, for the numbers in trap 18.
+- **Not checked.**
+  - Whether the orchestrator's reading of pp. 622 and 624 is recorded anywhere outside r1c
+    and the council README (n10).
+  - The companion's §1 claims ledger and Figures 1–2, which the Phase 0′ notice refers to.
+  - The `docs/` files and `CITATION.cff` that Phase 0′ would edit.
+- **No build was run, and no file was touched except this report.**

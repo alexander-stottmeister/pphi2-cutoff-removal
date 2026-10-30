@@ -2407,3 +2407,87 @@ to the author.
 
 Build: `cd companion && python3 make_bib.py && pdflatex companion.tex` three times; the
 tracked PDF is built with `SOURCE_DATE_EPOCH=1792800000 FORCE_SOURCE_DATE=1`.
+
+### A plan to remove U_GJS, written by a council of agents (28-30 October 2026)
+
+**Question answered.** How to remove the hypothesis U_GJS (A8(vi)) from Theorem 12.2. The
+author asked for a plan made by an appropriate council of agents; the deliverable is
+`ugjs/PLAN.md`, for the author's approval, with the council's record in `ugjs/council/`
+(brief, five memos, an attack memo, the orchestrator's rulings R1-R13, the verifier's brief
+and report, a README of the rounds). Nothing in it is executed. Theorem 12.2 remains
+"proved, conditional on U_GJS".
+
+**Council.** Five members on Opus, each writing an independent memo from the record and
+from page images of GJS, Ann. of Math. 100 (1974), and of the two Erice 1973 lectures
+(rendered into the session scratchpad only): the reader of the printed expansion (cqft), a
+second constructive member for the modern toolkit (cqft2), a mathematical physicist (mp),
+an algebraic field theorist (aqft) and a handling editor (editor). Rounds: R0 brief; R1
+memos; R1b the expansion reader's attack on the route the others found; R1c the
+orchestrator's verified page facts and rulings; R2 the editor's plan; R3 a fresh verifier
+("not yet": 1 CRITICAL, 4 MAJOR, 20 MINOR); R2b revision under rulings R9-R13; R3b
+re-verification ("after the listed fixes": 0 CRITICAL, 2 MAJOR, 14 MINOR); R2c the fixes.
+
+**What the council found (all `conjectured` until written and audited).**
+1. Three members independently refuted the orchestrator's conjecture that the uniform local
+   moment (M_2) cannot be had from the printed clustering theorem: compare the slab cutoff
+   h_{T,g} with its restriction to a fixed box of GJS squares around the observable, along the
+   affine path, which stays in the Euclidean class; every square outside the box is
+   strip-separated, so GJS Theorem 1.1.7 as printed (A8(iv), constants independent of h)
+   bounds each term and the sum converges uniformly in T and g; the box term is bounded by
+   the record's own Lemma C.2 and Theorem C.5. This is the source's own device from its proof
+   of (1.1.11), p. 595. The expansion reader, who had confirmed the conjecture for paths
+   between two general cutoffs, attacked the route and found no error.
+2. The catch (cqft2, confirmed on pp. 594-597 by the orchestrator and the verifier): for the
+   sharp-time observable, the squares in its own time row need strips transverse to the
+   time-zero line. Theorem 1.1.7's printed statement prescribes no orientation; its printed
+   proof rotates the strip into the time direction and reduces to monomials of type (1.1.5)
+   via Theorem 1.1.11, so it reaches sharp-time monomials only across strips parallel to the
+   time-zero line, the one case the record uses today (Lemma 7.4). The record's import
+   standard (printed statement at printed scope, as for A1-A7) covers the transverse use; the
+   plan discloses it by a frozen sentence and isolates it as the open case
+   (`glimm_jaffe:problem/ce2-transverse-sharp-time-case`).
+3. The verifier found the literal re-sourcing the 5 September reading stopped short of:
+   Theorem 1.1.11's bound (1.1.16) is printed "uniformly in h" (p. 596), and GJS's own proof
+   of Theorem 1.1.8 on p. 600 is its specialization "Choose T = 0 and B = I in Theorem 1.1.11.
+   Then Q = 0" (named again on p. 629). At B = I, n = 0 and any 0 < T < 1, inside the printed
+   hypothesis T > 0, the comparison sum is empty and (1.1.16) is the h-uniform moment bound
+   with C_8 = O(1) K_1. Re-basing A8(vi) on it makes the import literal under the record's
+   standard at documentation cost: the plan's Phase 0', a status change and not a proof.
+4. The plan's first draft carried a second, "proof-reached" standard; the verifier showed it
+   inconsistent, since under it Theorem 1.1.7 itself is reached at no cutoff other than
+   h -> 1 (its proof uses Theorem 1.1.8 at the same h, p. 597), the asymmetry the record
+   rejected on 5 September 2026. Ruling R9: one standard, one status table.
+5. A MAJOR finding about the record (cqft, editor; confirmed on pp. 622 and 624 by the
+   verifier and the orchestrator): Appendix C's mechanism audit says in three places that no
+   stability estimate enters any constant of the printed proof; GJS (2.4.34), a stability
+   bound under the interpolated measures cited to Dimock-Glimm, fixes K_2 >= K_3^2 and so every
+   downstream constant. No theorem of the record is affected (Theorem 12.2 assumes U_GJS and
+   consumes nothing from the audit). Recorded as
+   `glimm_jaffe:correction/appendix-c-stability-input-misstated`, pending, not applied.
+6. An expansion route cannot be a "verified citation": the n = 0, B = I branch of Theorem
+   1.1.8 is left to "bounded similarly" (pp. 621, 627) and rests on (2.4.34); it ends as a
+   theorem of the record (31-70 pp estimated). No non-expansion method is known to the
+   council to be uniform over [0,1]-valued measurable cutoffs. The Erice lectures corroborate
+   (Part I (2.2.7) "uniformly in h", in a bracket, another norm, no printed class of h; Part II
+   footnote 5) and change no status.
+
+**The plan.** Phase 0' (re-sourcing); Phase 0 (documentation repairs, among them the Appendix C
+sentences, A8(ii) widened to the (1.1.6) monomials and the square convention, the transverse
+disclosure, "the only proportionate route" corrected in `docs/imports.md` and the KB nodes
+`problem/level2-h-trace` and `result/hamiltonian-bypass-dead`, the page range 600-631);
+Phases A and B (Theorems D.3 and D.4, the derivation "clustering implies the uniform local
+moment", 5-9 pp estimated, two audits, Appendix D with no existing number moved; Lemmas
+C.2-C.5 become load-bearing and are audited as such); Phase C (optional, 45-70 pp estimated,
+an isotropic clustering theorem of the record closing the transverse case). After Phase 0'
+the GJS theorems imported are 1.1.7 and 1.1.11; after Phase B, 1.1.7 alone, used once beyond
+what its printed proof reaches. The orchestrator's recommendation, recorded as such: Phase 0'
+now, Phase 0 now, Phases A and B at the author's choice, Phase C priced and not scheduled.
+Checkpoint 1 (PLAN Part 11) is the author's.
+
+**Record.** Commit 68153a2 (plan, memos, reports; the README's layout row) and the follow-up
+commit with the R2c corrections, the rulings' section 5 and this entry. KB: `glimm_jaffe:
+decision/ugjs-removal-council-plan`, `artifact/ugjs-removal-plan`,
+`problem/ce2-transverse-sharp-time-case`, `correction/appendix-c-stability-input-misstated`;
+`common:reference/glimm-jaffe-spencer-erice-1973` (28 October, reviewed and amended). The
+older KB texts calling the h-trace "the only proportionate route" stand until the author's
+go at Checkpoint 1.

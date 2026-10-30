@@ -1,5 +1,7 @@
 # PLAN — removing the hypothesis U_GJS from Theorem 12.2 (round R2b, editor)
 
+Corrected after R3b (30 October 2026): items N1, N2 and n1–n14 of `r3-verifier-report.md`, section R3b, are applied.
+
 30 October 2026. This plan was revised after the R3 verification
 (`ugjs/council/r3-verifier-report.md`: 1 CRITICAL, 4 MAJOR and 20 MINOR findings), under the
 orchestrator's rulings R9–R13 (`r1c-orchestrator-rulings.md`, §5). It synthesizes:
@@ -30,8 +32,9 @@ else is proved in the record.
 
 **Phase 0′: the status change. It is a re-sourcing, not a proof.**
 - What GJS print: the content of U_GJS as one statement, Theorem 1.1.11, (1.1.16), "uniformly
-  in h" (p. 596), at B = I, n = 0, T = 0. This is the specialization GJS print as their proof
-  of Theorem 1.1.8 (p. 600) and name on p. 629.
+  in h" (p. 596), at B = I, n = 0 and any 0 < T < 1, inside the printed range T > 0. GJS's
+  own choice in their proof of Theorem 1.1.8, T = 0 and B = I (p. 600), gives the same bound;
+  p. 629 names the case "B = I, n = 0".
 - After an integer time translation, it covers every sharp-time monomial at every cutoff of
   the p. 589 class, with C₈ = O(1)K₁.
 - Re-basing A8(vi) on it makes A8(vi) literal, and Theorem 12.2 becomes proved from the
@@ -63,8 +66,10 @@ forest expansion, 45–70 pp; C2, a re-derivation of Theorem 1.1.7's printed pro
 - Today and after Phase 0: "Theorem 12.2 is proved, conditional on U_GJS …".
 - After 0′: "Theorem 12.2 is proved from the literal imports A1–A8 …".
 - After A: "… the uniform gap of Theorem 7.8 rests on GJS Theorem 1.1.7 alone …".
-- After B: "… one GJS theorem imported, Theorem 1.1.7, also used across transverse strips …".
-- After C: "… its transverse use is a theorem of the record."
+- After B: "… with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time
+  observables across strips transverse to the time-zero line …".
+- After C: "… the uniform local moment and the transverse clustering it uses are theorems of
+  the record."
 
 **The orchestrator's recommendation (R11).** Phase 0′ now. Phase 0 now. Phases A and B as the
 substantive work, at the author's choice. Phase C priced, not scheduled.
@@ -105,25 +110,38 @@ first two-standard framework. The orchestrator verified the pages and issued rul
 - *Statement.* For every h in the p. 589 class (𝒞_E, A8(i)), every x⁰ ∈ ℝ, and every
   sharp-time monomial Q(x⁰) of type (1.1.5) with n_i < n̄:
   |∫Q(x⁰) dq_h| ≤ C₈ ‖Q(x⁰)‖_GJS, where C₈ := O(1)·K₁.
-  Here O(1) is the constant of Theorem 1.1.11 at n = 0, and K₁ = ‖I‖ by (1.1.7) (empty
-  product, w = 1). C₈ depends on the printed thresholds only, and is uniform in h and Q.
+  Here O(1) is the constant of Theorem 1.1.11 at n = 0 and a fixed ε > 0 ("Let n and ε > 0
+  be given", p. 596), and K₁ = ‖I‖ by (1.1.7) (empty product, w = 1). C₈ depends on n = 0, ε
+  and the printed thresholds only, and is uniform in h and Q.
 - *Derivation, to be written in the record.*
+  - A general monomial is a sum of localized pieces, and its norm is the sum of theirs by
+    (1.1.9). It therefore suffices to treat a localized Q(x⁰) (n4).
   - An integer time translation takes the sharp time into (−1, 0]. It maps GJS squares to
     GJS squares and leaves the norm (1.1.8) and the class of h invariant. It also transports
     dq_h, by the translation invariance of μ₀.
   - Then apply (1.1.16), "|∫(A − Q)B_T dq_h| ≤ O(1)‖A‖‖B‖e^{−γT}, uniformly in h" (p. 596),
-    with B = I, n = 0, T = 0. This is p. 600: "Choose T = 0 and B = I in Theorem 1.1.11. Then
-    Q = 0."
-  - The variant 0 < T < 1 (the verifier's) gives the same bound: the sum over 0 < t_j < T
-    with t_j = j is empty, and e^{−γT} ≤ 1.
+    with B = I, n = 0 and any 0 < T < 1. This is inside the printed range: "Let B_T denote the
+    translate of B at time T > 0" (p. 596). The sum Q = Σ_{0<t_j<T} Q_n(t_j) is empty because
+    t_j = j ("We shall choose t_j = j, j ∈ Z"), I_T = I, and e^{−γT} ≤ 1. So
+    |∫A dq_h| ≤ O(1)‖A‖‖I‖. This is the literal basis (N1).
+  - GJS's own choice in their proof of Theorem 1.1.8 is T = 0: "Choose T = 0 and B = I in
+    Theorem 1.1.11. Then Q = 0, so Theorem 1.1.8 is a special case of Theorem 1.1.10 [sic]"
+    (p. 600). It gives the same bound, but T = 0 is the proof's value, not the statement's.
 - *Consequence.* (U_GJS) holds on 𝒞_E ⊃ 𝒞_E^slab with this C₈. M keeps its form,
   M² = 9C₈𝔎(p′)λ²(Σ|a_n|)².
-- *Objections the Scope paragraph must answer* (verifier M1).
-  - Is a degree-zero B "a monomial of type (1.1.5)"? p. 593 sets no restriction on r, and GJS
-    use B = I on pp. 597, 600 and 629.
+- *Objections the Scope paragraph must answer* (verifier M1 and R3b).
+  - Is a degree-zero B "a monomial of type (1.1.5)"? p. 593 sets no restriction on r ("Since
+    there is no restriction on r"), and GJS use B = I on pp. 597, 600 and 629.
   - Is "uniformly in h" uniform over the class? The record already reads Theorem 1.1.7's
     "independent of h" that way.
   - The printed proof relies on (2.4.34) (F1). That applies equally to Theorem 1.1.7.
+  - T = 0 lies outside the printed T > 0. Answer: the literal basis is 0 < T < 1; p. 600's
+    T = 0 is GJS's own choice and gives the same bound (N1).
+  - Theorem 1.1.11 prints no smallness hypothesis; its statement says only "Let n and ε > 0 be
+    given" (p. 596). GJS print the hypotheses for Theorem 4.1, from which they prove Theorems
+    1.1.8 and 1.1.11 (pp. 628–629): "Let m₀, K₂ and K₁ be sufficiently large, and let λ be
+    sufficiently small" (p. 628). Also p. 600: "convergence of our expansions requires both
+    sufficiently small λ and sufficiently large m₀" (n3).
 - *Status.* A8(vi) becomes literal. Phase 0′ does not reduce what the record trusts in GJS:
   today's U_GJS is the same mathematics, assembled from four pages, and Phase 0′ cites the one
   printed statement that carries it.
@@ -261,8 +279,9 @@ Proposition C.1 is "deliberately limited to the audited mechanisms" (ll. 2729–
     pp. 611–612).
 - **What survives.** Proposition C.1, by its limitation clause. Theorem 12.2 does not consume
   Appendix C, so no theorem changes.
-- **Who read it.** `cqft`, `editor` and the orchestrator read pp. 622 and 624 on the images.
-  The verifier confirmed the finding at pp. 601, 611–612, 622 and 624.
+- **Who read it.** `cqft`, `editor` and the orchestrator read pp. 622 and 624 on the images
+  (the orchestrator's reading is recorded in r1c §5). The verifier confirmed the finding at
+  pp. 601, 611–612, 622 and 624.
 
 **What Theorem C.5 supplies, and what it does not.**
 - *Supplies:* for every p < ∞ and compact Λ, sup{‖e^{−𝒰_h}‖_{L^p(dμ₀)} : h ∈ 𝒞_E,
@@ -330,7 +349,8 @@ exist, with their pages and the text to confirm.
   - Proposition C.1's description narrowed; M2's "Dirichlet" made "decoupled", with M1's
     e^{τt} corrected (F11).
   - A8(ii) widened to name (1.1.6) and the square convention (F3).
-  - The A8(iv) Scope gains F-T (Part 8; F12).
+  - The A8(iv) Scope gains F-T (Part 8; F12). If Phase 0′ is also approved, this edit and
+    Phase 0′'s rewrite of the same Scope paragraph (main.tex l. 779) are made in one pass (n13).
   - An Appendix B corrections entry.
 - **Deliverable elsewhere.**
   - `docs/imports.md`, l. 56 ("only proportionate route") and l. 57 (page range 600–631).
@@ -352,19 +372,20 @@ exist, with their pages and the text to confirm.
 - **Owner.** The orchestrator applies the edits after Checkpoint 1. The editor drafts. `mp`
   checks the translation step.
 - **Inputs.** GJS pp. 596, 597, 600 and 629 (the orchestrator re-read pp. 596 and 600 on the
-  images, r1c §5; the verifier read all four); A8(i)–(iii); C5 item 9.
+  images, r1c §5; the verifier read all four); A8(i)–(iii); C5 items 2, 9 and 12.
 - **Deliverable in `main.tex`.**
   - A8(vi) re-based. An unnumbered source fact, `srcfactstar` like (vii′), so that no number
     moves, quotes verbatim:
-    - p. 596: Theorem 1.1.11, with (1.1.14)–(1.1.16), "uniformly in h", and "We shall choose
-      t_j = j, j ∈ Z";
-    - p. 600: "Choose T = 0 and B = I in Theorem 1.1.11. Then Q = 0", with "Theorem 1.1.10"
-      marked [sic] (9b).
+    - p. 596: "Let B_T denote the translate of B at time T > 0"; Theorem 1.1.11, with
+      (1.1.14)–(1.1.16), "uniformly in h", and "We shall choose t_j = j, j ∈ Z". The literal
+      basis is (1.1.16) at B = I, n = 0 and any 0 < T < 1 (N1);
+    - p. 600, as GJS's own choice giving the same bound: "Choose T = 0 and B = I in Theorem
+      1.1.11. Then Q = 0", with "Theorem 1.1.10" marked [sic] (9b).
   - The integer time translation is written out, and C₈ := O(1)K₁.
-  - The Scope paragraph, ll. 779–809, is rewritten. It states the one standard and the
-    re-sourcing. It says why the 5 September reading stopped short, and that the two
-    readings are the same mathematics. It replaces Scope (b) (F8) and answers the three
-    objections of S0′.
+  - The Scope paragraph, ll. 779–809, is rewritten, in one pass with Phase 0's F-T (n13). It
+    states the one standard and the re-sourcing. It says why the 5 September reading stopped
+    short, and that the two readings are the same mathematics. It replaces Scope (b) (F8) and
+    answers the five objections of S0′.
   - A8(v) (CE1) and (vii)–(vii′) stay, as corroboration.
   - Theorem 12.2, l. 2295: "Assume U_GJS, namely Assumption A8(vi), and" is deleted. The
     imports paragraph, ll. 2316–2325, is rewritten.
@@ -374,6 +395,7 @@ exist, with their pages and the text to confirm.
   - Abstract (ll. 93–111); §1.2 (ll. 157–163, 173, 199); §1.4 (ll. 278–284, 342); Appendix B
     External residue (ll. 2639–2648); Appendix C introduction (ll. 2653–2663).
   - §2.6, ll. 887–888: ε_𝒫 is reworded to name the hypotheses of the theorems imported (m11).
+    For Theorem 1.1.11 GJS print them with Theorem 4.1 (p. 628) and on p. 600 (n3).
 - **Deliverable elsewhere.**
   - `docs/status.md`, `docs/imports.md`, `docs/index.md` and `docs/_config.yml`; the Status
     section of `README.md`; `CITATION.cff`; `docs/results.*` regenerated.
@@ -384,10 +406,12 @@ exist, with their pages and the text to confirm.
 - **Gate G-0′.**
   - The page facts of pp. 596 and 600 are quoted verbatim in the new source fact, each with a
     `% src:` comment.
-  - C5 item 9 and a new item 13 (p. 600) exist in `part_i/C5_reading_record.md`, with page,
-    image and the text to confirm.
+  - C5 items 2, 9 and 12 and a new item 13 (p. 600) exist in `part_i/C5_reading_record.md`,
+    with page, image and the text to confirm; item 2 includes p. 593's "Since there is no
+    restriction on r", item 12 p. 596's "B_T … at time T > 0" (n11).
   - The Scope paragraph is rewritten as listed.
-  - `grep -c 'Assume \$U_{\\rm GJS}' part_i/main.tex` prints 0.
+  - `grep -n -i 'assum[a-z]*[^.]*U_{\\rm GJS}' part_i/main.tex` prints nothing. Today it finds
+    ll. 93, 157, 2295 and 2921 (n12).
   - The `.aux` labels are unchanged: 125 labels, same numbers.
   - Three pdflatex runs clean, with the checks of G-0.
   - A fresh agent checks every quotation against the image and every status sentence
@@ -437,14 +461,20 @@ exist, with their pages and the text to confirm.
 - **Gate GB.**
   - GA1–GA7 for the transverse uses, each flagged in the text.
   - **GB1** (R13). Run `grep -n -e 'U_{\\rm GJS}' -e 'UGJS' -e 'C_8' part_i/main.tex`. The
-    surviving hits must be exactly:
-    - A8(vi), marked retired, with its tag and label kept for provenance;
-    - the Scope paragraph's history sentences;
-    - Appendix B's corrections history and External residue;
-    - Appendix C's introduction, as history.
+    surviving hits, written in the gate record as line ranges of the edited file, must be
+    exactly these (today's lines in brackets; verifier N2):
+    - the title-page notices, kept marked superseded (ll. 68, 72, 76, 81);
+    - A8(v), as provenance (l. 685);
+    - A8(vi), marked retired, with its tag and label kept for provenance (ll. 693–708);
+    - A8(vii′), as provenance (l. 722);
+    - the Scope paragraph's history sentences (ll. 796, 800);
+    - Appendix B's corrections history and External residue (ll. 2631, 2643);
+    - Appendix C's introduction, as history (ll. 2654, 2660);
+    - Corollary 5.2 (l. 1247), if it is kept rather than restated with M_B.
 
-    Any other hit fails the gate. Also, `grep -c 'Assume \$U_{\\rm GJS}' part_i/main.tex` must
-    print 0.
+    Any other hit fails the gate. The notation table (l. 436), §2.6 (l. 897) and eq. (5)
+    (l. 1214) must no longer hit; Part 6 lists their edits. Also,
+    `grep -c 'Assume \$U_{\\rm GJS}' part_i/main.tex` must print 0.
   - **GB2** (R12). The C5 checklist contains items 1–4 and 10–13, with pages, images and the
     text to confirm. The status sentences name them as open.
   - **GB3.** Appendix A's M rows are rewritten. M contains S₂, which is unevaluated, and
@@ -502,7 +532,7 @@ exist, with their pages and the text to confirm.
 
 | statement | source | status | read; human item |
 |---|---|---|---|
-| Theorem 1.1.11, (1.1.16), "uniformly in h", at B = I, n = 0, T = 0 | GJS p. 596; specialization p. 600; named p. 629 | literal; it becomes A8(vi) in Phase 0′ and is retired after Phase B | orchestrator (r1c §5), verifier; C5 items 9, 13 |
+| Theorem 1.1.11, (1.1.16), "uniformly in h", at B = I, n = 0 and any 0 < T < 1 (printed range T > 0) | GJS p. 596; GJS's own choice T = 0 (p. 600) gives the same bound; "B = I, n = 0" named p. 629 | literal; it becomes A8(vi) in Phase 0′ and is retired after Phase B | orchestrator (r1c §5), verifier; C5 items 2, 9, 12, 13 |
 | Theorem 1.1.7, (1.1.10): constants "independent of h, Q₁ and Q₂"; strip of any orientation | GJS p. 594, A8(iv) | literal; the transverse use is disclosed (F-T) | r1c §1, verifier; C5 items 4, 11 |
 | (1.1.5)–(1.1.6), "localized", squares centred at lattice sites, n_i < n̄; multi-time reading | pp. 593, 595, 596 (A8(ii), to be widened) | literal | r1c §1, verifier; C5 items 2, 10 |
 | norms (1.1.7)–(1.1.9) | p. 594, A8(iii) | literal | C5 item 3 |
@@ -574,9 +604,11 @@ Dimock–Glimm (if acquired).
 **Human readings** (R12). These are user-level open items, as C5 is today. They are named as
 open beside every status word, and no gate waits for them; gates check only that the items
 exist with pages and text. The checklist is `part_i/C5_reading_record.md`:
-- **items 1–4** (pp. 589, 590, 593, 594): load-bearing in every phase;
+- **items 1–4** (pp. 589, 590, 593, 594): load-bearing in every phase. Item 2 is extended to
+  quote p. 593's "Since there is no restriction on r", which Phase 0′ needs (n11);
 - **items 5–8**: corroboration once Phase 0′ re-bases A8(vi);
-- **item 9** (pp. 596–597, including (1.1.16) "uniformly in h"): load-bearing for Phase 0′;
+- **item 9** (pp. 596–597, including (1.1.16) "uniformly in h"): load-bearing for Phase 0′,
+  together with items 2 and 12 (n11);
 - **new item 10** (pp. 593 and 595): (1.1.5) and (1.1.6) verbatim; "localized" defined for
   both; squares "centered at the lattice side [sic]"; and p. 595's
   "x₀ = (x_{1,0}, ···, x_{r,0})" (m9);
@@ -584,9 +616,10 @@ exist with pages and text. The checklist is `part_i/C5_reading_record.md`:
   localization squares" and "the widest strip bounded by two parallel lines", with no
   orientation prescribed;
 - **new item 12** (pp. 596–597): Theorem 1.1.11's "monomials of type (1.1.5)", localized at
-  times ≤ 0 and ≥ 0, and the rotation sentence; F-T rests on these;
+  times ≤ 0 and ≥ 0; "Let B_T denote the translate of B at time T > 0"; and the rotation
+  sentence. F-T rests on these, and so does Phase 0′ (degree-zero B; T > 0);
 - **new item 13** (p. 600): "Proof of Theorem 1.1.8, assuming Theorem 1.1.10 [sic]. Choose
-  T = 0 and B = I in Theorem 1.1.11. Then Q = 0"; Phase 0′ rests on it.
+  T = 0 and B = I in Theorem 1.1.11. Then Q = 0"; Phase 0′ cites it as GJS's own choice (N1).
 
 The orchestrator and the verifier have read the content of items 9–13 on the images (r1c §§1
 and 5; verifier §3B). The verdicts belong to the human reader.
@@ -623,6 +656,10 @@ and 5; verifier §3B). The verdicts belong to the human reader.
 **Phase B edits at integration:**
 - Theorem 5.1: M becomes M_B (ll. 1156–1167); Step 5 (ll. 1218–1228) cites D.4. Corollary 5.2
   is restated with M_B or retired, its number kept.
+- Step 4's eq. (5), l. 1214, ends "= M²/C₈", which is false once M = M_B. The bound on
+  ‖Q_V‖_GJS stays; "= M²/C₈" is deleted (n14).
+- The notation table (l. 436, "K_1, K_2, C_7, C_8, m_1") and §2.6 (l. 897, "C_7, C_8, K_1, K_2
+  denote the printed constants") drop C₈ (N2).
 - A8(vi) is marked "retired on <date>". (v)–(vii′) go to provenance. The Scope paragraph
   (ll. 779–809) adds F-T in its integrated form.
 - Theorem 12.2's imports paragraph (ll. 2316–2325) names one GJS theorem. "Assume" is already
@@ -635,7 +672,9 @@ and 5; verifier §3B). The verdicts belong to the human reader.
 - **ε_𝒫** (m11). §2.6, ll. 887–888, which defines ε_𝒫 through "the Glimm–Jaffe–Spencer
   expansion is valid at bare mass M_*", is reworded to name the printed hypotheses of the
   theorems actually imported: Theorems 1.1.7 and 1.1.11 after Phase 0′, Theorem 1.1.7 after
-  Phase B.
+  Phase B. Theorem 1.1.11's statement prints none; GJS print them with Theorem 4.1, "Let m₀,
+  K₂ and K₁ be sufficiently large, and let λ be sufficiently small" (p. 628), and on p. 600
+  (n3).
 - Appendix A: the M rows; C₈ dropped; a note that the M in Ψ and in C_{N,γ,M} has changed.
 - Appendix B: a corrections entry; External residue lists C5 items 1–4 and 9–13.
 - §14 "Standing scope" (l. 2546).
@@ -696,9 +735,13 @@ columns are cumulative.
 | Thm 12.2 | proved, conditional on U_GJS | **proved** | proved | proved | proved |
 | Thm 7.8; gap clause of 12.2(5) | proved, conditional on U_GJS | proved | proved; rests on Thm 1.1.7 alone (parallel strips) | same | same |
 | Thm 5.1; moment clause of (5); Lemma 10.2 onward | proved, conditional on U_GJS | proved; rests on Thm 1.1.11 | same | proved; rests on Thm 1.1.7, including its transverse case; M = M_B | proved; transverse use by the record's own theorem |
-| A8(vi) | non-literal, assembled | literal (Thm 1.1.11, B = I, n = 0, T = 0) | literal; Thm 5.1 only | retired | retired |
+| A8(vi) | non-literal, assembled | literal (Thm 1.1.11, B = I, n = 0, 0 < T < 1) | literal; Thm 5.1 only | retired | retired |
 | A8(iv) use | parallel strips (Lemma 7.4) | same | parallel strips (Lemma 7.4, D.3) | both orientations, disclosed by F-T | parallel only; the transverse case is a theorem of the record |
-| **GJS statements imported** | Thm 1.1.7; U_GJS assembled from Thm 1.1.8 and pp. 594–597, 629 | Thms 1.1.7, 1.1.11 | Thms 1.1.7, 1.1.11 | Thm 1.1.7 | Thm 1.1.7, parallel case (none, if Lemma 7.4 is re-based on S3) |
+| **GJS theorems imported** | Thm 1.1.7; U_GJS assembled from Thm 1.1.8 and pp. 594–597, 629 | Thms 1.1.7, 1.1.11 | Thms 1.1.7, 1.1.11 | Thm 1.1.7 | Thm 1.1.7, parallel case (none, if Lemma 7.4 is re-based on S3) |
+
+In every column the record also imports printed GJS statements that are not theorems:
+A8(i)–(iii) (the p. 589 class, the p. 593 observables, the p. 594 norms) and A8(viii) (the
+p. 590 dilation) (n9).
 
 "Proved" means proved from A1–A8, each a printed statement at its printed scope, and from the
 record's own proofs, including Lemmas C.2–C.5 from Phase A on. Two cautions apply:
@@ -718,10 +761,11 @@ import counted only where its printed proof reaches. Then A8(iv) itself would co
 cutoff other than h → 1. Its printed proof obtains its constant from Theorem 1.1.8 "at the
 same h" (p. 597), and Theorem 1.1.8 is printed "uniformly as h → 1" (p. 595). Lemma 7.4, and
 with it Theorem 7.8, would then be conditional today on an h-uniform Theorem 1.1.8. There are
-two ways to avoid this, and the record can take neither:
+two ways to avoid this, and neither keeps proof-reached scope a second standard (n6):
 - Trusting that use of Theorem 1.1.8 for Theorem 7.8 while declining it for Theorem 5.1 is the
   asymmetry the record rejected on 5 September 2026 (`strategy.md` ll. 2250–2252).
-- Reading the h-uniform Theorem 1.1.8 off a printed statement is exactly Phase 0′.
+- Reading the h-uniform Theorem 1.1.8 off a printed statement is the one standard itself
+  (Phase 0′).
 
 Hence there is one standard. The transverse case stays a disclosure (F-T), not a second
 standard.
@@ -730,8 +774,8 @@ standard.
 - *What it is.* For transparency, the author may name the transverse case as a separate item,
   A8(iv)-T: transverse clustering of sharp-time monomials at every h ∈ 𝒞_E.
 - *What it is not.* It is not a different standard, and it is not a narrower form of U_GJS.
-  A8(iv)-T and U_GJS are different statements, and neither implies the other: U_GJS is a
-  moment bound on the slab class and gives no clustering. With Appendix C, A8(iv)-T gives
+  A8(iv)-T and U_GJS are different statements, and neither is known to imply the other
+  (n7): U_GJS is a moment bound on the slab class and states no clustering. With Appendix C, A8(iv)-T gives
   bounds A‖F‖_{L²} + B′‖F‖_GJS, with A growing with the observable's box, not C₈‖F‖_GJS for
   all F.
 - *What it does.* It is one case of a printed theorem statement that its printed proof does
@@ -740,7 +784,7 @@ standard.
 **The trade of Phases A and B after Phase 0′** (R11). After Phase 0′, Phases A and B are not
 needed for the status of Theorem 12.2. They are the mathematical content of the removal:
 - *Gains.* The record proves that clustering implies the uniform local moment (D.1–D.4), so
-  the moment bound becomes a theorem of the record and not an import. The GJS statements
+  the moment bound becomes a theorem of the record and not an import. The GJS theorems
   imported shrink from two (Theorems 1.1.7 and 1.1.11) to one (Theorem 1.1.7).
 - *Cost.* That one statement is used in its transverse case for the sharp-time observable, a
   case its printed proof does not reach (F-T).
@@ -785,8 +829,9 @@ needed for the status of Theorem 12.2. They are the mathematical content of the 
   is proved, conditional on U_GJS (Assumption A8(vi)), which is imported at the scope at which
   the source states and uses it and is not re-derived."
 - **F-0′:** "Theorem 12.2 is proved from the literal imports A1–A8. Its moment input A8(vi) is
-  GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0, T = 0, the specialization GJS print as their
-  proof of Theorem 1.1.8 (p. 600); the record does not re-derive the cluster expansion."
+  GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0 and any 0 < T < 1 (p. 596), the case GJS
+  name on p. 629 and specialize to T = 0 in their proof of Theorem 1.1.8 (p. 600); the record
+  does not re-derive the cluster expansion."
 - **F-A** (Phase 0′ and Phase A): "Theorem 12.2 is proved from the literal imports A1–A8; the
   uniform gap of Theorem 7.8 rests on GJS Theorem 1.1.7 alone, and GJS Theorem 1.1.11 is used
   only for the local moment of Theorem 5.1."
@@ -814,7 +859,7 @@ needed for the status of Theorem 12.2. They are the mathematical content of the 
    U_GJS; it imports Theorem 1.1.7, whose printed proof takes its constant from Theorem 1.1.8
    at the same h (p. 597)". (`mp`, `cqft`, `cqft2`, `editor`)
 6. Not "proof-reached scope" as a standard of the record (R9). Not "A8(iv)-T is narrower than
-   U_GJS": they are different statements, neither implying the other (M4).
+   U_GJS": they are different statements, neither known to imply the other (M4; n7).
 7. Not "the note verifies GJS's uniformity". Write: "derived from the printed statement; none
    of GJS's proofs is verified". (`cqft2`, `cqft`, `editor`)
 8. Not "CE1 follows from CE2". Write: "for observables of bounded support, with constant
@@ -865,7 +910,7 @@ needed for the status of Theorem 12.2. They are the mathematical content of the 
 
 | ID | locator | finding | sev. | found by | confirmed at the source |
 |---|---|---|---|---|---|
-| F1 | App C: M1 l. 2677, M3 l. 2699, M4 ll. 2708–2709, M5 ll. 2725–2727, Rem C.6 ll. 2914–2916; Prop C.1's description; `m4/r1-check.tex` abstract item (2) | Says no stability estimate enters GJS's constants; (2.4.34), p. 624, cited to Dimock–Glimm, fixes K₂ ≥ K₃² (Lemma 2.4.6, p. 622) | MAJOR (no theorem affected) | `cqft`, `editor` | images of pp. 622, 624: `cqft`, `editor` and the orchestrator (30 October); the verifier at pp. 601, 611–612, 622, 624 and in the record's lines |
+| F1 | App C: M1 l. 2677, M3 l. 2699, M4 ll. 2708–2709, M5 ll. 2725–2727, Rem C.6 ll. 2914–2916; Prop C.1's description; `m4/r1-check.tex` abstract item (2) | Says no stability estimate enters GJS's constants; (2.4.34), p. 624, cited to Dimock–Glimm, fixes K₂ ≥ K₃² (Lemma 2.4.6, p. 622) | MAJOR (no theorem affected) | `cqft`, `editor` | images of pp. 622, 624: `cqft`, `editor` and the orchestrator (30 October; r1c §5); the verifier at pp. 601, 611–612, 622, 624 and in the record's lines |
 | F2 | l. 1349 | `\|le` prints "le" for ≤ | MINOR | `mp`, `aqft`, `cqft2`, `cqft` (`editor` noted) | four members; `aqft` on the rendered page; the verifier in the TeX source |
 | F3 | ll. 438, 1188, 1260, 1296–1305, 1452 | Cells [j, j+1) against GJS squares centred at lattice sites (p. 593); counts unchanged, but Appendix D must use GJS squares | MINOR | `mp`, `aqft`, `cqft2`, `cqft` | orchestrator (r1c §1); verifier |
 | F4 | `docs/imports.md` l. 56; KB `problem/level2-h-trace`, `result/hamiltonian-bypass-dead`; companion `s4-import.tex` ll. 73–75 | "The only proportionate route … is a display-by-display trace": unsupported | MINOR | `mp`, `aqft` | verifier |
@@ -910,7 +955,7 @@ These are recorded verbatim by any trace, never corrected silently.
 | D6 | Erice re-sourcing | all: corroboration | **Editor**: Erice may be cited as corroboration in the Scope, never in a status sentence |
 | D7 | Deliverable form | `mp`: Lemma 4.5. `aqft`: Appendix D. `editor` memo: supplement | **Editor (R5)**: Appendix D (Part 6) |
 | D8 | Lemma 7.6's radius | `mp`: every s. `cqft2`: radius 1/K_f | **Editor**: a finite radius suffices for Theorem 7.7 |
-| D9 | Which C5 items carry weight | `aqft`: 1–4. `mp`: new 10–11. `cqft2`: pp. 593–597. `cqft`: 5, 6, 9 | **Editor, after R10**: 1–4 always; 9 and 13 for Phase 0′; 10–12 for A/B; 5–8 corroboration |
+| D9 | Which C5 items carry weight | `aqft`: 1–4. `mp`: new 10–11. `cqft2`: pp. 593–597. `cqft`: 5, 6, 9 | **Editor, after R10**: 1–4 always; 2, 9, 12 and 13 for Phase 0′; 10–12 for A/B; 5–8 corroboration |
 | D10 | Write A and B together? | `mp`: jointly, gated separately. `cqft2`: B at the author's choice | **R1**; Checkpoint 1, question 3 |
 | D11 | Base term of Phase B | `aqft`, `cqft2`: a 3×5 box. `mp`: spatial box with Lemma L | **Editor**: 3×5 box; `mp`'s constant as alternative |
 | D12 | Status of Thm 7.8 after Phase A | `cqft`: "conditional on A8(iv)". `mp`, `aqft`: "proved". The R2 plan: "proved under both standards" | **R9**: one standard; "proved" (after Phase 0′ already). The phrase "under both standards" is withdrawn |
@@ -925,7 +970,8 @@ These are recorded verbatim by any trace, never corrected silently.
 
 **Checkpoint 1** (after re-verification, before any edit; R6, R10, R11). The author is asked:
 1. **Phase 0′.** Accept Phase 0′ as the status change? That is: re-base A8(vi) on GJS Theorem
-   1.1.11, (1.1.16) at B = I, n = 0, T = 0 (pp. 596, 600), so that Theorem 12.2 is proved from
+   1.1.11, (1.1.16) at B = I, n = 0 and any 0 < T < 1 (p. 596; the case is named on p. 629,
+   and GJS's own T = 0 on p. 600 gives the same bound), so that Theorem 12.2 is proved from
    the literal imports A1–A8. It is a re-sourcing, not a proof.
 1′. **Phases A and B.** Run them as the substantive derivation? The trade (Part 7): the
    record proves the moment bound, and its GJS imports drop from two theorems to one, at the

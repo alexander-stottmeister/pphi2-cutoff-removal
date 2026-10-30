@@ -54,9 +54,14 @@ the repository (publication boundary, `../../README.md`).
    (`r1c-orchestrator-rulings.md`, section 5).
 7. **R2b (30 October).** The editor revised the plan under those rulings (one import
    standard; Phase 0', the re-sourcing; the verifier's MINOR items applied).
-8. **R3b (30 October, in progress at the time of this commit).** The same verifier re-checks
-   the revised parts; its findings go to the end of `r3-verifier-report.md`.
-9. **Checkpoint (open).** The author reads the plan and decides the questions of its Part 11.
+8. **R3b (30 October).** The same verifier re-checked the revised parts (section R3b of
+   `r3-verifier-report.md`: "can go to the author after the listed fixes"; 0 CRITICAL,
+   2 MAJOR, 14 MINOR). The two MAJOR items were text fixes: the literal basis of Phase 0'
+   must be stated at 0 < T < 1, inside the printed hypothesis T > 0 (GJS's own T = 0 on
+   p. 600 gives the same bound), and one gate's list of surviving lines was incomplete.
+9. **R2c (30 October).** The editor applied every R3b item in place; the orchestrator
+   spot-checked them and recorded its own reading of GJS pp. 622 and 624 in the rulings file.
+10. **Checkpoint (open).** The author reads the plan and decides the questions of its Part 11.
 
 ## Harness notes
 
