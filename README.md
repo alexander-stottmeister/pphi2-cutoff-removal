@@ -168,6 +168,7 @@ figures below are interactive.
 | `part_i/` | document of record, its `README.md` with gates G0–G6 and step maps, and the C5 reading record |
 | `part_ii/` | the open programme, gate (II.11) scoping, phases V0–V4 |
 | `companion/` | the reader's companion (20 pp), its sections and figures, and the council of agents that wrote it (`companion/council/`) |
+| `ugjs/` | the plan to remove the hypothesis U_GJS from Theorem 12.2 (`ugjs/PLAN.md`, for the author's approval; nothing in it is executed), and the council of agents that wrote it (`ugjs/council/`) |
 | `m0/`–`m6/` | historical working drafts, superseded by `part_i/main.tex` and kept for provenance |
 | `audit_2026/` | citation screenshot dossier and the 2026 critical proof audit |
 | `fresh_audit_2026_08_16/` | independent audit, Lamport-style reconstruction, evidence ledgers |
