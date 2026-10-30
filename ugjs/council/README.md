@@ -55,7 +55,7 @@ the repository (publication boundary, `../../README.md`).
 7. **R2b (30 October).** The editor revised the plan under those rulings (one import
    standard; Phase 0', the re-sourcing; the verifier's MINOR items applied).
 8. **R3b (30 October).** The same verifier re-checked the revised parts (section R3b of
-   `r3-verifier-report.md`: "can go to the author after the listed fixes"; 0 CRITICAL,
+   `r3-verifier-report.md`: verdict "After the listed fixes."; 0 CRITICAL,
    2 MAJOR, 14 MINOR). The two MAJOR items were text fixes: the literal basis of Phase 0'
    must be stated at 0 < T < 1, inside the printed hypothesis T > 0 (GJS's own T = 0 on
    p. 600 gives the same bound), and one gate's list of surviving lines was incomplete.

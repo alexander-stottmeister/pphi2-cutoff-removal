@@ -2425,7 +2425,8 @@ an algebraic field theorist (aqft) and a handling editor (editor). Rounds: R0 br
 memos; R1b the expansion reader's attack on the route the others found; R1c the
 orchestrator's verified page facts and rulings; R2 the editor's plan; R3 a fresh verifier
 ("not yet": 1 CRITICAL, 4 MAJOR, 20 MINOR); R2b revision under rulings R9-R13; R3b
-re-verification ("after the listed fixes": 0 CRITICAL, 2 MAJOR, 14 MINOR); R2c the fixes.
+re-verification (verdict "After the listed fixes.": 0 CRITICAL, 2 MAJOR, 14 MINOR); R2c the
+fixes.
 
 **What the council found (all `conjectured` until written and audited).**
 1. Three members independently refuted the orchestrator's conjecture that the uniform local
