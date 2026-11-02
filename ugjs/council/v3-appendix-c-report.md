@@ -4,6 +4,9 @@
 > files named below as `audits/v3-numerics/…` are in `ugjs/council/v3-numerics/` (the output file renamed
 > `check_bounds.output.txt`, since `*.out` is git-ignored as a LaTeX artefact); the rendered page images
 > (`audits/v3-pages/`, scans of Simon's book and of the record) stay outside the repository.
+> Errata noted by the KB reviewer of 2 November 2026 (orchestrator's note, text below unchanged): §9 contains ten
+> repairs, R1–R10, so the verdict's "R1–R8" and the commit message of e436654 undercount them; and of the chaos facts
+> cited in M-3, (I.21) p. 11, Γ_n p. 17 and (I.32) p. 25 are in chapter I of Simon's book, not in chapter V.
 
 Round V3 of `ugjs/PLAN.md` Part 5. Auditor: a fresh agent (Claude Opus 5.5) that wrote neither the record nor the
 note. Started 31 October 2026, interrupted by a usage limit, resumed and finished 2 November 2026.

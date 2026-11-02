@@ -447,7 +447,7 @@ squared-observable weight; the forbidden pattern is `(2p')!` with `K_2^{4p'}` in
   Remark C.6 are narrowed. "uniformly as h↑1" became "h → 1" (F14).
 - **Build (gate G-0/G-0′ record).** 3× pdflatex with `SOURCE_DATE_EPOCH=1793404800
   FORCE_SOURCE_DATE=1`: 0 errors, 0 undefined, 0 Overfull, 5 Underfull (unchanged), 42 pp (was
-  40). The committed build and the first Phase 0 build carried 9 Overfull boxes (widths 0.17,
+  40). The pre-edit build (commit 65e31bb) and the first Phase 0 build carried 9 Overfull boxes (widths 0.17,
   0.28, 1.47, 2.63, 9.33, 9.80, 18.87, 22.41, 23.88 pt); a layout pass on 2 November 2026
   removed them without changing any statement's number or page (the §1.2 dependency graph set
   at footnote size, one display split and one tightened, Appendix A's table with 4 pt column
