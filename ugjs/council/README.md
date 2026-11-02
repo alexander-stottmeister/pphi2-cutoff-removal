@@ -5,7 +5,8 @@ This folder is the record of a council of agents convened on 28 October 2026 (re
 (Assumption A8(vi) of `part_i/main.tex`) from Theorem 12.2. The plan itself is
 `../PLAN.md`. Nothing here is mathematics of the record: every route named in these files
 is `conjectured` until it is written out and audited, and Theorem 12.2 remains
-"proved, conditional on U_GJS" (see `../../docs/status.md`).
+"proved, conditional on U_GJS" as of the council's dates; on 31 October 2026 the plan's
+Phases 0′ and 0 were executed (gate record: `../../part_i/README.md`, section "Re-sourcing of A8(vi) and documentation repairs (2026-10-31)", and `../../strategy.md`; `../PLAN.md` itself is unchanged, and its "Nothing in it has been executed" describes the state before that date).
 
 ## Files
 

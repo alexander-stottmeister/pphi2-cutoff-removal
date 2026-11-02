@@ -51,18 +51,18 @@ norm convergence of the ground-state net on the quasi-local algebra\\[4pt]
 \author{Alexander Stottmeister\\[3pt]
   \normalsize Institut f\"ur Theoretische Physik, Leibniz Universit\"at Hannover,\\
   \normalsize Appelstra\ss e 2, 30167 Hannover, Germany}
-% Fixed date on purpose: it tracks the last mathematical change (the scope
-% amendment of A8(vi), 5 September 2026), not the build date, so the title page
-% does not drift on every rebuild.  Update it only when the mathematics changes.
+% Fixed date on purpose: it tracks the last change of the mathematics or of an
+% import's status (the re-sourcing of A8(vi), 31 October 2026), not the build date,
+% so the title page does not drift on every rebuild.  Update it only for such a change.
 % The PDF bytes still carry pdftex's build timestamp; for byte-identical output
-% build with SOURCE_DATE_EPOCH=1788566400 FORCE_SOURCE_DATE=1 (verified).
-\date{5 September 2026}
+% build with SOURCE_DATE_EPOCH=1793404800 FORCE_SOURCE_DATE=1 (verified 31 October 2026).
+\date{31 October 2026}
 
 \begin{document}
 \maketitle
 
 \begin{quote}\small
-\textbf{Repair status (16 August 2026).} This is the canonical Part I manuscript.
+\textbf{Repair status (16 August 2026; superseded on 31 October 2026, see below).} This is the canonical Part I manuscript.
 The proof below is an implication from the imports in \S\ref{subsec:imports}; it is
 not a proof of those imports.  In particular, the exact slab-uniform moment estimate
 $U_{\rm GJS}$ is now stated explicitly in Assumption~\ref{A:gjs}(vi).  The printed
@@ -73,7 +73,7 @@ $U_{\rm GJS}$ and the other enumerated imports.  The localization omission found
 the CE2-to-gap passage and the ultraviolet-mollifier specification are repaired below.
 
 \smallskip
-\textbf{Scope amendment (5 September 2026).}  The status of $U_{\rm GJS}$ is re-based.
+\textbf{Scope amendment (5 September 2026; superseded on 31 October 2026, see below).}  The status of $U_{\rm GJS}$ is re-based.
 It is no longer described as a quantifier strengthened beyond the source: it is the
 cutoff-uniform quantifier that \cite{GJS} itself states (p.~629) and consumes in its
 printed proofs of Theorems 1.1.7 and 1.1.1 (pp.~594--597).  Assumption~\ref{A:gjs}(vii$'$)
@@ -81,17 +81,29 @@ quotes the passages verbatim and the Scope paragraph of Assumption~\ref{A:gjs} r
 the reading.  $U_{\rm GJS}$ remains a named hypothesis of Theorem~\ref{thm:MAIN}: it is
 imported at the source's own scope, not re-derived here.  No proof in the manuscript
 changed.
+
+\smallskip
+\textbf{Re-sourcing of A8(vi) (31 October 2026).}  Theorem~\ref{thm:MAIN} is proved from
+the literal imports A1--A8.  Its moment input A8(vi) is GJS Theorem 1.1.11, (1.1.16), at
+$B=I$, $n=0$ and any $0<T<1$ (p.~596), the case GJS name on p.~629 and specialize to
+$T=0$ in their proof of Theorem 1.1.8 (p.~600); the record does not re-derive the cluster
+expansion.  The two paragraphs above are kept for the record: the reading of
+5 September 2026 used the same pages as evidence for Theorem 1.1.8 and is the same
+mathematics with different bookkeeping.  No proof in the manuscript changed.  The planned
+derivation of the local moment from Theorem 1.1.7 alone, and the one case of Theorem 1.1.7
+that its printed proof does not reach (Scope paragraph of Assumption~\ref{A:gjs}), are
+recorded in \texttt{ugjs/PLAN.md}.
 \end{quote}
 
 \begin{abstract}
-% src: m6/main.tex abstract (v2, audited repair), transcribed; forward pointers adapted.
+% src: m6/main.tex abstract (v2, audited repair), transcribed; forward pointers adapted;
+% edited 31 October 2026 (re-sourcing of A8(vi)): the two GJS theorems named are pp. 594, 596, 600, 629.
 Let $H(g)$ be the spatially cutoff $P(\varphi)_2$ Hamiltonian, $\Om_g$ its ground state, and
 $\omega_g$ the induced state on the time-zero quasi-local algebra $\A$. Glimm and Jaffe (1970)
 constructed an infinite-volume vacuum as a $w^*$ \emph{limit point} of space-averaged $\omega_g$;
 the cited construction does not prove convergence of the net itself. Guerra--Rosen--Simon
 (1975) formulated analogous Euclidean local-convergence questions as their Problems~1--2.
-Assuming the exact slab-uniform interface $U_{\rm GJS}$ of
-Assumption~\ref{A:gjs}(vi), we prove: in the Glimm--Jaffe--Spencer weak-coupling region
+We prove: in the Glimm--Jaffe--Spencer weak-coupling region
 $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$, the \emph{full net} $(\omega_g)$ --- no subnets, no
 averaging --- converges in norm on every local algebra,
 \[
@@ -103,12 +115,11 @@ Glimm--Jaffe dynamics $(\A,\alpha)$ in the spectral sense. The proof is Hamilton
 local-perturbations-perturb-locally estimate built on an exact spectral filter and the exact
 light cone makes the net Cauchy; its two hypotheses --- a cutoff-uniform gap
 $\spec H(g)\subseteq\{0\}\cup[m_1,\infty)$ and a uniform local interaction moment --- are derived
-from the exponential-clustering theorem of Glimm--Jaffe--Spencer (Ann.\ of Math.\ 100
-(1974), Thm.~1.1.7) and the working-family version of their moment estimate
-(Thm.~1.1.8).  The latter is precisely $U_{\rm GJS}$: it is the cutoff-uniform
-quantifier that the source itself states (p.~629) and consumes in its printed proofs of
-Theorems 1.1.7 and 1.1.1 (pp.~594--597); it is imported here at that scope, not
-re-proved.
+from two printed theorems of Glimm--Jaffe--Spencer (Ann.\ of Math.\ 100 (1974)): the
+exponential-clustering Theorem~1.1.7 and the cutoff-uniform moment estimate of
+Theorem~1.1.11, (1.1.16), ``uniformly in $h$'', in the specialization $B=I$, $n=0$
+(pp.~600 and 629) that the source itself prints as its proof of Theorem~1.1.8.  Both are imported as printed;
+neither is re-proved.
 The proof also imports, and explicitly identifies in \S\ref{sec:setting}, the standard
 cutoff-construction results on self-adjointness and the simple positive ground state,
 Feynman--Kac--Nelson transfer, finite-volume stability and hypercontractivity, domain smoothing
@@ -154,7 +165,7 @@ Rodriguez Zarate--Thiemann cited here is explicitly restricted to finite volume 
 \subsection{The result}
 
 \begin{quote}
-\emph{Assuming $U_{\rm GJS}$, in the GJS weak-coupling region the full net
+\emph{In the GJS weak-coupling region the full net
 $(\omega_g)_{g\in\G}$ converges in norm on
 every local algebra; the limit is locally normal, translation and (for even $\mathscr P$)
 $\Z_2$ invariant, and is a ground state of the Glimm--Jaffe dynamics. An explicit rate holds:
@@ -170,7 +181,7 @@ compactness-free:
 \toprule
 step & content & where proved\\
 \midrule
-(i) & printed GJS CE2 and the source-scope CE1 interface $U_{\rm GJS}$
+(i) & GJS CE2 and $U_{\rm GJS}$ (Thm 1.1.11), both printed
     & Assumption~\ref{A:gjs} (\S\ref{sec:setting})\\
 (ii) & uniform local moment (M$_2$) & \S\ref{sec:M2}\\
 (iii) & uniform gap (G): $\spec H(g)\subseteq\{0\}\cup[m_1,\infty)$ & \S\ref{sec:G}\\
@@ -189,14 +200,14 @@ $\|(\omega_g-\omega_{g'})|_{\A(O)}\|$ whenever both cutoffs equal $1$ on $O_d$. 
 exact spectral identity: the ground-state property of the limit costs an identity, not an
 estimate.
 
-The dependency graph, established by the independent audit of the predecessor manuscript
-(Appendix~\ref{app:provenance}), is:
+The dependency graph, as established by the independent audit of the predecessor
+manuscript (Appendix~\ref{app:provenance}), is:
 % src: audit_2026/critical_proof_audit.tex \S3, transcribed.
-\begingroup\small
+\begingroup\footnotesize
 \[
 \begin{array}{c}
 \text{cutoff self-adjointness, simple positive ground state, FKN, domains}\\
-\quad+\quad\text{GJS CE2, }U_{\rm GJS}\text{ (slab CE1), scaling}
+\quad+\quad\text{GJS CE2, }U_{\rm GJS}\text{ (Thm 1.1.11), scaling}
 \end{array}
 \Longrightarrow
 \begin{array}{c}
@@ -276,9 +287,8 @@ Cauchy estimate consumes exactly two nonstandard inputs, both uniform over the w
 Hamiltonian cutoff class $\CH$: the gap \eqref{eq:G} of Theorem~\ref{thm:G}, and the
 local moment \eqref{eq:M2} of Theorem~\ref{thm:M2}. Both are transferred from the two
 cluster-expansion estimates of \cite{GJS} for the interacting Euclidean measures
-$dq_h$ --- the moment bound of Source Fact~\ref{sf:CE1}, used through the
-working-family interface $U_{\rm GJS}$ (imported at the scope at which the source
-states and uses it, Assumption~\ref{A:gjs}(vii$'$)), and the exponential clustering of
+$dq_h$ --- the cutoff-uniform moment bound \eqref{eq:UGJS} (Assumption~\ref{A:gjs}(vi),
+the printed Theorem 1.1.11 of \cite{GJS} at $B=I$, $n=0$), and the exponential clustering of
 Source Fact~\ref{sf:CE2}.  Appendix~\ref{app:huniform} records the source mechanism and proves
 the normalization and stability prerequisites; it does not replace the source's
 polymer expansion. The transfer device is the
@@ -289,7 +299,7 @@ structural point deserves emphasis: $\hat\psi_T\to\Om_g$ uses \emph{simplicity o
 Theorem~\ref{thm:G} is an output, so there is no circularity. Converting semigroup decay
 on centered polynomial vectors into a spectral gap requires that these vectors be total;
 this is the density theorem (Theorem~\ref{thm:dense}), proved from the factorial moments
-of Source Fact~\ref{sf:CE1} via exponential integrability, strip analyticity of
+supplied by \eqref{eq:UGJS} (Lemma~\ref{lem:transfer}) via exponential integrability, strip analyticity of
 characteristic functionals, Fourier uniqueness, and martingale convergence.
 
 \emph{Pillar 2: the derivative estimate.} Along the affine interpolation
@@ -547,8 +557,8 @@ $\|\Gamma(c)F\|_{q}\le\|F\|_{p}$ whenever $\|c\|^2\le(p-1)/(q-1)$; the display i
 case $c=e^{-T\mu}$, and the Mehler case $c=e^{-t}\mathbf 1$ on $L^2(d\mu_0)$ is the form
 used in Appendix~\ref{app:huniform}.
 
-\emph{Sources.} \cite[Thm.~I.17]{SimonBook} (abstract form and the display); time-region
-form \cite[Thm.~III.17]{SimonBook}.
+\emph{Sources.} \cite[Thm.~I.17]{SimonBook} (the abstract form and the display); the
+time-region form is \cite[Thm.~III.17]{SimonBook}.
 
 \emph{Scope.} \cite[Thms.~V.10, V.12]{SimonBook} are, respectively, a transfer-matrix % negative-scope mention (whitelisted): V.10, V.12
 application and an essential-self-adjointness theorem; neither is the hypercontractivity input
@@ -643,7 +653,14 @@ $\CH$.
 \emph{(ii) Observable class.} The class (1.1.5) of \cite{GJS} consists of sharp-time monomials
 $Q(x^0)=\int d\vec x\,w(\vec x)\prod_i{:}\Phi(x_i)^{m_i}{:}$ with $L^2$ kernels; equal times
 are allowed, and products of individually Wick-ordered powers are admissible without
-reordering. GJS bound the degree of each \emph{individual} Wick factor: $n_i<\bar n$ for a fixed
+reordering.  Equation (1.1.6) of \cite{GJS}, $Q=\int dx^0\,Q(x^0)$, defines the
+time-integrated monomials with kernels in $L^2$ of space-time; ``localized'' is defined for
+both forms by support in a product of unit lattice squares ``centered at the lattice side
+[sic] $j_i\in\mathbb Z^2$'' (p.~593), i.e.\ squares centred at integer points.  The cells
+$[j,j+1)$ used in \S\S\ref{sec:M2}--\ref{sec:norms} are this lattice shifted by one half unit
+in space; the count bounds used below (at most three cells for a support of length $2$,
+Theorem~\ref{thm:M2}, Step~2; $N_I\le\lfloor L\rfloor+2$, Lemma~\ref{lem:cells}) hold for
+any unit lattice, so the same computation on the squares of p.~593 gives the same constants. GJS bound the degree of each \emph{individual} Wick factor: $n_i<\bar n$ for a fixed
 finite $\bar n$, any choice $\bar n\ge\deg\mathscr P$ being sufficient; the printed text
 adds ``Since there is no restriction on $r$, $Q$ still may have an arbitrarily large
 degree'' (p.~593). Footnote~9 permits $\bar n=\infty$ at the price
@@ -685,12 +702,13 @@ The printed estimate is
  \bigl|\int Q(x^0)\,dq_h\bigr|\le C_8\|Q(x^0)\|_{\rm GJS},
 \]
 stated uniformly as the source cutoff tends to one.  This item records the literal
-one-sentence theorem statement; the class-uniform quantifier actually consumed below,
-which the source states on p.~629 and uses on pp.~595--597 (item~(vii$'$)), is isolated
-in item~(vi) rather than being silently inserted here.
+one-sentence statement of Theorem 1.1.8.  The cutoff-uniform form consumed below is
+item~(vi), read off the printed Theorem 1.1.11 (p.~596) in the specialization the source
+itself prints as its proof of Theorem 1.1.8 (p.~600).
 \end{srcfact}
 
-\emph{(vi) Exact working-family interface $U_{\rm GJS}$ (imported at source scope).}
+\emph{(vi) The cutoff-uniform moment estimate $U_{\rm GJS}$ (GJS Theorem 1.1.11 at
+$B=I$, $n=0$; imported as printed).}
 For
 \[
  \CE^{\rm slab}:=
@@ -705,10 +723,73 @@ one and the same constant $C_8$ satisfies
 \end{equation}
 The quantifiers include every affine cutoff
 $g_s=(1-s)g+sg'$ used later, because $g_s\in\CH$.  Equation
-\eqref{eq:UGJS}, and no uniformity assertion for a larger class, is the CE1
-uniformity needed in \S\S\ref{sec:M2} and \ref{sec:G}.
+\eqref{eq:UGJS} is the CE1 uniformity needed in \S\S\ref{sec:M2} and \ref{sec:G}; since
+31 October 2026 it is read off one printed theorem of the source, as follows.
+% src: GJS p. 596 (PDF page 13) and p. 600 (PDF page 17), transcribed from page images rendered
+% from the copy in refs/ on 28 October 2026 and read on 30-31 October (evidence images
+% gjs-thm1111-13.png, gjs-proof118-17.png, added 31 October); p. 629 as in Source Fact
+% sf:printed (gjs-uniform-46); p. 628 for the smallness hypotheses (gjs-thm41-45.png).
+\begin{srcfactstar}[{\cite[pp.~596, 600 and 629]{GJS}}]
+\emph{(a) p.~596.} ``We let $A$ and $B$ denote monomials of type (1.1.5) of degree $|A|$
+and $|B|$ and with kernels $w_A$ and $w_B$ respectively. We assume that $A$ is localized at
+times $x_{i0}\le0$, and that $B$ is localized at times $x_{i0}\ge0$. Let $B_T$ denote the
+translate of $B$ at time $T>0$, so that $B_T$ is localized at times $\ge T$.''
+``In the next two results, we take all times $x_{1,0}=t=\dots=x_{r,0}$ equal in $Q(x_0)$.
+To indicate this restriction, we write $Q(t)$ in place of $Q(x_0)$.'' [\dots]
+``\textsc{Theorem} 1.1.11. Let $n$ and $\varepsilon>0$ be given and let
+$\gamma=(n+1)m_0(1-\varepsilon)$. For any $A$, we may choose $n$\textsuperscript{th} degree
+polynomials $Q_n(t_j)$ of the form (1.1.5) with $r=1$, so that
+\[
+ \textup{(1.1.14)}\qquad \sum\nolimits_{t_j>0}e^{\gamma t_j}\|Q_n(t_j)\|\le O(1)\|A\|
+\]
+and so that
+\[
+ \textup{(1.1.15)}\qquad Q=\sum\nolimits_{0<t_j<T}Q_n(t_j)
+\]
+satisfies
+\[
+ \textup{(1.1.16)}\qquad \Bigl|\int(A-Q)B_T\,dq_h\Bigr|\le O(1)\|A\|\,\|B\|\,e^{-\gamma T} ,
+\]
+uniformly in $h$. We shall choose $t_j=j$, $j\in\mathbb Z$.''
+\emph{(b) p.~600.} ``Proof of Theorem 1.1.8, assuming Theorem 1.1.10 [sic]. Choose $T=0$
+and $B=I$ in Theorem 1.1.11. Then $Q=0$, so Theorem 1.1.8 is a special case of Theorem
+1.1.10 [sic].''
+\emph{(c) p.~629.} ``Theorem 1.1.11 follows from this inequality, while Theorem 1.1.8 is the
+special case $B=I$, $n=0$.''
+\end{srcfactstar}
 
-\emph{(vii) Printed evidence for (vi).}
+\emph{Reading (vi) off the source fact.}  Take $n=0$ and $B=I$ in Theorem 1.1.11, as the
+source does on p.~600 ($B=I$, $T=0$) and names on p.~629 ($B=I$, $n=0$).  For $0<T<1$ the sum (1.1.15) over the integers
+$0<t_j<T$ is empty, so $Q=0$ and $I_T=I$, and (1.1.16) reads
+$|\int A\,dq_h|\le O(1)\|A\|\,\|I\|\,e^{-\gamma T}\le O(1)\|A\|\,\|I\|$, uniformly in $h$,
+for every monomial $A$ of type (1.1.5) localized at times $\le0$; the source's own choice
+$T=0$ (p.~600) gives the same bound, and $0<T<1$ is used here because the source introduces
+$B_T$ for $T>0$.  By (1.1.7)--(1.1.8), $\|I\|=K_1$ (no Wick factors: the product is empty and the kernel is
+the constant $1$), so
+\eqref{eq:UGJS} holds with
+\[
+ C_8:=O(1)\,K_1 ,
+\]
+$O(1)$ the constant of Theorem 1.1.11 at $n=0$ and a fixed $\varepsilon\in(0,1)$; it holds for
+every $h\in\CE$, in particular on $\CE^{\rm slab}$, and $C_8$ depends on the printed
+thresholds only.  Three remarks make the reading exact.  \emph{(1)} A sharp-time monomial at
+an arbitrary time $x^0$ is carried to a time in $(-1,0]$ by an integer time translation,
+which maps the lattice squares of p.~593 onto themselves, preserves the norms
+(1.1.7)--(1.1.8), the class $\CE$ and the measure $d\mu_0$, and carries $dq_h$ to $dq_{h'}$
+with $h'$ the translated cutoff; the bound at $h'$ is the bound at $h$.  \emph{(2)} A general
+$Q(x^0)$ with kernel of bounded support is a finite sum of localized monomials, and
+$\|Q(x^0)\|_{\rm GJS}$ is the sum of their norms by (1.1.9); the bound is applied to each
+piece, whose times are all equal, as the source requires for Theorems 1.1.10--1.1.11
+(p.~596).  \emph{(3)} The smallness
+hypotheses under which Theorem 1.1.11 holds are not printed in its statement; the source
+prints them with Theorem 4.1, from which Theorems 1.1.8 and 1.1.11 are proved on pp.~628--629
+(``Let $m_0$, $K_2$ and $K_1$ be sufficiently large, and let $\lambda$ be sufficiently
+small''), and on p.~600 (``convergence of our expansions requires both sufficiently small
+$\lambda$ and sufficiently large $m_0$''); \S\ref{subsec:weak} fixes the working constants
+accordingly.  The admissibility of the degree-zero $B=I$ rests on the source's own use of it
+(pp.~597, 600, 629) and on p.~593's ``there is no restriction on $r$''.
+
+\emph{(vii) Printed corroboration of (vi).}
 % src: m4/r1-check.tex sf:printed (page image of p.629), transcribed.
 \begin{srcfact}[{\cite[p.~629, \S4]{GJS}}]\label{sf:printed}
 ``It is important to work with a translation invariant Hamiltonian, in order that time
@@ -718,9 +799,9 @@ $h\to1$. Thus these theorems hold in the infinite volume limit, and we proceed t
 limit $h=1$.''
 \end{srcfact}
 
-\emph{(vii$'$) Printed use of the quantifier by the source.}  The following passages
-show the source stating the cutoff-uniform quantifier of \eqref{eq:UGJS} and consuming
-it for arbitrary cutoff functions of its class, not only in the limit $h\to1$.  The
+\emph{(vii$'$) Printed use of the quantifier by the source (corroboration).}  The following
+passages show the source stating the cutoff-uniform quantifier of \eqref{eq:UGJS} and
+consuming it for arbitrary cutoff functions of its class, not only in the limit $h\to1$.  The
 source's $V(g)$ is the interaction $\mathcal U_g$ of item~(i); its
 $\langle F\rangle_h$ is $\int F\,dq_h$.
 % src: audit_2026/evidence/gjs-theorems-11.png (p.594), gjs-theorems-12.png (p.595),
@@ -757,15 +838,15 @@ We apply Theorem 1.1.7 to each term in the sum to obtain
 As a special case, the cutoff Schwinger functions $S_h$ converge as $h\to1$.''
 
 \emph{(b) Proof of Theorem 1.1.7, pp.~596--597.}  ``Proof of Theorem 1.1.7, assuming
-Theorems 1.1.8 and 1.1.11.  Take $n=0$ in Theorem 1.1.11.  Then $Q$ is a polynomial of
-degree zero, i.e., a constant.  From the choice $B=I$, it follows that
+Theorems 1.1.8 and 1.1.11.  Take $n=0$ in Theorem 1.1.11 Then $Q$ is a polynomial of
+degree zero, i.\ e., a constant.  From the choice $B=I$, it follows that
 \[
  Q=\int A\,dq_h+O(1)\|A\|e^{-m_0(1-\varepsilon)T} .
 \]
 After rotating and translating the strip separating $Q_1$ and $Q_2$ in Theorem 1.1.7,
 and after choosing $A=Q_1$, $B_T=Q_2$ in Theorem 1.1.11, the proof follows from Theorem
 1.1.8, (1.1.16) and the above determination of $Q$.''  The estimate (1.1.16), p.~596,
-reads ``$|\int(A-Q)B_T\,dq_h|\le O(1)\|A\|\,\|B\|e^{-\gamma T}$ uniformly in $h$.''
+reads ``$|\int(A-Q)B_T\,dq_h|\le O(1)\|A\|\,\|B\|e^{-\gamma T}$, uniformly in $h$.''
 
 \emph{(c) p.~629.}  ``Theorem 1.1.11 follows from this inequality, while Theorem 1.1.8
 is the special case $B=I$, $n=0$.''  The uniformity sentence of the same page is Source
@@ -773,47 +854,59 @@ Fact~\ref{sf:printed}.
 \end{srcfactstar}
 
 \emph{(viii) Scaling.} The unitary space-time dilation of \cite[p.~590]{GJS} sends
-$(m_0,\lambda)\mapsto(s^{-1}m_0,s^{-2}\lambda)$; the exact reduction of the dimensionless
+$(m_0,\lambda)$ to $(s^{-1}m_0,s^{-2}\lambda)$; the exact reduction of the dimensionless
 smallness hypothesis to the printed one is Proposition~\ref{prop:scaling}.
 
-\emph{Scope.} Theorem 1.1.7 states that its constants are independent of $h$; the
-one-sentence statement of Theorem 1.1.8 says ``uniformly as $h\uparrow1$''.  The
-quantifier imported in (vi) --- one constant for the whole slab family
-$\CE^{\rm slab}$ --- is the one the source states and uses, by the printed record of
-item~(vii$'$), in three steps.
-\emph{(a)} The source proves Theorem 1.1.1 along the affine path $h_1+\alpha(h_2-h_1)$,
-$\alpha\in[0,1]$, for arbitrary cutoff functions $h_1,h_2$ of its class (p.~589:
-compact support in $\mathbb R^2$, $0\le h\le1$), and applies Theorem 1.1.7 at every
-cutoff of that path with one $h$-independent constant.  Our path
-$h_{T,g_s}=(1-s)h_{T,g}+s\,h_{T,g'}$, $g_s=(1-s)g+sg'$ (\S\S\ref{sec:M2},
-\ref{sec:G}), is this family with $h_1=h_{T,g}$, $h_2=h_{T,g'}$, $\alpha=s$.
-\emph{(b)} The printed proof of Theorem 1.1.7 obtains its $h$-independent constant from
-Theorem 1.1.8 and (1.1.16) \emph{at the same $h$}: the bound of Theorem 1.1.8 on
-$\int Q_2\,dq_h$ multiplies the remainder $O(1)\|Q_1\|e^{-m_0(1-\varepsilon)T}$ in the
-determination of $Q$.  Lemma~\ref{lem:ce2strip} and Proposition~\ref{prop:discharge}
-use Theorem 1.1.7 as printed at $h=h_{T,g}\in\CE^{\rm slab}$; consistency therefore
-requires the constant of Theorem 1.1.8 to be uniform on the same class, which is
-\eqref{eq:UGJS}.
-\emph{(c)} Source Fact~\ref{sf:printed} states the uniformity of Theorems 1.1.8 and
-1.1.11 in the space cutoff $h$ explicitly, and p.~629 identifies Theorem 1.1.8 as the
-case $B=I$, $n=0$ of the estimate proved there uniformly in $h$.
-Hence \eqref{eq:UGJS} is imported at the scope at which the source states and uses it;
-it is not a quantifier strengthened beyond the source.  It is kept as a named
-hypothesis of Theorem~\ref{thm:MAIN} because its statement is assembled from four
-pages of the source rather than read off one theorem, and because this manuscript does
-not re-derive the cluster expansion: Appendix~\ref{app:huniform} audits the source
-mechanism and proves two analytic prerequisites only.  The formerly illegible norm
-prefactor was settled by page-image inspection: $K_1$ enters to the first power and the
-local weight is $K_2^{2N(\Delta)}$ (gate R2,
-\texttt{m4/r2-check.tex}). All constants in this manuscript use the exact reading
-\eqref{eq:printednorm}.
+\emph{Scope.} Every item of this assumption is a printed statement of \cite{GJS}, used at
+the scope at which it is printed; this is the standard under which
+Assumptions~\ref{A:cutoff}--\ref{A:covar} are imported, and no stricter one is available
+to this manuscript, since the printed proof of Theorem 1.1.7 itself obtains its
+$h$-independent constant from Theorem 1.1.8 at the same $h$ (p.~597) while Theorem
+1.1.8 is printed only ``uniformly as $h\to1$'' (p.~595).  Four points of scope are
+recorded.
+\emph{(a) Item (vi).}  From 16 August to 30 October 2026 the slab-uniform estimate
+\eqref{eq:UGJS} was carried as a named hypothesis of Theorem~\ref{thm:MAIN}, documented
+on 5 September 2026 as the quantifier the source states on p.~629 and consumes on
+pp.~594--597 (items (vii), (vii$'$)) but ``assembled from four pages of the source rather
+than read off one theorem''.  The source fact of item (vi) shows that it is read off one printed theorem,
+Theorem 1.1.11, whose estimate (1.1.16) is printed ``uniformly in $h$'', in the
+specialization the source itself prints as its proof of Theorem 1.1.8; the reading of
+5 September 2026 used the same pages as evidence for Theorem 1.1.8 and is the same
+mathematics with different bookkeeping.  Accordingly item (vi) is imported as printed, and
+Theorem~\ref{thm:MAIN} no longer carries it as a separate hypothesis.  This is a
+re-sourcing, not a proof: the manuscript does not re-derive the cluster expansion, and
+Appendix~\ref{app:huniform} audits the source mechanism and proves two analytic
+prerequisites only.  Items (vii) and (vii$'$) are kept as corroboration.
+\emph{(b) Item (iv).}  GJS Theorem 1.1.7 is printed for localized monomials separated by a
+strip of any orientation (p.~594).  Its printed proof rotates the strip into the time
+direction (p.~597) and so reaches sharp-time monomials only across strips parallel to the
+time-zero line.  Lemma~\ref{lem:ce2strip} uses only that case.
+\emph{(c)} The source's own proof of Theorem 1.1.7 obtains its constant from Theorem 1.1.8
+at the same $h$ (p.~597); this manuscript does not re-verify that proof, exactly as it
+re-verifies no proof behind Assumptions~\ref{A:cutoff}--\ref{A:covar}.
+\emph{(d) Three readings made explicit.}  The quantifier ``uniformly in $h$'' of (1.1.16)
+is read over the class of p.~589 (compact support, $0\le h\le1$), the only class of space-time
+cutoffs $h$ of the measures $dq_h$ that the source defines, exactly as Theorem 1.1.7's ``independent of $h$'' is read;
+p.~629 states the uniformity of Theorems 1.1.8 and 1.1.11 ``in the space cutoff $h$''
+(Source Fact~\ref{sf:printed}).  The constant $O(1)$ of (1.1.16) is read as depending on
+$n$, $\varepsilon$ and the standing thresholds only, not on $A$, $B$, $T$ or $h$, as the
+source's $O(1)$ is read throughout this manuscript (Source Facts~\ref{sf:CE2}--\ref{sf:CE1});
+\S\ref{sec:G} needs this for observables of unbounded total degree.  The stability input
+(2.4.34) of the source's proof (Appendix~\ref{app:huniform}, M6) enters Theorems 1.1.7 and
+1.1.11 alike; under the import standard it belongs to the proofs this manuscript does not
+re-verify.  The formerly
+illegible norm prefactor was settled by page-image inspection: $K_1$ enters to the first
+power and the local weight is $K_2^{2N(\Delta)}$ (gate R2, \texttt{m4/r2-check.tex}).  All
+constants in this manuscript use the exact reading \eqref{eq:printednorm}.
 
 \emph{Used in.} \S\ref{sec:reduction} (scaling), \S\ref{sec:slab}, \S\ref{sec:M2} (CE1),
 \S\ref{sec:norms} (norms), \S\ref{sec:G} (CE1, CE2), Appendix~\ref{app:huniform}.
 
 {\raggedright\emph{Dossier.} \texttt{gjs-source-05/06}, \texttt{gjs-p589-06}, \texttt{gjs-scaling-07},
 \texttt{gjs-theorems-10/11/12}, \texttt{gjs-core-11/12}, \texttt{gjs-uniform-46},
-\texttt{gjs-uniformity-46}, \texttt{gjs-proof-14} (E20--E26, E54).\par}
+\texttt{gjs-uniformity-46}, \texttt{gjs-proof-14} (E20--E26, E54);
+\texttt{gjs-thm1111-13} (p.~596), \texttt{gjs-proof118-17} (p.~600), \texttt{gjs-thm41-45}
+(p.~628), added 31 October 2026.\par}
 \end{assumption}
 
 \begin{remark}[conventions lock]\label{rem:conv}
@@ -883,9 +976,15 @@ $\omega_g(\theta(A))=\ip{\Theta\Om_g}{A\Theta\Om_g}=\omega_g(A)$.
 
 \subsection{Standing weak-coupling assumption}\label{subsec:weak}
 
-% src: m6/main.tex \S2.2 (v2), transcribed.
-Fix source-admissible constants $M_*>0$ and $\lambda_*>0$ such that the Glimm--Jaffe--Spencer
-expansion is valid at bare mass $M_*$ whenever $0\le\lambda'<\lambda_*$. Define
+% src: m6/main.tex \S2.2 (v2), transcribed; edited 31 October 2026: the printed hypotheses quoted
+% are GJS p. 594 (Thm 1.1.7), p. 628 (Thm 4.1; image gjs-thm41-45) and p. 600 (image gjs-proof118-17).
+Fix source-admissible constants $M_*>0$ and $\lambda_*>0$ such that the hypotheses printed
+for the two theorems imported from \cite{GJS} hold at bare mass $M_*$ whenever
+$0\le\lambda'<\lambda_*$: for Theorem 1.1.7, ``Let $m_0$, $K_2$ and $K_1$ be sufficiently
+large and let $\lambda$ be sufficiently small'' (p.~594); for Theorem 1.1.11, whose
+statement prints no smallness hypothesis, the same hypotheses, printed with Theorem 4.1, from
+which it is proved (p.~628), and p.~600's ``convergence of our expansions requires both
+sufficiently small $\lambda$ and sufficiently large $m_0$''. Define
 \[
   \varepsilon_{\mathscr P}:=\frac{\lambda_*}{M_*^2} .
 \]
@@ -1084,7 +1183,7 @@ the identities.
 
 \begin{lemma}[unbounded extension]\label{lem:slabunbdd}
 % src: m6/main.tex lem:FKN-main proof (v2) = lamport_euclidean_to_gap.tex <1>2<2>3; audit repairs L3, L4.
-\emph{(i)} For nonnegative measurable $F_1,F_2$, the identities
+\emph{(i)} For nonnegative measurable $F_1$ and $F_2$, the identities
 \eqref{eq:fkn2}--\eqref{eq:fkn1} hold in $[0,\infty]$.
 \emph{(ii)} For real measurable $F$, define the clipped truncation
 $F^{[\ell]}:=(-\ell)\vee(F\wedge\ell)$, $\ell>0$. Whenever $F\psi_a\in\HH$,
@@ -1114,7 +1213,7 @@ Lemma~\ref{lem:transfer}); for the interaction-type multiplications it also foll
 independently from Assumption~\ref{A:domain}(i). On path space,
 $F_i^{[\ell]}(\Phi(s_i,\cdot))\to F_i(\Phi(s_i,\cdot))$ pointwise with the displayed
 majorant, whose integrability is exactly the finiteness of the two square moments; the
-working-family hypothesis \eqref{eq:UGJS} supplies those square moments at every later application
+cutoff-uniform estimate \eqref{eq:UGJS} supplies those square moments at every later application
 (\S\ref{sec:M2}, \S\ref{sec:G}). Dominated convergence then passes
 Lemma~\ref{lem:slabsigned} to the limit on both sides.
 \end{proof}
@@ -2290,11 +2389,11 @@ The Main Theorem now follows by assembly.
 
 \begin{theorem}[Main Theorem]\label{thm:MAIN}
 % src: m6/main.tex thm:MAIN (v2), transcribed; import references adapted to (A1)-(A8);
+% statement and imports paragraph edited 31 October 2026 (re-sourcing of A8(vi), no hypothesis clause);
 % item (5) quantifies over C_H where m6 stated G -- a strengthening delivered by
 % thm:G/thm:M2 (recorded in part_i/README.md, G6).
-Assume $U_{\rm GJS}$, namely Assumption~\ref{A:gjs}(vi), and let
-$0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. Then there is a state $\omega_\infty$ on $\A$
-such that:
+Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. Then there is a state $\omega_\infty$ on
+$\A$ such that:
 \begin{enumerate}
 \item[\rm(1)] \emph{(full-net convergence with rate)} for every bounded open interval $O$,
       $\lim_{g\in\G}\|(\omega_g-\omega_\infty)|_{\A(O)}\|=0$, and
@@ -2313,16 +2412,16 @@ such that:
       and $\sup_{g\in\CH}\|V(h)\Om_g\|\le M$ for real $h$ with $\|h\|_\infty\le1$ supported
       in an interval of length $2$.
 \end{enumerate}
-The nonstandard weak-coupling estimates imported are printed GJS Theorem 1.1.7 and
-the moment estimate of Theorem 1.1.8 in its working-family form $U_{\rm GJS}$
-(Assumption~\ref{A:gjs}(vi), imported at the scope at which the source states and uses
-it; Scope paragraph and item~(vii$'$) there).  Appendix~\ref{app:huniform} supplies
-supporting scope evidence and analytic prerequisites but is not an independent proof
-of the cluster expansion. In addition, the proof uses the
-separately identified standard cutoff-construction inputs of
-Assumptions~\ref{A:cutoff}--\ref{A:covar}. Proposition~\ref{prop:scaling} verifies that the
-dimensionless weak-coupling hypothesis implies the source smallness condition. The theorem is conditional
-on exactly this list, including $U_{\rm GJS}$; no other external input is used.
+The weak-coupling estimates imported are two printed theorems of \cite{GJS}: Theorem 1.1.7
+(Source Fact~\ref{sf:CE2}) and Theorem 1.1.11 at $B=I$, $n=0$, the cutoff-uniform moment
+estimate \eqref{eq:UGJS} of Assumption~\ref{A:gjs}(vi) (imported as printed since
+31 October 2026; Scope paragraph there).  Appendix~\ref{app:huniform} supplies a
+source-mechanism audit and analytic prerequisites but is not an independent proof of the
+cluster expansion. In addition, the proof uses the separately identified standard
+cutoff-construction inputs of Assumptions~\ref{A:cutoff}--\ref{A:covar}.
+Proposition~\ref{prop:scaling} verifies that the dimensionless weak-coupling hypothesis
+implies the source smallness condition. The theorem is an implication from exactly this
+list of printed statements; no other external input is used.
 \end{theorem}
 
 \begin{proof}
@@ -2365,8 +2464,8 @@ averaging weight. Then
   \omega_n(A)
   &=\frac1n\int\ip{\Om_{g_n}}{\sigma_{a'}(A)\Om_{g_n}}\,
       \bar h(a'/n)\,da'
-  =\int_{-1}^{1}\bar h(u)\,\omega_{g_n}\bigl(\tau_{\epsilon nu}A\bigr)\,du
-  =\int_{-1}^{1}\bar h(u)\,\omega_{\tau_{-\epsilon nu}g_n}(A)\,du ,
+  =\int_{-1}^{1}\bar h(u)\,\omega_{g_n}\bigl(\tau_{\epsilon nu}A\bigr)\,du\\
+  &=\int_{-1}^{1}\bar h(u)\,\omega_{\tau_{-\epsilon nu}g_n}(A)\,du ,
 \end{align*}
 by \eqref{eq:T} (the estimate below is invariant under $\epsilon\to-\epsilon$). Since
 $g_n\equiv1$ on $[-3n,3n]$, the shifted cutoff $\tau_{-\epsilon nu}g_n\in\G$ equals $1$
@@ -2561,6 +2660,7 @@ defining display at gates G3a/G3b (see \texttt{part\_i/README.md}).
 
 \begin{center}
 \small
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lll}
 \toprule
 constant & value / definition & defined in\\
@@ -2631,6 +2731,17 @@ FKN inputs $F_1=F_2=|V(h)|$; signed/clipped truncations; exponential-moment pref
 $C_8K_1$; spectral-parameter range $0\le\beta<m_1$); C1 (dimensionless scaling reduction
 made explicit); C2 (all imports enumerated --- Assumptions \ref{A:cutoff}--\ref{A:gjs});
 H1--H2 (literature claims narrowed; GRS $p=1$ note recorded). No P0 defect was found.
+\item \emph{Re-sourcing of A8(vi)} (31 October 2026, after the council record
+\texttt{ugjs/PLAN.md}): item (vi) is read off the printed Theorem 1.1.11 of \cite{GJS}
+(p.~596, ``uniformly in $h$'') in the specialization $B=I$ ($T=0$ on p.~600), $n=0$ (named
+on p.~629), that the source prints as its proof of Theorem 1.1.8; the hypothesis clause naming $U_{\rm GJS}$ is
+removed from the statements of Theorem~\ref{thm:MAIN} and Proposition~\ref{prop:discharge};
+no proof changed, no label moved.  In the same pass: item (ii) names the time-integrated monomials (1.1.6) and the
+square convention of p.~593; the Scope paragraph records the one case of Theorem 1.1.7 that
+its printed proof does not reach (sharp-time monomials across strips transverse to the
+time-zero line, unused here); the mechanism audit of Appendix~\ref{app:huniform} gains item
+M6 (the stability input (2.4.34) of GJS p.~624, which its items M1 and M3--M5 had wrongly
+declared absent) and its covariance description is corrected from ``Dirichlet'' to ``decoupled''.
 \item \emph{Withdrawn routes} (kept in the record, not used here):
 \texttt{m4/h6-attack.tex} Thm.~2.3 (withdrawn; UV-divergent double commutator);
 gap-based (H6) proofs; wavelet-MRA-as-Polchinski decomposition (see Part II documents).
@@ -2639,49 +2750,61 @@ gap-based (H6) proofs; wavelet-MRA-as-Polchinski decomposition (see Part II docu
 \subsection*{External residue}
 
 Audit closure item C5 --- verification by a second human reader of the GJS page
-images (1.1.7)--(1.1.10), the sharp-time localization-square convention, the scope of
-$U_{\rm GJS}$, and (added 5 September 2026) the two passages of
-Assumption~\ref{A:gjs}(vii$'$): the affine-path application of Theorem 1.1.7 on p.~595
-and the derivation of Theorem 1.1.7 from Theorem 1.1.8 on pp.~596--597 --- remains open
-at the level of this research record.  The itemized reading checklist is
-\texttt{part\_i/C5\_reading\_record.md}.  The dossier and gates R1/R2 are evidence that
-the imported quantifier is the source's own; they are not labelled a proof of it.
+images --- remains open at the level of this research record.  The itemized reading
+checklist is \texttt{part\_i/C5\_reading\_record.md}: items 1--4 (the cutoff class, the
+localized monomials and squares, the norms, Theorem 1.1.7 and the dilation; pp.~589, 590,
+593, 594), item 9 (pp.~596--597, including (1.1.16) ``uniformly in $h$''), and items 12--13
+(added 31 October 2026: Theorem 1.1.11's ``monomials of type (1.1.5)'', ``$B_T$ \dots\ at
+time $T>0$'' and the rotation sentence; p.~600's specialization and p.~628's hypotheses of
+Theorem 4.1) carry the imports of
+Assumption~\ref{A:gjs}; items 10--11 (the two forms (1.1.5)--(1.1.6) with p.~595's
+multi-time notation; Theorem 1.1.7's strip without orientation) carry the disclosure of
+the Scope paragraph, point (b); items 5--8 are corroboration.  Every status
+sentence of this manuscript is to be read with these human readings named as open beside
+it.
 
 \section{$h$-uniformity: source audit and analytic prerequisites}\label{app:huniform}
 
-% src: m4/r1-check.tex \S\S3-5, transcribed; V(h) -> \mathcal U_h, class C -> C_E, compact set K -> Lambda.
-This appendix has two sharply separated purposes.  First, it records why the wording on
-GJS p.~629 supports the slab-uniform interface $U_{\rm GJS}$ of
-Assumption~\ref{A:gjs}(vi); the scope of that interface is fixed by the printed passages
-of Assumption~\ref{A:gjs}(vii$'$) (pp.~594--597 and 629).  Second, it proves two
-$h$-sensitive analytic prerequisites over the full class $\CE$: normalization of $dq_h$
-and uniform $L^p$ stability under the free measure.  It does \emph{not} reproduce the
-polymer expansion, its convergence summations, or the proof of all cluster-expansion
-constants.  It therefore does not re-derive $U_{\rm GJS}$; that statement remains an
-import of the Main Theorem, at the source's own scope.  Theorem 1.1.7 needs no separate
-scope discussion because its own statement makes its constants independent of $h$ (its
-printed proof consumes Theorem 1.1.8 at the same $h$).
+% src: m4/r1-check.tex \S\S3-5, transcribed; V(h) -> \mathcal U_h, class C -> C_E, compact set K -> Lambda;
+% introduction edited 31 October 2026 (re-sourcing of A8(vi)).
+This appendix has two sharply separated purposes.  First, it records the audit of the
+source mechanism that preceded the re-sourcing of Assumption~\ref{A:gjs}(vi) on
+31 October 2026 (items M1--M5, with the correction M6 added that day).  Second, it proves
+two $h$-sensitive analytic prerequisites over the full class $\CE$: normalization of
+$dq_h$ and uniform $L^p$ stability under the free measure.  It does \emph{not} reproduce
+the polymer expansion, its convergence summations, or the proof of all cluster-expansion
+constants.  It therefore does not re-derive \eqref{eq:UGJS}; that statement is imported as
+printed (Theorem 1.1.11 of \cite{GJS} at $B=I$, $n=0$; Assumption~\ref{A:gjs}(vi)).
+Theorem 1.1.7's own statement makes its constants independent of $h$; its printed proof
+consumes Theorem 1.1.8 at the same $h$ and reaches sharp-time monomials only across strips
+parallel to the time-zero line (Scope paragraph of Assumption~\ref{A:gjs}, point (b)).
 
 \subsection*{Mechanism audit}
 
 The expansion machinery of \cite[\S\S2--4]{GJS} manipulates integrals
 $\int R(\Phi)\,B\,e^{-\mathcal U_h}\,d\mu_{0,C}$, where $C$ is an interpolated
 covariance and $d\mu_{0,C}$ denotes the Gaussian measure with covariance $C$, through
-five devices; the following lists every point of contact with $h$.
-% src: m4/r1-check.tex \S3, mechanisms 1-5, transcribed.
+six devices; the following lists every point of contact with $h$ (item M6 was added on
+31 October 2026, after the council of \texttt{ugjs/PLAN.md} found it missing).
+% src: m4/r1-check.tex \S3, mechanisms 1-5, transcribed; M1, M2, M3, M4, M5 edited and M6 added
+% 31 October 2026 (GJS pp. 600, 601, 611-613, 616, 622, 624, 625 read on page images).
 
-\paragraph{M1 (the norms are kernel norms; no $h$).}
+\paragraph{M1 (the norms are kernel norms).}
 The norm (2.4.3) of an expansion term $m_\alpha$ is
 $\int du\,ds\,\exp[\cdots]\,\|w(\alpha,u,s,y,\cdot)\|_{L^2}$ times combinatorial weights
-(2.4.4)--(2.4.5) built from $K_1,K_2,N(\Delta)$, times $e^{\tau t}$: a functional of the
-\emph{kernel} $w$ alone. No Gaussian expectation, no $e^{-\mathcal U}$, no $h$ appears in
-the norm. The norm-decrease Theorems 2.4.1, 3.1, 4.1 are inequalities between such kernel
+(2.4.4)--(2.4.5) built from $m_0$, $\varepsilon$, $K_2$, $N(\Delta)$ (the source's script
+$\mathcal K_2$ of (2.4.4) is $e^{-(1-\varepsilon)m_0\sum\delta n}$, not the constant $K_2$),
+times $K_1^{\nu}e^{\gamma t}$ ((2.4.3), p.~613): a functional of the \emph{kernel} $w$ alone. The norm itself contains
+no Gaussian expectation; the kernels $w$ it is applied to are, however, defined through
+integrals of $e^{-V(Y_j)}$ under the interpolated measures ((2.3.4), (2.3.8),
+pp.~611--612), see M6. The norm-decrease Theorems 2.4.1, 3.1, 4.1 are inequalities between such kernel
 functionals, and their proofs (Lemmas 2.4.2--2.4.4, (3.2)--(3.6), \S4) estimate kernels:
 contraction kernels $\delta C$ against vertex kernels.
 
 \paragraph{M2 (covariances are $h$-free).}
-The interpolation $C(s)=sC'+(1-s)C''$ (2.0.1) is between free and Dirichlet-on-contours
-covariances; the kernels (2.2.2)--(2.2.3) are built from $(-d^2/dx^2+m_0^2)$ and contour
+The interpolation $C(s)=sC'+(1-s)C''$ (2.0.1) is between covariances of the family
+generated from $C_0$ by ``diagonalization'' with respect to unions $Y$ of unit squares,
+$C_Y=YCY+(1-Y)C(1-Y)$, and convex sums (p.~600); the kernels (2.2.2)--(2.2.3) are built from $(-d^2/dx^2+m_0^2)$ and contour
 geometry. Verified against the legible scan (\texttt{m4/r1-check.tex}): no $h$ enters
 any covariance, any contraction kernel, or any of the Propositions 2.1.$x$.
 
@@ -2695,8 +2818,9 @@ and iterates with $\mathscr P'',\dots$ A vertex therefore contributes to the \em
 a factor $\lambda h(x)p_j$ supported in a lattice square. The very first estimate applied
 to it is the printed one (p.~626): ``$v(x)$ is $O(\lambda)$ times the characteristic
 function of a lattice square'' --- that is, $|\lambda h(x)p_j|\le O(\lambda)\chi_\Delta(x)$,
-using $0\le h\le1$ and nothing else. Downstream of this line the kernels are $h$-free.
-This is the single point where $h$ touches a quantitative estimate.
+using $0\le h\le1$ and nothing else. Downstream of this line the vertex kernels are
+$h$-free. This is one of two points where $h$ touches a quantitative estimate; the other is
+M6.
 
 \paragraph{M4 (the identities are exact and $h$-blind).}
 The devices (2.0.4)--(2.0.5) (covariance interpolation), (2.2.1), (2.2.5), (2.2.7)
@@ -2705,16 +2829,16 @@ applied to integrands $F=R(\Phi)B_Te^{-\mathcal U_h}$; $e^{-\mathcal U_h}$ rides
 inside $F$. Their validity requires only that the integrals exist --- integrability, not
 bounds. For the free-measure endpoint this is supplied, uniformly over $\CE$, by
 Theorem~\ref{thm:stability}; existence under the interpolated measures $d\mu_{0,C}$ is
-internal to the printed proof and is consumed here only as such (by M5, no constant of
-the source depends on it).
+internal to the printed proof.  A quantitative stability bound under those measures does
+enter the constants: see M6.
 
-\paragraph{M5 (termination cancels every $e^{-\mathcal U}$; no stability constant).}
+\paragraph{M5 (the final division adds no stability constant).}
 The full expansion (4.3) reads
 \[
-  \int AB_T\,e^{-\mathcal U}d\mu_{0,C_0}
-  =\sum_i\int\Bigl[\int dy\,w_i(y)\,{:}\Phi(y_1)\cdots\Phi(y_i){:}\Bigr]B_T\,
+  \int AB_T e^{-\mathcal U}d\mu_{0,C_0}
+  =\sum_i\int\Bigl[\int dy\,w_i(y){:}\Phi(y_1)\cdots\Phi(y_i){:}\Bigr]B_T
    e^{-\mathcal U}d\mu_{0,C_0}
-  \;+\;\sum_r w_r\int e^{-\mathcal U}d\mu_{0,C_0},
+  +\sum_r w_r\int e^{-\mathcal U}d\mu_{0,C_0},
 \]
 with $w_i,w_r$ \emph{numerical kernels} controlled by the norm inequalities; the
 remainder terms are literally multiples of $\int e^{-\mathcal U}d\mu_0$ (their Table~1:
@@ -2722,17 +2846,44 @@ final-$r$ terms have ``no vertices, no annihilators''). The proof of Theorems
 1.1.8/1.1.11 then \emph{divides (4.3) by $\int e^{-\mathcal U}d\mu_{0,C_0}$} (p.~628):
 the first sum reassembles into $dq_h$-integrals of the comparison polynomials, and the
 remainder becomes $\sum_rw_r$ exactly. Every factor $e^{-\mathcal U_h}$ cancels against
-the normalisation. Consequently no upper or lower bound on
-$\int e^{-\mathcal U}d\mu_0$, and no stability estimate, enters any constant of the
-proof.
+the normalisation. Consequently the final division introduces no stability constant; the
+stability bound that does enter the constants is the one of M6, upstream of the division.
+
+\paragraph{M6 (stability under the interpolated measures; added 31 October 2026).}
+% src: GJS pp. 622 and 624 (PDF pages 39 and 41), read on page images on 30 October 2026;
+% p. 601 (PDF 18) for V(Yh) in (2.0.2); pp. 611-613 (PDF 28-30) for (2.3.4), (2.3.8), (2.4.3);
+% p. 616 (PDF 33) for the order of constants; p. 625 (PDF 42) for Vol; read 31 October 2026.
+The kernels $w''$ of (2.3.8) are bounded on p.~624 through a stability estimate under the
+interpolated measures: ``For $m_0\ge1$, $\lambda\le1$, there is a constant $K_3$,
+independent of $C$, $m_0$ and $\lambda$ such that
+\[
+ \textup{(2.4.34)}\qquad 1\le\|e^{-V(Y)}\|_{L_2(d\Phi_C)}\le e^{K_3|Y|}
+\]
+and (2.4.35) [a bound on $\|P_l''(u,s,y,x_B)\|_{L_2(d\Phi_C)}$ by
+$\prod_\Delta K_3^{N(\Delta)}N(\Delta)!$ times an $L_2$ kernel norm]. These are standard
+estimates for such integrals (see [1]).'' The bound ``yields (2.4.28), for $K_2\ge K_3^2$''
+(p.~624), and Lemma 2.4.6 (p.~622) takes ``$K_2=K_2(m_0,K_3)$''; so $K_3$ enters every
+constant chosen after $K_2$ in the printed order ``$m_0$, $K_2$, $K_1$, and then $\lambda$'' (p.~616), $C_7$ and
+$C_8$ included.  The cutoff sits inside $V(Y)$: (2.0.2) on p.~601 factors $V(h)$ as
+$V(Yh)+V((1-Y)h)$.  Reference [1] is Dimock--Glimm, Adv.\ Math.\ 12 (1974), not consulted
+here; $K_3$ is printed independent of $C$, $m_0$ and $\lambda$, and $h$ is not mentioned.
+Theorem~\ref{thm:stability} does not supply (2.4.34): it is a bound under $d\mu_0$ for a
+fixed compact region, without linear growth in $|Y|$.  The convergence argument on
+pp.~624--625 also uses $|m_\alpha|\le\|m_\alpha\|_{2K_2}e^{O(\mathrm{Vol})}$, ``where the
+volume of interaction, denoted Vol, is the area of the set of points within unit distance
+of suppt $h$. Here we use (2.4.34), (2.4.35) and a Schwarz inequality to factor out
+vertices'' (p.~625), a per-$h$ qualitative step.  Items
+M1 and M3--M5, as transcribed from \texttt{m4/r1-check.tex} (Gate R1, 9 August 2026),
+declared this input absent; that statement was wrong about the source.
 
 \begin{proposition}[consequence of the audited source mechanisms]\label{prop:struct}
-% src: m4/r1-check.tex prop:struct, transcribed.
-Within mechanisms M1--M5 as recorded above, every displayed quantitative bound is
-unchanged when $h$ ranges over $0\le h\le1$: M3 replaces its only vertex occurrence by
-$|h|\le1$, while M4--M5 use identities or exact cancellation.  Consequently the
-constants visible in those mechanisms depend on
-$(m_0,K_2,K_1,\lambda,n,\varepsilon,\mathscr P)$ and not on $h$.
+% src: m4/r1-check.tex prop:struct, transcribed; statement narrowed 31 October 2026.
+Within mechanisms M1--M5 as recorded above, and excluding the stability input of M6,
+which lies outside them, every displayed quantitative bound is unchanged when $h$ ranges
+over $0\le h\le1$: M3 replaces its only vertex occurrence by $|h|\le1$, while M4--M5 use
+identities or exact cancellation.  Consequently the constants visible in those mechanisms
+depend on $(m_0,K_2,K_1,\lambda,n,\varepsilon,\mathscr P)$ and not on $h$; the
+$h$-uniformity of $K_3$ in M6 is not among the audited mechanisms.
 \end{proposition}
 
 \begin{proof}
@@ -2912,16 +3063,19 @@ The two halves of the constraint $0\le h\le1$ are used in complementary places:
 positivity in the pointwise lower bound (Lemma~\ref{lem:wick} would fail for $h$ of
 variable sign --- the interaction density is unbounded above \emph{and} below), and
 boundedness in the $L^2$ kernel estimates (Lemma~\ref{lem:uv} and M3). Nothing else about
-$h$ --- smoothness, shape, time extent, monotonicity along a sequence --- is touched
-anywhere. This is the structural content of Source Fact~\ref{sf:printed}.
+$h$ --- smoothness, shape, time extent, monotonicity along a sequence --- is touched in
+Lemmas~\ref{lem:wick}--\ref{lem:uv} or in M3; the stability input of the source's own proof
+(M6) is a separate matter. This is the structural content of Source Fact~\ref{sf:printed}.
 \end{remark}
 
 \begin{proposition}[coverage of every CE application]\label{prop:discharge}
-% src: m4/r1-check.tex thm:verdict, transcribed.
-Assume $U_{\rm GJS}$.  Then every use of CE1 in
+% src: m4/r1-check.tex thm:verdict, transcribed; hypothesis clause removed 31 October 2026.
+Every use of CE1 in
 \S\S\ref{sec:slab}--\ref{sec:G} has a cutoff in $\CE^{\rm slab}$ and is covered by
-\eqref{eq:UGJS}; every use of CE2 is covered directly by Source
-Fact~\ref{sf:CE2}, whose constants are independent of $h$.  Lemma~\ref{lem:Z} and
+\eqref{eq:UGJS} (Assumption~\ref{A:gjs}(vi), the printed Theorem 1.1.11 at $B=I$, $n=0$);
+every use of CE2 is covered directly by Source Fact~\ref{sf:CE2}, whose constants are
+independent of $h$, across strips parallel to the time-zero line, the case its printed proof
+reaches.  Lemma~\ref{lem:Z} and
 Theorem~\ref{thm:stability} supply the normalization and integrability needed to define
 the same measures.  Hence no stronger cutoff-uniformity assertion is consumed by the
 proof.

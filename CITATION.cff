@@ -1,16 +1,20 @@
 cff-version: 1.2.0
 message: >-
   If you refer to this work, please cite it as below, and please state that the
-  main theorem is conditional on the imported interface U_GJS (Assumption A8(vi)).
+  main theorem is an implication from the printed imports A1-A8 of its section 2.4
+  (the moment input U_GJS, Assumption A8(vi), is GJS Theorem 1.1.11 as printed) and
+  that the human page readings of audit item C5 are open.
 title: >-
   Removal of the spatial cutoff for weakly coupled P(phi)_2: norm convergence of
   the ground-state net on the quasi-local algebra (Part I)
 abstract: >-
   Let H(g) be the spatially cutoff P(phi)_2 Hamiltonian, Omega_g its ground state,
-  and omega_g the induced state on the time-zero quasi-local algebra. Assuming the
-  slab-uniform moment interface U_GJS of Assumption A8(vi), imported at the scope at
-  which Glimm, Jaffe and Spencer (Ann. of Math. 100 (1974)) state and use it, the
-  full net (omega_g) converges in norm on every local algebra in the weak-coupling
+  and omega_g the induced state on the time-zero quasi-local algebra. From two printed
+  theorems of Glimm, Jaffe and Spencer (Ann. of Math. 100 (1974)), the clustering
+  Theorem 1.1.7 and the moment estimate (1.1.16) of Theorem 1.1.11 at B = I, n = 0 and
+  any 0 < T < 1, the case they name on p. 629 and specialize to T = 0 in their proof of
+  Theorem 1.1.8, together with standard construction inputs,
+  the full net (omega_g) converges in norm on every local algebra in the weak-coupling
   region, with an explicit super-polynomial rate; the limit is locally normal,
   translation and Z_2 invariant, and a ground state of the Glimm-Jaffe dynamics in
   the spectral sense. The proof is Hamiltonian, via a local-perturbations-perturb-

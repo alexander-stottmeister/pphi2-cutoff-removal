@@ -37,10 +37,11 @@
   <span class="mono">\ref</span> and <span class="mono">\eqref</span> commands. Columns
   are sections, left to right.</p>
 
-  <p><b>Turn off U_GJS.</b> A8 is the Glimm–Jaffe–Spencer package, and its item (vi) —
-  U_GJS — is the one import that is not a literal quotation of a printed theorem. Switch
-  it off and every statement whose proof chain reaches A8 is greyed. What remains
-  standing is what Part I proves unconditionally.</p>
+  <p><b>Turn off A8.</b> A8 is the Glimm–Jaffe–Spencer package; its item (vi), U_GJS, is
+  since 31 October 2026 read off the printed Theorem 1.1.11 (it was a named hypothesis
+  before). Switch the package off and every statement whose proof chain reaches A8 is
+  greyed. What remains standing is what Part I proves without the cluster-expansion
+  imports.</p>
 
   <p>Assumptions are leaves of this graph: they are hypotheses, not derived statements,
   so the closure stops at A1–A8 rather than running on through whatever their own text
@@ -83,7 +84,7 @@ for (const c of cols) {
   inCol.forEach((r, i) => { pos[r.label] = { x, y: 150 + i * 42 }; });
 }
 
-const tgl = toggle(ctl, { label: "U_GJS granted (A8 available)", checked: true });
+const tgl = toggle(ctl, { label: "A8 granted (the GJS package available)", checked: true });
 const spineOnly = toggle(ctl, { label: "spine only", checked: false });
 tgl.on(redraw); spineOnly.on(redraw);
 const SPINE = new Set(["A:cutoff", "A:fkn", "A:stability", "A:hyper", "A:domain",
@@ -133,10 +134,10 @@ function draw() {
   }
   const sc = shown.filter((r) => r.imports_A8).length;
   out.textContent = on
-    ? `U_GJS granted. ${shown.length} numbered statements shown; ${sc} of them reach A8 ` +
-      `and are therefore conditional on it. Theorem 12.2 is one of them.`
-    : `U_GJS withdrawn. ${sc} statements fall, including Theorem 12.2. ` +
-      `${shown.length - sc} stand unconditionally — among them Lemma 9.1, the exact ` +
+    ? `A8 granted. ${shown.length} numbered statements shown; ${sc} of them reach A8 ` +
+      `and rest on its printed statements. Theorem 12.2 is one of them.`
+    : `A8 withdrawn. ${sc} statements fall, including Theorem 12.2. ` +
+      `${shown.length - sc} stand without it — among them Lemma 9.1, the exact ` +
       `inverse-energy filter, and Proposition 12.1, the spectral passage.`;
   panel.innerHTML = "";
   if (selected && by[selected]) {
@@ -149,7 +150,7 @@ function draw() {
       e.className = "tag" + (c ? " cond" : ""); e.textContent = s; tags.appendChild(e); };
     add(r.label); add("page " + r.page);
     if (r.section) add("§" + (r.section.number || "") + " " + r.section.title);
-    if (r.imports_A8) add("conditional on U_GJS", true);
+    if (r.imports_A8) add("reaches A8", true);
     if (r.has_proof) add("proved in the manuscript");
     const pre = document.createElement("pre");
     pre.textContent = r.statement;

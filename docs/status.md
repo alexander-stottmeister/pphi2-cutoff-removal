@@ -7,26 +7,33 @@ title: Status
 What is proved, what is conditional, and what is open. Nothing on this page is a
 summary of intent: each line names the statement or the gate it comes from.
 
-## Part I — conditional, and the condition is named
+## Part I — an implication from printed imports; the moment input re-sourced on 31 October 2026
 
-**Theorem 12.2 (Main Theorem)** is proved as an *implication* from the imports A1–A8
-enumerated in §2.4. It is not a proof of those imports. Seven of the eight are literal
-quotations of printed theorems. The eighth is not:
+**Theorem 12.2 (Main Theorem).** Theorem 12.2 is proved from the literal imports A1–A8. Its moment input A8(vi) is GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0 and any 0 < T < 1 (p. 596), the case GJS name on p. 629 and specialize to T = 0 in their proof of Theorem 1.1.8 (p. 600); the record does not re-derive the cluster expansion. The human page readings of audit item C5 (items 1–4 and 9–13) are open. It is an *implication* from the imports A1–A8 enumerated in §2.4; the record is not a proof of those imports. Since 31 October 2026 all eight
+are printed statements used at the scope at which they are printed; the last to become so
+was
 
-> **A8(vi), written U_GJS** — the cutoff-uniform form of the Glimm–Jaffe–Spencer moment
-> estimate (Ann. of Math. **100** (1974), Thm. 1.1.8) on the slab family used here.
+> **A8(vi), written U_GJS** — the cutoff-uniform Glimm–Jaffe–Spencer moment estimate on the
+> slab family used here. Theorem 12.2 is proved from the literal imports A1–A8. Its moment input A8(vi) is GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0 and any 0 < T < 1 (p. 596), the case GJS name on p. 629 and specialize to T = 0 in their proof of Theorem 1.1.8 (p. 600); the record does not re-derive the cluster expansion.
 
-Since the scope amendment of 5 September 2026, U_GJS is documented as imported *at the
-scope at which the source itself states and uses it*, with the passages on pp. 594–597
-and 629 quoted verbatim in A8(vii′), rather than as a quantifier strengthened beyond the
-source. It remains a **named hypothesis** of Theorem 12.2. The manuscript does not
-re-derive the cluster expansion: Appendix C audits the source mechanism and proves two
-analytic prerequisites only. See [imports](imports.md).
+This is a re-sourcing, not a proof. From 16 August to 30 October 2026 the same estimate was
+carried as a named hypothesis of Theorem 12.2, documented on 5 September 2026 as the
+quantifier GJS state on p. 629 and consume on pp. 594–597 but "assembled from four pages";
+the two readings are the same mathematics with different bookkeeping, and the record still
+trusts GJS's printed argument exactly as before. Appendix C audits the source mechanism
+(its item M6, added 31 October 2026, records a stability input the audit had missed) and
+proves two analytic prerequisites only. The human page readings of audit item C5 (items
+1–4 and 9–13) are open and are to be named beside every status word. The plan to derive
+the moment bound from the clustering theorem alone, and the one case of GJS Theorem 1.1.7
+that its printed proof does not reach, are in
+[`ugjs/PLAN.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/ugjs/PLAN.md).
+See [imports](imports.md).
 
 Of the 61 numbered statements, **29 reach A8 through their own `\ref` chain** (since
 23 October 2026 this counts the three Source Facts printed inside A8, and with them
-Lemma 7.4 and Remark C.6) and therefore inherit this conditionality by that index; the
-rest do not. Which are which is computed from the manuscript's reference graph, not
+Lemma 7.4 and Remark C.6); since 31 October 2026 this index records dependence on the GJS
+package, every item of which is a printed statement, and no longer a conditional status;
+the rest do not reach A8. Which are which is computed from the manuscript's reference graph, not
 asserted — see the `imports A8` column of the [result inventory](results.md). The index
 is mechanical: it counts forward references and misses a dependence stated in prose only
 (the standing hypothesis (G_γ) of §§8–10, which Theorem 7.8 supplies), so it is not a
@@ -56,13 +63,17 @@ The full records, including the findings G6 raised and their dispositions, are i
 
 **No second human reader has yet checked the source page images against the
 transcriptions in §2.** The itemized checklist is
-[`part_i/C5_reading_record.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/C5_reading_record.md); all nine verdict fields
+[`part_i/C5_reading_record.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/C5_reading_record.md); all thirteen verdict fields
 are blank. Items 8–9 were added on 5 September 2026 for the affine-path application of
 Theorem 1.1.7 on p. 595 and the derivation of Theorem 1.1.7 from Theorem 1.1.8 on
-pp. 596–597.
+pp. 596–597; items 10–13 on 31 October 2026.
 
-Closing C5 does not change the status of U_GJS. It is a check of transcription fidelity,
-not of the mathematics.
+C5 is a check of transcription fidelity, not of the mathematics. Items 1–4, 9, 12 and 13
+carry the imports of A8 (items 12–13: Theorem 1.1.11's "monomials of type (1.1.5)",
+"B_T … at time T > 0" and the rotation sentence; p. 600's specialization and p. 628's
+hypotheses of Theorem 4.1); items 10–11 carry the disclosure of the transverse case in A8's
+Scope paragraph (the two forms (1.1.5)–(1.1.6) with p. 595's multi-time notation;
+Theorem 1.1.7's strip without orientation); items 5–8 are corroboration.
 
 ## Part II — open at gate (II.11)
 

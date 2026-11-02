@@ -8,7 +8,9 @@ Documentation for a Hamiltonian proof that the net of spatially cutoff P(φ)₂ 
 states converges in norm on every local algebra. This is a research record, not a
 published paper.
 
-> **Read this first.** Theorem 12.2 is **conditional** on the imported interface U_GJS.
+> **Read this first.** Theorem 12.2 is an implication from the eight printed imports A1–A8
+> of §2.4, all literal since 31 October 2026 (the moment input U_GJS is GJS Theorem 1.1.11
+> as printed; it was a named hypothesis before that date).
 > Nothing here has been refereed; audit item C5 is open; the work is AI-assisted and
 > human verification of it is ongoing. Treat every statement as a claim under active
 > verification. See [status](status.md).
@@ -40,7 +42,7 @@ dynamics in the spectral sense.
 | [Provenance](provenance.md) | gates, corrections history, the citation dossiers |
 | [Figures](interactive/index.html) | eight interactive illustrations of the main results |
 
-The manuscript itself is [`part_i/main.pdf`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/main.pdf) (40 pp, document of
+The manuscript itself is [`part_i/main.pdf`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/main.pdf) (42 pp, document of
 record).
 
 ## The shape of the proof

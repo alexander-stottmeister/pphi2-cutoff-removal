@@ -46,6 +46,12 @@ The point of publishing this is that the errors are part of the record.
   moment prefactor, spectral-parameter range); C1 (dimensionless scaling made explicit);
   C2 (all imports enumerated as A1–A8); H1–H2 (literature claims narrowed). **No P0
   defect was found.**
+- **Re-sourcing of A8(vi)** (31 Oct 2026): U_GJS read off the printed GJS Theorem 1.1.11 at
+  B = I, n = 0, 0 < T < 1 (pp. 596, 600, 629); the hypothesis clause removed from Theorem 12.2
+  and Proposition C.7; Appendix C's audit gains item M6 (the stability input (2.4.34), p. 624,
+  it had missed); A8(ii) widened; the transverse case of Theorem 1.1.7 disclosed in A8's Scope
+  paragraph — see `part_i/README.md`, "Re-sourcing of A8(vi) and documentation repairs
+  (2026-10-31)", and `ugjs/PLAN.md`.
 - **Scope amendment** (5 Sep 2026): the status of U_GJS re-based — see
   [imports](imports.md). No proof changed; all 125 labels unmoved.
 

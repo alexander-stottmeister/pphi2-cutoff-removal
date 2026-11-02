@@ -33,7 +33,7 @@ M — and Θ = Γ(−1) is reserved for the parity unitary throughout.
 
 ## Constants
 
-The constants appendix (Appendix A, p. 33) fixes every value against its defining
+The constants appendix (Appendix A, p. 35) fixes every value against its defining
 display; each row was re-verified by hand at gates G3a and G3b. The two that drive the
 figures are
 

@@ -23,8 +23,11 @@ Leave the mathematics alone: the question is only "does the page say this".
 | Copy used | JSTOR scan (`gjs74.pdf`) / journal print / other: __________ |
 | Overall verdict | _________________________ |
 
-Manuscript build the record refers to: `part_i/main.tex`, Scope amendment of
-5 September 2026 (title-page quote), Assumption A8 items (i)–(viii) with (vii′).
+Manuscript build the record refers to: `part_i/main.tex`, re-sourcing of A8(vi) of
+31 October 2026 (title-page quote), Assumption A8 items (i)–(viii) with (vii′) and the
+unnumbered source fact of item (vi). Items 1–4, 9, 12 and 13 carry the imports of A8
+(item 2 also the admissibility of B = I); items 10–11 carry the Scope paragraph's disclosure
+of the transverse case; items 5–8 are corroboration.
 
 ---
 
@@ -38,14 +41,17 @@ Manuscript build the record refers to: `part_i/main.tex`, Scope amendment of
   wording); (d) footnote 5: "The construction [17] of the measure dq assumes Theorem 1.1.7,
   and consequently the n = 0 case of Theorem 1.1.11."
 - Manuscript sites: A8(i) (class `\mathcal C_E`, `lem:classes`), A8(vi) (slab family
-  `\mathcal C_E^{slab}` ⊂ `\mathcal C_E`), Scope paragraph step (a).
+  `\mathcal C_E^{slab}` ⊂ `\mathcal C_E`), A8(vii′)(a) (corroboration since 31 October 2026).
 - Verdict: ________  Notes: ______________________________________________
 
 ### 2. Localized monomials, localization squares, N(Δ) — p. 593 (PDF 10)
 - Image: `gjs-theorems-10.png`.
 - To confirm: (1.1.5)–(1.1.6); the localization squares are unit lattice squares centred at
   lattice sites (record the exact convention printed); N(Δ) counts fields localized in Δ;
-  the degree restriction n_i < n̄; footnote 9 wording.
+  the degree restriction n_i < n̄; footnote 9 wording; and (added 31 October 2026) the
+  sentence "Since there is no restriction on r, Q still may have an arbitrarily large
+  degree", on which the admissibility of a degree-zero monomial B = I in item 13 rests in
+  part (the manuscript rests it first on GJS's own use, pp. 597, 600, 629).
 - Manuscript sites: A8(ii), Remark 6.3 (`rem:row`), Lemma 7.4 (`lem:ce2strip`).
 - Verdict: ________  Notes: ______________________________________________
 
@@ -75,7 +81,8 @@ Manuscript build the record refers to: `part_i/main.tex`, Scope amendment of
   uniformly as h → 1."; the Feynman–Kac identity ∫Q(x₀)dq = ⟨Ω, θ⟩ with θ from (1.1.13);
   the Remark's n-point bound |S_h(f₁⊗…⊗f_n)| ≤ n! ∏`|f_i|_{\mathcal S}` with the norm "independent of h".
 - Manuscript sites: Source Fact 2.3 (`sf:CE1`). The one-sentence statement is a
-  limit-uniformity statement; the scope actually used is fixed by items 6, 8, 9.
+  limit-uniformity statement; since 31 October 2026 the scope used is fixed by items 9, 12
+  and 13 (A8(vi) read off Theorem 1.1.11), with items 6 and 8 as corroboration.
 - Verdict: ________  Notes: ______________________________________________
 
 ### 6. The uniformity sentence and the special-case identification — p. 629 (PDF 46)
@@ -87,8 +94,8 @@ Manuscript build the record refers to: `part_i/main.tex`, Scope amendment of
   proceed to work in the limit h = 1."; (b) earlier on the same page: "Theorem 1.1.11 follows
   from this inequality, while Theorem 1.1.8 is the special case B = I, n = 0."; (c) the h of
   (a) is the dq_h cutoff of p. 589 (no other cutoff has been introduced under that name).
-- Manuscript sites: Source Fact 2.4 (`sf:printed`), (vii′)(c), Scope paragraph step (c),
-  Appendix C intro.
+- Manuscript sites: Source Fact 2.4 (`sf:printed`), (vii′)(c), A8(vi) source fact (c), Scope paragraph points (a) and (d),
+  Remark C.6 (via Source Fact 2.4).
 - Verdict: ________  Notes: ______________________________________________
 
 ### 7. Hamiltonian cutoff class and ground state — p. 588 (PDF 5)
@@ -116,7 +123,8 @@ Manuscript build the record refers to: `part_i/main.tex`, Scope amendment of
 - What this settles: the source applies Theorem 1.1.7 with its h-independent constant at
   every cutoff h₁ + α(h₂ − h₁) of an affine path between **arbitrary** cutoff functions of the
   p. 589 class — not only at rectangular cutoffs and not only in the limit. The manuscript's
-  path h_{T,g_s} = (1−s)h_{T,g} + s h_{T,g′} is this family (Scope paragraph step (a)).
+  path h_{T,g_s} = (1−s)h_{T,g} + s h_{T,g′} is this family (A8(vii′)(a); corroboration since
+  31 October 2026).
 - Note that no restriction on h₁, h₂ beyond "cutoff functions" appears between (1.1.11) and
   the end of the proof; if the reader finds one, record it verbatim.
 - Verdict: ________  Notes: ______________________________________________
@@ -126,27 +134,83 @@ Manuscript build the record refers to: `part_i/main.tex`, Scope amendment of
   (PDF 13; the scan's OCR layer reads "Proof of Theorem 1.1.7, assuming Theorems 1.1.8 and
   1.1.11. Take").
 - To confirm, against Assumption A8(vii′)(b): (a) heading as above; (b) "n = 0 in Theorem
-  1.1.11 Then Q is a polynomial of degree zero, i.e., a constant. From the choice B = I, it
+  1.1.11 Then Q is a polynomial of degree zero, i. e., a constant. From the choice B = I, it
   follows that Q = ∫A dq_h + O(1)‖A‖e^{−m₀(1−ε)T}."; (c) "After rotating and translating the
   strip separating Q₁ and Q₂ in Theorem 1.1.7, and after choosing A = Q₁, B_T = Q₂ in Theorem
   1.1.11, the proof follows from Theorem 1.1.8, (1.1.16) and the above determination of Q.";
-  (d) p. 596, (1.1.16): "|∫(A − Q)B_T dq_h| ≤ O(1)‖A‖‖B‖e^{−γT} uniformly in h. We shall
+  (d) p. 596, (1.1.16): "|∫(A − Q)B_T dq_h| ≤ O(1)‖A‖‖B‖e^{−γT}, uniformly in h. We shall
   choose t_j = j, j ∈ Z."
-- What this settles: the h-independent constant of Theorem 1.1.7 is obtained from Theorem
-  1.1.8 **at the same h**. Since the manuscript uses Theorem 1.1.7 as printed at the
-  non-rectangular slab cutoffs h_{T,g} (Lemma 7.4, Proposition C.7), the constant of Theorem
-  1.1.8 must be uniform on the same class — which is exactly U_GJS (Scope paragraph step (b)).
+- What this carries (since 31 October 2026): (1.1.16) "uniformly in h" is the literal basis
+  of A8(vi), together with items 12–13; the derivation of Theorem 1.1.7's constant from
+  Theorem 1.1.8 **at the same h** is recorded in the Scope paragraph, point (c), as a fact about
+  the source's proof that the record does not re-verify.
+- Verdict: ________  Notes: ______________________________________________
+
+---
+
+## Items 10–13 (added 31 October 2026 — the re-sourcing of A8(vi) and the transverse case)
+
+### 10. The two forms (1.1.5)–(1.1.6) and the multi-time notation — p. 593 (PDF 10) and p. 595 (PDF 12)
+- Images: `gjs-theorems-10.png` (p. 593), `gjs-theorems-12.png` (p. 595).
+- To confirm: (a) "(1.1.5) Q(x₀) = ∫dx⃗ w(x) ∏_{i=1}^r :Φ(x_i)^{n_i}:" and "(1.1.6) Q = ∫dx₀ Q(x₀)";
+  (b) "Q is said to be localized if w(x) is supported in a product Δ_{j₁} × ··· × Δ_{j_n} ⊂ R^{2r}
+  where Δ_{j_i} is the unit lattice square in R² centered at the lattice side j_i ∈ Z²" (the
+  misprint "side" for "site" as printed); (c) "For a localized monomial Q or Q(x₀), let N(Δ) be
+  the local degree"; (d) p. 595: "In the monomial Q(x₀) of (1.1.5), suppose x₀ = (x_{1,0}, ···,
+  x_{r,0}) where x_{1,0} ≤ ··· ≤ x_{r,0}."
+- Manuscript sites: A8(ii) (widened 31 October 2026); A8 Scope paragraph point (b), on which
+  p. 595's multi-time notation bears (the transverse case; Phase B of `ugjs/PLAN.md`).
+- Verdict: ________  Notes: ______________________________________________
+
+### 11. Theorem 1.1.7's pair and strip, with no orientation prescribed — p. 594 (PDF 11)
+- Image: `gjs-theorems-11.png`.
+- To confirm: "For two localized monomials Q₁ and Q₂, with disjoint localization squares
+  {Δ^{(1)}_{j_i}} and {Δ^{(2)}_{j_l}} respectively, let d be the width of the widest strip
+  bounded by two parallel lines, and separating the {Δ^{(1)}_{j_i}} from the {Δ^{(2)}_{j_l}}";
+  then Theorem 1.1.7 as in item 4, with no orientation of the strip prescribed.
+- Manuscript sites: Source Fact 2.2, A8 Scope paragraph point (b), Lemma 7.4.
+- Verdict: ________  Notes: ______________________________________________
+
+### 12. Theorem 1.1.11's setting and the rotation sentence — pp. 596–597 (PDF 13–14)
+- Images: `gjs-thm1111-13.png` (p. 596; new, 31 October 2026), `gjs-proof-14.png` (p. 597).
+- To confirm, against the unnumbered source fact of A8(vi): (a) "We let A and B denote
+  monomials of type (1.1.5) of degree |A| and |B| and with kernels w_A and w_B respectively.
+  We assume that A is localized at times x_{i0} ≤ 0, and that B is localized at times
+  x_{i0} ≥ 0. Let B_T denote the translate of B at time T > 0, so that B_T is localized at
+  times ≥ T."; (b) Theorem 1.1.11 verbatim with (1.1.14)–(1.1.16) and "uniformly in h. We
+  shall choose t_j = j, j ∈ Z."; and p. 596's restriction "In the next two results, we take all
+  times x_{1,0} = t = ··· = x_{r,0} equal in Q(x₀). To indicate this restriction, we write Q(t)
+  in place of Q(x₀)."; (c) p. 597: "After rotating and translating the strip
+  separating Q₁ and Q₂ in Theorem 1.1.7, and after choosing A = Q₁, B_T = Q₂ in Theorem
+  1.1.11, the proof follows from Theorem 1.1.8, (1.1.16) and the above determination of Q."
+- What this carries: the re-sourcing of A8(vi) (degree-zero B; the printed range T > 0) and
+  the Scope paragraph's point (b) (the printed proof reaches sharp-time monomials only across
+  strips parallel to the time-zero line).
+- Verdict: ________  Notes: ______________________________________________
+
+### 13. GJS's own specialization, and the hypotheses of Theorem 4.1 — p. 600 (PDF 17) and p. 628 (PDF 45)
+- Images: `gjs-proof118-17.png` (p. 600), `gjs-thm41-45.png` (p. 628); both new, 31 October 2026.
+- To confirm, p. 600: "Proof of Theorem 1.1.8, assuming Theorem 1.1.10. Choose T = 0 and B = I in
+  Theorem 1.1.11. Then Q = 0, so Theorem 1.1.8 is a special case of Theorem 1.1.10." (the
+  printed "1.1.10" where the argument uses 1.1.11, as recorded [sic] in the manuscript); and,
+  lower on the page, "convergence of our expansions requires both sufficiently small λ and
+  sufficiently large m₀". P. 628: "THEOREM 4.1. Let ε and n be given. Let m₀, K₂ and K₁ be
+  sufficiently large, and let λ be sufficiently small. Then the n-particle cluster expansion
+  (4.3) is norm decreasing." and the heading "Proof of Theorems 1.1.8 and 1.1.11. Divide (4.3)
+  by ∫e^{−V}dΦ_{C₀} and set".
+- Manuscript sites: A8(vi) source fact (b), the reading paragraph and its remark (3); §2.6.
 - Verdict: ________  Notes: ______________________________________________
 
 ---
 
 ## What a completed record closes
 
-- All nine `MATCHES`: C5 is closed; Appendix B "External residue" and `strategy.md` §5 can be
-  updated to "closed on <date> by <reader>". The status of U_GJS does not change (it remains
-  an import at source scope, by design), but its transcription is then independently
+- All thirteen `MATCHES` (items 1–13): C5 is closed; Appendix B "External residue" and `strategy.md` can be
+  updated to "closed on <date> by <reader>". The status of the imports does not change (they
+  are printed statements by design), but their transcription is then independently
   confirmed.
 - Any `DIFFERS`: quote the difference here, then check whether a constant or a quantifier
-  in `main.tex` depends on it (items 3, 4 → §§5–7 constants; items 6, 8, 9 → A8(vi) scope).
+  in `main.tex` depends on it (items 3, 4 → §§5–7 constants; items 2, 9, 12, 13 → the
+  re-sourcing of A8(vi); items 10–12 → the Scope paragraph's point (b)).
 - Any `AMBIGUOUS`: consult a second copy of the source (journal print or a higher-resolution
   scan) before recording a verdict.

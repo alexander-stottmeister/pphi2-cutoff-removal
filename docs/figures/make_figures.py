@@ -368,15 +368,15 @@ def fig_dag(results):
         cols[lab] = (100 + (i % 2) * 300, 150 + i * 29)
     s = Svg(W, H, "The import graph",
             "A1-A8 and the spine of Part I. Everything whose proof chain reaches A8, the "
-            "GJS package, inherits the conditionality of Theorem 12.2.")
+            "GJS package, rests on its printed statements (all literal since 31 October 2026).")
     s.text(28, 26, "What Theorem 12.2 rests on", "b")
     s.text(W - 24, 26, "generated from part_i/main.tex", "mut xs", text_anchor="end")
     s.rect(28, 38, 10, 10, fill="var(--cfill)", stroke="var(--cond)", stroke_width=1.2, rx=2)
-    s.text(43, 47, "proof chain reaches A8 \u2014 conditional on U_GJS", "xs", fill="var(--cond)")
+    s.text(43, 47, "proof chain reaches A8 \u2014 rests on the GJS imports", "xs", fill="var(--cond)")
     s.rect(268, 38, 10, 10, fill="var(--bg)", stroke="var(--ok)", stroke_width=1.2, rx=2)
     s.text(283, 47, "independent of A8", "xs", fill="var(--ok)")
     s.rect(400, 38, 10, 10, fill="var(--bg)", stroke="var(--line)", stroke_width=1.2, rx=2)
-    s.text(415, 47, "imported hypothesis", "xs mut")
+    s.text(415, 47, "imported statement", "xs mut")
     for lab in SPINE:
         r = by.get(lab)
         if not r:

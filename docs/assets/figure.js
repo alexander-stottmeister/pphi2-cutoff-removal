@@ -50,7 +50,8 @@ export function banner(host) {
   const d = document.createElement("div");
   d.className = "banner";
   d.innerHTML = "<b>This is an illustration, not evidence.</b> Theorem 12.2 is " +
-    "conditional on the imported interface U_GJS, audit item C5 is open, the work is " +
+    "proved from the printed imports A1\u2013A8 (U_GJS is GJS Theorem 1.1.11 as printed " +
+    "since 31 October 2026), the human page readings of audit item C5 are open, the work is " +
     "AI-assisted and human verification of it is ongoing. Figures show bounds and " +
     "structure, never a measured property of any state. " +
     '<a href="../status.html">Status</a>.';

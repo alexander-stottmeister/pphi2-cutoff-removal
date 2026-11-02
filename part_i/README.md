@@ -1,7 +1,7 @@
 # Part I — unified manuscript (`part_i/main.tex`)
 
 **Repair addendum (16 August 2026; supersedes earlier unconditional closure
-wording below).**  The canonical Main Theorem is an implication from the explicitly
+wording below; itself superseded on 31 October 2026, see "Re-sourcing of A8(vi)" below).**  The canonical Main Theorem is an implication from the explicitly
 enumerated construction imports and the slab-family moment hypothesis
 `U_GJS` in Assumption `A:gjs`(vi).  The printed GJS theorem and p. 629 support that
 interface but do not, on the audited pages alone, prove its exact working-family
@@ -417,6 +417,73 @@ Notes: `32M` in §§10–11 and App A is the legitimate LPPL prefactor; the forb
 only as the (M₂) cell-pair count in §5. `(2r)!`/`K_2^{4r}` in §6 is the legitimate
 squared-observable weight; the forbidden pattern is `(2p')!` with `K_2^{4p'}` in §5.
 
+### Re-sourcing of A8(vi) and documentation repairs (2026-10-31) — Phases 0′ and 0 of `ugjs/PLAN.md`
+
+- **E3 (re-sourcing, no proof touched).** A8(vi) is read off the printed Theorem 1.1.11 of
+  GJS: (1.1.16) is printed "uniformly in h" (p. 596), and GJS's own proof of Theorem 1.1.8
+  on p. 600 is its specialization "Choose T = 0 and B = I in Theorem 1.1.11. Then Q = 0"
+  (named again on p. 629). A new unnumbered `srcfactstar` inside item (vi) quotes pp. 596,
+  600 and 629 verbatim (`% src:` comments; new evidence images `gjs-thm1111-13.png`,
+  `gjs-proof118-17.png`, private corpus); a reading paragraph gives the literal basis
+  (B = I, n = 0, any 0 < T < 1 inside the printed T > 0; the integer time translation;
+  C_8 = O(1) K_1; the localization step; the smallness hypotheses printed with Theorem 4.1,
+  p. 628, and on p. 600). The Scope paragraph is rewritten (one import standard; why the
+  5 September 2026 reading stopped short; the two readings are the same mathematics; point
+  (b): Theorem 1.1.7's printed proof reaches sharp-time monomials only across strips parallel
+  to the time-zero line, the case Lemma 7.4 uses; point (c): the source's proof is not
+  re-verified, as for A1–A7). "Assume U_GJS" is removed from Theorem 12.2 and Proposition
+  C.7; the imports paragraph, title page (new dated paragraph; the two earlier ones marked
+  superseded), abstract, §1.2 (quotation, table row (i), graph), §1.4 Pillar 1 and the
+  density sentence, §2.6 (ε_P defined through the printed hypotheses of Theorems 1.1.7 and
+  1.1.11), Lemma 4.3's wording, Appendix B (corrections entry; External residue now lists
+  C5 items 1–4, 9 and 12–13 as carrying the imports and items 10–11 the disclosure) and the Appendix C introduction are reworded.
+  `\date` is 31 October 2026; the pinned build epoch is 1793404800.
+- **E4 (documentation repairs, PLAN Phase 0).** A8(ii) names the time-integrated monomials
+  (1.1.6) and the square convention of p. 593 (finding F3); Appendix C's mechanism audit gains
+  item M6 (the stability input (2.4.34)–(2.4.35) of p. 624 with K_2 ≥ K_3², cited to
+  Dimock–Glimm, which items M1, M3–M5 had declared absent; finding F1, MAJOR against the
+  narrative, no theorem affected), M2's "Dirichlet" becomes "decoupled" and M1's e^{τt}
+  becomes e^{γt} with the script-K_2 correction (F11), Proposition C.1's limitation and
+  Remark C.6 are narrowed. "uniformly as h↑1" became "h → 1" (F14).
+- **Build (gate G-0/G-0′ record).** 3× pdflatex with `SOURCE_DATE_EPOCH=1793404800
+  FORCE_SOURCE_DATE=1`: 0 errors, 0 undefined, 0 Overfull, 5 Underfull (unchanged), 42 pp (was
+  40). The committed build and the first Phase 0 build carried 9 Overfull boxes (widths 0.17,
+  0.28, 1.47, 2.63, 9.33, 9.80, 18.87, 22.41, 23.88 pt); a layout pass on 2 November 2026
+  removed them without changing any statement's number or page (the §1.2 dependency graph set
+  at footnote size, one display split and one tightened, Appendix A's table with 4 pt column
+  padding, four sentences reworded). `.aux` diffed against the pre-edit baseline: all 125
+  labels identical in number. `grep -c 'Assume \$U_{\rm GJS}'` and the broader
+  `grep -i 'assum[a-z]*[^.]*U_{\rm GJS}'` print 0 (they found 4 lines before). Forbidden
+  strings: none. `main.pdf` sha256 begins 4c37f0272c8341e2. Page inspection: pp. 1, 11–13
+  rendered and read by the orchestrator after the first pass; pp. 1, 11–13, 38 by the fresh
+  verifier (V0), all 17 changed pages of the pre-layout build (pp. 1–5, 10–15, 18, 32, 37–39,
+  41) by the verifier (V0b), and pp. 4, 9, 13, 15, 32, 33, 35, 36, 37, 39 of the current build
+  by the orchestrator after the layout pass. Fresh reader, round V0/V0′
+  (`ugjs/council/v0-verifier-report.md`): "can be committed after the listed fixes" — 4 CRITICAL
+  (three quotation glosses, and generated figure and interactive-page texts still saying
+  "conditional"), 6 MAJOR, 19 MINOR, all applied; the verifier's byte-identical rebuild of
+  `main.pdf` confirmed the pinned epoch. Round V0b (`ugjs/council/v0b-verifier-report.md`):
+  "Not yet" — C1–C4, M1–M4 and M6 fixed; two new MAJOR (a false clause in Scope point (d); the
+  C5 counts after item 13b, since folded into item 13), M5 open (the nine boxes; five V0 MINOR
+  items undone), 8 new MINOR; all applied on 2 November 2026. Round V0c
+  (`ugjs/council/v0c-verifier-report.md`, 2 November 2026): N1, N2, M5(a), M5(b) and n1–n8
+  fixed, the layout pass changed no mathematics (byte-identical rebuild, sha256 4c37f0272c8341e2,
+  every label on its page), companion 20 pp; "Not yet" on one new item only: the gate-record
+  edit had duplicated 314 lines of this file (sections repeated, the 5 September bullets inside
+  this record), repaired the same day by restoring the single copy and checked by diff against
+  the committed file; two of its three optional MINOR items applied (the open readings named
+  beside F-0′ in README.md, docs/status.md and docs/imports.md; the "implication" sentence of
+  docs/status.md reworded), the third kept (strategy.md's "G-0 now met", true once this round
+  is recorded). Round V0d (V0d section of the same report, 2 November 2026): the repair
+  confirmed against the verifier's saved copies of the corrupted file, the optional items
+  settled; final word "commit". Gate G-0′ passed on 2 November 2026.
+- **C5 extended.** `part_i/C5_reading_record.md`: item 2 extended (p. 593's "no restriction on
+  r"); items 10–13 added (pp. 593/595; p. 594; pp. 596–597; pp. 600 and 628), blank verdict fields.
+- **Record elsewhere.** `docs/status.md`, `docs/imports.md`, `docs/index.md`,
+  `docs/_config.yml`, the README's Status section and figure paragraph, `CITATION.cff`, a
+  notice in the companion; `docs/results.*` regenerated. Plan and council record:
+  `ugjs/PLAN.md`, `ugjs/council/`.
+
 ## Dossier map (assumption → `audit_2026/evidence/` images)
 
 | assumption | images |
@@ -428,4 +495,4 @@ squared-observable weight; the forbidden pattern is `(2p')!` with `K_2^{4p'}` in
 | A5 | gjexp-domain-165/166/167 |
 | A6 | gj1-locality-06, gjexp-054/055/056, gj2-cutoff-independence-38, gj2-local-algebra-40 |
 | A7 | gj2-cutoff-independence-38 |
-| A8 | gjs-source-05/06, gjs-p589-06, gjs-scaling-07, gjs-theorems-10/11/12, gjs-core-11/12, gjs-uniform-46, gjs-uniformity-46, gjs-proof-14 (E54, scope of (vi)) |
+| A8 | gjs-source-05/06, gjs-p589-06, gjs-scaling-07, gjs-theorems-10/11/12, gjs-core-11/12, gjs-uniform-46, gjs-uniformity-46, gjs-proof-14 (E54, scope of (vi)), gjs-thm1111-13 (p. 596), gjs-proof118-17 (p. 600), gjs-thm41-45 (p. 628) (added 31 October 2026) |

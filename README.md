@@ -17,14 +17,14 @@ being released.
 **Human verification of the output is ongoing.** Nothing here has been refereed, and the
 author's own line-by-line check of the machine-assisted material is still in progress:
 open audit item C5 (a second human reader for the source page images, see below) is
-unclosed, and the main theorem is conditional on an imported hypothesis. Read every
+unclosed. Theorem 12.2 is proved from the literal imports A1–A8. Its moment input A8(vi) is GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0 and any 0 < T < 1 (p. 596), the case GJS name on p. 629 and specialize to T = 0 in their proof of Theorem 1.1.8 (p. 600); the record does not re-derive the cluster expansion. The human page readings of audit item C5 (items 1–4 and 9–13) are open. Read every
 statement in this repository as a claim under active verification, not as a settled
 result, and check anything you intend to rely on against the cited sources yourself.
 Direction, mathematical judgement and final responsibility are the author's.
 
-## Status: the main theorem is conditional. Please read this first.
+## Status: the main theorem is an implication from printed imports. Please read this first.
 
-**Part I** (`part_i/main.tex`, 40 pp, document of record) proves Theorem 12.2. In the
+**Part I** (`part_i/main.tex`, 42 pp, document of record) proves Theorem 12.2. In the
 Glimm–Jaffe–Spencer weak-coupling region 0 ≤ λ/m₀² < ε_P, the full net (ω_g) of cutoff
 ground states, with no subnets and no space averaging, converges in norm on every local
 algebra A(O),
@@ -36,20 +36,23 @@ translation invariant, ℤ₂ invariant for even P, and a ground state of the Gl
 dynamics (A, α) in the spectral sense.
 
 The proof is an implication from the imports A1–A8 enumerated in §2. **It is not a proof
-of those imports.** One of them is not a literal quotation of a printed theorem:
+of those imports.** Since 31 October 2026 all eight are printed statements used at the
+scope at which they are printed; the last to become so was:
 
-- **A8(vi), written U_GJS**, is the cutoff-uniform form of the Glimm–Jaffe–Spencer moment
-  estimate (Ann. of Math. **100** (1974), Thm. 1.1.8) on the slab family used here. Since
-  the scope amendment of 5 September 2026 it is documented as imported at the scope at
-  which the source itself states and uses it, with the relevant passages on pp. 594–597
-  and 629 quoted verbatim in item A8(vii′), rather than as a quantifier strengthened
-  beyond the source. It remains a named hypothesis of Theorem 12.2. This manuscript does
-  not re-derive the cluster expansion: Appendix C audits the source mechanism and proves
-  two analytic prerequisites only.
+- **A8(vi), written U_GJS**, the cutoff-uniform Glimm–Jaffe–Spencer moment estimate on the
+  slab family used here. Theorem 12.2 is proved from the literal imports A1–A8. Its moment input A8(vi) is GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0 and any 0 < T < 1 (p. 596), the case GJS name on p. 629 and specialize to T = 0 in their proof of Theorem 1.1.8 (p. 600); the record does not re-derive the cluster expansion. The human page readings of audit item C5 (items 1–4 and 9–13)
+  are open. This is a re-sourcing, not a proof: from 16 August to 30 October 2026
+  the same estimate was a named hypothesis of Theorem 12.2 ("assembled from four pages",
+  the reading of 5 September 2026), and the two readings are the same mathematics with
+  different bookkeeping. The manuscript does not re-derive the cluster expansion. The plan
+  to derive the moment bound from the clustering theorem alone, written by a council of
+  agents, is `ugjs/PLAN.md`; its Phases 0 and 0′ are what this paragraph records.
 
 **Open audit item C5.** No second human reader has yet checked the source page images
 against the transcriptions in §2. The itemized checklist is
-`part_i/C5_reading_record.md`; all nine verdict fields are still blank.
+`part_i/C5_reading_record.md`; all thirteen verdict fields are still blank (items 10–13
+were added on 31 October 2026 for the re-sourcing of A8(vi) and the transverse-case
+disclosure in A8's Scope paragraph).
 
 **Part II** is open at gate (II.11). Its preparatory scoping pass is
 `part_ii/gate_II11_scoping.tex`, and phases V0–V4 are recorded in `strategy.md`. Nothing
@@ -73,13 +76,15 @@ evidence.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/figures/imports-dag-dark.svg">
-  <img alt="Dependency graph of Part I: assumptions A1-A8 above, the spine of results below, with every statement whose proof chain reaches A8 marked as conditional on U_GJS." src="docs/figures/imports-dag.svg">
+  <img alt="Dependency graph of Part I: assumptions A1-A8 above, the spine of results below, with every statement whose proof chain reaches A8, the GJS package, shaded." src="docs/figures/imports-dag.svg">
 </picture>
 
 Generated from `part_i/main.tex`: the nodes are the spine of Part I, the edges are its
-own `\ref` graph, and the shading is computed, not asserted. A statement is marked
-conditional exactly when its proof chain reaches A8, the GJS package whose item (vi) is
-U_GJS. Twenty-nine of the sixty-one numbered statements are, the three Source Facts
+own `\ref` graph, and the shading is computed, not asserted. A statement is shaded
+exactly when its proof chain reaches A8, the GJS package; since 31 October 2026 every item
+of A8 is a printed statement (item (vi), U_GJS, is GJS Theorem 1.1.11 as printed), so the
+shading records dependence on the GJS imports, not a conditional status. Twenty-nine of
+the sixty-one numbered statements are shaded, the three Source Facts
 printed inside A8, Lemma 7.4 and Remark C.6 among them; the [result
 inventory](docs/results.md) lists which. The flag is `\ref`-reachability, a mechanical
 index of the reference graph: it counts forward references and misses a dependence
@@ -138,7 +143,7 @@ below by one γ for the whole cutoff class.
 
 | document | | what it is |
 |---|---|---|
-| [`part_i/main.pdf`](part_i/main.pdf) | 40 pp | **the document of record.** Theorem 12.2 and its full proof from the imports |
+| [`part_i/main.pdf`](part_i/main.pdf) | 42 pp | **the document of record.** Theorem 12.2 and its full proof from the imports |
 | [`part_ii/gate_II11_scoping.pdf`](part_ii/gate_II11_scoping.pdf) | 11 pp | the open Part II programme at gate (II.11) |
 | [`companion/companion.pdf`](companion/companion.pdf) | 20 pp | **a reader's companion:** what is proved, under what, and why; it explains the record and proves nothing new |
 | [`audit_2026/critical_proof_audit.pdf`](audit_2026/critical_proof_audit.pdf) | 10 pp | the independent audit, frozen against the v1 hash |
@@ -168,7 +173,7 @@ figures below are interactive.
 | `part_i/` | document of record, its `README.md` with gates G0–G6 and step maps, and the C5 reading record |
 | `part_ii/` | the open programme, gate (II.11) scoping, phases V0–V4 |
 | `companion/` | the reader's companion (20 pp), its sections and figures, and the council of agents that wrote it (`companion/council/`) |
-| `ugjs/` | the plan to remove the hypothesis U_GJS from Theorem 12.2 (`ugjs/PLAN.md`, for the author's approval; nothing in it is executed), and the council of agents that wrote it (`ugjs/council/`) |
+| `ugjs/` | the plan to remove the hypothesis U_GJS from Theorem 12.2 (`ugjs/PLAN.md`; its Phases 0′ and 0 were executed on 31 October 2026, Phases A and B are next), and the council of agents that wrote it (`ugjs/council/`) |
 | `m0/`–`m6/` | historical working drafts, superseded by `part_i/main.tex` and kept for provenance |
 | `audit_2026/` | citation screenshot dossier and the 2026 critical proof audit |
 | `fresh_audit_2026_08_16/` | independent audit, Lamport-style reconstruction, evidence ledgers |
@@ -222,19 +227,20 @@ all references.
 cd part_i && pdflatex main.tex && pdflatex main.tex && pdflatex main.tex
 ```
 
-A clean build is 40 pages with zero errors and zero undefined references.
+A clean build is 42 pages with zero errors, zero overfull boxes and zero undefined references.
 
 The three citation dossiers (`audit_2026/`, `fresh_audit_2026_08_16/`, `part_ii/`) build
 the same way, from their own directory. Without the page-image corpus each image is
 replaced by a framed placeholder naming the missing file, and the build still completes
 with zero errors.
 
-The printed date is pinned in the preamble to the last mathematical change, so it does
+The printed date is pinned in the preamble to the last change of the mathematics or of an
+import's status, so it does
 not drift between builds. The PDF bytes would otherwise still carry pdftex's own build
 timestamp, so the committed `part_i/main.pdf` is built with that timestamp pinned too:
 
 ```sh
-SOURCE_DATE_EPOCH=1788566400 FORCE_SOURCE_DATE=1 pdflatex main.tex   # x3
+SOURCE_DATE_EPOCH=1793404800 FORCE_SOURCE_DATE=1 pdflatex main.tex   # x3
 ```
 
 Three passes of this command reproduce the committed PDF byte for byte under pdfTeX
@@ -280,4 +286,6 @@ came from.
 
 ## Citing
 
-See `CITATION.cff`. If you cite the theorem, please cite it as conditional on U_GJS.
+See `CITATION.cff`. If you cite the theorem, please cite it as an implication from the
+printed imports A1–A8 of §2.4 of the manuscript, and name the open human page readings
+(audit item C5).

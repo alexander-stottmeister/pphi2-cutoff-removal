@@ -2492,3 +2492,37 @@ decision/ugjs-removal-council-plan`, `artifact/ugjs-removal-plan`,
 `common:reference/glimm-jaffe-spencer-erice-1973` (28 October, reviewed and amended). The
 older KB texts calling the h-trace "the only proportionate route" stand until the author's
 go at Checkpoint 1.
+
+### Phases 0′ and 0 of the U_GJS plan executed (31 October 2026)
+
+**Checkpoint 1.** The author's instruction on 31 October 2026 was "start with the plan". It
+was taken as approval of the plan's own recommendations for the Checkpoint 1 questions of
+PLAN Part 11: Q1 yes (Phase 0′, the re-sourcing); Q1′ yes (Phases A and B are to be written
+as the substantive derivation, with integration waiting for Checkpoint 2); Q2 all of (a)–(g)
+applied (the Appendix C repair with M6; A8(ii) widened; F-T in A8's Scope; the Scope (b)
+rewording; "the only proportionate route" corrected in `docs/imports.md` and the KB; the page
+range; the companion's notice; the Appendix B entry); Q3 one note with two theorems, audited
+twice; Q4 Appendix D; Q5 the human readings remain the author's, named open beside every
+status word. Any of these the author wants otherwise is reversible by git.
+
+**What changed.** Following `ugjs/PLAN.md` in its recommended order, the record's A8(vi) was re-based on the printed GJS Theorem 1.1.11 (Phase 0′) and
+the documentation repairs of Phase 0 were applied. Theorem 12.2 is now stated as an
+implication from the printed imports A1–A8 with no separate hypothesis line: its moment
+input A8(vi) is Theorem 1.1.11, (1.1.16) "uniformly in h" (p. 596), at B = I, n = 0 and any
+0 < T < 1, the case GJS name on p. 629 and specialize to T = 0 in their proof of Theorem
+1.1.8 (p. 600). This is a re-sourcing, not a proof: the record trusts GJS's printed argument
+exactly as before, and the reading of 5 September 2026 used the same pages as evidence for
+Theorem 1.1.8 (same mathematics, different bookkeeping). The one case of Theorem 1.1.7 that
+its printed proof does not reach (sharp-time monomials across strips transverse to the
+time-zero line) is now disclosed in A8's Scope paragraph; Lemma 7.4 uses only the parallel
+case. Appendix C's mechanism audit gains item M6, the stability input (2.4.34) of GJS p. 624
+that it had wrongly declared absent (finding F1 of the council; no theorem affected). Details
+and the gate record: `part_i/README.md`, "Re-sourcing of A8(vi) and documentation repairs
+(2026-10-31)". The derivation of the local moment from Theorem 1.1.7 alone (Phases A and B of
+the plan) is the next work item; integration waits for the author's Checkpoint 2.
+
+**Standing.** Theorem 12.2: proved from the literal imports A1–A8, with the human page
+readings of C5 (items 1–4, 9, 12, 13; items 10–11 for the disclosure) named as open
+beside the status. No proof changed; all 125 labels keep their numbers; 42 pages. Gate
+record, including the layout pass of 2 November 2026 that removed the nine pre-existing Overfull boxes (G-0 now met) and the fresh
+reader's round V0/V0′: `part_i/README.md`.
