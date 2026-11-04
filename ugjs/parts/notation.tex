@@ -541,7 +541,8 @@ confirms $8j+12$ of them, computes for each the axis-parallel width of
 Lemma~\ref{aux:notation-strip} and confirms it is $\ge j$, and compares partial sums of
 $\sum(8j+12)x^j$ with the closed form in exact rational arithmetic.  Run record: 3 November 2026,
 \texttt{/usr/local/bin/python3} (Python 3.14.7, numpy 2.5.2, scipy 1.18.1), output
-\texttt{parts/cqft2\_ringcheck.output.txt}, ``ALL CHECKS PASSED''; it also checks the kernel
+\texttt{parts/cqft2\_ringcheck.output.txt}, ``ALL CHECKS PASSED''; the quadrature there uses
+the relative tolerance $10^{-11}$, set in the script and not printed in the output; it also checks the kernel
 bound of Lemma~\ref{aux:notation-kernel} against quadrature (relative tolerance $10^{-11}$) and
 the inequality $(4n-1)!!\le4^n(2n)!$ of Appendix~\ref{app:constants} for $n\le40$.
 \end{auxrem}
