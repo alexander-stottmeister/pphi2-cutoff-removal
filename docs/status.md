@@ -75,6 +75,17 @@ hypotheses of Theorem 4.1); items 10–11 carry the disclosure of the transverse
 Scope paragraph (the two forms (1.1.5)–(1.1.6) with p. 595's multi-time notation;
 Theorem 1.1.7's strip without orientation); items 5–8 are corroboration.
 
+**Phases A and B of the removal plan (2–4 November 2026).** The comparison note
+`ugjs/comparison.tex` (72 pp, built with `pdflatex` from `ugjs/`; master, preamble and
+`ugjs/parts/`) derives the uniform local moment of Theorem 5.1 and §7 from the printed
+clustering theorem (GJS Theorem 1.1.7) and Appendix C, so that after integration Theorem 1.1.11
+would no longer be used. It is audited in four rounds (`ugjs/council/`) and not integrated:
+every statement in it is conditional on the repairs R1–R10 of the V3 audit of Appendix C
+(three MAJOR gaps in Lemmas C.2–C.5: true statements with unproved inputs) and, for the
+sharp-time observable, on the transverse case of Theorem 1.1.7 at the printed statement's
+scope, which its printed proof does not reach. Theorem 12.2's status is unchanged. Integration
+is Checkpoint 2 of the plan, the author's decision.
+
 ## Part II — open at gate (II.11)
 
 Nothing in Part I depends on Part II. The preparatory scoping pass is

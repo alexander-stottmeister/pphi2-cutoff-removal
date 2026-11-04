@@ -1,0 +1,326 @@
+% d4.tex -- drafted by aqft (council member of ugjs/PLAN.md), 2 November 2026 (begun 31 October 2026);
+% revised 3 November 2026 after the audits V1 (cqft, mp) and V2: the identification of the two
+% constructions of Q_V (V1 cqft finding 1 = V2-1) is cqft2's Lemma aux:notation-sharpid with
+% Remark aux:notation-sharpidrem(b), cited here; the status line after the theorem; V_* for the
+% constructed V(h'), so that the GAP enters only the transfer to the record (\S8.6).
+% Section 6: Theorem D.4 (Phase B; uniform in the cutoff; transverse strips, disclosed by F-T).
+% Merged with \S2 (notation.tex, cqft2) on 2 November 2026: the box B_{3x5}, its rings and their
+% strips, the Wick isometry with V_*, and the comparison ||Y||_4 <= 3^{p'}||Y||_2 are those of \S2.
+% Auxiliary statements of this part: aux:d4-QV and the remarks of \S6.5.
+
+Theorem~\ref{thm:D4} proves the moment bound that Theorem~5.1 of the record consumes, for every
+cutoff $h\in\CE$ at once, hence uniformly in $T>0$ and $g\in\CH$ when $h=h_{T,g}$.  Its proof
+uses GJS Theorem~1.1.7 also across strips transverse to the time-zero line.  That case is
+covered by the printed statement and not reached by its printed proof; it is disclosed by the
+sentence F-T of \S\ref{sec:purpose}, and every place below where it is used says so.
+
+\subsection{Setting}\label{sub:d4-setting}
+
+The standing assumption of \S\ref{sub:d2-conv} holds.  Let $h\in\CE$, $a\in\R$, and let $h'$ be a
+real measurable function on $\R$ with $\|h'\|_\infty\le1$ and $\supp h'\subseteq[a,a+2]$.
+
+\emph{The observable.}  $V(h'):=\lambda\sum_{n=0}^{2p'}a_nW_n(h')\in L^2(\dphi)$ is the
+time-zero observable constructed in Lemma~\ref{aux:notation-wick}(iv), $W_n(h')$ the limit of
+Lemma~\ref{aux:notation-wick}(iii).  Its sharp-time version at time $0$ is the element
+\[
+ V(h')(0):=Y=J_0V(h')\in L^2(\dmu)
+\]
+of Lemma~\ref{aux:notation-hyper}, with $J_0$ the isometry of the proof of its part (i), and
+$Q_V:=V(h')(0)^2=Y^2$.  Formally $V(h')(0)=\lambda\sum_na_n\int h'(x)\,{:}\Phi(0,x)^n{:}\,dx$, the
+record's eq.~(4) with $h'$ for its $h$.  By Lemma~\ref{aux:notation-sharpid} and
+Remark~\ref{aux:notation-sharpidrem}(b), $Q_V$ is also, almost everywhere, the sum of the
+localized monomials of Definition~\ref{aux:d1-obs}(b) to which Lemma~\ref{lem:D2} is applied
+(Lemma~\ref{aux:d4-QV}(i) below); so the base term and the comparison term of the proof concern
+one and the same element of $L^2(\dmu)$.  Theorem~\ref{thm:D4} is a statement about this
+constructed $V(h')$.  The record's $V(h')$ is identified with it by the GAP recorded after
+Lemma~\ref{aux:notation-wick} (the record states no construction of the Wick powers in $V(h)$);
+Theorem~\ref{thm:D4} does not use that identification, which enters only at the record's
+Theorem~5.1, Step~1, and at the transfer of Theorem~\ref{thm:D4} to Theorem~5.1
+(\S\ref{sub:cons-51}).
+
+\emph{The box and the rings.}  We use Definition~\ref{aux:notation-ringdef}: $k_a$, the row-$0$
+squares $S_a=\{\Delta_{0,k}:k_a\le k\le k_a+2\}$, the box $B_{3\times5}=B_{3\times5}(a)$ (rows
+$-1,0,1$, columns $k_a-1,\dots,k_a+3$; $|B_{3\times5}|=15$), and the rings $\mathcal L_j$, $j\ge1$.
+By Lemma~\ref{aux:notation-rings}(i) the columns that meet $[a,a+2]$ are exactly
+$k_a,k_a+1,k_a+2$, so $[a,a+2]\subseteq[k_a-\frac12,k_a+\frac52)$, and the time $0$ lies in
+row $0$.  Put $R:=S_a$.
+
+\emph{The ring constant.}  With $x:=e^{-m_1}\in(0,1)$ let
+\[
+ \overline\Sigma_{3\times5}:=\sum_{j\ge1}(8j+12)\,e^{-m_1j}=\frac{4x(5-3x)}{(1-x)^2},
+\]
+the right side of Lemma~\ref{aux:notation-rings}(vi).  That lemma writes $\Sigma_{3\times5}$ for
+the sum $\sum_{\Delta\not\subseteq B_{3\times5}}e^{-m_1d(\Delta,R)}$, which depends on $R$, and
+bounds it by $\overline\Sigma_{3\times5}$.  Theorem~\ref{thm:D4} is stated and proved with
+$\overline\Sigma_{3\times5}$, because its proof applies Theorem~1.1.7 only along the axis-parallel
+strips of Lemma~\ref{aux:notation-rings}(iv), whose orientation is named; using the widest strips
+instead would give the smaller $\Sigma_{3\times5}$, at the price of tilted (hence transverse)
+strips also for squares with $|l|=1+j$ (Remark~\ref{aux:notation-tilted}).
+
+\emph{The Gaussian constant.}  $V_*:=\sup_{h'}\|V(h')\|_{L^2(\dphi)}^2$, the supremum over all $h'$
+as above and all $a$, is finite by Lemma~\ref{aux:notation-wick}(iv), with
+$V_*\le\overline V_*=\lambda^2\sum_{n=0}^{2p'}a_n^2\,n!\,I_n$ there.  It concerns the
+constructed $V(h')$ and does not use the GAP.
+
+\subsection{The observable}\label{sub:d4-aux}
+
+\begin{auxlemma}[the observable $Q_V$]\label{aux:d4-QV}
+For $0\le n,n'\le2p'$ and $k,k'\in\{k_a,k_a+1,k_a+2\}$ let
+$h'_k:=h'\mathbf 1_{[k-\frac12,k+\frac12)}$, and let $Q_{n,n',k,k'}$ be the localized monomial of
+Definition~\ref{aux:d1-obs}(b) at time $0$ with two factors of degrees $n,n'$ and kernel
+$\lambda^2a_na_{n'}h'_k\otimes h'_{k'}$, formally
+\[
+ Q_{n,n',k,k'}=\lambda^2a_na_{n'}\iint h'_k(x)\,h'_{k'}(y)\,{:}\Phi(0,x)^n{:}\,{:}\Phi(0,y)^{n'}{:}
+ \,dx\,dy .
+\]
+\emph{(i)} $Q_V=\sum_{n,n'}\sum_{k,k'}Q_{n,n',k,k'}$ $\dmu$-almost everywhere.
+\emph{(ii)} Each $Q_{n,n',k,k'}$ is a monomial of type (1.1.5), in the sense of
+Definition~\ref{aux:d1-obs}(b), with $r=2$ factors at time $0$, of individual degrees
+$n,n'\le2p'<\bar n$, with kernel $\lambda^2a_na_{n'}h'_k\otimes h'_{k'}\in L^2(\R^2)$, localized
+in $\Delta_{0,k}$ and $\Delta_{0,k'}$, which belong to $S_a$.  Its total degree $n+n'\le4p'$ may
+exceed $\bar n-1=2p'$; this is admissible because the source bounds only the individual degrees,
+``We assume a bound on the $n_i$ in (1.1.5), $n_i<\bar n$'', and adds ``Since there is no
+restriction on $r$, $Q$ still may have an arbitrarily large degree'' \cite[p.~593]{GJS}.  This is
+where that sentence is used.  No Wick re-expansion of the product is made: as in Step~1 of the
+proof of Theorem~5.1 of the record (main.tex ll.~1278--1283), the product of two individually
+Wick-ordered powers is itself of type (1.1.5).
+\emph{(iii)} For this decomposition, (1.1.9) and (1.1.8) give
+\[
+ \GJS{Q_V}:=\sum_{n,n',k,k'}\GJS{Q_{n,n',k,k'}}
+ \le9\,K_1K_2^{8p'}(4p')!\,\lambda^2\Bigl(\sum_{n=0}^{2p'}|a_n|\Bigr)^2 .
+\]
+\end{auxlemma}
+
+Part (i) is Remark~\ref{aux:notation-sharpidrem}(b) of \S\ref{sec:notation}, restated with the
+present notation; (ii)--(iii) are Steps~1--4 of the proof of Theorem~5.1 of the record,
+transcribed to the columns of $S_a$.  That the limits of Definition~\ref{aux:d1-obs} are the
+monomials that GJS print as formal integrals is a reading of the source
+(Remark~\ref{aux:notation-gjslattice}(iv), Remark~\ref{aux:d1-def}).
+
+\begin{proof}
+(i) Each $h'_k$ is real, measurable, bounded by $1$, vanishes outside $[a,a+2]$ and outside the
+column $[k-\frac12,k+\frac12)$, so it satisfies the hypotheses of
+Lemma~\ref{aux:notation-sharpid} (bounded, compact support) and of
+Remark~\ref{aux:notation-sharpidrem}(a) (vanishing outside one column).  Since $h'$ vanishes
+outside $[a,a+2]\subseteq[k_a-\frac12,k_a+\frac52)$, $h'=\sum_{k=k_a}^{k_a+2}h'_k$ pointwise.
+Remark~\ref{aux:notation-sharpidrem}(b) gives, almost everywhere,
+$Q_{n,n',k,k'}=\lambda^2a_na_{n'}\,J_0W_n(h'_k)\,J_0W_{n'}(h'_{k'})$ and $W_n(h')=\sum_kW_n(h'_k)$;
+hence, $J_0$ being linear,
+\[
+ \sum_{n,n',k,k'}Q_{n,n',k,k'}=\Bigl(J_0\,\lambda\sum_na_n\sum_kW_n(h'_k)\Bigr)^2
+ =\bigl(J_0V(h')\bigr)^2=Y^2=Q_V .
+\]
+(ii) The kernel is a product of bounded functions with compact support, hence in $L^2(\R^2)$, and
+it vanishes unless $x\in[k-\frac12,k+\frac12)$ and $y\in[k'-\frac12,k'+\frac12)$, i.e.\ unless
+$(0,x)\in\Delta_{0,k}$ and $(0,y)\in\Delta_{0,k'}$.  A factor of degree $0$ is ${:}\Phi^0{:}=1$
+and contributes $0$ to the local degree.
+(iii) This is Steps~3--4 of the proof of Theorem~5.1 of the record (main.tex ll.~1293--1315) with
+the cells $[j,j+1)$ replaced by GJS's columns.  For one ordered pair $(k,k')$ and degrees
+$(n,n')$: if $k=k'$ the local degree of $\Delta_{0,k}$ is $n+n'$ and the weight of (1.1.8) is
+$K_1K_2^{2(n+n')}(n+n')!$; if $k\ne k'$ it is $K_1K_2^{2n}n!\,K_2^{2n'}n'!$.  In both cases the
+weight is at most $K_1K_2^{8p'}(4p')!$, because $K_2\ge1$, $n+n'\le4p'$ and
+$n!\,n'!\le(n+n')!\le(4p')!$.  The kernel norm is
+$\lambda^2|a_n||a_{n'}|\,\|h'_k\|_2\|h'_{k'}\|_2\le\lambda^2|a_n||a_{n'}|$, since
+$\|h'_k\|_2^2=\int_{k-1/2}^{k+1/2}h'^2\le1$.  There are at most $3^2=9$ ordered column pairs, and
+$\sum_{n,n'}|a_n||a_{n'}|=(\sum_n|a_n|)^2$.  (This is eq.~(5) of the record without its final
+equality ``$=M^2/C_8$'', which item n14 of the plan deletes.  Test, $\mathscr P(\xi)=\xi^4$: the
+bound is $9\cdot8!\,K_1K_2^{16}\lambda^2=362\,880\,K_1K_2^{16}\lambda^2$.)
+\end{proof}
+
+\subsection{The theorem}\label{sub:d4-thm}
+
+\begin{dtheorem}[Phase B: uniform in the cutoff]\label{thm:D4}
+Assume the standing assumption of \S\ref{sub:d2-conv}.  For every $h\in\CE$, every $a\in\R$ and
+every real measurable $h'$ with $\|h'\|_\infty\le1$ and $\supp h'\subseteq[a,a+2]$,
+\[
+ \int V(h')(0)^2\,dq_h\le M_B^2 ,
+\]
+\[
+ M_B^2:=e^{15\lambda|a_0|}\,S_2(B_{3\times5})\cdot9^{p'}\,V_*
+ +C_7\,c_U\,\overline\Sigma_{3\times5}\cdot9\,K_1K_2^{8p'}(4p')!\,\lambda^2
+ \Bigl(\sum_{n=0}^{2p'}|a_n|\Bigr)^2 ,
+\]
+with $V(h')(0)$, $V_*$ and $\overline\Sigma_{3\times5}$ as in \S\ref{sub:d4-setting}, $c_U$ of
+Lemma~\ref{aux:notation-cU}, and $S_2(B_{3\times5})$ the common value of
+Definition~\ref{aux:notation-S2def} at all boxes of $3$ rows and $5$ columns
+(Proposition~\ref{aux:notation-S2}(iii)).  In working coordinates (Remark~3.3 of the record), $M_B$
+depends on $(\lambda,\mathscr P,m_0)$ through $C_7$, $m_1$, $K_1$, $K_2$, the unevaluated finite
+constant $S_2(B_{3\times5})$ of Theorem~C.5 of the record, and $V_*$; it does not depend on $h$, $a$
+or $h'$.  The proof uses GJS Theorem~1.1.7 across strips transverse to the time-zero line, a case
+its printed proof does not reach (F-T, \S\ref{sec:purpose}; \S\ref{sub:d4-transverse}).
+\end{dtheorem}
+
+\emph{Status of Theorem~\ref{thm:D4}.}  Proved, conditional on: Lemma~\ref{lem:D1}, through
+Lemma~\ref{lem:D2} (Lemma~C.4, R1--R10, as stated after Lemma~\ref{lem:D2});
+Lemma~C.2 of the record (repair R8); Theorem~C.5 of the record with
+Proposition~\ref{aux:notation-S2}, including the common value of $S_2$ at all $3\times5$ boxes
+(repairs R1--R10); repair R8 for the comparison of Lemma~\ref{aux:notation-hyper}(ii); the
+transverse case of GJS Theorem~1.1.7 at the printed statement's scope (F-T); and the reading of the
+source of Remark~\ref{aux:notation-gjslattice}(iv), which it inherits through Lemma~\ref{lem:D2}
+(the pieces $Q_{n,n',k,k'}$ and the $U_{\Delta,n''}$ are taken as GJS's monomials, and the record's
+$\Uc_h$ as GJS's $V(h)$).  It does not use the
+GAP recorded after Lemma~\ref{aux:notation-wick}, and Lemma~\ref{aux:notation-sharpid} uses no
+repair (Remark~\ref{aux:notation-sharpidrem}(d)).
+
+\begin{proof}
+\emph{Step 1: the observable and the box.}  By Lemma~\ref{aux:d4-QV}, $Q_V=V(h')(0)^2$ is, almost
+everywhere, the finite sum of the localized monomials $Q_{n,n',k,k'}$ of type (1.1.5), with kernels
+in $L^2$, individual degrees $\le2p'<\bar n$ and localization squares in $R=S_a$, and
+$\GJS{Q_V}\le9K_1K_2^{8p'}(4p')!\lambda^2(\sum_n|a_n|)^2$ for this decomposition.  So Steps~2 and~4
+below bound expectations of one and the same element of $L^1(dq_h)$ (Lemma~\ref{aux:d2-int});
+almost everywhere equal functions have equal integrals under $dq_h$, which has a density with
+respect to $\dmu$.  $B:=B_{3\times5}$ is a box containing the squares of $R$.  Since $Q_V\ge0$,
+$\int Q_V\,dq_h=\ev{Q_V}{h^B}+\bigl(\ev{Q_V}{h}-\ev{Q_V}{h^B}\bigr)$ with $\ev{Q_V}{h^B}\ge0$.
+
+\emph{Step 2: the base term.}  $h^B\in\CE$ with $\supp h^B\subseteq\overline B$, a closed $3\times5$
+rectangle of Lebesgue measure $15$ (Lemma~\ref{aux:notation-cutoffs}(i)).  Lemma~C.2 of the record
+with $\Lambda=\overline B$ (hypotheses: $h^B\in\CE$, $\supp h^B\subseteq\Lambda$, $\Lambda$
+compact) gives $Z(h^B)\ge e^{-15\lambda|a_0|}$.  Proposition~\ref{aux:notation-S2}(iv) gives
+$\|e^{-\Uc_{h^B}}\|_{L^2(\dmu)}\le S_2(B)$, and by its part (iii) $S_2(B)=S_2(B_{3\times5})$ is one
+number for all $a$.  Lemma~\ref{aux:notation-hyper}(ii), applied to $Y=V(h')(0)$, gives
+$\|Q_V\|_{L^2(\dmu)}=\|Y^2\|_{L^2(\dmu)}\le9^{p'}V_*$; by Lemma~\ref{aux:notation-sharpid} and
+Remark~\ref{aux:notation-sharpidrem}(b) this $Y^2$ is the $Q_V$ of Step~1.  This step concerns
+the constructed $V(h')$; the GAP recorded after Lemma~\ref{aux:notation-wick} (the
+identification of the record's $V(h)$ with it) is not used here.  (Lemma~C.2, Theorem~C.5
+through $S_2$, and the comparison are used as in Remark~\ref{aux:d3-V3}.)  By Cauchy--Schwarz in
+$L^2(\dmu)$,
+\[
+ \ev{Q_V}{h^B}\le e^{15\lambda|a_0|}\,\|Q_V\|_{L^2(\dmu)}\,\|e^{-\Uc_{h^B}}\|_{L^2(\dmu)}
+ \le e^{15\lambda|a_0|}\,9^{p'}V_*\,S_2(B_{3\times5}) .
+\]
+
+\emph{Step 3: the strips.}  By Lemma~\ref{aux:notation-rings}(ii) every square
+$\Delta=\Delta_{l,k}\not\subseteq B$ lies in exactly one ring $\mathcal L_j$, $j\ge1$.  Assign:
+\begin{itemize}
+\item[(P)] if $|l|=1+j$: the strip $S_\Delta$ bounded by $x^0=\frac12$ and $x^0=l-\frac12$ (if
+$l>0$), resp.\ by $x^0=l+\frac12$ and $x^0=-\frac12$ (if $l<0$), which is \emph{parallel to the
+time-zero line}, has width $j$, and separates $\Delta$ from $\bigcup S_a$
+(Lemma~\ref{aux:notation-rings}(iv), with Lemma~\ref{aux:notation-strip}(i) for $S=S_a$);
+\item[(T)] if $|l|\le j$: then $k=k_a-1-j$ or $k=k_a+3+j$, and $S_\Delta$ is the strip bounded by
+$x^1=k_a+\frac52$ and $x^1=k-\frac12$, resp.\ by $x^1=k+\frac12$ and $x^1=k_a-\frac12$, which is
+\emph{transverse to the time-zero line}, has width $j$, and separates $\Delta$ from $\bigcup S_a$
+(Lemma~\ref{aux:notation-rings}(iv), with Lemma~\ref{aux:notation-strip}(ii)).
+\end{itemize}
+The four corner squares of each ring ($|l|=1+j$ in the two side columns) admit both strips and are
+assigned to (P).  So $w_\Delta=j$ for $\Delta\in\mathcal L_j$, and since $|\mathcal L_j|=8j+12$
+(Lemma~\ref{aux:notation-rings}(ii)) and the terms are positive,
+\[
+ \sum_{\Delta\in\mathcal D(h,B)}e^{-m_1w_\Delta}\le\sum_{j\ge1}(8j+12)\,e^{-m_1j}
+ =\overline\Sigma_{3\times5} .
+\]
+
+\emph{Step 4: the comparison term.}  Apply Lemma~\ref{lem:D2}(a) with $F=\sum Q_{n,n',k,k'}$, which
+is $Q_V$ almost everywhere by Lemma~\ref{aux:d4-QV}(i) (Lemma~\ref{aux:notation-sharpid} and
+Remark~\ref{aux:notation-sharpidrem}(b)),
+and its pieces $Q_{n,n',k,k'}$, $R=S_a$, the box $B=B_{3\times5}$, the cutoff $h\in\CE$, and the
+strips of Step~3.  The estimates inside that lemma are Source Fact~2.2 of the record with (gate
+GA1):
+\begin{itemize}
+\item $Q_1=Q_{n,n',k,k'}$: type (1.1.5), two factors at time $0$ of degrees $n,n'\le2p'<\bar n$,
+  localized in $\Delta_{0,k},\Delta_{0,k'}\in S_a$, kernel
+  $\lambda^2a_na_{n'}h'_k\otimes h'_{k'}\in L^2(\R^2)$;
+\item $Q_2=U_{\Delta,n''}$, $1\le n''\le2p'$, $\Delta=\Delta_{l,k''}\in\mathcal D(h,B)$, $\Delta\in
+  \mathcal L_j$: type (1.1.6), localized in $\Delta$ alone, degree $n''<\bar n$, kernel
+  $\lambda a_{n''}h\mathbf 1_\Delta\in L^2(\R^2)$ (Lemma~\ref{aux:notation-cU}(i));
+\item the cutoff $h_\alpha=h^B+\alpha(h-h^B)\in\CE$, $0\le\alpha\le1$
+  (Lemma~\ref{aux:notation-cutoffs}(ii));
+\item the strip $S_\Delta$ of Step~3, of width $j$: if $\Delta$ is of class (P), \emph{parallel to
+  the time-zero line}; if $\Delta$ is of class (T), \emph{transverse to the time-zero line}.
+  \emph{Every application to a square of class (T) is the transverse case of GJS
+  Theorem~1.1.7, used at the printed statement's scope and disclosed by F-T
+  (\S\ref{sec:purpose}); see \S\ref{sub:d4-transverse}.}
+\item the resulting term, summed over $n''$: $C_7\,c_U\,\GJS{Q_{n,n',k,k'}}\,e^{-m_1j}$.
+\end{itemize}
+Lemma~\ref{lem:D2}(a), Lemma~\ref{aux:d4-QV}(iii) and Step~3 give
+\[
+ \bigl|\ev{Q_V}{h}-\ev{Q_V}{h^B}\bigr|\le C_7\,c_U\,\GJS{Q_V}\,\overline\Sigma_{3\times5}
+ \le C_7\,c_U\,\overline\Sigma_{3\times5}\cdot9\,K_1K_2^{8p'}(4p')!\,\lambda^2
+ \Bigl(\sum_{n=0}^{2p'}|a_n|\Bigr)^2 ,
+\]
+where the transverse case enters through the squares of class (T).
+
+\emph{Step 5.}  Steps 1, 2 and 4 give $\int Q_V\,dq_h\le M_B^2$.  None of the constants depends on
+$h$, $a$ or $h'$: $S_2(B_{3\times5})$ by Proposition~\ref{aux:notation-S2}(iii), $V_*$ by its
+definition as a supremum, and $c_U$, $\overline\Sigma_{3\times5}$, $C_7$, $m_1$, $K_1$, $K_2$ by
+construction.
+\end{proof}
+
+\subsection{Where the transverse case is used}\label{sub:d4-transverse}
+
+The squares outside $B_{3\times5}$ fall into the two classes of Step~3:
+\begin{itemize}
+\item \emph{Class (P)}, $|l|=1+j$ for $\Delta\in\mathcal L_j$ (so $|l|\ge2$): separated from $S_a$
+by a strip parallel to the time-zero line, of width $j$, which is the width the bound uses.  For
+the time-integrated partner $U_{\Delta,n''}$ this is the parallel case that the printed proof
+reaches after slicing $U_{\Delta,n''}$ in time (Remark~\ref{aux:d3-orient}), as in \S\ref{sec:d3}.
+\item \emph{Class (T) in rows $-1,0,1$}: separated from $S_a$ only by strips that are not
+parallel to the time-zero line (Lemma~\ref{aux:notation-rings}(v)); the bound uses the transverse
+strip of width $j$.
+\item \emph{Class (T) in rows $2\le|l|\le j$}: separated also by parallel strips, but only of width
+$\le|l|-1<j$ (Lemma~\ref{aux:notation-rings}(iv)); the bound uses the transverse strip of width
+$j$.  Using the parallel strips instead would replace $\overline\Sigma_{3\times5}$ by a sum over
+all columns $k$ with $\int_{\Delta_{l,k}}h>0$ of $e^{-m_1(|l|-1)}$, which is not bounded uniformly
+in $h\in\CE$ (Remark~\ref{aux:notation-ringrem}(b)).
+\end{itemize}
+So the transverse case is used for every square of class (T), in rows $-1,0,1$ and beyond, as
+Remark~\ref{aux:notation-ringrem}(b) also records; the plan's description (Part~1: ``Squares in rows
+$-1$, $0$, $1$ outside $B_{3\times5}$ are separated from the time-zero observable only by strips
+transverse to the time-zero line'') names the squares for which no parallel strip exists.  Each of
+these applications is Source Fact~2.2 for a sharp-time $Q_1$ (type (1.1.5), at time $0$) and a
+time-integrated $Q_2=U_{\Delta,n''}$ (type (1.1.6)) across a strip bounded by two lines of constant
+$x^1$.  The printed statement covers it: no orientation is prescribed (``let $d$ be the width of
+the widest strip bounded by two parallel lines'', \cite[p.~594]{GJS}), and the record's Source
+Fact~2.2 says ``(any orientation)''.  The printed proof does not reach it: it proceeds ``After
+rotating and translating the strip separating $Q_1$ and $Q_2$ in Theorem 1.1.7, and after choosing
+$A=Q_1$, $B_T=Q_2$ in Theorem 1.1.11'' \cite[p.~597]{GJS}, and Theorem~1.1.11 takes ``monomials of
+type (1.1.5)'' localized at times $\leqq0$ and $\geqq0$ \cite[p.~596]{GJS}; a rotation by a right
+angle turns the sharp-time piece of $Q_V$ into an object with fixed spatial position and integrated
+times, which is not of type (1.1.5) in the rotated frame.  This is the content of the sentence F-T
+(\S\ref{sec:purpose}); Theorem~\ref{thm:D4} uses the transverse case at the printed statement's
+scope, the standard under which the record imports A1--A8.  Nothing in this note proves that case.
+
+\subsection{Remarks on Theorem~\ref{thm:D4}}\label{sub:d4-rem}
+
+\begin{auxrem}[order of quantifiers]\label{aux:d4-quant}
+$M_B$ is fixed first, by $(\lambda,\mathscr P,m_0)$ through the printed constants $C_7$, $m_1$,
+$K_1$, $K_2$ and through $S_2(B_{3\times5})$ and $V_*$, in working coordinates (Remark~3.3 of the
+record); then the bound holds for every $h\in\CE$, every $a\in\R$ and every admissible $h'$.  In
+particular, for $h=h_{T,g}$ it holds for every $g\in\CH$ and every $T>0$ with the same $M_B$.
+\end{auxrem}
+
+\begin{auxrem}[boundary cases]\label{aux:d4-boundary}
+\emph{$p'=1$}: $\bar n=3$, all individual degrees are $\le2$, and $9^{p'}=9$.
+\emph{The position of $a$}: if $a\in\frac12+\Z$, $[a,a+2]$ meets the columns $k_a$ and $k_a+1$ in
+positive measure and $k_a+2$ in one point; $B_{3\times5}$ is defined through $k_a$ in every case,
+so it has $15$ squares and contains the columns of $h'$ with a margin of at least one column on
+each side.
+\emph{Ring $1$} (Lemma~\ref{aux:notation-rings}(iii)): $20$ squares, of which the $14$ in rows
+$\pm2$ are of class (P) and the $6$ in rows $-1,0,1$ (columns $k_a-2$ and $k_a+4$) of class (T).
+\emph{$\supp h\subseteq\overline B_{3\times5}$}: then $\mathcal D(h,B_{3\times5})=\varnothing$, the
+comparison term vanishes, and the bound is the base term.
+\emph{The coefficient $a_0$}: the measures $dq_h$ do not depend on it
+(Lemma~\ref{aux:notation-cU}(iii)), but the bound does, in three places: through $Z(h^B)$ and
+$\Uc_{h^B}$ in the base term ($e^{15\lambda|a_0|}$ and $S_2$); through the observable, in $V_*$ (the
+term $n=0$ of $V(h')$) and in $\GJS{Q_V}$ (pieces with a factor of degree $0$, covered by
+Lemma~\ref{aux:d4-QV}); in $\Uc_{h-h^B}$ it is the constant $\lambda a_0\int(h-h^B)$, which has no
+covariance.
+\emph{$h'=0$}: both sides are $0$ and $\le M_B^2$.
+\end{auxrem}
+
+\begin{auxrem}[what Theorem~\ref{thm:D4} is not, and what it rests on]\label{aux:d4-not}
+It does not prove $\UGJS$, and it is not a statement about the status of Theorem~12.2 of the
+record: it derives the moment bound that Theorem~5.1 consumes from GJS Theorem~1.1.7 as printed (including
+its transverse case) and from the record's Lemma~C.2 and Theorem~C.5; GJS Theorem~1.1.11 is not
+used, and none of GJS's proofs is verified (traps~1, 4 and~7 of the plan).  Its conditions are the
+status line after the statement.  The transfer to the record's Theorem~5.1 adds one more: the GAP
+recorded after Lemma~\ref{aux:notation-wick}, which the record's Theorem~5.1, Step~1, also uses
+(\S\ref{sub:cons-51}).  The printed proof of Theorem~1.1.7 takes its constant from Theorem~1.1.8
+at the same $h$ \cite[p.~597]{GJS}; that is a fact about the source's proof, which the record does
+not re-verify (Scope (c) of Assumption~A8).  $M_B$ is not ``independent of everything but
+$(\lambda,\mathscr P,m_0)$'' in an explicit way: it depends on them through $C_7$, $m_1$, $K_1$,
+$K_2$ and the unevaluated constant of Theorem~C.5, in working coordinates (Remark~3.3 of the
+record) (trap~10).  The Euclidean bound implies the Hamiltonian bound of Theorem~5.1 through
+Steps~5--6 of its proof (\S\ref{sec:cons}); the converse is not claimed (trap~9).  The theorem
+needs the weak-coupling hypothesis through Theorem~1.1.7 (trap~17).  Lemma~C.2 and Theorem~C.5 are
+load-bearing here (trap~12); their independent audit is gate GA4.
+\end{auxrem}

@@ -1,0 +1,402 @@
+% d3.tex -- drafted by aqft (council member of ugjs/PLAN.md), 2 November 2026 (begun 31 October 2026);
+% revised 3 November 2026 after the audits V1 (cqft, mp) and V2: status line; the sharp-time field as
+% the covariance-norm extension; Lemma aux:d3-cyl(vi) (the pieces as objects of Definition
+% aux:d1-obs); the severities of the cell-count finding; Remark aux:d3-orient (slicing); the boundary
+% cases N_g = 0 and 1/2 < T < 1; the inputs.
+% Section 5: Theorem D.3 (Phase A; fixed g, strips parallel to the time-zero line).  Merged with
+% \S2 (notation.tex, cqft2) on 2 November 2026: the stability constant S_2, the column count and
+% the bounds (N.a), and the strip lemma are those of \S2.  Auxiliary statements of this part:
+% aux:d3-V3, aux:d3-sharp, aux:d3-cyl, aux:d3-cells, aux:d3-geom and the remarks of \S5.4.
+
+Theorem~\ref{thm:D3} bounds the expectation of a sharp-time cylinder observable under the slab
+measures $dq_{h_{T,g}}$ uniformly in $T>0$, for one fixed spatial cutoff $g$, with constants that
+depend on $g$; that is all that \S7 of the record consumes (\S\ref{sec:cons}).  Every use of GJS
+Theorem~1.1.7 in this section is across a strip parallel to the time-zero line.
+
+\subsection{Setting}\label{sub:d3-setting}
+
+The standing assumption of \S\ref{sub:d2-conv} holds.  Let $g\in\CH$ (Definition~2.1 of the record
+\cite[p.~7]{R}: $g:\R\to[0,1]$ measurable with compact support) and, for $T>0$,
+$h_{T,g}:=\mathbf 1_{[-T,T]}\otimes g$, which lies in $\CE$ by Lemma~3.1(ii) of the record
+\cite[p.~15]{R}.  Let $I\subset\R$ be a bounded interval of length $L>0$, and $s\in\R$, with
+$l_s$ the row containing time $s$ (Definition~\ref{aux:notation-squares}).  Put
+\begin{gather*}
+ K_g:=\bigl\{k\in\Z:\ |\supp g\cap[k-\tfrac12,k+\tfrac12)|>0\bigr\},\qquad N_g:=\#K_g ,\\
+ K_I:=\bigl\{k\in\Z:\ |I\cap[k-\tfrac12,k+\tfrac12)|>0\bigr\},\qquad N^{\square}_I=\#K_I ,
+\end{gather*}
+($|\cdot|$ the Lebesgue measure on $\R$; $N^\square_I$ is the column count of
+Remark~\ref{aux:notation-counts}), so that $N_g$ is the number of columns meeting $\supp g$ in
+positive measure; both sets are finite, and $K_I\ne\varnothing$ because $L>0$.  Let
+$k_-:=\min(K_g\cup K_I)$, $k_+:=\max(K_g\cup K_I)$, $N_B:=k_+-k_-+1$, and
+\[
+ B=B_s(g,I):=\bigcup\{\Delta_{l,k}:\ |l-l_s|\le1,\ k_-\le k\le k_+\},\qquad
+ R_s(I):=\{\Delta_{l_s,k}:\ k\in K_I\} .
+\]
+So $B$ is rows $l_s-1$ to $l_s+1$ times the smallest interval of $N_B$ columns containing every
+column that meets $\supp g\cup I$ in positive measure, $|B|=3N_B$, and the squares of $R_s(I)$
+lie in $B$.
+
+A \emph{cylinder monomial} (\S6 of the record \cite[p.~19]{R}) is $Q=\prod_{i=1}^r\varphi_0(f_i)$
+with $r\ge1$ and real $f_i\in C_c^\infty(\R)$; it is \emph{supported in} $I$ if every $f_i$ is.
+At sharp Euclidean time $s$ it is $Q(s):=\prod_{i=1}^r\Phi(s,f_i)$, with
+``$\Phi(\tau,f)\equiv\Phi(\delta_\tau\otimes f)=\int\Phi(\tau,\vec x)f(\vec x)d\vec x$''
+\cite[p.~589]{GJS}; GJS print no construction, and $\Phi(s,f)$ is read, as in the proof of
+Lemma~\ref{aux:notation-hyper}(i), as the extension of $f\mapsto\Phi(f)$ to $\delta_s\otimes f$ by
+continuity in the covariance norm, which is finite there (Lemma~\ref{aux:d3-sharp}).  For a finite
+real linear combination $F=\sum_{\beta\in\mathfrak B}c_\beta Q_\beta$ of cylinder monomials,
+$F(s):=\sum_\beta c_\beta Q_\beta(s)$.
+
+\subsection{Auxiliary facts}\label{sub:d3-aux}
+
+\begin{auxrem}[Lemma~C.2 and Theorem~C.5 after the V3 audit]\label{aux:d3-V3}
+This section is the first of the note to consume Lemma~C.2 and Theorem~C.5 of the record
+\cite[pp.~40--41]{R}; Theorem~\ref{thm:D4} and the replaced proofs of \S\ref{sec:cons} consume
+them too, and from here on they are load-bearing (trap~12 of the plan).  Their status after the
+audit V3 (\texttt{ugjs/council/}\allowbreak\texttt{v3-appendix-c-report.md}, 2 November 2026) is
+recorded in the introduction of \S\ref{sec:notation}: the audit found them true and every
+displayed computation re-derived, with three MAJOR gaps as written (the uncited Bessel facts of
+Lemma~C.4, the undefined constant $C_*$, and the Wick-chaos structure of $\Uc_h$ used without an
+import), and wrote out repairs R1--R10 that need no new mathematics.  Accordingly, in this note
+Lemma~C.2 is \emph{proved, conditional on repair R8 of the V3 audit}; Theorem~C.5, and with it
+every statement about $S_2$, is \emph{proved, conditional on the repairs R1--R10 of the V3
+audit}; so is Lemma~C.4, which Lemma~\ref{lem:D2} uses in Step~3 of its proof and
+\S\ref{sec:notation} uses for the translation covariance of $\Uc_h$
+(Lemma~\ref{aux:notation-transl}(iii)) and hence for the shape-only property of $S_2$
+(Proposition~\ref{aux:notation-S2}(iii)); and the structural facts of Gaussian Wick powers (the
+chaos decomposition, the Wick isometry, $\Gamma(e^{-t})$ on chaoses) are used conditional on
+repair R8.  Every later use says ``as in Remark~\ref{aux:d3-V3}''.
+\end{auxrem}
+
+\begin{auxlemma}[the sharp-time field under $\dmu$]\label{aux:d3-sharp}
+For every $s\in\R$ and every real $f\in C_c^\infty(\R)$, $\delta_s\otimes f$ has finite
+covariance norm, so $\Phi(s,f)$ of \S\ref{sub:d3-setting} is defined.  The family
+$(\Phi(s,f))_f$ is under $\dmu$ a centred Gaussian family with covariance $\ip{f}{Cf'}$,
+$C=(2\mu)^{-1}$, $\mu=(-\partial_x^2+m_0^2)^{1/2}$ (\S2.1 of the record); it therefore has the law
+of $(\varphi_0(f))_f$ under $\dphi$.  In particular $\|F(s)\|_{L^p(\dmu)}=\|F\|_{L^p(\dphi)}$ for
+every $p\in[1,\infty)$ and every $F$ as in \S\ref{sub:d3-setting}.
+\end{auxlemma}
+
+At $s=0$ this is the identification of the sharp-time field used in
+Lemma~\ref{aux:notation-hyper}(i); the lemma records it at every time $s$, which
+Theorem~\ref{thm:D3} needs.
+
+\begin{proof}
+$\dmu$ is the centred Gaussian measure with covariance $(-\Delta_{\R^2}+m_0^2)^{-1}$
+(Assumption~A2 of the record \cite[p.~8]{R}).  The Fourier transform of $\delta_s\otimes f$ is
+$e^{-ik_0s}\hat f(k)$, and $|e^{-ik_0s}|=1$, so for real $f,f'\in C_c^\infty(\R)$ the covariance
+form at $\delta_s\otimes f$ and $\delta_s\otimes f'$ is
+\begin{align*}
+ \ip{\delta_s\otimes f}{(-\Delta_{\R^2}+m_0^2)^{-1}\,\delta_s\otimes f'}
+ &=\int\frac{dk}{2\pi}\,\overline{\hat f(k)}\hat f'(k)\int\frac{dk_0}{2\pi}\,
+ \frac1{k_0^2+\mu(k)^2}\\
+ &=\int\frac{dk}{2\pi}\,\overline{\hat f(k)}\hat f'(k)\,\frac1{2\mu(k)}=\ip{f}{Cf'} ,
+\end{align*}
+by the identity $\int\frac{dk_0}{2\pi}(k_0^2+\mu(k)^2)^{-1}=(2\mu(k))^{-1}$ of Remark~2.5 of the
+record \cite[p.~14]{R}, whose computation does not involve the value of $s$; the integrals converge
+absolutely because $\hat f,\hat f'$ are Schwartz functions and $(2\mu)^{-1}\le(2m_0)^{-1}$.  With
+$f=f'$ this shows that the covariance norm of $\delta_s\otimes f$ is finite.  The extension of the
+linear isometry $f\mapsto\Phi(f)$ (from test functions with the covariance norm into $L^2(\dmu)$)
+by continuity preserves inner products, so $\E_{\mu_0}[\Phi(s,f)\Phi(s,f')]=\ip f{Cf'}$; and
+$L^2$-limits of centred jointly Gaussian variables are centred and jointly Gaussian.  A centred
+Gaussian family is determined in law by its covariance, and $\dphi$ is the centred Gaussian measure
+with covariance $C$ (\S2.1 of the record).  $F(s)$ is the same polynomial in the family at time $s$
+as $F$ is in $(\varphi_0(f))_f$.
+\end{proof}
+
+\begin{auxlemma}[cylinder observables as GJS monomials]\label{aux:d3-cyl}
+Let $Q=\prod_{i=1}^r\varphi_0(f_i)$ be a cylinder monomial supported in $I$, and $s\in\R$.
+\emph{(i)} $Q(s)=\int d\vec x\,w(x)\prod_{i=1}^r{:}\Phi(x_i)^{n_i}{:}$ with $n_i=1$, all times
+$x_{i,0}=s$, and kernel $w=f_1\otimes\dots\otimes f_r\in L^2(\R^r)$: a monomial of type (1.1.5)
+\cite[p.~593]{GJS}, since ${:}\Phi^1{:}=\Phi$; no Wick reordering is made (Assumption~A8(ii) of the
+record: ``products of individually Wick-ordered powers are admissible without reordering'').
+Its individual degrees are $n_i=1<\bar n$.
+\emph{(ii)} For $\kappa=(\kappa_1,\dots,\kappa_r)\in K_I^r$ let $Q_\kappa(s)$ be the monomial of
+type (1.1.5) at time $s$ with kernel
+$w_\kappa:=\bigotimes_i f_i\mathbf 1_{[\kappa_i-\frac12,\kappa_i+\frac12)}$.  It is localized in
+the squares $\Delta_{l_s,\kappa_1},\dots,\Delta_{l_s,\kappa_r}$, which belong to $R_s(I)$, and
+$Q(s)=\sum_{\kappa\in K_I^r}Q_\kappa(s)$.
+\emph{(iii)} For the norm $\GJS{Q(s)}:=\sum_\kappa\GJS{Q_\kappa(s)}$ of this decomposition, and for
+$Q(s)^2$ (the cylinder monomial with the $2r$ factors $f_1,\dots,f_r,f_1,\dots,f_r$, decomposed
+in the same way), the two bounds (N.a) of Remark~\ref{aux:notation-counts}(iii) hold, at every
+time $s$.
+\emph{(iv)} $N^\square_I\le\lfloor L\rfloor+2$ (Remark~\ref{aux:notation-counts}(i)).
+\emph{(v)} For $F=\sum_\beta c_\beta Q_\beta$ as in \S\ref{sub:d3-setting},
+$F(s)=\sum_\beta\sum_\kappa c_\beta Q_{\beta,\kappa}(s)$ is a finite sum of localized monomials
+of type (1.1.5) with kernels in $L^2$, individual degrees $1<\bar n$ and localization squares in
+$R_s(I)$, and the norm of this decomposition is
+\[
+ \GJS{F(s)}=\sum_\beta|c_\beta|\,\GJS{Q_\beta(s)}
+ \le\sum_\beta|c_\beta|\,K_1K_2^{2r_\beta}\,r_\beta!\,(N^\square_I)^{r_\beta/2}
+ \prod_{i=1}^{r_\beta}\|f_{\beta,i}\|_2 .
+\]
+\emph{(vi)} As an element of $L^2(\dmu)$, the localized monomial $Q_\kappa(s)$ of
+Definition~\ref{aux:d1-obs}(b) (the object to which Lemma~\ref{lem:D2} is applied) equals
+$\prod_i\Phi(s,f_i\mathbf 1_{[\kappa_i-\frac12,\kappa_i+\frac12)})$ almost everywhere, and
+$\sum_{\kappa\in K_I^r}Q_\kappa(s)=Q(s)$ almost everywhere, with $Q(s)$ as in
+\S\ref{sub:d3-setting}.
+\end{auxlemma}
+
+Items (iii)--(iv) are those of Remark~\ref{aux:notation-counts}, applied to the explicit
+decomposition (ii); items (i), (ii), (v) and (vi), which name the localized pieces and their
+squares for gate GA1 and identify them with the observable, are not in \S\ref{sec:notation}.
+
+\begin{proof}
+(i) is the definition (1.1.5) with $n_i=1$.  (ii) A point $(s,\vec x_i)$ with
+$\vec x_i\in[k-\frac12,k+\frac12)$ lies in $\Delta_{l_s,k}$, so $w_\kappa$ vanishes outside the
+product of the squares $\Delta_{l_s,\kappa_i}$, and the monomial is localized in them
+(Remark~\ref{aux:notation-gjslattice}(i)--(ii)).  Since $f_i$ vanishes outside $I$ and $I$ meets
+the columns $k\notin K_I$ in null sets, $f_i=\sum_{k\in K_I}f_i\mathbf
+1_{[k-\frac12,k+\frac12)}$ almost everywhere; expanding the tensor product gives
+$w=\sum_\kappa w_\kappa$ a.e., hence the decomposition (made precise in (vi)).  (iii) The pieces of
+(ii) are the decomposition $f_i=\sum_kf_i\mathbf 1_{[k-\frac12,k+\frac12)}$ with which
+Remark~\ref{aux:notation-counts}(iii) runs the proof of Proposition~6.2 of the record on the
+columns; its bounds use the local degrees and kernel norms of the pieces only, which do not
+depend on the row $l_s$.  (iv) is Remark~\ref{aux:notation-counts}(i).  (v) follows from
+(i)--(iii) applied to each $Q_\beta$, with $\GJS{cQ_\kappa(s)}=|c|\,\GJS{Q_\kappa(s)}$ by
+(1.1.8) (the kernel is multiplied by $c$).  (vi) The kernel $w_\kappa$ is a product of the
+functions $f_i\mathbf 1_{[\kappa_i-\frac12,\kappa_i+\frac12)}\in L^2(\R)$, each with bounded support
+and vanishing outside the spatial projection of $\Delta_{l_s,\kappa_i}$.  By
+Lemma~\ref{aux:d1-moments}(c), $Q_\kappa(s)$ is almost everywhere the product of the one-factor
+monomials of degree $1$ at time $s$ with these kernels, and by Lemma~\ref{aux:d1-moments}(f)(1)
+each of them is $\Phi(s,f_i\mathbf 1_{[\kappa_i-\frac12,\kappa_i+\frac12)})$.  The map
+$f\mapsto\Phi(s,f)$ is linear and, being isometric for the covariance norm, takes almost
+everywhere equal functions to the same element; so, with $f_i=\sum_{k\in K_I}f_i\mathbf
+1_{[k-\frac12,k+\frac12)}$ a.e.,
+$\sum_\kappa\prod_i\Phi(s,f_i\mathbf 1_{[\kappa_i-\frac12,\kappa_i+\frac12)})=
+\prod_i\Phi(s,f_i)=Q(s)$.  (Remark~\ref{aux:notation-sharpidrem}(c) records the degree-$1$
+identification for $f\in C_c^\infty(\R)$; the pieces have the kernels
+$f_i\mathbf 1_{[\kappa_i-\frac12,\kappa_i+\frac12)}$, which are not smooth, and are covered by
+Lemma~\ref{aux:d1-moments}(f)(1), and also by Lemma~\ref{aux:notation-sharpid} with $n=1$.)
+\end{proof}
+
+\begin{auxrem}[the record's cell count fails in (7) and (8); a finding]\label{aux:d3-cells}
+Remark~\ref{aux:notation-counts}(ii)--(iii) shows that the record's cell count $N_I$ and the
+column count $N^\square_I$ differ, and that (7) of the record fails with $N_I$ on GJS's squares
+($I=(0.4,0.6)$, $Q=\varphi_0(f)$: $\sqrt2K_1K_2^2\|f\|_2$ against $K_1K_2^2\|f\|_2$).  On GJS's
+squares the cells $[j,j+1)$ are not localization regions, so the decomposition of the record's
+proof of Proposition~6.2 is not available there; the bound fails for the decomposition by columns,
+which is what that proof becomes on GJS's squares, and, for $r=1$, for every decomposition of
+$\Phi(s,f)$ into one-factor pieces of degree $1$ at time $s$: such pieces are $\Phi(s,f_a)$ with
+$f_a$ vanishing outside one column, $\sum_af_a=f$ almost everywhere because $f\mapsto\Phi(s,f)$ is
+injective ($C$ is positive definite), so the kernels of the pieces in column $c$ sum to
+$f\mathbf 1_c$, and the triangle inequality gives a norm sum
+$\ge K_1K_2^2(\|f\mathbf 1_{[-\frac12,\frac12)}\|_2+\|f\mathbf 1_{[\frac12,\frac32)}\|_2)
+=\sqrt2K_1K_2^2\|f\|_2$ for $f$ even about $\frac12$.  (Decompositions with pieces of other
+degrees are not examined here.)  The same example fails (8), which is the bound Lemma~7.1 of the
+record consumes: for $f\in C_c^\infty(I)$ real, even about $\frac12$, with $\|f\|_2=1$, the column
+decomposition (ii) of $Q(s)^2=\Phi(s,f)^2$ has the four pieces $\kappa\in\{0,1\}^2$, with norms
+$K_1K_2^4\cdot2!\cdot\frac12$ for $\kappa=(0,0)$ and $(1,1)$ and $K_1K_2^4\cdot\frac12$ for
+$\kappa=(0,1)$ and $(1,0)$, in total $3K_1K_2^4$, while the right side of (8) with $N_I=1$ is
+$K_1K_2^4\cdot2!\cdot1\cdot1=2K_1K_2^4$.  \emph{Severity, as a finding about the record:}
+CRITICAL for the display of Proposition~6.2 as stated, on the printed norm of Assumption~A8(iii)
+(GJS's squares); the displayed bounds of Lemmas~7.1 and~7.6, whose proofs consume (8), fail as
+stated; MINOR downstream, for Theorems~7.7, 7.8 and~12.2, which use finiteness only.
+\S\ref{sub:cons-NI} records the edit of the record ($N_I$ redefined by GJS's columns), which
+changes the statements of Lemma~6.1 and Proposition~6.2, the notation table and Assumption~A8(ii),
+and the displayed constants $\mathfrak n(Q)$ and $K'$.  (The counts and the value $3K_1K_2^4$ for a
+bump function are reproduced by \texttt{parts/aqft\_checks.py}, check~6, \emph{numerical}.)
+\end{auxrem}
+
+\begin{auxlemma}[geometry of Phase A: parallel strips]\label{aux:d3-geom}
+Let $T>0$, $h:=h_{T,g}$, $B:=B_s(g,I)$ and $R:=R_s(I)$.
+\emph{(i)} If $\Delta_{l,k}\in\mathcal D(h,B)$, then $k\in K_g$, $|l-l_s|\ge2$, and row $l$ meets
+$[-T,T]$ in positive measure.
+\emph{(ii)} For every $k\in\Z$ and every $l$ with $|l-l_s|\ge2$, the strip
+\[
+ P_l:=\bigl\{z:\ \min(l,l_s)+\tfrac12<x^0<\max(l,l_s)-\tfrac12\bigr\},
+\]
+bounded by two lines of constant time, hence \emph{parallel to the time-zero line}, of width
+$|l-l_s|-1\ge1$, separates $\Delta_{l,k}$ from $\bigcup R$ (indeed from the whole row $l_s$).
+\emph{(iii)} With $w_{\Delta_{l,k}}:=|l-l_s|-1$,
+\[
+ \sum_{\Delta\in\mathcal D(h,B)}e^{-m_1w_\Delta}\le2N_g\sum_{j\ge1}e^{-m_1j}
+ =\frac{2N_g\,e^{-m_1}}{1-e^{-m_1}} .
+\]
+\end{auxlemma}
+
+\begin{proof}
+(i) By Tonelli's theorem,
+$\int_{\Delta_{l,k}}h\,dz=\bigl|[-T,T]\cap[l-\frac12,l+\frac12)\bigr|\cdot
+\int_{k-1/2}^{k+1/2}g(x^1)\,dx^1$.  If this is positive, both factors are; the second gives
+$|\{g>0\}\cap[k-\frac12,k+\frac12)|>0$, and $\{g>0\}\subseteq\supp g$, so $k\in K_g$, hence
+$k_-\le k\le k_+$.  A square of a column in $[k_-,k_+]$ that is not in $B$ has
+$l\notin\{l_s-1,l_s,l_s+1\}$, i.e.\ $|l-l_s|\ge2$.
+(ii) Lemma~\ref{aux:notation-strip}(i), applied to the rectangle
+$S:=\{\Delta_{l_s,k'}:\min K_I\le k'\le\max K_I\}\supseteq R$ (one row, $l_1=l_2=l_s$) and to
+$\Delta=\Delta_{l,k}\notin S$, whose row distance from $S$ is $\rho_t=|l-l_s|\ge2$: the strip
+bounded by $x^0=l_s+\frac12$ and $x^0=l-\frac12$ (if $l>l_s$), resp.\ $x^0=l+\frac12$ and
+$x^0=l_s-\frac12$ (if $l<l_s$), which is $P_l$, is parallel, has width $\rho_t-1$, and separates
+$\Delta$ from $\bigcup S\supseteq\bigcup R$.  The same two half-planes contain the whole row $l_s$.
+(iii) By (i) every $\Delta_{l,k}\in\mathcal D(h,B)$ has $k\in K_g$ and $|l-l_s|\ge2$; the terms are
+positive, so the sum is at most $\sum_{k\in K_g}\sum_{|l-l_s|\ge2}e^{-m_1(|l-l_s|-1)}$, in which
+$j:=|l-l_s|-1$ takes every value $j\ge1$ for exactly two $l$.  The geometric series with ratio
+$e^{-m_1}\in(0,1)$ gives the closed form.  (Test: $N_g=1$, $e^{-m_1}=\frac12$: both sides equal
+$2$.)
+\end{proof}
+
+\subsection{The theorem}\label{sub:d3-thm}
+
+\begin{dtheorem}[Phase A: fixed cutoff, parallel strips]\label{thm:D3}
+Assume the standing assumption of \S\ref{sub:d2-conv}.  Let $g\in\CH$, let $I\subset\R$ be a
+bounded interval of positive length, let $s\in\R$, and let $l_s$, $N_g$, $N_B$, $B=B_s(g,I)$ be
+as in \S\ref{sub:d3-setting}.  Let $F=\sum_\beta c_\beta Q_\beta$ be a finite real linear
+combination of cylinder monomials supported in $I$, and $F(s)$ its value at sharp time $s$.
+Then for every $T>0$,
+\[
+ \Bigl|\int F(s)\,dq_{h_{T,g}}\Bigr|\le A\,\|F\|_{L^2(\dphi)}+B'\,\GJS{F(s)} ,
+\]
+\[
+ A:=e^{3\lambda|a_0|N_B}\,S_2(B),\qquad
+ B':=2\,C_7\,c_U\,N_g\,\frac{e^{-m_1}}{1-e^{-m_1}} ,
+\]
+where $S_2(B)$ is the constant of Definition~\ref{aux:notation-S2def}.  The norm $\GJS{F(s)}$
+is that of the decomposition in Lemma~\ref{aux:d3-cyl}(v), which bounds it in terms of the
+functions $f_{\beta,i}$.  In working coordinates (Remark~3.3 of the record), the constant $A$
+depends only on $(\lambda,\mathscr P,m_0)$ and on $N_B$, through the unevaluated constant $S_2$;
+the constant $B'$ depends only on $C_7$, $m_1$, $K_1$, $K_2$, $\lambda$, $\mathscr P$ and $N_g$.
+Both are independent of $T$ and $s$, and $B'$ is independent of $I$.
+\end{dtheorem}
+
+\emph{Status of Theorem~\ref{thm:D3}.}  Proved, conditional on: Lemma~\ref{lem:D1}, through
+Lemma~\ref{lem:D2} (Lemma~C.4, R1--R10, as stated after Lemma~\ref{lem:D2});
+Lemma~C.2 of the record (repair R8); Theorem~C.5 of the record with
+Proposition~\ref{aux:notation-S2} (repairs R1--R10), whose part (iii), resting on Lemma~C.4,
+gives the independence of $A$ from $s$; and the reading of the source of
+Remark~\ref{aux:notation-gjslattice}(iv), which it inherits through Lemma~\ref{lem:D2} (the
+pieces of Lemma~\ref{aux:d3-cyl}(vi) and the $U_{\Delta,n}$ are taken as GJS's monomials, and the
+record's $\Uc_h$ as GJS's $V(h)$).  It uses GJS Theorem~1.1.7 in the parallel case only, with
+a time-integrated partner (Remark~\ref{aux:d3-orient}); it does not use the transverse case, the
+GAP recorded after Lemma~\ref{aux:notation-wick}, or GJS Theorem~1.1.11.
+
+\begin{proof}
+\emph{Step 1: the observable.}  By Lemma~\ref{aux:d3-cyl}(v), $F(s)=\sum_{\beta,\kappa}c_\beta
+Q_{\beta,\kappa}(s)$ is a finite sum of localized monomials of type (1.1.5), with kernels in $L^2$,
+individual degrees $n_i=1<\bar n$, and localization squares in $R:=R_s(I)$, and by
+Lemma~\ref{aux:d3-cyl}(vi) the sum of these pieces, as objects of Definition~\ref{aux:d1-obs}, is
+the observable $F(s)$ almost everywhere; $B$ is a box containing the squares of $R$;
+$\GJS{F(s)}=\sum_{\beta,\kappa}|c_\beta|\,\GJS{Q_{\beta,\kappa}(s)}$.  Put $h:=h_{T,g}\in\CE$.
+
+\emph{Step 2: the base term.}  By Lemma~\ref{aux:notation-cutoffs}(i), $h^B\in\CE$ and
+$\supp h^B\subseteq\overline B$, a compact set of Lebesgue measure $|B|=3N_B$.  Lemma~C.2 of the
+record \cite[p.~40]{R} (proved conditional on repair R8 of the V3 audit,
+Remark~\ref{aux:d3-V3}) states: for every $h\in\CE$ with $\supp h\subseteq\Lambda$,
+$Z(h)\ge e^{-\lambda|a_0||\Lambda|}>0$; its hypotheses ($h\in\CE$, $\supp h\subseteq\Lambda$,
+$\Lambda$ compact as in its notation, main.tex l.~2902) hold for $h^B$ and $\Lambda=\overline B$,
+so $Z(h^B)\ge e^{-3\lambda|a_0|N_B}$.  Proposition~\ref{aux:notation-S2}(iv) (proved conditional
+on the repairs R1--R10, as in Remark~\ref{aux:d3-V3}) gives $\|e^{-\Uc_{h^B}}\|_{L^2(\dmu)}\le
+S_2(B)$.  By Cauchy--Schwarz in $L^2(\dmu)$ and Lemma~\ref{aux:d3-sharp},
+\[
+ \bigl|\ev{F(s)}{h^B}\bigr|=\frac{\bigl|\int F(s)\,e^{-\Uc_{h^B}}\dmu\bigr|}{Z(h^B)}
+ \le e^{3\lambda|a_0|N_B}\,\|F(s)\|_{L^2(\dmu)}\,\|e^{-\Uc_{h^B}}\|_{L^2(\dmu)}
+ \le A\,\|F\|_{L^2(\dphi)} .
+\]
+
+\emph{Step 3: the comparison term.}  Apply Lemma~\ref{lem:D2}(a) with $F(s)$ and its pieces
+(Step~1), $R=R_s(I)$, the box $B=B_s(g,I)$, the cutoff $h=h_{T,g}\in\CE$, and, for
+$\Delta=\Delta_{l,k}\in\mathcal D(h,B)$, the strip $S_\Delta:=P_l$ of
+Lemma~\ref{aux:d3-geom}(ii), of width $w_\Delta=|l-l_s|-1$ (by Lemma~\ref{aux:d3-geom}(i),
+$|l-l_s|\ge2$, so $P_l$ is defined and separates $\Delta$ from $\bigcup R$).  Each estimate inside
+that lemma is Source Fact~2.2 of the record with (gate GA1):
+\begin{itemize}
+\item $Q_1=c_\beta Q_{\beta,\kappa}(s)$: type (1.1.5), $r_\beta$ factors of degree $1<\bar n$ at
+  time $s$, localized in $\Delta_{l_s,\kappa_1},\dots,\Delta_{l_s,\kappa_{r_\beta}}\in R_s(I)$,
+  kernel $c_\beta\bigotimes_if_{\beta,i}\mathbf 1_{[\kappa_i-\frac12,\kappa_i+\frac12)}\in L^2$;
+\item $Q_2=U_{\Delta,n}$, $1\le n\le2p'$: type (1.1.6), localized in the one square
+  $\Delta=\Delta_{l,k}$, $k\in K_g$, $|l-l_s|\ge2$, degree $n<\bar n$, kernel
+  $\lambda a_nh\mathbf 1_\Delta\in L^2(\R^2)$, norm $\le\lambda|a_n|K_1K_2^{2n}n!$
+  (Lemma~\ref{aux:notation-cU}(i));
+\item the cutoff $h_\alpha=h^B+\alpha(h-h^B)\in\CE$, $0\le\alpha\le1$
+  (Lemma~\ref{aux:notation-cutoffs}(ii));
+\item the strip $P_l$: \emph{parallel to the time-zero line}, width $|l-l_s|-1\ge1$;
+\item the resulting term, summed over $n$: $C_7\,c_U\,|c_\beta|\,\GJS{Q_{\beta,\kappa}(s)}\,
+  e^{-m_1(|l-l_s|-1)}$.
+\end{itemize}
+Lemma~\ref{lem:D2}(a) and Lemma~\ref{aux:d3-geom}(iii) give
+\begin{align*}
+ \bigl|\ev{F(s)}{h}-\ev{F(s)}{h^B}\bigr|
+ &\le C_7\,c_U\,\GJS{F(s)}\sum_{\Delta\in\mathcal D(h,B)}e^{-m_1w_\Delta}\\
+ &\le C_7\,c_U\,\GJS{F(s)}\,\frac{2N_ge^{-m_1}}{1-e^{-m_1}}=B'\,\GJS{F(s)} .
+\end{align*}
+
+\emph{Step 4.}  The triangle inequality and Steps~2--3 give the bound.  The constants: $S_2(B)$
+depends on $(\lambda,\mathscr P,m_0)$ through Theorem~C.5 and on $B$ only through its shape
+$3\times N_B$ (Proposition~\ref{aux:notation-S2}(iii)), so $A$ does not depend on $s$ (which moves
+$B$ by whole rows) or on $T$; $B'$ contains $N_g$ and the printed constants and nothing that
+depends on $T$, $s$ or $I$.
+\end{proof}
+
+\subsection{Remarks on Theorem~\ref{thm:D3}}\label{sub:d3-rem}
+
+\begin{auxrem}[orientation, and what the printed proof reaches]\label{aux:d3-orient}
+Every application of Source Fact~2.2 in the proof of Theorem~\ref{thm:D3} pairs a sharp-time
+piece at time $s$ with a time-integrated $U_{\Delta,n}$ in a row $l$, $|l-l_s|\ge2$, across the
+strip $P_l$, whose bounding lines are lines of constant time.  No strip transverse to the
+time-zero line is used in this section.  This is the parallel case, with a time-integrated
+partner, which the printed proof reaches only after slicing.  The sentence F-T
+(\S\ref{sec:purpose}) and Lemma~7.4 of the record \cite[p.~21]{R} concern pairs of sharp-time
+monomials: the printed proof translates the strip and takes ``$A=Q_1$, $B_T=Q_2$ in Theorem
+1.1.11'' \cite[p.~597]{GJS}, where ``We assume that $A$ is localized at times $x_{i0}\leqq0$, and
+that $B$ is localized at times $x_{i0}\geqq0$'' \cite[p.~596]{GJS}, and Theorem~1.1.11 is printed
+for ``monomials of type (1.1.5)'' \cite[p.~596]{GJS}.  The partner $U_{\Delta,n}$ is of type
+(1.1.6); the printed proof reaches the pair only after $U_{\Delta,n}$ is sliced in time and the
+bound is integrated over the slices, the multi-time reading of (1.1.5) that the plan records
+(Part~2) and GJS do not print.  The note uses the printed statement of Theorem~1.1.7, which covers
+the pair (Step~4 of the proof of Lemma~\ref{lem:D2}), and does not need to decide whether the
+printed proof reaches it.  The strips are parallel because $B$ contains all columns of $\supp g$
+in the three rows $l_s-1,l_s,l_s+1$: every charged square outside $B$ lies above or below them
+(Lemma~\ref{aux:d3-geom}(i)).  The price is that $A$ depends on $N_B\ge N_g$; this is why
+Theorem~\ref{thm:D3} is a fixed-$g$ statement and Theorem~\ref{thm:D4} needs transverse strips.
+Remark~\ref{aux:d2-uses}(3) is used here: squares of the rows of $B$ outside its columns that meet
+$\supp h_{T,g}$ only in a null set are not charged.
+\end{auxrem}
+
+\begin{auxrem}[order of quantifiers]\label{aux:d3-quant}
+For every $g\in\CH$ and every bounded interval $I$ of positive length the constants $A$ (through
+$N_B$) and $B'$ (through $N_g$) are fixed; then the bound holds for every $s\in\R$, every finite
+real linear combination $F$ of cylinder monomials supported in $I$, and every $T>0$.  Neither
+constant depends on $s$, $F$ or $T$; $A$ depends on $I$ through $N_B$ only, and $B'$ not at all.
+\end{auxrem}
+
+\begin{auxrem}[boundary cases]\label{aux:d3-boundary}
+\emph{$T<1$.}  Row $l$ meets $[-T,T]$ in positive measure if and only if $l-\frac12<T$ and
+$l+\frac12>-T$.  \emph{(a) $T\le\frac12$:} only row $0$ does.  If moreover $|l_s|\le1$, then
+$\mathcal D(h_{T,g},B)=\varnothing$ by Lemma~\ref{aux:d3-geom}(i), so $h_{T,g}-h_{T,g}^B=0$ almost
+everywhere (Lemma~\ref{aux:notation-cutoffs}(iii)) and the comparison term vanishes; if
+$|l_s|\ge2$, then $h_{T,g}^B=0$ almost everywhere (everywhere unless $T=\frac12$ and $l_s=2$, when the null
+set $\{x^0=\frac12\}$ lies in row $1\subseteq B$), the base term is $\int F(s)\dmu$, and
+$\mathcal D$ consists of row-$0$ squares in columns of $K_g$, at row distance $|l_s|\ge2$.
+\emph{(b) $\frac12<T<1$:} exactly the rows $-1,0,1$ meet $[-T,T]$ in positive measure.  If
+$l_s=0$, every charged square lies in rows $-1,0,1$ and in a column of $K_g$, hence in $B$, and
+$\mathcal D(h_{T,g},B)=\varnothing$; otherwise the charged squares outside $B$ lie in rows
+$l\in\{-1,0,1\}$ with $|l-l_s|\ge2$, and the general case of the proof applies to them.
+\emph{$T$ not an integer} enters only through the rows met by the slab.
+\emph{$s$ on a lattice line}, $s\in\frac12+\Z$: then $l_s=s+\frac12$, the sharp-time pieces lie on
+the lower edge of row $l_s$, and for $l\le l_s-2$ the upper bounding line of $P_l$ is $x^0=s$; the
+observable lies on the boundary line, outside the open strip, which is what separation requires.
+Assigning such an $s$ to the lower row instead (closed squares) moves $B$ down one row; the proof
+is unchanged.
+\emph{$I$ meeting one column only}: $K_I=\{k\}$, $R=\{\Delta_{l_s,k}\}$, $N^\square_I=1$.
+\emph{$N_g=0$} (which implies $g=0$ a.e.): $h_{T,g}=0$ a.e., $B'=0$, and the bound is the base
+term.  Conversely, if $g=0$ a.e., no square is charged and the comparison term vanishes, whatever
+$N_g$ is; $B'$ then overestimates it (example: $g=\mathbf 1_{\mathbb Q\cap[0,1]}\in\CH$ vanishes
+a.e., while $\supp g=[0,1]$ gives $N_g=2$).
+\emph{$N_g=1$}: $B'=2C_7c_Ue^{-m_1}(1-e^{-m_1})^{-1}$.
+\emph{The $n=0$ term of $\mathscr P$} enters only through $Z(h^B)$ (the factor
+$e^{3\lambda|a_0|N_B}$) and through $\Uc_{h^B}$ inside $S_2$, and is absent from $c_U$
+(Lemma~\ref{aux:notation-cU}(iii)).
+\end{auxrem}
+
+\begin{auxrem}[what Theorem~\ref{thm:D3} is not, and its inputs]\label{aux:d3-not}
+It is not CE1 at slab cutoffs: its bound is $A\|F\|_{L^2}+B'\GJS{F(s)}$, with $A$ growing with
+the observable's box (through $N_B$ and $S_2(B)$), not $C_8\GJS{F(s)}$.  The statement ``CE1
+follows from CE2'' is not made; what is proved is a bound of this form for observables of bounded
+support (trap~8 of the plan).  It is uniform in $T$ and $s$ at fixed $g$ and $I$, and it is not
+uniform in $g$: $A$ and $B'$ grow with $N_B$ and $N_g$.  Of GJS only Theorem~1.1.7 is used, in its
+parallel case; Theorem~1.1.11 and Assumption~A8(vi) are not used, and none of GJS's proofs is
+verified here.  The inputs from the record are: Assumptions~A2, A3 and A8(i)--(iv), Remark~2.5
+(Lemma~\ref{aux:d3-sharp}), Lemma~3.1(ii) ($h_{T,g}\in\CE$), Lemma~C.2, Theorem~C.5, and
+Lemma~C.4, through Lemma~\ref{lem:D2} (Step~3 of its proof) and through
+Proposition~\ref{aux:notation-S2}(iii) (the independence of $A$ from $s$); with Lemmas~\ref{lem:D1}
+and~\ref{lem:D2} under their conditions, all as in Remark~\ref{aux:d3-V3} and the status line
+after Theorem~\ref{thm:D3}.
+\end{auxrem}

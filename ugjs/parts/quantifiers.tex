@@ -1,0 +1,380 @@
+% quantifiers.tex -- drafted by mp (council member of ugjs/PLAN.md), 2 November 2026.
+% Section 7: order of quantifiers, dependence and uniformity of every constant, boundary cases.
+% Written from the statements of ugjs/PLAN.md Part 1 and from Sections 2-4 of this note as drafted
+% on 2 November 2026 (notation.tex by cqft2, d2.tex by aqft); checked afterwards against d3.tex,
+% d4.tex and consequences.tex (aqft) as they stood at 16:04 that day, whose statements agree.
+
+This section states, for every result of the note and for every proof of the record that the
+note replaces, the order of the quantifiers and, for every constant, what it depends on and
+what it is uniform in. ``Uniform in $X$'' means that one value serves for all $X$ in the stated
+range, the remaining data being fixed. The statements are those of
+\S\S\ref{sec:d1}--\ref{sec:d4}, which agree with Part~1 of \texttt{ugjs/PLAN.md}.
+
+\subsection{The fixed data}\label{sec:quant-fixed}
+
+The interaction polynomial $\mathscr P(\xi)=\sum_{n=0}^{2p'}a_n\xi^n$, $a_{2p'}>0$,
+$p'\ge1$, is fixed. In \S\S\ref{sec:d2}--\ref{sec:d4} and \S\ref{sec:cons} the standing
+assumption $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$ of the record (\S2.6,
+\cite[p.~14]{R}) is in force, and the note works in the working coordinates, in which the
+pair $(m_0,\lambda)$ satisfies the hypotheses printed with Theorem~1.1.7, ``Let $m_0$, $K_2$
+and $K_1$ be sufficiently large and let $\lambda$ be sufficiently small'' \cite[p.~594]{GJS};
+Remark~3.3 of the record \cite[p.~16]{R} transports every conclusion back to the original
+coordinates. \S\ref{sec:d1} uses neither: Lemma~\ref{lem:D1} holds for every $\lambda\ge0$ and
+$m_0>0$. The constants fixed by these data are:
+\begin{itemize}
+\item[(F1)] $m_1>0$ and $C_7$, the constants of Theorem~1.1.7: ``There are constants $0<m_1$
+and $O(1)$ independent of $h$, $Q_1$ and $Q_2$'' \cite[p.~594]{GJS}; the record reads
+``independent of $h$'' over the class $\CE$ (Assumption~A8, Scope (d), \cite[p.~13]{R}).
+They are fixed once $(m_0,\lambda,\mathscr P)$, $K_1$, $K_2$ and $\bar n$ are fixed by the
+choices behind the printed hypotheses; the printed statement makes them independent of $h$,
+$Q_1$ and $Q_2$, and says nothing more about their dependence.
+\item[(F2)] $K_1$ and $K_2\ge1$, the constants of the printed norms (eq.~(1) of the record,
+\cite[p.~10]{R}), and $\bar n=2p'+1$ (Assumption~A8(ii)).
+\item[(F3)] The derived constants:
+\begin{itemize}
+\item $c_U=\lambda\sum_{n=1}^{2p'}|a_n|K_1K_2^{2n}n!$ (Lemma~\ref{aux:notation-cU}),
+depending on $\lambda,a_1,\dots,a_{2p'},K_1,K_2$;
+\item the stability constant $S_2(B)$ (Definition~\ref{aux:notation-S2def}), finite by
+Theorem~C.5 of the record \cite[p.~41]{R}, which is proved conditional on the repairs R1--R10
+of the V3 audit (Remark~\ref{aux:d3-V3}), and not evaluated. It depends on $(\lambda,\mathscr P,m_0)$ and on the box $B$
+through its shape only (Proposition~\ref{aux:notation-S2}(iii), whose proof uses Lemma~C.4).
+Independently of that proposition, the bound that the \emph{proof} of Theorem~C.5 produces
+depends on $\Lambda$ only through $|\Lambda|$ and $\operatorname{diam}\Lambda$, monotonically
+(V3 audit, items C5.1 and \S6; the statement of Theorem~C.5 does not record this); for a box
+this is a bound depending on the shape only;
+\item the ring constant
+$\overline\Sigma_{3\times5}:=\sum_{j\ge1}(8j+12)e^{-m_1j}=4x(5-3x)(1-x)^{-2}$, $x=e^{-m_1}$
+(\S\ref{sec:d4}), depending on $m_1$ only. It bounds the sum
+$\Sigma_{3\times5}=\sum_{\Delta\not\subseteq B_{3\times5}}e^{-m_1d(\Delta,R)}$ of
+Lemma~\ref{aux:notation-rings}(vi), which depends on $R$, and the sum of $e^{-m_1w_\Delta}$
+over the charged squares outside $B_{3\times5}$ with the widths $w_\Delta$ of the axis-parallel
+strips assigned in the proof of Theorem~\ref{thm:D4};
+\item $V_*$, depending on $(\lambda,\mathscr P,m_0)$, finite (Lemma~\ref{aux:notation-wick}(iv));
+the integrability of $C(x-y)^n$ on $[-1,1]^2$ is Lemma~\ref{aux:d1-cov}(ii),(iv).  $V_*$ is
+taken for the constructed $V(h')$ of Lemma~\ref{aux:notation-wick}(iv) and needs no GAP.  It
+bounds the record's $V(h')$ only through the identification of the record's $V(h)$ with that
+object, which is the GAP recorded after Lemma~\ref{aux:notation-wick} (the record constructs no
+Wick powers in $V(h)$) and enters at the record's Theorem~5.1, Step~1, and at Corollary~5.2
+(\S\ref{sub:cons-51});
+\item the factor $9^{p'}=(3^{p'})^2$ of the comparison $\|Y\|_4\le3^{p'}\|Y\|_2$ for $Y$ in the
+chaoses of degree $\le2p'$ (proof of Theorem~C.5 of the record; Lemma~\ref{aux:notation-hyper};
+the V3 audit reports it as Theorem~I.22 of Simon's book, which this drafter did not read),
+depending on $p'$ only; it rests on the chaos structure that the V3 audit found unimported
+(its M-3, repair R8), and it is applied to the constructed $Y=J_0V(h')$ of
+Lemma~\ref{aux:notation-hyper}, which needs no GAP.
+\end{itemize}
+\end{itemize}
+None of these depends on a cutoff $h$, on $T$, on $g$, on the position of a box, or on an
+observable. They are constants of the working coordinates, and Lemma~\ref{lem:D2} and
+Theorems~\ref{thm:D3}--\ref{thm:D4} say so (the rider of trap~10).
+
+\subsection{The order of the quantifiers, statement by statement}\label{sec:quant-order}
+
+\emph{Lemma~\ref{lem:D1}.} For all $h_1,h_2\in\CE$ and all $F\in\mathfrak F$ (indeed all
+$F\in\bigcup_{p_0>1}L^{p_0}(\dmu)$, Remark~\ref{aux:d1-uses}(a)), the map
+$\alpha\mapsto\ev{F}{h_\alpha}$ is $C^1$ on $[0,1]$ and \eqref{eq:d1-identity} holds. There is
+no constant; no hypothesis on $\lambda$ or $m_0$ is used.  Status: proved, conditional on repair
+R8 of the V3 audit (the linearity of $h\mapsto\Uc_h$ in Step~1), or, on the route written in
+Step~1, on Lemma~C.4 of the record (repairs R1--R10); see the status paragraph after
+Lemma~\ref{lem:D1}.
+
+\emph{Lemma~\ref{lem:D2}}, in the form (a) of \S\ref{sec:d2}. For every finite family
+$(F_a)_{a\in\mathfrak A}$ of localized monomials of type (1.1.5) or (1.1.6) with kernels in
+$L^2$ and $n_i<\bar n$, every set $R$ of squares containing their localization squares, every
+box $B\supseteq R$, every $h\in\CE$, and every assignment $\Delta\mapsto S_\Delta$,
+$\Delta\in\mathcal D(h,B)$, of strips of widths $w_\Delta>0$ separating $\Delta$ from $R$,
+\[
+ \bigl|\ev{F}{h}-\ev{F}{h^B}\bigr|\le C_7\,c_U\Bigl(\sum_a\GJS{F_a}\Bigr)
+ \sum_{\Delta\in\mathcal D(h,B)}e^{-m_1w_\Delta},\qquad F:=\sum_aF_a .
+\]
+$C_7$, $m_1$ and $c_U$ are those of (F1)--(F3); none depends on $h$, $B$, $R$, the family or the
+strips. The right side depends on $h$ only through the finite set $\mathcal D(h,B)$ of the
+squares outside $B$ charged by $h$, and on $F$ through the norm of the chosen decomposition
+(1.1.9); the bound therefore holds with the infimum over decompositions. Of the cutoff the
+lemma uses exactly $h\ge0$, $h\le1$ and compact support (Remark~\ref{aux:d2-uses}(1)): it is a
+statement for $h\in\CE$ only, and nothing in the note provides it for cutoffs of variable sign,
+for which $h_\alpha\notin\CE$ in general and neither Assumption~A3 nor Theorem~1.1.7 as
+imported applies (trap~20 of the plan). The orientation of each application of
+Theorem~1.1.7 is that of the strip $S_\Delta$, which is chosen before the bound is applied.
+Lemma~\ref{lem:D2} uses Lemma~\ref{lem:D1}, and it is conditional on Lemma~C.4 of the record
+(repairs R1--R10, which include R8 and so cover the condition of Lemma~\ref{lem:D1}).  The
+condition enters in Step~3 of its proof, which decomposes $\Uc_{h-h^B}$ into the
+$U_{\Delta,n}$.  There, Step~1 of the proof of Lemma~\ref{lem:D1} and
+Lemma~\ref{aux:d1-moments}(a) give the convergence of the regularizations $\Uc^{(\kappa)}_w$,
+$w=h-h^B$, and of their pieces $U^{(\kappa)}_{\Delta,n}$; Lemma~\ref{aux:notation-cutoffs}(iii)
+splits $w$ into the squares; and Lemma~C.4 identifies the limit of $\Uc^{(\kappa)}_w$ with
+$\Uc_h-\Uc_{h^B}$.  Repair R8 alone makes $h\mapsto\Uc_h$ linear but does not give that
+identification as the note is written.
+
+\emph{Theorem~\ref{thm:D3}.} Let $g\in\CH$, let $I\subset\R$ be a bounded interval of positive
+length and let $s\in\R$; these determine $l_s$, $N_g$, $N_B$ and $B=B_s(g,I)$, with $|B|=3N_B$, and then
+\[
+ A:=e^{3\lambda|a_0|N_B}S_2(B),\qquad
+ B':=2\,C_7\,c_U\,N_g\,\frac{e^{-m_1}}{1-e^{-m_1}} .
+\]
+For every finite linear combination $F$ of cylinder monomials (\S6 of the record) supported in
+$I$, at the sharp time $s$, and every $T>0$,
+$|\int F\,dq_{h_{T,g}}|\le A\|F\|_{L^2(d\varphi_0)}+B'\GJS F$. The order is: $g$ and $I$; then
+$A$ and $B'$, which do not depend on $s$ (for $A$ through Proposition~\ref{aux:notation-S2}(iii),
+conditional on R1--R10, as in Remark~\ref{aux:d3-quant}); then $s$, $F$ and $T$.
+\begin{itemize}
+\item $A$ depends on $\lambda$ and $a_0$ through Lemma~C.2 of the record \cite[p.~40]{R},
+$Z(h^B)\ge e^{-\lambda|a_0||B|}$ (proved conditional on repair R8 of the V3 audit), and on
+$(\lambda,\mathscr P,m_0)$ and $N_B$ through $S_2(B)$ (conditional on R1--R10), which depends
+on the shape $3\times N_B$ only. It is uniform in $T>0$, in $s$, in
+$F$ and in the position of $B$. It is \emph{not} uniform in $N_B$, which grows with the
+diameter of the union of $\supp g$ and $I$, in particular with the distance from $I$ to
+$\supp g$ (item m1 of the R3 verification).
+\item $B'$ depends on $C_7$, $m_1$, $c_U$ and $N_g$. It is uniform in $T$, in $s$, in $F$
+and in the position and the length of $I$; it depends on $g$ only through $N_g$.  The term
+$B'\GJS F$ comes from Lemma~\ref{lem:D2}(a), so Theorem~\ref{thm:D3} is conditional on
+Lemma~C.4 of the record (repairs R1--R10) through Lemma~\ref{lem:D2}.
+\item Both depend on $g$; \S7 of the record fixes $g\in\CH$, so this is all it needs.
+\item $\GJS F$ is the norm (1.1.9) of the decomposition of $F$ into its pieces localized in
+the squares of row $l_s$ on the columns of \S\ref{sec:notation}
+(Lemma~\ref{aux:d3-cyl}(v)), bounded with the column count $N^\square_I$ of
+Remark~\ref{aux:notation-counts}; it does not depend on $s$ (Remark~6.3 of the record
+\cite[p.~20]{R}).
+\item Theorem~\ref{thm:D3} bounds $\int F\,dq_h$ for observables of bounded support, with
+the constant $A\|F\|_{L^2}+B'\GJS F$; it is not a form of CE1, since $A$ depends on the
+support of $F$ through $N_B$ and both constants depend on $g$ (trap~8).
+\end{itemize}
+
+\emph{The consequences of Theorem~\ref{thm:D3} in \S\S4 and 7 of the record.}
+\begin{itemize}
+\item Lemma~4.3(ii) \cite[p.~17]{R}: at each fixed $T>0$ and $g\in\CH$ the square moments
+are finite by Assumption~A3 and H\"older's inequality with the exponents $(2,2)$; no
+uniformity in $T$ or $g$ is claimed or used (finding F7 of the plan).
+\item Lemma~7.1 \cite[p.~20]{R}: for every $g\in\CH$, every bounded interval $I$ of positive
+length and every cylinder monomial $Q$ supported in $I$,
+$\sup_{T>0}\|Q\hat\psi_T\|^2\le A\|Q^2\|_{L^2(d\varphi_0)}+B'\mathfrak n(Q)^2$, with $A,B'$ of
+Theorem~\ref{thm:D3} at $(g,I,0)$; the same bound holds for $\|Q\Om_g\|^2$. The bound is
+uniform in $T$ and depends on $g$ and $I$. Its right side replaces the printed
+$C_8\,\mathfrak n(Q)^2$, so the \emph{statement} of Lemma~7.1 changes.
+\item Lemmas~7.2--7.3 \cite[pp.~20--21]{R}: the square moments at the time $s$ and at the
+times $\pm t/2$ obey the same bound, with $A$ and $B'$ independent of the time and of $T$.
+\item Lemma~7.6 \cite[p.~22]{R}: for every $g\in\CH$, every real $f\in C_c^\infty(\R)$,
+$f\ne0$, supported in an interval $I$, and every $n\ge1$,
+$\E_{\mu_g}[X_f^{2n}]\le A_fK_f^{2n}(2n)!$ with $A_f:=A+B'K_1$ ($A,B'$ at $(g,I,0)$),
+$K_f:=\max\{K',\sqrt2\,\sigma_f\}$, $K':=K_2^2(N^\square_I)^{1/2}\|f\|_2$ and
+$\sigma_f^2:=\ip{f}{Cf}$. $A_f$ and $K_f$ do not depend on $n$, which is what Theorem~7.7 uses;
+$A_f$ depends on $g$ and $I$; $K_f$ depends on $f$ (through $\|f\|_2$, $\sigma_f$ and the column
+count of $I$), on $K_2$ and, through $C$, on $m_0$, and not on $g$. The radius $1/K_f$ of the
+exponential moment comes from the route through the GJS norm; nothing in the note shows that it
+is intrinsic to $\mu_g$ (trap~25). The statement of Lemma~7.6 changes ($C_8K_1$ and $K'$
+become $A_f$ and $K_f$).
+\item Theorem~7.7 \cite[p.~23]{R}: for given $e_1,\dots,e_k$ the polystrip of its Step~1 can
+be taken of half-width $s_0:=\min_{j\le k,\ e_j\ne0}(2kK_{e_j})^{-1}$ ($K_f$ is defined for
+$f\ne0$ only); if all $e_j=0$, then $F(z)=\E_{\mu_g}[\overline\zeta]$ is constant and every
+$s_0>0$ serves, so $s_0:=+\infty$.  Indeed, by the Cauchy--Schwarz inequality and H\"older's
+inequality with $k$ exponents $k$,
+\[
+ \E_{\mu_g}\Bigl[|\zeta|\,e^{\sum_j|\mathrm{Re}\,z_j||X_{e_j}|}\Bigr]
+ \le\|\zeta\|_{L^2(\mu_g)}\prod_{j=1}^k
+ \Bigl(\E_{\mu_g}e^{2k|\mathrm{Re}\,z_j||X_{e_j}|}\Bigr)^{1/(2k)},
+\]
+which is finite when $2k|\mathrm{Re}\,z_j|<1/K_{e_j}$ for every $j$ with $e_j\ne0$ (a factor
+with $e_j=0$ is $1$). This $s_0$ depends on $e_1,\dots,e_k$ only, not on $g$. (Part~1 of the plan writes $s_0=1/K_f$, the radius of Lemma~7.6 for one $f$.)
+\item Proposition~7.5 and Theorem~7.8 \cite[pp.~22--23]{R}: the gap $m_1$ is the constant of
+Theorem~1.1.7 (through Lemma~7.4) and is uniform in $g$; $\widehat C_Q$ depends on $g$, and
+only its finiteness is used. Their statements do not change.
+\end{itemize}
+
+\emph{Theorem~\ref{thm:D4}.} There is a constant $M_B$, determined by the fixed data
+(F1)--(F3),
+\[
+ M_B^2:=e^{15\lambda|a_0|}S_2(B_{3\times5})\,9^{p'}V_*
+ +C_7\,c_U\,\overline\Sigma_{3\times5}\cdot9K_1K_2^{8p'}(4p')!\,\lambda^2
+ \Bigl(\sum_{n=0}^{2p'}|a_n|\Bigr)^2,
+\]
+such that for every $h\in\CE$, every $a\in\R$ and every real measurable $h'$ with
+$\|h'\|_\infty\le1$ and $\supp h'\subseteq[a,a+2]$: $\int V(h')(0)^2\,dq_h\le M_B^2$. The order
+is: $M_B$ first; then $h$, $a$ and $h'$.
+\begin{itemize}
+\item $M_B$ depends on $(\lambda,\mathscr P,m_0)$ through $C_7$, $m_1$ (also through
+$\overline\Sigma_{3\times5}$), $K_1$, $K_2$, the unevaluated constant $S_2(B_{3\times5})$ of
+Theorem~C.5 (conditional on R1--R10) and the finite $V_*$, in the working coordinates
+(Remark~3.3 of the record); this is the rider of trap~10, and $M_B$ replaces the record's $M$,
+which is not unchanged.  Theorem~\ref{thm:D4} bounds the constructed observable,
+$V(h')(0)=J_0V(h')$ with $V(h')$ the limit of Lemma~\ref{aux:notation-wick}(iv); its base term
+and its comparison term concern one element of $L^2(\dmu)$, because the two regularizations of a
+sharp-time Wick power agree (Lemma~\ref{aux:notation-sharpid} and
+Remark~\ref{aux:notation-sharpidrem}(b)).  So $M_B$ and the Euclidean bound need no GAP; through
+$9^{p'}$ (Lemma~\ref{aux:notation-hyper}(ii)) and $e^{15\lambda|a_0|}$ they are conditional on
+repair R8, and through the comparison term on Lemma~C.4 of the record (repairs R1--R10), through
+Lemma~\ref{lem:D2}.  The GAP recorded after Lemma~\ref{aux:notation-wick} enters only where $M_B$ is used
+for the record's $V(h)$: at Theorem~5.1, Step~1, and at Corollary~5.2 (\S\ref{sub:cons-51}).
+\item It is uniform in $h\in\CE$, hence in $T>0$ and $g\in\CH$ when $h=h_{T,g}$; in $a$,
+because the boxes $B_{3\times5}(a)$ (Definition~\ref{aux:notation-ringdef}) all have the shape
+$3\times5$ and $S_2$ depends on the shape only (Proposition~\ref{aux:notation-S2}(iii), through
+Lemma~C.4, conditional on R1--R10); and in $h'$.
+\item The factors:
+\begin{itemize}
+\item $e^{15\lambda|a_0|}$ is Lemma~C.2 with $|B_{3\times5}|=15$ (conditional on R8);
+\item $S_2(B_{3\times5})$ bounds $\|e^{-\Uc_{h^B}}\|_{L^2(\dmu)}$
+(Proposition~\ref{aux:notation-S2}(iv));
+\item $9^{p'}V_*$ bounds $\|V(h')\|_{L^4(d\varphi_0)}^2$, which equals
+$\|V(h')^2\|_{L^2(d\varphi_0)}$, for the constructed $V(h')$ (Lemma~\ref{aux:notation-hyper};
+conditional on R8; no GAP);
+\item $C_7c_U\overline\Sigma_{3\times5}$ is Lemma~\ref{lem:D2}(a) summed over the rings
+(conditional on Lemma~C.4, R1--R10, through Lemma~\ref{lem:D2}),
+$\overline\Sigma_{3\times5}$ bounding the sum of $e^{-m_1w_\Delta}$ over the charged squares
+outside $B_{3\times5}$;
+\item the last factor bounds $\GJS{Q_V}$ as in eq.~(5) of the record \cite[p.~19]{R}, whose
+``$=M^2/C_8$'' no longer applies (plan, item n14).
+\end{itemize}
+\item \emph{Where the transverse case enters.} Every square of rows $-1,0,1$ outside
+$B_{3\times5}$ is separated from $R$ only by transverse strips of positive width
+(Lemma~\ref{aux:notation-rings}(v)); every side square of the ring $\mathcal L_j$ in a row
+$2\le|l|\le j$ admits parallel strips only of width $\le|l|-1<j$, and the bound
+$d(\Delta,R)\ge j$ uses a transverse strip for it too
+(Remark~\ref{aux:notation-ringrem}(b)). The squares of the rows $|l|=j+1$ of $\mathcal L_j$
+are reached by parallel strips of width $j$. Each application with a transverse strip falls
+under sentence F-T (\S\ref{sec:purpose}).
+\item Theorem~\ref{thm:D4} rests on the printed hypotheses of Theorem~1.1.7; Phase~B does not
+remove the weak-coupling restriction (trap~17).
+\end{itemize}
+
+\emph{Theorem~5.1 with $M:=M_B$, Corollary~5.2, and \S\S8--14 of the record.}
+\begin{itemize}
+\item Theorem~5.1 \cite[p.~18]{R}: for every $g\in\CH$ and every real measurable $h'$ with
+$\|h'\|_\infty\le1$ and $\supp h'$ in an interval of length $2$ (which lies in some
+$[a,a+2]$), $\Om_g\in D(V(h'))$ and $\|V(h')\Om_g\|\le M_B$. Step~5 applies
+Theorem~\ref{thm:D4} at $h=h_{T,g}\in\CE$ for every $T>0$; Step~6 lets $T_k\to\infty$ at fixed
+$g$. The order ``there is $M_B$ such that for all $g$ and $h'$'' is the content of (M$_2$); the
+slab bound implies (M$_2$), and the converse is not claimed (trap~9).  Through
+Theorem~\ref{thm:D4}, Theorem~5.1, and with it Corollary~5.2, Lemma~10.2, Theorem~11.1 and
+items (1) and (5) of Theorem~12.2, rest on the transverse case of Theorem~1.1.7 at the printed
+statement's scope (sentence F-T, \S\ref{sec:purpose}).  They rest on the GAP recorded after
+Lemma~\ref{aux:notation-wick} as well, which enters at Step~1 (``$Q_V$ is exactly the
+multiplication function $V(h)^2$'', main.tex l.~1278): there the record's $V(h')$ is identified
+with the constructed $V(h')$ of Lemma~\ref{aux:notation-wick}(iv), to which
+Theorem~\ref{thm:D4} applies (\S\ref{sub:cons-51}).  Lemma~\ref{aux:notation-sharpid} and
+Remark~\ref{aux:notation-sharpidrem} identify the two constructions of the note with each other;
+they do not reach the record's $V(h)$.
+\item Corollary~5.2 \cite[p.~19]{R}: its number $362\,880\,C_8K_1K_2^{16}\lambda^2$ retires
+with $C_8$. For $\mathscr P(\xi)=\xi^4$ ($p'=2$, $a_4=1$, the other $a_n=0$) the formula above
+gives
+\[
+ M_B^2=81\,S_2(B_{3\times5})\,V_*+362\,880\,C_7\,c_U\,\overline\Sigma_{3\times5}\,
+ K_1K_2^{16}\lambda^2,
+\]
+with $c_U=24\lambda K_1K_2^8$ and $V_*\le24\lambda^2\iint_{[-1,1]^2}C(x-y)^4\,dx\,dy$.  As a
+bound for the record's $V(h)$, Corollary~5.2 inherits from Theorem~5.1 the transverse case (F-T)
+and the GAP at Step~1; $M_B$ itself needs no GAP.
+\item \S\S8--14 consume the local moment only through Lemma~10.2 \cite[p.~28]{R}, which applies
+Theorem~5.1 at the cutoffs $g_s\in\CH$ of an affine path and at $h_j$ supported in
+$[j-1,j+1]$; with $M:=M_B$, which is uniform in $g$, Lemma~10.2 holds verbatim (cf.\ trap~11).
+The constants $A$, $B'$, $A_f$, $K_f$ and $s_0$ do not leave \S7 (gate GA6,
+\S\ref{sec:cons}).
+\item In the original coordinates the conclusions are transported by Remark~3.3 of the
+record; for the local moment this means supports of length $2/s$, or a partition of unity into
+at most $\lceil s\rceil+1$ pieces and the constant $(\lceil s\rceil+1)M_B$, where
+$s=m_0/M_*$.
+\end{itemize}
+
+\subsection{Boundary cases}\label{sec:quant-boundary}
+
+Squares, rows, columns, $l_s$ and the charged squares $\mathcal D(h,B)$ are those of
+\S\S\ref{sec:notation}--\ref{sec:d2}: $\Delta_{l,k}=[l-\frac12,l+\frac12)\times
+[k-\frac12,k+\frac12)$, $l_s=\lfloor s+\frac12\rfloor$, and $\mathcal D(h,B)$ the squares
+$\Delta\not\subset B$ with $\int_\Delta h>0$.
+
+\emph{(1) $T<1$: a slab thinner than one row.} $h_{T,g}=\mathbf 1_{[-T,T]}\otimes g$ charges at
+most the rows $l$ with $|[l-\frac12,l+\frac12)\cap[-T,T]|>0$, i.e.\ $|l|<T+\frac12$: row $0$
+alone for $T\le\frac12$, rows $-1,0,1$ for $\frac12<T<1$. In Theorem~\ref{thm:D3} with
+$l_s=0$, the box $B$ (rows $-1,0,1$, all columns meeting $\supp g\cup I$ in positive measure)
+then contains every charged square, $\mathcal D(h_{T,g},B)=\varnothing$, $h^B=h_{T,g}$, and the
+bound is the base term $A\|F\|_{L^2}$ alone. For other $l_s$ the charged squares outside $B$ lie
+at row distance $\ge2$ from $l_s$ and the parallel strips of the general case apply.
+Theorem~\ref{thm:D3} needs no lower bound on $T$. In Theorem~\ref{thm:D4} with $T\le\frac12$
+the only charged row is $0$, and every charged square outside $B_{3\times5}$ lies in row $0$
+and is reached only by a transverse strip: the transverse case is used even for the thinnest
+slabs. (The fallback Lemma~L of the plan needs $T\ge t_*=1/m_0$; Theorems~\ref{thm:D3}
+and~\ref{thm:D4} do not.)
+
+\emph{(2) $T$ not an integer.} The rows at the edge of the slab are charged only in part, so
+$h_{T,g}\mathbf 1_\Delta\ne g$ on such squares; $c_U$ uses only
+$\|h\mathbf 1_\Delta\|_2\le1$ (Lemma~\ref{aux:notation-cU}(i)), and no constant depends on $T$.
+If $T\in\frac12+\Z$, the row $l=T+\frac12$ meets $[-T,T]$ only in the null set $\{x^0=T\}$, is
+not charged, and carries $U_\Delta=0$; it needs no strip (Remark~\ref{aux:d2-uses}(3)).
+
+\emph{(3) $s$ on a lattice line.} If $s=l-\frac12$ with $l\in\Z$, then $l_s=l$
+(Definition~\ref{aux:notation-squares}): the observable is localized in row $l$, although the
+line $x^0=s$ is also the upper edge of row $l-1$. The box $B$ of Theorem~\ref{thm:D3} contains
+rows $l-1$, $l$, $l+1$, hence both rows touching the line. A charged square in row $l'$ with
+$|l'-l|\ge2$ is separated from the row-$l$ squares by the parallel strip between
+$x^0=\min\{l,l'\}+\frac12$ and $x^0=\max\{l,l'\}-\frac12$, of width $|l'-l|-1$; it separates the
+closed squares, in particular the line $x^0=s$ itself. For $l'\le l-2$ the line lies on the
+boundary of that strip; for $l'\ge l+2$ the true distance is one unit larger than the width
+used. The constants are unchanged.
+
+\emph{(4) $N_g=1$, and $N_g=0$.} If $\supp g$ meets one column in positive measure, the charged
+squares outside $B$ lie in that column, in rows $l$ with $|l-l_s|\ge2$, at most two at each
+strip width $j=|l-l_s|-1\ge1$, and
+$B'=2C_7c_Ue^{-m_1}(1-e^{-m_1})^{-1}$. If $g=0$ almost everywhere, no square is charged,
+$dq_{h_{T,g}}=\dmu$ (since $\Uc_{h_{T,g}}=0$ and $Z=1$), the comparison term vanishes, and the
+theorem is the bound $|\int F\,d\mu_0|\le\|F\|_{L^2}\le A\|F\|_{L^2}$ ($S_2\ge1$). The count
+must be taken with the charged squares of Lemma~\ref{lem:D2}(a). With the index set
+$\{\Delta\not\subset B:\Delta\cap\supp h\ne\varnothing\}$ of its form (b), a column that meets
+$\supp g$ only in a null set would contribute squares in the rows $l_s-1$, $l_s$, $l_s+1$
+outside $B$, which only transverse strips separate from $R$; for instance
+$g:=\mathbf 1_{[0,1/10]}+\mathbf 1_{\{3\}}\in\CH$ has $N_g=1$ while column $3$ meets
+$\supp g=[0,\frac1{10}]\cup\{3\}$. Such columns carry $U_\Delta=0$, and form (a) omits them
+(Remark~\ref{aux:d2-uses}(3), which records this example).
+
+\emph{(5) $I$ meeting one column only.} Then $N^\square_I=1$, every cylinder monomial of $F$ has
+a single localized piece, all its factors in one square $\Delta_{l_s,k}$, and
+$\GJS F$ is bounded by (N.a) of \S\ref{sec:notation} with count $1$. If $\supp g$ meets only the
+same column, $N_B=1$, $|B|=3$ and $A=e^{3\lambda|a_0|}S_2(B)$. If $I$ touches a second column in
+a null set (e.g.\ $I=[k-\frac12,k+\frac12]$), the pieces there vanish in $L^2$ and give no
+localization square. On the record's cells $[j,j+1)$ the count can differ
+(Remark~\ref{aux:notation-counts}(ii)); the note counts on the columns.
+
+\emph{(6) $p'=1$.} $\bar n=3$; the pieces $U_{\Delta,n}$ have $n\in\{1,2\}$, the factors of $Q_V$
+have degrees $\le2<3$, and its local degrees are $\le4$, which (1.1.7) permits (the bound is on
+the individual $n_i$). $c_U=\lambda K_1(|a_1|K_2^2+2|a_2|K_2^4)$, $9^{p'}=9$, and
+$9K_1K_2^{8p'}(4p')!=216\,K_1K_2^8$. Nothing degenerates.
+
+\emph{(7) Ring $k=1$.} $\mathcal L_1$ has $8\cdot1+12=20$ squares
+(Lemma~\ref{aux:notation-rings}(iii)): the fourteen squares of rows $\pm2$ in the columns
+$k_a-2,\dots,k_a+4$, reached by parallel strips of width $1$; and the six squares of rows
+$-1,0,1$ in the columns $k_a-2$ and $k_a+4$, reached by transverse strips of width $1$ and by no
+parallel strip of positive width. The four corners (rows $\pm2$ in the two side columns) admit
+both. The ring contributes the term $20e^{-m_1}$ of $\overline\Sigma_{3\times5}$, of which
+$6e^{-m_1}$ rest on the transverse case alone.
+
+\emph{(8) $a$ such that $[a,a+2]$ meets three columns.} $[a,a+2]$ meets exactly the three
+columns $k_a,k_a+1,k_a+2$ (Lemma~\ref{aux:notation-rings}(i)); it meets all three in positive
+measure unless $a\in\frac12+\Z$, when it meets $k_a+2$ only in the point $a+2$. In that case
+the pieces of $Q_V$ in column $k_a+2$ vanish in $L^2$ and $R$ lies in two columns, while
+$B_{3\times5}(a)$ is built on all three, which only enlarges the box: the base term and the ring
+count are unchanged. Under the ``positive measure'' reading the box would be $3\times4$ for
+$a\in\frac12+\Z$; its rings have $(3+2j)(4+2j)-(1+2j)(2+2j)=8j+10\le8j+12$ squares, each at
+strip width $\ge j$ from $R$ by Lemma~\ref{aux:notation-strip}, so that
+$\overline\Sigma_{3\times5}$ still bounds their sum; its base
+term has $e^{12\lambda|a_0|}\le e^{15\lambda|a_0|}$, and its $S_2$ is at most $S_2(B_{3\times5})$
+(Proposition~\ref{aux:notation-S2}(ii), the $3\times4$ box lying in a $3\times5$ box). So $M_B$
+is valid under both readings, and the record's count in Theorem~5.1, Step~2 (``at most three
+half-open unit spatial cells \dots\ in positive measure'') holds on the columns as well.  (The
+ring counts $8j+10$ with strip widths $\ge j$ for $j\le12$, and the rows charged by a slab in case
+(1), are also checked in exact integer and rational arithmetic by \texttt{parts/check\_d1.py},
+parts (4)--(5); \emph{numerical}, run record \texttt{parts/}\allowbreak\texttt{check\_d1.output.txt}, 3 November 2026.)
+
+\emph{(9) The term $n=0$ of $\mathscr P$.} $U_{\Delta,0}=\lambda a_0\int_\Delta h$ is a
+constant, with zero covariance under every $dq_{h'}$ (Lemma~\ref{aux:notation-cU}(iii)), and
+$c_U$ starts at $n=1$. The coefficient $a_0$ does not change $dq_h$. As a coefficient of the
+interaction it enters $A$ and $M_B$ only through $e^{3\lambda|a_0|N_B}$ and $e^{15\lambda|a_0|}$
+(Lemma~C.2, conditional on R8) and through $S_2$, an artefact of bounding
+$\|e^{-\Uc_{h^B}}\|_2$ and $Z(h^B)$ separately; with $\mathscr P-a_0$ in place of $\mathscr P$
+every $dq_h$ is the same and those factors disappear. As a coefficient of the observable it
+enters $M_B$ through $V_*$ and $\GJS{Q_V}$, where the term $n=0$ stays: $V(h')$ contains
+$\lambda a_0\int h'$, and the sums $\sum_{n=0}^{2p'}$ include it.
+
+\emph{(10) $\lambda=0$.} Then $\Uc_h=0$, $dq_h=\dmu$ for every $h$, both sides of
+Lemma~\ref{lem:D2} vanish, $c_U=V_*=0$, $S_2=1$, and $M_B=0=\|V(h')\Om_g\|$.
+
+\emph{(11) Lemma~\ref{lem:D1} at its edges.} For $h_1=h_2$ both sides of
+\eqref{eq:d1-identity} vanish ($\Uc_{h_2-h_1}=0$); for constant $F$ the covariance vanishes and
+$\ev{F}{h}$ is constant; at $\alpha\in\{0,1\}$ the derivatives are one-sided, and Step~3 of the
+proof covers them, the dominator not depending on $\alpha$.

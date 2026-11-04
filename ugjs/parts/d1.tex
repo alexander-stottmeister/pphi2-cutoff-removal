@@ -1,0 +1,633 @@
+% d1.tex -- drafted by mp (council member of ugjs/PLAN.md), 31 October and 2 November 2026.
+% Section 3 of the comparison note: Lemma D.1 with the integrability chain of gate GA2.
+
+This section proves Lemma~\ref{lem:D1}. It is the identity that GJS print as the first two
+equalities of (1.1.12) \cite[p.~595]{GJS},
+\[
+ \text{``}\langle Q\rangle_{h_2}-\langle Q\rangle_{h_1}
+ =\int_0^1d\alpha\,\frac{d}{d\alpha}\langle Q\rangle_{h_1+\alpha g}
+ =-\int_0^1d\alpha\bigl[\langle QV(g)\rangle_{h_1+\alpha g}
+ -\langle Q\rangle_{h_1+\alpha g}\langle V(g)\rangle_{h_1+\alpha g}\bigr]\text{''},
+\]
+where ``To prove (1.1.11) let $g=h_2-h_1$'' (p.~594) and $\langle F\rangle_h=\int F\,dq_h$
+(ibid.); the pages give no integrability argument, and this section supplies one. Its inputs
+are: Assumption~A3 of the record, as stated there; the linearity of $h\mapsto\Uc_h$ (Step~1
+of the proof below), which rests on repair R8 of the V3 audit or, on the route written in
+Step~1, on the record's identification of $\Uc_h$ with the limit of its regularizations, that is
+on Lemma~C.4 of the record with the repairs R1--R10 (the status paragraph after
+Lemma~\ref{lem:D1}); the Gaussian moments of the observables, computed explicitly in
+Lemmas~\ref{aux:d1-wick}, \ref{aux:d1-cov} and~\ref{aux:d1-moments} from Assumption~A2 of the
+record alone (neither the decomposition of $L^2(\dmu)$ into Wick chaoses nor
+hypercontractivity is used); H\"older's inequality, with the exponents written at each use;
+dominated convergence; Fatou's lemma; and the fundamental theorem of calculus. No smallness
+hypothesis is used: everything in this section holds for every $\lambda\ge0$ and every
+$m_0>0$.
+
+\subsection*{The observables and their Gaussian moments}
+
+\emph{Gaussian variables.} As in \S\ref{sec:notation}, $\dmu$ is the centred Gaussian measure
+on $\mathcal S'(\R^2)$ with covariance $(-\Delta_{\R^2}+m_0^2)^{-1}$ (Assumption~A2 of the
+record \cite[p.~8]{R}), and $\Phi(f)(q)=\langle q,f\rangle$. Let $\mathscr H_1\subset
+L^2(\dmu)$ be the closed linear span of the $\Phi(f)$, $f\in C_c^\infty(\R^2)$ real. Its
+elements are jointly Gaussian and centred, and
+$\E[\Phi(f)\Phi(g)]=\ip{f}{(-\Delta_{\R^2}+m_0^2)^{-1}g}_{L^2(\R^2)}$.
+
+\emph{Regularization and Wick powers.} Appendix~C of the record \cite[p.~39]{R} fixes
+$\delta\in C_c^\infty(\R^2)$ with $\delta\ge0$, $\delta(z)=\delta(-z)$,
+$\supp\delta\subseteq\{z:|z|\le1\}$ and $\int\delta=1$, and puts
+$\delta_\kappa(z):=\kappa^2\delta(\kappa z)$. For $\kappa\ge2$ and $\zeta\in\R^2$ let
+$\Phi_\kappa(\zeta):=\Phi(\delta_\kappa(\zeta-\cdot))\in\mathscr H_1$, the record's
+$\delta_\kappa*\Phi$ at $\zeta$; for every $q\in\mathcal S'(\R^2)$ the function
+$\zeta\mapsto\Phi_\kappa(\zeta)(q)=\langle q,\delta_\kappa(\zeta-\cdot)\rangle$ is smooth, being
+the convolution of a tempered distribution with a test function. Let
+$c_\kappa:=\E[\Phi_\kappa(\zeta)^2]$, which does not depend on $\zeta$
+(Lemma~\ref{aux:d1-cov}(iii)). For a centred Gaussian variable $X$ and $c\ge0$ the Wick powers
+${:}X^n{:}_c$ are the coefficients in
+$\sum_{n\ge0}\frac{s^n}{n!}{:}X^n{:}_c=\exp(sX-\frac12s^2c)$, the convention of the record
+(proof of Proposition~3.2, \cite[p.~16]{R}); expanding the two exponentials,
+\begin{equation}\label{eq:d1-hermite}
+ {:}X^n{:}_c=\sum_{0\le j\le n/2}\frac{n!}{j!\,(n-2j)!}\Bigl(-\frac c2\Bigr)^jX^{n-2j} .
+\end{equation}
+
+\begin{auxlemma}[moments of products of Wick powers]\label{aux:d1-wick}
+Let $X_1,\dots,X_\ell\in\mathscr H_1$, $c_a:=\E[X_a^2]$, $\gamma_{ab}:=\E[X_aX_b]$, and let
+$m_1,\dots,m_\ell\ge0$ be integers. Then
+\begin{equation}\label{eq:d1-wick}
+ \E\Bigl[\prod_{a=1}^\ell{:}X_a^{m_a}{:}_{c_a}\Bigr]=\mathcal P_m(\gamma)
+ :=\sum_{(k_{ab})}\ \prod_{a=1}^\ell m_a!\prod_{1\le a<b\le\ell}
+ \frac{\gamma_{ab}^{k_{ab}}}{k_{ab}!} ,
+\end{equation}
+the sum running over all families $(k_{ab})_{1\le a<b\le\ell}$ of nonnegative integers with
+$\sum_{b\ne a}k_{ab}=m_a$ for every $a$, where $k_{ba}:=k_{ab}$ (an empty sum is $0$). Thus
+$\mathcal P_m$ is a polynomial with nonnegative coefficients in the off-diagonal covariances
+$\gamma_{ab}$, $a<b$, alone, and each of its monomials has degree $\frac12\sum_am_a$. For
+$\ell=2$: $\E[{:}X_1^n{:}_{c_1}{:}X_2^{n'}{:}_{c_2}]=\delta_{nn'}\,n!\,\gamma_{12}^n$ (Wick
+orthogonality and the Wick isometry).
+\end{auxlemma}
+
+\begin{proof}
+For real $s_1,\dots,s_\ell$ the variable $\sum_as_aX_a$ is centred Gaussian with variance
+$\sum_as_a^2c_a+2\sum_{a<b}s_as_b\gamma_{ab}$, so
+\[
+ \E\Bigl[\prod_a\exp\bigl(s_aX_a-\tfrac12s_a^2c_a\bigr)\Bigr]
+ =\exp\Bigl(\sum_{a<b}s_as_b\gamma_{ab}\Bigr)
+ =\prod_{a<b}\ \sum_{k\ge0}\frac{(s_as_b\gamma_{ab})^k}{k!} .
+\]
+On the left expand each factor by the generating function. The expansion may be integrated
+term by term: by \eqref{eq:d1-hermite},
+$\sum_n\frac{|s|^n}{n!}|{:}X^n{:}_c|
+\le\sum_n\sum_{j\le n/2}\frac{|s|^n(c/2)^j|X|^{n-2j}}{j!\,(n-2j)!}=e^{|s||X|+s^2c/2}$, and
+$\E\prod_ae^{|s_a||X_a|}\le\prod_a(\E e^{\ell|s_a||X_a|})^{1/\ell}<\infty$ by H\"older's
+inequality with $\ell$ factors, each with exponent $\ell$, and the Gaussian exponential
+moments. Fubini's theorem then turns the left side into
+$\sum_m\prod_a\frac{s_a^{m_a}}{m_a!}\,\E[\prod_a{:}X_a^{m_a}{:}_{c_a}]$, a power series
+converging for all $s$, and comparing the coefficients of $\prod_as_a^{m_a}$ gives
+\eqref{eq:d1-wick}. No $\gamma_{aa}$ occurs, and every term has degree
+$\sum_{a<b}k_{ab}=\frac12\sum_am_a$. For $\ell=2$ the only family is $k_{12}=n=n'$.
+\end{proof}
+
+\begin{auxlemma}[the free covariance]\label{aux:d1-cov}
+Let $G$ be the kernel of $(-\Delta_{\R^2}+m_0^2)^{-1}$. Put $g_0:=(4+m_0^{-2})/(4\pi)$,
+$\log_+t:=\max\{\log t,0\}$ and $M_0(\varrho):=g_0+\frac1{2\pi}\log_+\frac1\varrho$ for
+$\varrho>0$.
+\begin{itemize}
+\item[(i)] For $\zeta\ne0$,
+$G(\zeta)=\int_0^\infty(4\pi s)^{-1}\exp\bigl(-\frac{|\zeta|^2}{4s}-m_0^2s\bigr)\,ds$, and
+$\E[\Phi(f)\Phi(g)]=\iint f(\zeta)\,G(\zeta-\zeta')\,g(\zeta')\,d\zeta\,d\zeta'$ for real
+$f,g\in C_c^\infty(\R^2)$. Likewise the time-zero covariance $C=(2\mu)^{-1}$ of the record
+has the kernel $C(x)=G(0,x)$, $x\in\R\setminus\{0\}$:
+$\ip{f}{Cg}_{L^2(\R)}=\iint f(x)\,G(0,x-y)\,g(y)\,dx\,dy$ for real $f,g\in C_c^\infty(\R)$.
+\item[(ii)] $G$ is positive, continuous on $\R^2\setminus\{0\}$, a nonincreasing function of
+$|\zeta|$, and $G(\zeta)\le M_0(|\zeta|)$. In particular the kernel $C(x)=G(0,x)$ of
+$(2\mu)^{-1}$ is positive and $C(x)\le M_0(|x|)$; this is the kernel form of the record's
+conventions lock, Remark~2.5 \cite[p.~14]{R}.
+\item[(iii)] For $\kappa,\kappa'\ge2$ and $\zeta,\zeta'\in\R^2$:
+$\E[\Phi_\kappa(\zeta)\Phi_{\kappa'}(\zeta')]=G_{\kappa\kappa'}(\zeta-\zeta')$ with
+$G_{\kappa\kappa'}:=\delta_\kappa*\delta_{\kappa'}*G$, a continuous function on $\R^2$;
+$0<G_{\kappa\kappa'}(\zeta)\le M_1(|\zeta|):=g_1+b_1\log_+\frac1{|\zeta|}$ for $\zeta\ne0$,
+where
+$g_1:=\max\bigl\{g_0+\frac{\log2}{2\pi},\ \|\delta\|_\infty(4\pi g_0+1+2\log4)\bigr\}$ and
+$b_1:=\max\{\frac1{2\pi},\,2\|\delta\|_\infty\}$; and
+$G_{\kappa\kappa'}(\zeta)\to G(\zeta)$ as $\min\{\kappa,\kappa'\}\to\infty$, for every
+$\zeta\ne0$. In particular $c_\kappa=G_{\kappa\kappa}(0)$.
+\item[(iv)] For $R>0$, $q\in[1,\infty)$ and $d\in\{1,2\}$:
+$\int_{\{t\in\R^d:\,|t|\le R\}}M_1(|t|)^q\,dt<\infty$.
+\end{itemize}
+\end{auxlemma}
+
+\begin{proof}
+(ii) The integrand of the formula in (i), taken as the definition of $G$ on
+$\R^2\setminus\{0\}$, is positive and nonincreasing in $|\zeta|$; on $\{|\zeta|\ge\varepsilon\}$
+it is bounded by $(4\pi s)^{-1}e^{-\varepsilon^2/(4s)-m_0^2s}$, which is integrable over
+$(0,\infty)$, so $G$ is continuous there by dominated convergence. Let $0<|\zeta|\le1$ and split
+the $s$-integral at $s=|\zeta|^2$ and $s=1$. With $s=|\zeta|^2v$ and $e^{-y}\le y^{-1}$
+($y>0$),
+$\int_0^{|\zeta|^2}\frac{e^{-|\zeta|^2/(4s)}}{4\pi s}ds=\frac1{4\pi}\int_0^1\frac{e^{-1/(4v)}}{v}dv
+\le\frac1{4\pi}\int_0^14\,dv=\frac1\pi$; next
+$\int_{|\zeta|^2}^1\frac{ds}{4\pi s}=\frac1{2\pi}\log\frac1{|\zeta|}$; and
+$\int_1^\infty\frac{e^{-m_0^2s}}{4\pi s}ds\le\frac1{4\pi m_0^2}$. Dropping the factors
+$e^{-m_0^2s}\le1$ and $e^{-|\zeta|^2/(4s)}\le1$ where they were not used,
+$G(\zeta)\le\frac1\pi+\frac1{4\pi m_0^2}+\frac1{2\pi}\log\frac1{|\zeta|}=M_0(|\zeta|)$. For
+$|\zeta|>1$, monotonicity gives $G(\zeta)\le\sup_{|\eta|=1}G(\eta)\le g_0=M_0(|\zeta|)$. The
+statement about $C$ follows, since $C(x)=G(0,x)$ by (i).
+
+(iv) Since $\log_+(1/|t|)=0$ for $|t|\ge1$ and $(a+b)^q\le2^{q-1}(a^q+b^q)$ for $a,b\ge0$, it
+suffices that $\int_0^1(\log\frac1t)^qdt=\Gamma(q+1)$ and
+$\int_0^1t(\log\frac1t)^qdt=2^{-q-1}\Gamma(q+1)$ are finite (substitute $t=e^{-u}$).
+
+(i) By Assumption~A2 and Parseval's identity, with $\hat f(p):=\int e^{-ip\cdot\zeta}f(\zeta)\,d\zeta$,
+$\E[\Phi(f)\Phi(g)]=(2\pi)^{-2}\int\overline{\hat f(p)}\,\hat g(p)\,(|p|^2+m_0^2)^{-1}dp$.
+Insert $(|p|^2+m_0^2)^{-1}=\int_0^\infty e^{-s(|p|^2+m_0^2)}ds$; Fubini's theorem applies,
+because the double integral of $|\hat f\hat g|e^{-s(|p|^2+m_0^2)}$ is
+$\int|\hat f\hat g|(|p|^2+m_0^2)^{-1}dp<\infty$. For fixed $s>0$, expanding $\hat f,\hat g$
+(all integrals absolutely convergent) and using
+$(2\pi)^{-2}\int e^{ip\cdot\zeta-s|p|^2}dp=(4\pi s)^{-1}e^{-|\zeta|^2/(4s)}$ (two
+one-dimensional Gaussian integrals) gives
+$(2\pi)^{-2}\int\overline{\hat f}\hat g\,e^{-s|p|^2}dp
+=\iint f(\zeta)(4\pi s)^{-1}e^{-|\zeta-\zeta'|^2/(4s)}g(\zeta')\,d\zeta\,d\zeta'$. A second use
+of Fubini's theorem, legitimate since by (ii) and (iv) the absolute integrand integrates to
+$\iint|f(\zeta)|\,G(\zeta-\zeta')\,|g(\zeta')|<\infty$ ($f,g$ bounded with bounded support),
+gives the kernel formula with $G$ as displayed in (i). The time-zero statement is the same
+computation in one dimension: $(2\mu(k))^{-1}=\frac12\pi^{-1/2}\int_0^\infty
+s^{-1/2}e^{-s(k^2+m_0^2)}ds$ (since $\int_0^\infty s^{-1/2}e^{-sa}ds=\sqrt\pi\,a^{-1/2}$),
+$(2\pi)^{-1}\int e^{ikx-sk^2}dk=(4\pi s)^{-1/2}e^{-x^2/(4s)}$, and
+$\frac12\pi^{-1/2}s^{-1/2}(4\pi s)^{-1/2}=(4\pi s)^{-1}$; the two uses of Fubini's theorem are
+justified as before, by $\int|\hat f\hat g|(2\mu)^{-1}dk<\infty$ and by (ii) and (iv) with
+$d=1$.
+
+(iii) By (i) with $f=\delta_\kappa(\zeta-\cdot)$, $g=\delta_{\kappa'}(\zeta'-\cdot)$, the
+substitutions $\eta=\zeta-a$, $\eta'=\zeta'+b$ and $\delta_{\kappa'}(-b)=\delta_{\kappa'}(b)$,
+$\E[\Phi_\kappa(\zeta)\Phi_{\kappa'}(\zeta')]=\iint\delta_\kappa(a)\delta_{\kappa'}(b)\,
+G(\zeta-\zeta'-a-b)\,da\,db=G_{\kappa\kappa'}(\zeta-\zeta')$; it is continuous as the
+convolution of the locally integrable $G$ (by (ii) and (iv)) with
+$\tilde\delta:=\delta_\kappa*\delta_{\kappa'}\in C_c^\infty(\R^2)$. Now $\tilde\delta\ge0$,
+$\int\tilde\delta=1$, $\supp\tilde\delta\subseteq\{|c|\le\varrho\}$ with
+$\varrho:=\kappa^{-1}+\kappa'^{-1}\le1$, and
+$\|\tilde\delta\|_\infty\le\min\{\|\delta_\kappa\|_\infty\|\delta_{\kappa'}\|_1,
+\|\delta_{\kappa'}\|_\infty\|\delta_\kappa\|_1\}=\kappa_m^2\|\delta\|_\infty$ with
+$\kappa_m:=\min\{\kappa,\kappa'\}$, and $\kappa_m^{-1}\le\varrho\le2\kappa_m^{-1}$.
+Positivity follows from $G>0$. If $|\zeta|\ge2\varrho$, every $c$ with $|c|\le\varrho$ has
+$|\zeta-c|\ge|\zeta|/2$, so by (ii)
+$G_{\kappa\kappa'}(\zeta)\le M_0(|\zeta|/2)\le g_0+\frac{\log2}{2\pi}
++\frac1{2\pi}\log_+\frac1{|\zeta|}\le M_1(|\zeta|)$. If $0<|\zeta|<2\varrho$, then
+$G_{\kappa\kappa'}(\zeta)\le\kappa_m^2\|\delta\|_\infty\int_{|\theta-\zeta|\le\varrho}
+M_0(|\theta|)\,d\theta\le\kappa_m^2\|\delta\|_\infty\int_{|\theta|\le\varrho}M_0(|\theta|)\,d\theta$.
+The second inequality holds for every nonincreasing $M_0$: the sets
+$A:=\{|\theta-\zeta|\le\varrho<|\theta|\}$ and $A':=\{|\theta|\le\varrho<|\theta-\zeta|\}$ have
+equal measure, $M_0(|\theta|)\le M_0(\varrho)$ on $A$ and $M_0(|\theta|)\ge M_0(\varrho)$ on
+$A'$. Since $\varrho\le1$,
+$\int_{|\theta|\le\varrho}M_0(|\theta|)\,d\theta=\pi\varrho^2g_0+\int_0^\varrho
+t\log\frac1t\,dt=\pi\varrho^2g_0+\frac{\varrho^2}2\log\frac1\varrho+\frac{\varrho^2}4$, and with
+$\kappa_m^2\varrho^2\le4$ and $\log\frac1\varrho\le\log\kappa_m$ this gives
+$G_{\kappa\kappa'}(\zeta)\le\|\delta\|_\infty(4\pi g_0+1+2\log\kappa_m)$. Finally
+$|\zeta|<2\varrho\le4/\kappa_m$ gives $\log\kappa_m<\log4+\log_+\frac1{|\zeta|}$, so
+$G_{\kappa\kappa'}(\zeta)\le M_1(|\zeta|)$ in this case too. For $\zeta\ne0$ and
+$\varrho\le|\zeta|/2$,
+$|G_{\kappa\kappa'}(\zeta)-G(\zeta)|\le\sup_{|c|\le\varrho}|G(\zeta-c)-G(\zeta)|$, which tends
+to $0$ as $\varrho\to0$, i.e.\ as $\kappa_m\to\infty$, by the continuity of $G$ at $\zeta$.
+Taking $\zeta=\zeta'$ gives $c_\kappa=G_{\kappa\kappa}(0)$.
+\end{proof}
+
+\begin{auxdef}[localized monomials, made precise]\label{aux:d1-obs}
+Let $r\ge0$ and let $n_1,\dots,n_r$ be integers with $0\le n_i<\bar n$; $N:=n_1+\dots+n_r$ is
+the total degree, and $\Delta_{j_1},\dots,\Delta_{j_r}$ are GJS squares. For $\kappa\ge2$:
+\begin{itemize}
+\item[(a)] \emph{type (1.1.6):} for real $w\in L^2(\R^{2r})$ vanishing outside
+$\Delta_{j_1}\times\dots\times\Delta_{j_r}$, and $x=(x_1,\dots,x_r)$ with $x_i\in\R^2$,
+\[
+ Q^{(\kappa)}:=\int_{\R^{2r}}w(x)\,A_\kappa(x)\,dx,\qquad
+ A_\kappa(x):=\prod_{i=1}^r{:}\Phi_\kappa(x_i)^{n_i}{:}_{c_\kappa} ;
+\]
+\item[(b)] \emph{type (1.1.5):} for times $x_0=(x_{1,0},\dots,x_{r,0})\in\R^r$, equal or not,
+and real $w(x_0,\cdot)\in L^2(\R^r)$ vanishing at $\vec x=(x_1,\dots,x_r)$ unless
+$(x_{i,0},x_i)\in\Delta_{j_i}$ for every $i$,
+\[
+ Q^{(\kappa)}(x_0):=\int_{\R^r}w(x_0,\vec x)\,A_\kappa(\vec x)\,d\vec x,\qquad
+ A_\kappa(\vec x):=\prod_{i=1}^r{:}\Phi_\kappa(x_{i,0},x_i)^{n_i}{:}_{c_\kappa} .
+\]
+\end{itemize}
+The integrals are taken pointwise in $q\in\mathcal S'(\R^2)$: for each $q$ the integrand
+$A_\kappa(\cdot)(q)$ is continuous, by the smoothness of $\zeta\mapsto\Phi_\kappa(\zeta)(q)$ and
+\eqref{eq:d1-hermite}, and $w$ is integrable, its support being bounded; the result is
+measurable in $q$ because $(q,x)\mapsto A_\kappa(x)(q)$ is measurable in $q$ and continuous in
+$x$. The localized monomial $Q$, resp.\ $Q(x_0)$, is the limit of $Q^{(\kappa)}$, resp.\
+$Q^{(\kappa)}(x_0)$, in $L^2(\dmu)$ as $\kappa\to\infty$, which exists by
+Lemma~\ref{aux:d1-moments}(a). The class $\mathfrak F$ consists of the finite real linear
+combinations of localized monomials of either type.
+\end{auxdef}
+
+\begin{auxrem}[provenance of the definition]\label{aux:d1-def}
+GJS print (1.1.5)--(1.1.6) as formal integrals, ``$Q(x_0)=\int d\vec x\,w(x)\prod_{i=1}^r
+{:}\Phi(x_i)^{n_i}{:}$'' and ``$Q=\int dx_0Q(x_0)$'', with ``localized'' meaning that ``$w(x)$
+is supported in a product $\Delta_{j_1}\times\cdots\times\Delta_{j_n}\subset R^{2r}$ where
+$\Delta_{j_i}$ is the unit lattice square in $R^2$ centered at the lattice side [sic]
+$j_i\in Z^2$'' (p.~593; the index $n$ of the product is printed against $r$, also [sic]); the
+record imports the class as printed (A8(ii), \cite[p.~10]{R}) and gives no construction.
+Definition~\ref{aux:d1-obs} makes the integrals precise in the way the record treats the
+interaction: for $h\in\CE$, the degree-$n$ part of the record's $\Uc_{h,\kappa}$ is the sum,
+over the finitely many squares $\Delta$ meeting $\supp h$, of the $Q^{(\kappa)}$ with $r=1$ and
+kernel $\lambda a_nh\mathbf 1_\Delta$, and the record identifies $\Uc_h$ with the limit of
+$\Uc_{h,\kappa}$ (Appendix~C, notation paragraph, \cite[p.~39]{R}; quantified by
+Lemma~C.4, \cite[p.~40]{R}). For a product kernel, $Q$ is the product of the individually
+Wick-ordered smeared powers (Lemma~\ref{aux:d1-moments}(c)), which is how A8(ii) of the record
+reads p.~593 (``products of individually Wick-ordered powers are admissible without
+reordering''). Case (b) admits distinct times $x_{i,0}$, the reading of p.~595 (``In the
+monomial $Q(x_0)$ of (1.1.5), suppose $x_0=(x_{1,0},\cdots,x_{r,0})$''); nothing below
+depends on whether the times are equal. The bound $n_i<\bar n$ is carried because p.~593
+prints it (``We assume a bound on the $n_i$ in (1.1.5), $n_i<\bar n$''); nothing in this
+section uses it.  That these limits are the monomials of p.~593, which GJS print as formal
+integrals with ``${:}\ {:}$'' denoting ``Wick order with respect to the measure $d\Phi$, as in
+[9], [1]'' (p.~589), is a reading of the source of the kind the record names in
+Assumption~A8, Scope (d); so is the identification of the record's $\Uc_h$ with GJS's
+$V(h)$ of (1.8), p.~589, which the V3 audit (\S12) leaves unchecked.  The limits do not depend on
+the mollifier $\delta$ (Lemma~\ref{aux:d1-moments}(e)), and at sharp times they agree with the
+constructions of \S\ref{sec:notation} (Lemma~\ref{aux:d1-moments}(f) and
+Lemma~\ref{aux:notation-sharpid}).
+\end{auxrem}
+
+\begin{auxlemma}[Gaussian moments of the observables]\label{aux:d1-moments}
+In the setting of Definition~\ref{aux:d1-obs} write $x$ for the integration variable ($x\in
+\R^{2r}$ in case (a), $x=\vec x\in\R^r$ in case (b)), $w(x)$ for the kernel and $K$ for a
+bounded set outside which $w$ vanishes.
+\begin{itemize}
+\item[(a)] $Q^{(\kappa)}\in L^2(\dmu)$ for $\kappa\ge2$, and $Q^{(\kappa)}$ converges in
+$L^2(\dmu)$ as $\kappa\to\infty$; the limit is $Q$.
+\item[(b)] For every integer $j\ge1$,
+$\E[Q^{2j}]\le\|\Pi_{Q,j}\|_{L^2(K^{2j})}\,\|w\|_{L^2}^{2j}<\infty$, with $\Pi_{Q,j}$ as in
+\eqref{eq:d1-major}; $\|\Pi_{Q,j}\|_{L^2(K^{2j})}$ depends only on $j$, $n_1,\dots,n_r$, $K$,
+$m_0$ and $\delta$. Hence $Q\in L^q(\dmu)$ for every $q<\infty$, and so is every
+$F\in\mathfrak F$, by Minkowski's inequality.
+\item[(c)] If $w(x)=\prod_{i=1}^rf_i(x_i)$, with each $f_i$ vanishing outside (the spatial
+projection of) $\Delta_{j_i}$, then $Q=\prod_{i=1}^rX_i$ almost everywhere, where $X_i$ is the
+monomial of Definition~\ref{aux:d1-obs} with one factor, degree $n_i$ and kernel $f_i$ (in case
+(b) at the time $x_{i,0}$), and
+$\|X_i\|_{L^2(\dmu)}^2=n_i!\iint f_i(u)f_i(v)\,\Gamma(u-v)^{n_i}\,du\,dv$ with $\Gamma=G$ in
+case (a) and $\Gamma=C$ in case (b).
+\item[(d)] \emph{(Wick orthogonality and isometry for the limits.)} If $X$ and $X'$ are monomials
+with one factor, of degrees $n,n'$ and kernels $f,f'$, both of type (a), or both of type (b) at
+one time $t$, then $\E[XX']=\delta_{nn'}\,n!\iint f(u)f'(v)\,\Gamma(u-v)^n\,du\,dv$, with
+$\Gamma$ as in (c).
+\item[(e)] \emph{(Independence of the mollifier.)} If $\delta'$ has the properties of $\delta$
+($\delta'\in C_c^\infty(\R^2)$, $\delta'\ge0$, $\delta'(z)=\delta'(-z)$,
+$\supp\delta'\subseteq\{|z|\le1\}$, $\int\delta'=1$), the limits of
+Definition~\ref{aux:d1-obs} formed with $\delta$ and with $\delta'$ coincide almost everywhere.
+\item[(f)] \emph{(Agreement with the sharp-time constructions of \S\ref{sec:notation}.)} Let
+$\Phi(t,f)$ be the sharp-time field defined in the proof of Lemma~\ref{aux:notation-hyper}(i)
+(the extension of $f\mapsto\Phi(f)$ by continuity in the covariance norm, there at $t=0$).
+\begin{itemize}
+\item[(1)] For real $f\in L^2(\R)$ with bounded support and every $t\in\R$, the monomial of
+Definition~\ref{aux:d1-obs}(b) with one factor of degree $1$ and kernel $f$ at the time $t$ is
+$\Phi(t,f)$.
+\item[(2)] For real bounded measurable $f$ vanishing outside one column, $0\le n\le2p'$ and every
+$t\in\R$, the monomial with one factor of degree $n$ and kernel $f$ at the time $t$ equals
+$J_tW_n(f)$ almost everywhere, and a product-kernel monomial at one time $t$ with factors of
+this kind equals $J_t(\prod_iW_{n_i}(f_i))$ almost everywhere: this is
+Lemma~\ref{aux:notation-sharpid} with Remark~\ref{aux:notation-sharpidrem}(a) of
+\S\ref{sec:notation} ($W_n(f)$ the limit of Lemma~\ref{aux:notation-wick}(iii) for $h'=f$, $J_t$
+the sharp-time map there), the monomial being, by (a), the $L^2(\dmu)$-limit of that lemma's
+$X_\kappa$.
+\end{itemize}
+Only (1) is proved here, since Lemma~\ref{aux:notation-sharpid} does not cover it: that lemma
+needs a bounded kernel and names the degree-$1$ limit $J_tW_1(f)$, while (1) holds for every
+kernel in $L^2$ with bounded support and names it $\Phi(t,f)$ (for $n\ge2$ and an unbounded
+kernel, \S\ref{sec:notation} has no $W_n(f)$ to compare with).
+\end{itemize}
+\end{auxlemma}
+
+\begin{proof}
+\emph{The moment formula.} For $x\in K$ let $\zeta_i(x):=x_i$ in case (a) and
+$\zeta_i(x):=(x_{i,0},x_i)$ in case (b). Let $j\ge1$, let $\kappa_1,\dots,\kappa_{2j}\ge2$ and
+let $x^1,\dots,x^{2j}$ be configurations. Lemma~\ref{aux:d1-wick} with the $\ell=2jr$ variables
+$\Phi_{\kappa_c}(\zeta_i(x^c))$, $c\le2j$, $i\le r$, the degrees $m=(n,\dots,n)$ and the
+variances $c_{\kappa_c}$, together with Lemma~\ref{aux:d1-cov}(iii), gives
+\begin{equation}\label{eq:d1-two}
+ \E\Bigl[\prod_{c=1}^{2j}A_{\kappa_c}(x^c)\Bigr]
+ =\mathcal P_{(n,\dots,n)}\bigl(\gamma(x^1,\dots,x^{2j})\bigr),
+\end{equation}
+where the entries of $\gamma$ are $G_{\kappa_c\kappa_{c'}}(\zeta_i(x^c)-\zeta_{i'}(x^{c'}))$,
+for $c<c'$ and all $i,i'$, and for $c=c'$ and $i<i'$. Each entry is a continuous function of
+the configurations (Lemma~\ref{aux:d1-cov}(iii)), so
+$x\mapsto\E[A_\kappa(x)^{2j}]$ is continuous and bounded on the compact set $\bar K$.
+
+\emph{The majorant.} By Lemma~\ref{aux:d1-cov}(iii) every entry of $\gamma$ is positive and
+at most $M_1$ of the distance of its two points; in case (b) that distance is at least the
+distance $|u-v|$ of the two spatial integration variables $u,v$ attached to the entry, and
+$M_1$ is nonincreasing. As $\mathcal P$ has nonnegative coefficients, for all
+$\kappa_1,\dots,\kappa_{2j}\ge2$
+\begin{equation}\label{eq:d1-major}
+ 0\le\mathcal P_{(n,\dots,n)}\bigl(\gamma(x^1,\dots,x^{2j})\bigr)\le
+ \Pi_{Q,j}(x^1,\dots,x^{2j}):=\mathcal P_{(n,\dots,n)}\bigl(\mu(x^1,\dots,x^{2j})\bigr),
+\end{equation}
+where $\mu$ has the entry $M_1(|u-v|)$ in place of each entry of $\gamma$, $(u,v)$ the pair of
+integration variables (in $\R^2$ in case (a), in $\R$ in case (b)) attached to it. Each
+monomial of $\Pi_{Q,j}$ is a product of $jN$ factors $M_1(|u_e-v_e|)$, $e=1,\dots,jN$, in which
+$u_e$ and $v_e$ are two distinct integration variables, because $\mathcal P$ contains no
+diagonal covariance. By H\"older's inequality with the $jN$ exponents $2jN$,
+$\|\prod_eM_1(|u_e-v_e|)\|_{L^2(K^{2j})}\le\prod_e\|M_1(|u_e-v_e|)\|_{L^{2jN}(K^{2j})}$, and each
+factor is finite: integrate first over $u_e$, which ranges over a bounded set, so that
+$|u_e-v_e|\le R$ for some $R<\infty$, and use Lemma~\ref{aux:d1-cov}(iv); the other variables
+range over bounded sets. Hence $\Pi_{Q,j}\in L^2(K^{2j})$ (if $N=0$, $\Pi_{Q,j}=1$).
+
+\emph{Moments of the regularized observables.} For each $q$, $Q^{(\kappa)}(q)^{2j}$ is the
+product of $2j$ absolutely convergent integrals, so
+\[
+ Q^{(\kappa)}(q)^{2j}=\int_{K^{2j}}\prod_{c=1}^{2j}w(x^c)\prod_{c=1}^{2j}A_\kappa(x^c)(q)\;
+ dx^1\cdots dx^{2j} .
+\]
+Fubini's theorem on $\mathcal S'(\R^2)\times K^{2j}$ applies: by H\"older's inequality with the
+$2j$ exponents $2j$, $\E\prod_c|A_\kappa(x^c)|\le\sup_{x\in\bar K}\E[A_\kappa(x)^{2j}]<\infty$,
+and $\int\prod_c|w(x^c)|\le(|K|^{1/2}\|w\|_2)^{2j}$. With \eqref{eq:d1-two},
+\eqref{eq:d1-major} and the Cauchy--Schwarz inequality on $K^{2j}$,
+\begin{align}
+ \E\bigl[(Q^{(\kappa)})^{2j}\bigr]
+ &=\int_{K^{2j}}\prod_cw(x^c)\,\mathcal P\bigl(\gamma(x^1,\dots,x^{2j})\bigr)\,
+   dx^1\cdots dx^{2j}\notag\\
+ &\le\|w^{\otimes2j}\|_{L^2}\,\|\Pi_{Q,j}\|_{L^2(K^{2j})}
+ =\|\Pi_{Q,j}\|_{L^2(K^{2j})}\,\|w\|_2^{2j} .\label{eq:d1-moment}
+\end{align}
+
+(a) The case $j=1$ of \eqref{eq:d1-moment} gives $Q^{(\kappa)}\in L^2(\dmu)$, and the same
+computation with two regularizations $\kappa,\kappa'$ gives
+$\E[Q^{(\kappa)}Q^{(\kappa')}]=\iint w(x)w(y)\,\mathcal P_{(n,n)}(\gamma^{\kappa\kappa'}(x,y))\,dx\,dy$,
+the entries of $\gamma^{\kappa\kappa'}$ being as in \eqref{eq:d1-two} with
+$(\kappa_1,\kappa_2)=(\kappa,\kappa')$, dominated by $|w(x)||w(y)|\Pi_{Q,1}(x,y)$, an
+integrable function. As $\kappa,\kappa'\to\infty$, every entry converges to the corresponding
+value of $G$, for every $(x,y)$ at which the relevant differences are nonzero, that is off a
+null set (Lemma~\ref{aux:d1-cov}(iii)); by dominated convergence
+$\E[Q^{(\kappa)}Q^{(\kappa')}]$ converges to a limit $I_Q$ independent of how
+$\kappa,\kappa'\to\infty$. Therefore
+$\|Q^{(\kappa)}-Q^{(\kappa')}\|_2^2=\E[Q^{(\kappa)}Q^{(\kappa)}]-2\E[Q^{(\kappa)}Q^{(\kappa')}]
++\E[Q^{(\kappa')}Q^{(\kappa')}]\to I_Q-2I_Q+I_Q=0$: the family $Q^{(\kappa)}$ is Cauchy in
+$L^2(\dmu)$ and its limit $Q$ exists, with $\|Q\|_2^2=I_Q$.
+
+(b) Choose $\kappa_k\to\infty$ with $Q^{(\kappa_k)}\to Q$ almost everywhere (possible by (a)).
+Fatou's lemma and \eqref{eq:d1-moment} give
+$\E[Q^{2j}]\le\liminf_k\E[(Q^{(\kappa_k)})^{2j}]\le\|\Pi_{Q,j}\|_{L^2(K^{2j})}\|w\|_2^{2j}$.
+For $q<\infty$ take $2j\ge q$ and use $\|Q\|_q\le\|Q\|_{2j}$, $\dmu$ being a probability
+measure.
+
+(c) For each $q$ the integral defining $Q^{(\kappa)}(q)$ factorizes by Fubini's theorem,
+$Q^{(\kappa)}(q)=\prod_iX_i^{(\kappa)}(q)$ with
+$X_i^{(\kappa)}(q):=\int f_i(x_i)\,{:}\Phi_\kappa(\zeta_i)^{n_i}{:}_{c_\kappa}(q)\,dx_i$. Take any
+$\kappa_k\to\infty$. By (a), $X_i^{(\kappa_k)}\to X_i$ and $Q^{(\kappa_k)}\to Q$ in $L^2(\dmu)$,
+hence in probability; a finite product of sequences converging in probability converges in
+probability to the product of the limits, and limits in probability are unique almost
+everywhere; so $Q=\prod_iX_i$ almost everywhere. For one factor,
+$\mathcal P_{(n_i,n_i)}(\gamma)=n_i!\,\gamma^{n_i}$ (Lemma~\ref{aux:d1-wick}, $\ell=2$), and the
+limiting covariance is $G(u-v)$ in case (a) and $G((x_{i,0},u)-(x_{i,0},v))=G(0,u-v)=C(u-v)$ in
+case (b) (Lemma~\ref{aux:d1-cov}(i)); so $\|X_i\|_2^2=I_{X_i}$ is the displayed integral.
+
+(d) As in (a), Lemma~\ref{aux:d1-wick} with $\ell=2$ gives
+\[
+ \E\bigl[X^{(\kappa)}X'^{(\kappa')}\bigr]=\delta_{nn'}\,n!\iint f(u)f'(v)\,
+ G_{\kappa\kappa'}(\zeta(u)-\zeta(v))^n\,du\,dv ,
+\]
+with $\zeta(u)=u$ in case (a) and $\zeta(u)=(t,u)$ in case (b); the integrand is dominated by $n!\,|f(u)||f'(v)|M_1(|u-v|)^n$, which is integrable by the
+Cauchy--Schwarz inequality and Lemma~\ref{aux:d1-cov}(iv). Let $\kappa,\kappa'\to\infty$: the
+left side tends to $\E[XX']$ because $X^{(\kappa)}\to X$ and $X'^{(\kappa')}\to X'$ in
+$L^2(\dmu)$, and the right side to the stated integral by dominated convergence and
+Lemma~\ref{aux:d1-cov}(i),(iii).
+
+(e) Write $\Phi'_{\kappa'}(\zeta):=\Phi(\delta'_{\kappa'}(\zeta-\cdot))$.  As in the proof of
+Lemma~\ref{aux:d1-cov}(iii), $\E[\Phi_\kappa(\zeta)\Phi'_{\kappa'}(\zeta')]=(\tilde\delta*G)
+(\zeta-\zeta')$ with $\tilde\delta:=\delta_\kappa*\delta'_{\kappa'}$, which is nonnegative, has
+integral $1$ and support in $\{|c|\le\kappa^{-1}+\kappa'^{-1}\}$, and satisfies
+$\|\tilde\delta\|_\infty\le\min\{\kappa^2\|\delta\|_\infty,\kappa'^2\|\delta'\|_\infty\}\le
+\min\{\kappa,\kappa'\}^2\max\{\|\delta\|_\infty,\|\delta'\|_\infty\}$.  Those are the only
+properties of $\tilde\delta$ that proof uses, so $\tilde\delta*G$ is positive, continuous, bounded
+by $M_1$ with $\|\delta\|_\infty$ replaced by $\max\{\|\delta\|_\infty,\|\delta'\|_\infty\}$, and
+tends to $G$ off $0$.  The computation of (a), with one regularization formed with $\delta$ and
+the other with $\delta'$, each Wick ordered at its own variance, then gives
+$\E[Q^{(\kappa)}Q'^{(\kappa')}]\to I_Q$, the common limit of $\E[(Q^{(\kappa)})^2]$ and
+$\E[(Q'^{(\kappa')})^2]$, since $I_Q$ involves $G$ only.  Hence
+$\|Q-Q'\|_2^2=I_Q-2I_Q+I_Q=0$.
+
+(f)(1) For each $q$, $\int f(x)\,\Phi_\kappa(t,x)(q)\,dx=\langle q,\delta_\kappa*(\delta_t\otimes
+f)\rangle$, the integral of the test functions $f(x)\delta_\kappa((t,x)-\cdot)$ being one in
+$\mathcal S(\R^2)$; so the regularized monomial is $\Phi(\delta_\kappa*(\delta_t\otimes f))$.  In
+the covariance norm $\delta_\kappa*(\delta_t\otimes f)\to\delta_t\otimes f$: the squared distance
+is $(2\pi)^{-2}\int|\hat\delta(p/\kappa)-1|^2|\hat f(p_1)|^2(|p|^2+m_0^2)^{-1}dp$, with
+$|\hat\delta|\le1$ and the integrable dominator $4|\hat f(p_1)|^2(p_0^2+p_1^2+m_0^2)^{-1}$
+(its $p_0$-integral is $4\pi|\hat f(p_1)|^2(p_1^2+m_0^2)^{-1/2}$), so it tends to $0$.  Hence the
+limit is $\Phi(t,f)$.
+
+(f)(2) is Lemma~\ref{aux:notation-sharpid} with Remark~\ref{aux:notation-sharpidrem}(a), as
+stated; it is not proved again here.
+\end{proof}
+
+\subsection*{The identity}
+
+Throughout this subsection $h_1,h_2\in\CE$ are fixed, and for $\alpha\in[0,1]$
+\[
+ h_\alpha:=h_1+\alpha(h_2-h_1)=(1-\alpha)h_1+\alpha h_2,\qquad
+ \Uc_{h_2-h_1}:=\Uc_{h_2}-\Uc_{h_1} .
+\]
+The symbol $h_\alpha$ is used only with the letter $\alpha$: the numerals in $h_1,h_2$ always
+denote the two given cutoffs, and the path equals $h_1$ at $\alpha=0$ and $h_2$ at $\alpha=1$.
+At $h_1=h^B$, $h_2=h$ it is the path $h_\alpha=h^B+\alpha(h-h^B)$ of \S\ref{sec:notation}.
+$\Uc_{h_2-h_1}$ lies in $L^q(\dmu)$ for every $q<\infty$ (Step~2 below); it is an
+\emph{observable}, the covariance partner of $F$, and the function $h_2-h_1$, which may take
+both signs, is nowhere used as a cutoff: every measure in this section is $dq_{h_\alpha}$
+with $h_\alpha\in\CE$.
+
+\begin{dlemma}[affine-path identity]\label{lem:D1}
+Let $h_1,h_2\in\CE$, and let $F$ be a finite sum of localized monomials of type $(1.1.5)$ or
+$(1.1.6)$, with kernels in $L^2$ and $n_i<\bar n$, that is, $F\in\mathfrak F$
+(Definition~\ref{aux:d1-obs}). Then $h_\alpha\in\CE$ for every $\alpha\in[0,1]$; the functions
+$F$, $\Uc_{h_2-h_1}$ and $F\,\Uc_{h_2-h_1}$ are $dq_{h_\alpha}$-integrable for every
+$\alpha\in[0,1]$; the map $\alpha\mapsto\ev{F}{h_1+\alpha(h_2-h_1)}$ is $C^1$ on $[0,1]$
+(one-sided derivatives at the endpoints), with
+\begin{equation}\label{eq:d1-deriv}
+ \frac{d}{d\alpha}\ev{F}{h_\alpha}=-\Cov_{h_\alpha}\bigl(F,\Uc_{h_2-h_1}\bigr);
+\end{equation}
+and
+\begin{equation}\label{eq:d1-identity}
+ \ev{F}{h_2}-\ev{F}{h_1}=-\int_0^1\Cov_{h_\alpha}\bigl(F,\Uc_{h_2-h_1}\bigr)\,d\alpha .
+\end{equation}
+\end{dlemma}
+
+Here $\ev{F}{h}=\int F\,dq_h$ and $\Cov_h(F,G)=\ev{FG}{h}-\ev{F}{h}\ev{G}{h}$; the measures
+$dq_h=Z(h)^{-1}e^{-\Uc_h}\dmu$ are those of Assumption~A3 of the record.
+
+\emph{Status of Lemma~\ref{lem:D1}.} \emph{Proved, conditional on repair R8 of the V3 audit.}
+Step~1 of the proof needs only that $h\mapsto\Uc_h$ is linear, for the record's $\Uc_h$, the
+object of Assumption~A3.  The record states no construction of $\Uc_h$ (V3 audit, finding M-3).
+Repair R8, as the V3 report writes it (its \S9; Simon's book was not read by this drafter),
+defines $\Uc_h:=\lambda\sum_na_n{:}\Phi^n(h){:}$ with ${:}\Phi^n(g){:}$ fixed by pairings that
+are linear in $g$, so the linearity holds under R8.  The route written in Step~1 obtains it
+instead from the record's identification of $\Uc_h$ with the limit in $L^2(\dmu)$ of its
+regularizations $\Uc_{h,\kappa}$, which the record asserts (Appendix~C, notation paragraph,
+\cite[p.~39]{R}) without proof (V3 audit, item m-1) and which Lemma~C.4 of the record
+\cite[p.~40]{R} gives under the repairs R1--R10; on that route Lemma~\ref{lem:D1} is proved
+conditional on Lemma~C.4.  Step~1 proves from Lemma~\ref{aux:d1-moments}(a) alone that the
+regularizations converge in $L^2(\dmu)$ and that the limit is linear in $h$; the condition is
+what identifies that limit with the record's $\Uc_h$, the object that Assumption~A3 imports with
+Theorem~V.7 of Simon's book as its source \cite[p.~8]{R}, and that the notation paragraph's
+``so that'' asserts, without defining it, to be the limit.  If $\Uc_h$ is instead defined as
+that limit (the reading of the last paragraph of the proof of
+Lemma~\ref{aux:notation-cutoffs}), Step~1 needs no condition, and the identification moves into
+the import of Assumption~A3.  Every other step is proved here from Assumptions~A2 and~A3.
+
+\begin{proof}
+\emph{Step 0: the path stays in $\CE$.} For $\alpha\in[0,1]$, $h_\alpha$ is measurable;
+$0\le h_\alpha\le1$ pointwise, as a convex combination of two numbers in $[0,1]$; and, since
+$h_1,h_2\ge0$, $\{h_\alpha\ne0\}\subseteq\{h_1\ne0\}\cup\{h_2\ne0\}$, so
+$\supp h_\alpha\subseteq\Lambda:=\supp h_1\cup\supp h_2$, which is compact ($\supp$ the
+closure of the set of non-zeros, as in \S\ref{sec:notation}; the inclusion holds equally for
+essential supports). By Definition~2.1 of the record \cite[p.~7]{R} ($\CE$: measurable
+$h:\R^2\to[0,1]$ with compact support), $h_\alpha\in\CE$. For $h_1=h^B$, $h_2=h$ this is
+Lemma~\ref{aux:notation-cutoffs}(ii) of \S\ref{sec:notation}.
+
+\emph{Step 1: linearity, and representatives.} The record identifies $\Uc_h$, $h\in\CE$,
+with the limit in $L^2(\dmu)$ of $\Uc_{h,\kappa}=\lambda\int h\,{:}\mathscr
+P(\Phi_\kappa){:}_{c_\kappa}dz$ (Appendix~C, notation paragraph, \cite[p.~39]{R}: ``so that
+$\Uc_{h,\kappa}\to\Uc_h$ in every $L^p(d\mu_0)$''; Lemma~C.4, \cite[p.~40]{R}, quantifies the
+convergence in $L^2$) and gives no other construction of $\Uc_h$; the V3 audit of Appendix~C
+records this as its finding M-3. For every bounded measurable $w$ of compact support, of
+either sign, $\lambda\int w\,{:}\mathscr P(\Phi_\kappa){:}_{c_\kappa}dz$ converges in
+$L^2(\dmu)$ as $\kappa\to\infty$: write $w=\sum_\Delta w\mathbf 1_\Delta$ over the finitely many
+squares meeting its support, and apply Lemma~\ref{aux:d1-moments}(a) with $r=1$ to each kernel
+$\lambda a_nw\mathbf 1_\Delta$, $0\le n\le2p'$. The regularized integral is linear in $w$
+(pointwise in $q$), hence so is the limit. With $w=h_\alpha,h_1,h_2$ and
+$h_\alpha-(1-\alpha)h_1-\alpha h_2=0$,
+\begin{equation}\label{eq:d1-affine}
+ \Uc_{h_\alpha}=(1-\alpha)\Uc_{h_1}+\alpha\Uc_{h_2}=\Uc_{h_1}+\alpha\,\Uc_{h_2-h_1}
+ \qquad\dmu\text{-a.e., for each }\alpha\in[0,1],
+\end{equation}
+where $\Uc_{h_2-h_1}$, the limit for $w=h_2-h_1$, equals $\Uc_{h_2}-\Uc_{h_1}$. This is the
+linearity of $h\mapsto\Uc_h$ recorded in the proof of Lemma~3.1 of the record
+\cite[p.~15]{R}; for $h_1=h^B$, $h_2=h$ it is Lemma~\ref{aux:notation-cutoffs}(iv) of
+\S\ref{sec:notation}, proved there from Lemma~C.4.  Under repair R8 of the V3 audit, which
+defines $\Uc_h$ linearly in $h$, \eqref{eq:d1-affine} holds directly (the status paragraph after
+Lemma~\ref{lem:D1}).
+The null set in \eqref{eq:d1-affine} may depend on $\alpha$. Fix therefore
+finite real-valued representatives $v$ of $\Uc_{h_1}$ and $d$ of $\Uc_{h_2-h_1}$, and put
+$u_\alpha:=v+\alpha d$ pointwise, for all $\alpha\in[0,1]$ at once. By
+\eqref{eq:d1-affine}, $u_\alpha$ represents $\Uc_{h_\alpha}$ for every $\alpha$; $u_0=v$
+represents $\Uc_{h_1}$ and $u_1=v+d$ represents $\Uc_{h_2}$. Every pointwise statement below
+concerns these representatives.
+
+\emph{Step 2: integrability, with the exponents.} Assumption~A3 of the record
+\cite[p.~8]{R} reads: ``For every $h\in\CE$: $\Uc_h\in L^p(d\mu_0)$ for every $p<\infty$, and
+$e^{-\varrho\,\Uc_h}\in L^1(d\mu_0)$ for every finite $\varrho>0$. In particular
+$0<Z(h):=\int e^{-\Uc_h}d\mu_0<\infty$''. We use it at $h_1$, $h_2$ and $h_\alpha$, all in
+$\CE$ by Step~0.
+\begin{itemize}
+\item[(I1)] $F\in L^2(\dmu)$, by Lemma~\ref{aux:d1-moments}(b).
+\item[(I2)] $d\in L^q(\dmu)$ for every $q<\infty$: A3 gives $\Uc_{h_1},\Uc_{h_2}\in L^q$, and
+$\|d\|_q\le\|\Uc_{h_1}\|_q+\|\Uc_{h_2}\|_q$.
+\item[(I3)] $W:=e^{-u_0}+e^{-u_1}\in L^q(\dmu)$ for every $q<\infty$: A3 with $\varrho:=q$ gives
+$\|e^{-\Uc_{h_i}}\|_q^q=\int e^{-q\,\Uc_{h_i}}d\mu_0<\infty$ for $i=1,2$, and Minkowski's
+inequality.
+\item[(I4)] For every point and every $\beta\in[0,1]$, by the convexity of the exponential
+function, $e^{-u_\beta}=e^{-(1-\beta)u_0-\beta u_1}\le(1-\beta)e^{-u_0}+\beta e^{-u_1}\le W$.
+\item[(I5)] H\"older's inequality with the exponents $(2,4,4)$, where
+$\frac12+\frac14+\frac14=1$, and with the exponents $(2,2)$:
+\[
+ \|F\,d\,W\|_1\le\|F\|_2\|d\|_4\|W\|_4,\quad
+ \|F\,W\|_1\le\|F\|_2\|W\|_2,\quad \|d\,W\|_1\le\|d\|_2\|W\|_2,
+\]
+and $\|W\|_1\le\|W\|_2$.
+\end{itemize}
+Put $Z(\alpha):=\int e^{-u_\alpha}d\mu_0=Z(h_\alpha)$ and $N(\alpha):=\int F\,e^{-u_\alpha}d\mu_0$.
+By (I4), $|F|e^{-u_\alpha}\le|F|W$, $|d|e^{-u_\alpha}\le|d|W$ and
+$|F\,d|e^{-u_\alpha}\le|F||d|W$, all in $L^1(\dmu)$ by (I5); dividing by $Z(h_\alpha)>0$ (A3)
+shows that $F$, $d=\Uc_{h_2-h_1}$ and $F\,d$ are $dq_{h_\alpha}$-integrable for every $\alpha$,
+and $\ev{F}{h_\alpha}=N(\alpha)/Z(\alpha)$.
+
+\emph{Step 3: differentiation under the integral.} For $\alpha,\alpha+\varepsilon\in[0,1]$,
+$\varepsilon\ne0$, pointwise
+\begin{equation}\label{eq:d1-quot}
+ \frac{e^{-u_{\alpha+\varepsilon}}-e^{-u_\alpha}}{\varepsilon}
+ =-\,d\int_0^1e^{-u_{\alpha+\theta\varepsilon}}\,d\theta ,
+\end{equation}
+since $u_{\alpha+\theta\varepsilon}=u_\alpha+\theta\varepsilon d$ and
+$\frac{d}{d\theta}e^{-u_\alpha-\theta\varepsilon d}=-\varepsilon\,d\,
+e^{-u_{\alpha+\theta\varepsilon}}$. By (I4) the modulus of \eqref{eq:d1-quot} is at most
+$|d|\,W$, and \eqref{eq:d1-quot} tends to $-d\,e^{-u_\alpha}$ pointwise as $\varepsilon\to0$.
+Multiply by $F$, resp.\ by $1$, and apply dominated convergence with the dominator
+$|F||d|W$, resp.\ $|d|W$, integrable by (I5): $N$ and $Z$ are differentiable on $[0,1]$
+(one-sided at the endpoints), with
+\[
+ N'(\alpha)=-\int F\,d\,e^{-u_\alpha}\,d\mu_0,\qquad Z'(\alpha)=-\int d\,e^{-u_\alpha}\,d\mu_0 .
+\]
+If $\alpha_k\to\alpha$ in $[0,1]$, then $F\,d\,e^{-u_{\alpha_k}}\to F\,d\,e^{-u_\alpha}$ and
+$d\,e^{-u_{\alpha_k}}\to d\,e^{-u_\alpha}$ pointwise, with the same dominators; so $N'$ and $Z'$
+are continuous, and $N$, $Z$ are $C^1$ on $[0,1]$.
+
+\emph{Step 4: normalization.} $Z(\alpha)=Z(h_\alpha)>0$ for every $\alpha\in[0,1]$, by A3 at
+$h_\alpha\in\CE$; $Z$ is continuous on the compact interval $[0,1]$ (Step~3), so
+$\min_{[0,1]}Z>0$. (Lemma~C.2 of the record \cite[p.~40]{R} gives the explicit bound
+$Z(\alpha)\ge e^{-\lambda|a_0||\Lambda|}$, since $\supp h_\alpha\subseteq\Lambda$ by Step~0; it is
+proved conditional on repair R8 of the V3 audit, and this proof does not use it.)
+
+\emph{Step 5: the quotient rule.} By Steps~3 and~4, $\alpha\mapsto\ev{F}{h_\alpha}=N/Z$ is
+$C^1$ on $[0,1]$, and, since $Z(\alpha)^{-1}e^{-u_\alpha}d\mu_0=dq_{h_\alpha}$ ($u_\alpha$
+represents $\Uc_{h_\alpha}$),
+\[
+ \frac{d}{d\alpha}\ev{F}{h_\alpha}=\frac{N'}{Z}-\frac{N\,Z'}{Z^2}
+ =-\int F\,d\;dq_{h_\alpha}+\int F\,dq_{h_\alpha}\int d\;dq_{h_\alpha}
+ =-\Cov_{h_\alpha}\bigl(F,\Uc_{h_2-h_1}\bigr),
+\]
+which is \eqref{eq:d1-deriv}.
+
+\emph{Step 6: integration.} The fundamental theorem of calculus for the $C^1$ function
+$\alpha\mapsto\ev{F}{h_\alpha}$ on $[0,1]$, whose values at $\alpha=0$ and $\alpha=1$ are
+$\ev{F}{h_1}$ and $\ev{F}{h_2}$ ($u_0$ and $u_1$ represent $\Uc_{h_1}$ and $\Uc_{h_2}$), gives
+\eqref{eq:d1-identity}.
+\end{proof}
+
+\begin{auxrem}[what the proof uses, and what it does not]\label{aux:d1-uses}
+(a) \emph{The class of $F$.} $F$ enters only through $F\in L^2(\dmu)$. For any
+$F\in L^{p_0}(\dmu)$ with $1<p_0<\infty$ the proof runs verbatim with the exponents
+$(p_0,2p_0',2p_0')$, $p_0':=p_0/(p_0-1)$, in place of $(2,4,4)$ in (I5)
+($\frac1{p_0}+\frac1{2p_0'}+\frac1{2p_0'}=1$), and $(p_0,p_0')$ in place of $(2,2)$; so
+Lemma~\ref{lem:D1} holds for every $F\in\bigcup_{p_0>1}L^{p_0}(\dmu)$. Neither $n_i<\bar n$,
+nor the localization squares, nor the GJS norm enters.
+
+(b) \emph{No constant, no uniformity in $h$.} Neither Theorem~C.5 nor Lemma~C.2 of the
+record nor Assumption~A4 is used: the dominator involves only the endpoints $h_1,h_2$, at which
+A3 applies, and positivity of $Z$ on the path comes from A3 and continuity (Step~4).
+Lemma~\ref{lem:D1} is qualitative and carries no constant. The Gaussian input is computed
+explicitly (Lemmas~\ref{aux:d1-wick}, \ref{aux:d1-cov} and~\ref{aux:d1-moments}); it does
+not use the chaos structure of $\Uc_h$ or the Wick isometry for $\Uc_h$ that the V3 audit found
+unimported in Appendix~C of the record (its finding M-3).  The proof is not independent of
+Appendix~C, though: the linearity used in Step~1 is the path-space face of M-3, and it rests on
+repair R8 or, on the route written in Step~1, on Lemma~C.4 (the status paragraph after
+Lemma~\ref{lem:D1}).
+
+(c) \emph{The partner is an observable.} $\Uc_{h_2-h_1}$ is an element of
+$\bigcap_{q<\infty}L^q(\dmu)$, built from $\Uc_{h_1}$ and $\Uc_{h_2}$. A3 is applied only at
+$h_1$, $h_2$ and $h_\alpha$, all in $\CE$; Step~1 takes the regularized limit for the kernel
+$h_2-h_1$ as for any observable; and no statement about measures is applied at $h_2-h_1$,
+for which, as Remark~C.6 of the record states \cite[p.~41]{R}, the Wick lower bound of
+Lemma~C.3 would fail when $h_2-h_1$ takes both signs. In the application in
+Lemma~\ref{lem:D2}, $h_1=h^B$ and $h_2=h$, so that $h_2-h_1=h\,\mathbf 1_{\R^2\setminus B}\ge0$.
+
+(d) \emph{Relation to the record and to GJS.} Proposition~8.1 of the record, Steps~2--3
+\cite[pp.~24--25]{R}, runs the same argument for slab cutoffs, with the log-convexity bound
+(13) of the record in place of the convexity bound (I4) and with the difference quotient (14)
+of the record, which is \eqref{eq:d1-quot}. GJS's (1.1.12) states the identity without the
+integrability argument; its third equality, the decomposition of $V(g)$ into the pieces
+$V(g_i)$, is the business of Lemma~\ref{lem:D2}.
+\end{auxrem}
+
+\begin{auxrem}[a check of the bookkeeping]\label{aux:d1-check}
+In the one-variable model in which $\dmu$ is replaced by the standard Gaussian law of a real
+variable $X$, $\Uc_h$ by $hX^2/2$ for $h\in[0,1]$, $F=X^2$, $h_1=0$ and $h_2=1$, one has
+$dq_h=N(0,(1+h)^{-1})$, $\ev{F}{h}=(1+h)^{-1}$ and
+$\Cov_h(X^2,X^2/2)=\frac12\operatorname{Var}_h(X^2)=(1+h)^{-2}$, so that
+$-\int_0^1(1+\alpha)^{-2}d\alpha=-\frac12=\ev{F}{h_2}-\ev{F}{h_1}$, as \eqref{eq:d1-identity}
+asserts. This tests the signs and the normalization only; it is not part of the proof.
+
+\emph{Numerical record} (\emph{numerical}; nothing in this section is deduced from it).  The script
+\texttt{parts/check\_d1.py}, run on 3 November 2026 with the system \texttt{python3} 3.14.7, numpy
+2.5.2 and scipy 1.18.1 (output and run header in \texttt{parts/}\allowbreak\texttt{check\_d1.output.txt}), checks: the moment
+formula of Lemma~\ref{aux:d1-wick} against Isserlis's theorem in exact rational arithmetic, for
+twelve degree patterns with random rational covariance matrices (seed 20261102), all equal; the
+bound $G\le M_0$ of Lemma~\ref{aux:d1-cov}(ii) on 4001 log-spaced points
+$|\zeta|\in[10^{-10},10^3]$ for six values of $m_0\in[0.05,10]$, with margin at least $0.319$; the
+formula of Lemma~\ref{aux:d1-cov}(i) against the value $K_0(m_0|\zeta|)/(2\pi)$ at three points, to
+twelve digits (default tolerances of \texttt{scipy.integrate.quad}); and the model of this remark by
+quadrature.
+\end{auxrem}

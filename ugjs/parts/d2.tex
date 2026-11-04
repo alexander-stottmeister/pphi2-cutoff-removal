@@ -1,0 +1,309 @@
+% d2.tex -- drafted by aqft (council member of ugjs/PLAN.md), 2 November 2026 (begun 31 October 2026);
+% revised 3 November 2026 after the audits V1 (cqft, mp) and V2: status line; Step 3 through Step 1
+% of the proof of Lemma D.1 (no Lemma C.4); the reading of the source named in Step 4; form (b)
+% described as a form of the plan's statement, and F-T attached to its uncontrolled orientations.
+% Section 4: Lemma D.2 (localized comparison).  Merged with \S2 (notation.tex, cqft2) on
+% 2 November 2026: squares, boxes, the path h_alpha, the charged squares, strips, U_{Delta,n} and
+% c_U are those of \S2 and are not restated here.  Auxiliary statements of this part:
+% aux:d2-widest (attainment of the strip width), aux:d2-int (square integrability), aux:d2-uses.
+
+This section proves Lemma~\ref{lem:D2}: the expectation of a localized observable under $dq_h$
+differs from its expectation under the cutoff restricted to a box of squares containing the
+observable's squares by a sum of clustering terms, one for each square outside the box, and
+each term is bounded by GJS Theorem~1.1.7.  The device is the source's own: in the proof of its
+(1.1.11), GJS write the difference of two expectations as an integral along an affine path of
+cutoffs of a sum over unit squares and state ``We apply Theorem 1.1.7 to each term in the sum to
+obtain'' \cite[p.~595]{GJS}.
+
+\subsection{Standing assumption and notation}\label{sub:d2-conv}
+
+\emph{Standing assumption.}  In \S\S\ref{sec:d2}--\ref{sec:d4} and \S\ref{sec:cons},
+$0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$, and we work in the working coordinates of \S2.6 of
+the record \cite[p.~14]{R} (Remark~3.3 of the record \cite[p.~16]{R} transports the conclusions):
+the pair $(m_0,\lambda)$ satisfies the hypotheses printed for GJS Theorem~1.1.7, ``Let $m_0$,
+$K_2$ and $K_1$ be sufficiently large and let $\lambda$ be sufficiently small''
+\cite[p.~594]{GJS}, and $m_1>0$, $C_7$, $K_1$ and $K_2\ge1$ are the printed constants of
+Assumption~A8(iii)--(iv) of the record \cite[p.~10]{R} (\S\ref{sec:notation-printed}).  The
+interaction polynomial is $\mathscr P(\xi)=\sum_{n=0}^{2p'}a_n\xi^n$, $a_{2p'}>0$, $p'\ge1$, and
+$\bar n:=2p'+1$ (Assumption~A8(ii) of the record).  For $h\in\CE$,
+$\Uc_h=\lambda\int h\,{:}\mathscr P(\Phi){:}\,dz$, $Z(h)=\int e^{-\Uc_h}\dmu$,
+$dq_h=Z(h)^{-1}e^{-\Uc_h}\dmu$, $\ev{F}{h}=\int F\,dq_h$ (Assumption~A3 of the record
+\cite[p.~8]{R}) and $\Cov_h(F,G)=\ev{FG}{h}-\ev{F}{h}\ev{G}{h}$.
+
+\emph{Notation.}  We use the notation of \S\ref{sec:notation}: the squares $\Delta_{l,k}$, rows
+and columns (Definition~\ref{aux:notation-squares}); boxes $B$, $|B|$, the restriction $h^B$,
+the path $h_\alpha$ and the set $\mathfrak S(h)$ of squares charged by $h$
+(Definition~\ref{aux:notation-box}); strips, separation, the parallel and the transverse
+orientation, and $d(\Delta,R)$ (Definition~\ref{aux:notation-stripdef}); $U_{\Delta,n}$,
+$U_\Delta$ and $c_U$ (Definition~\ref{aux:notation-UDelta}, Lemma~\ref{aux:notation-cU}).  For
+$h\in\CE$ and a box $B$ we write
+\[
+ \mathcal D(h,B):=\{\Delta\in\mathfrak S(h):\ \Delta\cap B=\varnothing\}
+\]
+for the squares outside $B$ charged by $h$; it is finite, and each of its squares meets
+$\supp h$ (Lemma~\ref{aux:notation-cutoffs}(iii)).
+
+\begin{auxlemma}[the widest strip exists]\label{aux:d2-widest}
+Let $X,Y\subseteq\R^2$ be bounded and non-empty, and suppose that some strip separates $X$
+from $Y$.  Then the supremum of the widths of the strips separating $X$ from $Y$ is attained.
+In particular, for two localized monomials whose localization squares are separated by some
+strip, ``the widest strip bounded by two parallel lines, and separating'' them
+\cite[p.~594]{GJS} exists, its width is the supremum $d$ of
+Definition~\ref{aux:notation-stripdef}, and every separating strip has width at most $d$.
+\end{auxlemma}
+
+Definition~\ref{aux:notation-stripdef} defines the width $d$ as a supremum; the lemma shows that
+it is attained, as the wording of p.~594 presupposes.
+
+\begin{proof}
+For a unit vector $\nu$, $c\in\R$ and $w\ge0$, the strip bounded by $\{\nu\cdot z=c\}$ and
+$\{\nu\cdot z=c+w\}$ has the closed half-planes $H_1=\{\nu\cdot z\le c\}$ and
+$H_2=\{\nu\cdot z\ge c+w\}$ (Definition~\ref{aux:notation-stripdef}).  Put
+$a(\nu):=\sup_{x\in X}\nu\cdot x$ and $b(\nu):=\inf_{y\in Y}\nu\cdot y$.  Then $X\subseteq H_1$
+and $Y\subseteq H_2$ if and only if $a(\nu)\le c$ and $c+w\le b(\nu)$; the other assignment of
+the half-planes corresponds to $-\nu$.  So a strip with normal $\nu$, oriented from $X$ to
+$Y$, separates them exactly when $b(\nu)-a(\nu)\ge0$, its width is then at most
+$b(\nu)-a(\nu)$, and the choice $c=a(\nu)$, $w=b(\nu)-a(\nu)$ attains this.  Hence the
+supremum of the separating widths is $\sup_{|\nu|=1}(b(\nu)-a(\nu))$, which is $\ge0$ by
+hypothesis.  With $\varrho:=\sup\{|z|:z\in X\cup Y\}<\infty$,
+$|a(\nu)-a(\nu')|\le\varrho|\nu-\nu'|$ and $|b(\nu)-b(\nu')|\le\varrho|\nu-\nu'|$, so
+$\nu\mapsto b(\nu)-a(\nu)$ is continuous on the unit circle and attains its supremum at some
+$\nu_*$; the strip with normal $\nu_*$, $c=a(\nu_*)$ and $w=b(\nu_*)-a(\nu_*)$ separates and has
+the maximal width.
+\end{proof}
+
+\begin{auxlemma}[square integrability of the pieces]\label{aux:d2-int}
+Let $h\in\CE$.  Every $X\in L^4(\dmu)$ lies in $L^2(dq_h)$.  On $L^2(dq_h)$ the covariance
+$\Cov_h$ is defined, bilinear and symmetric, and $\Cov_h(X,c)=0$ for constants $c$.  Every finite
+sum of localized monomials of type (1.1.5) or (1.1.6) with kernels in $L^2$ and individual degrees
+$n_i<\bar n$ lies in $L^4(\dmu)$, hence in $L^2(dq_h)$; so do, in particular, every piece $F_a$
+of Lemma~\ref{lem:D2} below and every $U_{\Delta,n}$, $1\le n\le2p'$.
+\end{auxlemma}
+
+This also supplies the hypothesis ``$F$ and the finitely many $U_{\Delta,n}$ involved lie in
+$L^2(dq_{h'})$'' of Lemma~\ref{aux:notation-cU}(iv), which \S\ref{sec:notation} refers to the
+chain of Lemma~\ref{lem:D1}; that chain gives the $dq_h$-integrability of $F$ and of
+$\Uc_{h_2-h_1}$, not of a single $U_{\Delta,n}$.
+
+\begin{proof}
+By Assumption~A3 of the record \cite[p.~8]{R}, $Z(h)>0$ and $e^{-2\Uc_h}\in L^1(\dmu)$, i.e.\
+$e^{-\Uc_h}\in L^2(\dmu)$.  H\"older's inequality with exponents $(2,2)$ gives
+\[
+ \int X^2e^{-\Uc_h}\dmu\le\|X^2\|_{L^2(\dmu)}\|e^{-\Uc_h}\|_{L^2(\dmu)}
+ =\|X\|_{L^4(\dmu)}^2\|e^{-\Uc_h}\|_{L^2(\dmu)}<\infty ;
+\]
+divide by $Z(h)$.  For $X,Y\in L^2(dq_h)$, $XY\in L^1(dq_h)$
+by the Cauchy--Schwarz inequality, and $L^2(dq_h)\subseteq L^1(dq_h)$ because $dq_h$ is a
+probability measure; so $\Cov_h(X,Y)$ is defined, and it is bilinear and symmetric by the
+linearity of the integral; for a constant $c$, $\ev{Xc}{h}-\ev{X}{h}c=0$.  The membership in
+$L^4(\dmu)$ is Lemma~\ref{aux:d1-moments}(b) of \S\ref{sec:d1} (``$Q\in L^q(\dmu)$ for every
+$q<\infty$, and so is every $F\in\mathfrak F$''); $U_{\Delta,n}$ is a localized monomial of type
+(1.1.6) with kernel $\lambda a_nh\mathbf 1_\Delta\in L^2(\R^2)$ and degree $n<\bar n$
+(Lemma~\ref{aux:notation-cU}(i)).
+\end{proof}
+
+\subsection{The lemma}\label{sub:d2-lemma}
+
+\begin{dlemma}[localized comparison]\label{lem:D2}
+Assume the standing assumption of \S\ref{sub:d2-conv}.  Let $F=\sum_{a\in\mathfrak A}F_a$ be a
+finite sum of localized monomials $F_a$ of type (1.1.5) or (1.1.6) \cite[p.~593]{GJS}, with
+kernels in $L^2$ and every individual degree $n_i<\bar n$, and put
+$\GJS{F}:=\sum_{a\in\mathfrak A}\GJS{F_a}$, the norm (1.1.9) of this decomposition.  Let $R$
+be a non-empty finite set of squares containing every localization square of every $F_a$, let
+$B\supseteq R$ be a box, let $h\in\CE$, and let $\mathcal D:=\mathcal D(h,B)$.
+\begin{enumerate}
+\item[\rm(a)] Suppose that to every $\Delta\in\mathcal D$ a strip $S_\Delta$ of positive width
+$w_\Delta$ separating $\Delta$ from $\bigcup R$ is assigned.  Then
+\[
+ \bigl|\ev{F}{h}-\ev{F}{h^B}\bigr|\le C_7\,c_U\,\GJS{F}\sum_{\Delta\in\mathcal D}e^{-m_1w_\Delta} .
+\]
+Every estimate behind this bound is Source Fact~2.2 of the record (GJS (1.1.10)) for a pair
+$(F_a,U_{\Delta,n})$, across the strip $S_\Delta$, at a cutoff $h_\alpha\in\CE$; the
+orientation of $S_\Delta$ is the orientation of that application.  If $S_\Delta$ is transverse
+to the time-zero line and $F_a$ is of type (1.1.5), that application is the transverse case of
+GJS Theorem~1.1.7, used at the printed statement's scope and disclosed by F-T
+(\S\ref{sec:purpose}).
+\item[\rm(b)] (A form of the statement of \texttt{ugjs/PLAN.md}, Part~1, with positive widths;
+the plan's form does not require positive width.)  If every square $\Delta\not\subseteq B$
+meeting $\supp h$ is separated from $\bigcup R$ by a strip of positive width, then
+\[
+ \bigl|\ev{F}{h}-\ev{F}{h^B}\bigr|\le C_7\,c_U\,\GJS{F}
+ \sum_{\Delta\not\subseteq B,\ \Delta\cap\supp h\ne\varnothing}e^{-m_1d(\Delta,R)} .
+\]
+The widest strips used here are not controlled in orientation
+(Remark~\ref{aux:d2-uses}(2)); where one is transverse to the time-zero line and some $F_a$
+is of type (1.1.5), form (b) uses the transverse case of GJS Theorem~1.1.7 at the printed
+statement's scope (F-T, \S\ref{sec:purpose}).
+\end{enumerate}
+The constants $C_7$ and $m_1$ are those of Theorem~1.1.7 in working coordinates (Remark~3.3 of
+the record), and $c_U$ is that of Lemma~\ref{aux:notation-cU}; none depends on $h$, $B$, $R$ or
+$F$.
+\end{dlemma}
+
+\emph{Status of Lemma~\ref{lem:D2}.}  Proved, conditional on Lemma~C.4 of the record (repairs
+R1--R10 of the V3 audit, which include R8).  Lemma~C.4 supplies, in Step~3, the identification of
+$\Uc_{h-h^B}=\Uc_h-\Uc_{h^B}$ with the $L^2(\dmu)$-limit of its regularizations, and it supplies
+the condition of Lemma~\ref{lem:D1} on the route written in Step~1 of the proof of that lemma (the
+status paragraph after Lemma~\ref{lem:D1}).  Repair R8 alone makes $h\mapsto\Uc_h$ linear but
+does not give that identification as this note is written.  Lemma~\ref{lem:D2} uses neither
+Lemma~C.2 nor Theorem~C.5 of the record.  It applies GJS Theorem~1.1.7 to the localized monomials
+of Definition~\ref{aux:d1-obs}; that these are the monomials of p.~593, and that the record's
+$\Uc_h$ is GJS's $V(h)$, is the reading of the source of Remark~\ref{aux:notation-gjslattice}(iv)
+(Remark~\ref{aux:d1-def}; Step~4).  The orientation of each application is that of the assigned
+strip, and a transverse strip with a sharp-time $F_a$ falls under F-T.
+
+\begin{proof}
+\emph{Step 1: the path.}  By Lemma~\ref{aux:notation-cutoffs}(i)--(ii), $h^B\in\CE$ and
+$h_\alpha=h^B+\alpha(h-h^B)\in\CE$ for every $\alpha\in[0,1]$, with $h_0=h^B$ and $h_1=h$.
+
+\emph{Step 2: the identity.}  $F$ is a finite sum of localized monomials of type (1.1.5) or
+(1.1.6) with kernels in $L^2$ and $n_i<\bar n$, which is the class of Lemma~\ref{lem:D1}.
+Lemma~\ref{lem:D1} with $h_1=h^B$, $h_2=h$ gives that $\alpha\mapsto\ev{F}{h_\alpha}$ is $C^1$
+on $[0,1]$ and
+\[
+ \ev{F}{h}-\ev{F}{h^B}=-\int_0^1\Cov_{h_\alpha}\bigl(F,\Uc_{h-h^B}\bigr)\,d\alpha ;
+\]
+the covariance is taken under $dq_{h_\alpha}$, $h_\alpha=h^B+\alpha(h-h^B)$, and
+$\Uc_{h-h^B}=\Uc_h-\Uc_{h^B}$ is the observable of Lemma~\ref{lem:D1}.  Here
+$h-h^B=h\mathbf 1_{\R^2\setminus B}\ge0$ lies in $\CE$ (Lemma~\ref{aux:notation-cutoffs}(i)); it
+enters only as the observable $\Uc_{h-h^B}$, not as a cutoff.
+
+\emph{Step 3: decomposition into squares.}  Put $w:=h-h^B$, a bounded measurable function with
+compact support, and, for $\kappa\ge2$, $\Uc^{(\kappa)}_w:=\lambda\int w\,{:}\mathscr
+P(\Phi_\kappa){:}_{c_\kappa}dz$, pointwise in $q$, with the record's regularization of
+\S\ref{sec:d1}.  For each $q$, $\Uc^{(\kappa)}_w(q)$ is the integral of $w$ against a function
+continuous in $z$ (Definition~\ref{aux:d1-obs}: $z\mapsto\Phi_\kappa(z)(q)$ is smooth), so it is
+linear in $w$ and unchanged when $w$ is changed on a null set.  In particular
+$\Uc^{(\kappa)}_w=\Uc_{h,\kappa}-\Uc_{h^B,\kappa}$, the difference of the record's regularized
+interactions (Appendix~C, notation paragraph \cite[p.~39]{R}).  Lemma~C.4 of the record
+\cite[p.~40]{R} reads: ``There is $c_2=c_2(\lambda,\mathscr P,\Lambda)$ such that for all
+$h\in\CE$ with $\supp h\subseteq\Lambda$ and all $\kappa\ge2$,
+$\|\mathcal U_h-\mathcal U_{h,\kappa}\|_{L^2(d\mu_0)}^2\le c_2\,\kappa^{-1}(\log\kappa)^{2p'}$.''
+Its hypotheses hold for $h$ and for $h^B$ with the compact set $\Lambda:=\supp h$ (both lie in
+$\CE$ and have support in $\Lambda$, Lemma~\ref{aux:notation-cutoffs}(i)) and every $\kappa\ge2$;
+it is used conditional on the repairs R1--R10 of the V3 audit.  Hence $\Uc_{h,\kappa}\to\Uc_h$ and
+$\Uc_{h^B,\kappa}\to\Uc_{h^B}$ in $L^2(\dmu)$, and
+$\Uc^{(\kappa)}_w\to\Uc_h-\Uc_{h^B}=\Uc_{h-h^B}$.  (Step~1 of the proof of Lemma~\ref{lem:D1}
+shows from Lemma~\ref{aux:d1-moments}(a) alone that $\Uc^{(\kappa)}_w$ converges; Lemma~C.4
+identifies the limit with the record's $\Uc_h-\Uc_{h^B}$.  This identification is the condition
+of Lemma~\ref{lem:D2}.)  By Lemma~\ref{aux:notation-cutoffs}(iii),
+$w=\sum_{\Delta\in\mathcal D}h\mathbf 1_\Delta$ almost everywhere; with
+${:}\mathscr P(y){:}_c=\sum_na_n{:}y^n{:}_c$ and ${:}y^0{:}_c=1$ the linearity in $w$ gives,
+pointwise in $q$,
+\[
+ \Uc^{(\kappa)}_w=\sum_{\Delta\in\mathcal D}\Bigl(\lambda a_0\int_\Delta h\,dz
+ +\sum_{n=1}^{2p'}U^{(\kappa)}_{\Delta,n}\Bigr),\qquad
+ U^{(\kappa)}_{\Delta,n}:=\lambda a_n\int h\mathbf 1_\Delta\,{:}\Phi_\kappa^n{:}_{c_\kappa}\,dz .
+\]
+$U^{(\kappa)}_{\Delta,n}$ is the regularized monomial of Definition~\ref{aux:d1-obs}(a) with $r=1$,
+degree $n$ and kernel $\lambda a_nh\mathbf 1_\Delta$, so by Lemma~\ref{aux:d1-moments}(a) it
+converges in $L^2(\dmu)$ to the localized monomial $U_{\Delta,n}$ of
+Definition~\ref{aux:notation-UDelta}.  A finite sum of convergent sequences converges to the sum
+of the limits; hence
+\[
+ \Uc_{h-h^B}=\sum_{\Delta\in\mathcal D}\Bigl(U_{\Delta,0}+\sum_{n=1}^{2p'}U_{\Delta,n}\Bigr)
+ \quad\text{in }L^2(\dmu),\qquad U_{\Delta,0}=\lambda a_0\int_\Delta h\,dz .
+\]
+This is the first identity of Lemma~\ref{aux:notation-cU}(iv), which \S\ref{sec:notation} proves
+through Lemma~\ref{aux:notation-cutoffs}(iv), also from Lemma~C.4 of the record.  By
+Lemma~\ref{aux:d2-int}, $F$, every
+$F_a$ and every $U_{\Delta,n}$ lie in $L^2(dq_{h_\alpha})$, where $\Cov_{h_\alpha}$ is bilinear
+and vanishes against the constants $U_{\Delta,0}$; therefore
+\[
+ \Cov_{h_\alpha}\bigl(F,\Uc_{h-h^B}\bigr)
+ =\sum_{\Delta\in\mathcal D}\ \sum_{n=1}^{2p'}\ \sum_{a\in\mathfrak A}
+  \Cov_{h_\alpha}\bigl(F_a,U_{\Delta,n}\bigr),
+\]
+a finite sum.
+
+\emph{Step 4: one term, by Source Fact~2.2.}  Fix $\alpha\in[0,1]$, $\Delta\in\mathcal D$,
+$1\le n\le2p'$ and $a\in\mathfrak A$.  Source Fact~2.2 of the record \cite[p.~10]{R} reads:
+``For localized monomials $Q_1,Q_2$ with disjoint localization squares separated by a strip of
+width $d$ bounded by two parallel lines (any orientation),
+$\bigl|\int Q_1Q_2\,dq_h-\int Q_1dq_h\int Q_2dq_h\bigr|\le
+C_7e^{-m_1d}\|Q_1\|_{\rm GJS}\|Q_2\|_{\rm GJS}$, with $m_1>0$ and $C_7$ independent of $h$,
+$Q_1$, $Q_2$ (so stated in the source).''  The source states: ``\textsc{Theorem} 1.1.7.
+\emph{Let $m_0$, $K_2$ and $K_1$ be sufficiently large and let $\lambda$ be sufficiently small.
+There are constants $0<m_1$ and $O(1)$ independent of $h$, $Q_1$ and $Q_2$ such that}
+(1.1.10) $\bigl|\int Q_1Q_2dq_h-\int Q_1dq_h\int Q_2dq_h\bigr|\leqq O(1)e^{-m_1d}\|Q_1\|\,
+\|Q_2\|$'' \cite[p.~594]{GJS}, with $d$ the width of the widest separating strip, which exists by
+Lemma~\ref{aux:d2-widest}; every separating strip has width at most that $d$, and $m_1>0$, so the
+printed bound implies the bound with the width of any separating strip, which is the record's form
+(and the form in which \S\ref{sec:notation} applies it, after
+Definition~\ref{aux:notation-stripdef}).  We apply it with:
+\begin{itemize}
+\item $Q_1:=F_a$: a localized monomial of type (1.1.5) or (1.1.6), as given; kernel in $L^2$;
+  every $n_i<\bar n$; localization squares in $R$.
+\item $Q_2:=U_{\Delta,n}$: a localized monomial of type (1.1.6) with $r=1$, localized in the
+  single square $\Delta$, degree $n\le2p'<\bar n$, kernel $\lambda a_nh\mathbf 1_\Delta\in
+  L^2(\R^2)$ (Lemma~\ref{aux:notation-cU}(i)).  Page~593 defines ``localized'' for both forms (``For a
+  localized monomial $Q$ or $Q(x_0)$''), and Theorem~1.1.7 is stated for ``two localized
+  monomials $Q_1$ and $Q_2$'' \cite[p.~594]{GJS}; the mixed pair is covered by the statement.
+\item The objects: $Q_1$ and $Q_2$ are the limits of Definition~\ref{aux:d1-obs}, and the measure
+  is the record's $dq_{h_\alpha}$.  That these limits are the monomials of p.~593, which GJS print
+  as formal integrals, and that the record's $\Uc_h$ is GJS's $V(h)$, is a reading of the
+  source, of the kind the record names in Assumption~A8, Scope (d)
+  (Remark~\ref{aux:notation-gjslattice}(iv), Remark~\ref{aux:d1-def}); it is not proved here.
+\item The strip: $S_\Delta$ separates $\Delta$ from $\bigcup R$, hence from the localization
+  squares of $F_a$, which lie in $\bigcup R$; its width is $w_\Delta>0$ and its orientation is the
+  one assigned.  Its two closed half-planes are disjoint because $w_\Delta>0$
+  (Definition~\ref{aux:notation-stripdef}), so the localization squares of $F_a$ and $\Delta$ are
+  disjoint, even as closed squares.  If $S_\Delta$ is transverse and $F_a$ is of type (1.1.5),
+  this is the transverse case of F-T (\S\ref{sec:purpose}).
+\item The cutoff: $h_\alpha\in\CE$ (Step~1), the class of \cite[p.~589]{GJS}, over which the
+  record reads ``independent of $h$'' (Assumption~A8, Scope (d), main.tex ll.~887--889).
+\item The printed hypotheses on $m_0$, $K_2$, $K_1$, $\lambda$: the standing assumption.
+\end{itemize}
+Source Fact~2.2 gives
+\[
+ \bigl|\Cov_{h_\alpha}(F_a,U_{\Delta,n})\bigr|\le C_7\,e^{-m_1w_\Delta}\,
+ \GJS{F_a}\,\GJS{U_{\Delta,n}} .
+\]
+
+\emph{Step 5: summation.}  We sum over $a$ and $n$.  By Lemma~\ref{aux:notation-cU}(ii),
+$\sum_n\GJS{U_{\Delta,n}}\le c_U$, and $\sum_a\GJS{F_a}=\GJS{F}$; hence
+\begin{align*}
+ \bigl|\Cov_{h_\alpha}\bigl(F,\Uc_{h-h^B}\bigr)\bigr|
+ &\le\sum_{\Delta\in\mathcal D}C_7e^{-m_1w_\Delta}
+   \Bigl(\sum_a\GJS{F_a}\Bigr)\Bigl(\sum_n\GJS{U_{\Delta,n}}\Bigr)\\
+ &\le C_7\,c_U\,\GJS{F}\sum_{\Delta\in\mathcal D}e^{-m_1w_\Delta} .
+\end{align*}
+The right side does not depend on $\alpha$; integrating over $\alpha\in[0,1]$ in Step~2 proves
+(a).
+
+\emph{Step 6: the form (b).}  Every $\Delta\in\mathcal D$ is a square outside $B$ meeting $\supp h$
+(Lemma~\ref{aux:notation-cutoffs}(iii)), so by hypothesis a strip of positive width separates it
+from $\bigcup R$, and by Lemma~\ref{aux:d2-widest} a widest one exists; its width is
+$d(\Delta,R)>0$.  Assign it as $S_\Delta$ and apply (a); since every term
+$e^{-m_1d(\Delta,R)}$ is positive and
+$\mathcal D\subseteq\{\Delta\not\subseteq B:\Delta\cap\supp h\ne\varnothing\}$, the sum over
+$\mathcal D$ is at most the sum in (b).
+\end{proof}
+
+\begin{auxrem}[what the lemma uses, and the orientation]\label{aux:d2-uses}
+\emph{(1)} The lemma uses of the cutoff $h$ exactly: $h\ge0$ (so that $h-h^B\ge0$ and the
+charged squares are defined by $\int_\Delta h>0$), $h\le1$ (in $c_U$ and in $h_\alpha\in\CE$),
+and compact support (finiteness of $\mathcal D$).  It is a statement for $h\in\CE$ only
+(trap~20 of the plan); Theorem~1.1.7 and Lemma~\ref{lem:D1} are used at cutoffs of $\CE$ only.
+\emph{(2)} In (b) the widest strips are not controlled in orientation: for a square $\Delta$
+far to the side of $R$ in a row near that of $R$, the widest separating strip is transverse to
+the time-zero line even when a narrower parallel one exists (Remark~\ref{aux:notation-tilted}:
+it may also be tilted).  Where such a strip is used with a sharp-time $F_a$, form (b) rests on
+the transverse case of Theorem~1.1.7, used at the printed statement's scope and disclosed by F-T
+(\S\ref{sec:purpose}).  Theorems~\ref{thm:D3} and~\ref{thm:D4} therefore use (a), with the
+strips assigned explicitly and their orientation stated, so that every application of
+Theorem~1.1.7 has a named orientation (gate GA1).  Form (b) is recorded because it is a form of
+the statement of the plan; it is not used below.
+\emph{(3)} The sum in (a) is over the charged squares $\mathcal D(h,B)$, the squares outside $B$
+on which $h$ is not almost everywhere zero; squares that meet $\supp h$ only in a null set carry
+$U_\Delta=0$ and need no strip.  This matters in \S\ref{sec:d3}.  An example of the drafter of
+\S\ref{sec:d1}: for $g=\mathbf 1_{[0,1/10]}+\mathbf 1_{\{3\}}\in\CH$, $\supp g=[0,\frac1{10}]\cup
+\{3\}$ meets column~$3$ in one point only, so $N_g=1$; for $I\subseteq(0,\frac1{10})$ the box
+$B_s(g,I)$ of \S\ref{sec:d3} has the single column~$0$, and for $T\ge|l_s|+2$ the squares
+$\Delta_{l,3}$ with $|l-l_s|\le1$ meet $\supp h_{T,g}\supseteq[-T,T]\times\{3\}$, lie outside $B$,
+and are separated from row $l_s$ only by transverse strips (Lemma~\ref{aux:notation-strip}(iv)).
+With the plan's index set $\{\Delta\not\subseteq B:\Delta\cap\supp h\ne\varnothing\}$ they would
+enter the sum, and the parallel-only claim and the count $2N_g$ of Theorem~\ref{thm:D3} would
+fail; they are not charged ($h_{T,g}\mathbf 1_{\Delta_{l,3}}=0$ almost everywhere), so (a) omits
+them.
+\end{auxrem}

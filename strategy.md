@@ -2526,3 +2526,39 @@ readings of C5 (items 1–4, 9, 12, 13; items 10–11 for the disclosure) named 
 beside the status. No proof changed; all 125 labels keep their numbers; 42 pages. Gate
 record, including the layout pass of 2 November 2026 that removed the nine pre-existing Overfull boxes (G-0 now met) and the fresh
 reader's round V0/V0′: `part_i/README.md`.
+
+### Phases A and B of the U_GJS plan drafted and audited (2–4 November 2026)
+
+The comparison note `ugjs/comparison.tex` (72 pp; master, `ugjs/preamble.tex` and
+`ugjs/parts/`; the PDF is rebuilt from source and not committed) states and proves
+Lemmas D.1–D.2 and Theorems D.3–D.4 of `ugjs/PLAN.md` Part 1 and writes the replaced proofs
+of Lemmas 4.3(ii), 7.1–7.3 and 7.6, the radius in the proof of Theorem 7.7, Theorem 5.1
+(Step 5 with M := M_B) and Corollary 5.2. Drafters: aqft (§§4–6, §8), mp (§3, §7), cqft2
+(§2, Appendix A), the council of the plan; orchestrator's §1 and Appendix B (gate record).
+Audits: V1 (cqft as attacker; mp on quantifiers) and V2 (a fresh agent) on the frozen version
+of 2 November (59 pp), re-checks V1b and V2b on 3–4 November, closing pass V1c on 4 November
+(`ugjs/council/v1-cqft-report.md`, `v1-mp-report.md`, `v2-report.md`; dispositions
+`disposition-aqft.md`, `-mp.md`, `-cqft2.md`; briefs and the drafters' reports beside them).
+Findings: no false statement; one MAJOR (two constructions of V(h′)(0)² not identified),
+closed by Lemma N.22 of §2 and confirmed as a new claim by both re-checks; 49 MINOR,
+dispositioned; one declared GAP (the record never constructs the Wick powers in its V(h)),
+entering only at Theorem 5.1 Step 1 and Corollary 5.2. Status (the drafters' claims, audited):
+D.1 proved conditional on repair R8 of the V3 audit; D.2 conditional on D.1 and Lemma C.4
+(R1–R10); D.3 conditional also on Lemma C.2 (R8) and Theorem C.5 (R1–R10), parallel strips
+only; D.4 conditional on the same, R8 for the 3^{p′} comparison and the transverse case of
+Theorem 1.1.7 at the printed statement's scope (F-T); D.2–D.4 also on the reading that
+identifies the note's objects with GJS's monomials of p. 593 (C5 item 10 is the open check of
+that printed text). The note as a whole is conjectured in the plan's sense until integration.
+Two findings about the record came out of the drafting: Proposition 6.2's displays (7)–(8) are
+false as stated for the GJS norm (the count N_I must count GJS columns; KB
+`correction/section-6-cell-count-vs-gjs-columns`), and A8(vii′)(a) silently corrects GJS's
+"0(1)" (KB `correction/a8-vii-prime-silent-correction-of-gjs-0-1`); both pending with the V3
+repairs for integration. Gates GA1–GA8 and GB1–GB3: Appendix B of the note (GA4 run with
+findings; GB1 and GB3 at integration). Three usage-limit interruptions (31 October, 2 and
+3 November) cut the agents; each was resumed from its transcript.
+
+**Standing.** Theorem 12.2 unchanged (proved from the literal imports A1–A8; `part_i/main.tex`
+untouched since 4166883). The note is 72 pp against the plan's 5–9 pp estimate, because every
+step is written at the AGENTS §3 standard. **Checkpoint 2** (PLAN Part 11, questions 6–10) is
+now the author's: integrate as Appendix D or keep as a supplement; Phase C; the name A8(iv)-T;
+the companion; the records.

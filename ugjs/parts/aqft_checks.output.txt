@@ -1,0 +1,14 @@
+interpreter: /usr/local/opt/python@3.14/bin/python3.14 3.14.7
+tolerance for float comparisons: 1e-09
+1. ring count 8M+4 verified for M=1..10 (exact)
+   ring 1: 20 squares; 14 of class (P), 6 of class (T)
+2. strip assignment: width m-1 and separation verified for 150 squares (|l|<=5, window of 15 columns); widest strip >= m-1 (7200 directions)
+3. x=0.05  ring sum 1.07479224377  closed 1.07479224377  |diff| 0.0e+00 ;  D.3 sum 0.105263157895 closed 0.105263157895
+3. x=0.30  ring sum 10.0408163265  closed 10.0408163265  |diff| 0.0e+00 ;  D.3 sum 0.857142857143 closed 0.857142857143
+3. x=0.50  ring sum 28  closed 28  |diff| 0.0e+00 ;  D.3 sum 2 closed 2
+3. x=0.90  ring sum 828  closed 828  |diff| 0.0e+00 ;  D.3 sum 18 closed 18
+4. (4n-1)!! identity and (4n-1)!! <= 4^n((2n)!)^2 verified for n=1..40 (exact integers); n=1: 3 <= 16, n=2: 105 <= 2304
+5. 9*8! = 362880 and 24*362880 = 8709120 (exact)
+6. I=(0.4,0.6): cells [0] -> N_I = 1 ; columns [0, 1] -> N_I^col = 2
+   column masses 0.500000000 0.500000000 ; column-decomposition norm of Phi(f)^2 = 3.000000000 ; record's n(Q)^2 = 2
+all checks passed

@@ -1,0 +1,28 @@
+# run record of parts/check_d1.py (labelled numerical; nothing is deduced from it)
+# date: 2026-11-03 12:06 CET
+# interpreter: /usr/local/bin/python3 (3.14.7)
+# packages: numpy 2.5.2 scipy 1.18.1
+# script sha256: 0f1e2374d79c0563
+# seed: 20261102 (random rational covariance matrices in part (1))
+(1) m=(2, 2): LHS=32  RHS=32  equal=True
+(1) m=(3, 3): LHS=-20250  RHS=-20250  equal=True
+(1) m=(2, 3): LHS=0  RHS=0  equal=True
+(1) m=(2, 2, 2): LHS=360  RHS=360  equal=True
+(1) m=(1, 1, 2): LHS=504  RHS=504  equal=True
+(1) m=(3, 1, 2): LHS=-11232  RHS=-11232  equal=True
+(1) m=(4, 2, 2): LHS=55296  RHS=55296  equal=True
+(1) m=(1, 1, 1, 1): LHS=-94  RHS=-94  equal=True
+(1) m=(2, 1, 1): LHS=-40  RHS=-40  equal=True
+(1) m=(2, 2, 1, 1): LHS=-330  RHS=-330  equal=True
+(1) m=(0, 2, 2): LHS=98  RHS=98  equal=True
+(1) m=(3, 3, 2): LHS=-103680  RHS=-103680  equal=True
+(1) all equal: True
+python 3.14.7 numpy 2.5.2 scipy 1.18.1
+(2) min over the grid of M0 - G, per m0 (must be >= 0): [(0.05, 31.65365770059566), (0.1, 7.889792984803071), (0.5, 0.4895697806393948), (1.0, 0.33093437102236095), (2.0, 0.32010309739303705), (10.0, 0.31910284815307266)]
+(2) heat-kernel integral at m0=1.0, |z|=0.3: 0.218433802832 vs K0/(2pi) = 0.218433802832 (quad err 1.2e-09)
+(2) heat-kernel integral at m0=0.5, |z|=2.0: 0.0670081205085 vs K0/(2pi) = 0.0670081205085 (quad err 1.7e-10)
+(2) heat-kernel integral at m0=2.0, |z|=0.01: 0.641148897161 vs K0/(2pi) = 0.641148897161 (quad err 1.3e-08)
+(3) h, <X^2>_h, Cov_h(X^2, X^2/2), (1+h)^-2: [(0.0, 1.0000000000000016, 1.0000000000000018, 1.0), (0.5, 0.6666666666666663, 0.4444444444444535, 0.4444444444444444), (1.0, 0.5000000000000011, 0.2499999999999994, 0.25)]
+(3) -int_0^1 (1+a)^-2 da = -0.49999999999999994 ; <F>_{h2}-<F>_{h1} = -0.5000000000000004
+(4) 3x4-box rings: counts 8j+10 and widths >= j for j=1..12: True
+(5) charged rows of the slab = {|l| < T+1/2} for 7 values of T: True

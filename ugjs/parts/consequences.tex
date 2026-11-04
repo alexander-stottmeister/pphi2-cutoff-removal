@@ -1,0 +1,544 @@
+% consequences.tex -- drafted by aqft (council member of ugjs/PLAN.md), 2 November 2026 (begun 31 October 2026);
+% revised 3 November 2026 after the audits V1 (cqft, mp) and V2.
+% Section 8: the replaced proofs of the record.  Each replacement text is enclosed between the
+% comment lines "% BEGIN-REPLACEMENT <name>" and "% END-REPLACEMENT", so that gate GA5 can be
+% checked by extracting exactly those blocks (\S\ref{sub:cons-gates}).  Auxiliary statements
+% aux:consequences-*.  Line numbers: part_i/main.tex as of 2 November 2026 (3181 lines).
+
+This section writes, for each result of the record that consumes Assumption~A8(vi) (equation
+$(\UGJS)$ of the record) or its constant $C_8$, the record's current text with its line numbers in
+\texttt{part\_i/main.tex}, the replacement text, and the checks of gates GA5 and GA6 of the plan.
+Phase~A (Theorem~\ref{thm:D3}) replaces the proofs of Lemma~4.3(ii) and Lemmas~7.1, 7.2, 7.3
+and~7.6 and fixes the radius in the proof of Theorem~7.7; Phase~B (Theorem~\ref{thm:D4}) replaces
+Step~5 of the proof of Theorem~5.1, with $M:=M_B$, and Corollary~5.2.  The replaced proofs need
+the count $N_I$ on GJS's columns (\S\ref{sub:cons-NI}).  Record numbers are those of the label
+table of 31 October 2026 (unchanged in the build of 2 November 2026).
+
+\emph{Which statements change.}  Through the edit of \S\ref{sub:cons-NI}: the statement of
+Lemma~6.1 (its counterexample sentence, ll.~1364--1366) and the content of Proposition~6.2,
+eqs.~(7)--(8), through the meaning of $N_I$; the text of the notation table (l.~448) and of
+Assumption~A8(ii) (ll.~659--663) changes too.  Through Theorems~\ref{thm:D3} and~\ref{thm:D4}:
+the statement of Lemma~7.1 changes its form, gaining the term $A\|Q^2\|_{L^2(d\phi_0)}$, with
+$B'$ in place of $C_8$; the statement of Lemma~7.6 has $A_f$ and $K_f$ in place of $C_8K_1$ and
+$K'$; the statements of Theorem~5.1 and Corollary~5.2 keep their form, with the value
+$M:=M_B$ (main.tex ll.~1262, 1346, 1430--1431, 1609--1617 contain $C_8$).  The statement of
+Theorem~7.7 is unchanged; the radius of the polystrip in its proof becomes explicit
+(\S\ref{sub:cons-76}).  The imports paragraph of Theorem~12.2 changes at integration
+(\S\ref{sub:cons-rest}).  Every other numbered statement of the record is unchanged; the
+constants of \S\S5 and~7 that reach statements of \S\S8--14 are $m_1$ (through Theorem~7.8,
+unchanged) and $M$, whose value becomes $M_B$ (\S\ref{sub:cons-gates}, gate GA6).
+
+\emph{Dependence on Appendix~C, on the transverse case and on the GAP.}  The replaced proofs of
+Lemmas~7.1--7.3, Lemma~7.6 (and through it the radius in the proof of Theorem~7.7) and
+Theorem~5.1 consume Lemma~C.2 and Theorem~C.5 of the record, and Lemmas~\ref{lem:D1}
+and~\ref{lem:D2}, through Theorems~\ref{thm:D3} and~\ref{thm:D4}, as in Remark~\ref{aux:d3-V3}:
+Lemma~C.2 is proved conditional on repair R8 of the V3 audit, Lemma~\ref{lem:D2} (with
+Lemma~\ref{lem:D1}) conditional on Lemma~C.4, and Theorem~C.5 and Lemma~C.4 conditional on its
+repairs R1--R10; with the reading of Remark~\ref{aux:notation-gjslattice}(iv), the conditions are
+listed in the status lines after Lemma~\ref{lem:D2} and Theorems~\ref{thm:D3} and~\ref{thm:D4}.  The replaced proof of Theorem~5.1 also uses, through
+Theorem~\ref{thm:D4}, the transverse case of GJS Theorem~1.1.7 (F-T, \S\ref{sec:purpose}), and the
+GAP recorded after Lemma~\ref{aux:notation-wick}: Theorem~\ref{thm:D4} bounds the constructed
+$V(h)$ of Lemma~\ref{aux:notation-wick}(iv), and the record's $V(h)$ is identified with it by that
+GAP, on which the record's Step~1 (``$Q_V$ is exactly the multiplication function $V(h)^2$'',
+ll.~1278--1283), which is kept, rests as well.  The replaced proof of Lemma~4.3(ii) uses
+Assumption~A3, H\"older's inequality, the sharp-time law of cylinder monomials
+(Lemma~\ref{aux:d3-sharp}, from Assumption~A2 and Remark~2.5 of the record) and Assumption~A5(i);
+it applies its moment bound to the cylinder monomials of \S7 only and keeps A5(i) for the
+interaction-type multiplications, so it does not use the GAP.
+
+\subsection{An edit needed by the replaced proofs: the count $N_I$}\label{sub:cons-NI}
+
+The record defines $N_I:=\#\{j\in\Z:|I\cap[j,j+1)|>0\}$ (main.tex l.~1359, and in the notation
+table, l.~448), counting the cells $[j,j+1)$, and proves Proposition~6.2 by decomposing over those
+cells (ll.~1393--1409); Theorem~5.1, Steps~2--4 (ll.~1285--1315), count the same cells.  On GJS's
+squares the cells are not localization regions; the same computation gives (7)--(8) with the
+number of columns $[k-\frac12,k+\frac12)$ meeting $I$ in positive measure, and the two counts
+differ for some $I$ (Remark~\ref{aux:d3-cells}, with $I=(0.4,0.6)$).  The replaced proofs below
+need (8) for GJS's norm, so at integration:
+% BEGIN-REPLACEMENT sec6-NI
+\begin{quote}\small
+\emph{Notation table, l.~448, replaced:} $N_I$ \& number of columns $[k-\frac12,k+\frac12)$ of the
+squares of p.~593 meeting the interval $I$ in positive measure.
+\emph{Assumption~A8(ii), ll.~659--663, the sentence beginning ``The cells'' replaced:} The spatial
+cells used in \S\S5--6 are the columns $[k-\frac12,k+\frac12)$ of these squares; the count bounds
+used below (at most three columns for a support of length $2$, Theorem~5.1, Step~2;
+$N_I\le\lfloor L\rfloor+2$, Lemma~6.1) are proved on them.
+\emph{\S6, l.~1359, replaced:} $N_I:=\#\{k\in\Z:\ |I\cap[k-\tfrac12,k+\tfrac12)|>0\}$, the number
+of columns of the squares of \cite[p.~593]{GJS} that meet $I$ in positive measure.
+\emph{Lemma~6.1, ll.~1364--1366, the counterexample replaced:} the interval $I=(0.4,0.6)$ has
+length $0.2$ and meets both $[-\frac12,\frac12)$ and $[\frac12,\frac32)$ in positive measure.
+\emph{Proof of Lemma~6.1 and of Proposition~6.2:} the cells $[j,j+1)$ replaced by
+$[k-\frac12,k+\frac12)$ throughout (the proofs are otherwise verbatim;
+Remark~\ref{aux:notation-counts}(i),(iii)).
+\emph{Theorem~5.1, Steps~2--4:} the cells $[j,j+1)$ replaced by the columns
+$[k-\frac12,k+\frac12)$ throughout; the arguments are otherwise verbatim (in Step~2, four columns
+met in positive measure would give infimum $<k_{\min}+\frac12$ and supremum
+$>k_{\max}-\frac12\ge k_{\min}+\frac52$, hence length $>2$).
+\end{quote}
+% END-REPLACEMENT
+With this edit $N_I=N^\square_I$ of Remark~\ref{aux:notation-counts}, (8) is the second bound of
+(N.a) there (applied in Lemma~\ref{aux:d3-cyl}(iii)), the bound $N_I\le\lfloor L\rfloor+2$ of
+Lemma~6.1 and the Appendix~A row for $N_I$ are unchanged, and Steps~2--4 of Theorem~5.1 give the
+bound of Lemma~\ref{aux:d4-QV}(iii).  As the sentence of Assumption~A8(ii) stands, its first
+clause (the cells ``used in \S\S5--6'') would be false after the edit of \S6, and its conclusion
+``so the same computation on the squares of p.~593 gives the same constants'' is false for
+$\mathfrak n(Q)$ and $K'$ (finding, \S\ref{sub:cons-findings}); it is therefore replaced, not kept.
+
+\subsection{Lemma 4.3(ii) (Phase A; finding F7 of the plan)}\label{sub:cons-43}
+
+\emph{Statement of (ii)} (main.tex ll.~1188--1202; Lemma~4.3 of the record \cite[p.~17]{R}):
+unchanged.
+
+\emph{Current proof of (ii), the lines that cite $(\UGJS)$} (ll.~1207--1218):
+\begin{quote}\small
+``(ii) The Hilbert-space limit is dominated convergence as displayed. Membership
+$\psi_a\in D(F)$ is supplied at each application: finiteness of the corresponding $t=0$ identity
+of part (i) over the $a$-slab, together with the slab bound $(\UGJS)$, forces $F\psi_a\in\HH$
+(this is how it is verified in Theorem~5.1, Step~5, and in Lemma~7.1); for the interaction-type
+multiplications it also follows independently from Assumption~A5(i). On path space,
+$F_i^{[\ell]}(\Phi(s_i,\cdot))\to F_i(\Phi(s_i,\cdot))$ pointwise with the displayed majorant,
+whose integrability is exactly the finiteness of the two square moments; the cutoff-uniform
+estimate $(\UGJS)$ supplies those square moments at every later application (\S5, \S7). Dominated
+convergence then passes Lemma~4.2 to the limit on both sides.''
+\end{quote}
+
+\emph{Replacement.}
+% BEGIN-REPLACEMENT lemma-4.3-ii
+\begin{quote}\small
+(ii) The Hilbert-space limit is dominated convergence as displayed.  Membership
+$\psi_a\in D(F)$ is supplied at each application.  For the interaction-type multiplications it
+follows from Assumption~A5(i).  For the cylinder monomials of \S7, part (i) at $t=0$ over the
+$a$-slab gives $\|F\psi_a\|^2/\|\psi_a\|^2=\int F(\Phi(0,\cdot))^2\,dq_{h_{a,g}}$ in $[0,\infty]$;
+at every sharp time $s$ a cylinder monomial has under $d\mu_0$ the law of the same polynomial in
+the Gaussian variables $\varphi_0(f_i)$ under $d\phi_0$ (Appendix~D, \S5), so
+$F(\Phi(s,\cdot))\in L^4(d\mu_0)$, and H\"older's inequality with exponents $(2,2)$ and
+Assumption~A3 give, for every $h\in\CE$,
+\[
+ \int F(\Phi(s,\cdot))^2\,dq_h\le Z(h)^{-1}\,\|F(\Phi(s,\cdot))\|_{L^4(d\mu_0)}^2\,
+ \|e^{-\mathcal U_h}\|_{L^2(d\mu_0)}<\infty ,
+\]
+since $Z(h)>0$ and $e^{-2\mathcal U_h}\in L^1(d\mu_0)$ by Assumption~A3.  With $h=h_{a,g}$ and
+$s=0$ this gives $F\psi_a\in\HH$.  On path space,
+$F_i^{[\ell]}(\Phi(s_i,\cdot))\to F_i(\Phi(s_i,\cdot))$ pointwise with the displayed majorant,
+whose integrability is exactly the finiteness of the two square moments; for the cylinder
+monomials of \S7, at each fixed $T$ the same bound with $h=h_{T,g}$ supplies them, and no
+uniformity in $T$ is used here.  Dominated convergence then passes Lemma~4.2 to the limit on both
+sides.
+\end{quote}
+% END-REPLACEMENT
+\emph{Check.}  The replaced proof uses Assumption~A3 ($Z(h)>0$; $e^{-\varrho\,\mathcal U_h}\in L^1$
+with $\varrho=2$), H\"older with exponents $(2,2)$ on $\int F^2e^{-\mathcal U_h}d\mu_0\le
+\|F^2\|_2\|e^{-\mathcal U_h}\|_2$, the sharp-time law of Lemma~\ref{aux:d3-sharp} (Assumption~A2
+and Remark~2.5 of the record), and Assumption~A5(i) as before; it cites neither $(\UGJS)$ nor
+$C_8$.  The record applies part (ii) only to cylinder monomials (Lemmas~7.2 and~7.3, main.tex
+ll.~1462 and~1501); for $|V(h)|$ in \S5 it uses part (i) only (Theorem~5.1, Step~5, l.~1320), so
+the restriction of the moment bound to cylinder monomials loses nothing, and the GAP recorded after
+Lemma~\ref{aux:notation-wick} is not used.  Lemma~4.3(ii) needs finiteness at each $T$ only, as
+finding F7 of the plan says; the $T$-uniform bounds of \S\S5 and~7 are supplied where they are
+used, by Theorems~\ref{thm:D3} and~\ref{thm:D4}.
+
+\subsection{Lemma 7.1 (Phase A)}\label{sub:cons-71}
+
+\emph{Current statement} (ll.~1428--1432; Lemma~7.1 \cite[p.~20]{R}):
+``$\sup_{T>0}\|Q\hat\psi_T\|^2\le C_8\,\mathfrak n(Q)^2$; moreover $\Om_g\in D(Q)$ and
+$\|Q\Om_g\|^2\le C_8\,\mathfrak n(Q)^2$.''
+\emph{Current proof} (ll.~1434--1450): ``Apply (2) at $t=0$ with $F_1=F_2=|Q|$ (Lemma~4.3(i)); the
+Euclidean integrand is $Q^2$ at time $0$, so $(\UGJS)$, Remark~6.3 and (8) give
+$\|Q\hat\psi_T\|^2=\int Q(0)^2\,dq_{h_{T,g}}\le C_8\|Q^2\|_{\rm GJS}\le C_8\,\mathfrak n(Q)^2$ for
+every $T$.'' [weak-graph passage] ``\dots weak lower semicontinuity gives
+$\|Q\Om_g\|\le\liminf_\alpha\|Q\widehat\psi_{T_\alpha}\|$le$C_8^{1/2}\mathfrak n(Q)$.''  (The
+``le'' is the source line's \verb+\|le+, finding F2 of the plan, l.~1448.)
+
+\emph{Replacement.}
+% BEGIN-REPLACEMENT lemma-7.1
+\begin{quote}\small
+\textsc{Lemma 7.1} (moment transfer).  \emph{If the interval $I$ of \S6 has length $L>0$, let $A$
+and $B'$ be the constants of Theorem~D.3 for the cutoff $g$, the interval $I$ and the time $s=0$;
+if $L=0$, put $A:=B':=0$ (then every $f_i$ vanishes and $Q=0$).  Then
+$\sup_{T>0}\|Q\hat\psi_T\|^2\le A\,\|Q^2\|_{L^2(d\phi_0)}+B'\,\mathfrak n(Q)^2$; moreover
+$\Om_g\in D(Q)$ and $\|Q\Om_g\|^2\le A\,\|Q^2\|_{L^2(d\phi_0)}+B'\,\mathfrak n(Q)^2$.}
+
+\emph{Proof.}  If $L=0$, every $f_i\in C_c^\infty(\R)$ vanishes outside a set of at most one
+point, hence everywhere, so $Q=0$ and there is nothing to prove.  Let $L>0$.  Apply (2) at $t=0$
+with $F_1=F_2=|Q|$ (Lemma~4.3(i)); the Euclidean integrand is $Q^2$ at time $0$.  $Q^2$ is a
+cylinder monomial supported in $I$ (its factors are $f_1,\dots,f_r,f_1,\dots,f_r$), so
+Theorem~D.3 with $F=Q^2$ and $s=0$, and (8), give for every $T>0$
+\begin{align*}
+ \|Q\hat\psi_T\|^2=\int Q(0)^2\,dq_{h_{T,g}}
+ &\le A\,\|Q^2\|_{L^2(d\phi_0)}+B'\,\|Q(0)^2\|_{\rm GJS}\\
+ &\le A\,\|Q^2\|_{L^2(d\phi_0)}+B'\,\mathfrak n(Q)^2 ,
+\end{align*}
+the right side being finite by the Gaussian moments of the free field.  Choose from the bounded
+family $Q\hat\psi_T$ a weakly convergent subnet $Q\hat\psi_{T_\alpha}\rightharpoonup y$.  Since
+$\hat\psi_{T_\alpha}\to\Om_g$ strongly (Lemma~4.4) and the graph of the closed multiplication
+operator $Q$ is a closed linear subspace of $\HH\oplus\HH$, hence weakly closed, $(\Om_g,y)$ lies
+in that graph.  Thus $\Om_g\in D(Q)$, $y=Q\Om_g$, and weak lower semicontinuity gives
+$\|Q\Om_g\|\le\liminf_\alpha\|Q\hat\psi_{T_\alpha}\|\le\bigl(A\|Q^2\|_{L^2(d\phi_0)}+
+B'\mathfrak n(Q)^2\bigr)^{1/2}$.
+\end{quote}
+% END-REPLACEMENT
+\emph{Check.}  For $L>0$, Theorem~\ref{thm:D3} applies: $g\in\CH$, $I$ bounded of positive
+length, $F=Q^2$ a cylinder monomial supported in $I$, $s=0$, every $T>0$; its constants are
+$A=e^{3\lambda|a_0|N_B}S_2(B_0(g,I))$ and $B'=2C_7c_UN_ge^{-m_1}(1-e^{-m_1})^{-1}$, independent of
+$T$.  $\GJS{Q(0)^2}\le\mathfrak n(Q)^2$ is (8) with $N_I$ as in \S\ref{sub:cons-NI}
+(Lemma~\ref{aux:d3-cyl}(iii)); Remark~6.3 is no longer needed, since the bound of
+Lemma~\ref{aux:d3-cyl}(iii) holds at every time.  The case $L=0$ is outside the hypotheses of
+Theorem~\ref{thm:D3} and is trivial.  The replaced text cites neither $(\UGJS)$ nor $C_8$, and
+the misprint F2 is gone.
+
+\subsection{Lemmas 7.2 and 7.3 (Phase A)}\label{sub:cons-7273}
+
+\emph{Lemma 7.2, current lines} (ll.~1462--1464; \cite[p.~20]{R}): ``For $T>|s|$, (3) (extended to
+$Q$ by Lemma~4.3; the square moments $\int Q(s)^2\,dq_{h_{T,g}}\le C_8\|Q^2\|_{\rm GJS}$ at the
+needed times follow from $(\UGJS)$ with Remark~6.3, as in Lemma~7.1) gives''.
+% BEGIN-REPLACEMENT lemma-7.2
+\begin{quote}\small
+For $T>|s|$, (3) (extended to $Q$ by Lemma~4.3; the square moments $\int Q(s)^2\,dq_{h_{T,g}}$ at
+the needed times are finite at each $T$ by the H\"older bound in the proof of Lemma~4.3(ii), and
+Theorem~D.3 with $F=Q^2$ at sharp time $s$ bounds them by
+$A\|Q^2\|_{L^2(d\phi_0)}+B'\mathfrak n(Q)^2$ uniformly in $T$, with $A$ and $B'$ as in Lemma~7.1)
+gives
+\end{quote}
+% END-REPLACEMENT
+The rest of the proof of Lemma~7.2 is unchanged; its sentence ``Thus (10) is bounded in either case,
+by Lemma~7.1'' now cites the replaced Lemma~7.1.  The constant $A$ of Theorem~\ref{thm:D3} at time
+$s$ equals that at time $0$: the box $B_s(g,I)$ is $B_0(g,I)$ moved by $l_s$ whole rows, and
+$S_2$ is translation invariant (Proposition~\ref{aux:notation-S2}(iii)).
+
+\emph{Lemma 7.3, current lines} (ll.~1500--1503; \cite[p.~21]{R}): ``With
+$u_T:=Q\psi_{T-t/2}/\|\psi_T\|$, the extension of (2) to $Q$ (Lemma~4.3; square moments at the two
+times by $(\UGJS)$ and Remark~6.3, as in Lemma~7.1) is the exact equality''.
+% BEGIN-REPLACEMENT lemma-7.3
+\begin{quote}\small
+With $u_T:=Q\psi_{T-t/2}/\|\psi_T\|$, the extension of (2) to $Q$ (Lemma~4.3; square moments at
+the two times finite at each $T$ by the H\"older bound in the proof of Lemma~4.3(ii), and bounded
+uniformly in $T$ by Theorem~D.3 at $s=\mp t/2$, as in Lemma~7.2) is the exact equality
+\end{quote}
+% END-REPLACEMENT
+The rest is unchanged; ``The ratio bound of Lemma~4.4 and Lemma~7.1 make $(u_T)_T$ bounded''
+(l.~1507) cites the replaced Lemma~7.1.  \emph{Check.}  Neither replaced text cites $(\UGJS)$ or
+$C_8$.  Only finiteness at each $T$ is needed for the extension by Lemma~4.3; the $T$-uniform bound
+of Theorem~\ref{thm:D3} at times $s\ne0$ is recorded but not consumed (the record's \S7 consumes
+$T$-uniformity only through Lemma~7.1 at time $0$).
+
+\subsection{Lemma 7.6 and the radius in the proof of Theorem 7.7 (Phase A)}\label{sub:cons-76}
+
+\begin{auxlemma}[a Gaussian moment inequality]\label{aux:consequences-moment}
+Let $X$ be a centred Gaussian random variable with variance $\sigma^2$.  Then
+$\E[X^{2m}]=\sigma^{2m}(2m-1)!!$ for $m\ge0$, and for $n\ge1$
+\[
+ \|X^{2n}\|_{L^2}=\sigma^{2n}\bigl((4n-1)!!\bigr)^{1/2}\le(\sqrt2\,\sigma)^{2n}\,(2n)! .
+\]
+\end{auxlemma}
+
+\begin{proof}
+$\E[e^{tX}]=e^{\sigma^2t^2/2}$ for real $t$, and $\E[e^{|tX|}]<\infty$, so by dominated
+convergence $\E[e^{tX}]=\sum_kt^k\E[X^k]/k!$; comparing the coefficients of $t^{2m}$ with
+$e^{\sigma^2t^2/2}=\sum_m\sigma^{2m}t^{2m}/(2^mm!)$ gives
+$\E[X^{2m}]=\sigma^{2m}(2m)!/(2^mm!)=\sigma^{2m}(2m-1)!!$.  With $m=2n$,
+$\|X^{2n}\|_{L^2}=(\E[X^{4n}])^{1/2}=\sigma^{2n}((4n-1)!!)^{1/2}$.  The inequality is equivalent to
+$(4n-1)!!\le4^n((2n)!)^2$, i.e.\ (using $(4n-1)!!=(4n)!/(2^{2n}(2n)!)$) to
+$\binom{4n}{2n}\le16^n\,(2n)!$, which holds because $\binom{4n}{2n}\le\sum_j\binom{4n}{j}=16^n$
+and $(2n)!\ge1$.  (Tests: $n=1$, $\sqrt3\le4$; $n=2$, $\sqrt{105}\le96$; the integer
+inequality $(4n-1)!!\le4^n((2n)!)^2$ is checked for $n\le40$ by \texttt{parts/aqft\_checks.py},
+check~4.)
+\end{proof}
+
+\emph{Current statement} (ll.~1603--1618; Lemma~7.6 \cite[p.~22]{R}): ``Let
+$d\mu_g:=|\Om_g|^2\,d\phi_0$ and $X_f:=\varphi_0(f)$ for real $f\in C_c^\infty(\R)$, $f\ne0$,
+supported in an interval of length $L$, and put $K':=K_2^{2}N_I^{1/2}\|f\|_2>0$. Then
+$\E_{\mu_g}[X_f^{2n}]\le C_8K_1\,(K')^{2n}(2n)!$ $(n\ge1)$, and consequently
+$\E_{\mu_g}e^{s|X_f|}\le2\max\{1,C_8K_1\}\sum_{n=0}^\infty(sK')^{2n}<\infty$ $(0\le s<1/K')$. The
+factor $C_8K_1$ affects only the prefactor, not the radius $1/K'$.''  \emph{Current proof}
+(ll.~1620--1635) begins ``$\E_{\mu_g}[X_f^{2n}]=\|X_f^n\Om_g\|^2\le C_8\,\mathfrak n(X_f^n)^2$ by
+Lemma~7.1 applied to $Q=X_f^n$''.
+
+\emph{Replacement.}
+% BEGIN-REPLACEMENT lemma-7.6
+\begin{quote}\small
+\textsc{Lemma 7.6} (exponential moments).  \emph{Let $d\mu_g:=|\Om_g|^2\,d\phi_0$ and
+$X_f:=\varphi_0(f)$ for real $f\in C_c^\infty(\R)$, $f\ne0$, supported in an interval $I$ of
+length $L$, and put $K':=K_2^{2}N_I^{1/2}\|f\|_2>0$, $\sigma_f^2:=\ip{f}{Cf}$,
+$K_f:=\max\{K',\sqrt2\,\sigma_f\}$ and $A_f:=A+B'K_1$, with $A$ and $B'$ as in Lemma~7.1 for this
+$I$ (which has $L>0$, since $f\ne0$).  Then}
+\[
+ \E_{\mu_g}\bigl[X_f^{2n}\bigr]\le A_f\,K_f^{2n}\,(2n)!\qquad(n\ge1),
+\]
+\emph{and consequently}
+\[
+ \E_{\mu_g}e^{s|X_f|}\le2\max\{1,A_f\}\sum_{n=0}^\infty(sK_f)^{2n}<\infty\qquad(0\le s<1/K_f).
+\]
+
+\emph{Proof.}  $\E_{\mu_g}[X_f^{2n}]=\|X_f^n\Om_g\|^2\le A\,\|X_f^{2n}\|_{L^2(d\phi_0)}+B'\,
+\mathfrak n(X_f^n)^2$ by Lemma~7.1 applied to $Q=X_f^n$ ($r=n$, all $f_i=f$).  By (8),
+$\mathfrak n(X_f^n)^2=K_1K_2^{4n}(2n)!\,N_I^n\|f\|_2^{2n}=K_1(K')^{2n}(2n)!$.  Under $d\phi_0$,
+$X_f$ is centred Gaussian with variance $\sigma_f^2$, so
+$\|X_f^{2n}\|_{L^2(d\phi_0)}=\sigma_f^{2n}((4n-1)!!)^{1/2}\le(\sqrt2\,\sigma_f)^{2n}(2n)!$, because
+$(4n-1)!!=(4n)!/(2^{2n}(2n)!)$ and $\binom{4n}{2n}\le16^n$.  Hence
+$\E_{\mu_g}[X_f^{2n}]\le(A+B'K_1)K_f^{2n}(2n)!$.  For the exponential bound: $e^{s|x|}\le
+e^{sx}+e^{-sx}=2\cosh(sx)$, and by monotone convergence
+\[
+ \E_{\mu_g}\cosh(sX_f)=\sum_{n\ge0}\frac{s^{2n}}{(2n)!}\E_{\mu_g}[X_f^{2n}]
+ \le\max\{1,A_f\}\sum_{n\ge0}(sK_f)^{2n},
+\]
+where the maximum covers the $n=0$ term $\E_{\mu_g}[1]=1$.  The series converges for $sK_f<1$.
+\end{quote}
+% END-REPLACEMENT
+\emph{Remark on the radius} (outside the statement; trap~25 of the plan).  The radius $1/K_f$
+comes from the route through Theorem~\ref{thm:D3}: the component $K'$ from the GJS norm in its
+comparison term, the component $\sqrt2\,\sigma_f$ from its base term $A\|X_f^{2n}\|_{L^2(d\phi_0)}$.
+Whether $\E_{\mu_g}e^{s|X_f|}<\infty$ for larger $s$ is not decided here.
+
+\emph{Check.}  The step uses the replaced Lemma~7.1, (8) with $N_I$ as in \S\ref{sub:cons-NI}, and
+Lemma~\ref{aux:consequences-moment}; it cites neither $(\UGJS)$ nor $C_8$.  $A_f$ and $K_f$ are
+independent of $n$, which is what the proof of Theorem~7.7 needs (the plan, Part~1).  $A_f$
+depends on $g$ (through $N_g$ and $N_B$) and on $I$ (through $N_B$); $K_f$ depends on $f$
+(through $\|f\|_2$, $\sigma_f$ and $N_I$), on $K_2$ and on $m_0$ (through $C$), and not on $g$.
+Special case $n=1$: the bound reads $\E_{\mu_g}[X_f^2]\le2A_fK_f^2$.
+
+\emph{Theorem 7.7: the radius.}  The statement of Theorem~7.7 (ll.~1637--1642) is unchanged and
+so is the text of its proof; the proof's polystrip (ll.~1652--1654: ``By Cauchy--Schwarz,
+H\"older, and Lemma~7.6, $F$ is defined and analytic in a nonempty polystrip
+$\{|\mathrm{Re}\,z_j|<s_0\}$ about $i\R^k$'') now has the explicit radius
+\[
+ s_0:=\min_{1\le j\le k,\ e_j\ne0}\ \frac1{2k\,K_{e_j}},\qquad K_{e_j}:=K_f\ \text{at}\ f=e_j ,
+\]
+and any $s_0>0$ if all $e_j=0$ (then $F$ is the constant $\E_{\mu_g}[\overline\zeta]$), as in
+Remark~\ref{aux:constants-s0}.  Indeed $|\exp(\sum_jz_jX_{e_j})|\le\prod_je^{|\mathrm{Re}\,z_j|
+|X_{e_j}|}$, and by Cauchy--Schwarz in $L^2(d\mu_g)$ and then H\"older with $k$ exponents equal
+to $k$,
+\begin{align*}
+ \E_{\mu_g}\Bigl[|\zeta|\prod_je^{|\mathrm{Re}\,z_j||X_{e_j}|}\Bigr]
+ &\le\|\zeta\|_{L^2(d\mu_g)}\Bigl(\E_{\mu_g}\prod_je^{2|\mathrm{Re}\,z_j||X_{e_j}|}\Bigr)^{1/2}\\
+ &\le\|\zeta\|_{L^2(d\mu_g)}\prod_j\Bigl(\E_{\mu_g}e^{2k|\mathrm{Re}\,z_j||X_{e_j}|}\Bigr)^{1/(2k)},
+\end{align*}
+which is finite by Lemma~7.6 when $2k|\mathrm{Re}\,z_j|<1/K_{e_j}$ for every $j$ with $e_j\ne0$
+(factors with $e_j=0$ equal $1$).  The plan's ``$s_0=1/K_f$'' (Part~1) is the radius of Lemma~7.6
+for one $f$; the polystrip for $k$ functions has the radius above.  Before the change the same
+computation gave $\min_j(2kK'_{e_j})^{-1}$.  Differentiation under the integral is justified, as in
+the record (ll.~1653--1654), by the exponential dominator of Lemma~7.6, quantified as follows: for
+$0<s_1<s_2<s_0$, real $x$ and integers $\ell\ge0$, $|x|^\ell e^{s_1|x|}\le\ell!\,(s_2-s_1)^{-\ell}
+e^{s_2|x|}$, so on the polystrip $\{|\mathrm{Re}\,z_j|\le s_1\}$ the integrand of every
+derivative of order $(\ell_1,\dots,\ell_k)$ is dominated by $\prod_j\ell_j!\,(s_2-s_1)^{-\ell_j}$
+times $|\zeta|\prod_je^{s_2|X_{e_j}|}$, which is integrable by the display with $s_2$ in place of
+$|\mathrm{Re}\,z_j|$, since $2ks_2<1/K_{e_j}$.
+
+\subsection{Theorem 5.1, Step 5, with $M:=M_B$, and Corollary 5.2 (Phase B)}\label{sub:cons-51}
+
+\emph{Current statement} (ll.~1255--1267; Theorem~5.1 \cite[p.~18]{R}): for every $g\in\CH$ and
+every real measurable $h$ with $\|h\|_\infty\le1$ and $\supp h$ contained in an interval of
+length $2$, ``$\|V(h)\Om_g\|\le M$, $M^2:=9\,C_8\,\mathfrak K(p')\,\lambda^2(\sum_{n=0}^{2p'}|a_n|)^2$,
+$\mathfrak K(p'):=K_1K_2^{8p'}(4p')!$''.  \emph{Current lines of the proof citing $(\UGJS)$ or
+$C_8$}: eq.~(5) (l.~1313), ``$\|Q_V\|_{\rm GJS}\le9K_1K_2^{8p'}(4p')!\lambda^2(\sum_{n=0}^{2p'}
+|a_n|)^2=M^2/C_8$''; Step~5 (ll.~1319--1327), ``For every $T>0$, apply (2) at $t=0$ with the two
+individually nonnegative functions $F_1=F_2=|V(h)|$ (Lemma~4.3(i)); their product is
+$V(h)^2=Q_V$. Then $(\UGJS)$ and (5) give $\|V(h)\hat\psi_T\|^2=\int V(h)^2\,dq_{h_{T,g}}\le
+C_8\|Q_V\|_{\rm GJS}\le M^2$. (6) In particular the left side is finite, so
+$\psi_T\in D(V(h))$.''
+
+\emph{Replacement.}
+% BEGIN-REPLACEMENT theorem-5.1
+\begin{quote}\small
+\emph{In the statement:} $\|V(h)\Om_g\|\le M$, with
+\begin{gather*}
+ M^2:=M_B^2=e^{15\lambda|a_0|}\,S_2(B_{3\times5})\,9^{p'}\,V_*
+ +9\,C_7\,c_U\,\overline\Sigma_{3\times5}\,\mathfrak K(p')\,\lambda^2\Bigl(\sum_{n=0}^{2p'}|a_n|\Bigr)^2,\\
+ \mathfrak K(p'):=K_1K_2^{8p'}(4p')! ,
+\end{gather*}
+the constants $S_2(B_{3\times5})$, $V_*$, $c_U$ and $\overline\Sigma_{3\times5}$ being those of
+Theorem~D.4.
+
+\emph{Step 4, eq.~(5):} $\|Q_V\|_{\rm GJS}\le9\,K_1K_2^{8p'}(4p')!\,\lambda^2
+(\sum_{n=0}^{2p'}|a_n|)^2$.
+
+\emph{Step 5: transfer at time zero.}  For every $T>0$, apply (2) at $t=0$ with the two
+individually nonnegative functions $F_1=F_2=|V(h)|$ (Lemma~4.3(i)); their product is
+$V(h)^2=Q_V$.  Choose $a\in\R$ with $\supp h\subseteq[a,a+2]$.  Theorem~D.4, applied with the
+Euclidean cutoff $h_{T,g}\in\CE$ (Lemma~3.1(ii)) and with $h':=h$, gives
+\[
+ \|V(h)\hat\psi_T\|^2=\int V(h)^2\,dq_{h_{T,g}}\le M_B^2=M^2 .
+ \tag{6}
+\]
+In particular the left side is finite, so $\psi_T\in D(V(h))$.  (Theorem~D.4 is a bound for the
+$V(h)$ constructed in Appendix~D, \S2, which is identified with the $V(h)$ of \S2.1 only through
+the gap recorded there, as in Step~1; and it uses GJS Theorem~1.1.7 also across strips
+transverse to the time-zero line, a case its printed proof does not reach, F-T.)
+\end{quote}
+% END-REPLACEMENT
+Steps~1--4 and~6 are kept (Steps~2--4 with the columns of \S\ref{sub:cons-NI}); in Step~4 the
+final equality of eq.~(5), which reads ``$=M^2/C_8$'', is deleted (item n14 of the plan).
+\emph{Check.}  Theorem~\ref{thm:D4} applies: $h_{T,g}\in\CE$ by Lemma~3.1(ii) of the record; $h$
+is real measurable with $\|h\|_\infty\le1$ and support in an interval of length~$2$, hence in a
+closed interval $[a,a+2]$; the bound is uniform in $T>0$ and $g\in\CH$ because $M_B$ does not
+depend on the cutoff.  Theorem~\ref{thm:D4} bounds $\int Y^2\,dq_{h_{T,g}}$ for the constructed
+$Y=V(h)(0)=J_0V(h)$ of Lemma~\ref{aux:notation-hyper}, and by Lemma~\ref{aux:notation-sharpid}
+with Remark~\ref{aux:notation-sharpidrem}(b) this $Y^2$ is also the sum of the localized pieces to
+which its comparison term applies; the identity $\|V(h)\hat\psi_T\|^2=\int V(h)^2\,dq_{h_{T,g}}$
+of (2) concerns the record's $V(h)$, and the two are identified by the GAP recorded after
+Lemma~\ref{aux:notation-wick}, which Step~1 of the record's proof uses in the same way (its
+sentence ``$Q_V$ is exactly the multiplication function $V(h)^2$'').  Step~6 (the weak-graph
+passage, ll.~1329--1340) uses only the $T$-uniform bound (6) and Lemma~4.4, so it gives
+$\|V(h)\Om_g\|\le M_B$.  The replaced statement and proof cite neither $(\UGJS)$ nor $C_8$.
+Steps~2--4, which bound $\GJS{Q_V}$, are no longer consumed by Step~5 (Theorem~\ref{thm:D4}
+bounds $\GJS{Q_V}$ on GJS's columns itself, Lemma~\ref{aux:d4-QV}(iii)); they are kept, on the
+columns, with the same constant.  Through Theorem~\ref{thm:D4}, Step~5 uses GJS Theorem~1.1.7 in
+its transverse case (F-T, \S\ref{sec:purpose}; \S\ref{sub:d4-transverse}).
+
+\emph{Corollary 5.2, current statement} (ll.~1342--1347; \cite[p.~19]{R}): ``For
+$\mathscr P(\xi)=\xi^4$ ($p'=2$, $\sum_n|a_n|=1$; degrees exactly $4+4=8$),
+$M^2=9\cdot8!\;C_8K_1K_2^{16}\lambda^2=362\,880\;C_8K_1K_2^{16}\lambda^2$.''
+% BEGIN-REPLACEMENT corollary-5.2
+\begin{quote}\small
+\textsc{Corollary 5.2} ($\varphi^4$ instance).  \emph{For $\mathscr P(\xi)=\xi^4$ ($p'=2$, $a_4=1$,
+$a_0=\dots=a_3=0$, $\sum_n|a_n|=1$; degrees exactly $4+4=8$),}
+\begin{gather*}
+ M^2=81\,S_2(B_{3\times5})\,V_*+8\,709\,120\;C_7K_1^2K_2^{24}\,\overline\Sigma_{3\times5}\,\lambda^3,\\
+ V_*\le24\,\lambda^2\int_{-1}^1\!\int_{-1}^1C(x-y)^4\,dx\,dy .
+\end{gather*}
+(The value is that of Theorem~5.1, through Theorem~D.4: it rests on the transverse case of GJS
+Theorem~1.1.7, F-T, and on the gap note of Appendix~D, \S2.)
+\end{quote}
+% END-REPLACEMENT
+\emph{Derivation.}  Here $e^{15\lambda|a_0|}=1$ and $9^{p'}=81$.  By
+Lemma~\ref{aux:notation-cU},
+\begin{gather*}
+ c_U=\lambda|a_4|K_1K_2^{8}\,4!=24\lambda K_1K_2^8 ,\\
+ 9\,\mathfrak K(2)\lambda^2\Bigl(\sum_n|a_n|\Bigr)^2=9\cdot8!\,K_1K_2^{16}\lambda^2
+ =362\,880\,K_1K_2^{16}\lambda^2 ,
+\end{gather*}
+and the product
+\[
+ C_7\cdot24\lambda K_1K_2^8\cdot\overline\Sigma_{3\times5}\cdot362\,880\,K_1K_2^{16}\lambda^2
+ =8\,709\,120\,C_7K_1^2K_2^{24}\,\overline\Sigma_{3\times5}\,\lambda^3
+\]
+($24\cdot362\,880=8\,709\,120$); and $V_*\le\overline V_*=\lambda^2a_4^2\,4!\,I_4=24\lambda^2I_4$ by Lemma~\ref{aux:notation-wick}(iv),
+with $I_4=\iint_{[-1,1]^2}C(x-y)^4\,dx\,dy$ of Lemma~\ref{aux:notation-kernel}(iv).  The number
+$362\,880\,C_8K_1K_2^{16}\lambda^2$ retires (trap~10 of the plan).  Alternatively the corollary is
+retired with its number kept (the plan, Part~3, Phase~B).
+
+\subsection{Theorem 12.2, the other sections, and Appendix A}\label{sub:cons-rest}
+
+\emph{Theorem 12.2.}  Its proof (ll.~2427--2446) is unchanged: ``(5) is Theorem~7.8 and
+Theorem~5.1. These supply (G$_\gamma$) with $\gamma=m_1$ and (M$_2$), so Theorem~11.1 and
+Proposition~11.2 give (1)--(2)'' holds verbatim with the replaced Theorem~5.1.  Its statement
+keeps its text except the imports paragraph (ll.~2415--2424), whose rewrite at integration is
+listed in the plan (Part~6) and is not drafted here; the value of $M$ in items (1) (through
+$\Psi_{m_1}$, Lemma~10.5) and (5) is $M_B$ after Phase~B (trap~10).  The plan's Part~6 predates
+the V3 audit and the GAP; the rewritten paragraph must name, besides GJS Theorem~1.1.7 at its
+printed scope including the transverse case (F-T), the record's Lemma~C.2, Lemma~C.4 and
+Theorem~C.5 under the V3 repairs (R8 importing the construction of $\Uc_h$), and the construction
+of the time-zero Wick powers that closes the GAP recorded after Lemma~\ref{aux:notation-wick}.
+\emph{Disclosure.}  After Phase~B, Theorem~5.1, and through $M=M_B$ the statements of Lemma~10.2,
+Lemma~10.3, Proposition~10.4, Lemma~10.5, Theorem~11.1 and Theorem~12.2 (items (1) and (5)),
+use the transverse case of GJS Theorem~1.1.7 (F-T, \S\ref{sec:purpose}) and the GAP; after
+Phase~A alone, Lemmas~7.1--7.3 and~7.6 use the parallel case only.  Proposition~7.5 and
+Theorem~7.8 keep statements and proofs ($\widehat C_Q$ contains $\GJS{Q}$ and $\|\psi_Q\|$ only,
+the latter finite by the replaced Lemma~7.1).  Lemma~10.2 (proof, l.~2110) and \S11 (l.~2254)
+cite Theorem~5.1's $M$ by name: text unchanged, value $M_B$.
+
+\emph{Appendix A of the record} (ll.~2655--2685).  Rows that change: $K_1,K_2,C_7,C_8,m_1$ (l.~2668:
+$C_8$ dropped once A8(vi) is retired after Phase~B); $N_I$ (l.~2670: defined by GJS's columns,
+\S\ref{sub:cons-NI}, bound unchanged); $M^2$ (l.~2674: $M_B^2$); $M^2$ ($\varphi^4$) (l.~2675:
+Corollary~5.2 as replaced, or retired); $K'$ (l.~2676: same formula, $N_I$ by columns); the
+$\Psi_\gamma$ rows (ll.~2681--2682: same formulas; the $M$ in them is $M_B$).  Unchanged:
+$\varepsilon_{\mathscr P}$, $\mathfrak K(p')$, $\widehat C_Q$ (its formula; $\GJS Q$ is computed on
+GJS's squares), $\mathfrak m$, $d_0$, the shell count.  New rows: $c_U$, $S_2(B)$, $A$, $B'$,
+$A_f$, $K_f$ (with $\sigma_f$), $s_0$ of the proof of Theorem~7.7, $V_*$,
+$\overline\Sigma_{3\times5}$ and $M_B$; $S_2(B)$, and through it $A$, $A_f$ and $M_B$, contain the
+finite constant of Theorem~C.5, which is not evaluated, and Appendix~A must say so (gate GB3).
+This list agrees with the closing paragraph of Appendix~A.4 of this note.
+
+\subsection{Gates GA5 and GA6}\label{sub:cons-gates}
+
+\emph{GA5 (no proof in \S\S4, 6, 7 cites $(\UGJS)$).}  Command, in the repository (run on
+2 and 3 November 2026):
+\begin{quote}\footnotesize\begin{verbatim}
+grep -n -e 'eq:UGJS' -e 'C_8' part_i/main.tex | awk -F: '$1>=1133 && $1<1722'
+\end{verbatim}\end{quote}
+Output (line numbers only): 1210, 1216 (Lemma~4.3(ii)); 1262, 1313, 1321, 1324 (Theorem~5.1);
+1346 (Corollary~5.2); 1430, 1431, 1436, 1439, 1440, 1449 (Lemma~7.1); 1463, 1464 (Lemma~7.2); 1502
+(Lemma~7.3); 1609, 1614, 1617, 1621, 1631 (Lemma~7.6).  Every hit lies in a text replaced above.
+The replacement texts themselves are the eight blocks between the markers of this file
+(\texttt{sec6-NI}, \texttt{lemma-4.3-ii}, \texttt{lemma-7.1}, \texttt{lemma-7.2},
+\texttt{lemma-7.3}, \texttt{lemma-7.6}, \texttt{theorem-5.1}, \texttt{corollary-5.2}); the command
+\begin{quote}\footnotesize\begin{verbatim}
+awk '/% BEGIN-REPLACEMENT/,/% END-REPLACEMENT/' parts/consequences.tex \
+  | grep -n -e 'UGJS' -e 'C_8' -e 'eq:UGJS'
+\end{verbatim}\end{quote}
+prints nothing (run on this file, 3 November 2026).  So after the replacement no proof of
+\S\S4--7 cites $(\UGJS)$ or $C_8$.  Outside \S\S4--7 the record still cites $(\UGJS)$; the
+command (3 November 2026)
+\begin{quote}\footnotesize\begin{verbatim}
+grep -n -e 'eq:UGJS' -e 'U_{\rm GJS}' -e 'UGJS' part_i/main.tex
+\end{verbatim}\end{quote}
+finds it, outside \S\S4--7, in the status notes after the title (ll.~68, 72, 76, 81), in \S1.2 (ll.~184, 210), in \S1.4 (ll.~290, 302), in
+Assumption~A8 (ll.~710--803, 868), in Theorem~12.2's imports paragraph (l.~2417), in Appendices~B
+and~C (ll.~2737, 2776) and in Proposition~C.7 (l.~3075); this list is complete for that grep.
+Their edits are listed in the plan (Part~6) and are not part of this section.
+
+\emph{GA6 (the new constants occur in no statement of \S\S8--14).}  Command:
+\begin{quote}\footnotesize\begin{verbatim}
+awk 'NR>=1722 && NR<=2654 {print NR": "$0}' part_i/main.tex \
+ | grep -E -e 'C_8|UGJS|U_\{\\rm GJS\}|mathfrak n' \
+     -e "K'|widehat C_Q|s_0" \
+     -e 'lem:transfer|lem:onepoint|lem:twopoint|lem:expmom' \
+     -e 'prop:semidecay|thm:dense|eq:M2|thm:M2|thm:G[^a-z]|eq:G[^a-z]'
+\end{verbatim}\end{quote}
+(run in the repository on 2 and 3 November 2026).  Output, line numbers and what they are: 1731
+(\S8 text, ``by Theorem~7.8 this holds with $\gamma=m_1$''); 1859--1860 ($s_0$ here is the path
+parameter in the proof of Proposition~8.2(ii), not the radius of Theorem~7.7); 2110 (proof of
+Lemma~10.2, ``Theorem~5.1 applies to the cutoff $g_s$ and gives $\|V_j\Om_s\|\le M$''); 2252, 2254
+(\S11 text, $\gamma=m_1$ by Theorem~7.8 and $\Psi_{m_1}$ with $M$ the constant of Theorem~5.1); 2394
+(a source comment); 2417 (Theorem~12.2's imports paragraph, $(\UGJS)$); 2429--2430 (proof of
+Theorem~12.2); 2486, 2530 (\S13 text and proof, Theorem~7.8).  Hence $C_8$, $\mathfrak n$, $K'$,
+$\widehat C_Q$ and the labels of Lemmas~7.1--7.3, 7.6, Proposition~7.5 and Theorem~7.7 do not occur
+in \S\S8--14 at all, and the new constants $A$, $B'$, $A_f$, $K_f$ and the radius $s_0$ of
+Theorem~7.7 cannot occur there.  The only constants of \S\S5 and~7 that reach \S\S8--14 are $m_1$
+(through Theorem~7.8, unchanged) and $M$ (through Theorem~5.1).  The statements that contain $M$
+are those of Lemma~10.2 (eq.~(25), l.~2099), Lemma~10.3 (eq.~(26), l.~2126), Proposition~10.4
+(eq.~(27), l.~2155), Lemma~10.5 (eq.~(29), l.~2214, and its constant $C_{N,\gamma,M}$), and,
+through $\Psi_{m_1}$, Theorem~11.1 and Theorem~12.2, items (1) and (5); the grep matches labels and
+constants, not the letter $M$, so this list was made by reading ll.~2088--2232 of the record.  The
+value of $M$ becomes $M_B$ after Phase~B; that change is the plan's trap~10, not a GA6 failure.
+After Phase~A alone, $M$ is unchanged.
+
+\subsection{Findings about the record and the plan made while drafting}\label{sub:cons-findings}
+
+\begin{itemize}
+\item \emph{The count $N_I$} (main.tex l.~1359, the notation table l.~448, and A8(ii),
+ll.~659--663): see \S\ref{sub:cons-NI} and Remark~\ref{aux:d3-cells}.  On GJS's squares (7)--(8)
+hold with the column count; with the record's cell count, (7) fails for $\Phi(s,f)$ and (8) for
+the column decomposition of $\Phi(s,f)^2$ when $I=(0.4,0.6)$ ($\sqrt2K_1K_2^2\|f\|_2$ against
+$K_1K_2^2\|f\|_2$; $3K_1K_2^4$ against $2K_1K_2^4$).  Severity: CRITICAL for the display of
+Proposition~6.2 as stated (on the printed norm of A8(iii)); the displayed bounds of Lemmas~7.1
+and~7.6, whose proofs consume (8), fail as stated; MINOR downstream (Theorems~7.7, 7.8 and~12.2
+use finiteness only).  The edit of \S\ref{sub:cons-NI} repairs all of these.
+\item \emph{Statements that change}: the statements of Lemma~6.1 and Proposition~6.2 (through
+$N_I$), of Lemma~7.1 (its form) and Lemma~7.6, Theorem~5.1 and Corollary~5.2 (their constants);
+Theorem~7.7's statement has no radius, which lives in its proof.  Severity: MINOR (wording of the
+note, corrected in the introduction of this section).
+\item \emph{The GAP at Theorem~5.1, Step~1} (ll.~1278--1283): ``$Q_V$ is exactly the multiplication
+function $V(h)^2$'' identifies the record's $V(h)$, of which the record states no construction,
+with an object expanded into Wick monomials; this is the GAP recorded after
+Lemma~\ref{aux:notation-wick}, used by the kept Step~1 and by the replaced Step~5.
+\item \emph{Wick re-expansion} (drafting brief, d4 item): no Wick re-expansion of $V(h')(0)^2$ is
+needed or made; the record's own Step~1 (ll.~1278--1283) treats the product as a (1.1.5) monomial,
+and Lemma~\ref{aux:d4-QV} follows it.
+\item \emph{Transverse uses} (plan Part~1, ``Where the transverse case enters''): besides the
+squares of rows $-1,0,1$, the squares of class (T) in rows $|l|\ge2$ use the transverse strip in
+Theorem~\ref{thm:D4}'s bound (\S\ref{sub:d4-transverse}).
+\item \emph{The radius $s_0$} (plan Part~1, ``Theorem 7.7 then has $s_0=1/K_f$''): the polystrip
+of Theorem~7.7 has radius $\min_{j:\,e_j\ne0}(2kK_{e_j})^{-1}$ (\S\ref{sub:cons-76}).
+\item \emph{The form of Lemma~D.2} (plan Part~1): a form of the plan's statement, with the widest
+strips $d(\Delta,R)$, positive widths and the sum over squares meeting $\supp h$, is
+Lemma~\ref{lem:D2}(b); the theorems use form (a), with explicitly assigned strips (so that each
+application has a named orientation) and the sum over the squares on which $h$ is not almost
+everywhere zero (Remark~\ref{aux:d2-uses}).
+\item \emph{$\Sigma_{3\times5}$} (plan Part~1, and Lemma~\ref{aux:notation-rings}(vi) of
+\S\ref{sec:notation}, define it as $\sum_{\Delta\not\subseteq B_{3\times5}}e^{-m_1d(\Delta,R)}$,
+which depends on $R$): Theorem~\ref{thm:D4} is stated with the constant
+$\overline\Sigma_{3\times5}:=\sum_{k\ge1}(8k+12)e^{-m_1k}=4x(5-3x)(1-x)^{-2}$, the right side of
+that lemma, because its proof uses the axis-parallel strips of named orientation
+(\S\ref{sub:d4-setting}); $M_B$ therefore does not depend on $h'$, and the plan's $M_B$ with the
+widest strips would need tilted strips also for squares of class (P).
+\end{itemize}

@@ -1,0 +1,1246 @@
+% notation.tex -- drafted by cqft2 (council of ugjs/PLAN.md), 2 November 2026.
+% Read for this part: part_i/main.tex (state of 2 November 2026; numbers and pages from
+% labels-main.txt, re-checked against main.aux the same day); GJS pp. 589, 593, 594 on the
+% page images gjs74/p-06, p-10, p-11 (p. 594 also at 300 dpi).  No other source is used.
+
+This section fixes the notation of \texttt{ugjs/PLAN.md}, Part~1, and proves the elementary
+facts that the later sections use: that every cutoff of the comparison lies in $\CE$
+(Lemma~\ref{aux:notation-cutoffs}), the strip geometry (Lemma~\ref{aux:notation-strip}), the
+ring count around the $3\times5$ box (Lemma~\ref{aux:notation-rings}), the finiteness and the
+translation invariance of the stability constant $S_2$
+(Proposition~\ref{aux:notation-S2}), the norm of the interaction in one square
+(Lemma~\ref{aux:notation-cU}), the Wick isometry with the constant $V_*$ and the comparison
+$\|Y\|_4\le3^{p'}\|Y\|_2$ (Lemmas~\ref{aux:notation-wick} and \ref{aux:notation-hyper}), and
+the list of printed constants (\S\ref{sec:notation-printed}).  The record is \cite{R}; its
+numbered statements are cited with number and page, and lines of
+\texttt{part\_i/main.tex} refer to its state of 2 November 2026.  Every statement of this
+section is \emph{conjectured} in the sense of the plan until audited.
+
+{\sloppy\emph{Appendix~C of the record.}  The audit V3 of the plan (Part~5; report
+\texttt{ugjs/council/}\allowbreak\texttt{v3-appendix-c-report.md}, 2 November 2026) found Lemmas~C.2--C.4 and
+Theorem~C.5 of the record true, with every displayed computation re-derived, but not proved as
+written: the ``classical Bessel facts'' of Lemma~C.4 are neither cited nor derived and $K_0$ is
+undefined (\texttt{main.tex}, l.~2901, ll.~2989--2993); the constant $C_*$ of
+$c_\kappa\le\frac1{2\pi}\log\kappa+C_*$ is defined nowhere (l.~2917); and the Wick-chaos
+structure of $\Uc_h$ (``Wick isometry'', l.~2979; ``a sum \dots of Wick chaoses'', l.~3021;
+``$\Gamma(e^{-t})Y_r=e^{-rt}Y_r$'', l.~3029) is used but neither stated nor imported.  (These
+three descriptions were re-checked on \texttt{main.tex} for this section.)  The audit writes out
+repairs R1--R10 that need no new mathematics.  Accordingly, every statement of this note that
+uses one of these results is \emph{proved, conditional on repairs of the V3 audit}: on
+R1--R10 where Lemma~C.4 or Theorem~C.5 is used, and on R8 alone where only Lemma~C.2 or the
+comparison step in the proof of Theorem~C.5 is used (V3 report, \S2 and \S5, items
+C5.3--C5.4).  In this section Lemma~C.4 is used in Lemma~\ref{aux:notation-cutoffs}(iv),
+Lemma~\ref{aux:notation-transl}(iii)--(iv) and Lemma~\ref{aux:notation-cU}(iii)--(iv), and through
+them in Proposition~\ref{aux:notation-S2}(iii) (R1--R10); Theorem~C.5 in
+Proposition~\ref{aux:notation-S2}(i) (R1--R10); and the comparison step in
+Lemma~\ref{aux:notation-hyper}(ii) (R8).  In Appendix~\ref{app:constants}, every constant
+containing $S_2$, and the comparison constants $C_7c_U$ and $B'$ (Lemma~C.4 through
+Lemma~\ref{aux:notation-cU}(iv), and the condition of Lemma~\ref{lem:D1}), rest on R1--R10, and
+every constant containing only $Z$ or $9^{p'}$ on R8.\par}
+
+\emph{Inputs of this section.}  From the record: \S2.1, Definition~2.1, Assumptions~A2, A3, A4
+(its abstract form, in Lemma~\ref{aux:notation-hyper}) and A8(i)--(iv), Remark~2.5, \S2.6,
+Remark~3.3, the proofs of Lemma~6.1 and Proposition~6.2 (run on GJS's columns in
+Remark~\ref{aux:notation-counts}), the regularization of Appendix~C with Lemma~C.4 and
+Theorem~C.5, and the comparison step in the proof of Theorem~C.5; from GJS, pp.~589, 593 and 594
+as quoted.  No other source is used.  The note makes no new import; its conditional statuses rest
+on the import paragraph R8 that the V3 audit proposes, and closing the GAP after
+Lemma~\ref{aux:notation-wick} would need a further one.
+
+\subsection{Coordinates, squares, rows and columns}\label{sec:notation-squares}
+
+\emph{Working coordinates.}  We work in the working coordinates of the record, \S2.6
+\cite[p.~14]{R} and Remark~3.3 \cite[p.~16]{R}: the bare mass is $m_0=M_*$ and
+$\lambda<\lambda_*$, ``so that the \emph{unit-lattice} statements of Assumption~A8 apply
+literally in the working coordinates'' (\S2.6).  A point of the Euclidean plane is
+$z=(x^0,x^1)\in\R^2$, with $x^0$ the Euclidean time and $x^1$ the space coordinate; the
+slab cutoffs are $h_{T,g}=\mathbf 1_{[-T,T]}\otimes g$, i.e.\
+$h_{T,g}(z)=\mathbf 1_{[-T,T]}(x^0)\,g(x^1)$ (Assumption~A2 \cite[p.~8]{R}).  GJS also put
+time first: ``$\Phi(\tau,f)\equiv\Phi(\delta_\tau\otimes f)=\int\Phi(\tau,\vec x)f(\vec
+x)d\vec x$'' \cite[p.~589]{GJS}.
+
+\emph{The squares of GJS.}  The observables of GJS are the monomials (1.1.5)--(1.1.6), and
+p.~593 defines their localization as follows (read on the page image, quoted verbatim,
+misprints kept): ``$Q$ is said to be localized if $w(x)$ is supported in a product
+$\Delta_{j_1}\times\cdots\times\Delta_{j_n}\subset R^{2r}$ where $\Delta_{j_i}$ is the unit
+lattice square in $R^2$ centered at the lattice side $j_i\in Z^2$. We assume a bound on the
+$n_i$ in (1.1.5), $n_i<\bar n$. Any choice $\bar n\geqq\deg P$ is sufficient. Since there is
+no restriction on $r$, $Q$ still may have an arbitrarily large degree.'' and ``For a
+localized monomial $Q$ or $Q(x_0)$, let $N(\Delta)$ be the local degree, i.e.\ the sum of
+the $n_i$ for which $\Delta_{j_i}=\Delta$.'' \cite[p.~593]{GJS}.  (``side'' stands for
+``site''; the last index of the product is printed $n$ although the product lies in
+$R^{2r}$.)  Page~593 prints no convention for points on the lines of the lattice; the
+following definition supplies one, and it is used everywhere in this note.
+
+\begin{auxdef}[squares, rows, columns; the convention on lattice lines]\label{aux:notation-squares}
+For $(l,k)\in\Z^2$ let
+\[
+ \Delta_{l,k}:=[l-\tfrac12,\,l+\tfrac12)\times[k-\tfrac12,\,k+\tfrac12)\subset\R^2 ,
+\]
+the first factor being time.  \emph{Row} $l$ is $\bigcup_{k\in\Z}\Delta_{l,k}=[l-\frac12,
+l+\frac12)\times\R$ and \emph{column} $k$ is $\bigcup_{l\in\Z}\Delta_{l,k}=\R\times
+[k-\frac12,k+\frac12)$.  For a time $s\in\R$,
+\[
+ l_s:=\lfloor s+\tfrac12\rfloor
+\]
+is the row containing $s$, i.e.\ the unique integer with $l_s-\frac12\le s<l_s+\frac12$;
+for $x^1\in\R$, $k(x^1):=\lfloor x^1+\frac12\rfloor$ is the column containing $x^1$.  In
+particular a time on a lattice line, $s=l-\frac12$ with $l\in\Z$, lies in row $l_s=l$.  The
+\emph{sup-index distance} of $\Delta_{l,k}$ and $\Delta_{l',k'}$ is
+$\max\{|l-l'|,|k-k'|\}$.
+\end{auxdef}
+
+\begin{auxrem}[relation to the squares of p.~593 and to the record's cells]\label{aux:notation-gjslattice}
+\emph{(i)} The squares $\Delta_{l,k}$ partition $\R^2$: the point $z$ lies in exactly one of
+them, $\Delta_{l_{x^0},k(x^1)}$.  The closure
+$\overline{\Delta}_{l,k}=[l-\frac12,l+\frac12]\times[k-\frac12,k+\frac12]$ is the unit
+lattice square centred at the lattice site $(l,k)\in\Z^2$ of p.~593.  A kernel that vanishes
+almost everywhere outside a product of squares $\Delta_{j_1}\times\cdots\times\Delta_{j_r}$
+has its (closed) support in the product of their closures, so the monomial is localized in
+the sense of p.~593; this is how ``localized'' is read in this note, for (1.1.5) and for
+(1.1.6) alike (Assumption~A8(ii) \cite[p.~10]{R} defines ``localized'' for both forms).
+
+\emph{(ii)} For a sharp-time factor at time $x_{i,0}$, localization in a closed square
+requires $x_{i,0}\in[l-\frac12,l+\frac12]$; a time on a lattice line lies in two closed
+squares of the same column, and Definition~\ref{aux:notation-squares} assigns the factor to
+the square of row $l_{x_{i,0}}$.  Thus a sharp-time monomial at time $s$ whose spatial
+kernel vanishes almost everywhere outside $\prod_i[k_i-\frac12,k_i+\frac12)$ is localized in
+the squares $\Delta_{l_s,k_i}$, and these are \emph{its localization squares} in this note.
+The choice of row changes neither the local degrees nor $\|w(x_0,\cdot)\|_2$, hence not the
+norm (1.1.8) (eq.~(1) of the record, \cite[p.~10]{R}; cf.\ Remark~6.3 \cite[p.~20]{R}); the
+strips of \S\ref{sec:notation-strips} are computed for the row $l_s$, and every strip
+written there for that assignment separates the closed squares as well.
+
+\emph{(iii)} The record counts in the cells $[j,j+1)$ (\S\S5--6 \cite[pp.~18--20]{R}),
+``this lattice shifted by one half unit in space'' (Assumption~A8(ii) \cite[p.~10]{R}).
+Following finding F3 of the plan, this note uses the squares of
+Definition~\ref{aux:notation-squares} only.  The next remark records the one place where
+the two lattices give different counts.
+
+\emph{(iv) A reading of the source.}  GJS print (1.1.5)--(1.1.6) as formal integrals (p.~593),
+define the action ``(1.8) $V(h)=\lambda\int_{R^2}:\mathscr P(\Phi(x)):h(x)dx$ as a function on
+$\mathscr S'(R^2)$, where $:\ :$ denotes Wick order with respect to the measure $d\Phi$, as in
+[9], [1]'' (p.~589), and give no construction.  That the random variables of this note --- the
+one-square interactions $U_{\Delta,n}$ (Definition~\ref{aux:notation-UDelta}), the sharp-time
+objects of Lemmas~\ref{aux:notation-wick}--\ref{aux:notation-sharpid}, the regularized limits of
+\S\ref{sec:d1} and the pieces of $Q_V$ in \S\ref{sec:d4} --- are GJS's monomials of p.~593 under
+GJS's $dq_h$, and that the record's $\Uc_h$ is GJS's $V(h)$, is a \emph{reading} of the source,
+of the kind Assumption~A8, Scope~(d), of the record names \cite[p.~13]{R}.  It is named in the
+status lines of Lemma~\ref{lem:D2} and Theorems~\ref{thm:D3}--\ref{thm:D4} and in
+Appendix~\ref{app:gates}.  Item~10 of \texttt{part\_i/C5\_reading\_record.md}, still open, asks a
+human reader to confirm the printed text of (1.1.5)--(1.1.6) and of the multi-time notation
+(pp.~593, 595) on which the reading rests; it does not check the reading itself.  At sharp time,
+Lemma~\ref{aux:notation-sharpid} shows that the two regularizations used in this note give the
+same objects.
+\end{auxrem}
+
+\begin{auxrem}[counts on the squares of p.~593]\label{aux:notation-counts}
+For a bounded interval $I\subset\R$ of length $L$ put
+\[
+ N^{\square}_I:=\#\{k\in\Z:\ |I\cap[k-\tfrac12,k+\tfrac12)|>0\},
+\]
+the number of columns meeting $I$ in positive measure, and recall the record's
+$N_I:=\#\{j\in\Z:\ |I\cap[j,j+1)|>0\}$ (\S6 \cite[p.~19]{R}).
+
+\emph{(i)} $N^{\square}_I\le\lfloor L\rfloor+2$.  The proof of Lemma~6.1 \cite[p.~19]{R}
+uses only that the cells are consecutive unit intervals partitioning $\R$; run with the
+columns: if $k_{\min}\le k_{\max}$ are the extreme columns meeting $I$ in positive measure,
+then $\inf I<k_{\min}+\frac12$ and $\sup I>k_{\max}-\frac12$, so
+$L>k_{\max}-k_{\min}-1$, whence $k_{\max}-k_{\min}-1\le\lceil L\rceil-1\le\lfloor
+L\rfloor$ and $N^{\square}_I\le k_{\max}-k_{\min}+1\le\lfloor L\rfloor+2$.
+
+\emph{(ii)} The two counts differ in general: $I=(-0.1,0.1)$ gives $N_I=2$ and
+$N^{\square}_I=1$; $I=(0.4,0.6)$ gives $N_I=1$ and $N^{\square}_I=2$.
+
+\emph{(iii)} Consequently the bounds that the record states with $N_I$ --- Proposition~6.2,
+eqs.~(7)--(8) \cite[p.~20]{R}, and the constant $K'=K_2^2N_I^{1/2}\|f\|_2$ of
+Lemma~7.6 \cite[p.~22]{R} --- are used in this note, for norms computed on the squares of
+Definition~\ref{aux:notation-squares}, with $N_I$ replaced by $N^{\square}_I$.  The proof of
+Proposition~6.2 uses the cells only through the decomposition
+$f_i=\sum_jf_i\mathbf 1_{[j,j+1)}$ and the Cauchy--Schwarz step over the $N_I$ cells; with
+the columns $[k-\frac12,k+\frac12)$ in place of the cells it runs verbatim and gives
+\[
+ \GJS{Q}\le K_1K_2^{2r}r!\,(N^{\square}_I)^{r/2}\prod_{i=1}^r\|f_i\|_2 ,\qquad
+ \GJS{Q^2}\le K_1K_2^{4r}(2r)!\,(N^{\square}_I)^{r}\prod_{i=1}^r\|f_i\|_2^2
+ \tag{N.a}
+\]
+for a cylinder monomial $Q=\prod_{i=1}^r\varphi_0(f_i)$ at one sharp time, $\supp
+f_i\subseteq I$.  With $N_I$ itself the first bound can fail on these squares: for $r=1$ and
+$f$ supported in $(0.4,0.6)$ and even about $\frac12$, the localized pieces of
+$Q=\varphi_0(f)$ on the squares of Definition~\ref{aux:notation-squares} are
+$\varphi_0(f\mathbf 1_{[-1/2,1/2)})$ and $\varphi_0(f\mathbf 1_{[1/2,3/2)})$, and (1.1.9)
+gives $\GJS{Q}=K_1K_2^2(\|f\mathbf 1_{[-1/2,1/2)}\|_2+\|f\mathbf
+1_{[1/2,3/2)}\|_2)=\sqrt2\,K_1K_2^2\|f\|_2$, while (7) with $N_I=1$ asserts
+$\GJS{Q}\le K_1K_2^2\|f\|_2$.  Both counts obey the bound (i), so every constant written
+with $\lfloor L\rfloor+2$ in place of the count is valid on both lattices.
+\end{auxrem}
+
+\subsection{Boxes, the restricted cutoff $h^B$ and the path $h_\alpha$}\label{sec:notation-boxes}
+
+\begin{auxdef}[boxes; restriction; charged squares]\label{aux:notation-box}
+A \emph{box} is a set
+\[
+ B=\bigcup_{l=l_1}^{l_2}\ \bigcup_{k=k_1}^{k_2}\Delta_{l,k}
+ =[l_1-\tfrac12,\,l_2+\tfrac12)\times[k_1-\tfrac12,\,k_2+\tfrac12),
+ \qquad l_1\le l_2,\ k_1\le k_2\ \text{integers};
+\]
+its \emph{shape} is the pair $(l_2-l_1+1,\;k_2-k_1+1)$ of the numbers of its rows and
+columns, and $|B|:=(l_2-l_1+1)(k_2-k_1+1)$ is the number of its squares, which equals the
+area of $B$ and of its closure $\overline B$.  Since the squares partition $\R^2$ and $B$ is
+a union of squares, a square $\Delta$ satisfies $\Delta\not\subseteq B$ if and only if
+$\Delta\cap B=\varnothing$.  For a function $h$ on $\R^2$ and a box $B$,
+\[
+ h^B:=h\,\mathbf 1_B,\qquad h_\alpha:=h^B+\alpha\,(h-h^B)\quad(\alpha\in[0,1]),
+\]
+and $\mathfrak S(h):=\{\Delta:\int_\Delta h\,dz>0\}$ is the set of squares \emph{charged}
+by $h$.  For a measurable $h$, $\supp h$ denotes the closure of $\{z:h(z)\ne0\}$.
+\end{auxdef}
+
+The class $\CE$ is Definition~2.1 of the record \cite[p.~7]{R}:
+\[
+ \text{``}\CE:=\{h:\R^2\to[0,1]\ \text{measurable},\ \supp h\ \text{compact}\}
+ \quad\text{(Euclidean class)''},
+\]
+``the printed class[\,] of \cite[p.~589]{GJS}''; on p.~589 GJS write ``Let $h$ be
+a function with compact support in $R^2$, and let $0\leqq h\leqq1$.''  Assumption~A8(i)
+\cite[p.~10]{R} reads: ``For $h\in\CE$, $dq_h=Z(h)^{-1}e^{-\mathcal U_h}d\mu_0$ as in
+Assumption~A3''; and Assumption~A3 \cite[p.~8]{R} gives, for every $h\in\CE$,
+$\Uc_h\in L^p(\dmu)$ for every $p<\infty$ and $0<Z(h)<\infty$.
+
+\begin{auxlemma}[the cutoffs of the comparison lie in $\CE$]\label{aux:notation-cutoffs}
+Let $h\in\CE$ and let $B$ be a box.
+\begin{enumerate}
+\item[\textup{(i)}] $h^B$, $h-h^B$ and $h\mathbf 1_\Delta$ (for every square $\Delta$) belong
+to $\CE$, and $\supp h^B\subseteq\overline B\cap\supp h$.
+\item[\textup{(ii)}] For every $\alpha\in[0,1]$, $h_\alpha=(1-\alpha)h^B+\alpha h=h\,(\mathbf
+1_B+\alpha\mathbf 1_{\R^2\setminus B})$ belongs to $\CE$; moreover $h^B\le h_\alpha\le h$
+pointwise, $h_0=h^B$, $h_1=h$, and $\supp h_\alpha\subseteq\supp h$.
+\item[\textup{(iii)}] $\mathfrak S(h)$ is finite, every $\Delta\in\mathfrak S(h)$ meets
+$\supp h$, and $h-h^B=\sum_{\Delta\in\mathfrak S(h),\ \Delta\cap B=\varnothing}h\mathbf
+1_\Delta$ almost everywhere.
+\item[\textup{(iv)}] If $h_1,\dots,h_m\in\CE$ and $c_1,\dots,c_m\in\R$ satisfy
+$\sum_ic_ih_i=0$ almost everywhere, then $\sum_ic_i\Uc_{h_i}=0$ in $L^2(\dmu)$.  In
+particular
+\[
+ \Uc_{h_\alpha}=\Uc_{h^B}+\alpha\,\Uc_{h-h^B}\quad(\alpha\in[0,1]),\qquad
+ \Uc_{h-h^B}=\sum_{\Delta\in\mathfrak S(h),\ \Delta\cap B=\varnothing}\Uc_{h\mathbf 1_\Delta} .
+\]
+\end{enumerate}
+\end{auxlemma}
+
+\begin{proof}
+(i) $B$ and $\Delta$ are Borel sets, so $h\mathbf 1_B$, $h\mathbf 1_{\R^2\setminus B}=h-h^B$
+and $h\mathbf 1_\Delta$ are products of measurable functions, hence measurable; they take
+values in $[0,1]$ because $h$ does and the indicators take values in $\{0,1\}$.  Each
+vanishes wherever $h$ does, so its set of non-zeros lies in $\{h\ne0\}$ and its support is
+a closed subset of the compact set $\supp h$, hence compact.  For $h^B$ the non-zeros lie in
+$B\cap\{h\ne0\}$, whose closure lies in $\overline B\cap\supp h$.
+
+(ii) Pointwise, $h^B+\alpha(h-h^B)=h\mathbf 1_B+\alpha h\mathbf 1_{\R^2\setminus B}$, which
+equals $(1-\alpha)h^B+\alpha h$.  For $0\le\alpha\le1$ and $0\le h\le1$ this gives $0\le
+h\mathbf 1_B\le h_\alpha\le h\le1$; $h_\alpha$ is measurable, and $\{h_\alpha\ne0\}\subseteq
+\{h\ne0\}$ gives $\supp h_\alpha\subseteq\supp h$, compact.  At $\alpha=0,1$ the formula
+gives $h^B$ and $h$.
+
+(iii) $\supp h$ is compact, hence contained in $[-\rho,\rho]^2$ for some $\rho$, which meets
+only finitely many squares.  If $\int_\Delta h>0$, the set $\Delta\cap\{h>0\}$ has positive
+measure, so $\Delta$ meets $\{h\ne0\}\subseteq\supp h$; hence $\mathfrak S(h)$ is finite.
+Since the squares partition $\R^2$ and $B$ is a union of squares, $\mathbf 1_{\R^2\setminus
+B}=\sum_{\Delta\cap B=\varnothing}\mathbf 1_\Delta$ pointwise, so $h-h^B=\sum_{\Delta\cap
+B=\varnothing}h\mathbf 1_\Delta$ pointwise, with only the finitely many squares meeting
+$\{h\ne0\}$ contributing.  If $\Delta\notin\mathfrak S(h)$, then $h\ge0$ and $\int_\Delta
+h=0$ give $h\mathbf 1_\Delta=0$ almost everywhere, and these terms may be dropped.
+
+(iv) We use the record's regularization (Appendix~C, the notation paragraph before Lemma~C.2
+\cite[pp.~39--40]{R}): $\Phi_\kappa=\delta_\kappa*\Phi$ with an even mollifier
+$\delta_\kappa$, the variance $c_\kappa$ of $\Phi_\kappa(z)$, and
+$\Uc_{h,\kappa}=\lambda\int h\,{:}\mathscr P(\Phi_\kappa){:}_{c_\kappa}dz$.  For every
+$q\in\mathcal S'(\R^2)$ the function $z\mapsto\Phi_\kappa(z)(q)=(q*\delta_\kappa)(z)$ is
+smooth, and ${:}\mathscr P(y){:}_{c}=\sum_na_nc^{n/2}\operatorname{He}_n(y/\sqrt c)$ is a
+polynomial in $y$; so $\Uc_{h,\kappa}(q)$ is the integral of $h$ against a function bounded
+on the compact $\supp h$, linear in $h$ and unchanged when $h$ is changed on a null set.
+Hence $\sum_ic_i\Uc_{h_i,\kappa}=\lambda\int(\sum_ic_ih_i){:}\mathscr
+P(\Phi_\kappa){:}_{c_\kappa}dz=0$ pointwise.  Lemma~C.4 \cite[p.~40]{R} states: ``There is
+$c_2=c_2(\lambda,\mathscr P,\Lambda)$ such that for all $h\in\CE$ with
+$\supp h\subseteq\Lambda$ and all $\kappa\ge2$, $\|\Uc_h-\Uc_{h,\kappa}\|_{L^2(d\mu_0)}^2\le
+c_2\,\kappa^{-1}(\log\kappa)^{2p'}$.''  Its hypotheses hold for each $h_i$, with
+$\Lambda:=\bigcup_i\supp h_i$ (compact) and every $\kappa\ge2$; it is used conditional on the
+repairs R1--R10 of the V3 audit (introduction of this section), which also supply the meaning of
+$\Uc_h$ as an element of $L^2(\dmu)$.  Therefore
+\[
+ \Bigl\|\sum_ic_i\Uc_{h_i}\Bigr\|_{L^2(\dmu)}
+ \le\sum_i|c_i|\,\|\Uc_{h_i}-\Uc_{h_i,\kappa}\|_{L^2(\dmu)}
+ \le\Bigl(\sum_i|c_i|\Bigr)\bigl(c_2\kappa^{-1}(\log\kappa)^{2p'}\bigr)^{1/2}
+ \xrightarrow[\kappa\to\infty]{}0 .
+\]
+The two displayed identities are the cases $h_\alpha-h^B-\alpha(h-h^B)=0$ (all three in
+$\CE$ by (i)--(ii)) and (iii).  The same identities follow without Lemma~C.4 from Step~1 of the
+proof of Lemma~\ref{lem:D1} (\S\ref{sec:d1}), which proves from Lemma~\ref{aux:d1-moments}(a) that
+the regularizations converge in $L^2(\dmu)$ for every bounded kernel of compact support and that
+the limit is linear in the kernel, \emph{provided $\Uc_h$ is read as that limit}.  This is a
+reading the record itself does not make: the record states no construction of $\Uc_h$ (V3 audit,
+finding M-3); its notation paragraph asserts, without proof, that $\Uc_{h,\kappa}\to\Uc_h$
+\cite[p.~39]{R} (V3 audit, item m-1); and Assumption~A3 imports $\Uc_h$ with Theorem~V.7 of
+Simon's book as its source (\texttt{main.tex}, l.~535, \cite[p.~8]{R}).  Identifying the limit
+with the $\Uc_h$ that A3 imports is the condition that \S\ref{sec:d1} states for Step~1 (the status
+paragraph after Lemma~\ref{lem:D1}); on the reading, that identification moves into the import of
+Assumption~A3.
+\end{proof}
+
+In Lemma~\ref{lem:D1} the path is used with $h_1=h^B$ and $h_2=h$; there
+$h_2-h_1=h-h^B\ge0$, and it enters only as the observable $\Uc_{h-h^B}$, never as a cutoff.
+
+\subsection{Strips and the strip width}\label{sec:notation-strips}
+
+The exponent of (1.1.10) is a strip width, printed on p.~594 as follows (read on the page
+image, quoted verbatim; the sentence ends without a period in the source): ``For two
+localized monomials $Q_1$ and $Q_2$, with disjoint localization squares
+$\{\Delta^{(1)}_{j_i}\}$ and $\{\Delta^{(2)}_{j_l}\}$ respectively, let $d$ be the width of
+the widest strip bounded by two parallel lines, and separating the $\{\Delta^{(1)}_{j_i}\}$
+from the $\{\Delta^{(2)}_{j_l}\}$'' \cite[p.~594]{GJS}.  No orientation is prescribed.
+
+\begin{auxdef}[strips; separation; orientation; strip width]\label{aux:notation-stripdef}
+Let $L_1,L_2$ be parallel lines in $\R^2$.  If $L_1\ne L_2$, the open region between them is
+a \emph{strip} of width $\dist(L_1,L_2)$, and its complement is the union of two disjoint
+closed half-planes $H_1,H_2$ with boundaries $L_1,L_2$.  If $L_1=L_2=:L$, the strip is the
+line $L$ itself, of width $0$, and $H_1,H_2$ are the two closed half-planes bounded by $L$.
+The strip \emph{separates} $X\subseteq\R^2$ from $Y\subseteq\R^2$ if $X\subseteq H_1$ and
+$Y\subseteq H_2$, or the other way round; since $H_1,H_2$ are closed, it then also separates
+$\overline X$ from $\overline Y$.  The strip is \emph{parallel} (to the time-zero line
+$\{x^0=0\}$) if $L_1,L_2$ are lines $\{x^0=\text{const}\}$, and \emph{transverse}
+otherwise.  For a square $\Delta$ and a non-empty finite set $R$ of squares with
+$\Delta\notin R$,
+\[
+ d(\Delta,R):=\sup\Bigl\{\text{width of }S:\ S\text{ a strip separating }\Delta\text{ from }
+ \textstyle\bigcup_{\Delta'\in R}\Delta'\Bigr\},
+\]
+defined whenever some strip separates them.
+\end{auxdef}
+
+If $Q_2$ is localized in $\Delta$ and $Q_1$ in squares of $R$, then every strip separating
+$\Delta$ from $\bigcup R$ separates the localization squares of $Q_2$ from those of $Q_1$, so
+its width $w$ is at most the $d$ of p.~594, and $e^{-m_1d}\le e^{-m_1w}$ because $m_1>0$.
+Every application of (1.1.10) in this note is made in this weakened form, with the width of
+one explicit separating strip.
+
+\begin{auxlemma}[strip width]\label{aux:notation-strip}
+Let $S:=\{\Delta_{l',k'}:l_1\le l'\le l_2,\ k_1\le k'\le k_2\}$ be a rectangle of squares, let
+$R\subseteq S$ be non-empty, and let $\Delta=\Delta_{l,k}\notin S$.  Put
+\[
+ \rho_t:=\max\{l_1-l,\,0,\,l-l_2\},\qquad\rho_x:=\max\{k_1-k,\,0,\,k-k_2\},\qquad
+ m:=\max\{\rho_t,\rho_x\},
+\]
+so that $m\ge1$ is the sup-index distance from $\Delta$ to the nearest square of $S$.
+\begin{enumerate}
+\item[\textup{(i)}] If $\rho_t\ge1$, the strip bounded by the lines $x^0=l_2+\frac12$ and
+$x^0=l-\frac12$ (if $l>l_2$), resp.\ $x^0=l+\frac12$ and $x^0=l_1-\frac12$ (if $l<l_1$), is
+\emph{parallel}, has width $\rho_t-1$, and separates $\Delta$ from $\bigcup S$.
+\item[\textup{(ii)}] If $\rho_x\ge1$, the strip bounded by the lines $x^1=k_2+\frac12$ and
+$x^1=k-\frac12$ (if $k>k_2$), resp.\ $x^1=k+\frac12$ and $x^1=k_1-\frac12$ (if $k<k_1$), is
+\emph{transverse} (it is perpendicular to the time-zero line), has width $\rho_x-1$, and
+separates $\Delta$ from $\bigcup S$.
+\item[\textup{(iii)}] $d(\Delta,R)$ is defined and $d(\Delta,R)\ge m-1$.  If $m\ge2$, the
+strip of \textup{(i)} or \textup{(ii)} realising $m-1$ has width $\ge1$.
+\item[\textup{(iv)}] \textup{(Rows next to $R$.)}  If $R$ contains a square in a row $l'$
+with $|l-l'|\le1$, then no parallel strip of positive width separates $\Delta$ from
+$\bigcup R$: every strip of positive width that separates them is transverse.
+\item[\textup{(v)}] \textup{(Monotonicity.)}  If $\varnothing\ne R_1\subseteq R$, then
+$d(\Delta,R_1)\ge d(\Delta,R)$.
+\end{enumerate}
+\end{auxlemma}
+
+\begin{proof}
+Every square $\Delta_{l',k'}$ is contained in $\{l'-\frac12\le x^0<l'+\frac12\}$ and in
+$\{k'-\frac12\le x^1<k'+\frac12\}$.
+
+(i) Let $l>l_2$, so $\rho_t=l-l_2\ge1$.  Then $\bigcup S\subseteq\{x^0\le l_2+\frac12\}$ and
+$\Delta\subseteq\{x^0\ge l-\frac12\}$.  If $\rho_t\ge2$, the lines $x^0=l_2+\frac12$ and
+$x^0=l-\frac12$ are distinct, the open strip $\{l_2+\frac12<x^0<l-\frac12\}$ has width
+$(l-\frac12)-(l_2+\frac12)=\rho_t-1$, and the two closed half-planes just named are the
+complement of that strip; if $\rho_t=1$ the two lines coincide and the strip of width $0$
+separates.  The case $l<l_1$ is the same with $\bigcup S\subseteq\{x^0\ge l_1-\frac12\}$,
+$\Delta\subseteq\{x^0\le l+\frac12\}$ and width $(l_1-\frac12)-(l+\frac12)=l_1-l-1=\rho_t-1$.
+The bounding lines are lines of constant $x^0$, so the strip is parallel.
+
+(ii) The same computation in the coordinate $x^1$, with columns in place of rows; the
+bounding lines $\{x^1=\text{const}\}$ are perpendicular to $\{x^0=0\}$, so the strip is
+transverse.
+
+(iii) $\Delta\notin S$ means $l\notin[l_1,l_2]$ or $k\notin[k_1,k_2]$, i.e.\ $m\ge1$.  If
+$m=\rho_t$, (i) gives a strip of width $m-1$ separating $\Delta$ from $\bigcup S$;
+otherwise $m=\rho_x$ and (ii) does.  As $\bigcup R\subseteq\bigcup S$, the same strip
+separates $\Delta$ from $\bigcup R$.  So $d(\Delta,R)$ is defined and at least $m-1$, which
+is $\ge1$ when $m\ge2$.
+
+(iv) Let $\Delta'\in R$ lie in row $l'$ with $|l-l'|\le1$, and suppose that the parallel
+strip $\{\alpha<x^0<\beta\}$, $\beta>\alpha$, separates $\Delta$ from $\bigcup R$.  If
+$\Delta\subseteq\{x^0\le\alpha\}$ and $\Delta'\subseteq\{x^0\ge\beta\}$, then, because
+$\Delta$ contains points with $x^0$ arbitrarily close to $l+\frac12$ and $\Delta'$ contains
+points with $x^0=l'-\frac12$, we get $l+\frac12\le\alpha$ and $l'-\frac12\ge\beta$, whence
+$l'-l\ge1+(\beta-\alpha)>1$, a contradiction.  The other case,
+$\Delta\subseteq\{x^0\ge\beta\}$ and $\Delta'\subseteq\{x^0\le\alpha\}$, gives
+$l-l'>1$ in the same way.
+
+(v) A strip separating $\Delta$ from $\bigcup R$ separates $\Delta$ from the subset
+$\bigcup R_1$, so the supremum defining $d(\Delta,R_1)$ is over a larger set.
+\end{proof}
+
+\begin{auxrem}[the bound fails for a general $R$]\label{aux:notation-counterex}
+The rectangle $S\supseteq R$ in Lemma~\ref{aux:notation-strip} cannot be dropped.  Let
+$R=\{\Delta_{0,0},\Delta_{0,4}\}$ and $\Delta=\Delta_{0,2}$ (verifier, item m2 of the R3
+report).  Each square of $R$ is at sup-index distance $2$ from $\Delta$, but no strip, of
+positive or of zero width, separates $\Delta$ from $\Delta_{0,0}\cup\Delta_{0,4}$: a closed
+half-plane containing $\Delta_{0,0}\cup\Delta_{0,4}$ contains the closures and their convex
+hull $[-\frac12,\frac12]\times[-\frac12,\frac92]$, which contains
+$\overline\Delta_{0,2}=[-\frac12,\frac12]\times[\frac32,\frac52]$; so a separating strip would
+place $\Delta$ in $H_1\cap H_2$, which is empty for positive width and a line for width
+$0$, and a square lies in neither.  Thus $d(\Delta,R)$ is undefined, (1.1.10) does not apply
+to a pair localized in $R$ and in $\Delta$, and the inequality
+``$d(\Delta,R)\ge(\text{sup-index distance to the nearest square of }R)-1$'' is false.
+Lemma~\ref{aux:notation-strip} measures the distance to a rectangle containing $R$; here
+every such rectangle contains $\Delta$.
+\end{auxrem}
+
+\begin{auxrem}[tilted strips]\label{aux:notation-tilted}
+Lemma~\ref{aux:notation-strip} uses axis-parallel strips and gives lower bounds only; the
+widest separating strip may be tilted and wider.  For $R=\{\Delta_{0,0}\}$ and
+$\Delta=\Delta_{3,3}$ the axis-parallel strips have width $2$, while the strip between the
+lines $x^0+x^1=1$ and $x^0+x^1=5$ separates $\overline\Delta_{0,0}$ (on which $x^0+x^1\le1$)
+from $\overline\Delta_{3,3}$ (on which $x^0+x^1\ge5$) and has width $4/\sqrt2=2\sqrt2$.  A
+tilted strip is transverse in the sense of Definition~\ref{aux:notation-stripdef}; the note
+never needs one.
+\end{auxrem}
+
+\subsection{The $3\times5$ box and its rings}\label{sec:notation-rings}
+
+\begin{auxdef}[the box $B_{3\times5}$ and its rings]\label{aux:notation-ringdef}
+For $a\in\R$ let $k_a:=\lfloor a+\frac12\rfloor$ and
+\[
+ S_a:=\{\Delta_{0,k}:\ k_a\le k\le k_a+2\},
+\]
+\[
+ B^{(j)}:=\bigcup\{\Delta_{l,k}:\ |l|\le1+j,\ k_a-1-j\le k\le k_a+3+j\}\qquad(j\ge0),
+\]
+and $B_{3\times5}=B_{3\times5}(a):=B^{(0)}$, the rows $-1,0,1$ times the columns
+$k_a-1,\dots,k_a+3$.  For $j\ge1$ the \emph{ring} $\mathcal L_j$ is the set of squares
+contained in $B^{(j)}$ and not in $B^{(j-1)}$.  For a square $\Delta_{l,k}$ put
+$\delta(\Delta_{l,k}):=\max\{|l|-1,\ k_a-1-k,\ k-k_a-3\}$.
+\end{auxdef}
+
+\begin{auxlemma}[ring count and strip widths around $B_{3\times5}$]\label{aux:notation-rings}
+Let $a\in\R$ and let $R\subseteq S_a$ be non-empty.
+\begin{enumerate}
+\item[\textup{(i)}] The columns $k$ with $[k-\frac12,k+\frac12)\cap[a,a+2]\ne\varnothing$ are
+exactly $k_a,k_a+1,k_a+2$; the columns meeting $[a,a+2]$ in positive measure are among
+them.  Hence every square of row $0$ whose column meets $[a,a+2]$ lies in $S_a$, and
+$|B_{3\times5}|=15$.
+\item[\textup{(ii)}] $\Delta\subseteq B^{(j)}$ if and only if $\delta(\Delta)\le j$.  The rings
+$\mathcal L_j=\{\Delta:\delta(\Delta)=j\}$, $j\ge1$, are pairwise disjoint, their union is
+the set of all squares $\Delta\not\subseteq B_{3\times5}$, and $|\mathcal L_j|=8j+12$.
+\item[\textup{(iii)}] The $20$ squares of $\mathcal L_1$ are $\Delta_{2,k}$ and $\Delta_{-2,k}$
+for $k_a-2\le k\le k_a+4$ (fourteen squares) and $\Delta_{l,k_a-2}$, $\Delta_{l,k_a+4}$ for
+$|l|\le1$ (six squares).
+\item[\textup{(iv)}] Every $\Delta=\Delta_{l,k}\in\mathcal L_j$ satisfies $d(\Delta,R)\ge j$.  If
+$|l|=1+j$, a parallel strip of width $j$ separates $\Delta$ from $\bigcup R$.  If $|l|\le j$,
+then $\Delta$ lies in column $k_a-1-j$ or $k_a+3+j$, a transverse strip of width $j$
+separates it, and every parallel strip separating it has width at most $|l|-1\le j-1$ (none
+of positive width if $|l|\le1$).  The four corner squares ($|l|=1+j$ in the two side
+columns) admit both strips of width $j$.
+\item[\textup{(v)}] For the squares of rows $-1,0,1$ outside $B_{3\times5}$, i.e.\
+$\Delta_{l,k}$ with $|l|\le1$ and $k\le k_a-2$ or $k\ge k_a+4$, no parallel strip of positive
+width separates $\Delta_{l,k}$ from $\bigcup R$: every strip of positive width separating
+them is transverse.
+\item[\textup{(vi)}] For every $m_1>0$, with $x:=e^{-m_1}\in(0,1)$, put
+\[
+ \overline\Sigma_{3\times5}:=\sum_{j\ge1}(8j+12)\,e^{-m_1j}=\frac{4x\,(5-3x)}{(1-x)^2}
+ =\frac{4e^{-m_1}\,(5-3e^{-m_1})}{(1-e^{-m_1})^2} .
+\]
+With the strips of \textup{(iv)}, of width $w_\Delta:=j$ for $\Delta\in\mathcal L_j$,
+$\sum_{\Delta\not\subseteq B_{3\times5}}e^{-m_1w_\Delta}=\overline\Sigma_{3\times5}$; and the sum
+over the widest strips, which depends on $R$, satisfies
+\[
+ \Sigma_{3\times5}:=\sum_{\Delta\not\subseteq B_{3\times5}}e^{-m_1d(\Delta,R)}
+ \le\overline\Sigma_{3\times5} .
+\]
+\end{enumerate}
+\end{auxlemma}
+
+\begin{proof}
+(i) $[k-\frac12,k+\frac12)\cap[a,a+2]\ne\varnothing$ if and only if $k-\frac12\le a+2$ and
+$k+\frac12>a$, i.e.\ $a-\frac12<k\le a+\frac52$.  The interval $(a-\frac12,a+\frac52]$ is
+half-open of length $3$, so it contains exactly three integers; the smallest integer
+$>a-\frac12$ is $\lfloor a-\frac12\rfloor+1=\lfloor a+\frac12\rfloor=k_a$.  A column meeting
+$[a,a+2]$ in positive measure meets it.  The rows of $S_a$ and the columns of $B^{(0)}$ give
+$|B_{3\times5}|=3\cdot5=15$.
+
+(ii) $\Delta_{l,k}\subseteq B^{(j)}$ iff $|l|\le1+j$, $k\ge k_a-1-j$ and $k\le k_a+3+j$, i.e.\
+iff $|l|-1\le j$, $k_a-1-k\le j$ and $k-k_a-3\le j$, i.e.\ iff $\delta(\Delta_{l,k})\le j$.
+Since $\delta$ takes integer values, $\mathcal L_j=\{\delta=j\}$; these sets are disjoint
+for different $j$, and $\Delta\not\subseteq B_{3\times5}=B^{(0)}$ iff $\delta(\Delta)\ge1$.
+$B^{(j)}$ has $2(1+j)+1=3+2j$ rows and $(k_a+3+j)-(k_a-1-j)+1=5+2j$ columns, and
+$B^{(j-1)}\subseteq B^{(j)}$, so
+\[
+ |\mathcal L_j|=(3+2j)(5+2j)-(1+2j)(3+2j)=(3+2j)\bigl[(5+2j)-(1+2j)\bigr]=4(3+2j)=8j+12 .
+\]
+
+(iii) $\delta(\Delta_{l,k})=1$ means: either $|l|=2$ and $k_a-2\le k\le k_a+4$ ($2\times7$
+squares), or $|l|\le1$ and $k\in\{k_a-2,k_a+4\}$ ($3\times2$ squares); $14+6=20=8\cdot1+12$.
+
+(iv) $S_a$ is the rectangle of Lemma~\ref{aux:notation-strip} with $l_1=l_2=0$, $k_1=k_a$,
+$k_2=k_a+2$, and $\Delta\notin S_a$ since $\delta(\Delta)\ge1$.  Let $\Delta=\Delta_{l,k}\in
+\mathcal L_j$.  If $|l|-1=j$, then $\rho_t=|l|=j+1\ge2$ and Lemma~\ref{aux:notation-strip}(i)
+gives a parallel strip of width $j$.  If $k_a-1-k=j$, then $\rho_x=k_a-k=j+1$ and
+Lemma~\ref{aux:notation-strip}(ii) gives a transverse strip of width $j$; if $k-k_a-3=j$, then
+$\rho_x=k-(k_a+2)=j+1$, and again a transverse strip of width $j$.  At least one of the three
+cases holds because $\delta(\Delta)=j$; if $|l|\le j$ the first fails, so $\Delta$ lies in a
+side column.  Each strip separates $\Delta$ from $\bigcup S_a\supseteq\bigcup R$, so
+$d(\Delta,R)\ge j$.  For a parallel strip $\{\alpha<x^0<\beta\}$ separating $\Delta$ from a
+square $\Delta'\in R$ of row $0$, the computation in the proof of
+Lemma~\ref{aux:notation-strip}(iv) gives $\beta-\alpha\le|l|-1$; for $|l|\le1$ this excludes
+positive width.  The corners have $|l|=1+j$ and $k\in\{k_a-1-j,k_a+3+j\}$.
+
+(v) $R$ is a non-empty subset of row $0$, and $|l-0|\le1$; apply
+Lemma~\ref{aux:notation-strip}(iv).
+
+(vi) By (ii) the sum over $\Delta\not\subseteq B_{3\times5}$ is the sum over $j\ge1$ of the
+sums over $\mathcal L_j$, which have $8j+12$ terms each, all equal to $e^{-m_1w_\Delta}=x^j$;
+this gives $\sum_\Delta e^{-m_1w_\Delta}=\sum_{j\ge1}(8j+12)x^j$.  By (iv), $d(\Delta,R)\ge
+w_\Delta=j$ for $\Delta\in\mathcal L_j$, and $m_1>0$, so $e^{-m_1d(\Delta,R)}\le x^j$ and
+$\Sigma_{3\times5}\le\overline\Sigma_{3\times5}$.  The closed form: for $0\le x<1$ and $N\ge1$,
+\[
+ (1-x)\sum_{j=1}^Nx^j=x-x^{N+1},\qquad
+ (1-x)\sum_{j=1}^Njx^j=\sum_{j=1}^Nx^j-Nx^{N+1},
+\]
+and $x^{N+1}\to0$, $Nx^{N+1}\to0$ as $N\to\infty$; hence $\sum_{j\ge1}x^j=x/(1-x)$ and
+$\sum_{j\ge1}jx^j=x/(1-x)^2$, and
+\[
+ \sum_{j\ge1}(8j+12)x^j=\frac{8x}{(1-x)^2}+\frac{12x}{1-x}
+ =\frac{8x+12x-12x^2}{(1-x)^2}=\frac{4x(5-3x)}{(1-x)^2} .
+\]
+Test by hand: $4x(5-3x)(1-x)^{-2}=4x(5-3x)(1+2x+3x^2+\cdots)=20x+28x^2+\cdots$, and
+$8\cdot1+12=20$, $8\cdot2+12=28$.
+\end{proof}
+
+\begin{auxrem}[comparison and check]\label{aux:notation-ringrem}
+(a) The bound $(2j+3)(2j+5)$ of the plan (\texttt{aqft}) is $|B^{(j)}|$, the number of
+squares of the box that contains $\mathcal L_j$; it is valid and cruder.
+(b) \emph{Where the transverse case enters.}  The squares of rows $-1,0,1$ outside
+$B_{3\times5}$ admit no parallel strip of positive width
+(Lemma~\ref{aux:notation-rings}(v)).  The other side squares of $\mathcal L_j$, in rows
+$2\le|l|\le j$, admit parallel strips, but only of width $\le|l|-1<j$; the bound
+$d(\Delta,R)\ge j$ uses the transverse strip for them too.  It cannot be replaced by the
+parallel width without losing the uniformity: for fixed $|l|\ge2$ the parallel width is the
+same in every column, and the number of squares of row $l$ charged by $h$ is not bounded
+uniformly in $h\in\CE$.  So the uniform bound $\overline\Sigma_{3\times5}$ of (vi), with the
+strips of (iv), uses the transverse case of Theorem~1.1.7
+for every square of $\mathcal L_j$ with $|l|\le j$, not only for rows $-1,0,1$; each such
+use falls under sentence F-T of \S\ref{sec:purpose}.
+(c) \emph{Numerical check} (\texttt{parts/cqft2\_ringcheck.py}; nothing is deduced from
+it): for $j=1,\dots,12$ and several $a$, the script lists the squares with $\delta=j$,
+confirms $8j+12$ of them, computes for each the axis-parallel width of
+Lemma~\ref{aux:notation-strip} and confirms it is $\ge j$, and compares partial sums of
+$\sum(8j+12)x^j$ with the closed form in exact rational arithmetic.  Run record: 3 November 2026,
+\texttt{/usr/local/bin/python3} (Python 3.14.7, numpy 2.5.2, scipy 1.18.1), output
+\texttt{parts/cqft2\_ringcheck.output.txt}, ``ALL CHECKS PASSED''; it also checks the kernel
+bound of Lemma~\ref{aux:notation-kernel} against quadrature (relative tolerance $10^{-11}$) and
+the inequality $(4n-1)!!\le4^n(2n)!$ of Appendix~\ref{app:constants} for $n\le40$.
+\end{auxrem}
+
+\subsection{Translation covariance and the stability constant $S_2$}\label{sec:notation-S2}
+
+The free Euclidean measure $\dmu$ is the centred Gaussian measure on $\mathcal
+S'(\R^2)$, with the $\sigma$-algebra generated by the coordinate functions
+$\Phi(f)(q)=\langle q,f\rangle$, and covariance $G:=(-\Delta_{\R^2}+m_0^2)^{-1}$
+(Assumption~A2 \cite[p.~8]{R}; \cite[p.~589]{GJS}: ``$d\Phi$ is the Gaussian measure with mean
+zero and covariance $(-\Delta+m_0^2)^{-1}$'').
+
+\begin{auxlemma}[translation covariance]\label{aux:notation-transl}
+For $a\in\R^2$ let $(\tau_af)(z):=f(z-a)$ for functions on $\R^2$, and $(T_aq)(f):=q(\tau_af)$
+for $q\in\mathcal S'(\R^2)$, $f\in\mathcal S(\R^2)$.
+\begin{enumerate}
+\item[\textup{(i)}] $T_a$ is a measurable bijection of $\mathcal S'(\R^2)$ with inverse
+$T_{-a}$, and $(T_a)_*\mu_0=\mu_0$.  Hence $\int F\circ T_a\,\dmu=\int F\,\dmu$ for every
+measurable $F\ge0$, and $F\mapsto F\circ T_a$ is an isometry of every $L^p(\dmu)$.
+\item[\textup{(ii)}] $\tau_a$ maps $\CE$ bijectively onto $\CE$, with $\supp\tau_ah=\supp
+h+a$.
+\item[\textup{(iii)}] For every $h\in\CE$, $\Uc_{\tau_ah}=\Uc_h\circ T_a$ almost everywhere.
+\item[\textup{(iv)}] For every $h\in\CE$, $Z(\tau_ah)=Z(h)$, and $\int F\circ T_a\,dq_{\tau_ah}=
+\int F\,dq_h$ for every measurable $F\ge0$ and every $F\in L^1(dq_h)$.
+\end{enumerate}
+\end{auxlemma}
+
+\begin{proof}
+(i) $\Phi(f)\circ T_a=\Phi(\tau_af)$, since $\Phi(f)(T_aq)=(T_aq)(f)=q(\tau_af)$; so the
+preimage of a cylinder set is a cylinder set, and $T_a$ is measurable, with inverse $T_{-a}$.
+For $f_1,\dots,f_m\in\mathcal S(\R^2)$, the vector $(\Phi(f_i)\circ T_a)_i=(\Phi(\tau_af_i))_i$
+is centred Gaussian under $\mu_0$ with covariance matrix $\ip{\tau_af_i}{G\,\tau_af_j}$.  In
+Fourier space $\widehat{\tau_af}(p)=e^{-ip\cdot a}\hat f(p)$ and $G$ is multiplication by
+$(p^2+m_0^2)^{-1}$, so the phases cancel and $\ip{\tau_af_i}{G\,\tau_af_j}=\ip{f_i}{Gf_j}$.
+Thus $(T_a)_*\mu_0$ and $\mu_0$ have the same finite-dimensional distributions; they agree on
+the cylinder sets, a $\pi$-system generating the $\sigma$-algebra, hence everywhere.  The
+integral identity follows for indicators, then for simple functions, then for $F\ge0$ by
+monotone convergence; applied to $|F|^p$ it gives the isometry.
+
+(ii) $\tau_ah$ is measurable with values in $[0,1]$, and $\{\tau_ah\ne0\}=\{h\ne0\}+a$, so
+$\supp\tau_ah=\supp h+a$ is compact; $\tau_{-a}$ is the inverse.
+
+(iii) In the record's regularization (Appendix~C \cite[pp.~39--40]{R}),
+$\Phi_\kappa(z)=\Phi(\delta_\kappa(z-\cdot))$ with $\delta_\kappa$ even, so
+$\delta_\kappa(z-\cdot)=\tau_z\delta_\kappa$ and, by (i),
+$\Phi_\kappa(z)\circ T_a=\Phi(\tau_a\tau_z\delta_\kappa)=\Phi_\kappa(z+a)$.  The Wick constant
+$c_\kappa=\ip{\tau_z\delta_\kappa}{G\,\tau_z\delta_\kappa}=\ip{\delta_\kappa}{G\delta_\kappa}$
+does not depend on $z$ (by the computation in (i); the record notes ``translation
+invariance'').  Hence, for every $q$,
+\begin{align*}
+ \Uc_{h,\kappa}(T_aq)&=\lambda\int h(z)\,{:}\mathscr P(\Phi_\kappa(z+a)(q)){:}_{c_\kappa}\,dz\\
+ &=\lambda\int h(w-a)\,{:}\mathscr P(\Phi_\kappa(w)(q)){:}_{c_\kappa}\,dw
+ =\Uc_{\tau_ah,\kappa}(q) .
+\end{align*}
+Lemma~C.4 \cite[p.~40]{R} (quoted in the proof of Lemma~\ref{aux:notation-cutoffs}; used
+conditional on the repairs R1--R10 of the V3 audit), applied to $h$ with $\Lambda=\supp h$ and
+to $\tau_ah\in\CE$ with $\Lambda=\supp h+a$, gives
+$\Uc_{h,\kappa}\to\Uc_h$ and $\Uc_{\tau_ah,\kappa}\to\Uc_{\tau_ah}$ in $L^2(\dmu)$ as
+$\kappa\to\infty$; by (i), $\Uc_{h,\kappa}\circ T_a\to\Uc_h\circ T_a$ in $L^2(\dmu)$.  The
+sequence $\Uc_{h,\kappa}\circ T_a=\Uc_{\tau_ah,\kappa}$ has both limits, so they agree almost
+everywhere.
+
+(iv) By (iii), $e^{-\Uc_{\tau_ah}}=e^{-\Uc_h}\circ T_a$ almost everywhere, and (i) gives
+$Z(\tau_ah)=Z(h)$ and, for $F\ge0$, $\int(F\circ T_a)e^{-\Uc_{\tau_ah}}\dmu=\int(F
+e^{-\Uc_h})\circ T_a\,\dmu=\int Fe^{-\Uc_h}\dmu$.  Divide by $Z(h)$; for $F\in L^1(dq_h)$
+apply this to $F^\pm$.
+\end{proof}
+
+\begin{auxdef}[the stability constant]\label{aux:notation-S2def}
+For a compact set $\Lambda\subset\R^2$,
+\[
+ S_2(\Lambda):=\sup\bigl\{\|e^{-\Uc_{h'}}\|_{L^2(\dmu)}:\ h'\in\CE,\ \supp h'\subseteq\Lambda\bigr\},
+\]
+and for a box $B$, $S_2(B):=S_2(\overline B)$.
+\end{auxdef}
+
+\begin{auxprop}[$S_2$ is finite and depends on the shape only]\label{aux:notation-S2}
+\begin{enumerate}
+\item[\textup{(i)}] $1\le S_2(\Lambda)<\infty$ for every compact $\Lambda$.
+\item[\textup{(ii)}] $\Lambda\subseteq\Lambda'$ implies $S_2(\Lambda)\le S_2(\Lambda')$.
+\item[\textup{(iii)}] $S_2(\Lambda+a)=S_2(\Lambda)$ for every $a\in\R^2$.  In particular, two
+boxes of the same shape have the same $S_2$: $S_2(B)$ depends on the box $B$ only through its
+shape.
+\item[\textup{(iv)}] For every box $B$ and every $h\in\CE$,
+$\|e^{-\Uc_{h^B}}\|_{L^2(\dmu)}\le S_2(B)$.
+\end{enumerate}
+\end{auxprop}
+
+\begin{proof}
+(i) Theorem~C.5 of the record \cite[p.~41]{R} reads: ``For every $p<\infty$ and compact
+$\Lambda$, $\sup\{\|e^{-\mathcal U_h}\|_{L^p(d\mu_0)}:h\in\CE,\ \supp h\subseteq\Lambda\}<\infty$.''
+Its hypotheses, checked: $p=2<\infty$; $\Lambda$ compact.  Its standing data are those of
+the record's \S2.1 \cite[p.~6]{R} and Appendix~C, which hold here: $m_0>0$; $\mathscr
+P(\xi)=\sum_{n=0}^{2p'}a_n\xi^n$ with $a_{2p'}>0$ and $p'\ge1$ (used in Lemma~C.3); $\lambda\ge0$
+(its proof treats $\lambda=0$ separately).  The supremum in
+Definition~\ref{aux:notation-S2def} is the supremum of Theorem~C.5 at $p=2$, so
+$S_2(\Lambda)<\infty$; this is proved conditional on the repairs R1--R10 of the V3 audit.  (The
+V3 report, \S5, item C5.1, also observes that the bound produced by the proof of Theorem~C.5
+depends on $\Lambda$ only through $|\Lambda|$ and $\operatorname{diam}\Lambda$, which the
+statement does not record; (iii) below proves the stronger fact that the supremum itself is
+translation invariant.)  The function $h'\equiv0$ is measurable, $[0,1]$-valued and has empty,
+hence compact, support contained in $\Lambda$; $\Uc_0=0$ by
+Lemma~\ref{aux:notation-cutoffs}(iv) ($m=1$, $c_1=1$, $h_1=0$), so $\|e^{-\Uc_0}\|_2=1$ and
+$S_2(\Lambda)\ge1$.
+
+(ii) The supremum is over a larger set.
+
+(iii) By Lemma~\ref{aux:notation-transl}(ii), $h'\mapsto\tau_ah'$ is a bijection from
+$\{h'\in\CE:\supp h'\subseteq\Lambda\}$ onto $\{h''\in\CE:\supp h''\subseteq\Lambda+a\}$, and
+by (iii) and (i) of that lemma
+$\|e^{-\Uc_{\tau_ah'}}\|_{L^2(\dmu)}=\|e^{-\Uc_{h'}}\circ T_a\|_{L^2(\dmu)}=
+\|e^{-\Uc_{h'}}\|_{L^2(\dmu)}$.  Two boxes of the same shape differ by a translation
+$a\in\Z^2$, and so do their closures.
+
+(iv) $h^B\in\CE$ and $\supp h^B\subseteq\overline B$ by
+Lemma~\ref{aux:notation-cutoffs}(i).
+\end{proof}
+
+\begin{auxrem}[what $S_2$ is not]\label{aux:notation-S2rem}
+$S_2(B)$ is not evaluated.  The proof of Theorem~C.5 ends ``with a bound depending only on
+$(p,\lambda,\mathscr P,\Lambda)$'' \cite[p.~41]{R} and produces no number, so every constant
+below that contains $S_2$ is finite and unevaluated, and the constant $M_B$ of
+Theorem~\ref{thm:D4} is not explicit (plan, Part~2).  Theorem~C.5 is a bound under $\dmu$ for
+a fixed compact region; it is not the stability estimate (2.4.34) of GJS under interpolated
+measures and has no growth linear in the volume (plan, trap~14).  By
+Proposition~\ref{aux:notation-S2}(iii), $S_2(B_s(g,I))$ in Theorem~\ref{thm:D3} depends only
+on $N_B$, and $S_2(B_{3\times5}(a))$ in Theorem~\ref{thm:D4} is one number for all $a$.
+\end{auxrem}
+
+\subsection{The interaction in one square and the constant $c_U$}\label{sec:notation-cU}
+
+The printed norms are used exactly as the record transcribes them in its eq.~(1),
+Assumption~A8(iii) \cite[p.~10]{R}:
+\[
+\begin{gathered}
+ \text{(1.1.7)}\ \ \GJS{Q}=K_1\Bigl[\prod_\Delta K_2^{2N(\Delta)}N(\Delta)!\Bigr]\|w\|_2,\\
+ \text{(1.1.8)}\ \ \GJS{Q(x_0)}=K_1\Bigl[\prod_\Delta K_2^{2N(\Delta)}N(\Delta)!\Bigr]\|w(x_0,\cdot)\|_2,
+\end{gathered}
+\]
+``where $N(\Delta)$ is the total degree localized in the unit square $\Delta$, and (1.1.9): a
+nonlocalized polynomial is normed by summing its localized pieces'', with $K_2\ge1$ fixed
+there; $K_1$ enters to the first power and the local weight is $K_2^{2N(\Delta)}N(\Delta)!$.
+On p.~594 GJS print (1.1.9) as: ``If $Q$ is not localized, or is a general polynomial, it is
+written as a sum of localized monomials $Q_i$, and then we set (1.1.9) $\|Q\|=\sum_i\|Q_i\|$.''
+\cite[p.~594]{GJS}.  The interaction is $\Uc_h=\lambda\int h(z){:}\mathscr P(\Phi(z)){:}\,dz$
+with $\mathscr P(\xi)=\sum_{n=0}^{2p'}a_n\xi^n$ (Assumption~A2 \cite[p.~8]{R}, \S2.1
+\cite[p.~6]{R}).
+
+\begin{auxdef}[the interaction in one square]\label{aux:notation-UDelta}
+For $h\in\CE$, a square $\Delta$ and $0\le n\le2p'$, let
+\[
+ U_{\Delta,n}:=\lambda a_n\int_\Delta h(z)\,{:}\Phi(z)^n{:}\,dz ,\qquad
+ U_\Delta:=\sum_{n=1}^{2p'}U_{\Delta,n} ,
+\]
+so that $U_{\Delta,n}$ ($n\ge1$) is the monomial of type (1.1.6) with $r=1$, one Wick factor
+of degree $n$, and kernel $w_{\Delta,n}:=\lambda a_n\,h\mathbf 1_\Delta\in L^2(\R^2)$, while
+$U_{\Delta,0}=\lambda a_0\int_\Delta h\,dz$ is a real number.  Expanding ${:}\mathscr
+P(\Phi){:}=\sum_na_n{:}\Phi^n{:}$ in the definition of $\Uc$,
+$\Uc_{h\mathbf 1_\Delta}=U_{\Delta,0}+U_\Delta$.
+\end{auxdef}
+
+\begin{auxlemma}[the constant $c_U$]\label{aux:notation-cU}
+Let $h\in\CE$ and let $\Delta$ be a square.
+\begin{enumerate}
+\item[\textup{(i)}] For $1\le n\le2p'$, $U_{\Delta,n}$ is a localized monomial of type (1.1.6)
+with localization square $\Delta$, local degree $N(\Delta)=n<\bar n=2p'+1$, and
+\[
+ \GJS{U_{\Delta,n}}=K_1K_2^{2n}n!\;\lambda|a_n|\;\|h\mathbf 1_\Delta\|_{L^2(\R^2)}
+ \le\lambda|a_n|K_1K_2^{2n}n! .
+\]
+\item[\textup{(ii)}] With (1.1.9) applied to $U_\Delta=\sum_{n=1}^{2p'}U_{\Delta,n}$,
+\[
+ \GJS{U_\Delta}=\sum_{n=1}^{2p'}\GJS{U_{\Delta,n}}\le c_U:=\lambda\sum_{n=1}^{2p'}|a_n|\,K_1K_2^{2n}\,n! .
+\]
+The constant $c_U$ depends on $\lambda$, $a_1,\dots,a_{2p'}$, $K_1$, $K_2$ only; it is
+uniform in $\Delta$ and in $h\in\CE$.
+\item[\textup{(iii)}] \textup{(The term $n=0$.)}  For every $h'\in\CE$ and every $F\in
+L^1(dq_{h'})$, $\Cov_{h'}(F,U_{\Delta,0})=0$.  The measures $dq_h$, $h\in\CE$, do not depend
+on $a_0$.  As a coefficient of the interaction, $a_0$ enters the estimates of this note only
+through the lower bound of Lemma~C.2 \cite[p.~40]{R}, $Z(h')\ge e^{-\lambda|a_0||\Lambda|}$, and
+through $\Uc_{h'}$ inside $S_2$, i.e.\ through the base terms of Theorems~\ref{thm:D3}
+and~\ref{thm:D4}.  As a coefficient of the observable $V(h')$ of Theorem~\ref{thm:D4} it also
+enters $V_*$ (the term $n=0$ of Lemma~\ref{aux:notation-wick}(iv)) and the bound $\mathfrak Q$ on
+$\GJS{Q_V}$ (the sum over $n\ge0$, Appendix~\ref{app:constants}).  It does not enter $c_U$.
+\item[\textup{(iv)}] For every box $B$,
+$\Uc_{h-h^B}=\sum_{\Delta\in\mathfrak S(h),\,\Delta\cap B=\varnothing}(U_{\Delta,0}+U_\Delta)$
+in $L^2(\dmu)$; and for every $h'\in\CE$ and every $F$ such that $F$ and the finitely many
+$U_{\Delta,n}$ involved lie in $L^2(dq_{h'})$,
+\[
+ \Cov_{h'}\bigl(F,\Uc_{h-h^B}\bigr)=\sum_{\Delta\in\mathfrak S(h),\ \Delta\cap B=\varnothing}\
+ \sum_{n=1}^{2p'}\Cov_{h'}\bigl(F,U_{\Delta,n}\bigr) .
+\]
+\end{enumerate}
+\end{auxlemma}
+
+\begin{proof}
+(i) In the notation of p.~593, $U_{\Delta,n}=\int dx_0\,Q(x_0)$ with
+$Q(x_0)=\int d\vec x\,w_{\Delta,n}(x)\,{:}\Phi(x)^n{:}$, $r=1$, $n_1=n$, and the kernel
+$w_{\Delta,n}=\lambda a_nh\mathbf 1_\Delta$ vanishes outside $\Delta$; so the monomial is
+localized in $\Delta$ (Remark~\ref{aux:notation-gjslattice}(i)), with $N(\Delta)=n$ and
+$N(\Delta')=0$ for every other square $\Delta'$, whose factors in (1.1.7) are
+$K_2^0\,0!=1$.  The degree bound: $n\le2p'<2p'+1=\bar n$ (Assumption~A8(ii)
+\cite[p.~10]{R}).  By (1.1.7),
+$\GJS{U_{\Delta,n}}=K_1K_2^{2n}n!\,\|w_{\Delta,n}\|_2$, and
+$\|w_{\Delta,n}\|_2=\lambda|a_n|\,(\int_\Delta h^2\,dz)^{1/2}\le\lambda|a_n|\,|\Delta|^{1/2}=
+\lambda|a_n|$ because $0\le h\le1$ and $|\Delta|=1$.  (Test: for $h=\mathbf 1_\Delta$ equality
+holds, $\GJS{U_{\Delta,n}}=\lambda|a_n|K_1K_2^{2n}n!$.)
+
+(ii) The decomposition $U_\Delta=\sum_nU_{\Delta,n}$ writes the polynomial $U_\Delta$ as a sum
+of the localized monomials of (i), and (1.1.9) sets its norm to the sum of theirs; sum the
+bounds of (i).  The bound contains no $\Delta$ and no $h$.
+
+(iii) $dq_{h'}$ is a probability measure (Assumption~A3 \cite[p.~8]{R}), so for a constant $c$,
+$\int Fc\,dq_{h'}-\int F\,dq_{h'}\int c\,dq_{h'}=c\int F\,dq_{h'}-c\int F\,dq_{h'}=0$.  At the
+regularized level ${:}\mathscr P(y){:}_c=a_0+{:}(\mathscr P-a_0)(y){:}_c$, since the Wick
+polynomial of degree $0$ is the constant; hence $\Uc_{h,\kappa}=\lambda a_0\int h\,dz+
+\Uc^{(0)}_{h,\kappa}$, where $\Uc^{(0)}$ is the interaction of $\mathscr P-a_0$.  Lemma~C.4,
+which applies to $\mathscr P-a_0$ as well (same degree $2p'$, same leading coefficient),
+passes this to the limit: $\Uc_h=\lambda a_0\int h\,dz+\Uc^{(0)}_h$ in $L^2(\dmu)$.  The
+factor $e^{-\lambda a_0\int h}$ of $e^{-\Uc_h}$ then cancels against the same factor of
+$Z(h)$.  The two places where $a_0$ survives as a coefficient of the interaction are the separate
+bounds of the numerator $\|e^{-\Uc_{h^B}}\|_2\le S_2(B)$ and of the denominator
+$Z(h^B)\ge e^{-\lambda|a_0||B|}$ in the base term; the ratio itself does not depend on $a_0$.  In
+$V_*$ and $\mathfrak Q$ it is a coefficient of the observable $V(h')=\lambda\sum_{n\ge0}a_nW_n$,
+not of the measure; $c_U$ sums over $n\ge1$ only.
+
+(iv) Lemma~\ref{aux:notation-cutoffs}(iv) and Definition~\ref{aux:notation-UDelta} give the
+first identity.  The covariance is bilinear on $L^2(dq_{h'})$, and the constants
+$U_{\Delta,0}$ drop out by (iii).  The integrability of $F$ and of the $U_{\Delta,n}$ under
+$dq_{h'}$ is part of the chain of Lemma~\ref{lem:D1} (\S\ref{sec:d1}).
+\end{proof}
+
+\subsection{The kernel $C$, the Wick isometry and $V_*$}\label{sec:notation-wick}
+
+The time-zero measure $\dphi$ is ``Gaussian with covariance $C=(2\mu)^{-1}$,
+$\mu=(-\partial_x^2+m_0^2)^{1/2}$'' (\S2.1 \cite[p.~6]{R}).  Fourier convention:
+$\hat f(k)=\int e^{-ikx}f(x)\,dx$, so that $\ip fg=(2\pi)^{-1}\int\overline{\hat f}\hat g\,dk$
+and $\mu$ acts as multiplication by $(k^2+m_0^2)^{1/2}$.
+
+\begin{auxlemma}[the kernel of $(2\mu)^{-1}$]\label{aux:notation-kernel}
+For $u\in\R\setminus\{0\}$ put
+\[
+ C(u):=\frac1{4\pi}\int_0^\infty t^{-1}\,e^{-tm_0^2-u^2/(4t)}\,dt ,\qquad
+ b_0:=\log4+e^{-1}+m_0^{-2} .
+\]
+\begin{enumerate}
+\item[\textup{(i)}] $0<C(u)<\infty$; $C$ is even, nonincreasing in $|u|$, and continuous on
+$\R\setminus\{0\}$.
+\item[\textup{(ii)}] For real $f,g\in L^1(\R)\cap L^2(\R)$, $\ip f{(2\mu)^{-1}g}=\iint
+f(x)\,C(x-y)\,g(y)\,dx\,dy$, the double integral converging absolutely.  Thus $C$ is the
+kernel of $(2\mu)^{-1}$, and $\E_{\phi_0}[\varphi_0(f)\varphi_0(g)]=\iint f(x)C(x-y)g(y)\,dx\,dy$.
+\item[\textup{(iii)}] $C(u)\le(4\pi)^{-1}\bigl(b_0+2|\log|u||\bigr)$ for every $u\ne0$.
+\item[\textup{(iv)}] For $n\ge0$ let $I_n:=\iint_{[-1,1]^2}C(x-y)^n\,dx\,dy=\int_{-2}^2(2-|u|)\,
+C(u)^n\,du$.  Then $I_0=4$, and for $n\ge1$
+\[
+ I_n\le(4\pi)^{-n}\,2^{n+1}\bigl(2b_0^n+2^n(n!+(\log2)^n)\bigr)<\infty .
+\]
+\item[\textup{(v)}] \textup{(The Euclidean kernel.)}  For real $f,g\in L^1(\R^2)\cap L^2(\R^2)$,
+$\ip f{(-\Delta_{\R^2}+m_0^2)^{-1}g}=\iint f(z)\,C(|z-z'|)\,g(z')\,dz\,dz'$, the double integral
+converging absolutely.  So the covariance $G$ of $\dmu$ has the kernel $G(\zeta)=C(|\zeta|)$,
+$\zeta\ne0$, which is positive, radial, nonincreasing in $|\zeta|$, continuous on
+$\R^2\setminus\{0\}$, bounded by $(4\pi)^{-1}(b_0+2|\log|\zeta||)$, and satisfies
+$\int_{\R^2}G=m_0^{-2}$.
+\end{enumerate}
+\end{auxlemma}
+
+\begin{proof}
+(ii) For $A>0$, the substitution $s=tA$ gives $\int_0^\infty t^{-1/2}e^{-tA}dt=\Gamma(\frac12)
+A^{-1/2}=\sqrt\pi A^{-1/2}$; with $A=k^2+m_0^2$,
+\[
+ \bigl(2(k^2+m_0^2)^{1/2}\bigr)^{-1}=(2\sqrt\pi)^{-1}\int_0^\infty t^{-1/2}e^{-tm_0^2}e^{-tk^2}dt .
+\]
+The heat kernel $p_t(u):=(4\pi t)^{-1/2}e^{-u^2/(4t)}$ has $\hat p_t(k)=e^{-tk^2}$ (complete the
+square), so for $f\in L^1\cap L^2$, by Plancherel and the convolution theorem,
+\[
+ (2\pi)^{-1}\int|\hat f(k)|^2e^{-tk^2}dk=\iint f(x)\,p_t(x-y)\,f(y)\,dx\,dy .
+\]
+Insert the $t$-integral into
+$\ip f{(2\mu)^{-1}f}=(2\pi)^{-1}\int|\hat f(k)|^2\bigl(2(k^2+m_0^2)^{1/2}\bigr)^{-1}dk$ and
+exchange $k$ and $t$ (Tonelli; the integrand is $\ge0$):
+\begin{align*}
+ \ip f{(2\mu)^{-1}f}
+ &=(2\sqrt\pi)^{-1}\int_0^\infty t^{-1/2}e^{-tm_0^2}\,
+   (2\pi)^{-1}\!\int|\hat f(k)|^2e^{-tk^2}dk\,dt\\
+ &=(2\sqrt\pi)^{-1}\int_0^\infty t^{-1/2}e^{-tm_0^2}\iint f(x)\,p_t(x-y)\,f(y)\,dx\,dy\,dt .
+\end{align*}
+For $f\ge0$ the integrand in $(t,x,y)$ is nonnegative and Tonelli exchanges again; as
+\[
+ (2\sqrt\pi)^{-1}\,t^{-1/2}\,(4\pi t)^{-1/2}=(4\pi t)^{-1},
+\]
+the result is
+\[
+ \ip f{(2\mu)^{-1}f}=\iint f(x)\,C(x-y)\,f(y)\,dx\,dy ,
+\]
+which is therefore at most $\|f\|_2^2/(2m_0)<\infty$, since $\|(2\mu)^{-1}\|\le(2m_0)^{-1}$.  For real $f,g$ apply this to
+$F:=|f|+|g|\ge0$:
+\[
+ \iint F(x)\,C(x-y)\,F(y)\,dx\,dy<\infty
+\]
+dominates every double integral of $|f|,|g|$ against $C$, and hence (by the same Tonelli
+step) against $t^{-1/2}e^{-tm_0^2}p_t$ in $(t,x,y)$; so Fubini applies to the display for
+signed $f$, giving $\ip f{(2\mu)^{-1}f}=\iint fCf$; polarization (both sides are
+symmetric bilinear forms, $C$ being even) gives the statement for $f,g$.
+
+(i) The integrand is positive, so $C(u)>0$; finiteness is (iii).  $C$ depends on $u^2$
+only, and $e^{-u^2/(4t)}$ is nonincreasing in $|u|$.  For $|u|\ge u_0>0$ the integrand is
+dominated by $t^{-1}e^{-tm_0^2-u_0^2/(4t)}$, whose integral is $4\pi C(u_0)<\infty$; dominated
+convergence gives continuity on $\{|u|>u_0\}$ for every $u_0>0$.
+
+(iii) Drop $e^{-tm_0^2}\le1$ where convenient.  The substitution $s=u^2/(4t)$ gives,
+for $\tau>0$,
+\[
+\begin{gathered}
+ \int_0^{\tau}t^{-1}e^{-u^2/(4t)}dt=\int_{u^2/(4\tau)}^\infty s^{-1}e^{-s}ds,\\
+ \int_{1/4}^\infty s^{-1}e^{-s}ds\le\int_{1/4}^1\frac{ds}s+\int_1^\infty e^{-s}ds=\log4+e^{-1};
+\end{gathered}
+\]
+also $\int_1^\infty t^{-1}e^{-tm_0^2}dt\le\int_1^\infty e^{-tm_0^2}dt\le m_0^{-2}$.  If
+$0<|u|\le1$, split $\int_0^\infty=\int_0^{u^2}+\int_{u^2}^1+\int_1^\infty$: the three pieces
+are at most $\log4+e^{-1}$ ($\tau=u^2$), $\int_{u^2}^1t^{-1}dt=2|\log|u||$, and $m_0^{-2}$.  If
+$|u|>1$, split $\int_0^1+\int_1^\infty$: at most $\int_{u^2/4}^\infty s^{-1}e^{-s}ds\le
+\log4+e^{-1}$ (as $u^2/4>\frac14$) and $m_0^{-2}$.  In both cases $4\pi C(u)\le
+b_0+2|\log|u||$.
+
+(iv) For $\varphi\ge0$ measurable, $\iint_{[-1,1]^2}\varphi(x-y)\,dx\,dy=\int_{-2}^2(2-|u|)
+\varphi(u)\,du$, since $\{x\in[-1,1]:x-u\in[-1,1]\}$ has length $2-|u|$ for $|u|\le2$.  For
+$n=0$ this is $4$.  For $n\ge1$, by (iii) and $(\alpha+\beta)^n\le2^{n-1}(\alpha^n+\beta^n)$
+($\alpha,\beta\ge0$, convexity), and $2-|u|\le2$,
+\[
+ I_n\le4\int_0^2C(u)^n\,du\le4(4\pi)^{-n}2^{n-1}\int_0^2\bigl(b_0^n+2^n|\log u|^n\bigr)du ,
+\]
+and $\int_0^2|\log u|^ndu\le\int_0^1|\log u|^ndu+(\log2)^n=n!+(\log2)^n$ (substitute $u=e^{-s}$
+in the first integral).  Collect: $4\cdot2^{n-1}(2b_0^n+2^n(n!+(\log2)^n))(4\pi)^{-n}$.
+
+(v) The computation of (ii) in two dimensions.  With $\hat f(p):=\int e^{-ip\cdot z}f(z)\,dz$,
+$\ip f{(-\Delta+m_0^2)^{-1}f}=(2\pi)^{-2}\int|\hat f(p)|^2(|p|^2+m_0^2)^{-1}dp$, and
+$(|p|^2+m_0^2)^{-1}=\int_0^\infty e^{-tm_0^2}e^{-t|p|^2}dt$.  The heat kernel
+$P_t(\zeta):=(4\pi t)^{-1}e^{-|\zeta|^2/(4t)}$ has $\hat P_t(p)=e^{-t|p|^2}$, so
+$(2\pi)^{-2}\int|\hat f|^2e^{-t|p|^2}dp=\iint f(z)P_t(z-z')f(z')\,dz\,dz'$.  Tonelli for $f\ge0$,
+then $|f|+|g|$ for absolute convergence (with $\|(-\Delta+m_0^2)^{-1}\|\le m_0^{-2}$), Fubini and
+polarization, exactly as in (ii), give the kernel
+$\int_0^\infty e^{-tm_0^2}(4\pi t)^{-1}e^{-|\zeta|^2/(4t)}dt=C(|\zeta|)$.  The properties follow
+from (i) and (iii), and by Tonelli
+$\int_{\R^2}G=(4\pi)^{-1}\int_0^\infty t^{-1}e^{-tm_0^2}(4\pi t)\,dt=m_0^{-2}$.
+\end{proof}
+
+\emph{Chaoses.}  Let $\mathcal H_{\le n}$ be the closure in $L^2(\dphi)$ of the polynomials
+of degree $\le n$ in the variables $\varphi_0(f)$, and $\mathcal H_n:=\mathcal
+H_{\le n}\ominus\mathcal H_{\le n-1}$ (the $n$-th Wick chaos); the same definitions are made in
+$L^2(\dmu)$ with the variables $\Phi(f)$.  These are definitions and need no import.  The fact
+that the second quantization $\Gamma(e^{-t}\mathbf 1)$ acts on the $n$-th chaos as
+multiplication by $e^{-nt}$, which the record's proof of Theorem~C.5 uses
+(``$\Gamma(e^{-t})Y_r=e^{-rt}Y_r$'', \cite[p.~41]{R}) and does not import (V3 audit, M-3;
+repair R8), is used here only in Lemma~\ref{aux:notation-hyper}.  R8 imports that action on
+Simon's $\Gamma_n$, the closed span of the Wick monomials ${:}\Phi(f_1)\cdots\Phi(f_n){:}$; every
+object of degree $n$ to which this note applies it is an $L^2$-limit of integrals of Wick
+monomials ${:}\Phi(g)^n{:}$ with all $n$ test functions equal (Lemma~\ref{aux:notation-hyper}(i)),
+so it lies in $\Gamma_n$ directly.  For a centred
+Gaussian variable $X$, ${:}X^n{:}:=c^{n/2}\operatorname{He}_n(X/\sqrt c)$, $c=\E[X^2]$, is
+the coefficient of $s^n/n!$ in ${:}e^{sX}{:}:=e^{sX-s^2c/2}$ (as in the proof of
+Proposition~3.2 \cite[p.~16]{R}).  Fix $\rho\in C_c^\infty(\R)$, $\rho\ge0$, even, $\supp
+\rho\subseteq[-1,1]$, $\int\rho=1$, put $\rho_\kappa(x):=\kappa\rho(\kappa x)$ and
+$\varphi_\kappa(x):=\varphi_0(\rho_\kappa(x-\cdot))$ for $\kappa\ge1$.
+
+\begin{auxlemma}[Wick isometry; the constant $V_*$]\label{aux:notation-wick}
+Let $h'$ be real and measurable with $\|h'\|_\infty\le1$ and $\supp h'\subseteq[a,a+2]$,
+$a\in\R$, and let $0\le n,m\le2p'$.
+\begin{enumerate}
+\item[\textup{(i)}] For $\kappa,\kappa'\ge1$:
+$\E_{\phi_0}\bigl[{:}\varphi_\kappa(x)^n{:}\,{:}\varphi_{\kappa'}(y)^m{:}\bigr]=\delta_{nm}\,n!\,
+C_{\kappa,\kappa'}(x-y)^n$, where $C_{\kappa,\kappa'}(u):=\int\nu(v)C(u-v)\,dv>0$ and
+$\nu:=\rho_\kappa*\rho_{\kappa'}$.
+\item[\textup{(ii)}] If $\min\{\kappa,\kappa'\}\ge6$, then $C_{\kappa,\kappa'}(u)\le
+c_\rho\,(b_0+2+2|\log|u||)$ for all $u\ne0$, with $c_\rho:=3\|\rho\|_\infty/\pi$; and
+$C_{\kappa,\kappa'}(u)\to C(u)$ for every $u\ne0$ as $\min\{\kappa,\kappa'\}\to\infty$.
+\item[\textup{(iii)}] $W_{n,\kappa}:=\int h'(x)\,{:}\varphi_\kappa(x)^n{:}\,dx$ lies in
+$\mathcal H_n$, and converges in $L^2(\dphi)$, as $\kappa\to\infty$, to some $W_n\in\mathcal
+H_n$ with $\ip{W_n}{W_m}=\delta_{nm}\,n!\iint h'(x)h'(y)C(x-y)^n\,dx\,dy$.
+\item[\textup{(iv)}] $V(h'):=\lambda\sum_{n=0}^{2p'}a_nW_n$ satisfies
+\[
+ \|V(h')\|^2_{L^2(\dphi)}=\lambda^2\sum_{n=0}^{2p'}a_n^2\,n!\iint h'(x)h'(y)\,C(x-y)^n\,dx\,dy
+ \le\overline V_*:=\lambda^2\sum_{n=0}^{2p'}a_n^2\,n!\,I_n .
+\]
+Hence $V_*:=\sup_{h'}\|V(h')\|^2_{L^2(\dphi)}\le\overline V_*<\infty$, the supremum over all
+$h'$ as above and all $a\in\R$.
+\end{enumerate}
+\end{auxlemma}
+
+\begin{proof}
+(i) $X:=\varphi_\kappa(x)$ and $Y:=\varphi_{\kappa'}(y)$ are jointly centred Gaussian, with
+$\E[XY]=\ip{\rho_\kappa(x-\cdot)}{(2\mu)^{-1}\rho_{\kappa'}(y-\cdot)}$; by
+Lemma~\ref{aux:notation-kernel}(ii) and the substitutions $x'=x-\alpha$, $y'=y-\beta$ this is
+$\iint\rho_\kappa(\alpha)\rho_{\kappa'}(\beta)C(x-y-\alpha+\beta)\,d\alpha\,d\beta=
+C_{\kappa,\kappa'}(x-y)$, with $\nu$ the density of $\alpha-\beta$, which is
+$\rho_\kappa*\rho_{\kappa'}$ because $\rho_{\kappa'}$ is even; $C>0$ gives
+$C_{\kappa,\kappa'}>0$.  The Gaussian moment generating function gives
+$\E[{:}e^{sX}{:}\,{:}e^{tY}{:}]=e^{-(s^2\E X^2+t^2\E Y^2)/2}\E[e^{sX+tY}]=e^{st\,\E[XY]}$.  Both
+sides are entire in $(s,t)$; the left side may be differentiated under $\E$ (for $|s|,|t|\le1$
+the derivatives are dominated by polynomials in $|X|,|Y|$ times $e^{|X|+|Y|}$, which are
+integrable), and its coefficient of $s^nt^m/(n!\,m!)$ is $\E[{:}X^n{:}{:}Y^m{:}]$; on the right
+it is $\delta_{nm}n!\,\E[XY]^n$.
+
+(ii) $\nu\ge0$, $\int\nu=1$, $\supp\nu\subseteq[-\varepsilon,\varepsilon]$ with
+$\varepsilon:=\kappa^{-1}+\kappa'^{-1}\le2/K$, $K:=\min\{\kappa,\kappa'\}$, and
+$\|\nu\|_\infty\le\min\{\|\rho_\kappa\|_\infty,\|\rho_{\kappa'}\|_\infty\}=K\|\rho\|_\infty$.
+\emph{Case $|u|\ge2\varepsilon$.}  For $|v|\le\varepsilon$, $|u-v|\ge|u|/2$, so by
+Lemma~\ref{aux:notation-kernel}(i),(iii) $C(u-v)\le C(u/2)\le(4\pi)^{-1}(b_0+2\log2+
+2|\log|u||)$; average over $\nu$.  \emph{Case $0<|u|<2\varepsilon$.}  Then
+$C_{\kappa,\kappa'}(u)\le K\|\rho\|_\infty\int_{|w|\le3\varepsilon}C(w)\,dw$, and
+$3\varepsilon\le6/K\le1$.  For $0<r\le1$, Lemma~\ref{aux:notation-kernel}(iii) and
+$\int_0^r|\log w|\,dw=r(1+|\log r|)$ give $\int_{|w|\le r}C\le(4\pi)^{-1}2r(b_0+2+2|\log
+r|)$, which is increasing in $r\in(0,1]$ (derivative $(4\pi)^{-1}2(b_0-2\log r)>0$); at
+$r=6/K$ it is $(4\pi)^{-1}(12/K)(b_0+2+2\log(K/6))$.  Since $|u|<4/K$,
+$\log(K/6)<\log(2/3)-\log|u|\le|\log|u||$.  So $C_{\kappa,\kappa'}(u)\le(3\|\rho\|_\infty/\pi)
+(b_0+2+2|\log|u||)$.  As $\int\rho=1$ on $[-1,1]$, $\|\rho\|_\infty\ge\frac12$, so
+$c_\rho\ge(4\pi)^{-1}$ and $2\log2<2$ make $c_\rho(b_0+2+2|\log|u||)$ a bound in both cases.
+Convergence: $C_{\kappa,\kappa'}(u)-C(u)=\int\nu(v)(C(u-v)-C(u))dv\to0$ as $\varepsilon\to0$, by
+the continuity of $C$ at $u\ne0$.
+
+(iii) $(x,q)\mapsto{:}\varphi_\kappa(x)^n{:}(q)$ is continuous in $x$ and measurable in $q$,
+and its moments are bounded uniformly in $x$; Fubini therefore applies below.  For a
+polynomial $P$ of degree $<n$ in variables $\varphi_0(g_i)$, the coefficient of $s^n$ in
+$\E[{:}e^{sX}{:}\,e^{\sum_it_i\varphi_0(g_i)}]=e^{s\sum_it_i\E[X\varphi_0(g_i)]}\,
+\E[e^{\sum_it_i\varphi_0(g_i)}]$ is a power series in the $t_i$ all of whose terms have
+degree $\ge n$, so $\E[{:}X^n{:}P]=0$; with Fubini, $W_{n,\kappa}\perp\mathcal H_{\le n-1}$.
+For $Q\perp\mathcal H_{\le n}$, $\E[W_{n,\kappa}Q]=\int h'(x)\E[{:}\varphi_\kappa(x)^n{:}Q]dx=0$,
+so $W_{n,\kappa}\in\mathcal H_{\le n}$; hence $W_{n,\kappa}\in\mathcal H_n$.  By (i) and
+Fubini,
+\[
+ \|W_{n,\kappa}-W_{n,\kappa'}\|_2^2=n!\iint h'(x)h'(y)\bigl[C_{\kappa,\kappa}^n-2C_{\kappa,\kappa'}^n
+ +C_{\kappa',\kappa'}^n\bigr](x-y)\,dx\,dy .
+\]
+By (ii), for $\min\{\kappa,\kappa'\}\ge6$ each of the three integrands is dominated by
+\[
+ \mathbf 1_{[a,a+2]}(x)\,\mathbf 1_{[a,a+2]}(y)\;c_\rho^n\bigl(b_0+2+2|\log|x-y||\bigr)^n ,
+\]
+which is integrable (as in Lemma~\ref{aux:notation-kernel}(iv)), and each converges pointwise off the
+diagonal to $h'(x)h'(y)C(x-y)^n$.  By dominated convergence the three integrals have the same
+limit, so $(W_{n,\kappa})$ is Cauchy; its limit $W_n$ lies in the closed subspace $\mathcal
+H_n$, and $\ip{W_n}{W_m}=\lim_\kappa\ip{W_{n,\kappa}}{W_{m,\kappa}}$ is given by (i) and the
+same dominated convergence.
+
+(iv) Expand the square with (iii).  Since $|h'|\le\mathbf 1_{[a,a+2]}$ and $C^n\ge0$
+(Lemma~\ref{aux:notation-kernel}(i): here the positivity of $C$ is used, for odd $n$),
+$|\iint h'(x)h'(y)C(x-y)^n|\le\iint_{[a,a+2]^2}C(x-y)^n=I_n$, the last step by the
+translation $x\mapsto x-a-1$, $y\mapsto y-a-1$.  The bound does not depend on $h'$ or $a$.
+\end{proof}
+
+\begin{gapnote}
+The record's $V(h)$ (\S2.1 \cite[p.~6]{R}: ``$V(h):=\lambda\int
+h(x)\,{:}\mathscr P(\varphi_0(x)){:}_C\,dx$, a self-adjoint multiplication operator in
+$Q$-space'', imported with Assumption~A1) is identified here with the limit
+$\lambda\sum_na_nW_n$ of Lemma~\ref{aux:notation-wick}.  Missing: the record states no
+construction of the Wick powers in $V(h)$.  Its Appendix~C makes the corresponding
+identification for $\Uc_h$ (``so that $\mathcal U_{h,\kappa}\to\mathcal U_h$'',
+\cite[pp.~39--40]{R}), and the V3 audit's repair R8 would import the construction for $\Uc_h$
+from Simon's book (chapters~I and~V, by the errata header of the V3 report); the same import for
+the time-zero field (the V3 report names Simon's Theorem~V.2(b); not read for this note) would
+close this gap.  \emph{Where it is used:} only where the record's $Q$-space operator $V(h)$ is
+replaced by the constructed limit, i.e.\ in the record's Theorem~5.1, Step~1 (``$Q_V$ is exactly
+the multiplication function $V(h)^2$''), and in the transfer of Theorem~\ref{thm:D4} to the
+record's Theorem~5.1 (\S\ref{sec:cons}).  Lemmas~\ref{aux:notation-wick}--\ref{aux:notation-sharpid},
+the constants $V_*$, $9^{p'}$ and $M_B$ of Appendix~\ref{app:constants}, and the Euclidean bound
+of Theorem~\ref{thm:D4} concern the constructed objects (Remark~\ref{aux:notation-sharpidrem}(b))
+and do not need it.
+\end{gapnote}
+
+\begin{auxlemma}[the comparison $\|Y\|_4\le3^{p'}\|Y\|_2$]\label{aux:notation-hyper}
+Let $h'$ be as in Lemma~\ref{aux:notation-wick}, and let
+\[
+ Y:=V(h')(0)=\lambda\sum_{n=0}^{2p'}a_n\int h'(x)\,{:}\Phi(0,x)^n{:}\,dx
+\]
+be the sharp-time observable at time $0$, as an element of $L^2(\dmu)$.
+\begin{enumerate}
+\item[\textup{(i)}] $Y=\sum_{r=0}^{2p'}Y_r$, where each $Y_r$ lies in the $r$-th Wick chaos
+of $L^2(\dmu)$; moreover $\|Y\|_{L^2(\dmu)}=\|V(h')\|_{L^2(\dphi)}$.
+\item[\textup{(ii)}] $\|Y\|_{L^4(\dmu)}\le3^{p'}\|Y\|_{L^2(\dmu)}$.  Consequently
+\[
+ \|Y^2\|_{L^2(\dmu)}=\|Y\|_{L^4(\dmu)}^2\le9^{p'}\|V(h')\|_{L^2(\dphi)}^2\le9^{p'}V_* ,
+\]
+and the same bound holds for $\|V(h')^2\|_{L^2(\dphi)}$, which equals $\|Y^2\|_{L^2(\dmu)}$.
+\end{enumerate}
+\end{auxlemma}
+
+\begin{proof}
+(i) Remark~2.5 of the record \cite[p.~14]{R}: ``The sharp-time restriction of the Euclidean
+covariance equals $C$'' and ``sharp-time $d\mu_0$-Wick ordering coincides, constant by constant,
+with the $C$-Wick ordering used in $V(h)$''.  GJS write the sharp-time field as
+``$\Phi(\tau,f)\equiv\Phi(\delta_\tau\otimes f)$'' \cite[p.~589]{GJS} and print no construction;
+we read $\Phi(0,f)$ as the extension of the linear map $f\mapsto\Phi(f)$ by continuity in the
+covariance norm, which is finite at $\delta_0\otimes f$ because
+$\ip{\delta_0\otimes f}{G\,\delta_0\otimes f}=\ip f{Cf}$ (Remark~2.5).  So $\Phi(0,f)$ is the
+$L^2(\dmu)$-limit of $\Phi(f_\varepsilon)$ along test functions $f_\varepsilon\to\delta_0\otimes
+f$ in that norm, a centred Gaussian variable in the closed first chaos of $L^2(\dmu)$, and the
+family $(\Phi(0,f))_f$ has the covariance $C$ of $(\varphi_0(f))_f$ under $\dphi$.  So $J_0:F(\varphi_0)\mapsto F(\Phi(0,\cdot))$
+preserves the joint laws of finitely many field variables and is an isometry
+$L^2(\dphi)\to L^2(\dmu)$; it maps ${:}\varphi_\kappa(x)^n{:}$ to the Wick power, at its own
+variance (the same $c$), of the Gaussian variable $\Phi(0,\rho_\kappa(x-\cdot))$.  The
+generating-function argument of Lemma~\ref{aux:notation-wick}(iii) holds in any Gaussian space:
+this Wick power is orthogonal to every polynomial of degree $<n$ in the variables $\Phi(f)$, and
+it is a polynomial of degree $n$ in a first-chaos variable, hence (Gaussian $L^2$-limits converge
+in every $L^q$) in the closure of the polynomials of degree $\le n$.  So $J_0W_{n,\kappa}$ lies in
+the $n$-th Wick chaos of $L^2(\dmu)$, and so does its limit $J_0W_n$.  Moreover $J_0W_{n,\kappa}$
+is the integral over $x$ of the Wick monomials ${:}\Phi(0,\rho_\kappa(x-\cdot))^n{:}$, each the
+$L^2$-limit of ${:}\Phi(f_\varepsilon)^n{:}$ for test functions $f_\varepsilon\to\delta_0\otimes
+\rho_\kappa(x-\cdot)$ in the covariance norm; so $J_0W_n$ also lies in Simon's $\Gamma_n$, the
+closed span of the Wick monomials, on which repair R8 imports the action of $\Gamma$.  Put
+$Y_r:=\lambda a_rJ_0W_r$; then $Y=J_0V(h')=\sum_rY_r$, and $\|Y\|_{L^2(\dmu)}=\|V(h')\|_{L^2(\dphi)}$.
+
+(ii) The record proves the comparison inside the proof of Theorem~C.5 \cite[p.~41]{R}
+(\texttt{part\_i/main.tex}, ll.~3021--3031), under $\dmu$: ``$Y:=\mathcal U_h-\mathcal
+U_{h,\kappa}$ is a sum $Y=\sum_{r=0}^{2p'}Y_r$ of Wick chaoses, so Nelson's hypercontractive
+moment comparison applies in the form $\|Y\|_{L^q}\le(q-1)^{p'}\|Y\|_{L^2}$ $(q\ge2)$.  (Proof
+from the abstract form of Assumption~A4 [Thm.~I.17]: the second-quantized contraction
+$\Gamma(e^{-t})$ on $L^2(d\mu_0)$ satisfies $\|\Gamma(e^{-t})X\|_q\le\|X\|_2$ for $q=1+e^{2t}$,
+and $\Gamma(e^{-t})Y_r=e^{-rt}Y_r$.  Write $Y=\Gamma(e^{-t})Z$ with $Z=\sum_re^{rt}Y_r$; by
+orthogonality of the chaoses, $\|Z\|_2\le e^{2p't}\|Y\|_2$, whence $\|Y\|_q\le\|Z\|_2\le
+e^{2p't}\|Y\|_2=(q-1)^{p'}\|Y\|_2$.)''  The argument uses of its $Y$ only that it is a sum of
+Wick chaoses of degree $r\le2p'$ in $L^2(\dmu)$, which our $Y$ is by (i); so it applies verbatim,
+conditional on the repair R8 of the V3 audit, which imports the action
+$\Gamma(e^{-t})Y_r=e^{-rt}Y_r$ (V3 report, \S5, items C5.3--C5.4; part (i) above does not need
+it).  With $q=4$: $t=\frac12\log3$, the
+contraction $e^{-t}\mathbf 1$ has $\|e^{-t}\mathbf 1\|^2=\frac13=(2-1)/(4-1)$ as the abstract
+form of Assumption~A4 \cite[p.~9]{R} requires, and $e^{2p't}=3^{p'}$:
+\[
+ \|Y\|_4=\|\Gamma(e^{-t})Z\|_4\le\|Z\|_2=\Bigl(\sum_re^{2rt}\|Y_r\|_2^2\Bigr)^{1/2}\le
+ 3^{p'}\|Y\|_2 .
+\]
+(Test: $p'=1$, $Y$ centred Gaussian with variance $\sigma^2$: $\|Y\|_4=3^{1/4}\sigma\le3\sigma$.)
+Finally $\|Y^2\|_2=(\E Y^4)^{1/2}=\|Y\|_4^2$, Lemma~\ref{aux:notation-wick}(iv) bounds
+$\|V(h')\|_{L^2(\dphi)}^2$ by $V_*$, and $J_0$ maps $V(h')^2$ to $Y^2$ isometrically.
+\end{proof}
+
+By Lemma~\ref{aux:notation-sharpid} below and Remark~\ref{aux:notation-sharpidrem}(b), $Y$ is also
+the sharp-time observable built with the record's regularization, so the bound applies to $Q_V$ in
+the form in which Lemma~\ref{lem:D2} uses it.
+
+\begin{auxlemma}[the two regularizations of a sharp-time Wick power agree]\label{aux:notation-sharpid}
+Let $t\in\R$, let $f$ be real, bounded and measurable with compact support in $\R$, and let
+$0\le n\le2p'$.  Let $\delta_\kappa$ be the record's mollifier (Appendix~C, notation paragraph
+\cite[pp.~39--40]{R}: $\delta\in C_c^\infty(\R^2)$, $\delta\ge0$, $\delta(z)=\delta(-z)$,
+$\supp\delta\subseteq\{|z|\le1\}$, $\int\delta=1$, $\delta_\kappa(z)=\kappa^2\delta(\kappa z)$),
+let $\Phi_\kappa(\zeta)=\Phi(\delta_\kappa(\zeta-\cdot))$, with variance $c_\kappa$, and
+\[
+ X_\kappa:=\int f(x)\,{:}\Phi_\kappa(t,x)^n{:}_{c_\kappa}\,dx\qquad(\kappa\ge1),
+\]
+the integral taken pointwise in $q\in\mathcal S'(\R^2)$.  Let $W_n(f)$ be the limit of
+Lemma~\ref{aux:notation-wick}(iii) with $f$ in place of $h'$ (its proof uses only that the kernel
+is bounded with compact support), and let $J_t$ be the sharp-time map at time $t$,
+$F(\varphi_0)\mapsto F(\Phi(t,\cdot))$; $J_0$ is the map of Lemma~\ref{aux:notation-hyper}.
+Then $X_\kappa\to J_tW_n(f)$ in $L^2(\dmu)$ as $\kappa\to\infty$.
+\end{auxlemma}
+
+\begin{proof}
+\emph{The map $J_t$.}  $J_t$ is defined on cylinder functions,
+\[
+ J_t:\ F(\varphi_0(g_1),\dots,\varphi_0(g_k))\longmapsto F(\Phi(t,g_1),\dots,\Phi(t,g_k)),
+\]
+and preserves their laws: by Lemma~\ref{aux:notation-transl}(i) with $a=(t,0)$, $\Phi(g)\circ T_a=\Phi(\tau_ag)$
+and $(T_a)_*\mu_0=\mu_0$; the extension by continuity in the covariance norm, which $\tau_a$
+preserves, gives $\Phi(0,g)\circ T_a=\Phi(t,g)$, so $(\Phi(t,g))_g$ has the law of $(\Phi(0,g))_g$,
+which is that of $(\varphi_0(g))_g$ (proof of Lemma~\ref{aux:notation-hyper}(i)).  Hence $J_t$
+extends to an isometry of every $L^p(\dphi)$ into $L^p(\dmu)$, is multiplicative, and maps a Wick
+power at its own variance to the Wick power at its own variance of the image variable.
+
+\emph{Covariances.}  By Lemma~\ref{aux:notation-kernel}(v) and the evenness of $\delta$,
+$\E[\Phi_\kappa(t,x)\Phi_\kappa(t,y)]=(\delta_\kappa*\delta_\kappa*G)((0,x-y))$.  The variable
+$\Phi(t,g)$, $g:=\rho_{\kappa'}(y-\cdot)$, is the $L^2(\dmu)$-limit of $\Phi(\eta_\varepsilon\otimes
+g)$ for $\eta_\varepsilon\in C_c^\infty(\R)$, $\eta_\varepsilon\ge0$, $\int\eta_\varepsilon=1$,
+$\supp\eta_\varepsilon\subseteq[t-\varepsilon,t+\varepsilon]$ (the reading of
+Lemma~\ref{aux:notation-hyper}(i)); since $\delta_\kappa*G$ is continuous,
+$\E[\Phi_\kappa(t,x)\Phi(\eta_\varepsilon\otimes g)]=\int(\delta_\kappa*G)((t,x)-z')\,
+\eta_\varepsilon(z'^0)\,g(z'^1)\,dz'\to\int(\delta_\kappa*G)((0,x-y'))\,g(y')\,dy'$, so
+\[
+ \E\bigl[\Phi_\kappa(t,x)\,\Phi(t,\rho_{\kappa'}(y-\cdot))\bigr]
+ =\int(\delta_\kappa*G)((0,x-y'))\,\rho_{\kappa'}(y-y')\,dy'=:\Gamma_{\kappa,\kappa'}(x,y) .
+\]
+
+\emph{Inner products.}  Put $Y_{\kappa'}:=J_tW_{n,\kappa'}(f)=\int f(y)\,{:}\Phi(t,\rho_{\kappa'}
+(y-\cdot))^n{:}\,dy$ and $Y:=J_tW_n(f)$, so that $Y_{\kappa'}\to Y$ in $L^2(\dmu)$
+(Lemma~\ref{aux:notation-wick}(iii) and the isometry).  The generating-function identity in the
+proof of Lemma~\ref{aux:notation-wick}(i) holds for any two jointly centred Gaussian variables, and
+Fubini applies as there: the moments are bounded uniformly in $x,y$, and $|f|\le\|f\|_\infty
+\mathbf 1_K$ with $K$ bounded.  Hence
+\begin{gather*}
+ \E[X_\kappa^2]=n!\iint f(x)f(y)\,(\delta_\kappa*\delta_\kappa*G)((0,x-y))^n\,dx\,dy,\\
+ \E[X_\kappa Y_{\kappa'}]=n!\iint f(x)f(y)\,\Gamma_{\kappa,\kappa'}(x,y)^n\,dx\,dy ,
+\end{gather*}
+and $\E[Y^2]=I:=n!\iint f(x)f(y)\,C(x-y)^n\,dx\,dy$ by Lemma~\ref{aux:notation-wick}(iii).
+
+\emph{A majorant.}  Let $\kappa\ge6$, and let $\nu$ be a probability density on $\R^2$ with
+$\supp\nu\subseteq\{|v|\le\varepsilon\}$, $\varepsilon\le2/\kappa$, and
+$\|\nu\|_\infty\le\kappa^2\|\delta\|_\infty$.  Then, for $u\ne0$,
+\[
+ (\nu*G)((0,u))\le9\|\delta\|_\infty\bigl(b_0+2+2|\log|u||\bigr),
+\]
+and $(\nu*G)((0,u))\to G((0,u))=C(u)$ as $\varepsilon\to0$.  Indeed, if $|u|\ge2\varepsilon$, then
+$|(0,u)-v|\ge|u|/2$ on $\supp\nu$, and by Lemma~\ref{aux:notation-kernel}(v), (i) and (iii),
+$G((0,u)-v)\le C(|u|/2)\le(4\pi)^{-1}(b_0+2\log2+2|\log|u||)$.  If $0<|u|<2\varepsilon$, then
+$|(0,u)-v|<3\varepsilon\le6/\kappa\le1$ on $\supp\nu$, so, in polar coordinates and by (iii),
+\begin{align*}
+ (\nu*G)((0,u))&\le\kappa^2\|\delta\|_\infty\,2\pi\int_0^{6/\kappa}rC(r)\,dr
+ \le\kappa^2\|\delta\|_\infty\,\frac{2\pi}{4\pi}\,\frac{(6/\kappa)^2}{2}
+ \Bigl(b_0+1+2\log\frac\kappa6\Bigr)\\
+ &=9\|\delta\|_\infty\Bigl(b_0+1+2\log\frac\kappa6\Bigr),
+\end{align*}
+using $\int_0^{r_0}r(b_0+2|\log r|)\,dr=\frac{r_0^2}2(b_0+1+2|\log r_0|)$, which increases in
+$r_0\in(0,1]$ (derivative $r_0(b_0-2\log r_0)>0$); and $\log(\kappa/6)<|\log|u||$ because
+$|u|<4/\kappa$.  Both cases are at most $9\|\delta\|_\infty(b_0+2+2|\log|u||)$, since
+$\|\delta\|_\infty\ge1/\pi$ ($\delta$ is a probability density on the unit disc) and $2\log2<2$.
+The convergence holds because $G$ is continuous at $(0,u)\ne0$.  The majorant applies to
+$\nu=\delta_\kappa$ ($\varepsilon=1/\kappa$) and to $\nu=\delta_\kappa*\delta_\kappa$
+($\varepsilon=2/\kappa$, $\|\delta_\kappa*\delta_\kappa\|_\infty\le\|\delta_\kappa\|_\infty=
+\kappa^2\|\delta\|_\infty$).
+
+\emph{Limits.}  (1) For fixed $\kappa$, $\delta_\kappa*G$ is continuous and bounded by
+$\|\delta_\kappa\|_\infty\int G=\kappa^2\|\delta\|_\infty m_0^{-2}$
+(Lemma~\ref{aux:notation-kernel}(v)), so $\Gamma_{\kappa,\kappa'}(x,y)\to(\delta_\kappa*G)((0,x-y))$
+as $\kappa'\to\infty$, boundedly; by dominated convergence and $Y_{\kappa'}\to Y$,
+\[
+ \E[X_\kappa Y]=n!\iint f(x)f(y)\,(\delta_\kappa*G)((0,x-y))^n\,dx\,dy .
+\]
+(2) As $\kappa\to\infty$, the integrands of $\E[X_\kappa^2]$ and of $\E[X_\kappa Y]$ converge to
+$f(x)f(y)C(x-y)^n$ off the diagonal and are dominated by
+$\|f\|_\infty^2\mathbf 1_K(x)\mathbf 1_K(y)(9\|\delta\|_\infty)^n(b_0+2+2|\log|x-y||)^n$, which is
+integrable (as in Lemma~\ref{aux:notation-kernel}(iv)).  So $\E[X_\kappa^2]\to I$ and
+$\E[X_\kappa Y]\to I$, and
+\[
+ \|X_\kappa-Y\|_{L^2(\dmu)}^2=\E[X_\kappa^2]-2\,\E[X_\kappa Y]+\E[Y^2]\to I-2I+I=0 .\qedhere
+\]
+\end{proof}
+
+\begin{auxrem}[what Lemma~\ref{aux:notation-sharpid} identifies]\label{aux:notation-sharpidrem}
+(a) The localized monomial of type (1.1.5) with one factor of degree $n\le2p'$ and a bounded
+kernel $f$ at time $t$, which Definition~\ref{aux:d1-obs}(b) of \S\ref{sec:d1} constructs with the
+record's mollifier, is the limit of $X_\kappa$ (Lemma~\ref{aux:d1-moments}(a)), hence equals
+$J_tW_n(f)$.  For a product kernel $f_1\otimes\cdots\otimes f_r$ at one time $t$, with every $f_i$
+bounded and vanishing outside one column, Lemma~\ref{aux:d1-moments}(c) makes the monomial the
+product of its one-factor monomials, hence equal to
+$\prod_iJ_tW_{n_i}(f_i)=J_t(\prod_iW_{n_i}(f_i))$ almost everywhere.
+(b) In particular the pieces $Q_{n,n',k,k'}$ of $Q_V$ (\S\ref{sec:d4}), to which
+Theorem~\ref{thm:D4} applies Lemma~\ref{lem:D2}, are
+$\lambda^2a_na_{n'}\,J_0W_n(h'_k)\,J_0W_{n'}(h'_{k'})$, and their sum is $Q_V=(J_0V(h'))^2=Y^2$ with
+$Y$ of Lemma~\ref{aux:notation-hyper}, because $W_n(h')=\sum_kW_n(h'_k)$ (the regularized integrals,
+hence their limits, are linear in the kernel).  So the base term of Theorem~\ref{thm:D4}, bounded
+through Lemma~\ref{aux:notation-hyper}, and its comparison term, bounded through
+Lemma~\ref{lem:D2}, concern one and the same element of $L^2(\dmu)$.
+(c) At degree $1$ and $f\in C_c^\infty(\R)$, $X_\kappa=\Phi(\delta_\kappa*(\delta_t\otimes f))\to
+\Phi(t,f)=J_tW_1(f)$; this is also immediate from $\delta_\kappa*(\delta_t\otimes f)\to
+\delta_t\otimes f$ in the covariance norm.  It covers the unsplit factors $\Phi(s,f_i)$,
+$f_i\in C_c^\infty(\R)$, of the cylinder monomials of Theorem~\ref{thm:D3}, but not the pieces to
+which Lemma~\ref{lem:D2} is applied there (Lemma~\ref{aux:d3-cyl}(vi)): their kernels
+$f_i\mathbf 1_{[k-\frac12,k+\frac12)}$ are bounded, measurable and of compact support, but need
+not be smooth.  Those pieces are covered by Lemma~\ref{aux:notation-sharpid} with $n=1$, through
+(a), which identifies a one-factor piece of degree~$1$ with kernel $g$ at time $t$ with
+$J_tW_1(g)$, and by Lemma~\ref{aux:d1-moments}(f)(1), which identifies it with $\Phi(t,g)$;
+Lemma~\ref{aux:d3-cyl}(vi) uses the latter, with Lemma~\ref{aux:d1-moments}(c) for the
+products.
+(d) Lemma~\ref{aux:notation-sharpid} uses of Appendix~C only its regularization; it needs no repair
+of the V3 audit.
+\end{auxrem}
+
+\subsection{The printed constants}\label{sec:notation-printed}
+
+The constants $C_7$, $m_1$, $K_1$, $K_2$ and $\bar n$ are fixed once, with the working
+constants of \S2.6 of the record \cite[p.~14]{R}: ``$m_1>0$ and $C_7,C_8,K_1,K_2$ denote the
+printed constants''.  The source prints $C_7$ and $m_1$ as ``independent of $h$, $Q_1$ and
+$Q_2$''; how they depend on $(m_0,\lambda,\mathscr P,K_1,K_2)$ is not printed, and this note
+uses no such dependence.  The constant $C_8$ of the record (Assumption~A8(v)--(vi)) is not
+used in this note.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.11\textwidth}p{0.42\textwidth}p{0.39\textwidth}@{}}
+\toprule
+constant & printed in \cite{GJS} (read on the page images) & in the record \cite{R}\\
+\midrule
+$\bar n$ & p.~593: ``We assume a bound on the $n_i$ in (1.1.5), $n_i<\bar n$. Any choice
+$\bar n\geqq\deg P$ is sufficient.'' & A8(ii), p.~10: the fixed choice $\bar n=2p'+1$; every
+Wick factor used here has degree $\le2p'<\bar n$\\
+$K_1$, $K_2$ & (1.1.7)--(1.1.8), p.~594; Theorem~1.1.7, p.~594: ``Let $m_0$, $K_2$ and $K_1$ be
+sufficiently large and let $\lambda$ be sufficiently small.'' & A8(iii), eq.~(1), p.~10;
+``we fix $K_2\ge1$''\\
+$C_7$, $m_1$ & Theorem~1.1.7, p.~594: ``There are constants $0<m_1$ and $O(1)$ independent of
+$h$, $Q_1$ and $Q_2$ such that'' (1.1.10); $C_7$ is the record's name for this $O(1)$ &
+Source Fact~2.2 (A8(iv)), p.~10: ``with $m_1>0$ and $C_7$ independent of $h$, $Q_1$, $Q_2$
+(so stated in the source)''\\
+$m_0$, $\lambda$ & hypotheses of Theorem~1.1.7, p.~594 (quoted above) & \S2.6, p.~14: $m_0=M_*$,
+$0\le\lambda<\lambda_*$ in working coordinates\\
+$\mathscr P$, $p'$, $a_n$ & (1.8), p.~589: ``$V(h)=\lambda\int_{R^2}:\mathscr P(\Phi(x)):h(x)dx$'' &
+\S2.1, p.~6: $\mathscr P(\xi)=\sum_{n=0}^{2p'}a_n\xi^n$, $a_{2p'}>0$, $p'\ge1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The derived constants of this section are $c_U$ (Lemma~\ref{aux:notation-cU}), $S_2$
+(Definition~\ref{aux:notation-S2def}; finite and unevaluated), $b_0$ and $I_n$
+(Lemma~\ref{aux:notation-kernel}), $\overline V_*\ge V_*$ (Lemma~\ref{aux:notation-wick}),
+and the ring constant $\overline\Sigma_{3\times5}\ge\Sigma_{3\times5}$
+(Lemma~\ref{aux:notation-rings}(vi)); Appendix~\ref{app:constants}
+tabulates them with the constants of Theorems~\ref{thm:D3}--\ref{thm:D4} and of
+\S\ref{sec:cons}.

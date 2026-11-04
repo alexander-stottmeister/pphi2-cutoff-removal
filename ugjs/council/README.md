@@ -71,3 +71,26 @@ ran as a general-purpose agent on Opus with a role card in its prompt. Three mem
 cut off by a session usage limit on 28 October and resumed from their transcripts on
 30 October. The Annals paper's text layer is garbled on the expansion pages; every page
 fact in these files was read on a rendered image.
+
+## Phases A and B: the comparison note (2–4 November 2026)
+
+After the author's "start with the plan" (31 October 2026) and the execution of Phases 0′ and 0
+(gate record in `../../part_i/README.md`; commit 4166883), the council drafted the comparison
+note `../comparison.tex` (`../preamble.tex`, `../parts/`): aqft wrote §§4–6 and §8 (Lemma D.2,
+Theorems D.3–D.4, the replaced proofs), mp §3 (Lemma D.1) and §7 (quantifiers), cqft2 §2
+(notation, geometry, the identification Lemma N.22) and Appendix A (constants, recomputed
+independently); the orchestrator wrote §1 and Appendix B (gate record). Files here:
+`ab-drafting-brief.md` (the drafting brief; the paths in it were the session scratchpad),
+`reports-drafters.md` and `report-mp.md` (the drafters' reports), `v1-brief.md` and
+`v2-brief.md` (audit briefs), `v1-cqft-report.md` (cqft as attacker; with its re-check V1b and
+closing pass V1c), `v1-mp-report.md` (quantifiers), `v2-report.md` (a fresh agent; with its
+re-check V2b), `disposition-aqft.md`, `disposition-mp.md`, `disposition-cqft2.md` (one line
+per finding), `labels-main-2026-11-02.txt` (the record's statement numbers and pages used for
+citations), and `v3-appendix-c-report.md` with `v3-numerics/` (round V3, the audit of
+Lemmas C.2–C.5). Rounds: drafting 2 November; V1 and V2 on the frozen version of 2 November
+(59 pp): no false statement, one MAJOR, 49 MINOR; dispositions and the repair (Lemma N.22)
+3 November; V1b and V2b on the frozen version of 3 November (70 pp): the repair holds, status
+wording corrected; V1c on the frozen version of 4 November (72 pp): every item closed. Three
+usage-limit interruptions (31 October, 2 and 3 November); every agent resumed from its
+transcript. The harness refused the drafters' report and disposition files; those were returned
+as messages and saved by the orchestrator. Integration waits for Checkpoint 2 (PLAN Part 11).

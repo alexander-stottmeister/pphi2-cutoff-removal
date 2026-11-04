@@ -1,0 +1,149 @@
+% gates.tex -- gate record of the note (orchestrator, 2 November 2026; updated after each round).
+\subsection*{Status of the note}
+The note as a whole has status \emph{conjectured} until the audits of \texttt{ugjs/PLAN.md}
+Part~5 and gates GA1--GA8 and GB1--GB3 (Part~3) have passed; this appendix records the rounds.
+The status lines inside the sections are the drafters' claims after the disposition of rounds V1
+and V2 (3 November 2026), under re-check: Lemma~\ref{lem:D1} proved, conditional on repair R8 of
+the V3 audit (which supplies the linearity of $h\mapsto\Uc_h$ and, with Lemma~C.4 on the
+Step-1 route (R1--R10), the identification of the record's $\Uc_h$ with the $L^2$-limit of its
+regularizations $\Uc_{h,\kappa}$) (mp); Lemma~\ref{lem:D2} proved, conditional on Lemma~\ref{lem:D1} and on Lemma~C.4 (R1--R10), which
+identifies $\Uc_{h-h^B}$ with the limit of its regularizations in its Step~3, using neither
+Lemma~C.2 nor Theorem~C.5 (aqft); Theorem~\ref{thm:D3} proved, conditional on
+Lemma~\ref{lem:D1} and Lemma~C.4 (both through \ref{lem:D2}; R1--R10), Lemma~C.2 (R8) and
+Theorem~C.5 with the shape property of $S_2$ (R1--R10), parallel strips only (aqft); Theorem~\ref{thm:D4} proved,
+conditional on the same, on R8 for the comparison step of Lemma~N.21(ii), and on the transverse
+case of Theorem~1.1.7 at the printed statement's scope (F-T), and not using the GAP of
+\S\ref{sec:notation} (aqft); the auxiliary statements of \S\ref{sec:notation} and
+Appendix~\ref{app:constants} proved or conditional as marked there (cqft2), among them the
+identification Lemma~N.22 that closed the one MAJOR finding of V1 and V2. The one GAP mark of the
+note stands in \S\ref{sec:notation}, after the Wick-isometry lemma: the record never constructs
+the Wick powers in its $V(h)$ (\S2.1 of the record), so the identification of the record's
+$V(h)$ with the constructed object is assumed; it enters only at Step~1 of the record's
+Theorem~5.1 and at Corollary~5.2 (\S\ref{sec:cons}), not in the Euclidean Theorem~\ref{thm:D4}.
+It is the time-zero face of the V3 audit's finding M-3, whose repair R8 would supply the
+construction. The status lines of Lemma~\ref{lem:D2} and Theorems~\ref{thm:D3}--\ref{thm:D4} also rest on
+the reading, named in Remark~N.2(iv) of \S\ref{sec:notation}, that identifies the note's
+localized pieces, one-square interaction terms and $V(h')(0)^2$ with GJS's monomials of
+p.~593; the printed text that reading uses is the object of C5 item~10, an open human reading. Nothing in this note is a theorem of the record
+until integration (Checkpoint~2).
+
+\subsection*{Deviations from PLAN Part 1 (findings for the audits)}
+Lemma~\ref{lem:D2} is stated in a square-by-square form (a), summing over the squares where $h$ is
+not almost everywhere zero, from which a form (b) of the plan's statement, with strips of
+positive width, follows; the plan's index set
+$\{\Delta\not\subset B:\Delta\cap\supp h\neq\emptyset\}$ would break Theorem~\ref{thm:D3}'s
+parallel-only claim and its $2N_g$ count (mp's example $g=\mathbf 1_{[0,1/10]}+\mathbf 1_{\{3\}}$).
+$\Sigma_{3\times5}$ is the constant $4x(5-3x)/(1-x)^2$, $x=e^{-m_1}$, bounding the plan's
+$R$-dependent sum. Transverse strips are used for every square whose column distance exceeds $|l|$,
+not only in rows $-1,0,1$. No Wick re-expansion of $V(h')(0)^2$ is needed (the record's Step~1).
+Theorem~7.7's radius is $s_0=\min_{j:\,e_j\neq0}(2kK_{e_j})^{-1}$, not the plan's $1/K_f$. The
+$3^{p'}$ comparison is derived under $\dmu$ (and on $L^2(\dphi)$) from A4. $B_{3\times5}$ always has
+15 squares, built from the column containing $a$. The count $N_I$ of the record's \S6 must be
+redefined on GJS columns (\S\ref{sec:cons}; PLAN finding F3 was inexact on this point).
+
+\subsection*{Source facts recorded by the drafters (misprints kept verbatim)}
+GJS p.~594 prints the strip-definition sentence before Theorem~1.1.7 without a closing period
+(cqft2, aqft, 300\,dpi; confirmed by the V1 attacker at 600\,dpi). GJS p.~595 prints
+``Feyman-Kac'' [sic] (mp). GJS (1.1.11) on p.~594 is printed ``0(1)$\,e^{-m_1d/2}$'' with an
+upright digit zero, the glyph of the label's ``0'', while (1.1.10) on the same page prints the
+italic ``$O(1)$'' (mp at 300\,dpi; the V1 attacker at 600\,dpi with glyph metrics; the
+orchestrator on those crops); the record's A8(vii$'$)(a), l.~814, transcribes (1.1.11) with
+``$O(1)$'', a silent correction to be marked [sic] at integration (KB correction node
+\texttt{a8-vii-prime-silent-correction-of-gjs-0-1}).
+
+\subsection*{Audits}
+\emph{V1 (2--3 November 2026; the frozen version of 2 November, 16:38, 59 pp, sha256 of the PDF
+beginning 7e393b9a440fe6a2).} mp, quantifiers of \S\S4--6 and \S8: no CRITICAL or MAJOR
+finding, 14 MINOR (conditions not stated in the statements of D.2--D.4; the GAP unnamed at D.4's
+Step~2; D.2's dependence misdescribed; the replaced Lemma~4.3(ii) uses more than A3; $L=0$;
+the ``artefact'' sentence inside Lemma~7.6's statement; the polystrip threshold and $s_0$ when
+all $e_j=0$; $K_f$ does not depend on $g$; $N_g=0$ one direction only; ``$T<1$'' covers $T\le\frac12$
+only; the integration sentence of Theorem~12.2; the master's ``radius of Theorem~7.7''; \S7 and
+Appendix~A omit the GAP from $M_B$'s dependence). cqft, attacker: D.1--D.3 hold and can be
+recorded as proved conditional on the V3 repairs (D.1: the identification of $\Uc_h$ with the
+$L^2$-limit, R8 with Lemma~C.4; D.2: Lemma~C.4; D.3: Lemma~C.2 at R8 and Theorem~C.5 at R1--R10,
+parallel strips only); every application of Theorem~1.1.7 in \S\S4--6 checks out and every
+transverse one is flagged; D.4 has one MAJOR gap: it treats two constructions of $V(h')(0)^2$
+(time-zero Wick powers with a one-dimensional mollifier, carried by $J_0$, in Step~2; the limits
+with the record's two-dimensional mollifier $\delta_\kappa$ in Step~4) as one object, which
+\S8's transfer to Theorem~5.1 needs; the repair is the cross-covariance computation giving
+$\|X_n-J_0W_n\|^2=0$; 14 MINOR (status labels; the $N_I$ repair incomplete at l.~448, A8(ii),
+Theorem~5.1 Steps~2--4, Lemma~6.1 and Proposition~6.2; the severity of the cell-count error;
+``the case the printed proof reaches'' overstated for a sharp-time/time-integrated pair; F-T
+missing at Theorem~12.2, Lemma~10.2 and Corollary~5.2; the ``$\|$le'' line; D.2(b)'s ``positive
+width''; the input lists; Lemma~N.18(iii) and $a_0$; F-T adapted rather than verbatim; \S7's
+$N^{\mathrm{col}}_I$ and $s_0$; the ``0(1)'' transcription). The reports are
+\texttt{audits/V1-cqft-report.md} and \texttt{audits/V1-mp-report.md} of the working folder.
+Disposition of every finding: done by the drafters on 3 November 2026 (\texttt{parts/DISPOSITION-aqft.md}, \texttt{-mp.md}, \texttt{-cqft2.md}); the MAJOR is closed by Lemma~N.22 of \S\ref{sec:notation}, a new claim under re-check.
+\emph{V2 (3 November 2026; same frozen version; a fresh auditor that read neither the memos nor
+the V1 reports).} No CRITICAL finding and no false mathematical statement in D.1--D.4; the same
+MAJOR as V1 (V2-1, the two constructions of $Q_V$), 21 MINOR (status and conditionality of
+D.1; R8 against R1--R10 at one place; ``conjectured'' and ``proved conditional'' applied to the
+same statements; the $N_I$ edit incomplete at l.~448 and A8(ii); the replaced Lemma~4.3(ii)'s
+inputs; eight replacement blocks, not ten, and the GA5 list; GA6's list omits Lemma~10.3 and
+Proposition~10.4; the GA3 sentence; F-T not verbatim and missing at D.2(b), Lemma~N.46 and the
+Theorem~5.1 block; the ``artefact'' sentence; $\mathcal H_r$ against R8's $\Gamma_r$; \S8.9's
+stale quote; $N^{\mathrm{col}}_I$ undefined; $s_0$; Appendix~A.4 against \S8.7; the input list;
+Lemma~N.18(iii); script run records; the V3 report under two paths; locator slips; the
+``0(1)'' transcription). Every constant, strip width and orientation recomputed by hand
+agrees with the note; all GJS quotations match the images. Report:
+\texttt{audits/V2-report.md}.
+
+\subsection*{Gates GA and GB (PLAN Part 3), as of the re-check rounds V1b and V2b}
+\begin{itemize}\setlength{\itemsep}{1pt}
+\item GA1 (every use of (1.1.10) names $Q_1$, $Q_2$ with their types, their squares, the cutoff with
+  its membership in $\CE$, the strip with orientation and width; a second agent re-derives each):
+  \emph{passed}. The V1 attacker checked every application in \S\S\ref{sec:d2}--\ref{sec:d4}
+  (types (1.1.5)/(1.1.6), $n_i<\bar n$, $L^2$ kernels, disjoint closed squares, orientation and
+  width, $h_\alpha\in\CE$, covariance under $dq_{h_\alpha}$, the constant) and the V2 auditor
+  re-derived every strip width and orientation; every transverse use is flagged.
+\item GA2 (the integrability chain of D.1 cites only A3, Lemma~C.2, Theorem~C.5, the Gaussian
+  moments, H\"older and dominated convergence, every exponent written): \emph{passed with one
+  addition}: the chain also uses the linearity of $h\mapsto\Uc_h$ (repair R8), which the
+  plan's list omitted (mp); exponents written; checked by V1 (cqft) and V2.
+\item GA3 ($A$, $B'$, $A_f$, $K_f$ recomputed by hand and entered in Appendix~A): \emph{passed};
+  Appendix~\ref{app:constants} (cqft2, independent of aqft's text), re-recomputed by V2 and
+  V2b: every constant agrees with \S\S\ref{sec:d3}--\ref{sec:d4} and \S\ref{sec:cons}; the
+  deviations from PLAN Part~1 are listed in Appendix~A.5.
+\item GA4 (an independent audit of Lemmas~C.2--C.4 and Theorem~C.5, including the
+  translation-invariance sentence): \emph{run, with findings}: round V3, whose report is
+  \texttt{ugjs/council/}\allowbreak\texttt{v3-appendix-c-report.md}; the four statements are true and every
+  display re-derives, but three load-bearing inputs are neither proved nor imported (MAJOR);
+  repairs R1--R10 written out there, not applied. Until they are, every use of Lemma~C.2,
+  Lemma~C.4 and Theorem~C.5 in this note is conditional, as the status lines say; the
+  translation invariance of the bound is shown in Theorem~C.5's proof and that of $S_2(B)$ in
+  \S\ref{sec:notation}.
+\item GA5 (no proof in \S\S4, 6, 7 of the record cites \texttt{eq:UGJS}): \emph{passed for the
+  replacement texts}: the eight replacement blocks of \S\ref{sec:cons} contain no
+  \texttt{UGJS} and no $C_8$ (grep recorded in \S8.8, re-run by V1 and V2); the record itself
+  still carries 21 hits in \S\S4--7, all inside the texts to be replaced at integration.
+\item GA6 ($A$, $B'$, $\widehat C_Q$, $s_0$ appear in no statement of \S\S8--14 of the record):
+  \emph{passed}: grep recorded in \S8.8 (re-run by V1 and V2); $M$ appears in Lemmas~10.3 and
+  10.5, Proposition~10.4 and the later statements and becomes $M_B$.
+\item GA7 (a G6-style adversarial pass with zero unresolved findings): \emph{see the audit
+  record above}: rounds V1 (two auditors) and V2 (fresh), re-checks V1b and V2b; no CRITICAL
+  finding, the one MAJOR closed by Lemma~N.22 and confirmed by both re-checks; the residue of
+  the re-checks (status wording of D.2--D.4, Remark~N.23(c), Remark~N.2(iv), Appendix~A.4's
+  marks, one F-T, \S7's description of D.2's route, the run-record path) is listed in the
+  disposition files and its closure is recorded below.
+\item GA8 (the C5 checklist contains items~1--4 and 10 with pages and text): \emph{passed}
+  (\texttt{part\_i/C5\_reading\_record.md}, items 1--4 and 10--13, committed 4166883).
+\item GB1 (the surviving \texttt{U\_GJS}/\texttt{UGJS}/\texttt{C\_8} hits in the record are
+  exactly the listed lines): \emph{not applicable before integration}; the record is unchanged
+  by this note. The lines that would survive are listed in \S8.8.
+\item GB2 (C5 items 1--4 and 10--13 exist with pages, images and text; the status sentences
+  name them as open): \emph{passed} (items 10--13 added 31 October 2026; named as open in the
+  record's Appendix~B, the README and \texttt{docs/}).
+\item GB3 (Appendix~A's $M$ rows rewritten; $M$ contains $S_2$, unevaluated, and Appendix~A
+  says so): \emph{prepared, not applied}: \S8.7 lists the rows; applied at integration.
+\end{itemize}
+\emph{Closure of the re-check residue:} confirmed by the attacker's closing pass V1c (4 November
+2026, on the frozen version of 18:30, 72 pp): every item of V1b and V2b closed with no new
+defect; final word: D.1--D.4 can be recorded exactly as their status lines and the status
+paragraph above say; two wording leftovers in the master's \S1 (the labelling of the inputs
+on working coordinates, V1c-1; the qualifier on ``no new import'') were applied by the
+orchestrator after V1c, wording only. For the repository the two numerics output files
+with the suffix \texttt{.out} were renamed to the suffix \texttt{.output.txt}, since that pattern is
+git-ignored as a LaTeX artefact; the citations follow.
+GA7 is therefore recorded as passed for this version, with every finding resolved and every
+status conditional as stated; the note's own status stays \emph{conjectured} until integration.

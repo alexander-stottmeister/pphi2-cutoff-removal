@@ -1,0 +1,124 @@
+% comparison.tex -- master of the comparison note (Phases A and B of ugjs/PLAN.md).
+% Orchestrator: Claude (Fable 5.1), 31 October 2026.  Parts in parts/, drafted by the council
+% members named in each file.  Build: pdflatex x2 from this folder.
+\input{preamble}
+
+\title{The uniform local moment from the printed clustering theorem\\[4pt]
+\large Lemmas D.1--D.2 and Theorems D.3--D.4 of \texttt{ugjs/PLAN.md}: the comparison note
+for Phases A and B (draft under audit; not integrated)}
+\author{Alexander Stottmeister\\[3pt]
+  \normalsize Institut f\"ur Theoretische Physik, Leibniz Universit\"at Hannover,\\
+  \normalsize Appelstra\ss e 2, 30167 Hannover, Germany}
+\date{31 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{quote}\small
+\textbf{Status (4 November 2026).} This note is the deliverable of Phases A and B of
+\texttt{ugjs/PLAN.md}, drafted by the council members aqft, mp and cqft2 and assembled by the
+orchestrator; it is AI-drafted and under audit. The status words inside
+\S\S\ref{sec:notation}--\ref{sec:cons} (``proved'', ``proved conditional on \dots'') are the
+drafters' claims under audit; the note as a whole has status \emph{conjectured} until the
+audits V1 and V2 and the gates GA and GB of the plan have passed, and Appendix~\ref{app:gates}
+records which have and what each claim is conditional on. Nothing in \texttt{part\_i/main.tex} has changed,
+and integration as its Appendix~D is the author's decision (Checkpoint~2 of the plan). The
+record's Theorem~12.2 is proved from the literal imports A1--A8 since 31 October 2026, with
+A8(vi) read off GJS Theorem~1.1.11; this note does not change that status. Its content is the
+mathematics of the removal: that the printed clustering theorem, with the record's Lemma~C.2,
+Lemma~C.4 and Theorem~C.5, yields the uniform local moment, so that after integration GJS
+Theorem~1.1.11 would no longer be used and one GJS theorem, Theorem~1.1.7, would remain imported.
+\end{quote}
+
+\section{Purpose, standard and status}\label{sec:purpose}
+
+\emph{Purpose.} The record \cite{R} consumes, in its Theorem~5.1 and Lemmas~7.1--7.3 and 7.6,
+a moment bound for sharp-time observables under the interacting Euclidean measures $dq_h$ at
+slab cutoffs $h=h_{T,g}$, uniformly in $T>0$: Assumption A8(vi), equation $(\UGJS)$ of the
+record, read since 31 October 2026 off GJS Theorem~1.1.11 at $B=I$, $n=0$. This note derives
+that bound from the printed clustering theorem, GJS Theorem~1.1.7, (1.1.10)
+\cite[p.~594]{GJS}, which the record imports as A8(iv), together with the record's own
+Lemma~C.2 and Theorem~C.5 and the literal imports A3, A4 and A8(i)--(iii). Phase~A
+(Theorem~\ref{thm:D3}) gives the bound at fixed spatial cutoff $g$, with constants depending on
+$g$, which is all \S7 of the record needs; Phase~B (Theorem~\ref{thm:D4}) gives the bound of
+Theorem~5.1 uniformly in the cutoff. Lemmas~\ref{lem:D1} and \ref{lem:D2} serve both.
+
+\emph{Standard.} A printed statement is imported at the scope at which it is printed; this is
+the standard under which the record imports A1--A8 (\texttt{ugjs/PLAN.md}, Part~7, ruling R9),
+and this note uses no other. None of GJS's proofs is verified here. One case of
+Theorem~1.1.7 is used that its printed proof does not reach, and it is disclosed wherever it
+is used, in the plan's frozen sentence F-T, quoted verbatim (its bracketed clause is added only at
+integration): GJS Theorem 1.1.7 is printed for localized monomials separated by a strip of any
+orientation (p.~594). Its printed proof rotates the strip into the time direction (p.~597) and
+so reaches sharp-time monomials only across strips parallel to the time-zero line. Lemma 7.4
+uses only that case. In this note, Theorem~\ref{thm:D4} also uses the transverse case, at the
+printed statement's scope, and every such use is flagged where it occurs;
+Theorem~\ref{thm:D3} uses the parallel case only.
+
+\emph{What the note does not do.} It does not prove the transverse case of Theorem~1.1.7; it
+does not re-derive the cluster expansion; it renumbers no result of the record, and the
+statements it changes are listed in \S\ref{sec:cons}: those whose constants contained $C_8$
+(the $M$ of Theorem~5.1 and Corollary~5.2; Lemma~7.1, whose form changes; Lemma~7.6; the
+radius $s_0$ in the proof of Theorem~7.7) and those that carry the count $N_I$, redefined on
+GJS columns (Lemma~6.1 and the displays (7)--(8) of Proposition~6.2, with the notation table
+and A8(ii)); it does not evaluate the constant of Theorem~C.5, which enters the constants below as $S_2(B)$; and it
+proves nothing about the net of ground states beyond what the record already proves with
+A8(vi). The open human readings it rests on, C5 items 1--4 and 10--13 of
+\texttt{part\_i/C5\_reading\_record.md}, are named beside every status word at integration.
+
+\emph{Inputs, by name.} From the record: A2 (the slab objects and the Feynman--Kac--Nelson
+transfer, in \S\ref{sec:cons}), A3 (finite-volume stability), A5(i) (domain smoothing, for
+$|V(h)|$ in the replaced Lemma~4.3(ii)), A4 (free hypercontractivity,
+through Theorem~C.5 and the $3^{p'}$ comparison), A8(i)--(iv) (the cutoff class of p.~589, the
+observables of p.~593, the norms of p.~594, Theorem~1.1.7), Definition~2.1 and Lemma~3.1 (the classes), Remark~2.5, \S2.6,
+Proposition~3.2 and Remark~3.3 (the working coordinates), Lemmas~4.1--4.4, Lemma~6.1, Proposition~6.2 and Remark~6.3 (with the count $N_I$
+redefined on GJS columns, \S\ref{sec:cons}), and from Appendix~C the normalization
+Lemma~C.2, the ultraviolet Lemma~C.4 (through the identification of $\Uc_h$ with the
+$L^2$-limit of $\Uc_{h,\kappa}$, which Lemma~\ref{lem:D1} and Lemma~\ref{lem:D2} use) and the
+stability Theorem~C.5, each cited as proved conditional on the repairs of the V3 audit
+(\texttt{ugjs/council/v3-appendix-c-report.md}: R8 for Lemma~C.2, R1--R10 for Lemma~C.4 and
+Theorem~C.5); the Gaussian moments of the free field, written out in \S\ref{sec:d1}; and the
+reading, named in \S\ref{sec:notation}, that identifies the note's localized pieces, the
+one-square interaction terms and $V(h')(0)^2$ with GJS's monomials of p.~593. No new import is
+made: every external statement used is one of A1--A8 as the record states it; every other
+input is a result of the record or of this note, cited with its condition where it is used.
+
+\section{Notation and standing conventions}\label{sec:notation}
+\input{parts/notation}
+
+\section{The affine-path identity}\label{sec:d1}
+\input{parts/d1}
+
+\section{Localized comparison}\label{sec:d2}
+\input{parts/d2}
+
+\section{Phase A: fixed cutoff, parallel strips}\label{sec:d3}
+\input{parts/d3}
+
+\section{Phase B: uniform in the cutoff, transverse strips}\label{sec:d4}
+\input{parts/d4}
+
+\section{Quantifiers and the dependence of the constants}\label{sec:quant}
+\input{parts/quantifiers}
+
+\section{Consequences for the record: the replaced proofs}\label{sec:cons}
+\input{parts/consequences}
+
+\appendix
+\section{Constants recomputed by hand (gate GA3)}\label{app:constants}
+\input{parts/constants}
+
+\section{Gate record}\label{app:gates}
+\input{parts/gates}
+
+\begin{thebibliography}{9}
+\bibitem{R} A.~Stottmeister, \emph{Removal of the spatial cutoff for weakly coupled
+$P(\varphi)_2$: norm convergence of the ground-state net on the quasi-local algebra. Part I ---
+unified manuscript}, document of record \texttt{part\_i/main.pdf}, 42 pp., version of
+31 October 2026, \url{https://github.com/alexander-stottmeister/pphi2-cutoff-removal}.
+\bibitem{GJS} J.~Glimm, A.~Jaffe, T.~Spencer,
+\emph{The Wightman axioms and particle structure in the $\mathscr P(\phi)_2$ quantum field
+model},
+Ann.\ of Math.\ \textbf{100} (1974) 585--632.
+\end{thebibliography}
+\end{document}

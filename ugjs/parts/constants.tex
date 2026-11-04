@@ -1,0 +1,520 @@
+% constants.tex -- drafted by cqft2 (council of ugjs/PLAN.md), 2 November 2026.
+% Recomputed by hand from ugjs/PLAN.md Part 1, the record and Section 2 of this note,
+% independently of the drafts of Sections 4-6 and 8 (not on disk when this was written;
+% the comparison with them, made afterwards, is subsection A.6).
+
+This appendix recomputes, line by line, every constant of Theorems~\ref{thm:D3} and
+\ref{thm:D4} and of the consequences of \S\ref{sec:cons}: $c_U$, $S_2(B)$, $A$, $B'$, $A_f$,
+$K_f$, $s_0$, $\overline\Sigma_{3\times5}$, $V_*$ and $M_B$, together with the auxiliary quantities they
+are built from.  The statements of \texttt{ugjs/PLAN.md}, Part~1, are the targets.  The inputs
+are the printed constants of \S\ref{sec:notation-printed}; Lemma~\ref{lem:D1}; Source Fact~2.2 of
+the record (Assumption~A8(iv) \cite[p.~10]{R}); Lemma~C.2 (the base terms), Lemma~C.4 (through
+Lemmas~\ref{aux:notation-cutoffs}(iv), \ref{aux:notation-cU}(iv) and~\ref{aux:notation-transl},
+i.e.\ the decomposition of $\Uc_{h-h^B}$ and the shape invariance of $S_2$), Theorem~C.5 (finiteness
+of $S_2$) and the comparison step in the proof of Theorem~C.5 (the factor $9^{p'}$), with the V3
+dependences of \S\ref{sec:notation}; Remark~2.5, Assumptions~A2, A3 and A4 and Lemma~3.1(ii) of the
+record; and the lemmas of \S\ref{sec:notation}.  The recomputation was made independently of the text of
+\S\S\ref{sec:d2}--\ref{sec:d4} and \S\ref{sec:cons}; \S A.5 lists every discrepancy found
+with the plan, and \S A.6 those found afterwards with those sections.  Every statement here is \emph{conjectured} until
+audited.
+
+\subsection*{A.1\quad The constant of the comparison}
+
+\begin{auxlemma}[the comparison constant is $C_7c_U$]\label{aux:constants-comparison}
+Let $h\in\CE$, let $B$ be a box, and let $F=\sum_{a}F_a$ be a finite sum of localized
+monomials of type (1.1.5) or (1.1.6) with $L^2$ kernels and factor degrees $<\bar n$, all of
+whose localization squares lie in a set $R\subseteq B$, with $\GJS F=\sum_a\GJS{F_a}$ by
+(1.1.9).  Assume that $F$ satisfies the hypotheses of Lemma~\ref{lem:D1} with $h_1=h^B$,
+$h_2=h$, and that to every $\Delta\in\mathfrak S(h)$ with $\Delta\cap B=\varnothing$ a strip
+$S_\Delta$ of width $w_\Delta>0$ separating $\Delta$ from $\bigcup R$ is assigned.  Then
+\[
+ \bigl|\ev Fh-\ev F{h^B}\bigr|\le C_7\,c_U\,\GJS F\sum_{\Delta\in\mathfrak S(h),\ \Delta\cap
+ B=\varnothing}e^{-m_1w_\Delta} .
+\]
+Every estimate behind this bound is Source Fact~2.2 for a pair $(F_a,U_{\Delta,n})$ across
+$S_\Delta$, so the orientation of $S_\Delta$ is the orientation of that application.  Since
+$w_\Delta$ may be taken arbitrarily close to $d(\Delta,R)$, the bound also holds with
+$d(\Delta,R)$ in place of $w_\Delta$; the orientations are then not controlled
+(Remark~\ref{aux:notation-tilted}): where a strip so chosen is transverse to the time-zero line
+and some $F_a$ is of type (1.1.5), this form uses the transverse case of GJS Theorem~1.1.7 at the
+printed statement's scope (F-T, \S\ref{sec:purpose}).
+\end{auxlemma}
+
+\begin{proof}
+By Lemma~\ref{lem:D1} and Lemma~\ref{aux:notation-cutoffs}(ii),
+$\ev Fh-\ev F{h^B}=-\int_0^1\Cov_{h_\alpha}(F,\Uc_{h-h^B})\,d\alpha$ with $h_\alpha\in\CE$; by
+Lemma~\ref{aux:notation-cU}(iv) the covariance is
+$\sum_{\Delta}\sum_{n=1}^{2p'}\sum_a\Cov_{h_\alpha}(F_a,U_{\Delta,n})$, the sum over
+$\Delta\in\mathfrak S(h)$ with $\Delta\cap B=\varnothing$.  Each pair $(F_a,U_{\Delta,n})$
+consists of two localized monomials (types (1.1.5)/(1.1.6) and (1.1.6),
+Lemma~\ref{aux:notation-cU}(i)) with disjoint localization squares (those of $F_a$ lie in
+$R\subseteq B$, and $\Delta\cap B=\varnothing$), factor degrees $<\bar n$, and the strip
+$S_\Delta$ separates $\Delta$ from $\bigcup R$, hence from the squares of $F_a$.  Source
+Fact~2.2, at the cutoff $h_\alpha\in\CE$, in the weakened form of \S\ref{sec:notation-strips}
+with the strip $S_\Delta$, gives
+$|\Cov_{h_\alpha}(F_a,U_{\Delta,n})|\le C_7e^{-m_1w_\Delta}\GJS{F_a}\GJS{U_{\Delta,n}}$.  Sum:
+$\sum_a\GJS{F_a}=\GJS F$, $\sum_n\GJS{U_{\Delta,n}}\le c_U$ (Lemma~\ref{aux:notation-cU}(ii)),
+and $\int_0^1d\alpha=1$.  For the last sentence: given $\varepsilon>0$ choose strips with
+$w_\Delta>d(\Delta,R)-\varepsilon$; the sum is finite, so letting $\varepsilon\to0$ gives the
+bound with $d(\Delta,R)$.
+\end{proof}
+
+The orientation of each application is that of the assigned strip;
+Propositions~\ref{aux:constants-D3} and~\ref{aux:constants-D4} assign the strips explicitly.  The
+constant of the comparison is $C_7c_U$ and nothing else; the geometry enters only through the
+sum.
+
+\subsection*{A.2\quad The constants of Theorems~\ref{thm:D3} and~\ref{thm:D4}}
+
+\begin{auxprop}[the constants of Theorem~\ref{thm:D3}]\label{aux:constants-D3}
+Let $g\in\CH$, $I\subset\R$ a bounded interval, $s\in\R$, $N_g$ the number of columns meeting
+$\supp g$ in positive measure, and $B=B_s(g,I)$ the rows $l_s-1,l_s,l_s+1$ times the smallest
+interval of $N_B$ columns containing every column that meets $\supp g$ or $I$ (in positive
+measure, or set-theoretically: both readings work below).  Let $F$ be a finite linear
+combination of cylinder monomials at sharp time $s$, supported in $I$, satisfying the
+hypotheses of Lemma~\ref{lem:D1}.  Then for every $T>0$
+\[
+\begin{gathered}
+ \Bigl|\int F\,dq_{h_{T,g}}\Bigr|\le A\,\|F\|_{L^2(\dphi)}+B'\,\GJS F,\\
+ A:=e^{3\lambda|a_0|N_B}S_2(B),\qquad B':=\frac{2\,C_7\,c_U\,N_g\,e^{-m_1}}{1-e^{-m_1}} .
+\end{gathered}
+\]
+$A$ depends on $(\lambda,\mathscr P,m_0)$ and $N_B$ and is uniform in $T>0$ and $s\in\R$;
+$B'$ depends on $C_7,m_1,K_1,K_2,\lambda,a_1,\dots,a_{2p'}$ and $N_g$, and is uniform in $T$,
+$s$ and the position of $I$.  All strips used are parallel.
+\end{auxprop}
+
+\begin{proof}
+\emph{Base term.}  $h:=h_{T,g}\in\CE$ (Lemma~3.1(ii) \cite[p.~15]{R}); $h^B\in\CE$ and $\supp
+h^B\subseteq\overline B$ (Lemma~\ref{aux:notation-cutoffs}(i)).  Cauchy--Schwarz in
+$L^2(\dmu)$:
+$|\ev F{h^B}|\le Z(h^B)^{-1}\|F\|_{L^2(\dmu)}\|e^{-\Uc_{h^B}}\|_{L^2(\dmu)}$.  Lemma~C.2
+\cite[p.~40]{R}, ``For every $h\in\CE$ with $\supp h\subseteq\Lambda$:
+$Z(h)\ge e^{-\lambda|a_0|\,|\Lambda|}>0$'', applied with $\Lambda=\overline B$ (compact,
+$|\overline B|=|B|=3N_B$; hypotheses checked above) gives $Z(h^B)^{-1}\le e^{3\lambda|a_0|N_B}$
+(Lemma~C.2 is used conditional on the repair R8 of the V3 audit, which the V3 report, \S2, finds
+sufficient for it; \S\ref{sec:notation});
+Proposition~\ref{aux:notation-S2}(iv) gives $\|e^{-\Uc_{h^B}}\|_2\le S_2(B)$; and
+$\|F\|_{L^2(\dmu)}=\|F\|_{L^2(\dphi)}$ because the sharp-time field has the law of
+$\varphi_0$ (Remark~2.5 \cite[p.~14]{R}, as in the proof of
+Lemma~\ref{aux:notation-hyper}).  So $|\ev F{h^B}|\le A\|F\|_{L^2(\dphi)}$.  Uniformity: $A$
+contains neither $T$ nor $s$; $B_s(g,I)$ has shape $(3,N_B)$ for every $s$, so $S_2(B)$ is
+independent of $s$ (Proposition~\ref{aux:notation-S2}(iii)).
+
+\emph{Comparison term.}  The localization squares of $F$ (Remark~\ref{aux:notation-gjslattice}(ii),
+pieces $f_i\mathbf 1_{[k-1/2,k+1/2)}$) lie in $R\subseteq S:=\{\Delta_{l_s,k}:k\text{ a column
+of }B\}$, a rectangle in $B$.  If $\Delta_{l,k}\in\mathfrak S(h_{T,g})$, then
+$\int_{\Delta_{l,k}}h_{T,g}=|[-T,T]\cap[l-\frac12,l+\frac12)|\int_{k-1/2}^{k+1/2}g>0$, so
+column $k$ meets $\{g>0\}\subseteq\supp g$ in positive measure: $k$ is one of the $N_g$
+columns, all of which are columns of $B$.  If moreover $\Delta_{l,k}\cap B=\varnothing$, then
+$|l-l_s|\ge2$, so $\rho_t=|l-l_s|\ge2$ and $\rho_x=0$ with respect to $S$, and
+Lemma~\ref{aux:notation-strip}(i) gives the \emph{parallel} strip $S_\Delta$ bounded by the
+lines $x^0=l_s+\frac12$ and $x^0=l-\frac12$ (if $l>l_s$), resp.\ $x^0=l+\frac12$ and
+$x^0=l_s-\frac12$ (if $l<l_s$), of width $w_\Delta=|l-l_s|-1\ge1$, separating $\Delta$ from
+$\bigcup S\supseteq\bigcup R$.  Hence, with $x=e^{-m_1}$ and $\sum_{j\ge1}x^j=x/(1-x)$ (proof of
+Lemma~\ref{aux:notation-rings}(vi)),
+\[
+ \sum_{\Delta\in\mathfrak S(h_{T,g}),\ \Delta\cap B=\varnothing}e^{-m_1w_\Delta}
+ \le N_g\sum_{|l-l_s|\ge2}e^{-m_1(|l-l_s|-1)}=2N_g\sum_{j\ge1}x^j=\frac{2N_ge^{-m_1}}{1-e^{-m_1}} .
+\]
+Lemma~\ref{aux:constants-comparison} with these strips gives
+$|\ev F{h_{T,g}}-\ev F{h^B}|\le B'\GJS F$.  The
+bound contains neither $T$, nor $s$, nor $I$.  For $T<\frac12$ only row $0$ is charged; the
+bound is the same.
+\end{proof}
+
+\begin{auxprop}[the constants of Theorem~\ref{thm:D4}]\label{aux:constants-D4}
+Let $h\in\CE$, $a\in\R$, and $h'$ real measurable with $\|h'\|_\infty\le1$ and $\supp
+h'\subseteq[a,a+2]$, and assume that $Q_V:=V(h')(0)^2$ satisfies the hypotheses of
+Lemma~\ref{lem:D1}.  Then $\int V(h')(0)^2\,dq_h\le M_B^2$, where
+\[
+ M_B^2:=e^{15\lambda|a_0|}\,S_2(B_{3\times5})\,9^{p'}V_*
+ +C_7\,c_U\,\overline\Sigma_{3\times5}\,\mathfrak Q,
+ \qquad
+ \mathfrak Q:=9K_1K_2^{8p'}(4p')!\,\lambda^2\Bigl(\sum_{n=0}^{2p'}|a_n|\Bigr)^2 ,
+\]
+where $S_2(B_{3\times5})$ is the common value for all $a$ (Proposition~\ref{aux:notation-S2}(iii))
+and $\overline\Sigma_{3\times5}=\sum_{j\ge1}(8j+12)e^{-m_1j}=4e^{-m_1}(5-3e^{-m_1})
+(1-e^{-m_1})^{-2}$ is the ring constant of Lemma~\ref{aux:notation-rings}(vi).  Fully explicit up
+to $S_2$:
+\[
+ M_B^2\le\overline M_B^2:=e^{15\lambda|a_0|}\,S_2(B_{3\times5})\,9^{p'}\,\overline V_*
+ +C_7\,c_U\,\overline\Sigma_{3\times5}\,\mathfrak Q ,
+\]
+$\overline V_*=\lambda^2\sum_{n=0}^{2p'}a_n^2n!\,I_n$ (Lemma~\ref{aux:notation-wick}).  $M_B$
+depends on $(\lambda,\mathscr P,m_0)$ through $C_7,m_1,K_1,K_2$, $V_*$ and the unevaluated
+$S_2(B_{3\times5})$, and is uniform in $h\in\CE$ (hence in $T>0$ and $g\in\CH$), in $a$ and in
+$h'$.  The comparison term uses the strips of Lemma~\ref{aux:notation-rings}(iv): parallel ones
+for the squares with $|l|=1+j$ (the corner squares included) and transverse ones for the squares
+with $|l|\le j$ (Remark~\ref{aux:notation-ringrem}(b)).
+\end{auxprop}
+
+\begin{proof}
+\emph{The norm $\mathfrak Q$.}  By eq.~(4) of the record (Theorem~5.1, Step~1
+\cite[p.~18]{R}), $Q_V=\lambda^2\sum_{n,n'=0}^{2p'}a_na_{n'}\iint h'(x)h'(y)
+{:}\Phi(0,x)^n{:}\,{:}\Phi(0,y)^{n'}{:}\,dx\,dy$.  Split $h'=\sum_kh'\mathbf
+1_{[k-1/2,k+1/2)}$ over the columns meeting $[a,a+2]$ in positive measure, at most three, all
+among $k_a,k_a+1,k_a+2$ (Lemma~\ref{aux:notation-rings}(i)).  The piece $(n,n',k,k')$ is a
+localized monomial of type (1.1.5) at time $0\in[-\frac12,\frac12)$, i.e.\ in row $0$, with
+kernel $w=\lambda^2a_na_{n'}h'\mathbf 1_{k}\otimes h'\mathbf 1_{k'}$,
+$\|w\|_2\le\lambda^2|a_n||a_{n'}|$ (unit columns, $|h'|\le1$), and factor degrees
+$n,n'\le2p'<\bar n$.  Its weight in (1.1.8) is $K_1K_2^{2(n+n')}(n+n')!$ if $k=k'$ and
+$K_1K_2^{2n}n!\,K_2^{2n'}n'!$ if $k\ne k'$; since $n+n'\le4p'$, $K_2\ge1$ and
+$n!\,n'!\le(n+n')!$, both are $\le K_1K_2^{8p'}(4p')!$.  By (1.1.9), summing over at most $9$
+pairs $(k,k')$ and over $(n,n')$: $\GJS{Q_V}\le\mathfrak Q$.  (This is the record's eq.~(5)
+\cite[p.~19]{R}, recomputed on the squares of Definition~\ref{aux:notation-squares}; the
+record's count of three cells holds for the columns by Lemma~\ref{aux:notation-rings}(i).)
+
+\emph{Base term.}  $B:=B_{3\times5}(a)$ is a box of $15$ squares containing $R$, the
+localization squares of $Q_V$, which lie in $S_a$.  As in Proposition~\ref{aux:constants-D3}:
+$|\ev{Q_V}{h^B}|\le e^{15\lambda|a_0|}S_2(B)\|Q_V\|_{L^2(\dmu)}$, and
+$\|Q_V\|_{L^2(\dmu)}=\|Y^2\|_{L^2(\dmu)}\le9^{p'}V_*$ by Lemma~\ref{aux:notation-hyper}.  The
+$Q_V$ of the base term and the $Q_V$ whose pieces enter the comparison term below are the same
+element of $L^2(\dmu)$ by Lemma~\ref{aux:notation-sharpid} and
+Remark~\ref{aux:notation-sharpidrem}(b).
+
+\emph{Comparison term.}  Lemma~\ref{aux:constants-comparison} with $F=Q_V$, $R=S_a$, and, for
+$\Delta=\Delta_{l,k}\in\mathcal L_j$, the strip $S_\Delta$ of Lemma~\ref{aux:notation-rings}(iv) of
+width $w_\Delta=j$: parallel if $|l|=1+j$ (the corner squares included), transverse if
+$|l|\le j$.  Every application to a square with $|l|\le j$ is the transverse case of GJS
+Theorem~1.1.7, used at the printed statement's scope (sentence F-T, \S\ref{sec:purpose}).  The
+terms are positive and the charged squares outside $B$ are among all squares $\Delta\not\subseteq
+B$, so by Lemma~\ref{aux:notation-rings}(ii),(vi) the sum is at most
+$\sum_{\Delta\not\subseteq B}e^{-m_1w_\Delta}=\overline\Sigma_{3\times5}$, and
+$|\ev{Q_V}h-\ev{Q_V}{h^B}|\le C_7c_U\,\mathfrak Q\,\overline\Sigma_{3\times5}$.  Add the two
+terms; $\ev{Q_V}h\ge0$.  Uniformity: no
+term contains $h$, $T$, $g$ or $h'$, and $a$ enters only through $S_2(B_{3\times5}(a))$, which
+does not depend on $a$.
+\end{proof}
+
+\begin{auxrem}[the $\varphi^4$ instance; Corollary~5.2 recomputed]\label{aux:constants-phi4}
+For $\mathscr P(\xi)=\xi^4$: $p'=2$, $a_4=1$, all other $a_n=0$, so $a_0=0$ and
+$\sum_n|a_n|=1$.  Then $c_U=\lambda K_1K_2^8\,4!=24\,\lambda K_1K_2^8$;
+$\mathfrak Q=9\cdot8!\,K_1K_2^{16}\lambda^2=362\,880\,K_1K_2^{16}\lambda^2$;
+$\overline V_*=\lambda^2\,4!\,I_4=24\,\lambda^2I_4$; $9^{p'}=81$; and
+\begin{align*}
+ M_B^2&\le81\cdot24\,\lambda^2I_4\,S_2(B_{3\times5})
+       +24\cdot362\,880\,C_7K_1^2K_2^{24}\lambda^3\,\overline\Sigma_{3\times5}\\
+      &=1944\,\lambda^2I_4\,S_2(B_{3\times5})+8\,709\,120\,C_7K_1^2K_2^{24}\lambda^3\,
+       \overline\Sigma_{3\times5} .
+\end{align*}
+(Arithmetic: $9\cdot40\,320=362\,880$; $81\cdot24=1944$; $24\cdot362\,880=8\,709\,120$.)  The
+record's number $362\,880\,C_8K_1K_2^{16}\lambda^2$ (Corollary~5.2 \cite[p.~19]{R}) is
+replaced, as the plan says; the new value is not a number, since $S_2$ is not evaluated, and
+$I_4$ depends on $m_0=M_*$.
+\end{auxrem}
+
+\subsection*{A.3\quad The constants of the consequences}
+
+\begin{auxlemma}[Gaussian moments of $X_f$]\label{aux:constants-gauss}
+Let $f\in C_c^\infty(\R)$ be real, $X_f:=\varphi_0(f)$, $\sigma_f^2:=\ip f{Cf}=\iint
+f(x)C(x-y)f(y)\,dx\,dy$ (Lemma~\ref{aux:notation-kernel}(ii)).  Then for $n\ge0$
+\[
+ \|X_f^{2n}\|_{L^2(\dphi)}=\sigma_f^{2n}\bigl((4n-1)!!\bigr)^{1/2}\le(\sqrt2\,\sigma_f)^{2n}(2n)! ,
+\]
+with $(-1)!!:=1$.
+\end{auxlemma}
+
+\begin{proof}
+$X_f$ is centred Gaussian with variance $\sigma_f^2$, so $\E e^{sX_f}=e^{s^2\sigma_f^2/2}$;
+comparing coefficients of $s^{2m}$, $\E[X_f^{2m}]/(2m)!=\sigma_f^{2m}/(2^mm!)$, i.e.\
+$\E[X_f^{2m}]=(2m-1)!!\,\sigma_f^{2m}$.  With $m=2n$,
+$\|X_f^{2n}\|_2=(\E X_f^{4n})^{1/2}=\sigma_f^{2n}((4n-1)!!)^{1/2}$.  Next,
+$(4n-1)!!=(4n)!/(2^{2n}(2n)!)$ and $(4n)!=\binom{4n}{2n}((2n)!)^2\le2^{4n}((2n)!)^2$, so
+$(4n-1)!!\le2^{2n}(2n)!$ and $((4n-1)!!)^{1/2}\le2^n((2n)!)^{1/2}\le2^n(2n)!$.  (Test $n=1$:
+$\|X_f^2\|_2=\sqrt3\,\sigma_f^2\le4\sigma_f^2$.  Numerical check of $(4n-1)!!\le4^n(2n)!$ for
+$n\le40$ in exact integers: \texttt{parts/cqft2\_ringcheck.py}, run record in
+Remark~\ref{aux:notation-ringrem}(c); nothing is deduced from it.)
+\end{proof}
+
+\begin{auxcor}[Lemma~7.6 with the constants of Theorem~\ref{thm:D3}]\label{aux:constants-76}
+Let $g\in\CH$, let $f\in C_c^\infty(\R)$ be real, $f\ne0$, supported in a bounded interval $I$
+of length $L$, and let $A$, $B'$ be the constants of Proposition~\ref{aux:constants-D3} for
+$g$, $I$ and $s=0$.  Put
+\[
+ K'_\square:=K_2^2\,(N^{\square}_I)^{1/2}\|f\|_2,\qquad K_f:=\max\{K'_\square,\sqrt2\,\sigma_f\},
+ \qquad A_f:=A+B'K_1 .
+\]
+Assume the transfer
+\[
+ \E_{\mu_g}[X_f^{2n}]\le\sup_{T>0}\int X_f(0)^{2n}\,dq_{h_{T,g}}
+\]
+(the weak-graph passage of Lemma~7.1 of the record, as replaced in \S\ref{sec:cons}).  Then for
+every $n\ge1$ and every $0\le s<1/K_f$,
+\[
+ \E_{\mu_g}[X_f^{2n}]\le A_f\,K_f^{2n}(2n)!,\qquad
+ \E_{\mu_g}e^{s|X_f|}\le2\max\{1,A_f\}\sum_{n\ge0}(sK_f)^{2n}<\infty .
+\]
+The constants $A_f$ and $K_f$ do not depend on $n$.
+\end{auxcor}
+
+\begin{proof}
+Proposition~\ref{aux:constants-D3} with $F=X_f^{2n}$ (a cylinder monomial at time $0$ with $2n$
+factors, supported in $I$) gives
+$\int X_f(0)^{2n}dq_{h_{T,g}}\le A\|X_f^{2n}\|_{L^2(\dphi)}+B'\GJS{X_f^{2n}}$ for every $T>0$.
+By Lemma~\ref{aux:constants-gauss}, $\|X_f^{2n}\|_2\le(\sqrt2\sigma_f)^{2n}(2n)!$; by (N.a) of
+Remark~\ref{aux:notation-counts} with $r=2n$ and all $f_i=f$,
+$\GJS{X_f^{2n}}\le K_1K_2^{4n}(2n)!\,(N^{\square}_I)^n\|f\|_2^{2n}=K_1(K'_\square)^{2n}(2n)!$.
+Both are $\le K_f^{2n}(2n)!$ times $1$, resp.\ $K_1$; add.  For the exponential bound:
+$e^{s|x|}\le2\cosh(sx)$, and by monotone convergence
+$\E_{\mu_g}\cosh(sX_f)=\sum_{n\ge0}s^{2n}\E_{\mu_g}[X_f^{2n}]/(2n)!\le1+A_f\sum_{n\ge1}(sK_f)^{2n}
+\le\max\{1,A_f\}\sum_{n\ge0}(sK_f)^{2n}$, a geometric series with ratio $(sK_f)^2<1$.
+\end{proof}
+
+\begin{auxrem}[the radius $s_0$ of Theorem~7.7]\label{aux:constants-s0}
+In the proof of Theorem~7.7 of the record \cite[p.~23]{R}, $F(z)=\E_{\mu_g}[\overline\zeta
+\exp(\sum_{j=1}^kz_jX_{e_j})]$ must be defined and analytic in a polystrip
+$\{|\mathrm{Re}\,z_j|<s_0\}$.  By Cauchy--Schwarz and H\"older with $k$ equal exponents,
+\[
+ \E_{\mu_g}\Bigl[|\zeta|\,e^{\sum_j|\mathrm{Re}\,z_j||X_{e_j}|}\Bigr]\le\|\zeta\|_{L^2(\mu_g)}
+ \prod_{j=1}^k\Bigl(\E_{\mu_g}e^{2k|\mathrm{Re}\,z_j||X_{e_j}|}\Bigr)^{1/(2k)} ,
+\]
+finite, locally uniformly, when $2k|\mathrm{Re}\,z_j|<1/K_{e_j}$ for every $j$ with
+$e_j\ne0$ (Corollary~\ref{aux:constants-76}, which assumes $f\ne0$; a factor with $e_j=0$ is
+$1$).  So
+\[
+ s_0:=\min_{1\le j\le k,\ e_j\ne0}\frac1{2k\,K_{e_j}}
+\]
+works (any $s_0>0$ if all $e_j=0$); $1/K_f$ is the one-variable radius of Corollary~\ref{aux:constants-76}, and any
+$s_0>0$ suffices for Theorem~7.7.  $s_0$ depends on $e_1,\dots,e_k$ and $K_2$, $m_0$, not on
+$g$ (the constants $A_{e_j}$ do, but they do not enter $s_0$).
+\end{auxrem}
+
+\begin{auxrem}[Lemmas~4.3, 7.1--7.3, Proposition~7.5]\label{aux:constants-other}
+(a) Lemma~4.3(ii) \cite[p.~17]{R} needs, at each fixed $T$, only the finiteness of
+\[
+ \int F(\Phi(s,\cdot))^2\,dq_{h_{T,g}}\le Z(h_{T,g})^{-1}\,\|F^2\|_{L^2(\dmu)}\,
+ \|e^{-\Uc_{h_{T,g}}}\|_{L^2(\dmu)},
+\]
+which holds by Assumption~A3 ($e^{-2\Uc}\in L^1$, $0<Z$) and Gaussian moments of $F$; no
+constant is needed.  (b) Lemma~7.1 becomes
+\[
+ \sup_{T>0}\|Q\hat\psi_T\|^2\le A\|Q^2\|_{L^2(\dphi)}+B'\,\mathfrak n_\square(Q)^2,\qquad
+ \mathfrak n_\square(Q)^2:=K_1K_2^{4r}(2r)!\,(N^{\square}_I)^r\prod_i\|f_i\|_2^2 ,
+\]
+the second bound of (N.a), and Lemmas~7.2--7.3 use the same constants at the times $s$ and $\mp t/2$ (the
+box $B_s(g,I)$ has the shape $(3,N_B)$ for every $s$).  Here
+\[
+ \|Q^2\|_{L^2(\dphi)}\le\bigl((4r-1)!!\bigr)^{1/2}\prod_i\sigma_{f_i}^2 ,
+\]
+by H\"older with $r$ equal exponents and the moment formula in the proof of
+Lemma~\ref{aux:constants-gauss}:
+\[
+ \E\prod_iX_{f_i}^4\le\prod_i\bigl(\E X_{f_i}^{4r}\bigr)^{1/r}=(4r-1)!!\prod_i\sigma_{f_i}^4 .
+\]
+(c) Proposition~7.5 keeps
+$\widehat C_Q=\max\{C_7e^{2m_1}\GJS Q^2,e^{3m_1}\|\psi_Q\|^2\}$, with $\GJS Q$ computed on the
+squares of Definition~\ref{aux:notation-squares}; the gap $m_1$ of Theorem~7.8 is unchanged.
+\end{auxrem}
+
+\subsection*{A.4\quad The table}
+
+All constants are those of the working coordinates (\S2.6 and Remark~3.3 of the record
+\cite[pp.~14, 16]{R}).  ``Cond.'' marks a constant whose finiteness or bound uses Lemma~C.2,
+Lemma~C.4, Theorem~C.5 or the comparison step in the proof of Theorem~C.5, hence is proved
+conditional on repairs of the V3 audit (\S\ref{sec:notation}): on R1--R10 where $S_2$ enters or
+the comparison bound of Lemma~\ref{aux:constants-comparison} is used (through Lemma~C.4, in
+Lemmas~\ref{aux:notation-cU}(iv) and~\ref{aux:notation-cutoffs}(iv), and through the condition of
+Lemma~\ref{lem:D1}), on R8 alone where only $Z$ or the factor $9^{p'}$ enters.  ``F-T'' marks a constant whose
+derivation uses GJS Theorem~1.1.7 across strips transverse to the time-zero line (sentence F-T
+of \S\ref{sec:purpose}).  ``GAP'' marks a constant that bounds the record's operator $V(h)$ and
+so rests on the GAP after Lemma~\ref{aux:notation-wick}: no row as a constant of this note;
+$M_B$ when it is used for the record's Theorem~5.1 (\S\ref{sec:cons}).  The rows $V_*$,
+$9^{p'}$ and $M_B$ concern the constructed objects, which Lemma~\ref{aux:notation-sharpid}
+identifies with the record's regularized ones, and need no GAP as constants.
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}p{0.10\textwidth}p{0.34\textwidth}p{0.18\textwidth}p{0.14\textwidth}p{0.12\textwidth}@{}}
+\toprule
+constant & formula & depends on & uniform in & derived in\\
+\midrule
+$\bar n$ & $2p'+1$ & $p'$ & --- & \S\ref{sec:notation-printed}; A8(ii)\\
+$K_1$, $K_2$ & printed, (1.1.7)--(1.1.8); $K_2\ge1$ & fixed with $(m_0,\lambda)$ of \S2.6 &
+$h$, $Q$ & \S\ref{sec:notation-printed}\\
+$C_7$, $m_1$ & printed, (1.1.10) & fixed with $(m_0,\lambda,K_1,K_2)$; not printed &
+$h$, $Q_1$, $Q_2$ & \S\ref{sec:notation-printed}\\
+$c_U$ & $\lambda\sum_{n=1}^{2p'}|a_n|K_1K_2^{2n}n!$ & $\lambda$, $a_1,\dots,a_{2p'}$, $K_1$,
+$K_2$ & $\Delta$, $h\in\CE$ & L.~\ref{aux:notation-cU}\\
+$C_7c_U$ & constant of the comparison; cond. & $C_7$, $c_U$ & $h$, $B$, $F$, $\alpha$ &
+L.~\ref{aux:constants-comparison}\\
+$S_2(B)$ & $\sup\{\|e^{-\Uc_{h'}}\|_{L^2(\dmu)}:h'\in\CE,\ \supp h'\subseteq\overline B\}$;
+$1\le S_2<\infty$; not evaluated; cond. & $\lambda$, $\mathscr P$, $m_0$; shape of $B$ &
+position of $B$ & P.~\ref{aux:notation-S2}\\
+$N_g$, $N_B$ & columns meeting $\supp g$ in positive measure; columns of $B_s(g,I)$ & $g$;
+$g$ and $I$ & $s$, $T$ & P.~\ref{aux:constants-D3}\\
+$A$ & $e^{3\lambda|a_0|N_B}S_2(B_s(g,I))$; cond. & $\lambda$, $\mathscr P$, $m_0$, $N_B$ &
+$T>0$, $s\in\R$ & P.~\ref{aux:constants-D3}\\
+$B'$ & $2C_7c_UN_ge^{-m_1}(1-e^{-m_1})^{-1}$; cond. & $C_7$, $m_1$, $c_U$, $N_g$ & $T$, $s$, position
+of $I$ & P.~\ref{aux:constants-D3}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}p{0.10\textwidth}p{0.34\textwidth}p{0.18\textwidth}p{0.14\textwidth}p{0.12\textwidth}@{}}
+\toprule
+constant & formula & depends on & uniform in & derived in\\
+\midrule
+$N^{\square}_I$ & $\#\{k:|I\cap[k-\frac12,k+\frac12)|>0\}\le\lfloor L\rfloor+2$ & $I$ & --- &
+R.~\ref{aux:notation-counts}\\
+$\mathfrak n_\square(Q)^2$ & $K_1K_2^{4r}(2r)!(N^{\square}_I)^r\prod_i\|f_i\|_2^2$ &
+$K_1$, $K_2$, $r$, $I$, $f_i$ & $s$ & R.~\ref{aux:notation-counts}\\
+$\sigma_f$ & $\bigl(\iint f(x)C(x-y)f(y)\,dx\,dy\bigr)^{1/2}$ & $f$, $m_0$ & --- &
+L.~\ref{aux:notation-kernel}\\
+$K'_\square$ & $K_2^2(N^{\square}_I)^{1/2}\|f\|_2$ & $K_2$, $I$, $f$ & $n$ & C.~\ref{aux:constants-76}\\
+$K_f$ & $\max\{K'_\square,\sqrt2\,\sigma_f\}$ & $K_2$, $m_0$, $I$, $f$ & $n$, $g$ &
+C.~\ref{aux:constants-76}\\
+$A_f$ & $A+B'K_1$ ($A$, $B'$ for $g$, $I\supseteq\supp f$, $s=0$); cond. & as $A$, $B'$;
+$K_1$ & $n$, $T$ & C.~\ref{aux:constants-76}\\
+$s_0$ & $\min_{j\le k,\,e_j\ne0}(2kK_{e_j})^{-1}$; one-variable radius $1/K_f$ & $e_1,\dots,e_k$,
+$K_2$, $m_0$ & $g$ & R.~\ref{aux:constants-s0}\\
+$\mathfrak Q$ & $9K_1K_2^{8p'}(4p')!\lambda^2(\sum_{n=0}^{2p'}|a_n|)^2\ge\GJS{Q_V}$ &
+$\lambda$, $\mathscr P$, $K_1$, $K_2$ & $h'$, $a$ & P.~\ref{aux:constants-D4}\\
+$\overline\Sigma_{3\times5}$ & $\sum_{j\ge1}(8j+12)e^{-m_1j}=4e^{-m_1}(5-3e^{-m_1})
+(1-e^{-m_1})^{-2}\ge\Sigma_{3\times5}$ & $m_1$ & $a$, $h$, $R\subseteq S_a$ &
+L.~\ref{aux:notation-rings}\\
+$b_0$, $I_n$ & $\log4+e^{-1}+m_0^{-2}$; $I_0=4$,
+$I_n\le(4\pi)^{-n}2^{n+1}(2b_0^n+2^n(n!+(\log2)^n))$ & $m_0$, $n$ & --- &
+L.~\ref{aux:notation-kernel}\\
+$V_*$ & $\sup_{h'}\|V(h')\|^2_{L^2(\dphi)}\le\overline V_*:=\lambda^2\sum_{n=0}^{2p'}a_n^2n!\,I_n$,
+with $V(h')=\lambda\sum_na_nW_n$ of L.~\ref{aux:notation-wick}(iv)
+& $\lambda$, $\mathscr P$, $m_0$ & $h'$, $a$ & L.~\ref{aux:notation-wick}\\
+$9^{p'}$ & $\|Y\|_{L^4(\dmu)}^2\le9^{p'}\|Y\|_{L^2(\dmu)}^2$; cond. & $p'$ & $h'$, $a$ &
+L.~\ref{aux:notation-hyper}\\
+$M_B^2$ & $e^{15\lambda|a_0|}S_2(B_{3\times5})\,9^{p'}V_*+C_7c_U\overline\Sigma_{3\times5}\mathfrak Q$;
+cond.; F-T; GAP for Thm~5.1 & $(\lambda,\mathscr P,m_0)$ via $C_7$, $m_1$, $K_1$, $K_2$, $V_*$, $S_2(B_{3\times5})$ &
+$h\in\CE$ (so $T$, $g$), $a$, $h'$ & P.~\ref{aux:constants-D4}\\
+$M_B^2$ ($\varphi^4$) & $\le1944\lambda^2I_4S_2(B_{3\times5})+8\,709\,120\,C_7K_1^2K_2^{24}
+\lambda^3\overline\Sigma_{3\times5}$; cond.; F-T; GAP for Cor.~5.2 & $\lambda$, $m_0$, $C_7$, $m_1$, $K_1$, $K_2$ & as $M_B$ &
+R.~\ref{aux:constants-phi4}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+In the record's Appendix~A \cite[p.~35]{R} the rows that change are, as \S\ref{sec:cons} lists
+them: $K_1,K_2,C_7,C_8,m_1$ ($C_8$ dropped after Phase~B); $N_I$ (counted on GJS's columns, bound
+$\lfloor L\rfloor+2$ unchanged, Remark~\ref{aux:notation-counts}(i)); $M^2$ (now $M_B^2$); $M^2$
+($\varphi^4$); $K'$ (same formula, $N_I$ by columns); and the $\Psi_\gamma$ rows (the $M$ in them
+is $M_B$).  Unchanged: $\varepsilon_{\mathscr P}$, $\mathfrak K(p')$, $\widehat C_Q$ (its formula;
+$\GJS Q$ is computed on GJS's squares), $\mathfrak m$, $d_0$ and the shell count.  New rows: $c_U$,
+$S_2(B)$, $A$, $B'$, $A_f$, $K_f$ (with $\sigma_f$), $s_0$, $V_*$, $\overline\Sigma_{3\times5}$ and
+$M_B$; $S_2(B)$, and through it $A$, $A_f$ and $M_B$, contain the unevaluated finite constant of
+Theorem~C.5.
+
+\subsection*{A.5\quad Discrepancies found}
+
+Compared with \texttt{ugjs/PLAN.md}, Part~1 (the targets).  Each item is a finding for the
+audit; none changes a theorem of the record.
+\begin{enumerate}
+\item[(D1)] \emph{Counts on GJS squares} (MINOR in the plan; MAJOR in \S\ref{sec:cons} if it
+cites the record's (7)--(8) or $K'$ with $N_I$ for norms on the squares of
+Definition~\ref{aux:notation-squares}).  The plan's $K_f:=\max\{K',\sqrt2\sigma_f\}$ and its
+Lemma~7.1 bound ``$B'\mathfrak n(Q)^2$'' use the record's count $N_I$ of cells $[j,j+1)$.  The
+norms of Theorem~\ref{thm:D3} are computed on GJS's squares, where the bound can fail with
+$N_I$: Remark~\ref{aux:notation-counts}(iii) gives $\GJS{\varphi_0(f)}=\sqrt2K_1K_2^2\|f\|_2$ for
+$f$ even about $\frac12$ and supported in $(0.4,0.6)$, against the record's bound
+$K_1K_2^2\|f\|_2$.  Repair: $N^{\square}_I$ in place of $N_I$ (this appendix), or the common bound
+$\lfloor L\rfloor+2$.  For the record itself the same example makes Proposition~6.2, eq.~(7),
+false as stated when $\GJS\cdot$ is computed on GJS's squares from the column decomposition; the
+V1 attack classifies this as CRITICAL for Proposition~6.2, MAJOR for the displayed bounds of
+Lemmas~7.1 and~7.6, and MINOR for Theorems~7.7, 7.8 and~12.2, which need finiteness only.  This
+appendix adopts that split; \S\ref{sec:cons} repairs the record.
+\item[(D2)] \emph{The radius $s_0$} (MINOR).  The plan's ``Theorem~7.7 then has $s_0=1/K_f$'' is
+the one-variable radius of Lemma~7.6.  The polystrip of Theorem~7.7 has $k$ variables, and
+Cauchy--Schwarz with H\"older give the half-width $\min_{j,\,e_j\ne0}(2kK_{e_j})^{-1}$
+(Remark~\ref{aux:constants-s0}); any positive value suffices.
+\item[(D3)] \emph{Where the transverse case enters} (MINOR, disclosure).  The plan (Part~1,
+Theorem~D.4) names ``Squares in rows $-1,0,1$ outside $B_{3\times5}$''.  Those are the squares with
+no parallel strip of positive width, but the uniform ring bound uses the transverse strip for
+every side square of $\mathcal L_j$ with $|l|\le j$ (Remark~\ref{aux:notation-ringrem}(b));
+sentence F-T must accompany all of them.
+\item[(D4)] \emph{The columns of $B_{3\times5}$} (no change of constants).  ``The at most three
+columns meeting $[a,a+2]$'' are exactly three, $k_a,k_a+1,k_a+2$, when ``meeting'' is
+set-theoretic (Lemma~\ref{aux:notation-rings}(i)); in positive measure only two meet when
+$a\in\frac12+\Z$, and the box would be $3\times4$, with ring count $8j+10$.  Every constant
+stays valid: $S_2$ is monotone (Proposition~\ref{aux:notation-S2}(ii)), $e^{12\lambda|a_0|}\le
+e^{15\lambda|a_0|}$, and $8j+10\le8j+12$.  This appendix uses the three columns always.
+\item[(D5)] \emph{Which squares are summed} (consistency).  The plan's D.2 sums over squares
+meeting $\supp h$; Theorem~D.3 counts $N_g$ columns meeting $\supp g$ in positive measure.  These
+match if the sum is over the charged squares $\mathfrak S(h)$, as here; if it is over squares
+meeting $\supp h$ set-theoretically, $N_g$ must be read set-theoretically too, or the extra
+squares (with $U_\Delta=0$) dropped.
+\item[(D6)] \emph{The coefficient $a_0$} (observation).  $dq_h$ does not depend on $a_0$
+(Lemma~\ref{aux:notation-cU}(iii)), so the factors $e^{3\lambda|a_0|N_B}$ in $A$ and
+$e^{15\lambda|a_0|}$ in $M_B$ could be dropped by computing $S_2$ for $\mathscr P-a_0$; the plan's
+constants are valid as they stand.
+\item[(D7)] \emph{Agreement.}  $c_U$, $A$, $B'$, the bound $\Sigma_{3\times5}\le\overline\Sigma_{3\times5}=\sum_j(8j+12)e^{-m_1j}$,
+the bound on $V_*$, the factor $9^{p'}$, $M_B$, $A_f$ and the inequality
+$\|X_f^{2n}\|_{L^2(\dphi)}\le(\sqrt2\sigma_f)^{2n}(2n)!$ agree with the plan.  New here: the
+closed form of $\overline\Sigma_{3\times5}$, the explicit bound on $I_n$, and the $\varphi^4$ value of
+Remark~\ref{aux:constants-phi4}.
+\item[(D8)] \emph{Status of Appendix~C} (not a constant).  The plan counts Lemmas~C.2--C.5 among
+``the record's own proofs'' (Part~7).  After the V3 audit, every constant marked ``cond.'' rests
+on them conditional on the repairs R1--R10 (on R8 alone where only Lemma~C.2 or the comparison
+step enters).
+\item[(D9)] \emph{The ring constant in $M_B$} (deviation, stated).  The plan writes $M_B$ with
+$\Sigma_{3\times5}=\sum_{\Delta\not\subseteq B_{3\times5}}e^{-m_1d(\Delta,R)}$, over the widest
+strips.  This appendix and \S\ref{sec:d4} use the closed form
+$\overline\Sigma_{3\times5}\ge\Sigma_{3\times5}$ (Lemma~\ref{aux:notation-rings}(vi)), because the
+comparison is applied along assigned axis-parallel strips whose orientation is named
+(Lemma~\ref{aux:constants-comparison}); the widest strips may be tilted
+(Remark~\ref{aux:notation-tilted}).  $M_B$ is therefore an upper bound for the plan's value.
+\end{enumerate}
+
+Compared with \S\S\ref{sec:d2}--\ref{sec:d4} and \S\ref{sec:cons}: \S A.6.
+
+\subsection*{A.6\quad Comparison with \S\S\ref{sec:d1}--\ref{sec:cons} as drafted}
+
+\S\S A.1--A.5 were written before the drafts of \S\S\ref{sec:d1}--\ref{sec:cons} existed.  Those
+drafts were read afterwards (2 November 2026, versions of 16:00--16:06) and again after their
+duplicates were merged into \S\ref{sec:notation} (versions of 16:24--16:31), and compared item by
+item.
+\begin{enumerate}
+\item[(C1)] \emph{Agreement of every constant.}  $c_U$ (Lemma~\ref{aux:notation-cU}); $A$ and $B'$
+(Theorem~\ref{thm:D3}); the ring constant $\overline\Sigma_{3\times5}=4x(5-3x)(1-x)^{-2}$, with
+which \S\ref{sec:d4} states Theorem~\ref{thm:D4} (the bound of
+Lemma~\ref{aux:notation-rings}(vi)); the bound on
+$V_*$ (Lemma~\ref{aux:notation-wick}); the factor $9^{p'}$ (Lemma~\ref{aux:notation-hyper}); $M_B$
+(Theorem~\ref{thm:D4}); $A_f$, $K_f$ and $s_0$ (\S\ref{sec:cons}); and the $\varphi^4$ value of
+Corollary~5.2 as replaced in \S\ref{sec:cons},
+$81\,S_2(B_{3\times5})V_*+8\,709\,120\,C_7K_1^2K_2^{24}\overline\Sigma_{3\times5}\lambda^3$, which with
+$V_*\le24\lambda^2I_4$ is Remark~\ref{aux:constants-phi4}.  No numerical discrepancy was found.
+\item[(C2)] \emph{The count.}  \S\ref{sec:d3} found the discrepancy (D1) independently
+(Remark~\ref{aux:d3-cells}, with $\Phi(s,f)^2$ and the values $3K_1K_2^4$ against $2K_1K_2^4$),
+and \S\ref{sub:cons-NI} repairs it by redefining the record's $N_I$ by GJS's columns; the
+redefined $N_I$ is the $N^{\square}_I$ of Remark~\ref{aux:notation-counts}.
+\item[(C3)] \emph{The transverse case.}  \S\ref{sec:d4} (its subsection on where the transverse
+case is used) states (D3) independently: the squares of class (T) in rows $|l|\ge2$ also use the
+transverse strip.  It assigns the strips of Lemma~\ref{aux:notation-rings}(iv), the corner
+squares of each ring ($|l|=1+j$ in the side columns) to the parallel class;
+Proposition~\ref{aux:constants-D4} does the same, so every square of $\mathcal L_j$ carries width
+$j$ and the bound is $\overline\Sigma_{3\times5}$.
+\item[(C4)] \emph{The radius $s_0$.}  \S\ref{sec:cons} restricts the minimum to $e_j\ne0$; this
+appendix now does too (Remark~\ref{aux:constants-s0}).  \S\ref{sec:quant} writes
+$\min_{j\le k}(2kK_{e_j})^{-1}$ without the restriction (MINOR; same repair: for $e_j=0$,
+$K_{e_j}=0$).
+\item[(C5)] \emph{Duplicates.}  After the merge, \S\S\ref{sec:d2}--\ref{sec:d4} cite
+\S\ref{sec:notation} for the cutoffs, the strips, $c_U$, $S_2$, the rings, the comparison
+$9^{p'}$ and $V_*$.  The remaining overlap is the kernel bound of \S\ref{sec:d1}
+(Lemma~\ref{aux:d1-cov}, which bounds the Euclidean kernel $G$ and the time-zero kernel
+$C=G(0,\cdot)$ with other, also valid, constants than Lemma~\ref{aux:notation-kernel}).  The two
+differences recorded before the merge (a bound on $V_*$ from the record's uncited ``classical
+Bessel facts'', and a comparison run on $L^2(\dphi)$) are gone: \S\ref{sec:d4} now uses
+Lemmas~\ref{aux:notation-wick} and~\ref{aux:notation-hyper}.
+\item[(C6)] \emph{The form of Lemma~D.2.}  Lemma~\ref{lem:D2}(a) and
+Lemma~\ref{aux:constants-comparison} have the same form: explicitly assigned strips of positive
+width $w_\Delta$, one for each charged square outside the box, and the bound
+$C_7c_U\GJS F\sum e^{-m_1w_\Delta}$.  In Theorems~\ref{thm:D3} and~\ref{thm:D4} every assigned
+strip has width $\ge1$.
+\item[(C7)] \emph{The two constructions of $Q_V$} (audit V1, finding~1; audit V2, item~V2-1).
+Theorem~\ref{thm:D4} bounds its base term through Lemma~\ref{aux:notation-hyper} (the $J_0$
+construction) and its comparison term through Lemma~\ref{lem:D2} (the pieces of
+Definition~\ref{aux:d1-obs}(b), built with the record's mollifier).
+Lemma~\ref{aux:notation-sharpid} and Remark~\ref{aux:notation-sharpidrem}(b) identify the two, so
+Proposition~\ref{aux:constants-D4} and Theorem~\ref{thm:D4} bound one observable.  With $V_*$
+taken for the constructed $V(h')$ of Lemma~\ref{aux:notation-wick}(iv), the Euclidean bound of
+Theorem~\ref{thm:D4} needs no GAP; the GAP enters at the transfer to the record's Theorem~5.1
+(\S\ref{sec:cons}).
+\end{enumerate}

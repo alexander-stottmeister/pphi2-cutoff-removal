@@ -1,0 +1,46 @@
+% preamble.tex -- shared preamble of the comparison note (orchestrator, 31 October 2026).
+% Parts must not define macros; everything not listed here is written out explicitly.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.9cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+% --- macros of part_i/main.tex, same names and meanings ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\CE}{\mathcal{C}_{\mathrm E}}
+\newcommand{\CH}{\mathcal{C}_{\mathrm H}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\Om}{\Omega}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\spec}{spec}
+% --- macros of this note ---
+\newcommand{\UGJS}{U_{\rm GJS}}
+\newcommand{\GJS}[1]{\lVert #1\rVert_{\mathrm{GJS}}}   % the printed norm (1.1.7)-(1.1.9), eq. (1) of the record
+\newcommand{\ev}[2]{\langle #1\rangle_{#2}}            % \ev{F}{h} = \int F dq_h
+\DeclareMathOperator{\Cov}{Cov}                        % \Cov_h(F,G) = \ev{FG}{h}-\ev{F}{h}\ev{G}{h}
+\newcommand{\Uc}{\mathcal U}                           % \Uc_h = \lambda\int h :P(\Phi): dz, the record's A3
+\newcommand{\dmu}{d\mu_0}                              % free Euclidean measure
+\newcommand{\dphi}{d\varphi_0}                         % free time-zero measure
+
+% --- numbered statements ---
+\theoremstyle{plain}
+\newtheorem{dtheorem}{Theorem}
+\renewcommand{\thedtheorem}{D.\arabic{dtheorem}}
+\newtheorem{dlemma}[dtheorem]{Lemma}
+\newtheorem{auxlemma}{Lemma}
+\renewcommand{\theauxlemma}{N.\arabic{auxlemma}}
+\newtheorem{auxprop}[auxlemma]{Proposition}
+\newtheorem{auxcor}[auxlemma]{Corollary}
+\theoremstyle{definition}
+\newtheorem{auxdef}[auxlemma]{Definition}
+\newtheorem{auxrem}[auxlemma]{Remark}
+\newtheorem*{gapnote}{GAP}

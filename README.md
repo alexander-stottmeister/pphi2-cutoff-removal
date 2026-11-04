@@ -173,7 +173,7 @@ figures below are interactive.
 | `part_i/` | document of record, its `README.md` with gates G0–G6 and step maps, and the C5 reading record |
 | `part_ii/` | the open programme, gate (II.11) scoping, phases V0–V4 |
 | `companion/` | the reader's companion (20 pp), its sections and figures, and the council of agents that wrote it (`companion/council/`) |
-| `ugjs/` | the plan to remove the hypothesis U_GJS from Theorem 12.2 (`ugjs/PLAN.md`; its Phases 0′ and 0 were executed on 31 October 2026, Phases A and B are next), and the council of agents that wrote it (`ugjs/council/`) |
+| `ugjs/` | the plan to remove the hypothesis U_GJS from Theorem 12.2 (`ugjs/PLAN.md`; its Phases 0′ and 0 were executed on 31 October–2 November 2026, commit 4166883), the comparison note of its Phases A and B (`ugjs/comparison.tex` with `ugjs/parts/`, 72 pp, built with `pdflatex` twice from `ugjs/`; drafted by the council on 2 November 2026 and audited in four rounds, `ugjs/council/v1-*.md`, `v2-report.md`; every statement in it is conditional on the repairs of the V3 audit of Appendix C and, for the sharp-time observable, on the transverse case of GJS Theorem 1.1.7 at the printed statement's scope; not integrated, since Checkpoint 2 of the plan is the author's), and the council of agents that wrote both (`ugjs/council/`) |
 | `m0/`–`m6/` | historical working drafts, superseded by `part_i/main.tex` and kept for provenance |
 | `audit_2026/` | citation screenshot dossier and the 2026 critical proof audit |
 | `fresh_audit_2026_08_16/` | independent audit, Lamport-style reconstruction, evidence ledgers |
