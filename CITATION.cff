@@ -1,21 +1,24 @@
 cff-version: 1.2.0
 message: >-
   If you refer to this work, please cite it as below, and please state that the
-  main theorem is an implication from the printed imports A1-A8 of its section 2.4
-  (the moment input U_GJS, Assumption A8(vi), is GJS Theorem 1.1.11 as printed) and
-  that the human page readings of audit item C5 are open.
+  main theorem is an implication from the printed imports A1-A8 of its section 2.4,
+  with one theorem of Glimm, Jaffe and Spencer imported (Theorem 1.1.7, also used
+  across strips transverse to the time-zero line, a case its printed proof does not
+  reach: item A8(iv)-T), and that the human page readings of audit item C5 are open.
 title: >-
   Removal of the spatial cutoff for weakly coupled P(phi)_2: norm convergence of
   the ground-state net on the quasi-local algebra (Part I)
 abstract: >-
   Let H(g) be the spatially cutoff P(phi)_2 Hamiltonian, Omega_g its ground state,
-  and omega_g the induced state on the time-zero quasi-local algebra. From two printed
-  theorems of Glimm, Jaffe and Spencer (Ann. of Math. 100 (1974)), the clustering
-  Theorem 1.1.7 and the moment estimate (1.1.16) of Theorem 1.1.11 at B = I, n = 0 and
-  any 0 < T < 1, the case they name on p. 629 and specialize to T = 0 in their proof of
-  Theorem 1.1.8, together with standard construction inputs,
-  the full net (omega_g) converges in norm on every local algebra in the weak-coupling
-  region, with an explicit super-polynomial rate; the limit is locally normal,
+  and omega_g the induced state on the time-zero quasi-local algebra. From one printed
+  theorem of Glimm, Jaffe and Spencer (Ann. of Math. 100 (1974)), the clustering
+  Theorem 1.1.7, used also across strips transverse to the time-zero line (a case its
+  printed statement covers and its printed proof does not reach), together with standard
+  construction inputs, the full net (omega_g) converges in norm on every local algebra in
+  the weak-coupling region, with a super-polynomial rate, explicit up to one finite
+  stability constant; the uniform local moment is derived in the record (Appendix D) by
+  comparing a cutoff with its restriction to a box of the source's lattice squares. The
+  limit is locally normal,
   translation and Z_2 invariant, and a ground state of the Glimm-Jaffe dynamics in
   the spectral sense. The proof is Hamiltonian, via a local-perturbations-perturb-
   locally estimate built on an exact spectral filter and the exact light cone. The
@@ -27,8 +30,8 @@ authors:
     affiliation: >-
       Institut fuer Theoretische Physik, Leibniz Universitaet Hannover, Germany
     orcid: "https://orcid.org/0000-0002-0145-0877"
-version: "1.0.0"
-date-released: "2026-09-20"
+version: "1.1.0"
+date-released: "2026-11-07"
 license:
   - CC-BY-4.0
   - MIT

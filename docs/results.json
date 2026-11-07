@@ -15,12 +15,17 @@
   "\\CH": "\\mathcal{C}_{\\mathrm H}",
   "\\HH": "\\mathcal{H}",
   "\\Om": "\\Omega",
+  "\\UGJS": "U_{\\rm GJS}",
+  "\\Uc": "\\mathcal U",
+  "\\dmu": "d\\mu_0",
+  "\\dphi": "d\\phi_0",
   "\\ip": "\\langle #1,#2\\rangle",
   "\\supp": "\\operatorname{supp}",
   "\\dist": "\\operatorname{dist}",
   "\\spec": "\\operatorname{spec}",
   "\\Span": "\\operatorname{span}",
-  "\\Ran": "\\operatorname{Ran}"
+  "\\Ran": "\\operatorname{Ran}",
+  "\\Cov": "\\operatorname{Cov}"
  },
  "results": [
   {
@@ -28,7 +33,7 @@
    "kind": "Definition",
    "title": "cutoff classes",
    "number": "2.1",
-   "page": 7,
+   "page": 8,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
@@ -47,26 +52,37 @@
    "kind": "Assumption",
    "title": "cutoff construction",
    "number": "A1",
-   "page": 8,
+   "page": 9,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
     "label": "sec:setting"
    },
-   "statement": "For every $g\\in\\CH$: $K(g)=H_0+V(g)$ is essentially self-adjoint and bounded below; its closure\n(again denoted $K(g)$) has $E(g)=\\inf\\spec K(g)$ as a \\emph{simple} eigenvalue, and the\nnormalized eigenvector $\\Om_g$ may be chosen strictly positive $d\\phi_0$-a.e.\\ in $Q$-space.\nFor every real $h\\in L^1\\cap L^2$ of compact support, $V(h)$ is self-adjoint on its maximal\nmultiplication domain.\n\n\\emph{Sources.} \\cite[p.~588]{GJS}; existence and uniqueness of the cutoff vacuum:\n\\cite[Thms.~2.2.1, 2.3.1]{GJ2}; lower bounds and positivity: \\cite{GJ71}; the semigroup\nconstruction: \\cite[Thm.~5.3]{Rosen70}.\n\n\\emph{Scope.} Strict positivity of $\\Om_g$ is the standard positivity-improving semigroup\nargument of the cited construction; simplicity is used below only through the two consequences\n$c_g:=\\ip{\\Om_g}{\\Om_0}>0$ and the absence of a second ground vector. \\emph{Isolation of\n$E(g)$ (a gap) is not imported}; the gap of \\S\\ref{sec:G} is an output.\n\n\\emph{Used in.} \\S\\ref{sec:slab} (slab limits), \\S\\ref{sec:M2} (weak-graph passage),\n\\S\\ref{sec:G} (density, spectral projections), \\S\\ref{sec:path} (simple Perron root),\n\\S\\ref{sec:ground} and \\S\\ref{sec:dichotomy} (covariance and parity via\nLemma~\\ref{lem:covparity}).\n\n{\\raggedright\\emph{Dossier.} \\texttt{gj2-ground-existence-08}, \\texttt{gjii-ground-12},\n\\texttt{gj71-lower-bound-02}, \\texttt{gj71-theorem2-04}, \\texttt{rosen-semigroup-22},\n\\texttt{rosen-selfadjoint-23}, \\texttt{gjs-source-05/06} (E04--E06, E10--E13, E20).\\par}",
+   "statement": "For every $g\\in\\CH$: $K(g)=H_0+V(g)$ is essentially self-adjoint and bounded below; its closure\n(again denoted $K(g)$) has $E(g)=\\inf\\spec K(g)$ as a \\emph{simple} eigenvalue, and the\nnormalized eigenvector $\\Om_g$ may be chosen strictly positive $d\\phi_0$-a.e.\\ in $Q$-space.\nFor every real $h\\in L^1\\cap L^2$ of compact support, $V(h)$ is self-adjoint on its maximal\nmultiplication domain.\n\n\\emph{Wick powers of the time-zero field} (added 7 November 2026; the construction behind\n$V(h)$ of \\S\\ref{subsec:model}).  Let $\\HH_C$ be the real Hilbert space obtained by\ncompleting the real-valued $\\mathcal S(\\R)$ in the inner product $2\\ip f{Cg}$ ($C$ is bounded and\nstrictly positive, so this is an inner product, and $\\mathcal S(\\R)$ is a dense continuously\nimbedded subspace, $2\\ip f{Cf}\\le\\|f\\|_2^2/m_0$).  $Q$-space with $d\\phi_0$ and $\\varphi_0$ is\nthe Gaussian random process indexed by $\\HH_C$ in the source's normalisation, ``(c)\n$\\langle\\phi(v)\\phi(w)\\rangle=\\frac12\\langle v,w\\rangle$, the inner product on $\\mathcal H$''\n\\cite[Definition, p.~15]{SimonBook}: $(\\varphi_0(f))_f$ is a centred Gaussian family with\n$\\E[\\varphi_0(f)\\varphi_0(g)]=\\ip f{Cg}$; such a process is determined by its index space up to\nisomorphism \\cite[Thm.~I.6, p.~15]{SimonBook}.  The\nsource's definitions are used as printed.\n\\emph{(a)}~For Gaussian random variables $f_1,\\dots,f_k$, ``The Wick product\n${:}f_1^{n_1}\\cdots f_k^{n_k}{:}$ is defined recursively in $n\\equiv n_1+\\dots+n_k$ by\n${:}f_1^0\\cdots f_k^0{:}=1$, $\\langle{:}f_1^{n_1}\\cdots f_k^{n_k}{:}\\rangle=0\\,(n\\ne0)$ and\n$\\frac{\\partial}{\\partial f_i}{:}f_1^{n_1}\\cdots f_k^{n_k}{:}=n_i\\,{:}f_1^{n_1}\\cdots\nf_i^{n_i-1}\\cdots f_k^{n_k}{:}$'' \\cite[p.~12]{SimonBook}; for one variable,\n${:}f^n{:}$ is the coefficient of $\\alpha^n/n!$ in ${:}\\exp(\\alpha f){:}=\\exp(\\alpha\nf-\\frac12\\alpha^2\\langle f^2\\rangle)$ \\cite[(I.15), (I.18a), p.~10]{SimonBook}, explicitly\n${:}f^n{:}=\\sum_{m=0}^{[n/2]}\\frac{n!}{m!\\,(n-2m)!}\\,f^{n-2m}\\bigl(-\\tfrac12\\langle\nf^2\\rangle\\bigr)^m$ \\cite[(I.18b), p.~10]{SimonBook}.\n\\emph{(b)}~$\\langle{:}f^n{:}\\;{:}g^m{:}\\rangle=\\delta_{nm}\\,n!\\,\\langle fg\\rangle^n$ for\njointly Gaussian random variables $f,g$ \\cite[Thm.~I.3, (I.21), p.~11]{SimonBook} (its proof\nuses that $\\alpha f+\\beta g$ is Gaussian; every use below is within one Gaussian process), and\n$\\langle{:}f_1\\cdots f_n{:}\\;{:}g_1\\cdots g_m{:}\\rangle=0$ if $n\\ne m$\n\\cite[Cor.~I.4, (I.23a), p.~12]{SimonBook}.\n\\emph{(c)}~$\\Gamma_n(\\HH)$ is ``the closed subspace[\\,] generated by\n$\\{{:}\\phi(f_1)\\cdots\\phi(f_n){:}\\mid f_i\\in\\mathcal H\\}$'' \\cite[p.~16]{SimonBook} (p.~17\nsays ``spanned by''), with $\\Gamma(\\HH)=L^2(d\\phi_0)$ for $\\HH=\\HH_C$; by (b) the spaces\n$\\Gamma_n$, $n\\ge0$, are mutually orthogonal, $\\Gamma_0$ being the constants.\n\\emph{(d)}~For $n\\ge1$ and $g\\in L^{1+\\varepsilon}(\\R)$, $0<\\varepsilon\\le1$, the Wick power\n${:}\\varphi_0^n(g){:}_C$ is ``the unique random variable in $\\Gamma_m(\\HH)$ with\n$\\langle{:}\\phi(h_1)\\cdots\\phi(h_m){:},{:}\\phi^m(g){:}\\rangle=m!\\int[\\prod_{j=1}^mh(x_j)\nS(x_j,y)]g(y)\\,dx\\,dy$'' \\cite[(V.3), p.~136]{SimonBook} (printed with $h(x_j)$ where\n$h_j(x_j)$ is meant [sic]), taken with $m=n$, $\\HH=\\HH_C$ and the kernel $S$ of the\nsource's (V.1), ``$\\frac12\\langle f,g\\rangle_{\\mathcal H}=S(f\\otimes g)$'' \\cite[p.~134]{SimonBook},\nwhich for the inner product $2\\ip f{Cg}$ of $\\HH_C$ is $S(x,y)=C(x-y)$, the kernel of\n$\\ip\\cdot{C\\,\\cdot}$ (Lemma~\\ref{aux:notation-kernel}); that is,\n\\begin{equation}\n \\bigl\\langle{:}\\varphi_0(f_1)\\cdots\\varphi_0(f_n){:},\\,{:}\\varphi_0^n(g){:}_C\\bigr\\rangle\n =n!\\int\\Bigl[\\prod_{j=1}^n\\int f_j(x_j)\\,C(x_j-y)\\,dx_j\\Bigr]g(y)\\,dy\n \\qquad(f_j\\in\\mathcal S(\\R)) .\n \\tag{W.1}\\label{eq:wickpairing}\n\\end{equation}\nIt exists for this class: ``${:}\\phi_F^n{:}$ exists for any $n$ as a random process for\n$L^{1+\\varepsilon}(R)$ for each $\\varepsilon\\,\\epsilon\\,(0,1]$.  Moreover, for any such\n$\\varepsilon$ and any $p\\ge2$, $\\|{:}\\phi_F^n(g){:}\\|_p\\le c(p-1)^{n/2}\\|g\\|_{1+\\varepsilon}$\n(V.6b)'' \\cite[Thm.~V.2(b), p.~138]{SimonBook}, with $\\|{:}\\phi^m(g){:}\\|^2=m!\\int\ng(x)g(y)S(x,y)^m\\,dx\\,dy$ \\cite[p.~137]{SimonBook}.  The source prints (V.3) for\n$g\\in\\mathcal S$ and says ``If the map $g\\mapsto{:}\\phi^m(g){:}$ from $\\mathcal S$ to\n$\\Gamma_m(\\mathcal H)$ extends to a larger test function space, $X$, than $\\mathcal S$ we say\n${:}\\phi^m{:}$ exists for $X$'' \\cite[p.~136]{SimonBook}: for $g\\in L^{1+\\varepsilon}$,\n${:}\\varphi_0^n(g){:}_C$ is that extension, continuous for $\\|\\cdot\\|_{1+\\varepsilon}$ by\n(V.6b) at $p=2$, and \\eqref{eq:wickpairing} persists for it, both sides being continuous in\n$g$ (the right side by H\\\"older's inequality, since $\\prod_j\\int f_j(x)C(x-\\cdot)\\,dx$ is\nbounded and integrable for $f_j\\in\\mathcal S(\\R)$, $C\\in L^1(\\R)$); an element of\n$\\Gamma_n(\\HH_C)$ is determined by its pairings with the Wick monomials with $f_j\\in\\mathcal\nS(\\R)$, as the source's ``unique'' in (V.3) asserts.  For $n=0$ and $g\\in L^1(\\R)$,\n\\eqref{eq:wickpairing} with the empty product determines the constant\n${:}\\varphi_0^0(g){:}_C:=\\int g$; it is not continuous for $\\|\\cdot\\|_{1+\\varepsilon}$, and\n(V.6b) is used only for $n\\ge1$.  Every real $h\\in L^1\\cap L^2$ of compact support lies in\n$L^{1+\\varepsilon}(\\R)$, so $V(h)=\\lambda\\sum_na_n{:}\\varphi_0^n(h){:}_C$ of\n\\S\\ref{subsec:model} is defined, real, and linear in $h$.\n\n\\emph{Sources.} \\cite[p.~588]{GJS}; existence and uniqueness of the cutoff vacuum:\n\\cite[Thms.~2.2.1, 2.3.1]{GJ2}; lower bounds and positivity: \\cite{GJ71}; the semigroup\nconstruction: \\cite[Thm.~5.3]{Rosen70}; the Wick powers: \\cite[pp.~10--12, 15--17,\n134--138]{SimonBook}, read on the page images on 7 November 2026.\n\n\\emph{Scope.} Strict positivity of $\\Om_g$ is the standard positivity-improving semigroup\nargument of the cited construction; simplicity is used below only through the two consequences\n$c_g:=\\ip{\\Om_g}{\\Om_0}>0$ and the absence of a second ground vector. \\emph{Isolation of\n$E(g)$ (a gap) is not imported}; the gap of \\S\\ref{sec:G} is an output.\nOf the Wick powers: the facts (a)--(c) are printed in Chapter~I for the Gaussian process\nindexed by any real Hilbert space, and the definition (V.3) for a real Hilbert space\n$\\mathcal H$ containing $\\mathcal S_R(R^n)$ as a dense continuously imbedded subspace, with the\nkernel $S$ of (V.1) locally integrable \\cite[pp.~134--135]{SimonBook}; $\\HH_C$ satisfies these\nhypotheses (above), and $C$ is locally integrable (Lemma~\\ref{aux:notation-kernel}).  The\nnormalisation of the source's ``time zero Minkowski field'' $\\phi_F$ of Theorem V.2(b) was not\nre-checked; its existence statement and (V.6b) are used for $\\phi_F$ read as the process\nindexed by $\\HH_C$.  For bounded $h$ of compact support, the only $h$ for which a proof below\nuses $V(h)$ (the general statements of this assumption, of Assumption~\\ref{A:domain}(i) and of\nProposition~\\ref{prop:smoothing} are applied only to such $h$), the same\nelement is constructed in this manuscript as an explicit $L^2(d\\phi_0)$-limit\n(Lemma~\\ref{aux:notation-ident}(iii) with Lemma~\\ref{aux:notation-wick}(iii)), so nothing\nbelow rests on that reading alone.  The sources of the cutoff construction define $V(g)$ by\nnormal ordering in Fock space; that their $V(g)$ is the object defined here is the Fock\nspace--$Q$-space dictionary of \\cite[Ch.~I]{SimonBook}, a reading of the kind recorded in\nAssumption~\\ref{A:gjs}, Scope~(d).\n\n\\emph{Used in.} \\S\\ref{subsec:model} (the construction and locality of $V(h)$),\n\\S\\ref{sec:slab} (slab limits), \\S\\ref{sec:M2} (Step~1; weak-graph passage),\n\\S\\ref{sec:G} (density, spectral projections), \\S\\ref{sec:path} (simple Perron root),\n\\S\\ref{sec:ground} and \\S\\ref{sec:dichotomy} (covariance and parity via\nLemma~\\ref{lem:covparity}), Appendix~\\ref{app:huniform} (Lemma~\\ref{lem:Z} uses item (c)),\nAppendix~\\ref{app:comparison} (Lemmas~\\ref{aux:notation-wick} and~\\ref{aux:notation-ident}).\n\n{\\raggedright\\emph{Dossier.} \\texttt{gj2-ground-existence-08}, \\texttt{gjii-ground-12},\n\\texttt{gj71-lower-bound-02}, \\texttt{gj71-theorem2-04}, \\texttt{rosen-semigroup-22},\n\\texttt{rosen-selfadjoint-23}, \\texttt{gjs-source-05/06} (E04--E06, E10--E13, E20); Wick\npowers (added 7 November 2026): \\texttt{simon-wickgen-032}, \\texttt{simon-wickpair-033},\n\\texttt{simon-wickprod-034}, \\texttt{simon-gaussproc-037}, \\texttt{simon-gamman-038/039},\n\\texttt{simon-wickdef-156/157/158}, \\texttt{simon-wickthm-159/160}.\\par}",
    "provenance": [],
    "uses": [
+    "A:domain",
+    "A:gjs",
+    "app:comparison",
+    "app:huniform",
+    "aux:notation-ident",
+    "aux:notation-kernel",
+    "aux:notation-wick",
+    "eq:wickpairing",
+    "lem:Z",
     "lem:covparity",
+    "prop:smoothing",
     "sec:G",
     "sec:M2",
     "sec:dichotomy",
     "sec:ground",
     "sec:path",
-    "sec:slab"
+    "sec:slab",
+    "subsec:model"
    ],
    "proof_uses": [],
    "has_proof": false,
-   "imports_A8": false,
+   "imports_A8": true,
    "cites_UGJS": false
   },
   {
@@ -74,16 +90,20 @@
    "kind": "Assumption",
    "title": "Feynman--Kac--Nelson transfer",
    "number": "A2",
-   "page": 8,
+   "page": 11,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
     "label": "sec:setting"
    },
-   "statement": "Let $d\\mu_0$ be the free Euclidean Gaussian measure with covariance\n$(-\\Delta_{\\R^2}+m_0^2)^{-1}$, $J_t$ the sharp-time embeddings, and, for $h\\in\\CE$,\n$\\mathcal U_h:=\\lambda\\int h(z){:}\\mathscr P(\\Phi(z)){:}\\,dz$. For all bounded time-zero\nfunctions $f,h'$, $T>0$, and $g\\in\\CH$,\n\\[\n \\ip{f}{e^{-TK(g)}h'}\n =\\int\\overline{(J_Tf)}\\,(J_0h')\\,e^{-\\mathcal U_{\\mathbf 1_{[0,T]}\\otimes g}}\\,d\\mu_0 ,\n\\]\nwith the interaction over exactly the slab $[0,T]$ carrying the two embeddings, together\nwith the analogous multi-time formulas on finite slabs (used in \\S\\ref{sec:slab} in the\ntwo- and one-time forms, where the symmetric slab cutoffs\n$h_{T,g}:=\\mathbf 1_{[-T,T]}\\otimes g\\in\\CE$ enter through the \\emph{normalized}\nmeasures $dq_{h_{T,g}}$).\n\n\\emph{Sources.} Free-field FKN: \\cite[Thm.~III.6]{SimonBook}; interacting form:\n\\cite[Cor.~V.14, Thm.~V.15]{SimonBook}; equivalently \\cite[Thms.~II.14, II.16]{GRS75}.\n\n\\emph{Scope.} \\cite[Thm.~III.12]{SimonBook} is a projection-product estimate, % negative-scope mention (whitelisted): III.12\n\\emph{not} an FKN theorem, and is nowhere used (audit finding S1).\nThe identification of sharp-time Wick functionals with $Q$-space multiplication operators is\nthe conventions lock, Remark~\\ref{rem:conv}.\n\n\\emph{Used in.} \\S\\ref{sec:slab} (slab identities), \\S\\ref{sec:path} (path formula).\n\n{\\raggedright\\emph{Dossier.} \\texttt{simon-free-fkn-111}, \\texttt{simon-fkn-184/185},\n\\texttt{grs-fkn-39/40}, \\texttt{simon-wrong-iii12-119} (E27--E43 range).\\par}",
+   "statement": "Let $d\\mu_0$ be the free Euclidean Gaussian measure with covariance\n$(-\\Delta_{\\R^2}+m_0^2)^{-1}$, $J_t$ the sharp-time embeddings, and, for $h\\in\\CE$,\n$\\mathcal U_h:=\\lambda\\int h(z){:}\\mathscr P(\\Phi(z)){:}\\,dz$. For all bounded time-zero\nfunctions $f,h'$, $T>0$, and $g\\in\\CH$,\n\\[\n \\ip{f}{e^{-TK(g)}h'}\n =\\int\\overline{(J_Tf)}\\,(J_0h')\\,e^{-\\mathcal U_{\\mathbf 1_{[0,T]}\\otimes g}}\\,d\\mu_0 ,\n\\]\nwith the interaction over exactly the slab $[0,T]$ carrying the two embeddings, together\nwith the analogous multi-time formulas on finite slabs (used in \\S\\ref{sec:slab} in the\ntwo- and one-time forms, where the symmetric slab cutoffs\n$h_{T,g}:=\\mathbf 1_{[-T,T]}\\otimes g\\in\\CE$ enter through the \\emph{normalized}\nmeasures $dq_{h_{T,g}}$).\n\n\\emph{Sources.} Free-field FKN: \\cite[Thm.~III.6]{SimonBook}; interacting form:\n\\cite[Cor.~V.14, Thm.~V.15]{SimonBook}; equivalently \\cite[Thms.~II.14, II.16]{GRS75}.\n\n\\emph{Scope.} \\cite[Thm.~III.12]{SimonBook} is a projection-product estimate, % negative-scope mention (whitelisted): III.12\n\\emph{not} an FKN theorem, and is nowhere used (audit finding S1).\nThe identification of sharp-time Wick functionals with $Q$-space multiplication operators is\nthe conventions lock, Remark~\\ref{rem:conv}.\n\n\\emph{Used in.} \\S\\ref{sec:slab} (slab identities), \\S\\ref{sec:M2} (Step~1: the sharp-time\nembedding $J_0$), \\S\\ref{sec:path} (path formula), Appendix~\\ref{app:huniform} (through\nLemma~\\ref{aux:d1-cov}(i)), Appendix~\\ref{app:comparison}.\n\n{\\raggedright\\emph{Dossier.} \\texttt{simon-free-fkn-111}, \\texttt{simon-fkn-184/185},\n\\texttt{grs-fkn-39/40}, \\texttt{simon-wrong-iii12-119} (E27--E43 range).\\par}",
    "provenance": [],
    "uses": [
+    "app:comparison",
+    "app:huniform",
+    "aux:d1-cov",
     "rem:conv",
+    "sec:M2",
     "sec:path",
     "sec:slab"
    ],
@@ -97,24 +117,34 @@
    "kind": "Assumption",
    "title": "finite-volume stability",
    "number": "A3",
-   "page": 8,
+   "page": 11,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
     "label": "sec:setting"
    },
-   "statement": "For every $h\\in\\CE$: $\\mathcal U_h\\in L^p(d\\mu_0)$ for every $p<\\infty$, and\n$e^{-\\varrho\\,\\mathcal U_h}\\in L^1(d\\mu_0)$ for every finite $\\varrho>0$. In particular\n$0<Z(h):=\\int e^{-\\mathcal U_h}d\\mu_0<\\infty$, and the interacting measures\n\\[\n dq_h:=Z(h)^{-1}e^{-\\mathcal U_h}\\,d\\mu_0 ,\\qquad h\\in\\CE ,\n\\]\nare well-defined probability measures.\n\n\\emph{Source.} \\cite[Thm.~V.7]{SimonBook} and its chapter context.\n\n\\emph{Scope.} Only finite slabs and compactly supported $h$ occur below; no infinite-volume\nstability is imported. A self-contained quantitative lower bound on $Z(h)$ and the\n$h$-uniform $L^p$ bound on $e^{-\\mathcal U_h}$ are re-proved in Appendix~\\ref{app:huniform}.\n\n\\emph{Used in.} \\S\\ref{sec:reduction} (Lemma~\\ref{lem:classes}), \\S\\ref{sec:slab},\n\\S\\ref{sec:path} (H\\\"older/Vitali chains), Appendix~\\ref{app:huniform}.\n\n{\\raggedright\\emph{Dossier.} \\texttt{simon-exp-174}, \\texttt{simon-transfer-178/179/180} (E33--E43 range).\\par}",
+   "statement": "For every $h\\in\\CE$: $\\mathcal U_h\\in L^p(d\\mu_0)$ for every $p<\\infty$, and\n$e^{-\\varrho\\,\\mathcal U_h}\\in L^1(d\\mu_0)$ for every finite $\\varrho>0$. In particular\n$0<Z(h):=\\int e^{-\\mathcal U_h}d\\mu_0<\\infty$, and the interacting measures\n\\[\n dq_h:=Z(h)^{-1}e^{-\\mathcal U_h}\\,d\\mu_0 ,\\qquad h\\in\\CE ,\n\\]\nare well-defined probability measures.\n\n\\emph{Construction of $\\mathcal U_h$} (added 7 November 2026; repair R8 of the V3 audit,\nAppendix~\\ref{app:provenance}).  Let $\\HH_G$ be the real Hilbert space obtained by\ncompleting the real-valued $\\mathcal S(\\R^2)$ in the inner product\n$2\\ip f{(-\\Delta_{\\R^2}+m_0^2)^{-1}g}$; $(\\mathcal S'(\\R^2),d\\mu_0,\\Phi)$ of\nAssumption~\\ref{A:fkn} is the Gaussian random process indexed by $\\HH_G$ in the source's\nnormalisation (as for $\\HH_C$ in Assumption~\\ref{A:cutoff}), so that the kernel of (V.1) is\n$G(z-z')$ of Lemma~\\ref{aux:notation-kernel}(v), which is locally integrable.  The\nWick products, the pairing facts and the chaoses $\\Gamma_n(\\HH_G)\\subseteq L^2(d\\mu_0)$ are\nthose of Assumption~\\ref{A:cutoff}, items (a)--(c), for $\\HH=\\HH_G$; for $n\\ge1$ and $g\\in\nL^{1+\\varepsilon}(\\R^2)$, $0<\\varepsilon\\le1$, the Wick power ${:}\\Phi^n(g){:}$ is the\nunique element of $\\Gamma_n(\\HH_G)$ with\n\\begin{equation}\n \\bigl\\langle{:}\\Phi(f_1)\\cdots\\Phi(f_n){:},\\,{:}\\Phi^n(g){:}\\bigr\\rangle\n =n!\\int\\Bigl[\\prod_{j=1}^n\\int f_j(z_j)\\,G(z_j-z)\\,dz_j\\Bigr]g(z)\\,dz\n \\qquad(f_j\\in\\mathcal S(\\R^2)),\n \\tag{W.2}\\label{eq:wickpairingE}\n\\end{equation}\n\\cite[(V.3), p.~136]{SimonBook} (for $g\\notin\\mathcal S$ the continuous extension, as in\nAssumption~\\ref{A:cutoff}(d)); it exists for this class, ``${:}\\phi^n{:}$ exists for any\n$n$ as a random process for $L^{1+\\varepsilon}(R^2)$ for each $\\varepsilon\\,\\epsilon\\,(0,1]$''\n\\cite[Thm.~V.2(a), p.~137]{SimonBook}, with\n\\begin{equation}\n \\|{:}\\Phi^n(g){:}\\|_{L^2(d\\mu_0)}^2=n!\\iint g(z)\\,g(z')\\,G(z-z')^n\\,dz\\,dz'\n \\tag{W.3}\\label{eq:wickisometry}\n\\end{equation}\n\\cite[p.~137]{SimonBook}, and, for every $p\\ge2$, $\\|{:}\\Phi^n(g){:}\\|_p\\le\nc\\,(p-1)^{n/2}\\|g\\|_{1+\\varepsilon}$ with $c$ depending on $\\varepsilon$ and $n$ only\n\\cite[(V.6a), p.~137; Remark~1, p.~138]{SimonBook}.  For $n=0$ and $g\\in L^1(\\R^2)$,\n\\eqref{eq:wickpairingE} with the empty product gives the constant ${:}\\Phi^0(g){:}:=\\int g$,\nas in Assumption~\\ref{A:cutoff}(d); the bound above is used only for $n\\ge1$.  Every\n$h\\in\\CE$ is bounded with compact support, hence in $L^1\\cap L^{1+\\varepsilon}(\\R^2)$, and\n\\[\n \\mathcal U_h:=\\lambda\\sum_{n=0}^{2p'}a_n\\,{:}\\Phi^n(h){:}\\in\\bigoplus_{n=0}^{2p'}\\Gamma_n(\\HH_G),\n \\qquad {:}\\Phi^0(h){:}=\\int h\\,dz ,\n\\]\nwhich is linear in $h$ and lies in every $L^p(d\\mu_0)$ by (V.6a); this makes the first clause\nof the assumption a consequence of the construction, and the clause on\n$e^{-\\varrho\\,\\mathcal U_h}$ is the import proper.  Appendix~\\ref{app:huniform} shows that\n$\\mathcal U_h$ is the $L^2(d\\mu_0)$-limit of its mollified versions\n(Lemma~\\ref{lem:uv} with Lemma~\\ref{aux:notation-ident}(iii)).  The second quantization of a\ncontraction $c$ on $\\HH_G$ acts on the Wick monomials by $\\Gamma(c)\\,{:}\\Phi(f_1)\\cdots\n\\Phi(f_n){:}={:}\\Phi(cf_1)\\cdots\\Phi(cf_n){:}$ \\cite[(I.32), p.~25]{SimonBook}; in\nparticular $\\Gamma(e^{-t}\\mathbf 1)$ is multiplication by $e^{-nt}$ on $\\Gamma_n(\\HH_G)$.\n\n\\emph{Source.} The first clause: \\cite[Thm.~V.2(a), (V.6a), p.~137]{SimonBook}; the\nsecond, with $P:=\\varrho\\lambda\\mathscr P$ (semibounded, since $\\varrho\\lambda\\ge0$ and\n$a_{2p'}>0$) and $g:=h\\ge0$: \\cite[Thm.~V.7(a), (V.28a), p.~152]{SimonBook}\n(``Let $P$ be a fixed semibounded polynomial. Then (a) If $g\\ge0$, $g\\,\\epsilon\\,L^1\\cap\nL^{1+\\epsilon}(R^2)$, then $\\exp(-\\int g(x){:}P(\\phi(x)){:}d^2x)\\,\\epsilon\n\\bigcap_{p<\\infty}L^p(Q_N,d\\mu_{0,N})$'', dossier image \\texttt{simon-exp-174})\nand its chapter context; the construction: \\cite[pp.~135--137]{SimonBook}, read on the page\nimages on 7 November 2026 (until then the assumption cited Theorem V.7 for both clauses and\nstated no construction; V3 audit, findings M-3 and m-9).\n\n\\emph{Scope.} Only finite slabs and compactly supported $h$ occur below; no infinite-volume\nstability is imported. A self-contained quantitative lower bound on $Z(h)$ and the\n$h$-uniform $L^p$ bound on $e^{-\\mathcal U_h}$ are proved in Appendix~\\ref{app:huniform}\nfrom the construction above and Assumption~\\ref{A:hyper}.  That the source's\n$\\int g\\,{:}P(\\phi){:}$ in Theorem V.7 is the $\\mathcal U_h$ constructed from its own (V.3)\nis read off the chapter (both are built on the same Wick powers); that it is the $V(h)$ of\n\\cite[(1.8), p.~589]{GJS}, which prints ``Wick order with respect to the measure $d\\Phi$''\nand no construction, is a reading of the kind recorded in Assumption~\\ref{A:gjs},\nScope~(d).\n\n\\emph{Used in.} \\S\\ref{sec:reduction} (Lemma~\\ref{lem:classes}), \\S\\ref{sec:slab},\n\\S\\ref{sec:path} (H\\\"older/Vitali chains), Appendix~\\ref{app:huniform},\nAppendix~\\ref{app:comparison}.\n\n{\\raggedright\\emph{Dossier.} \\texttt{simon-exp-174}, \\texttt{simon-transfer-178/179/180} (E33--E43 range);\nconstruction of $\\mathcal U_h$ (added 7 November 2026): \\texttt{simon-wickdef-156/157/158},\n\\texttt{simon-wickthm-159}, \\texttt{simon-secondq-047}.\\par}",
    "provenance": [],
    "uses": [
+    "A:cutoff",
+    "A:fkn",
+    "A:gjs",
+    "A:hyper",
+    "app:comparison",
     "app:huniform",
+    "app:provenance",
+    "aux:notation-ident",
+    "aux:notation-kernel",
+    "eq:wickpairingE",
     "lem:classes",
+    "lem:uv",
     "sec:path",
     "sec:reduction",
     "sec:slab"
    ],
    "proof_uses": [],
    "has_proof": false,
-   "imports_A8": false,
+   "imports_A8": true,
    "cites_UGJS": false
   },
   {
@@ -122,15 +152,17 @@
    "kind": "Assumption",
    "title": "free hypercontractivity",
    "number": "A4",
-   "page": 9,
+   "page": 13,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
     "label": "sec:setting"
    },
-   "statement": "The free time-zero Markov semigroup $\\mathsf P_T$ satisfies\n\\[\n \\|\\mathsf P_TF\\|_{q}\\le\\|F\\|_{p}\n \\qquad\\text{whenever}\\qquad \\frac{q-1}{p-1}=e^{2m_0T},\\quad 1<p\\le q<\\infty .\n\\]\n\nMore generally (the abstract form of the same source): for the second quantization\n$\\Gamma(c)$ of a contraction $c$ on the one-particle space of any Gaussian $L^2$-space,\n$\\|\\Gamma(c)F\\|_{q}\\le\\|F\\|_{p}$ whenever $\\|c\\|^2\\le(p-1)/(q-1)$; the display is the\ncase $c=e^{-T\\mu}$, and the Mehler case $c=e^{-t}\\mathbf 1$ on $L^2(d\\mu_0)$ is the form\nused in Appendix~\\ref{app:huniform}.\n\n\\emph{Sources.} \\cite[Thm.~I.17]{SimonBook} (the abstract form and the display); the\ntime-region form is \\cite[Thm.~III.17]{SimonBook}.\n\n\\emph{Scope.} \\cite[Thms.~V.10, V.12]{SimonBook} are, respectively, a transfer-matrix % negative-scope mention (whitelisted): V.10, V.12\napplication and an essential-self-adjointness theorem; neither is the hypercontractivity input\nand neither is cited for it (audit finding S2).\n\n\\emph{Used in.} \\S\\ref{sec:path} (the pairing bound), Appendix~\\ref{app:huniform} (tail\nestimate).\n\n{\\raggedright\\emph{Dossier.} \\texttt{simon-hyper-056}, \\texttt{simon-timeslice-125/126}.\\par}",
+   "statement": "The free time-zero Markov semigroup $\\mathsf P_T$ satisfies\n\\[\n \\|\\mathsf P_TF\\|_{q}\\le\\|F\\|_{p}\n \\qquad\\text{whenever}\\qquad \\frac{q-1}{p-1}=e^{2m_0T},\\quad 1<p\\le q<\\infty .\n\\]\n\nMore generally (the abstract form of the same source): for the second quantization\n$\\Gamma(c)$ of a contraction $c$ on the one-particle space of any Gaussian $L^2$-space,\n$\\|\\Gamma(c)F\\|_{q}\\le\\|F\\|_{p}$ whenever $\\|c\\|^2\\le(p-1)/(q-1)$; the display is the\ncase $c=e^{-T\\mu}$, and the Mehler case $c=e^{-t}\\mathbf 1$ on $L^2(d\\mu_0)$ is the form\nused in Appendix~\\ref{app:huniform}.\n\n\\emph{Sources.} \\cite[Thm.~I.17]{SimonBook} (the abstract form and the display); the\ntime-region form is \\cite[Thm.~III.17]{SimonBook}.  The moment comparison on the chaoses\nthat Appendix~\\ref{app:huniform} derives from the abstract form is also printed as\n\\cite[Thm.~I.22, (I.47), p.~38]{SimonBook}: ``if $\\psi\\,\\epsilon\\bigoplus_{n=0}^m\n\\Gamma_n(\\mathcal H)$, then $\\|\\psi\\|_p\\le(p-1)^{m/2}\\|\\psi\\|_2$ for all $p>2$'' (read on\nthe page image on 7 November 2026).\n\n\\emph{Scope.} \\cite[Thms.~V.10, V.12]{SimonBook} are, respectively, a transfer-matrix % negative-scope mention (whitelisted): V.10, V.12\napplication and an essential-self-adjointness theorem; neither is the hypercontractivity input\nand neither is cited for it (audit finding S2).  The abstract form is printed for\n$p,q\\in(1,\\infty)$, $p\\le q$ \\cite[Thm.~I.17, p.~34]{SimonBook}; every use below has\n$1<p\\le q<\\infty$ (\\S\\ref{sec:path}, Step~1: $p=1+e^{-m_0T}$; Appendices~\\ref{app:huniform}\nand~\\ref{app:comparison}: $p=2$).  How $\\Gamma(c)$ acts on the chaoses, (I.32), is recorded in\nAssumption~\\ref{A:stability}.\n\n\\emph{Used in.} \\S\\ref{sec:path} (the pairing bound), Appendix~\\ref{app:huniform} (tail\nestimate; the comparison $\\|Y\\|_q\\le(q-1)^{p'}\\|Y\\|_2$), Appendix~\\ref{app:comparison}\n(the same comparison at $q=4$).\n\n{\\raggedright\\emph{Dossier.} \\texttt{simon-hyper-056}, \\texttt{simon-timeslice-125/126};\nTheorem I.22 (added 7 November 2026): \\texttt{simon-thm122-060}.\\par}",
    "provenance": [],
    "uses": [
+    "A:stability",
+    "app:comparison",
     "app:huniform",
     "sec:path"
    ],
@@ -144,7 +176,7 @@
    "kind": "Assumption",
    "title": "domain smoothing; common core",
    "number": "A5",
-   "page": 9,
+   "page": 13,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
@@ -168,20 +200,24 @@
    "kind": "Assumption",
    "title": "free propagation; patching; the dynamics $\\alpha$",
    "number": "A6",
-   "page": 9,
+   "page": 13,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
     "label": "sec:setting"
    },
-   "statement": "\\emph{(i)} The free dynamics $\\mathrm{Ad}\\,e^{itH_0}$ has propagation speed one\n(Klein--Gordon finite propagation), and the Trotter product formula for $e^{itK(g)}$ converges\nstrongly.\n\\emph{(ii)} There is a one-parameter automorphism group $\\alpha$ of $\\A$, independent of $g$,\nwith\n\\begin{equation}\n \\alpha_t(\\A(O))\\subseteq\\A(O_{|t|}),\\qquad\n \\alpha_t(A)=\\beta^g_t(A)\\ \\ \\text{if } g\\equiv1 \\text{ on } O_{|t|}\\ (A\\in\\A(O)).\n \\tag{P}\\label{eq:P}\n\\end{equation}\n\n\\emph{Sources.} \\cite[\\S III]{GJ1}; \\cite[\\S\\S3.5--3.6]{GJ2}; \\cite[\\S4.1 and Ch.~4]{GJExp}.\n\n\\emph{Scope.} \\eqref{eq:P} is the Glimm--Jaffe patching construction verbatim; the\n$g$-uniform propagation bound for the \\emph{cutoff} dynamics is not imported but derived\n(Proposition~\\ref{prop:propagation}).\n\n\\emph{Used in.} Proposition~\\ref{prop:propagation}, \\S\\ref{sec:filter} (locality identity),\n\\S\\ref{sec:lppl}, \\S\\ref{sec:ground}.\n\n{\\raggedright\\emph{Dossier.} \\texttt{gj1-locality-06}, \\texttt{gjexp-054/055/056},\n\\texttt{gj2-cutoff-independence-38}, \\texttt{gj2-local-algebra-40} (E03, E06,\nE14--E16).\\par}",
+   "statement": "\\emph{(i)} The free dynamics $\\mathrm{Ad}\\,e^{itH_0}$ has propagation speed one\n(Klein--Gordon finite propagation), and the Trotter product formula for $e^{itK(g)}$ converges\nstrongly.\n\\emph{(ii)} There is a one-parameter automorphism group $\\alpha$ of $\\A$, independent of $g$,\nwith\n\\begin{equation}\n \\alpha_t(\\A(O))\\subseteq\\A(O_{|t|}),\\qquad\n \\alpha_t(A)=\\beta^g_t(A)\\ \\ \\text{if } g\\equiv1 \\text{ on } O_{|t|}\\ (A\\in\\A(O)).\n \\tag{P}\\label{eq:P}\n\\end{equation}\n\\emph{(iii)} The net is local: $\\A(O)\\subseteq\\A(O')'$ for disjoint bounded open intervals\n$O$, $O'$ (listed on 7 November 2026; used before without being listed).\n\n\\emph{Sources.} \\cite[\\S III]{GJ1}; \\cite[\\S\\S3.5--3.6]{GJ2}; \\cite[\\S4.1 and Ch.~4]{GJExp};\n(iii): \\cite[p.~397, proof of Thm.~3.5.1]{GJ2}, read on the page image on 7 November 2026.\n\n\\emph{Scope.} \\eqref{eq:P} is the Glimm--Jaffe patching construction verbatim; the\n$g$-uniform propagation bound for the \\emph{cutoff} dynamics is not imported but derived\n(Proposition~\\ref{prop:propagation}).  Item (iii) is printed for the algebra the source\ndefines, for an open set in space, ``as the weak closure of the bounded functions of the\n$t=0$ fields'' $\\int\\varphi(x,0)f(x)\\,dx$ and $\\int\\pi(x,0)f(x)\\,dx$ ``as $f$ runs over the\n$C^\\infty$ functions with support in'' that set: for two ``disjoint open sets'', ``elements\nof'' the two algebras ``commute''.  The algebra so defined for an interval $O$ is the\n$\\A(O)$ of \\S\\ref{subsec:model}, which is generated by the bounded Borel functions of\n$\\varphi_0(f)$ and $\\pi_0(f)$, $f\\in C_c^\\infty(O)$ real, once the source's Fock-space fields\n$\\varphi(x,0)$, $\\pi(x,0)$ are read as the $Q$-space fields $\\varphi_0$, $\\pi_0$: the Fock\nspace--$Q$-space dictionary of the Scope paragraph of Assumption~\\ref{A:cutoff}, a reading of\nthe source.  Items (i) and (ii) are imported under the same reading.  (Until 7 November 2026\n\\S\\ref{subsec:model} wrote the generators of $\\A(O)$ as all $W(f,h)$; matching that\ngenerating set to the source's would need the Weyl relations, which this manuscript does not\nstate and does not use for the local algebras; the remark on the coordinate convention in\n\\S\\ref{sec:reduction} presupposes them for its scaling automorphism, of which only the action\non $W(f,0)$ and $W(0,h)$ enters\n$\\sigma_s(\\A(O))=\\A(sO)$.)\n\n\\emph{Used in.} Proposition~\\ref{prop:propagation}, \\S\\ref{sec:filter} (locality identity),\n\\S\\ref{sec:lppl}, \\S\\ref{sec:ground}; item (iii): \\S\\ref{subsec:model} (\\emph{Locality}, hence\nProposition~\\ref{prop:propagation} and the two-regime bound of \\S\\ref{sec:lppl}) and\n\\S\\ref{sec:dichotomy} (Step~1 of the proof of the dichotomy theorem).\n\n{\\raggedright\\emph{Dossier.} \\texttt{gj1-locality-06}, \\texttt{gjexp-054/055/056},\n\\texttt{gj2-cutoff-independence-38}, \\texttt{gj2-local-algebra-40} (E03, E06,\nE14--E16); item (iii) (added 7 November 2026): \\texttt{gj2-locality-37}.\\par}",
    "provenance": [],
    "uses": [
+    "A:cutoff",
     "eq:P",
     "prop:propagation",
+    "sec:dichotomy",
     "sec:filter",
     "sec:ground",
-    "sec:lppl"
+    "sec:lppl",
+    "sec:reduction",
+    "subsec:model"
    ],
    "proof_uses": [],
    "has_proof": false,
@@ -193,7 +229,7 @@
    "kind": "Assumption",
    "title": "covariance data",
    "number": "A7",
-   "page": 9,
+   "page": 14,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
@@ -216,13 +252,13 @@
    "kind": "Assumption",
    "title": "the GJS package",
    "number": "A8",
-   "page": 10,
+   "page": 14,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
     "label": "sec:setting"
    },
-   "statement": "The Euclidean input is \\cite{GJS}, used exactly as printed, as follows.\n\n\\emph{(i) Measures.} For $h\\in\\CE$, $dq_h=Z(h)^{-1}e^{-\\mathcal U_h}d\\mu_0$ as in\nAssumption~\\ref{A:stability}; the Hamiltonian cutoff class of \\cite[(1.6), p.~588]{GJS} is\n$\\CH$.\n\n\\emph{(ii) Observable class.} The class (1.1.5) of \\cite{GJS} consists of sharp-time monomials\n$Q(x^0)=\\int d\\vec x\\,w(\\vec x)\\prod_i{:}\\Phi(x_i)^{m_i}{:}$ with $L^2$ kernels; equal times\nare allowed, and products of individually Wick-ordered powers are admissible without\nreordering.  Equation (1.1.6) of \\cite{GJS}, $Q=\\int dx^0\\,Q(x^0)$, defines the\ntime-integrated monomials with kernels in $L^2$ of space-time; ``localized'' is defined for\nboth forms by support in a product of unit lattice squares ``centered at the lattice side\n[sic] $j_i\\in\\mathbb Z^2$'' (p.~593), i.e.\\ squares centred at integer points.  The cells\n$[j,j+1)$ used in \\S\\S\\ref{sec:M2}--\\ref{sec:norms} are this lattice shifted by one half unit\nin space; the count bounds used below (at most three cells for a support of length $2$,\nTheorem~\\ref{thm:M2}, Step~2; $N_I\\le\\lfloor L\\rfloor+2$, Lemma~\\ref{lem:cells}) hold for\nany unit lattice, so the same computation on the squares of p.~593 gives the same constants. GJS bound the degree of each \\emph{individual} Wick factor: $n_i<\\bar n$ for a fixed\nfinite $\\bar n$, any choice $\\bar n\\ge\\deg\\mathscr P$ being sufficient; the printed text\nadds ``Since there is no restriction on $r$, $Q$ still may have an arbitrarily large\ndegree'' (p.~593). Footnote~9 permits $\\bar n=\\infty$ at the price\n$N(\\Delta)!\\to(N(\\Delta)!)^3$ in (1.1.7), (1.1.8), (2.4.5). Every observable used below\nhas individual factor degrees $\\le\\max(2p',1)$, so the fixed finite choice\n$\\bar n=2p'+1$ applies and the printed first-power weights are used as displayed; the\n\\emph{total} degrees of the observables of \\S\\ref{sec:G} are unbounded, exactly as the\nprinted sentence licenses.\n\n\\emph{(iii) Printed norms.}\n\\begin{equation}\n\\begin{gathered}\n \\textup{(1.1.7)}\\ \\ \\|Q\\|_{\\rm GJS}=K_1\\Bigl[\\prod_\\Delta K_2^{2N(\\Delta)}N(\\Delta)!\\Bigr]\\|w\\|_2,\\\\\n \\textup{(1.1.8)}\\ \\ \\|Q(x_0)\\|_{\\rm GJS}=K_1\\Bigl[\\prod_\\Delta K_2^{2N(\\Delta)}N(\\Delta)!\\Bigr]\\|w(x_0,\\cdot)\\|_2,\n\\end{gathered}\n \\label{eq:printednorm}\n\\end{equation}\nwhere $N(\\Delta)$ is the total degree localized in the unit square $\\Delta$, and\n\\textup{(1.1.9)}: a nonlocalized polynomial is normed by summing its localized pieces.\nReplacing $K_2$ by $\\max\\{1,K_2\\}$ only enlarges right-hand sides; \\emph{we fix $K_2\\ge1$}.\n\n\\emph{(iv) CE2.}\n\\begin{srcfact}[CE2 $=$ {\\cite[Thm.~1.1.7]{GJS}}, p.~594]\\label{sf:CE2}\nFor localized monomials $Q_1,Q_2$ with disjoint localization squares separated by a strip of\nwidth $d$ bounded by two parallel lines (any orientation),\n\\[\n  \\Bigl|\\int Q_1Q_2\\,dq_h-\\int Q_1dq_h\\int Q_2dq_h\\Bigr|\\le C_7e^{-m_1d}\\|Q_1\\|_{\\rm GJS}\\|Q_2\\|_{\\rm GJS} ,\n\\]\nwith $m_1>0$ and $C_7$ \\emph{independent of $h$, $Q_1$, $Q_2$} (so stated in the source).\n\\end{srcfact}\n\n\\emph{(v) CE1.}\n\\begin{srcfact}[CE1 $=$ {\\cite[Thm.~1.1.8]{GJS}}, p.~595]\\label{sf:CE1}\nThe printed estimate is\n\\[\n \\bigl|\\int Q(x^0)\\,dq_h\\bigr|\\le C_8\\|Q(x^0)\\|_{\\rm GJS},\n\\]\nstated uniformly as the source cutoff tends to one.  This item records the literal\none-sentence statement of Theorem 1.1.8.  The cutoff-uniform form consumed below is\nitem~(vi), read off the printed Theorem 1.1.11 (p.~596) in the specialization the source\nitself prints as its proof of Theorem 1.1.8 (p.~600).\n\\end{srcfact}\n\n\\emph{(vi) The cutoff-uniform moment estimate $U_{\\rm GJS}$ (GJS Theorem 1.1.11 at\n$B=I$, $n=0$; imported as printed).}\nFor\n\\[\n \\CE^{\\rm slab}:=\n \\{h_{T,g}=\\mathbf1_{[-T,T]}\\otimes g:T>0,\\ g\\in\\CH\\}\\subset\\CE,\n\\]\none and the same constant $C_8$ satisfies\n\\begin{equation}\n \\left|\\int Q(x^0)\\,dq_{h_{T,g}}\\right|\n \\le C_8\\|Q(x^0)\\|_{\\rm GJS}\n \\quad(T>0,\\ g\\in\\CH) .\n \\tag{$U_{\\rm GJS}$}\\label{eq:UGJS}\n\\end{equation}\nThe quantifiers include every affine cutoff\n$g_s=(1-s)g+sg'$ used later, because $g_s\\in\\CH$.  Equation\n\\eqref{eq:UGJS} is the CE1 uniformity needed in \\S\\S\\ref{sec:M2} and \\ref{sec:G}; since\n31 October 2026 it is read off one printed theorem of the source, as follows.\n\\begin{srcfactstar}[{\\cite[pp.~596, 600 and 629]{GJS}}]\n\\emph{(a) p.~596.} ``We let $A$ and $B$ denote monomials of type (1.1.5) of degree $|A|$\nand $|B|$ and with kernels $w_A$ and $w_B$ respectively. We assume that $A$ is localized at\ntimes $x_{i0}\\le0$, and that $B$ is localized at times $x_{i0}\\ge0$. Let $B_T$ denote the\ntranslate of $B$ at time $T>0$, so that $B_T$ is localized at times $\\ge T$.''\n``In the next two results, we take all times $x_{1,0}=t=\\dots=x_{r,0}$ equal in $Q(x_0)$.\nTo indicate this restriction, we write $Q(t)$ in place of $Q(x_0)$.'' [\\dots]\n``\\textsc{Theorem} 1.1.11. Let $n$ and $\\varepsilon>0$ be given and let\n$\\gamma=(n+1)m_0(1-\\varepsilon)$. For any $A$, we may choose $n$\\textsuperscript{th} degree\npolynomials $Q_n(t_j)$ of the form (1.1.5) with $r=1$, so that\n\\[\n \\textup{(1.1.14)}\\qquad \\sum\\nolimits_{t_j>0}e^{\\gamma t_j}\\|Q_n(t_j)\\|\\le O(1)\\|A\\|\n\\]\nand so that\n\\[\n \\textup{(1.1.15)}\\qquad Q=\\sum\\nolimits_{0<t_j<T}Q_n(t_j)\n\\]\nsatisfies\n\\[\n \\textup{(1.1.16)}\\qquad \\Bigl|\\int(A-Q)B_T\\,dq_h\\Bigr|\\le O(1)\\|A\\|\\,\\|B\\|\\,e^{-\\gamma T} ,\n\\]\nuniformly in $h$. We shall choose $t_j=j$, $j\\in\\mathbb Z$.''\n\\emph{(b) p.~600.} ``Proof of Theorem 1.1.8, assuming Theorem 1.1.10 [sic]. Choose $T=0$\nand $B=I$ in Theorem 1.1.11. Then $Q=0$, so Theorem 1.1.8 is a special case of Theorem\n1.1.10 [sic].''\n\\emph{(c) p.~629.} ``Theorem 1.1.11 follows from this inequality, while Theorem 1.1.8 is the\nspecial case $B=I$, $n=0$.''\n\\end{srcfactstar}\n\n\\emph{Reading (vi) off the source fact.}  Take $n=0$ and $B=I$ in Theorem 1.1.11, as the\nsource does on p.~600 ($B=I$, $T=0$) and names on p.~629 ($B=I$, $n=0$).  For $0<T<1$ the sum (1.1.15) over the integers\n$0<t_j<T$ is empty, so $Q=0$ and $I_T=I$, and (1.1.16) reads\n$|\\int A\\,dq_h|\\le O(1)\\|A\\|\\,\\|I\\|\\,e^{-\\gamma T}\\le O(1)\\|A\\|\\,\\|I\\|$, uniformly in $h$,\nfor every monomial $A$ of type (1.1.5) localized at times $\\le0$; the source's own choice\n$T=0$ (p.~600) gives the same bound, and $0<T<1$ is used here because the source introduces\n$B_T$ for $T>0$.  By (1.1.7)--(1.1.8), $\\|I\\|=K_1$ (no Wick factors: the product is empty and the kernel is\nthe constant $1$), so\n\\eqref{eq:UGJS} holds with\n\\[\n C_8:=O(1)\\,K_1 ,\n\\]\n$O(1)$ the constant of Theorem 1.1.11 at $n=0$ and a fixed $\\varepsilon\\in(0,1)$; it holds for\nevery $h\\in\\CE$, in particular on $\\CE^{\\rm slab}$, and $C_8$ depends on the printed\nthresholds only.  Three remarks make the reading exact.  \\emph{(1)} A sharp-time monomial at\nan arbitrary time $x^0$ is carried to a time in $(-1,0]$ by an integer time translation,\nwhich maps the lattice squares of p.~593 onto themselves, preserves the norms\n(1.1.7)--(1.1.8), the class $\\CE$ and the measure $d\\mu_0$, and carries $dq_h$ to $dq_{h'}$\nwith $h'$ the translated cutoff; the bound at $h'$ is the bound at $h$.  \\emph{(2)} A general\n$Q(x^0)$ with kernel of bounded support is a finite sum of localized monomials, and\n$\\|Q(x^0)\\|_{\\rm GJS}$ is the sum of their norms by (1.1.9); the bound is applied to each\npiece, whose times are all equal, as the source requires for Theorems 1.1.10--1.1.11\n(p.~596).  \\emph{(3)} The smallness\nhypotheses under which Theorem 1.1.11 holds are not printed in its statement; the source\nprints them with Theorem 4.1, from which Theorems 1.1.8 and 1.1.11 are proved on pp.~628--629\n(``Let $m_0$, $K_2$ and $K_1$ be sufficiently large, and let $\\lambda$ be sufficiently\nsmall''), and on p.~600 (``convergence of our expansions requires both sufficiently small\n$\\lambda$ and sufficiently large $m_0$''); \\S\\ref{subsec:weak} fixes the working constants\naccordingly.  The admissibility of the degree-zero $B=I$ rests on the source's own use of it\n(pp.~597, 600, 629) and on p.~593's ``there is no restriction on $r$''.\n\n\\emph{(vii) Printed corroboration of (vi).}\n\\begin{srcfact}[{\\cite[p.~629, \\S4]{GJS}}]\\label{sf:printed}\n``It is important to work with a translation invariant Hamiltonian, in order that time\ntranslation preserve subspaces of bounded momentum. The estimates of Theorems 1.1.8, 1.1.11,\n3.1 and 4.1 are uniform in the space cutoff $h$, and the path space integrals converge as\n$h\\to1$. Thus these theorems hold in the infinite volume limit, and we proceed to work in the\nlimit $h=1$.''\n\\end{srcfact}\n\n\\emph{(vii$'$) Printed use of the quantifier by the source (corroboration).}  The following\npassages show the source stating the cutoff-uniform quantifier of \\eqref{eq:UGJS} and\nconsuming it for arbitrary cutoff functions of its class, not only in the limit $h\\to1$.  The\nsource's $V(g)$ is the interaction $\\mathcal U_g$ of item~(i); its\n$\\langle F\\rangle_h$ is $\\int F\\,dq_h$.\n\\begin{srcfactstar}[{\\cite[pp.~594--597 and 629]{GJS}}]\n\\emph{(a) Proof of Theorem 1.1.1, pp.~594--595.}  ``For test functions\n$f_i\\in C_0^\\infty(\\mathcal O)$ and for cutoff functions $h_1$ and $h_2$, we assert that\n\\[\n \\Bigl|\\int\\prod_i\\Phi(f_i)\\,dq_{h_1}-\\int\\prod_i\\Phi(f_i)\\,dq_{h_2}\\Bigr|\n \\le O(1)e^{-m_1d/2}\n \\tag{1.1.11}\n\\]\nwhere $d=\\operatorname{dist}(\\mathcal O,\\operatorname{suppt}\\,h_1-h_2)$, and then\nTheorem 1.1.1 follows.  To prove (1.1.11) let $g=h_2-h_1$, and define\n$g_i=g\\chi_{\\Delta_i}$, where $\\chi_{\\Delta_i}$ is the characteristic function of\n$\\Delta_i$.  Also we use the notation $\\langle F\\rangle_h=\\int F\\,dq_h$, and set\n$Q=\\prod_i\\Phi(f_i)$.  Then\n\\begin{align*}\n \\langle Q\\rangle_{h_2}-\\langle Q\\rangle_{h_1}\n &=\\int_0^1d\\alpha\\,\\frac{d}{d\\alpha}\\langle Q\\rangle_{h_1+\\alpha g}\\\\\n &=-\\int_0^1d\\alpha\\bigl[\\langle QV(g)\\rangle_{h_1+\\alpha g}\n   -\\langle Q\\rangle_{h_1+\\alpha g}\\langle V(g)\\rangle_{h_1+\\alpha g}\\bigr]\n \\tag{1.1.12}\\\\\n &=-\\int_0^1d\\alpha\\sum_{i\\in\\mathbb Z^2}\\bigl[\\langle QV(g_i)\\rangle_{h_1+\\alpha g}\n   -\\langle Q\\rangle_{h_1+\\alpha g}\\langle V(g_i)\\rangle_{h_1+\\alpha g}\\bigr] .\n\\end{align*}\nWe apply Theorem 1.1.7 to each term in the sum to obtain\n\\[\n |\\langle Q\\rangle_{h_2}-\\langle Q\\rangle_{h_1}|\n \\le\\sum_{i\\in\\mathbb Z^2\\cap\\operatorname{supp}g}\n O(1)e^{-m_1\\operatorname{dist}(\\mathcal O,\\Delta_i)}\n \\le O(1)e^{-m_1d/2} .\n\\]\nAs a special case, the cutoff Schwinger functions $S_h$ converge as $h\\to1$.''\n\n\\emph{(b) Proof of Theorem 1.1.7, pp.~596--597.}  ``Proof of Theorem 1.1.7, assuming\nTheorems 1.1.8 and 1.1.11.  Take $n=0$ in Theorem 1.1.11 Then $Q$ is a polynomial of\ndegree zero, i.\\ e., a constant.  From the choice $B=I$, it follows that\n\\[\n Q=\\int A\\,dq_h+O(1)\\|A\\|e^{-m_0(1-\\varepsilon)T} .\n\\]\nAfter rotating and translating the strip separating $Q_1$ and $Q_2$ in Theorem 1.1.7,\nand after choosing $A=Q_1$, $B_T=Q_2$ in Theorem 1.1.11, the proof follows from Theorem\n1.1.8, (1.1.16) and the above determination of $Q$.''  The estimate (1.1.16), p.~596,\nreads ``$|\\int(A-Q)B_T\\,dq_h|\\le O(1)\\|A\\|\\,\\|B\\|e^{-\\gamma T}$, uniformly in $h$.''\n\n\\emph{(c) p.~629.}  ``Theorem 1.1.11 follows from this inequality, while Theorem 1.1.8\nis the special case $B=I$, $n=0$.''  The uniformity sentence of the same page is Source\nFact~\\ref{sf:printed}.\n\\end{srcfactstar}\n\n\\emph{(viii) Scaling.} The unitary space-time dilation of \\cite[p.~590]{GJS} sends\n$(m_0,\\lambda)$ to $(s^{-1}m_0,s^{-2}\\lambda)$; the exact reduction of the dimensionless\nsmallness hypothesis to the printed one is Proposition~\\ref{prop:scaling}.\n\n\\emph{Scope.} Every item of this assumption is a printed statement of \\cite{GJS}, used at\nthe scope at which it is printed; this is the standard under which\nAssumptions~\\ref{A:cutoff}--\\ref{A:covar} are imported, and no stricter one is available\nto this manuscript, since the printed proof of Theorem 1.1.7 itself obtains its\n$h$-independent constant from Theorem 1.1.8 at the same $h$ (p.~597) while Theorem\n1.1.8 is printed only ``uniformly as $h\\to1$'' (p.~595).  Four points of scope are\nrecorded.\n\\emph{(a) Item (vi).}  From 16 August to 30 October 2026 the slab-uniform estimate\n\\eqref{eq:UGJS} was carried as a named hypothesis of Theorem~\\ref{thm:MAIN}, documented\non 5 September 2026 as the quantifier the source states on p.~629 and consumes on\npp.~594--597 (items (vii), (vii$'$)) but ``assembled from four pages of the source rather\nthan read off one theorem''.  The source fact of item (vi) shows that it is read off one printed theorem,\nTheorem 1.1.11, whose estimate (1.1.16) is printed ``uniformly in $h$'', in the\nspecialization the source itself prints as its proof of Theorem 1.1.8; the reading of\n5 September 2026 used the same pages as evidence for Theorem 1.1.8 and is the same\nmathematics with different bookkeeping.  Accordingly item (vi) is imported as printed, and\nTheorem~\\ref{thm:MAIN} no longer carries it as a separate hypothesis.  This is a\nre-sourcing, not a proof: the manuscript does not re-derive the cluster expansion, and\nAppendix~\\ref{app:huniform} audits the source mechanism and proves two analytic\nprerequisites only.  Items (vii) and (vii$'$) are kept as corroboration.\n\\emph{(b) Item (iv).}  GJS Theorem 1.1.7 is printed for localized monomials separated by a\nstrip of any orientation (p.~594).  Its printed proof rotates the strip into the time\ndirection (p.~597) and so reaches sharp-time monomials only across strips parallel to the\ntime-zero line.  Lemma~\\ref{lem:ce2strip} uses only that case.\n\\emph{(c)} The source's own proof of Theorem 1.1.7 obtains its constant from Theorem 1.1.8\nat the same $h$ (p.~597); this manuscript does not re-verify that proof, exactly as it\nre-verifies no proof behind Assumptions~\\ref{A:cutoff}--\\ref{A:covar}.\n\\emph{(d) Three readings made explicit.}  The quantifier ``uniformly in $h$'' of (1.1.16)\nis read over the class of p.~589 (compact support, $0\\le h\\le1$), the only class of space-time\ncutoffs $h$ of the measures $dq_h$ that the source defines, exactly as Theorem 1.1.7's ``independent of $h$'' is read;\np.~629 states the uniformity of Theorems 1.1.8 and 1.1.11 ``in the space cutoff $h$''\n(Source Fact~\\ref{sf:printed}).  The constant $O(1)$ of (1.1.16) is read as depending on\n$n$, $\\varepsilon$ and the standing thresholds only, not on $A$, $B$, $T$ or $h$, as the\nsource's $O(1)$ is read throughout this manuscript (Source Facts~\\ref{sf:CE2}--\\ref{sf:CE1});\n\\S\\ref{sec:G} needs this for observables of unbounded total degree.  The stability input\n(2.4.34) of the source's proof (Appendix~\\ref{app:huniform}, M6) enters Theorems 1.1.7 and\n1.1.11 alike; under the import standard it belongs to the proofs this manuscript does not\nre-verify.  The formerly\nillegible norm prefactor was settled by page-image inspection: $K_1$ enters to the first\npower and the local weight is $K_2^{2N(\\Delta)}$ (gate R2, \\texttt{m4/r2-check.tex}).  All\nconstants in this manuscript use the exact reading \\eqref{eq:printednorm}.\n\n\\emph{Used in.} \\S\\ref{sec:reduction} (scaling), \\S\\ref{sec:slab}, \\S\\ref{sec:M2} (CE1),\n\\S\\ref{sec:norms} (norms), \\S\\ref{sec:G} (CE1, CE2), Appendix~\\ref{app:huniform}.\n\n{\\raggedright\\emph{Dossier.} \\texttt{gjs-source-05/06}, \\texttt{gjs-p589-06}, \\texttt{gjs-scaling-07},\n\\texttt{gjs-theorems-10/11/12}, \\texttt{gjs-core-11/12}, \\texttt{gjs-uniform-46},\n\\texttt{gjs-uniformity-46}, \\texttt{gjs-proof-14} (E20--E26, E54);\n\\texttt{gjs-thm1111-13} (p.~596), \\texttt{gjs-proof118-17} (p.~600), \\texttt{gjs-thm41-45}\n(p.~628), added 31 October 2026.\\par}",
+   "statement": "The Euclidean input is \\cite{GJS}, used exactly as printed, as follows.\n\n\\emph{(i) Measures.} For $h\\in\\CE$, $dq_h=Z(h)^{-1}e^{-\\mathcal U_h}d\\mu_0$ as in\nAssumption~\\ref{A:stability}; the Hamiltonian cutoff class of \\cite[(1.6), p.~588]{GJS} is\n$\\CH$.\n\n\\emph{(ii) Observable class.} The class (1.1.5) of \\cite{GJS} consists of sharp-time monomials\n$Q(x^0)=\\int d\\vec x\\,w(\\vec x)\\prod_i{:}\\Phi(x_i)^{m_i}{:}$ with $L^2$ kernels; equal times\nare allowed, and products of individually Wick-ordered powers are admissible without\nreordering.  Equation (1.1.6) of \\cite{GJS}, $Q=\\int dx^0\\,Q(x^0)$, defines the\ntime-integrated monomials with kernels in $L^2$ of space-time; ``localized'' is defined for\nboth forms by support in a product of unit lattice squares ``centered at the lattice side\n[sic] $j_i\\in\\mathbb Z^2$'' (p.~593), i.e.\\ squares centred at integer points.  The spatial\ncells used in \\S\\S\\ref{sec:M2}--\\ref{sec:norms} are the columns $[k-\\frac12,k+\\frac12)$,\n$k\\in\\Z$, of these squares (Definition~\\ref{aux:notation-squares} fixes the convention on\nthe lattice lines); the count bounds used below (at most three columns for a support of\nlength $2$, Theorem~\\ref{thm:M2}, Step~2; $N_I\\le\\lfloor L\\rfloor+2$,\nLemma~\\ref{lem:cells}) are proved on them.  (Until 7 November 2026 these sections counted\nin the cells $[j,j+1)$, a lattice shifted by one half unit, on which the displayed norm bounds\nof Proposition~\\ref{prop:gjsnorms} can fail for the norm of p.~594; Appendix~\\ref{app:provenance},\ncorrections history.) GJS bound the degree of each \\emph{individual} Wick factor: $n_i<\\bar n$ for a fixed\nfinite $\\bar n$, any choice $\\bar n\\ge\\deg\\mathscr P$ being sufficient; the printed text\nadds ``Since there is no restriction on $r$, $Q$ still may have an arbitrarily large\ndegree'' (p.~593). Footnote~9 permits $\\bar n=\\infty$ at the price\n$N(\\Delta)!\\to(N(\\Delta)!)^3$ in (1.1.7), (1.1.8), (2.4.5). Every observable used below\nhas individual factor degrees $\\le\\max(2p',1)$, so the fixed finite choice\n$\\bar n=2p'+1$ applies and the printed first-power weights are used as displayed; the\n\\emph{total} degrees of the observables of \\S\\ref{sec:G} are unbounded, exactly as the\nprinted sentence licenses.\n\n\\emph{(iii) Printed norms.}\n\\begin{equation}\n\\begin{gathered}\n \\textup{(1.1.7)}\\ \\ \\|Q\\|_{\\rm GJS}=K_1\\Bigl[\\prod_\\Delta K_2^{2N(\\Delta)}N(\\Delta)!\\Bigr]\\|w\\|_2,\\\\\n \\textup{(1.1.8)}\\ \\ \\|Q(x_0)\\|_{\\rm GJS}=K_1\\Bigl[\\prod_\\Delta K_2^{2N(\\Delta)}N(\\Delta)!\\Bigr]\\|w(x_0,\\cdot)\\|_2,\n\\end{gathered}\n \\label{eq:printednorm}\n\\end{equation}\nwhere $N(\\Delta)$ is the total degree localized in the unit square $\\Delta$, and\n\\textup{(1.1.9)}: a nonlocalized polynomial is normed by summing its localized pieces.\nReplacing $K_2$ by $\\max\\{1,K_2\\}$ only enlarges right-hand sides; \\emph{we fix $K_2\\ge1$}.\n\n\\emph{(iv) CE2.}\n\\begin{srcfact}[CE2 $=$ {\\cite[Thm.~1.1.7]{GJS}}, p.~594]\\label{sf:CE2}\nFor localized monomials $Q_1,Q_2$ with disjoint localization squares separated by a strip of\nwidth $d$ bounded by two parallel lines (any orientation),\n\\[\n  \\Bigl|\\int Q_1Q_2\\,dq_h-\\int Q_1dq_h\\int Q_2dq_h\\Bigr|\\le C_7e^{-m_1d}\\|Q_1\\|_{\\rm GJS}\\|Q_2\\|_{\\rm GJS} ,\n\\]\nwith $m_1>0$ and $C_7$ \\emph{independent of $h$, $Q_1$, $Q_2$} (so stated in the source).\n\\end{srcfact}\n\n\\emph{(iv-T) The transverse case, listed separately (A8(iv)-T; added 7 November 2026).}\nGJS Theorem 1.1.7 is printed for localized monomials separated by a strip of any\norientation (p.~594). Its printed proof rotates the strip into the time direction\n(p.~597) and so reaches sharp-time monomials only across strips parallel to the time-zero\nline. Lemma~\\ref{lem:ce2strip} uses only that case; Appendix~\\ref{app:comparison} also uses\nthe transverse case, listed separately as A8(iv)-T.  Namely, \\emph{A8(iv)-T} is Source\nFact~\\ref{sf:CE2} applied to a sharp-time monomial $Q_1$ of type (1.1.5) and a localized\nmonomial $Q_2$ across a strip that is not parallel to the time-zero line (transverse in the\nsense of Definition~\\ref{aux:notation-stripdef}), at every $h\\in\\CE$: a case of the printed\nstatement that its printed proof does not reach (Scope, point (b)).  In every use that a\nproof of this manuscript makes (Theorem~\\ref{thm:D4}), $Q_2$ is of type (1.1.6) and the strip\nis bounded by two lines of constant $x^1$.  It is\nlisted for transparency, not as a different import standard: it is the printed statement\nat its printed scope, exactly as items (i)--(iv).  It is not a narrower form of the retired\nitem (vi): that was a moment bound on the slab class and stated no clustering, and neither\nstatement is known to imply the other.  Used in Theorem~\\ref{thm:D4} (through\nLemma~\\ref{lem:D2}), hence in Theorem~\\ref{thm:M2} and in every statement that consumes its\nconstant $M$ (Lemma~\\ref{lem:localize} onward); not in \\S\\ref{sec:G}, whose\nTheorem~\\ref{thm:D3} uses parallel strips only.\n\n\\emph{(v) CE1 (provenance; not used since 7 November 2026).}\n\\begin{srcfact}[CE1 $=$ {\\cite[Thm.~1.1.8]{GJS}}, p.~595]\\label{sf:CE1}\nThe printed estimate is\n\\[\n \\bigl|\\int Q(x^0)\\,dq_h\\bigr|\\le C_8\\|Q(x^0)\\|_{\\rm GJS},\n\\]\nstated uniformly as the source cutoff tends to one.  This item records the literal\none-sentence statement of Theorem 1.1.8.  The cutoff-uniform form that \\S\\S\\ref{sec:M2}\nand~\\ref{sec:G} consumed until 7 November 2026 was item~(vi), read off the printed Theorem\n1.1.11 (p.~596) in the specialization the source itself prints as its proof of Theorem 1.1.8\n(p.~600); since that date the moment bounds are Theorems~\\ref{thm:D3} and~\\ref{thm:D4} of\nAppendix~\\ref{app:comparison}, proved from item (iv) with items (i)--(iii),\nAssumptions~\\ref{A:fkn}--\\ref{A:hyper} and Appendix~\\ref{app:huniform}, and neither this item\nnor (vi) is consumed by any proof.\n\\end{srcfact}\n\n\\emph{(vi) The cutoff-uniform moment estimate $U_{\\rm GJS}$ (GJS Theorem 1.1.11 at\n$B=I$, $n=0$; imported as printed from 31 October 2026; \\textbf{retired on 7 November\n2026}: no proof of this manuscript uses it; the item, its tag and its label are kept for\nprovenance).}\nFor\n\\[\n \\CE^{\\rm slab}:=\n \\{h_{T,g}=\\mathbf1_{[-T,T]}\\otimes g:T>0,\\ g\\in\\CH\\}\\subset\\CE,\n\\]\none and the same constant $C_8$ satisfies\n\\begin{equation}\n \\left|\\int Q(x^0)\\,dq_{h_{T,g}}\\right|\n \\le C_8\\|Q(x^0)\\|_{\\rm GJS}\n \\quad(T>0,\\ g\\in\\CH) .\n \\tag{$U_{\\rm GJS}$}\\label{eq:UGJS}\n\\end{equation}\nThe quantifiers include every affine cutoff\n$g_s=(1-s)g+sg'$ used later, because $g_s\\in\\CH$.  Equation\n\\eqref{eq:UGJS} was the CE1 uniformity needed in \\S\\S\\ref{sec:M2} and \\ref{sec:G} until\n7 November 2026 (Theorems~\\ref{thm:D3} and~\\ref{thm:D4} now supply what those sections\nneed, from item (iv) and the inputs listed in Appendix~\\ref{app:comparison}); from 31 October 2026 it was read off one printed theorem of the\nsource, as follows.\n\\begin{srcfactstar}[{\\cite[pp.~596, 600 and 629]{GJS}}]\n\\emph{(a) p.~596.} ``We let $A$ and $B$ denote monomials of type (1.1.5) of degree $|A|$\nand $|B|$ and with kernels $w_A$ and $w_B$ respectively. We assume that $A$ is localized at\ntimes $x_{i0}\\le0$, and that $B$ is localized at times $x_{i0}\\ge0$. Let $B_T$ denote the\ntranslate of $B$ at time $T>0$, so that $B_T$ is localized at times $\\ge T$.''\n``In the next two results, we take all times $x_{1,0}=t=\\dots=x_{r,0}$ equal in $Q(x_0)$.\nTo indicate this restriction, we write $Q(t)$ in place of $Q(x_0)$.'' [\\dots]\n``\\textsc{Theorem} 1.1.11. Let $n$ and $\\varepsilon>0$ be given and let\n$\\gamma=(n+1)m_0(1-\\varepsilon)$. For any $A$, we may choose $n$\\textsuperscript{th} degree\npolynomials $Q_n(t_j)$ of the form (1.1.5) with $r=1$, so that\n\\[\n \\textup{(1.1.14)}\\qquad \\sum\\nolimits_{t_j>0}e^{\\gamma t_j}\\|Q_n(t_j)\\|\\le O(1)\\|A\\|\n\\]\nand so that\n\\[\n \\textup{(1.1.15)}\\qquad Q=\\sum\\nolimits_{0<t_j<T}Q_n(t_j)\n\\]\nsatisfies\n\\[\n \\textup{(1.1.16)}\\qquad \\Bigl|\\int(A-Q)B_T\\,dq_h\\Bigr|\\le O(1)\\|A\\|\\,\\|B\\|\\,e^{-\\gamma T} ,\n\\]\nuniformly in $h$. We shall choose $t_j=j$, $j\\in\\mathbb Z$.''\n\\emph{(b) p.~600.} ``Proof of Theorem 1.1.8, assuming Theorem 1.1.10 [sic]. Choose $T=0$\nand $B=I$ in Theorem 1.1.11. Then $Q=0$, so Theorem 1.1.8 is a special case of Theorem\n1.1.10 [sic].''\n\\emph{(c) p.~629.} ``Theorem 1.1.11 follows from this inequality, while Theorem 1.1.8 is the\nspecial case $B=I$, $n=0$.''\n\\end{srcfactstar}\n\n\\emph{Reading (vi) off the source fact.}  Take $n=0$ and $B=I$ in Theorem 1.1.11, as the\nsource does on p.~600 ($B=I$, $T=0$) and names on p.~629 ($B=I$, $n=0$).  For $0<T<1$ the sum (1.1.15) over the integers\n$0<t_j<T$ is empty, so $Q=0$ and $I_T=I$, and (1.1.16) reads\n$|\\int A\\,dq_h|\\le O(1)\\|A\\|\\,\\|I\\|\\,e^{-\\gamma T}\\le O(1)\\|A\\|\\,\\|I\\|$, uniformly in $h$,\nfor every monomial $A$ of type (1.1.5) localized at times $\\le0$; the source's own choice\n$T=0$ (p.~600) gives the same bound, and $0<T<1$ is used here because the source introduces\n$B_T$ for $T>0$.  By (1.1.7)--(1.1.8), $\\|I\\|=K_1$ (no Wick factors: the product is empty and the kernel is\nthe constant $1$), so\n\\eqref{eq:UGJS} holds with\n\\[\n C_8:=O(1)\\,K_1 ,\n\\]\n$O(1)$ the constant of Theorem 1.1.11 at $n=0$ and a fixed $\\varepsilon\\in(0,1)$; it holds for\nevery $h\\in\\CE$, in particular on $\\CE^{\\rm slab}$, and $C_8$ depends on the printed\nthresholds only.  Three remarks make the reading exact.  \\emph{(1)} A sharp-time monomial at\nan arbitrary time $x^0$ is carried to a time in $(-1,0]$ by an integer time translation,\nwhich maps the lattice squares of p.~593 onto themselves, preserves the norms\n(1.1.7)--(1.1.8), the class $\\CE$ and the measure $d\\mu_0$, and carries $dq_h$ to $dq_{h'}$\nwith $h'$ the translated cutoff; the bound at $h'$ is the bound at $h$.  \\emph{(2)} A general\n$Q(x^0)$ with kernel of bounded support is a finite sum of localized monomials, and\n$\\|Q(x^0)\\|_{\\rm GJS}$ is the sum of their norms by (1.1.9); the bound is applied to each\npiece, whose times are all equal, as the source requires for Theorems 1.1.10--1.1.11\n(p.~596).  \\emph{(3)} The smallness\nhypotheses under which Theorem 1.1.11 holds are not printed in its statement; the source\nprints them with Theorem 4.1, from which Theorems 1.1.8 and 1.1.11 are proved on pp.~628--629\n(``Let $m_0$, $K_2$ and $K_1$ be sufficiently large, and let $\\lambda$ be sufficiently\nsmall''), and on p.~600 (``convergence of our expansions requires both sufficiently small\n$\\lambda$ and sufficiently large $m_0$''); \\S\\ref{subsec:weak} fixes the working constants\naccordingly.  The admissibility of the degree-zero $B=I$ rests on the source's own use of it\n(pp.~597, 600, 629) and on p.~593's ``there is no restriction on $r$''.\n\n\\emph{(vii) Printed corroboration of (vi).}\n\\begin{srcfact}[{\\cite[p.~629, \\S4]{GJS}}]\\label{sf:printed}\n``It is important to work with a translation invariant Hamiltonian, in order that time\ntranslation preserve subspaces of bounded momentum. The estimates of Theorems 1.1.8, 1.1.11,\n3.1 and 4.1 are uniform in the space cutoff $h$, and the path space integrals converge as\n$h\\to1$. Thus these theorems hold in the infinite volume limit, and we proceed to work in the\nlimit $h=1$.''\n\\end{srcfact}\n\n\\emph{(vii$'$) Printed use of the quantifier by the source (corroboration).}  The following\npassages show the source stating the cutoff-uniform quantifier of \\eqref{eq:UGJS} and\nconsuming it for arbitrary cutoff functions of its class, not only in the limit $h\\to1$.  The\nsource's $V(g)$ is the interaction $\\mathcal U_g$ of item~(i); its\n$\\langle F\\rangle_h$ is $\\int F\\,dq_h$.\n\\begin{srcfactstar}[{\\cite[pp.~594--597 and 629]{GJS}}]\n\\emph{(a) Proof of Theorem 1.1.1, pp.~594--595.}  ``For test functions\n$f_i\\in C_0^\\infty(\\mathcal O)$ and for cutoff functions $h_1$ and $h_2$, we assert that\n\\[\n \\Bigl|\\int\\prod_i\\Phi(f_i)\\,dq_{h_1}-\\int\\prod_i\\Phi(f_i)\\,dq_{h_2}\\Bigr|\n \\le 0(1)e^{-m_1d/2}\n \\tag{1.1.11}\n\\]\n[sic: p.~594 prints the prefactor of (1.1.11) with an upright digit zero, ``0(1)'', where\nthe $O(1)$ of (1.1.10) on the same page is meant; transcribed as printed since 7 November\n2026] where $d=\\operatorname{dist}(\\mathcal O,\\operatorname{suppt}\\,h_1-h_2)$, and then\nTheorem 1.1.1 follows.  To prove (1.1.11) let $g=h_2-h_1$, and define\n$g_i=g\\chi_{\\Delta_i}$, where $\\chi_{\\Delta_i}$ is the characteristic function of\n$\\Delta_i$.  Also we use the notation $\\langle F\\rangle_h=\\int F\\,dq_h$, and set\n$Q=\\prod_i\\Phi(f_i)$.  Then\n\\begin{align*}\n \\langle Q\\rangle_{h_2}-\\langle Q\\rangle_{h_1}\n &=\\int_0^1d\\alpha\\,\\frac{d}{d\\alpha}\\langle Q\\rangle_{h_1+\\alpha g}\\\\\n &=-\\int_0^1d\\alpha\\bigl[\\langle QV(g)\\rangle_{h_1+\\alpha g}\n   -\\langle Q\\rangle_{h_1+\\alpha g}\\langle V(g)\\rangle_{h_1+\\alpha g}\\bigr]\n \\tag{1.1.12}\\\\\n &=-\\int_0^1d\\alpha\\sum_{i\\in\\mathbb Z^2}\\bigl[\\langle QV(g_i)\\rangle_{h_1+\\alpha g}\n   -\\langle Q\\rangle_{h_1+\\alpha g}\\langle V(g_i)\\rangle_{h_1+\\alpha g}\\bigr] .\n\\end{align*}\nWe apply Theorem 1.1.7 to each term in the sum to obtain\n\\[\n |\\langle Q\\rangle_{h_2}-\\langle Q\\rangle_{h_1}|\n \\le\\sum_{i\\in\\mathbb Z^2\\cap\\operatorname{supp}g}\n O(1)e^{-m_1\\operatorname{dist}(\\mathcal O,\\Delta_i)}\n \\le O(1)e^{-m_1d/2} .\n\\]\nAs a special case, the cutoff Schwinger functions $S_h$ converge as $h\\to1$.''\n\n\\emph{(b) Proof of Theorem 1.1.7, pp.~596--597.}  ``Proof of Theorem 1.1.7, assuming\nTheorems 1.1.8 and 1.1.11.  Take $n=0$ in Theorem 1.1.11 Then $Q$ is a polynomial of\ndegree zero, i.\\ e., a constant.  From the choice $B=I$, it follows that\n\\[\n Q=\\int A\\,dq_h+O(1)\\|A\\|e^{-m_0(1-\\varepsilon)T} .\n\\]\nAfter rotating and translating the strip separating $Q_1$ and $Q_2$ in Theorem 1.1.7,\nand after choosing $A=Q_1$, $B_T=Q_2$ in Theorem 1.1.11, the proof follows from Theorem\n1.1.8, (1.1.16) and the above determination of $Q$.''  The estimate (1.1.16), p.~596,\nreads ``$|\\int(A-Q)B_T\\,dq_h|\\le O(1)\\|A\\|\\,\\|B\\|e^{-\\gamma T}$, uniformly in $h$.''\n\n\\emph{(c) p.~629.}  ``Theorem 1.1.11 follows from this inequality, while Theorem 1.1.8\nis the special case $B=I$, $n=0$.''  The uniformity sentence of the same page is Source\nFact~\\ref{sf:printed}.\n\\end{srcfactstar}\n\n\\emph{(viii) Scaling.} The unitary space-time dilation of \\cite[p.~590]{GJS} sends\n$(m_0,\\lambda)$ to $(s^{-1}m_0,s^{-2}\\lambda)$; the exact reduction of the dimensionless\nsmallness hypothesis to the printed one is Proposition~\\ref{prop:scaling}.\n\n\\emph{Scope.} Every item of this assumption is a printed statement of \\cite{GJS}, used at\nthe scope at which it is printed; this is the standard under which\nAssumptions~\\ref{A:cutoff}--\\ref{A:covar} are imported, and no stricter one is available\nto this manuscript, since the printed proof of Theorem 1.1.7 itself obtains its\n$h$-independent constant from Theorem 1.1.8 at the same $h$ (p.~597) while Theorem\n1.1.8 is printed only ``uniformly as $h\\to1$'' (p.~595).  Four points of scope are\nrecorded.\n\\emph{(a) Item (vi), retired.}  From 16 August to 30 October 2026 the slab-uniform estimate\n\\eqref{eq:UGJS} was carried as a named hypothesis of Theorem~\\ref{thm:MAIN}, documented\non 5 September 2026 as the quantifier the source states on p.~629 and consumes on\npp.~594--597 (items (vii), (vii$'$)) but ``assembled from four pages of the source rather\nthan read off one theorem''.  The source fact of item (vi) shows that it is read off one printed theorem,\nTheorem 1.1.11, whose estimate (1.1.16) is printed ``uniformly in $h$'', in the\nspecialization the source itself prints as its proof of Theorem 1.1.8; the reading of\n5 September 2026 used the same pages as evidence for Theorem 1.1.8 and is the same\nmathematics with different bookkeeping.  Accordingly, from 31 October 2026, item (vi) was\nimported as printed and Theorem~\\ref{thm:MAIN} no longer carried it as a separate\nhypothesis; that was a re-sourcing, not a proof.  Since 7 November 2026 item (vi) is no\nlonger used: Appendix~\\ref{app:comparison} derives the moment bounds of\n\\S\\S\\ref{sec:M2} and~\\ref{sec:G} from item (iv) with Lemma~\\ref{lem:Z},\nLemma~\\ref{lem:uv} and Theorem~\\ref{thm:stability}, so that Theorem 1.1.7 is the one\ntheorem of the source imported.  The manuscript still does not re-derive the cluster\nexpansion; Appendix~\\ref{app:huniform} audits the source mechanism and proves the analytic\nprerequisites that Appendix~\\ref{app:comparison} consumes.  Items (v)--(vii$'$) are kept\nas provenance.\n\\emph{(b) Item (iv).}  GJS Theorem 1.1.7 is printed for localized monomials separated by a\nstrip of any orientation (p.~594).  Its printed proof rotates the strip into the time\ndirection (p.~597) and so reaches sharp-time monomials only across strips parallel to the\ntime-zero line.  Lemma~\\ref{lem:ce2strip} uses only that case; Appendix~\\ref{app:comparison}\nalso uses the transverse case, listed separately as A8(iv)-T.  The price of retiring\nitem (vi) is therefore that the printed statement of Theorem 1.1.7 is used in that case\n(Theorem~\\ref{thm:D4}, hence Theorem~\\ref{thm:M2} and all that consumes $M$); the uniform gap\nof Theorem~\\ref{thm:G} rests on the parallel case alone (Lemma~\\ref{lem:ce2strip},\nTheorem~\\ref{thm:D3}).\n\\emph{(c)} The source's own proof of Theorem 1.1.7 obtains its constant from Theorem 1.1.8\nat the same $h$ (p.~597); this manuscript does not re-verify that proof, exactly as it\nre-verifies no proof behind Assumptions~\\ref{A:cutoff}--\\ref{A:covar}.\n\\emph{(d) Readings made explicit.}  Theorem 1.1.7's ``independent of $h$'' is read over\nthe class of p.~589 (compact support, $0\\le h\\le1$), the only class of space-time cutoffs\n$h$ of the measures $dq_h$ that the source defines; the quantifier ``uniformly in $h$'' of\n(1.1.16), in the retired item (vi), was read the same way, and p.~629 states the\nuniformity of Theorems 1.1.8 and 1.1.11 ``in the space cutoff $h$''\n(Source Fact~\\ref{sf:printed}).  The constants $O(1)$ of (1.1.10) and (1.1.16) are read as\ndepending on the standing thresholds (and, for (1.1.16), on $n$ and $\\varepsilon$) only,\nnot on $Q_1$, $Q_2$, $A$, $B$, $T$ or $h$, as the source's $O(1)$ is read throughout this\nmanuscript (Source Facts~\\ref{sf:CE2}--\\ref{sf:CE1}); \\S\\ref{sec:G} needs this for\nobservables of unbounded total degree.  The stability input (2.4.34) of the source's proof\n(Appendix~\\ref{app:huniform}, M6) enters Theorem 1.1.7; under the import standard it\nbelongs to the proof this manuscript does not re-verify.  The monomials (1.1.5)--(1.1.6),\nwhich GJS print as formal integrals with ``${:}\\ {:}$'' denoting ``Wick order with respect\nto the measure $d\\Phi$'' (p.~589), are read as the objects constructed in\nAppendix~\\ref{app:comparison} (Definition~\\ref{aux:d1-obs}), and the source's $V(h)$ of\n(1.8), p.~589, as the $\\mathcal U_h$ of Assumption~\\ref{A:stability}\n(Remark~\\ref{aux:notation-gjslattice}(iv)); items 1 and 10 of \\texttt{part\\_i/C5\\_reading\\_record.md}\nask a human reader to confirm the printed text these readings rest on (the definition (1.8) on\np.~589; the forms (1.1.5)--(1.1.6) on pp.~593 and 595).  The formerly\nillegible norm prefactor was settled by page-image inspection: $K_1$ enters to the first\npower and the local weight is $K_2^{2N(\\Delta)}$ (gate R2, \\texttt{m4/r2-check.tex}).  All\nconstants in this manuscript use the exact reading \\eqref{eq:printednorm}.\n\n\\emph{Used in.} \\S\\ref{sec:reduction} (scaling), \\S\\ref{sec:slab}, \\S\\ref{sec:M2}\n(items (ii)--(iii): Steps~1--4), \\S\\ref{sec:norms} (norms), \\S\\ref{sec:G} (CE2, parallel case), Appendix~\\ref{app:huniform},\nAppendix~\\ref{app:comparison} (CE2 in both orientations; items (i)--(iii)); items (v),\n(vi), (vii) and (vii$'$) are used in no proof.\n\n{\\raggedright\\emph{Dossier.} \\texttt{gjs-source-05/06}, \\texttt{gjs-p589-06}, \\texttt{gjs-scaling-07},\n\\texttt{gjs-theorems-10/11/12}, \\texttt{gjs-core-11/12}, \\texttt{gjs-uniform-46},\n\\texttt{gjs-uniformity-46}, \\texttt{gjs-proof-14} (E20--E26, E54);\n\\texttt{gjs-thm1111-13} (p.~596), \\texttt{gjs-proof118-17} (p.~600), \\texttt{gjs-thm41-45}\n(p.~628), added 31 October 2026.\\par}",
    "provenance": [
     "src: GJS p. 596 (PDF page 13) and p. 600 (PDF page 17), transcribed from page images rendered",
     "src: audit_2026/evidence/gjs-theorems-11.png (p.594), gjs-theorems-12.png (p.595),",
@@ -235,12 +271,25 @@
    "uses": [
     "A:covar",
     "A:cutoff",
+    "A:fkn",
+    "A:hyper",
     "A:stability",
+    "app:comparison",
     "app:huniform",
+    "app:provenance",
+    "aux:d1-obs",
+    "aux:notation-gjslattice",
+    "aux:notation-squares",
+    "aux:notation-stripdef",
     "eq:UGJS",
     "eq:printednorm",
+    "lem:D2",
+    "lem:Z",
     "lem:ce2strip",
     "lem:cells",
+    "lem:localize",
+    "lem:uv",
+    "prop:gjsnorms",
     "prop:scaling",
     "sec:G",
     "sec:M2",
@@ -251,8 +300,12 @@
     "sf:CE2",
     "sf:printed",
     "subsec:weak",
+    "thm:D3",
+    "thm:D4",
+    "thm:G",
     "thm:M2",
-    "thm:MAIN"
+    "thm:MAIN",
+    "thm:stability"
    ],
    "proof_uses": [],
    "has_proof": false,
@@ -264,7 +317,7 @@
    "kind": "Source Fact",
    "title": "CE2 $=$ {\\cite[Thm.~1.1.7]{GJS}}, p.~594",
    "number": "2.2",
-   "page": 10,
+   "page": 15,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
@@ -287,18 +340,26 @@
    "kind": "Source Fact",
    "title": "CE1 $=$ {\\cite[Thm.~1.1.8]{GJS}}, p.~595",
    "number": "2.3",
-   "page": 10,
+   "page": 15,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
     "label": "sec:setting"
    },
-   "statement": "The printed estimate is\n\\[\n \\bigl|\\int Q(x^0)\\,dq_h\\bigr|\\le C_8\\|Q(x^0)\\|_{\\rm GJS},\n\\]\nstated uniformly as the source cutoff tends to one.  This item records the literal\none-sentence statement of Theorem 1.1.8.  The cutoff-uniform form consumed below is\nitem~(vi), read off the printed Theorem 1.1.11 (p.~596) in the specialization the source\nitself prints as its proof of Theorem 1.1.8 (p.~600).",
+   "statement": "The printed estimate is\n\\[\n \\bigl|\\int Q(x^0)\\,dq_h\\bigr|\\le C_8\\|Q(x^0)\\|_{\\rm GJS},\n\\]\nstated uniformly as the source cutoff tends to one.  This item records the literal\none-sentence statement of Theorem 1.1.8.  The cutoff-uniform form that \\S\\S\\ref{sec:M2}\nand~\\ref{sec:G} consumed until 7 November 2026 was item~(vi), read off the printed Theorem\n1.1.11 (p.~596) in the specialization the source itself prints as its proof of Theorem 1.1.8\n(p.~600); since that date the moment bounds are Theorems~\\ref{thm:D3} and~\\ref{thm:D4} of\nAppendix~\\ref{app:comparison}, proved from item (iv) with items (i)--(iii),\nAssumptions~\\ref{A:fkn}--\\ref{A:hyper} and Appendix~\\ref{app:huniform}, and neither this item\nnor (vi) is consumed by any proof.",
    "provenance": [
     "src: m6/main.tex sf:CE1 (v2), transcribed."
    ],
    "uses": [
-    "A:gjs"
+    "A:fkn",
+    "A:gjs",
+    "A:hyper",
+    "app:comparison",
+    "app:huniform",
+    "sec:G",
+    "sec:M2",
+    "thm:D3",
+    "thm:D4"
    ],
    "proof_uses": [],
    "has_proof": false,
@@ -310,7 +371,7 @@
    "kind": "Source Fact",
    "title": "{\\cite[p.~629, \\S4]{GJS}}",
    "number": "2.4",
-   "page": 12,
+   "page": 17,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
@@ -333,7 +394,7 @@
    "kind": "Remark",
    "title": "conventions lock",
    "number": "2.5",
-   "page": 14,
+   "page": 19,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
@@ -354,7 +415,7 @@
    "kind": "Proposition",
    "title": "domain smoothing at the ground state",
    "number": "2.6",
-   "page": 14,
+   "page": 19,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
@@ -375,7 +436,7 @@
    "kind": "Proposition",
    "title": "cutoff propagation, uniformly in $g$",
    "number": "2.7",
-   "page": 14,
+   "page": 19,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
@@ -385,7 +446,8 @@
    "provenance": [],
    "uses": [],
    "proof_uses": [
-    "A:patch"
+    "A:patch",
+    "subsec:model"
    ],
    "has_proof": true,
    "imports_A8": false,
@@ -396,7 +458,7 @@
    "kind": "Lemma",
    "title": "covariance and parity of the cutoff states",
    "number": "2.8",
-   "page": 14,
+   "page": 20,
    "section": {
     "title": "Setting, notation, and standing imports",
     "number": "2",
@@ -419,7 +481,7 @@
    "kind": "Lemma",
    "title": "class compatibility",
    "number": "3.1",
-   "page": 15,
+   "page": 20,
    "section": {
     "title": "Dimensionless weak-coupling reduction",
     "number": "3",
@@ -440,7 +502,7 @@
    "kind": "Proposition",
    "title": "dimensionless weak-coupling reduction",
    "number": "3.2",
-   "page": 15,
+   "page": 21,
    "section": {
     "title": "Dimensionless weak-coupling reduction",
     "number": "3",
@@ -458,23 +520,24 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "rem:wlog",
    "kind": "Remark",
    "title": "coordinate convention and transport of the conclusions",
    "number": "3.3",
-   "page": 16,
+   "page": 21,
    "section": {
     "title": "Dimensionless weak-coupling reduction",
     "number": "3",
     "label": "sec:reduction"
    },
-   "statement": "The dilation behind Proposition~\\ref{prop:scaling} identifies the model at\n$(m_0,\\lambda)$ with the model at $(M_*,\\lambda')$, $\\lambda'=(M_*/m_0)^2\\lambda\n<\\lambda_*$, as follows. Let $s=m_0/M_*$, $y=sx$, and let $\\sigma_s$ be the scaling\nautomorphism of the Weyl algebra, $\\sigma_s(W(f,h))=W(s^{-1}f(\\cdot/s),h(\\cdot/s))$\n(a symplectic map). The sharp-time covariance is scale-covariant between the two masses,\n$C_{M_*}(s\\,z)=C_{m_0}(z)$ (the one-dimensional analogue of the substitution in the\nproof of Proposition~\\ref{prop:scaling}), so $\\sigma_s$ carries the mass-$m_0$ Fock\nstate onto the mass-$M_*$ Fock state and is unitarily implemented by some $U_s$ with\n$U_s\\Om_0^{(m_0)}=\\Om_0^{(M_*)}$; moreover $\\sigma_s(\\A(O))=\\A(sO)$. On the\ngenerators, $\\mu_{M_*}(k/s)=s^{-1}\\mu_{m_0}(k)$ (since $sM_*=m_0$) gives\n$U_sH_0^{(m_0)}U_s^*=s\\,H_0^{(M_*)}$, and the Euclidean Wick identification of\nProposition~\\ref{prop:scaling}, restricted to sharp time (Remark~\\ref{rem:conv}), gives\n$U_sV_{m_0,\\lambda}(g)U_s^*=s\\,V_{M_*,\\lambda'}(g(\\cdot/s))$; hence\n\\[\n U_s\\,K_{m_0,\\lambda}(g)\\,U_s^*=s\\,K_{M_*,\\lambda'}(g(\\cdot/s)),\n \\qquad g\\in\\CH .\n\\]\nConsequently $g\\mapsto g(\\cdot/s)$ is an order isomorphism of $\\G$ onto $\\G$ (and a\nbijection of $\\CH$), cutoff ground states correspond under $U_s$, and the two cutoff\nnets of states are carried onto each other. Every conclusion of\nTheorem~\\ref{thm:MAIN}, proved in the working (scaled) coordinates, therefore holds for\nthe original model with the dictionary: localization $O\\leftrightarrow sO$; plateau\ndistance $d\\leftrightarrow s\\,d$, so the rate becomes $\\Psi_{m_{1,*}}(s\\,d)$, again\ndecaying faster than every inverse power of $d$; dynamics\n$\\alpha_t\\leftrightarrow\\alpha_{st}$, the light cone being form-invariant; gap\n$m_1:=s\\,m_{1,*}$; and the local-moment clause of item (5) transports to supports of\nlength $2/s$ --- equivalently, it holds for supports of length $2$ after splitting $h$\nby a partition of unity into at most $\\lceil s\\rceil+1$ pieces of support length\n$\\le2/s$ (finite additivity of $V$), with constant $(\\lceil s\\rceil+1)$ times the\ntransported one. All displayed constants of \\S\\S\\ref{sec:slab}--\\ref{sec:lppl} and of\nAppendices~\\ref{app:constants}, \\ref{app:huniform} are the constants of the working\ncoordinates, in which the unit-lattice geometry of Assumption~\\ref{A:gjs} is literal.",
+   "statement": "The dilation behind Proposition~\\ref{prop:scaling} identifies the model at\n$(m_0,\\lambda)$ with the model at $(M_*,\\lambda')$, $\\lambda'=(M_*/m_0)^2\\lambda\n<\\lambda_*$, as follows. Let $s=m_0/M_*$, $y=sx$, and let $\\sigma_s$ be the scaling\nautomorphism of the Weyl algebra, $\\sigma_s(W(f,h))=W(s^{-1}f(\\cdot/s),h(\\cdot/s))$\n(a symplectic map). The sharp-time covariance is scale-covariant between the two masses,\n$C_{M_*}(s\\,z)=C_{m_0}(z)$ (the one-dimensional analogue of the substitution in the\nproof of Proposition~\\ref{prop:scaling}), so $\\sigma_s$ carries the mass-$m_0$ Fock\nstate onto the mass-$M_*$ Fock state and is unitarily implemented by some $U_s$ with\n$U_s\\Om_0^{(m_0)}=\\Om_0^{(M_*)}$; moreover $\\sigma_s(\\A(O))=\\A(sO)$. On the\ngenerators, $\\mu_{M_*}(k/s)=s^{-1}\\mu_{m_0}(k)$ (since $sM_*=m_0$) gives\n$U_sH_0^{(m_0)}U_s^*=s\\,H_0^{(M_*)}$, and the Euclidean Wick identification of\nProposition~\\ref{prop:scaling}, restricted to sharp time (Remark~\\ref{rem:conv}), gives\n$U_sV_{m_0,\\lambda}(g)U_s^*=s\\,V_{M_*,\\lambda'}(g(\\cdot/s))$; hence\n\\[\n U_s\\,K_{m_0,\\lambda}(g)\\,U_s^*=s\\,K_{M_*,\\lambda'}(g(\\cdot/s)),\n \\qquad g\\in\\CH .\n\\]\nConsequently $g\\mapsto g(\\cdot/s)$ is an order isomorphism of $\\G$ onto $\\G$ (and a\nbijection of $\\CH$), cutoff ground states correspond under $U_s$, and the two cutoff\nnets of states are carried onto each other. Every conclusion of\nTheorem~\\ref{thm:MAIN}, proved in the working (scaled) coordinates, therefore holds for\nthe original model with the dictionary: localization $O\\leftrightarrow sO$; plateau\ndistance $d\\leftrightarrow s\\,d$, so the rate becomes $\\Psi_{m_{1,*}}(s\\,d)$, again\ndecaying faster than every inverse power of $d$; dynamics\n$\\alpha_t\\leftrightarrow\\alpha_{st}$, the light cone being form-invariant; gap\n$m_1:=s\\,m_{1,*}$; and the local-moment clause of item (5) transports to supports of\nlength $2/s$ --- equivalently, it holds for supports of length $2$ after splitting $h$\nby a partition of unity into at most $\\lceil s\\rceil+1$ pieces of support length\n$\\le2/s$ (finite additivity of $V$), with constant $(\\lceil s\\rceil+1)$ times the\ntransported one. All displayed constants of \\S\\S\\ref{sec:slab}--\\ref{sec:lppl} and of\nAppendices~\\ref{app:constants}, \\ref{app:huniform} and~\\ref{app:comparison} are the constants\nof the working coordinates, in which the unit-lattice geometry of Assumption~\\ref{A:gjs} is literal.",
    "provenance": [],
    "uses": [
     "A:gjs",
+    "app:comparison",
     "app:constants",
     "app:huniform",
     "prop:scaling",
@@ -486,14 +549,14 @@
    "proof_uses": [],
    "has_proof": false,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "lem:slabFKN",
    "kind": "Lemma",
    "title": "slab FKN; bounded nonnegative arguments",
    "number": "4.1",
-   "page": 17,
+   "page": 22,
    "section": {
     "title": "Slab transfer",
     "number": "4",
@@ -519,7 +582,7 @@
    "kind": "Lemma",
    "title": "signed bounded extension",
    "number": "4.2",
-   "page": 17,
+   "page": 22,
    "section": {
     "title": "Slab transfer",
     "number": "4",
@@ -545,7 +608,7 @@
    "kind": "Lemma",
    "title": "unbounded extension",
    "number": "4.3",
-   "page": 17,
+   "page": 23,
    "section": {
     "title": "Slab transfer",
     "number": "4",
@@ -562,24 +625,22 @@
    ],
    "proof_uses": [
     "A:domain",
-    "eq:UGJS",
+    "A:stability",
+    "aux:d3-sharp",
     "lem:slabFKN",
     "lem:slabsigned",
-    "lem:transfer",
-    "sec:G",
-    "sec:M2",
-    "thm:M2"
+    "sec:G"
    ],
    "has_proof": true,
-   "imports_A8": true,
-   "cites_UGJS": true
+   "imports_A8": false,
+   "cites_UGJS": false
   },
   {
    "label": "lem:slabvac",
    "kind": "Lemma",
    "title": "slab vacuum; simplicity only",
    "number": "4.4",
-   "page": 18,
+   "page": 23,
    "section": {
     "title": "Slab transfer",
     "number": "4",
@@ -602,52 +663,67 @@
    "kind": "Theorem",
    "title": "uniform local interaction moment (M$_2$)",
    "number": "5.1",
-   "page": 18,
+   "page": 24,
    "section": {
     "title": "The uniform local interaction moment",
     "number": "5",
     "label": "sec:M2"
    },
-   "statement": "Let $0\\le\\lambda/m_0^2<\\varepsilon_{\\mathscr P}$. For every $g\\in\\CH$ and every real\nmeasurable $h$ with $\\|h\\|_\\infty\\le1$ and $\\supp h$ contained in an interval of length\n$2$,\n\\begin{equation}\n \\|V(h)\\Om_g\\|\\le M,\\qquad\n M^2:=9\\,C_8\\,\\mathfrak K(p')\\,\\lambda^2\\Bigl(\\sum_{n=0}^{2p'}|a_n|\\Bigr)^2,\n \\qquad\n \\mathfrak K(p'):=K_1K_2^{8p'}(4p')! .\n \\tag{M$_2$}\\label{eq:M2}\n\\end{equation}",
+   "statement": "Let $0\\le\\lambda/m_0^2<\\varepsilon_{\\mathscr P}$. For every $g\\in\\CH$ and every real\nmeasurable $h$ with $\\|h\\|_\\infty\\le1$ and $\\supp h$ contained in an interval of length\n$2$,\n\\begin{equation}\n \\|V(h)\\Om_g\\|\\le M,\n \\tag{M$_2$}\\label{eq:M2}\n\\end{equation}\nwhere\n\\begin{gather*}\n M^2:=M_B^2=e^{15\\lambda|a_0|}\\,S_2(B_{3\\times5})\\,9^{p'}\\,V_*\n +9\\,C_7\\,c_U\\,\\overline\\Sigma_{3\\times5}\\,\\mathfrak K(p')\\,\\lambda^2\\Bigl(\\sum_{n=0}^{2p'}|a_n|\\Bigr)^2,\\\\\n \\mathfrak K(p'):=K_1K_2^{8p'}(4p')! ,\n\\end{gather*}\nthe constants $S_2(B_{3\\times5})$ (finite, not evaluated), $V_*$, $c_U$ and\n$\\overline\\Sigma_{3\\times5}$ being those of Theorem~\\ref{thm:D4}\n(Appendix~\\ref{app:comparison}); $M$ depends on $(\\lambda,\\mathscr P,m_0)$ through $C_7$,\n$m_1$, $K_1$, $K_2$, $S_2(B_{3\\times5})$ and $V_*$, in working coordinates\n(Remark~\\ref{rem:wlog}), and on nothing else.",
    "provenance": [
-    "src: lamport_euclidean_to_gap.tex <1>4; constant m4/r2-check.tex Prop. 2.1, Cor. 2.2."
+    "src: lamport_euclidean_to_gap.tex <1>4; constant m4/r2-check.tex Prop. 2.1, Cor. 2.2;"
    ],
-   "uses": [],
+   "uses": [
+    "app:comparison",
+    "rem:wlog",
+    "thm:D4"
+   ],
    "proof_uses": [
+    "A:fkn",
     "A:gjs",
-    "eq:QV",
-    "eq:QVnorm",
-    "eq:UGJS",
+    "aux:d4-QV",
+    "aux:notation-hyper",
+    "aux:notation-ident",
+    "aux:notation-sharpid",
     "eq:VT",
     "eq:fkn2",
     "eq:printednorm",
+    "lem:ce2strip",
+    "lem:classes",
     "lem:slabunbdd",
     "lem:slabvac",
-    "rem:conv"
+    "rem:conv",
+    "sec:norms",
+    "thm:D4"
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "cor:M2phi4",
    "kind": "Corollary",
    "title": "$\\varphi^4$ instance",
    "number": "5.2",
-   "page": 19,
+   "page": 25,
    "section": {
     "title": "The uniform local interaction moment",
     "number": "5",
     "label": "sec:M2"
    },
-   "statement": "For $\\mathscr P(\\xi)=\\xi^4$ ($p'=2$, $\\sum_n|a_n|=1$; degrees exactly $4+4=8$),\n\\[\n M^2=9\\cdot8!\\;C_8K_1K_2^{16}\\lambda^2=362\\,880\\;C_8K_1K_2^{16}\\lambda^2 .\n\\]",
+   "statement": "For $\\mathscr P(\\xi)=\\xi^4$ ($p'=2$, $a_4=1$, $a_0=\\dots=a_3=0$, $\\sum_n|a_n|=1$;\ndegrees exactly $4+4=8$),\n\\[\n M^2=81\\,S_2(B_{3\\times5})\\,V_*+8\\,709\\,120\\;C_7K_1^2K_2^{24}\\,\\overline\\Sigma_{3\\times5}\\,\\lambda^3,\n \\qquad\n V_*\\le24\\,\\lambda^2\\int_{-1}^1\\!\\!\\int_{-1}^1C(x-y)^4\\,dx\\,dy ,\n\\]\nwith $C$ the kernel of $(2\\mu)^{-1}$ (Lemma~\\ref{aux:notation-kernel}): here\n$e^{15\\lambda|a_0|}=1$, $9^{p'}=81$, $c_U=24\\lambda K_1K_2^8$\n(Lemma~\\ref{aux:notation-cU}), $9\\,\\mathfrak K(2)\\lambda^2=9\\cdot8!\\,K_1K_2^{16}\\lambda^2=\n362\\,880\\,K_1K_2^{16}\\lambda^2$, and $24\\cdot362\\,880=8\\,709\\,120$\n(Remark~\\ref{aux:constants-phi4}).  The value is not a number, since $S_2$ is not evaluated.  Through Theorem~\\ref{thm:D4} it\nrests on A8(iv)-T.",
    "provenance": [
-    "src: m4/r2-check.tex Cor. 2.2, transcribed."
+    "src: m4/r2-check.tex Cor. 2.2, transcribed; restated with M_B 7 November 2026"
    ],
-   "uses": [],
+   "uses": [
+    "aux:constants-phi4",
+    "aux:notation-cU",
+    "aux:notation-kernel",
+    "thm:D4"
+   ],
    "proof_uses": [],
    "has_proof": false,
-   "imports_A8": false,
+   "imports_A8": true,
    "cites_UGJS": false
   },
   {
@@ -655,15 +731,15 @@
    "kind": "Lemma",
    "title": "cell count",
    "number": "6.1",
-   "page": 19,
+   "page": 25,
    "section": {
     "title": "GJS norms of sharp-time polynomial observables",
     "number": "6",
     "label": "sec:norms"
    },
-   "statement": "$N_I\\le\\lfloor L\\rfloor+2\\le L+2$. The bound $L+1$ is % negative-scope mention (whitelisted): L+1\nfalse for nonintegral $L$: the interval $I=(-0.1,0.1)$ has length $0.2$ and meets both\n$[-1,0)$ and $[0,1)$ in positive measure.",
+   "statement": "$N_I\\le\\lfloor L\\rfloor+2\\le L+2$. The bound $L+1$ is % negative-scope mention (whitelisted): L+1\nfalse for nonintegral $L$: the interval $I=(0.4,0.6)$ has length $0.2$ and meets both\n$[-\\frac12,\\frac12)$ and $[\\frac12,\\frac32)$ in positive measure.",
    "provenance": [
-    "src: lamport_euclidean_to_gap.tex <1>5 <2>1; audit repair L1."
+    "src: lamport_euclidean_to_gap.tex <1>5 <2>1; audit repair L1; columns since 7 November 2026."
    ],
    "uses": [],
    "proof_uses": [],
@@ -676,7 +752,7 @@
    "kind": "Proposition",
    "title": "GJS norms of polynomial observables",
    "number": "6.2",
-   "page": 20,
+   "page": 26,
    "section": {
     "title": "GJS norms of sharp-time polynomial observables",
     "number": "6",
@@ -689,6 +765,8 @@
    "uses": [],
    "proof_uses": [
     "A:gjs",
+    "aux:notation-counts",
+    "aux:notation-gjslattice",
     "eq:normQ",
     "eq:normQ2",
     "eq:printednorm"
@@ -702,7 +780,7 @@
    "kind": "Remark",
    "title": "row independence",
    "number": "6.3",
-   "page": 20,
+   "page": 26,
    "section": {
     "title": "GJS norms of sharp-time polynomial observables",
     "number": "6",
@@ -723,34 +801,37 @@
    "kind": "Lemma",
    "title": "moment transfer",
    "number": "7.1",
-   "page": 20,
+   "page": 26,
    "section": {
     "title": "The uniform gap",
     "number": "7",
     "label": "sec:G"
    },
-   "statement": "$\\displaystyle\\sup_{T>0}\\|Q\\hat\\psi_T\\|^2\\le C_8\\,\\mathfrak n(Q)^2$; moreover\n$\\Om_g\\in D(Q)$ and $\\|Q\\Om_g\\|^2\\le C_8\\,\\mathfrak n(Q)^2$.",
+   "statement": "If the interval $I$ of \\S\\ref{sec:norms} has length $L>0$, let $A$ and $B'$ be the\nconstants of Theorem~\\ref{thm:D3} for the cutoff $g$, the interval $I$ and the time $s=0$;\nif $L=0$, put $A:=B':=0$ (then every $f_i$ vanishes and $Q=0$).  Then\n$\\displaystyle\\sup_{T>0}\\|Q\\hat\\psi_T\\|^2\\le A\\,\\|Q^2\\|_{L^2(d\\phi_0)}+B'\\,\\mathfrak n(Q)^2$;\nmoreover $\\Om_g\\in D(Q)$ and $\\|Q\\Om_g\\|^2\\le A\\,\\|Q^2\\|_{L^2(d\\phi_0)}+B'\\,\\mathfrak n(Q)^2$.",
    "provenance": [
-    "src: lamport_euclidean_to_gap.tex <1>6 <2>1 (6.1)."
+    "src: lamport_euclidean_to_gap.tex <1>6 <2>1 (6.1); statement and proof replaced 7 November 2026"
    ],
-   "uses": [],
+   "uses": [
+    "sec:norms",
+    "thm:D3"
+   ],
    "proof_uses": [
-    "eq:UGJS",
     "eq:fkn2",
     "eq:normQ2",
     "lem:slabunbdd",
-    "rem:row"
+    "lem:slabvac",
+    "thm:D3"
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "lem:onepoint",
    "kind": "Lemma",
    "title": "one-point limit",
    "number": "7.2",
-   "page": 20,
+   "page": 27,
    "section": {
     "title": "The uniform gap",
     "number": "7",
@@ -762,25 +843,25 @@
    ],
    "uses": [],
    "proof_uses": [
-    "eq:UGJS",
+    "aux:notation-S2",
     "eq:fkn1",
     "eq:middle",
     "eq:onepoint",
     "lem:slabunbdd",
     "lem:slabvac",
     "lem:transfer",
-    "rem:row"
+    "thm:D3"
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "lem:twopoint",
    "kind": "Lemma",
    "title": "two-point lower semicontinuity",
    "number": "7.3",
-   "page": 21,
+   "page": 27,
    "section": {
     "title": "The uniform gap",
     "number": "7",
@@ -794,23 +875,23 @@
     "eq:fkn2"
    ],
    "proof_uses": [
-    "eq:UGJS",
     "eq:fkn2",
+    "lem:onepoint",
     "lem:slabunbdd",
     "lem:slabvac",
     "lem:transfer",
-    "rem:row"
+    "thm:D3"
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "lem:ce2strip",
    "kind": "Lemma",
    "title": "CE2 across a horizontal strip",
    "number": "7.4",
-   "page": 21,
+   "page": 28,
    "section": {
     "title": "The uniform gap",
     "number": "7",
@@ -834,7 +915,7 @@
    "kind": "Proposition",
    "title": "semigroup decay of centered observables",
    "number": "7.5",
-   "page": 22,
+   "page": 28,
    "section": {
     "title": "The uniform gap",
     "number": "7",
@@ -852,38 +933,42 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "lem:expmom",
    "kind": "Lemma",
    "title": "exponential moments",
    "number": "7.6",
-   "page": 22,
+   "page": 29,
    "section": {
     "title": "The uniform gap",
     "number": "7",
     "label": "sec:G"
    },
-   "statement": "Let $d\\mu_g:=|\\Om_g|^2\\,d\\phi_0$ and $X_f:=\\varphi_0(f)$ for real\n$f\\in C_c^\\infty(\\R)$, $f\\ne0$, supported in an interval of length $L$, and put\n$K':=K_2^{2}N_I^{1/2}\\|f\\|_2>0$. Then\n\\[\n \\E_{\\mu_g}\\bigl[X_f^{2n}\\bigr]\\le C_8K_1\\,(K')^{2n}(2n)! \\qquad(n\\ge1),\n\\]\nand consequently\n\\[\n \\E_{\\mu_g}e^{s|X_f|}\n \\le2\\max\\{1,C_8K_1\\}\\sum_{n=0}^\\infty(sK')^{2n}<\\infty\n \\qquad(0\\le s<1/K') .\n\\]\nThe factor $C_8K_1$ affects only the prefactor, not the radius $1/K'$.",
+   "statement": "Let $d\\mu_g:=|\\Om_g|^2\\,d\\phi_0$ and $X_f:=\\varphi_0(f)$ for real\n$f\\in C_c^\\infty(\\R)$, $f\\ne0$, supported in an interval $I$ of length $L$, and put\n$K':=K_2^{2}N_I^{1/2}\\|f\\|_2>0$, $\\sigma_f^2:=\\ip f{Cf}$, $K_f:=\\max\\{K',\\sqrt2\\,\\sigma_f\\}$\nand $A_f:=A+B'K_1$, with $A$ and $B'$ as in Lemma~\\ref{lem:transfer} for this $I$ (which\nhas $L>0$, since $f\\ne0$). Then\n\\[\n \\E_{\\mu_g}\\bigl[X_f^{2n}\\bigr]\\le A_f\\,K_f^{2n}\\,(2n)! \\qquad(n\\ge1),\n\\]\nand consequently\n\\[\n \\E_{\\mu_g}e^{s|X_f|}\n \\le2\\max\\{1,A_f\\}\\sum_{n=0}^\\infty(sK_f)^{2n}<\\infty\n \\qquad(0\\le s<1/K_f) .\n\\]\n$A_f$ and $K_f$ do not depend on $n$; $A_f$ depends on $g$ (through $N_g$, $N_B$) and on\n$I$, $K_f$ on $f$, on $I$ (through $N_I$), on $K_2$ and on $m_0$, and not on $g$.",
    "provenance": [
-    "src: lamport_euclidean_to_gap.tex <1>7 <2>1 (7.1)-(7.2); audit repair L5."
+    "src: lamport_euclidean_to_gap.tex <1>7 <2>1 (7.1)-(7.2); audit repair L5; statement and proof"
    ],
-   "uses": [],
-   "proof_uses": [
-    "eq:normQ2",
+   "uses": [
     "lem:transfer"
+   ],
+   "proof_uses": [
+    "aux:constants-gauss",
+    "eq:normQ2",
+    "lem:transfer",
+    "thm:D3"
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "thm:dense",
    "kind": "Theorem",
    "title": "density of polynomial vectors",
    "number": "7.7",
-   "page": 23,
+   "page": 29,
    "section": {
     "title": "The uniform gap",
     "number": "7",
@@ -895,18 +980,19 @@
    ],
    "uses": [],
    "proof_uses": [
+    "aux:constants-s0",
     "lem:expmom"
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "thm:G",
    "kind": "Theorem",
    "title": "uniform gap (G)",
    "number": "7.8",
-   "page": 23,
+   "page": 30,
    "section": {
     "title": "The uniform gap",
     "number": "7",
@@ -925,14 +1011,14 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "prop:pathreg",
    "kind": "Proposition",
    "title": "path regularity of the semigroup",
    "number": "8.1",
-   "page": 24,
+   "page": 31,
    "section": {
     "title": "Affine-path regularity",
     "number": "8",
@@ -962,7 +1048,7 @@
    "kind": "Proposition",
    "title": "projection and eigenvector regularity; derivative formulas",
    "number": "8.2",
-   "page": 25,
+   "page": 32,
    "section": {
     "title": "Affine-path regularity",
     "number": "8",
@@ -991,7 +1077,7 @@
    "kind": "Lemma",
    "title": "exact inverse-energy filter",
    "number": "9.1",
-   "page": 26,
+   "page": 32,
    "section": {
     "title": "Filter, spectral separation, and clustering",
     "number": "9",
@@ -1015,7 +1101,7 @@
    "kind": "Lemma",
    "title": "spectral separation",
    "number": "9.2",
-   "page": 27,
+   "page": 33,
    "section": {
     "title": "Filter, spectral separation, and clustering",
     "number": "9",
@@ -1039,13 +1125,13 @@
    "kind": "Lemma",
    "title": "clustering with one unbounded local argument",
    "number": "9.3",
-   "page": 27,
+   "page": 34,
    "section": {
     "title": "Filter, spectral separation, and clustering",
     "number": "9",
     "label": "sec:filter"
    },
-   "statement": "Let $g\\in\\CH$, write $H=H(g)$, $\\Om=\\Om_g$, $\\beta_t=\\beta^g_t$, and assume\n\\eqref{eq:Ggamma}. Let $B\\subset\\R$ be compact, let $X=X^*$ be affiliated with $\\A(U)$ for\nevery bounded open $U\\supseteq B$, with $\\Om\\in D(X)$, and let $A\\in\\A(O)$ for a bounded\ninterval $O$. If $R:=\\dist(B,O)>0$ satisfies $\\gamma R\\ge1$, then\n\\begin{equation}\n \\bigl|\\ip{X\\Om}{A\\Om}-\\ip{X\\Om}{\\Om}\\ip{\\Om}{A\\Om}\\bigr|\n \\le2\\,\\|X\\Om\\|\\,\\|A\\|\\,e^{-\\gamma R/2} .\n \\label{eq:cluster}\n\\end{equation}",
+   "statement": "Let $g\\in\\CH$, write $H=H(g)$, $\\Om=\\Om_g$, $\\beta_t=\\beta^g_t$, and assume\n\\eqref{eq:Ggamma}. Let $B\\subset\\R$ be compact, let $X=X^*$ be affiliated with $\\A(O')'$ for\nevery bounded open interval $O'$ with $\\dist(B,O')>0$, with $\\Om\\in D(X)$, and let\n$A\\in\\A(O)$ for a bounded interval $O$. If $R:=\\dist(B,O)>0$ satisfies $\\gamma R\\ge1$, then\n\\begin{equation}\n \\bigl|\\ip{X\\Om}{A\\Om}-\\ip{X\\Om}{\\Om}\\ip{\\Om}{A\\Om}\\bigr|\n \\le2\\,\\|X\\Om\\|\\,\\|A\\|\\,e^{-\\gamma R/2} .\n \\label{eq:cluster}\n\\end{equation}",
    "provenance": [
     "src: lamport_gap_to_main.tex <1>4."
    ],
@@ -1066,7 +1152,7 @@
    "kind": "Lemma",
    "title": "state derivative",
    "number": "10.1",
-   "page": 28,
+   "page": 34,
    "section": {
     "title": "The one-path LPPL estimate",
     "number": "10",
@@ -1095,7 +1181,7 @@
    "kind": "Lemma",
    "title": "localization of the perturbation",
    "number": "10.2",
-   "page": 28,
+   "page": 35,
    "section": {
     "title": "The one-path LPPL estimate",
     "number": "10",
@@ -1113,14 +1199,14 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "lem:tworegime",
    "kind": "Lemma",
    "title": "two-regime bound",
    "number": "10.3",
-   "page": 29,
+   "page": 35,
    "section": {
     "title": "The one-path LPPL estimate",
     "number": "10",
@@ -1140,14 +1226,14 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "prop:onepath",
    "kind": "Proposition",
    "title": "one-path estimate",
    "number": "10.4",
-   "page": 29,
+   "page": 35,
    "section": {
     "title": "The one-path LPPL estimate",
     "number": "10",
@@ -1169,14 +1255,14 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "lem:rate",
    "kind": "Lemma",
    "title": "the rate function is super-polynomial",
    "number": "10.5",
-   "page": 30,
+   "page": 36,
    "section": {
     "title": "The one-path LPPL estimate",
     "number": "10",
@@ -1194,14 +1280,14 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "thm:cauchy",
    "kind": "Theorem",
    "title": "full-net convergence with rate",
    "number": "11.1",
-   "page": 30,
+   "page": 36,
    "section": {
     "title": "Convergence of the full net; local normality",
     "number": "11",
@@ -1220,14 +1306,14 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "prop:normal",
    "kind": "Proposition",
    "title": "local normality",
    "number": "11.2",
-   "page": 31,
+   "page": 37,
    "section": {
     "title": "Convergence of the full net; local normality",
     "number": "11",
@@ -1243,14 +1329,14 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "prop:spectral",
    "kind": "Proposition",
    "title": "exact spectral passage",
    "number": "12.1",
-   "page": 31,
+   "page": 37,
    "section": {
     "title": "Ground state, invariances, and the Main Theorem",
     "number": "12",
@@ -1273,13 +1359,13 @@
    "kind": "Theorem",
    "title": "Main Theorem",
    "number": "12.2",
-   "page": 32,
+   "page": 38,
    "section": {
     "title": "Ground state, invariances, and the Main Theorem",
     "number": "12",
     "label": "sec:ground"
    },
-   "statement": "Let $0\\le\\lambda/m_0^2<\\varepsilon_{\\mathscr P}$. Then there is a state $\\omega_\\infty$ on\n$\\A$ such that:\n\\begin{enumerate}\n\\item[\\rm(1)] \\emph{(full-net convergence with rate)} for every bounded open interval $O$,\n      $\\lim_{g\\in\\G}\\|(\\omega_g-\\omega_\\infty)|_{\\A(O)}\\|=0$, and\n      $\\|(\\omega_g-\\omega_\\infty)|_{\\A(O)}\\|\\le\\Psi_{m_1}(d)$ whenever $g\\equiv1$ on $O_d$,\n      with $\\Psi_{m_1}$ decaying faster than every inverse power;\n\\item[\\rm(2)] \\emph{(local normality)} $\\omega_\\infty|_{\\A(O)}$ is normal for every $O$;\n\\item[\\rm(3)] \\emph{(ground state)} $\\omega_\\infty$ is a ground state of $(\\A,\\alpha)$ in the\n      spectral sense;\n\\item[\\rm(4)] \\emph{(invariances)} $\\omega_\\infty\\circ\\tau_a=\\omega_\\infty$ for all $a\\in\\R$;\n      and for even $\\mathscr P$, $\\omega_\\infty\\circ\\theta=\\omega_\\infty$;\n\\item[\\rm(5)] \\emph{(spectra and local moment)}\n      \\[\n       \\spec H(g)\\subseteq\\{0\\}\\cup[m_1,\\infty)\\quad(g\\in\\CH),\n       \\qquad \\dim\\ker H(g)=1,\n      \\]\n      and $\\sup_{g\\in\\CH}\\|V(h)\\Om_g\\|\\le M$ for real $h$ with $\\|h\\|_\\infty\\le1$ supported\n      in an interval of length $2$.\n\\end{enumerate}\nThe weak-coupling estimates imported are two printed theorems of \\cite{GJS}: Theorem 1.1.7\n(Source Fact~\\ref{sf:CE2}) and Theorem 1.1.11 at $B=I$, $n=0$, the cutoff-uniform moment\nestimate \\eqref{eq:UGJS} of Assumption~\\ref{A:gjs}(vi) (imported as printed since\n31 October 2026; Scope paragraph there).  Appendix~\\ref{app:huniform} supplies a\nsource-mechanism audit and analytic prerequisites but is not an independent proof of the\ncluster expansion. In addition, the proof uses the separately identified standard\ncutoff-construction inputs of Assumptions~\\ref{A:cutoff}--\\ref{A:covar}.\nProposition~\\ref{prop:scaling} verifies that the dimensionless weak-coupling hypothesis\nimplies the source smallness condition. The theorem is an implication from exactly this\nlist of printed statements; no other external input is used.",
+   "statement": "Let $0\\le\\lambda/m_0^2<\\varepsilon_{\\mathscr P}$. Then there is a state $\\omega_\\infty$ on\n$\\A$ such that:\n\\begin{enumerate}\n\\item[\\rm(1)] \\emph{(full-net convergence with rate)} for every bounded open interval $O$,\n      $\\lim_{g\\in\\G}\\|(\\omega_g-\\omega_\\infty)|_{\\A(O)}\\|=0$, and\n      $\\|(\\omega_g-\\omega_\\infty)|_{\\A(O)}\\|\\le\\Psi_{m_1}(d)$ whenever $g\\equiv1$ on $O_d$,\n      with $\\Psi_{m_1}$ decaying faster than every inverse power;\n\\item[\\rm(2)] \\emph{(local normality)} $\\omega_\\infty|_{\\A(O)}$ is normal for every $O$;\n\\item[\\rm(3)] \\emph{(ground state)} $\\omega_\\infty$ is a ground state of $(\\A,\\alpha)$ in the\n      spectral sense;\n\\item[\\rm(4)] \\emph{(invariances)} $\\omega_\\infty\\circ\\tau_a=\\omega_\\infty$ for all $a\\in\\R$;\n      and for even $\\mathscr P$, $\\omega_\\infty\\circ\\theta=\\omega_\\infty$;\n\\item[\\rm(5)] \\emph{(spectra and local moment)}\n      \\[\n       \\spec H(g)\\subseteq\\{0\\}\\cup[m_1,\\infty)\\quad(g\\in\\CH),\n       \\qquad \\dim\\ker H(g)=1,\n      \\]\n      and $\\sup_{g\\in\\CH}\\|V(h)\\Om_g\\|\\le M$ for real $h$ with $\\|h\\|_\\infty\\le1$ supported\n      in an interval of length $2$.\n\\end{enumerate}\nThe weak-coupling estimate imported is one printed theorem of \\cite{GJS}: Theorem 1.1.7\n(Source Fact~\\ref{sf:CE2}), used at its printed scope, including the transverse case\nA8(iv)-T of Assumption~\\ref{A:gjs} for the sharp-time observable of Theorem~\\ref{thm:M2},\na case the printed statement covers and the printed proof does not reach.  The uniform\nlocal moment and the moment bounds behind the uniform gap are theorems of this manuscript\n(Theorems~\\ref{thm:D3} and~\\ref{thm:D4}, Appendix~\\ref{app:comparison}), proved from\nTheorem 1.1.7, the normalization Lemma~\\ref{lem:Z}, the ultraviolet Lemma~\\ref{lem:uv} and\nthe stability Theorem~\\ref{thm:stability} of Appendix~\\ref{app:huniform}, and the\nconstructions of the Wick powers recorded in Assumptions~\\ref{A:cutoff}\nand~\\ref{A:stability}; the former moment input, Theorem 1.1.11 (Assumption~\\ref{A:gjs}(vi)),\nis retired.  Appendix~\\ref{app:huniform} does not re-derive the cluster expansion.  In\naddition, the proof uses the separately identified standard cutoff-construction inputs of\nAssumptions~\\ref{A:cutoff}--\\ref{A:covar}.  Proposition~\\ref{prop:scaling} verifies that the\ndimensionless weak-coupling hypothesis implies the source smallness condition. The theorem\nis an implication from exactly this list of printed statements; no other external input is\nused.  The constant $M$ of item (5), and through it the rate $\\Psi_{m_1}$ of item (1),\ncontain the finite, unevaluated constant $S_2(B_{3\\times5})$ of Theorem~\\ref{thm:stability}.",
    "provenance": [
     "src: m6/main.tex thm:MAIN (v2), transcribed; import references adapted to (A1)-(A8);"
    ],
@@ -1287,10 +1373,17 @@
     "A:covar",
     "A:cutoff",
     "A:gjs",
+    "A:stability",
+    "app:comparison",
     "app:huniform",
-    "eq:UGJS",
+    "lem:Z",
+    "lem:uv",
     "prop:scaling",
-    "sf:CE2"
+    "sf:CE2",
+    "thm:D3",
+    "thm:D4",
+    "thm:M2",
+    "thm:stability"
    ],
    "proof_uses": [
     "eq:Ggamma",
@@ -1305,14 +1398,14 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "cor:canonical",
    "kind": "Corollary",
    "title": "the Glimm--Jaffe vacuum is canonical at weak coupling",
    "number": "12.3",
-   "page": 33,
+   "page": 39,
    "section": {
     "title": "Ground state, invariances, and the Main Theorem",
     "number": "12",
@@ -1329,14 +1422,14 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "hyp:broken",
    "kind": "Hypothesis",
    "title": "structure of a broken phase",
    "number": "13.1",
-   "page": 33,
+   "page": 39,
    "section": {
     "title": "The two-phase dichotomy",
     "number": "13",
@@ -1357,7 +1450,7 @@
    "kind": "Theorem",
    "title": "conditional exclusion of a two-phase structure",
    "number": "13.2",
-   "page": 33,
+   "page": 40,
    "section": {
     "title": "The two-phase dichotomy",
     "number": "13",
@@ -1371,6 +1464,7 @@
     "hyp:broken"
    ],
    "proof_uses": [
+    "A:patch",
     "eq:cutoffcluster",
     "eq:limitcluster",
     "lem:cluster",
@@ -1379,14 +1473,14 @@
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "rem:gjs7576",
    "kind": "Remark",
    "title": "scope of the phase-transition literature",
    "number": "13.3",
-   "page": 34,
+   "page": 41,
    "section": {
     "title": "The two-phase dichotomy",
     "number": "13",
@@ -1403,14 +1497,14 @@
    "proof_uses": [],
    "has_proof": false,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
   },
   {
    "label": "prop:struct",
    "kind": "Proposition",
    "title": "consequence of the audited source mechanisms",
    "number": "C.1",
-   "page": 39,
+   "page": 47,
    "section": {
     "title": "$h$-uniformity: source audit and analytic prerequisites",
     "number": "C",
@@ -1431,7 +1525,7 @@
    "kind": "Lemma",
    "title": "normalisation",
    "number": "C.2",
-   "page": 40,
+   "page": 48,
    "section": {
     "title": "$h$-uniformity: source audit and analytic prerequisites",
     "number": "C",
@@ -1444,7 +1538,10 @@
    "uses": [
     "thm:stability"
    ],
-   "proof_uses": [],
+   "proof_uses": [
+    "A:cutoff",
+    "A:stability"
+   ],
    "has_proof": true,
    "imports_A8": false,
    "cites_UGJS": false
@@ -1454,18 +1551,23 @@
    "kind": "Lemma",
    "title": "Wick lower bound; the $h\\ge0$ entry",
    "number": "C.3",
-   "page": 40,
+   "page": 49,
    "section": {
     "title": "$h$-uniformity: source audit and analytic prerequisites",
     "number": "C",
     "label": "app:huniform"
    },
-   "statement": "There is $b=b(\\mathscr P)$ such that for all $c\\ge0$ and $x\\in\\R$,\n${:}\\mathscr P{:}_c(x):=\\sum_na_nc^{n/2}\\operatorname{He}_n(x/\\sqrt c)\\ge-b\\,(1+c)^{p'}$.\nConsequently, for every $h\\in\\CE$ with $\\supp h\\subseteq\\Lambda$ and every\n$\\kappa\\ge2$,\n\\[\n  \\mathcal U_{h,\\kappa}\\ \\ge\\\n  -\\lambda\\,b\\,|\\Lambda|\\,\\bigl(1+\\tfrac1{2\\pi}\\log\\kappa+C_*\\bigr)^{p'}\n  \\ \\ge\\ -c_1(\\lambda,\\mathscr P,\\Lambda)\\,(\\log\\kappa)^{p'} .\n\\]",
+   "statement": "With\n\\begin{gather*}\n C(\\mathscr P):=\\sum_{n=0}^{2p'}|a_n|\\max_{0\\le j\\le n/2}\\frac{n!}{j!\\,(n-2j)!\\,2^j},\\\\\n C_{p'}:=\\max\\Bigl\\{1,\\ \\max_{1\\le m<2p'}\\frac{2p'-m}{2p'}\\,(2m)^{m/(2p'-m)}\\Bigr\\},\n\\end{gather*}\n\\[\n b(\\mathscr P):=C_{p'}\\sum_{m=0}^{2p'-1}C(\\mathscr P)^{2p'/(2p'-m)}\\,a_{2p'}^{-m/(2p'-m)} ,\n\\]\none has ${:}\\mathscr P{:}_c(x)\\ge-b(\\mathscr P)\\,(1+c)^{p'}$ for all $c\\ge0$ and $x\\in\\R$.\nConsequently, for every $h\\in\\CE$ with $\\supp h\\subseteq\\Lambda$ and every $\\kappa\\ge2$,\n\\[\n  \\mathcal U_{h,\\kappa}\\ \\ge\\\n  -\\lambda\\,b(\\mathscr P)\\,|\\Lambda|\\,\\bigl(1+C_*+\\tfrac1{2\\pi}\\log\\kappa\\bigr)^{p'}\n  \\ \\ge\\ -c_1\\,(\\log\\kappa)^{p'},\n\\]\n\\[\n  c_1:=\\max\\Bigl\\{1,\\ \\lambda\\,b(\\mathscr P)\\,|\\Lambda|\\Bigl(\\frac{1+C_*}{\\log2}+\\frac1{2\\pi}\n  \\Bigr)^{p'}\\Bigr\\}>0 ,\n\\]\nwith $C_*$ of \\eqref{eq:ckappa}; $c_1$ depends on $\\lambda$, $\\mathscr P$, $|\\Lambda|$, $m_0$\nand $\\|\\delta\\|_\\infty$ (the last two through $C_*$), and the maximum with $1$ makes\n$c_1\\ge1$, which the proof of Theorem~\\ref{thm:stability} uses (for its threshold $b_1$).",
    "provenance": [
-    "src: m4/r1-check.tex lem:wick, transcribed."
+    "src: m4/r1-check.tex lem:wick, transcribed; constants derived 7 November 2026 (repair R7)."
    ],
-   "uses": [],
-   "proof_uses": [],
+   "uses": [
+    "eq:ckappa",
+    "thm:stability"
+   ],
+   "proof_uses": [
+    "eq:ckappa"
+   ],
    "has_proof": true,
    "imports_A8": false,
    "cites_UGJS": false
@@ -1475,18 +1577,24 @@
    "kind": "Lemma",
    "title": "ultraviolet difference; the $h\\le1$ entry",
    "number": "C.4",
-   "page": 40,
+   "page": 49,
    "section": {
     "title": "$h$-uniformity: source audit and analytic prerequisites",
     "number": "C",
     "label": "app:huniform"
    },
-   "statement": "There is $c_2=c_2(\\lambda,\\mathscr P,\\Lambda)$ such that for all $h\\in\\CE$ with\n$\\supp h\\subseteq\\Lambda$ and all $\\kappa\\ge2$,\n\\[\n  \\bigl\\|\\mathcal U_h-\\mathcal U_{h,\\kappa}\\bigr\\|_{L^2(d\\mu_0)}^2\n  \\ \\le\\ c_2\\,\\kappa^{-1}(\\log\\kappa)^{2p'} .\n\\]",
+   "statement": "For $n\\ge1$ and $R\\ge0$ put\n\\begin{gather*}\n A_n:=16\\pi\\Bigl[(4\\pi)^{-n}2^{n-1}\\bigl((b_0+2)^n+2^{n+1}n!\\bigr)+3\\bigl(\\|\\delta\\|_\\infty\n (b_0+2)\\bigr)^n\\Bigr],\\\\\n L_m(R):=\\int_0^R\\bigl(b_0+2+2|\\log r|\\bigr)^m\\,dr\\ \\ (m\\ge0),\\qquad\n B_n(R):=12\\,n\\,(4\\pi)^{-(n-1)}L_{n-1}(R),\\\\\n c_2:=\\lambda^2|\\Lambda|\\sum_{n=1}^{2p'}a_n^2\\,n!\\Bigl[\\frac{A_n}2\\Bigl(1+\\frac1{\\log2}\\Bigr)^n\n (\\log2)^{n-2p'}+B_n(R)\\,(\\log2)^{-2p'}\\Bigr] .\n\\end{gather*}\nThen for all $h\\in\\CE$ with $\\supp h\\subseteq\\Lambda$, $R=\\operatorname{diam}\\Lambda$, and all\n$\\kappa\\ge2$,\n\\[\n  \\bigl\\|\\mathcal U_h-\\mathcal U_{h,\\kappa}\\bigr\\|_{L^2(d\\mu_0)}^2\n  \\ \\le\\ c_2\\,\\kappa^{-1}(\\log\\kappa)^{2p'} .\n\\]\nThe constant $c_2$ depends on $\\lambda$, $\\mathscr P$, $|\\Lambda|$, $\\operatorname{diam}\n\\Lambda$, $m_0$ (through $b_0$) and $\\|\\delta\\|_\\infty$, and on nothing else; every\n$L_m(R)$ is finite, the logarithmic singularity being integrable.",
    "provenance": [
-    "src: m4/r1-check.tex lem:uv, transcribed."
+    "src: m4/r1-check.tex lem:uv, transcribed; kernel facts derived and constant made explicit"
    ],
    "uses": [],
-   "proof_uses": [],
+   "proof_uses": [
+    "aux:d1-cov",
+    "eq:Ggrad",
+    "eq:Glog",
+    "eq:wickisometry",
+    "eq:wickpairingE"
+   ],
    "has_proof": true,
    "imports_A8": false,
    "cites_UGJS": false
@@ -1496,19 +1604,25 @@
    "kind": "Theorem",
    "title": "$h$-uniform stability",
    "number": "C.5",
-   "page": 41,
+   "page": 51,
    "section": {
     "title": "$h$-uniformity: source audit and analytic prerequisites",
     "number": "C",
     "label": "app:huniform"
    },
-   "statement": "For every $p<\\infty$ and compact $\\Lambda$,\n\\[\n  \\sup\\bigl\\{\\|e^{-\\mathcal U_h}\\|_{L^p(d\\mu_0)}\\ :\\ h\\in\\CE,\\\n  \\supp h\\subseteq\\Lambda\\bigr\\}\\ <\\ \\infty .\n\\]",
+   "statement": "For every $p<\\infty$ and compact $\\Lambda$,\n\\[\n  \\sup\\bigl\\{\\|e^{-\\mathcal U_h}\\|_{L^p(d\\mu_0)}\\ :\\ h\\in\\CE,\\\n  \\supp h\\subseteq\\Lambda\\bigr\\}\\ \\le\\ \\bigl(1+e^{pb_*}\\bigr)^{1/p}<\\infty ,\n\\]\nwhere $b_*=b_*(p,p',c_1,c_2)$ is the threshold defined in the proof, with $c_1$ of\nLemma~\\ref{lem:wick} and $c_2$ of Lemma~\\ref{lem:uv}.  The bound depends on $\\Lambda$ only\nthrough $|\\Lambda|$ and $\\operatorname{diam}\\Lambda$ (monotonically), and otherwise on\n$p$, $\\lambda$, $\\mathscr P$, $m_0$ and $\\|\\delta\\|_\\infty$; in particular it is the same\nfor all translates of $\\Lambda$.",
    "provenance": [
-    "src: m4/r1-check.tex thm:stability, transcribed."
+    "src: m4/r1-check.tex thm:stability, transcribed; thresholds written as inequalities and the"
    ],
-   "uses": [],
+   "uses": [
+    "lem:uv",
+    "lem:wick"
+   ],
    "proof_uses": [
     "A:hyper",
+    "A:stability",
+    "aux:d1-cov",
+    "eq:Glog",
     "lem:uv",
     "lem:wick"
    ],
@@ -1521,17 +1635,18 @@
    "kind": "Remark",
    "title": "why the class is what it is",
    "number": "C.6",
-   "page": 41,
+   "page": 52,
    "section": {
     "title": "$h$-uniformity: source audit and analytic prerequisites",
     "number": "C",
     "label": "app:huniform"
    },
-   "statement": "The two halves of the constraint $0\\le h\\le1$ are used in complementary places:\npositivity in the pointwise lower bound (Lemma~\\ref{lem:wick} would fail for $h$ of\nvariable sign --- the interaction density is unbounded above \\emph{and} below), and\nboundedness in the $L^2$ kernel estimates (Lemma~\\ref{lem:uv} and M3). Nothing else about\n$h$ --- smoothness, shape, time extent, monotonicity along a sequence --- is touched in\nLemmas~\\ref{lem:wick}--\\ref{lem:uv} or in M3; the stability input of the source's own proof\n(M6) is a separate matter. This is the structural content of Source Fact~\\ref{sf:printed}.",
+   "statement": "The two halves of the constraint $0\\le h\\le1$ are used in complementary places:\npositivity in the pointwise lower bound (Lemma~\\ref{lem:wick} would fail for $h$ of\nvariable sign --- the interaction density is unbounded above \\emph{and} below), and\nboundedness in the $L^2$ kernel estimate (Lemma~\\ref{lem:uv}) and in M3; the upper bound\nalso enters, through $\\int h\\le|\\Lambda|$, in Lemmas~\\ref{lem:Z} and~\\ref{lem:wick}.\nNothing else about\n$h$ --- smoothness, shape, time extent, monotonicity along a sequence --- is touched in\nLemmas~\\ref{lem:wick}--\\ref{lem:uv} or in M3; the stability input of the source's own proof\n(M6) is a separate matter. This is the structural content of Source Fact~\\ref{sf:printed}.",
    "provenance": [
     "src: m4/r1-check.tex, closing remark of \\S4, transcribed."
    ],
    "uses": [
+    "lem:Z",
     "lem:uv",
     "lem:wick",
     "sf:printed"
@@ -1546,38 +1661,154 @@
    "kind": "Proposition",
    "title": "coverage of every CE application",
    "number": "C.7",
-   "page": 41,
+   "page": 52,
    "section": {
     "title": "$h$-uniformity: source audit and analytic prerequisites",
     "number": "C",
     "label": "app:huniform"
    },
-   "statement": "Every use of CE1 in\n\\S\\S\\ref{sec:slab}--\\ref{sec:G} has a cutoff in $\\CE^{\\rm slab}$ and is covered by\n\\eqref{eq:UGJS} (Assumption~\\ref{A:gjs}(vi), the printed Theorem 1.1.11 at $B=I$, $n=0$);\nevery use of CE2 is covered directly by Source Fact~\\ref{sf:CE2}, whose constants are\nindependent of $h$, across strips parallel to the time-zero line, the case its printed proof\nreaches.  Lemma~\\ref{lem:Z} and\nTheorem~\\ref{thm:stability} supply the normalization and integrability needed to define\nthe same measures.  Hence no stronger cutoff-uniformity assertion is consumed by the\nproof.",
+   "statement": "CE1 is used nowhere in \\S\\S\\ref{sec:slab}--\\ref{sec:G}: every use of Euclidean clustering\n(CE2) in this manuscript is Source Fact~\\ref{sf:CE2} as printed, whose constants are\nindependent of $h$, at a cutoff of $\\CE$, in the following orientations (\\S\\ref{sec:filter}\nproves a Hamiltonian clustering lemma of its own, Lemma~\\ref{lem:cluster}).  In\nLemma~\\ref{lem:ce2strip} and in Theorem~\\ref{thm:D3} (hence in \\S\\ref{sec:G}) the strips are\nparallel to the time-zero line (for Lemma~\\ref{lem:ce2strip}, with two sharp-time monomials, the\ncase the printed proof reaches; for Theorem~\\ref{thm:D3}, with a time-integrated partner, see\nRemark~\\ref{aux:d3-orient}); in Theorem~\\ref{thm:D4} (hence in\nTheorem~\\ref{thm:M2} and in everything that consumes $M$) the strips are parallel for the\nsquares of class (P) and transverse for the squares of class (T), the latter being\nA8(iv)-T.  Lemma~\\ref{lem:Z}, Lemma~\\ref{lem:uv} and Theorem~\\ref{thm:stability} supply\nthe normalization, the ultraviolet limit and the integrability that\nAppendix~\\ref{app:comparison} consumes.  Hence no cutoff-uniformity assertion beyond the\nprinted Theorem 1.1.7 is consumed by the proof.",
    "provenance": [
-    "src: m4/r1-check.tex thm:verdict, transcribed; hypothesis clause removed 31 October 2026."
+    "src: m4/r1-check.tex thm:verdict, transcribed; hypothesis clause removed 31 October 2026;"
    ],
    "uses": [
-    "A:gjs",
-    "eq:UGJS",
+    "app:comparison",
+    "aux:d3-orient",
     "lem:Z",
+    "lem:ce2strip",
+    "lem:cluster",
+    "lem:uv",
     "sec:G",
+    "sec:filter",
     "sec:slab",
     "sf:CE2",
+    "thm:D3",
+    "thm:D4",
+    "thm:M2",
     "thm:stability"
    ],
    "proof_uses": [
+    "app:comparison",
+    "aux:d3-V3",
+    "aux:d3-geom",
+    "aux:notation-cutoffs",
+    "lem:D2",
     "lem:Z",
     "lem:ce2strip",
     "lem:classes",
     "lem:transfer",
     "lem:twopoint",
+    "lem:uv",
     "sf:CE2",
+    "thm:D3",
+    "thm:D4",
     "thm:M2",
     "thm:stability"
    ],
    "has_proof": true,
    "imports_A8": true,
-   "cites_UGJS": true
+   "cites_UGJS": false
+  },
+  {
+   "label": "lem:D1",
+   "kind": "Lemma",
+   "title": "affine-path identity",
+   "number": "D.1",
+   "page": 79,
+   "section": {
+    "title": "The uniform local moment from the printed clustering theorem",
+    "number": "D",
+    "label": "app:comparison"
+   },
+   "statement": "Let $h_1,h_2\\in\\CE$, and let $F$ be a finite sum of localized monomials of type $(1.1.5)$ or\n$(1.1.6)$, with kernels in $L^2$ and $n_i<\\bar n$, that is, $F\\in\\mathfrak F$\n(Definition~\\ref{aux:d1-obs}). Then $h_\\alpha\\in\\CE$ for every $\\alpha\\in[0,1]$; the functions\n$F$, $\\Uc_{h_2-h_1}$ and $F\\,\\Uc_{h_2-h_1}$ are $dq_{h_\\alpha}$-integrable for every\n$\\alpha\\in[0,1]$; the map $\\alpha\\mapsto\\ev{F}{h_1+\\alpha(h_2-h_1)}$ is $C^1$ on $[0,1]$\n(one-sided derivatives at the endpoints), with\n\\begin{equation}\\label{eq:d1-deriv}\n \\frac{d}{d\\alpha}\\ev{F}{h_\\alpha}=-\\Cov_{h_\\alpha}\\bigl(F,\\Uc_{h_2-h_1}\\bigr);\n\\end{equation}\nand\n\\begin{equation}\\label{eq:d1-identity}\n \\ev{F}{h_2}-\\ev{F}{h_1}=-\\int_0^1\\Cov_{h_\\alpha}\\bigl(F,\\Uc_{h_2-h_1}\\bigr)\\,d\\alpha .\n\\end{equation}",
+   "provenance": [],
+   "uses": [
+    "aux:d1-obs"
+   ],
+   "proof_uses": [],
+   "has_proof": false,
+   "imports_A8": false,
+   "cites_UGJS": false
+  },
+  {
+   "label": "lem:D2",
+   "kind": "Lemma",
+   "title": "localized comparison",
+   "number": "D.2",
+   "page": 84,
+   "section": {
+    "title": "The uniform local moment from the printed clustering theorem",
+    "number": "D",
+    "label": "app:comparison"
+   },
+   "statement": "Assume the standing assumption of \\S\\ref{sub:d2-conv}.  Let $F=\\sum_{a\\in\\mathfrak A}F_a$ be a\nfinite sum of localized monomials $F_a$ of type (1.1.5) or (1.1.6) \\cite[p.~593]{GJS}, with\nkernels in $L^2$ and every individual degree $n_i<\\bar n$, and put\n$\\GJS{F}:=\\sum_{a\\in\\mathfrak A}\\GJS{F_a}$, the norm (1.1.9) of this decomposition.  Let $R$\nbe a non-empty finite set of squares containing every localization square of every $F_a$, let\n$B\\supseteq R$ be a box, let $h\\in\\CE$, and let $\\mathcal D:=\\mathcal D(h,B)$.\n\\begin{enumerate}\n\\item[\\rm(a)] Suppose that to every $\\Delta\\in\\mathcal D$ a strip $S_\\Delta$ of positive width\n$w_\\Delta$ separating $\\Delta$ from $\\bigcup R$ is assigned.  Then\n\\[\n \\bigl|\\ev{F}{h}-\\ev{F}{h^B}\\bigr|\\le C_7\\,c_U\\,\\GJS{F}\\sum_{\\Delta\\in\\mathcal D}e^{-m_1w_\\Delta} .\n\\]\nEvery estimate behind this bound is Source Fact~\\ref{sf:CE2} (GJS (1.1.10)) for a pair\n$(F_a,U_{\\Delta,n})$, across the strip $S_\\Delta$, at a cutoff $h_\\alpha\\in\\CE$; the\norientation of $S_\\Delta$ is the orientation of that application.  If $S_\\Delta$ is transverse\nto the time-zero line and $F_a$ is of type (1.1.5), that application is the transverse case of\nGJS Theorem~1.1.7, used at the printed statement's scope and listed as A8(iv)-T\n(Assumption~\\ref{A:gjs}, item (iv-T)).\n\\item[\\rm(b)] (A form of the statement of \\texttt{ugjs/PLAN.md}, Part~1, with positive widths;\nthe plan's form does not require positive width.)  If every square $\\Delta\\not\\subseteq B$\nmeeting $\\supp h$ is separated from $\\bigcup R$ by a strip of positive width, then\n\\[\n \\bigl|\\ev{F}{h}-\\ev{F}{h^B}\\bigr|\\le C_7\\,c_U\\,\\GJS{F}\n \\sum_{\\Delta\\not\\subseteq B,\\ \\Delta\\cap\\supp h\\ne\\varnothing}e^{-m_1d(\\Delta,R)} .\n\\]\nThe widest strips used here are not controlled in orientation\n(Remark~\\ref{aux:d2-uses}(2)); where one is transverse to the time-zero line and some $F_a$\nis of type (1.1.5), form (b) uses the transverse case of GJS Theorem~1.1.7 at the printed\nstatement's scope (A8(iv)-T, Assumption~\\ref{A:gjs}, item (iv-T)).\n\\end{enumerate}\nThe constants $C_7$ and $m_1$ are those of Theorem~1.1.7 in working coordinates (Remark~\\ref{rem:wlog}), and $c_U$ is that of Lemma~\\ref{aux:notation-cU}; none depends on $h$, $B$, $R$ or\n$F$.",
+   "provenance": [],
+   "uses": [
+    "A:gjs",
+    "aux:d2-uses",
+    "aux:notation-cU",
+    "rem:wlog",
+    "sf:CE2",
+    "sub:d2-conv"
+   ],
+   "proof_uses": [],
+   "has_proof": false,
+   "imports_A8": true,
+   "cites_UGJS": false
+  },
+  {
+   "label": "thm:D3",
+   "kind": "Theorem",
+   "title": "Phase A: fixed cutoff, parallel strips",
+   "number": "D.3",
+   "page": 90,
+   "section": {
+    "title": "The uniform local moment from the printed clustering theorem",
+    "number": "D",
+    "label": "app:comparison"
+   },
+   "statement": "Assume the standing assumption of \\S\\ref{sub:d2-conv}.  Let $g\\in\\CH$, let $I\\subset\\R$ be a\nbounded interval of positive length, let $s\\in\\R$, and let $l_s$, $N_g$, $N_B$, $B=B_s(g,I)$ be\nas in \\S\\ref{sub:d3-setting}.  Let $F=\\sum_\\beta c_\\beta Q_\\beta$ be a finite real linear\ncombination of cylinder monomials supported in $I$, and $F(s)$ its value at sharp time $s$.\nThen for every $T>0$,\n\\[\n \\Bigl|\\int F(s)\\,dq_{h_{T,g}}\\Bigr|\\le A\\,\\|F\\|_{L^2(\\dphi)}+B'\\,\\GJS{F(s)} ,\n\\]\n\\[\n A:=e^{3\\lambda|a_0|N_B}\\,S_2(B),\\qquad\n B':=2\\,C_7\\,c_U\\,N_g\\,\\frac{e^{-m_1}}{1-e^{-m_1}} ,\n\\]\nwhere $S_2(B)$ is the constant of Definition~\\ref{aux:notation-S2def}.  The norm $\\GJS{F(s)}$\nis that of the decomposition in Lemma~\\ref{aux:d3-cyl}(v), which bounds it in terms of the\nfunctions $f_{\\beta,i}$.  In working coordinates (Remark~\\ref{rem:wlog}), the constant $A$\ndepends only on $(\\lambda,\\mathscr P,m_0)$ and on $N_B$, through the unevaluated constant $S_2$;\nthe constant $B'$ depends only on $C_7$, $m_1$, $K_1$, $K_2$, $\\lambda$, $\\mathscr P$ and $N_g$.\nBoth are independent of $T$ and $s$, and $B'$ is independent of $I$.",
+   "provenance": [],
+   "uses": [
+    "aux:d3-cyl",
+    "aux:notation-S2def",
+    "rem:wlog",
+    "sub:d2-conv",
+    "sub:d3-setting"
+   ],
+   "proof_uses": [],
+   "has_proof": false,
+   "imports_A8": true,
+   "cites_UGJS": false
+  },
+  {
+   "label": "thm:D4",
+   "kind": "Theorem",
+   "title": "Phase B: uniform in the cutoff",
+   "number": "D.4",
+   "page": 95,
+   "section": {
+    "title": "The uniform local moment from the printed clustering theorem",
+    "number": "D",
+    "label": "app:comparison"
+   },
+   "statement": "Assume the standing assumption of \\S\\ref{sub:d2-conv}.  For every $h\\in\\CE$, every $a\\in\\R$ and\nevery real measurable $h'$ with $\\|h'\\|_\\infty\\le1$ and $\\supp h'\\subseteq[a,a+2]$,\n\\[\n \\int V(h')(0)^2\\,dq_h\\le M_B^2 ,\n\\]\n\\[\n M_B^2:=e^{15\\lambda|a_0|}\\,S_2(B_{3\\times5})\\cdot9^{p'}\\,V_*\n +C_7\\,c_U\\,\\overline\\Sigma_{3\\times5}\\cdot9\\,K_1K_2^{8p'}(4p')!\\,\\lambda^2\n \\Bigl(\\sum_{n=0}^{2p'}|a_n|\\Bigr)^2 ,\n\\]\nwith $V(h')(0)$, $V_*$ and $\\overline\\Sigma_{3\\times5}$ as in \\S\\ref{sub:d4-setting}, $c_U$ of\nLemma~\\ref{aux:notation-cU}, and $S_2(B_{3\\times5})$ the common value of\nDefinition~\\ref{aux:notation-S2def} at all boxes of $3$ rows and $5$ columns\n(Proposition~\\ref{aux:notation-S2}(iii)).  In working coordinates (Remark~\\ref{rem:wlog}), $M_B$\ndepends on $(\\lambda,\\mathscr P,m_0)$ through $C_7$, $m_1$, $K_1$, $K_2$, the unevaluated finite\nconstant $S_2(B_{3\\times5})$ of Theorem~\\ref{thm:stability}, and $V_*$; it does not depend on $h$, $a$\nor $h'$.  The proof uses GJS Theorem~1.1.7 across strips transverse to the time-zero line, a case\nits printed proof does not reach (A8(iv)-T, Assumption~\\ref{A:gjs}, item (iv-T); \\S\\ref{sub:d4-transverse}).",
+   "provenance": [],
+   "uses": [
+    "A:gjs",
+    "aux:notation-S2",
+    "aux:notation-S2def",
+    "aux:notation-cU",
+    "rem:wlog",
+    "sub:d2-conv",
+    "sub:d4-setting",
+    "sub:d4-transverse",
+    "thm:stability"
+   ],
+   "proof_uses": [],
+   "has_proof": false,
+   "imports_A8": true,
+   "cites_UGJS": false
   }
  ]
 }

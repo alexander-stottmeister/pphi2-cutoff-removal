@@ -2,7 +2,7 @@
 # rendered as a site page; the interactive figures under interactive/ carry none and
 # Jekyll copies them through verbatim, scripts intact.
 title: "Removal of the spatial cutoff for weakly coupled P(phi)_2"
-description: "Manuscript, working notes and adversarial audit trail. Theorem 12.2 is an implication from printed imports (A1–A8, all literal since 31 October 2026); nothing is refereed; human verification is ongoing."
+description: "Manuscript, working notes and adversarial audit trail. Theorem 12.2 is an implication from printed imports (A1–A8), with one GJS theorem imported since 7 November 2026 (Theorem 1.1.7, including its transverse case A8(iv)-T); nothing is refereed; human verification is ongoing."
 theme: jekyll-theme-primer
 plugins:
   - jekyll-relative-links

@@ -94,3 +94,8 @@ wording corrected; V1c on the frozen version of 4 November (72 pp): every item c
 usage-limit interruptions (31 October, 2 and 3 November); every agent resumed from its
 transcript. The harness refused the drafters' report and disposition files; those were returned
 as messages and saved by the orchestrator. Integration waits for Checkpoint 2 (PLAN Part 11).
+
+## Integration as Appendix D (7 November 2026)
+
+At Checkpoint 2 the author decided to integrate the note as Appendix D of `part_i/main.tex`, as a dated amendment, to name the transverse case A8(iv)-T, to revise the companion now, to update the records with the integration, and to apply the repairs. The orchestrator integrated the note (auxiliary numbering kept; N.47 omitted; new Lemma N.23′, which closes the note's GAP after the construction of the Wick powers was added to Assumptions A1 and A3), applied the replaced proofs of §8, the V3 repairs of Appendix C, the counting on GJS columns and the "0(1)" [sic]. Two fresh Opus agents audited the integration (round V4: mathematics; integration consistency); their reports were returned as messages. Findings: no CRITICAL; one MAJOR, inherited (the affiliation of V(h) with A(U) asserted without argument in §2.1, now proved there); 36 MINOR; all fixed the same day; re-check V4b by the same two agents (ten new or residual MINOR items, all fixed the same evening) and V4c of the last fixes by the mathematics auditor. Gate GI: `part_i/README.md`. The note itself carries a dated notice and is otherwise unchanged.
+

@@ -17,42 +17,51 @@ being released.
 **Human verification of the output is ongoing.** Nothing here has been refereed, and the
 author's own line-by-line check of the machine-assisted material is still in progress:
 open audit item C5 (a second human reader for the source page images, see below) is
-unclosed. Theorem 12.2 is proved from the literal imports A1–A8. Its moment input A8(vi) is GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0 and any 0 < T < 1 (p. 596), the case GJS name on p. 629 and specialize to T = 0 in their proof of Theorem 1.1.8 (p. 600); the record does not re-derive the cluster expansion. The human page readings of audit item C5 (items 1–4 and 9–13) are open. Read every
+unclosed. Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. Read every
 statement in this repository as a claim under active verification, not as a settled
 result, and check anything you intend to rely on against the cited sources yourself.
 Direction, mathematical judgement and final responsibility are the author's.
 
 ## Status: the main theorem is an implication from printed imports. Please read this first.
 
-**Part I** (`part_i/main.tex`, 42 pp, document of record) proves Theorem 12.2. In the
+**Part I** (`part_i/main.tex`, 110 pp, document of record) proves Theorem 12.2. In the
 Glimm–Jaffe–Spencer weak-coupling region 0 ≤ λ/m₀² < ε_P, the full net (ω_g) of cutoff
 ground states, with no subnets and no space averaging, converges in norm on every local
 algebra A(O),
 
     lim_{g∈G} ‖(ω_g − ω_∞)|_{A(O)}‖ = 0,
 
-with an explicit super-polynomial rate in dist(O, {g < 1}). The limit is locally normal,
-translation invariant, ℤ₂ invariant for even P, and a ground state of the Glimm–Jaffe
-dynamics (A, α) in the spectral sense.
+with a super-polynomial rate in dist(O, {g < 1}), explicit up to the finite constant of
+Theorem C.5. The limit is locally normal, translation invariant, ℤ₂ invariant for even P,
+and a ground state of the Glimm–Jaffe dynamics (A, α) in the spectral sense.
 
 The proof is an implication from the imports A1–A8 enumerated in §2. **It is not a proof
-of those imports.** Since 31 October 2026 all eight are printed statements used at the
-scope at which they are printed; the last to become so was:
+of those imports.** Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c))
+are open.
 
-- **A8(vi), written U_GJS**, the cutoff-uniform Glimm–Jaffe–Spencer moment estimate on the
-  slab family used here. Theorem 12.2 is proved from the literal imports A1–A8. Its moment input A8(vi) is GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0 and any 0 < T < 1 (p. 596), the case GJS name on p. 629 and specialize to T = 0 in their proof of Theorem 1.1.8 (p. 600); the record does not re-derive the cluster expansion. The human page readings of audit item C5 (items 1–4 and 9–13)
-  are open. This is a re-sourcing, not a proof: from 16 August to 30 October 2026
-  the same estimate was a named hypothesis of Theorem 12.2 ("assembled from four pages",
-  the reading of 5 September 2026), and the two readings are the same mathematics with
-  different bookkeeping. The manuscript does not re-derive the cluster expansion. The plan
-  to derive the moment bound from the clustering theorem alone, written by a council of
-  agents, is `ugjs/PLAN.md`; its Phases 0 and 0′ are what this paragraph records.
+- **The moment input.** From 16 August to 30 October 2026 the cutoff-uniform
+  Glimm–Jaffe–Spencer moment estimate U_GJS, A8(vi), was a named hypothesis of Theorem
+  12.2; on 31 October 2026 it was read off one printed theorem, GJS Theorem 1.1.11 (a
+  re-sourcing, not a proof). On 7 November 2026 it was retired: Appendix D, written by a
+  council of agents and audited in four rounds (`ugjs/`), derives the moment bounds of §§5
+  and 7 from GJS Theorem 1.1.7 by comparing a cutoff with its restriction to a box of the
+  source's lattice squares, using the normalization, ultraviolet and stability results of
+  Appendix C. The uniform gap rests on the parallel case of Theorem 1.1.7 alone; the
+  uniform local moment uses the transverse case A8(iv)-T as well. The manuscript still does
+  not re-derive the cluster expansion behind Theorem 1.1.7, and it does not prove A8(iv)-T
+  (Phase C of `ugjs/PLAN.md`, optional, not scheduled).
+- **Repairs of the same date.** Appendix C's analytic lemmas rested on three inputs that
+  were neither proved nor imported (found by the independent audit V3); §6 counted spatial
+  cells shifted by half a unit against the source's squares, which made two displayed norm
+  bounds false as stated (no theorem affected); and the interaction V(h) was written as a
+  formal integral with no construction of its Wick powers. All three are repaired; the
+  corrections history is in the manuscript's Appendix B.
 
 **Open audit item C5.** No second human reader has yet checked the source page images
 against the transcriptions in §2. The itemized checklist is
-`part_i/C5_reading_record.md`; all thirteen verdict fields are still blank (items 10–13
-were added on 31 October 2026 for the re-sourcing of A8(vi) and the transverse-case
-disclosure in A8's Scope paragraph).
+`part_i/C5_reading_record.md`; all thirteen verdict fields are still blank. Since
+7 November 2026 items 1–4 carry the imports of A8, and items 10–11 with items 9(c) and 12(a),(c)
+the readings behind A8(iv)-T; the other items are corroboration.
 
 **Part II** is open at gate (II.11). Its preparatory scoping pass is
 `part_ii/gate_II11_scoping.tex`, and phases V0–V4 are recorded in `strategy.md`. Nothing
@@ -81,11 +90,13 @@ evidence.
 
 Generated from `part_i/main.tex`: the nodes are the spine of Part I, the edges are its
 own `\ref` graph, and the shading is computed, not asserted. A statement is shaded
-exactly when its proof chain reaches A8, the GJS package; since 31 October 2026 every item
-of A8 is a printed statement (item (vi), U_GJS, is GJS Theorem 1.1.11 as printed), so the
-shading records dependence on the GJS imports, not a conditional status. Twenty-nine of
-the sixty-one numbered statements are shaded, the three Source Facts
-printed inside A8, Lemma 7.4 and Remark C.6 among them; the [result
+exactly when its proof chain reaches A8, the GJS package; every item of A8 is a printed
+statement (since 7 November 2026 the one GJS theorem a proof uses is Theorem 1.1.7, and item
+(vi), U_GJS, is retired), so the shading records dependence on the GJS imports, not a
+conditional status. Thirty-four of the sixty-five numbered statements are shaded, the three
+Source Facts printed inside A8, Lemma 7.4, Remark C.6, Lemma D.2 and Theorems D.3–D.4 among
+them; Assumptions A1 and A3 are shaded since 7 November 2026 only because their Wick-power
+paragraphs refer to Appendix D, which applies A8 — an effect of the mechanical index; the [result
 inventory](docs/results.md) lists which. The flag is `\ref`-reachability, a mechanical
 index of the reference graph: it counts forward references and misses a dependence
 stated in prose only (the standing hypothesis (G_γ) of §§8–10, which Theorem 7.8
@@ -143,7 +154,7 @@ below by one γ for the whole cutoff class.
 
 | document | | what it is |
 |---|---|---|
-| [`part_i/main.pdf`](part_i/main.pdf) | 42 pp | **the document of record.** Theorem 12.2 and its full proof from the imports |
+| [`part_i/main.pdf`](part_i/main.pdf) | 110 pp | **the document of record.** Theorem 12.2 and its full proof from the imports, with Appendix D (the uniform local moment from the printed clustering theorem) |
 | [`part_ii/gate_II11_scoping.pdf`](part_ii/gate_II11_scoping.pdf) | 11 pp | the open Part II programme at gate (II.11) |
 | [`companion/companion.pdf`](companion/companion.pdf) | 20 pp | **a reader's companion:** what is proved, under what, and why; it explains the record and proves nothing new |
 | [`audit_2026/critical_proof_audit.pdf`](audit_2026/critical_proof_audit.pdf) | 10 pp | the independent audit, frozen against the v1 hash |
@@ -161,8 +172,8 @@ figures below are interactive.
 | | |
 |---|---|
 | [status](docs/status.md) | what is proved, what is conditional, what is open; the gate record |
-| [results](docs/results.md) | all 61 numbered statements with dependencies — generated, never hand-edited |
-| [imports](docs/imports.md) | A1–A8, and exactly what U_GJS is and is not |
+| [results](docs/results.md) | all 65 numbered statements with dependencies — generated, never hand-edited |
+| [imports](docs/imports.md) | A1–A8, A8(iv)-T, and what U_GJS was |
 | [definitions](docs/definitions.md) · [notation](docs/notation.md) | the objects and the frozen symbol table |
 | [provenance](docs/provenance.md) | frozen sources, corrections history, the dossiers |
 
@@ -173,7 +184,7 @@ figures below are interactive.
 | `part_i/` | document of record, its `README.md` with gates G0–G6 and step maps, and the C5 reading record |
 | `part_ii/` | the open programme, gate (II.11) scoping, phases V0–V4 |
 | `companion/` | the reader's companion (20 pp), its sections and figures, and the council of agents that wrote it (`companion/council/`) |
-| `ugjs/` | the plan to remove the hypothesis U_GJS from Theorem 12.2 (`ugjs/PLAN.md`; its Phases 0′ and 0 were executed on 31 October–2 November 2026, commit 4166883), the comparison note of its Phases A and B (`ugjs/comparison.tex` with `ugjs/parts/`, 72 pp, built with `pdflatex` twice from `ugjs/`; drafted by the council on 2 November 2026 and audited in four rounds, `ugjs/council/v1-*.md`, `v2-report.md`; every statement in it is conditional on the repairs of the V3 audit of Appendix C and, for the sharp-time observable, on the transverse case of GJS Theorem 1.1.7 at the printed statement's scope; not integrated, since Checkpoint 2 of the plan is the author's), and the council of agents that wrote both (`ugjs/council/`) |
+| `ugjs/` | the plan that removed the hypothesis U_GJS from Theorem 12.2 (`ugjs/PLAN.md`; Phases 0′ and 0 executed on 31 October–2 November 2026, commit 4166883), the comparison note of its Phases A and B (`ugjs/comparison.tex` with `ugjs/parts/`, 72 pp, built with `pdflatex` twice from `ugjs/`; drafted by the council on 2 November 2026 and audited in four rounds, `ugjs/council/v1-*.md`, `v2-report.md`), integrated on 7 November 2026 as Appendix D of `part_i/main.tex` (the note is kept as the audited pre-integration text; its conditions on the V3 repairs and on the time-zero Wick powers were discharged at integration), and the council of agents that wrote both (`ugjs/council/`) |
 | `m0/`–`m6/` | historical working drafts, superseded by `part_i/main.tex` and kept for provenance |
 | `audit_2026/` | citation screenshot dossier and the 2026 critical proof audit |
 | `fresh_audit_2026_08_16/` | independent audit, Lamport-style reconstruction, evidence ledgers |

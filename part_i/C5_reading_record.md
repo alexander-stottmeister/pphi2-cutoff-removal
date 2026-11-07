@@ -23,11 +23,17 @@ Leave the mathematics alone: the question is only "does the page say this".
 | Copy used | JSTOR scan (`gjs74.pdf`) / journal print / other: __________ |
 | Overall verdict | _________________________ |
 
-Manuscript build the record refers to: `part_i/main.tex`, re-sourcing of A8(vi) of
-31 October 2026 (title-page quote), Assumption A8 items (i)–(viii) with (vii′) and the
-unnumbered source fact of item (vi). Items 1–4, 9, 12 and 13 carry the imports of A8
-(item 2 also the admissibility of B = I); items 10–11 carry the Scope paragraph's disclosure
-of the transverse case; items 5–8 are corroboration.
+Manuscript build the record refers to: `part_i/main.tex`, integration of Appendix D of
+7 November 2026 (title-page notice), Assumption A8 items (i)–(viii) with (iv-T), (vii′) and the
+unnumbered source fact of the retired item (vi). Since 7 November 2026, items 1–4 carry the
+imports of A8 (Theorem 1.1.7 is the one GJS theorem imported; item 1(e) also the reading of
+(1.8)); items 10–11, item 12(a),(c) and item 9(c) carry the readings of the Scope paragraph,
+points (b)–(d), including the item A8(iv)-T (the transverse case: the printed statement
+covers it, the rotation sentence of p. 597 and the "monomials of type (1.1.5)" of p. 596 show
+that the printed proof does not reach it) and the reading of the monomials as the objects
+constructed in Appendix D; the rest of items 5–9 and 12, and item 13 (Theorem 1.1.8,
+Theorem 1.1.11 and the pages behind the retired item (vi)), are corroboration. From 31 October to 6 November 2026, items 1–4, 9, 12 and 13 carried the
+imports of A8 (item 2 also the admissibility of B = I).
 
 ---
 
@@ -39,7 +45,11 @@ of the transverse case; items 5–8 are corroboration.
   0 ≤ h ≤ 1"; (b) `dq_h` is the normalized interacting measure with cutoff h; (c) the
   phrase describing the limit is "h → 1 through rectangular cutoffs" (or record the exact
   wording); (d) footnote 5: "The construction [17] of the measure dq assumes Theorem 1.1.7,
-  and consequently the n = 0 case of Theorem 1.1.11."
+  and consequently the n = 0 case of Theorem 1.1.11."; (e) (added 7 November 2026) the
+  definition "(1.8) V(h) = λ∫_{R²} :P(Φ(x)): h(x)dx as a function on S′(R²), where : : denotes
+  Wick order with respect to the measure dΦ, as in [9], [1]", as quoted in Appendix D,
+  Remark N.2(iv) (the reading that identifies the record's U_h of Assumption A3 with GJS's V(h)
+  rests on it; A8 Scope (d)).
 - Manuscript sites: A8(i) (class `\mathcal C_E`, `lem:classes`), A8(vi) (slab family
   `\mathcal C_E^{slab}` ⊂ `\mathcal C_E`), A8(vii′)(a) (corroboration since 31 October 2026).
 - Verdict: ________  Notes: ______________________________________________
@@ -113,7 +123,9 @@ of the transverse case; items 5–8 are corroboration.
 ### 8. Affine-path application of Theorem 1.1.7 — pp. 594–595 (PDF 11–12)
 - Images: `gjs-theorems-11.png` (foot of p. 594), `gjs-theorems-12.png` (top of p. 595).
 - To confirm, against Assumption A8(vii′)(a): (a) "For test functions f_i ∈ C₀^∞(`\mathcal O`) and for
-  cutoff functions h₁ and h₂, we assert that (1.1.11) … ≤ O(1)e^{−m₁d/2} where
+  cutoff functions h₁ and h₂, we assert that (1.1.11) … ≤ 0(1)e^{−m₁d/2} [sic: the prefactor of
+  (1.1.11) is printed with an upright digit zero, "0(1)", where the italic O(1) of (1.1.10) on the
+  same page is meant; the manuscript transcribes it as printed since 7 November 2026] where
   d = dist(`\mathcal O`, suppt h₁ − h₂) [sic: "suppt" as printed], and then Theorem 1.1.1 follows."; (b) "let g = h₂ − h₁, and
   define g_i = gχ_{Δ_i}"; (c) (1.1.12): the derivative is taken along h₁ + αg, α ∈ [0, 1],
   and the three displayed lines match the manuscript's transcription (V(g), V(g_i),
@@ -140,8 +152,9 @@ of the transverse case; items 5–8 are corroboration.
   1.1.11, the proof follows from Theorem 1.1.8, (1.1.16) and the above determination of Q.";
   (d) p. 596, (1.1.16): "|∫(A − Q)B_T dq_h| ≤ O(1)‖A‖‖B‖e^{−γT}, uniformly in h. We shall
   choose t_j = j, j ∈ Z."
-- What this carries (since 31 October 2026): (1.1.16) "uniformly in h" is the literal basis
-  of A8(vi), together with items 12–13; the derivation of Theorem 1.1.7's constant from
+- What this carries: from 31 October to 6 November 2026, (1.1.16) "uniformly in h" was the
+  literal basis of A8(vi), together with items 12–13 (corroboration since A8(vi) was retired on
+  7 November 2026); sub-item (c), the rotation sentence, carries the disclosure A8(iv)-T; the derivation of Theorem 1.1.7's constant from
   Theorem 1.1.8 **at the same h** is recorded in the Scope paragraph, point (c), as a fact about
   the source's proof that the record does not re-verify.
 - Verdict: ________  Notes: ______________________________________________
@@ -183,9 +196,10 @@ of the transverse case; items 5–8 are corroboration.
   in place of Q(x₀)."; (c) p. 597: "After rotating and translating the strip
   separating Q₁ and Q₂ in Theorem 1.1.7, and after choosing A = Q₁, B_T = Q₂ in Theorem
   1.1.11, the proof follows from Theorem 1.1.8, (1.1.16) and the above determination of Q."
-- What this carries: the re-sourcing of A8(vi) (degree-zero B; the printed range T > 0) and
-  the Scope paragraph's point (b) (the printed proof reaches sharp-time monomials only across
-  strips parallel to the time-zero line).
+- What this carries: from 31 October to 6 November 2026, the re-sourcing of A8(vi) (degree-zero
+  B; the printed range T > 0; corroboration since 7 November 2026); and, now, sub-items (a) and
+  (c) the Scope paragraph's point (b) and the import A8(iv)-T (the printed proof reaches
+  sharp-time monomials only across strips parallel to the time-zero line).
 - Verdict: ________  Notes: ______________________________________________
 
 ### 13. GJS's own specialization, and the hypotheses of Theorem 4.1 — p. 600 (PDF 17) and p. 628 (PDF 45)
@@ -210,7 +224,8 @@ of the transverse case; items 5–8 are corroboration.
   are printed statements by design), but their transcription is then independently
   confirmed.
 - Any `DIFFERS`: quote the difference here, then check whether a constant or a quantifier
-  in `main.tex` depends on it (items 3, 4 → §§5–7 constants; items 2, 9, 12, 13 → the
-  re-sourcing of A8(vi); items 10–12 → the Scope paragraph's point (b)).
+  in `main.tex` depends on it (items 3, 4 → the constants of §§5–7 and Appendix D; items 10–11,
+  9(c), 12(a),(c) → the Scope paragraph's points (b)–(d) and A8(iv)-T; item 1(e) → the reading
+  of (1.8); the rest of items 2, 9, 12 and item 13 → the retired item (vi), corroboration only).
 - Any `AMBIGUOUS`: consult a second copy of the source (journal print or a higher-resolution
   scan) before recording a verdict.

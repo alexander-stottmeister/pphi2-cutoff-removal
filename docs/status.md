@@ -7,38 +7,21 @@ title: Status
 What is proved, what is conditional, and what is open. Nothing on this page is a
 summary of intent: each line names the statement or the gate it comes from.
 
-## Part I — an implication from printed imports; the moment input re-sourced on 31 October 2026
+## Part I — an implication from printed imports; one GJS theorem imported since 7 November 2026
 
-**Theorem 12.2 (Main Theorem).** Theorem 12.2 is proved from the literal imports A1–A8. Its moment input A8(vi) is GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0 and any 0 < T < 1 (p. 596), the case GJS name on p. 629 and specialize to T = 0 in their proof of Theorem 1.1.8 (p. 600); the record does not re-derive the cluster expansion. The human page readings of audit item C5 (items 1–4 and 9–13) are open. It is an *implication* from the imports A1–A8 enumerated in §2.4; the record is not a proof of those imports. Since 31 October 2026 all eight
-are printed statements used at the scope at which they are printed; the last to become so
-was
+**Theorem 12.2 (Main Theorem).** Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. It is an *implication* from the imports A1–A8 enumerated in §2.4; the record is not a proof of those imports, and it does not re-derive the cluster expansion.
 
-> **A8(vi), written U_GJS** — the cutoff-uniform Glimm–Jaffe–Spencer moment estimate on the
-> slab family used here. Theorem 12.2 is proved from the literal imports A1–A8. Its moment input A8(vi) is GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0 and any 0 < T < 1 (p. 596), the case GJS name on p. 629 and specialize to T = 0 in their proof of Theorem 1.1.8 (p. 600); the record does not re-derive the cluster expansion.
+How the record got here:
 
-This is a re-sourcing, not a proof. From 16 August to 30 October 2026 the same estimate was
-carried as a named hypothesis of Theorem 12.2, documented on 5 September 2026 as the
-quantifier GJS state on p. 629 and consume on pp. 594–597 but "assembled from four pages";
-the two readings are the same mathematics with different bookkeeping, and the record still
-trusts GJS's printed argument exactly as before. Appendix C audits the source mechanism
-(its item M6, added 31 October 2026, records a stability input the audit had missed) and
-proves two analytic prerequisites only. The human page readings of audit item C5 (items
-1–4 and 9–13) are open and are to be named beside every status word. The plan to derive
-the moment bound from the clustering theorem alone, and the one case of GJS Theorem 1.1.7
-that its printed proof does not reach, are in
-[`ugjs/PLAN.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/ugjs/PLAN.md).
-See [imports](imports.md).
+- **16 August – 30 October 2026.** The cutoff-uniform moment estimate U_GJS, A8(vi), was a named hypothesis of Theorem 12.2 ("assembled from four pages" of the source).
+- **31 October 2026 (re-sourcing).** A8(vi) was read off one printed theorem, GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0 (p. 596; p. 600; p. 629). A re-sourcing, not a proof: the same mathematics with different bookkeeping.
+- **7 November 2026 (integration of Appendix D).** The moment bounds that §§5 and 7 consume are derived from the printed clustering theorem, GJS Theorem 1.1.7, by comparing a cutoff with its restriction to a box of the source's lattice squares (Lemmas D.1–D.2, Theorems D.3–D.4), with the normalization, ultraviolet and stability results of Appendix C. A8(vi) is retired; GJS Theorem 1.1.11 is no longer used. The uniform gap (Theorem 7.8) rests on the parallel case of Theorem 1.1.7 alone; the uniform local moment (Theorem 5.1), and through its constant M everything from Lemma 10.2 on, uses the transverse case A8(iv)-T as well. M now contains the finite, unevaluated constant of Theorem C.5, so the rate of Theorem 12.2(1) is explicit up to that constant.
 
-Of the 61 numbered statements, **29 reach A8 through their own `\ref` chain** (since
-23 October 2026 this counts the three Source Facts printed inside A8, and with them
-Lemma 7.4 and Remark C.6); since 31 October 2026 this index records dependence on the GJS
-package, every item of which is a printed statement, and no longer a conditional status;
-the rest do not reach A8. Which are which is computed from the manuscript's reference graph, not
-asserted — see the `imports A8` column of the [result inventory](results.md). The index
-is mechanical: it counts forward references and misses a dependence stated in prose only
-(the standing hypothesis (G_γ) of §§8–10, which Theorem 7.8 supplies), so it is not a
-verdict on any single proof. The inverse-energy filter (Lemma 9.1), for instance, is
-independent of A8 entirely.
+In the same pass three defects of the record were repaired (Appendix B, corrections history): Appendix C's analytic lemmas rested on three inputs that were neither proved nor imported (found by the independent audit V3 of 2 November 2026; now derived or imported, every constant explicit); §6 counted spatial cells shifted by half a unit against the source's squares, which made the displayed norm bounds (7)–(8) false as stated (now counted on the source's columns; no theorem was affected); and the record wrote the interaction V(h) and its Euclidean counterpart as formal integrals with no construction of their Wick powers (now constructed in Assumptions A1 and A3, with Lemma N.23′ identifying them with the limits used in Appendix D). The record is 110 pages.
+
+The plan, the council that wrote Appendix D and its four audit rounds are in [`ugjs/`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/ugjs/PLAN.md). See [imports](imports.md).
+
+Of the numbered statements, the [result inventory](results.md) marks which reach A8 through their own `\ref` chain. Since 31 October 2026 that index records dependence on the GJS package, every item of which is a printed statement, and not a conditional status. The index is mechanical: it counts forward references and misses a dependence stated in prose only (the standing hypothesis (G_γ) of §§8–10, which Theorem 7.8 supplies), so it is not a verdict on any single proof.
 
 ### Negative scope, stated by the manuscript itself
 
@@ -64,27 +47,11 @@ The full records, including the findings G6 raised and their dispositions, are i
 **No second human reader has yet checked the source page images against the
 transcriptions in §2.** The itemized checklist is
 [`part_i/C5_reading_record.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/C5_reading_record.md); all thirteen verdict fields
-are blank. Items 8–9 were added on 5 September 2026 for the affine-path application of
-Theorem 1.1.7 on p. 595 and the derivation of Theorem 1.1.7 from Theorem 1.1.8 on
-pp. 596–597; items 10–13 on 31 October 2026.
+are blank.
 
-C5 is a check of transcription fidelity, not of the mathematics. Items 1–4, 9, 12 and 13
-carry the imports of A8 (items 12–13: Theorem 1.1.11's "monomials of type (1.1.5)",
-"B_T … at time T > 0" and the rotation sentence; p. 600's specialization and p. 628's
-hypotheses of Theorem 4.1); items 10–11 carry the disclosure of the transverse case in A8's
-Scope paragraph (the two forms (1.1.5)–(1.1.6) with p. 595's multi-time notation;
-Theorem 1.1.7's strip without orientation); items 5–8 are corroboration.
+C5 is a check of transcription fidelity, not of the mathematics. Since 7 November 2026, items 1–4 carry the imports of A8 (Theorem 1.1.7 is the one GJS theorem imported; item 1(e) the reading of GJS's definition (1.8) of V(h)); items 10–11, with items 9(c) and 12(a),(c), carry the readings behind A8(iv)-T and the identification of the source's monomials with the objects Appendix D constructs; the rest of items 5–9 and 12, and item 13 (Theorems 1.1.8 and 1.1.11, the pages behind the retired A8(vi)), are corroboration.
 
-**Phases A and B of the removal plan (2–4 November 2026).** The comparison note
-`ugjs/comparison.tex` (72 pp, built with `pdflatex` from `ugjs/`; master, preamble and
-`ugjs/parts/`) derives the uniform local moment of Theorem 5.1 and §7 from the printed
-clustering theorem (GJS Theorem 1.1.7) and Appendix C, so that after integration Theorem 1.1.11
-would no longer be used. It is audited in four rounds (`ugjs/council/`) and not integrated:
-every statement in it is conditional on the repairs R1–R10 of the V3 audit of Appendix C
-(three MAJOR gaps in Lemmas C.2–C.5: true statements with unproved inputs) and, for the
-sharp-time observable, on the transverse case of Theorem 1.1.7 at the printed statement's
-scope, which its printed proof does not reach. Theorem 12.2's status is unchanged. Integration
-is Checkpoint 2 of the plan, the author's decision.
+**Open beyond C5.** The transverse case A8(iv)-T is used at the printed statement's scope and is not proved in the record; closing it is Phase C of the plan (optional, not scheduled). The constant of Theorem C.5 is finite and not evaluated.
 
 ## Part II — open at gate (II.11)
 
