@@ -17,7 +17,7 @@ Theorem 12.2 is proved from printed statements only, with one GJS theorem import
 | A7 | covariance data | translation covariance and parity |
 | A8 | the GJS package | the cutoff class, the observables and the printed norms of GJS, and CE2 (Theorem 1.1.7), including its transverse case **A8(iv)-T**; CE1 and **U_GJS** (A8(v)–(vi)) are kept as provenance and are used by no proof since 7 November 2026 |
 
-A1–A7 are literal quotations of printed theorems, cited to the page. A8 is a package of
+A1–A7 are literal quotations of printed statements, cited to the page (A6(iii), the locality of the net, is a sentence printed inside the proof of Theorem 3.5.1 of GJ2, p. 397). A8 is a package of
 several printed items; since 31 October 2026 every item is read off a printed statement, and
 since 7 November 2026 the one GJS theorem among them that a proof uses is Theorem 1.1.7.
 

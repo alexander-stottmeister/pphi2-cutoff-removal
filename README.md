@@ -61,7 +61,11 @@ are open.
 against the transcriptions in §2. The itemized checklist is
 `part_i/C5_reading_record.md`; all thirteen verdict fields are still blank. Since
 7 November 2026 items 1–4 carry the imports of A8, and items 10–11 with items 9(c) and 12(a),(c)
-the readings behind A8(iv)-T; the other items are corroboration.
+carry the readings of A8's Scope paragraph, points (b)–(d) (among them the identification of
+the source's monomials with the objects Appendix D constructs, and of its V(h) with the
+interaction constructed in Assumption A3), and the item A8(iv)-T; the other items are
+corroboration. Theorem D.3, behind the uniform gap, names items
+1–4 and 10 as open beside its status.
 
 **Part II** is open at gate (II.11). Its preparatory scoping pass is
 `part_ii/gate_II11_scoping.tex`, and phases V0–V4 are recorded in `strategy.md`. Nothing

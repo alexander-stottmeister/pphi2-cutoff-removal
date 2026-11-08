@@ -1,45 +1,56 @@
-% Fig. 1: the two-layer spine (PLAN Part 3, Fig. 1).  Drawn from the record's statements and
-% proofs; evaluates nothing.  Node classes assigned by hand from the proofs (ruling R8):
-% violet fill = conditional on U_GJS; violet outline with a tag = an implication under
-% (G_gamma) (Prop 8.2, Lemmas 9.3, 10.1) or valid for any norm limit (Prop 12.1); grey =
-% independent of A8 (Prop 2.7, Lemma 2.8, Lemma 4.4, Lemma 9.1).  Appendix C is drawn
-% without any arrow: nothing from it closes the dashed box.
+% Fig. 1: the two-layer spine (PLAN Part 3, Fig. 1; redrawn for the revised edition of
+% 7 November 2026).  Drawn from the record's statements and proofs; evaluates nothing.
+% Node classes assigned by hand from the proofs: orange (warn) fill = the proof uses A8(iv)-T,
+% the transverse case of GJS Theorem 1.1.7, directly (Theorem D.4) or through the constant M
+% (Theorem 5.1, Lemma 10.2 onward); orange outline = an implication whose hypothesis, for
+% P(phi)_2, only an orange node supplies (Prop 12.1).  Every other node is unmarked; Prop 8.2
+% and Lemmas 9.3, 10.1 carry the tag "under (G_gamma)", supplied by Theorem 7.8, which uses
+% Theorem 1.1.7 across parallel strips only.  The violet class "conditional on U_GJS" of the
+% edition of 24 October 2026 is removed with the retired item A8(vi).
 \begin{tikzpicture}[font=\scriptsize,
   box/.style={rounded corners=1pt,align=center,inner sep=3pt,text width=2.95cm,minimum height=7mm},
   grey/.style={box,draw=mut,fill=white},
-  cbox/.style={box,draw=cond,fill=cfill},
-  obox/.style={box,draw=cond,fill=white,line width=0.7pt},
-  imp/.style={cbox,dashed,line width=0.8pt},
+  tbox/.style={box,draw=warn,fill=tfill},
+  tout/.style={box,draw=warn,fill=white,line width=0.7pt},
   iface/.style={draw=mut,line width=0.7pt,rounded corners=2pt,fill=white,inner sep=2.5pt},
   inp/.style={box,draw=mut,fill=gline!25,rounded corners=0pt},
   arr/.style={-{Latex[length=1.6mm]},line width=0.55pt,draw=mut},
   lab/.style={font=\tiny,color=mut,fill=white,inner sep=1pt,align=center},
-  tag/.style={font=\tiny,color=cond,inner sep=1pt},
+  tag/.style={font=\tiny,color=mut,inner sep=1pt},
   band/.style={font=\tiny\bfseries,color=mut,rotate=90,anchor=south,inner sep=1pt}]
   \def\cA{-5.4}\def\cB{-1.8}\def\cC{1.8}\def\cD{5.4}
   % ---- bands
-  \fill[gline!18!white] (-7.3,5.15) rectangle (7.45,3.55);
+  \fill[gline!18!white] (-7.3,6.75) rectangle (7.45,3.55);
   \fill[gline!8!white]  (-7.3,2.4)  rectangle (7.45,-2.3);
-  \fill[gline!18!white] (-7.3,-2.45) rectangle (7.45,-6.85);
-  \node[band] at (-7.25,6.2) {inputs};
-  \node[band] at (-7.25,4.3) {Euclidean};
+  \fill[gline!18!white] (-7.3,-2.45) rectangle (7.45,-6.7);
+  \node[band] at (-7.25,7.6) {inputs};
+  \node[band] at (-7.25,5.15) {Euclidean};
   \node[band] at (-7.25,2.97) {$m_1$, $M$};
   \node[band] at (-7.25,0.05) {Hamiltonian};
-  \node[band] at (-7.25,-4.5) {identification};
+  \node[band] at (-7.25,-4.55) {identification};
   % ---- inputs
-  \node[inp] (a17) at (\cA,6.2) {A1--A7: literal imports (construction inputs, pp.\,7--9)};
-  \node[inp] (ce2) at (\cB,6.2) {CE2, printed (A8(iv), Source Fact 2.2): $C_7e^{-m_1d}$ with $C_7$, $m_1$ independent of $h$};
-  \node[inp,text width=2.3cm] (appc) at (\cC,6.2) {Appendix C: audit of the source mechanism; two prerequisites only};
-  \node[imp] (ugjs) at (\cD,6.2) {$\UGJS$ (A8(vi)): one $C_8$ for all $h_{T,g}$, $T>0$, $g\in\CH$; imported at the source's scope, not re-derived};
-  % ---- Euclidean layer
+  \node[inp] (a17) at (\cA,7.6) {A1--A7: literal imports (construction inputs, pp.\,9--14)};
+  \node[inp] (ce2) at (\cB,7.6) {CE2, printed (A8(iv)): $C_7e^{-m_1d}$, constants independent of $h$};
+  \node[inp,draw=warn,dashed,line width=0.7pt,text width=3.35cm] (ivt) at (\cD,7.6) {A8(iv)-T: CE2 across transverse strips, beyond its printed proof};
+  % ---- Euclidean layer, row 1: Appendices C and D
+  \node[grey,text width=2.55cm] (d3) at (-1.15,6.05) {Thm D.3 (box comparison): fixed $g$, parallel strips, uniform in $T$};
+  \node[grey,text width=2.0cm] (appc) at (1.8,6.05) {App.\,C: Lemmas C.2, C.4, Thm C.5 (the box term)};
+  \node[tbox] (d4) at (\cD,6.05) {Thm D.4 (box comparison): $\int V(h')(0)^2dq_h\le M_B^2$, every $h\in\CE$};
+  \draw[arr] (ce2.south -| d3) -- node[lab,right] {parallel} (d3);
+  \draw[arr] (ce2.south east) -- node[lab,pos=0.5,above=1pt,sloped] {class (P)} (d4.north west);
+  \draw[arr] (ivt) -- node[lab,right] {class (T)} (d4);
+  \draw[arr] (appc) -- (d3);
+  \draw[arr] (appc) -- (d4);
+  % ---- Euclidean layer, row 2
   \node[grey] (l44) at (\cA,4.3) {Lemma 4.4: $\hat\psi_T\to\Om_g$ by simplicity only, no gap assumed};
-  \node[cbox] (g) at (\cB,4.3) {(G) Thm 7.8: $\spec H(g)\subseteq\{0\}\cup[m_1,\infty)$, $0$ simple, every $g\in\CH$};
-  \node[cbox] (m2) at (\cD,4.3) {(M$_2$) Thm 5.1: $\|V(h)\Om_g\|\le M$, every $g\in\CH$ ($|h|\le1$ on a length-2 interval)};
-  \node[tag,anchor=north,color=mut,text width=2.8cm,align=center] at (l44.south) {used in Thm 5.1 and Lemmas 7.1--7.3};
-  \draw[arr] (a17) -- node[lab,right] {A1: simplicity} (l44);
-  \draw[arr] (ce2) -- node[lab,right] {$m_1$ independent of $h$} (g);
-  \draw[arr] ([xshift=2mm]ugjs.south west) |- node[lab,pos=0.75,below=2pt] {fixed $g$, uniform in $T$} ([xshift=3mm,yshift=1.3mm]g.north east) -- ([xshift=3mm,yshift=-2.5mm]g.north east) -- ([yshift=-2.5mm]g.north east);
-  \draw[arr] (ugjs) -- node[lab,right] {uniform in $g$, $T$} (m2);
+  \node[grey] (g) at (\cB,4.3) {(G) Thm 7.8: $\spec H(g)\subseteq\{0\}\cup[m_1,\infty)$, $0$ simple, every $g\in\CH$};
+  \node[tbox] (m2) at (\cD,4.3) {(M$_2$) Thm 5.1: $\|V(h)\Om_g\|\le M$, every $g\in\CH$ ($|h|\le1$ on a length-2 interval)};
+  \node[tag,anchor=north,text width=2.8cm,align=center] at (l44.south) {used in Thm 5.1 and Lemmas 7.1--7.3};
+  \node[lab,fill=none] (a1a) at (\cA,5.3) {A1: simplicity};
+  \draw[arr] (a1a) -- (l44);
+  \draw[arr] ([xshift=-12mm]ce2.south) -- node[lab,pos=0.55,rotate=90] {Lemma 7.4} ([xshift=-12mm]g.north);
+  \draw[arr] (d3.south) -- node[lab,right] {Lemmas 7.1--7.3} (d3.south |- g.north);
+  \draw[arr] (d4) -- node[lab,left] {Thm 5.1, Step 5: uniform in $g$, $T$} (m2);
   \draw[arr] (l44) -- (g);
   % ---- interface
   \node[iface] (gg) at (\cB,2.95) {(G$_\gamma$)};
@@ -48,21 +59,21 @@
   \draw[arr] (m2) -- node[lab,left] {the moment constant} (mm);
   % ---- Hamiltonian layer, row 1: the tools
   \node[grey] (filt) at (\cA,1.55) {Lemma 9.1, (17)--(18): exact inverse-energy filter $W_\gamma$};
-  \node[obox] (deriv) at (\cB,1.55) {Prop 8.2, (15): $\dot\Om_s=-H_s^{-1}Q_sV(v)\Om_s$ along $g_s$};
+  \node[grey] (deriv) at (\cB,1.55) {Prop 8.2, (15): $\dot\Om_s=-H_s^{-1}Q_sV(v)\Om_s$ along $g_s$};
   \node[grey] (cone) at (\cC,1.55) {Prop 2.7: exact light cone, speed $\le1$ for every $g\in\CH$};
-  \node[obox] (clus) at (\cD,1.55) {Lemma 9.3, (23): clustering with one unbounded argument};
+  \node[grey] (clus) at (\cD,1.55) {Lemma 9.3, (23): clustering with one unbounded argument};
   \node[tag,anchor=north west] at (deriv.south west) {under (G$_\gamma$)};
   \node[tag,anchor=north west] at (clus.south west) {under (G$_\gamma$)};
   \node[lab,fill=none] (a1b) at ($(deriv.north west)+(-0.05,0.5)$) {A1: simplicity};
   \draw[arr] (a1b) -- (deriv.north west);
-  \node[lab,fill=none] (a6a) at ($(cone.north west)+(-0.05,0.5)$) {A6(i): speed 1,\\ Trotter};
+  \node[lab,fill=none] (a6a) at ($(cone.north west)+(-0.05,0.5)$) {A6(i), (iii): speed 1,\\ Trotter, locality};
   \draw[arr] (a6a) -- (cone.north west);
   \draw[arr] (gg) -- (deriv);
   \draw[arr] (gg.east) -| ([xshift=5mm]clus.north west);
   \draw[arr] (cone) -- (clus);
   % ---- row 2
-  \node[obox] (l101) at (\cB,0.05) {Lemma 10.1, (24): $\tfrac{d}{ds}\omega_{g_s}(A)$ as a $W_\gamma$-weighted correlation};
-  \node[cbox] (two) at (\cD,0.05) {Lemma 10.3, (26): $2Me^{-\gamma r_j/4}$ for $|t|\le r_j/2$, otherwise $2M$};
+  \node[grey] (l101) at (\cB,0.05) {Lemma 10.1, (24): $\tfrac{d}{ds}\omega_{g_s}(A)$ as a $W_\gamma$-weighted correlation};
+  \node[tbox] (two) at (\cD,0.05) {Lemma 10.3, (26): $2Me^{-\gamma r_j/4}$ for $|t|\le r_j/2$, otherwise $2M$};
   \node[tag,anchor=north west] at (l101.south west) {under (G$_\gamma$)};
   \draw[arr] (deriv) -- node[lab,right] {(15)} (l101);
   \draw[arr] (filt.south east) -- node[lab,pos=0.35,above=1pt] {(18)} (l101.north west);
@@ -71,34 +82,35 @@
   \draw[arr] (mm.east) -| (7.25,1.5) |- (two.east);
   \node[lab,rotate=90] at (7.25,1.5) {$M$ (via Lemma 10.2)};
   % ---- row 3: the chain
-  \node[cbox] (one) at (\cB,-1.55) {Prop 10.4, (27): one-path estimate, $d\ge d_0=4+2/\gamma$; $\le8$ cells per unit shell};
-  \node[cbox] (rate) at (\cC,-1.55) {Lemma 10.5, (29)--(30): $\Psi_\gamma(d)\le C_{N,\gamma,M}(1+d)^{-N}$, every $N$};
-  \node[cbox] (cauchy) at (\cD,-1.55) {Thm 11.1, (31): Cauchy in each $\A(O)^*$; the limit $\omega_\infty$ and the rate $\Psi_{m_1}$};
+  \node[tbox] (one) at (\cB,-1.55) {Prop 10.4, (27): one-path estimate, $d\ge d_0=4+2/\gamma$; $\le8$ cells per unit shell};
+  \node[tbox] (rate) at (\cC,-1.55) {Lemma 10.5, (29)--(30): $\Psi_\gamma(d)\le C_{N,\gamma,M}(1+d)^{-N}$, every $N$};
+  \node[tbox] (cauchy) at (\cD,-1.55) {Thm 11.1, (31): Cauchy in each $\A(O)^*$; the limit $\omega_\infty$ and the rate $\Psi_{m_1}$};
   \draw[arr] (l101) -- node[lab,right] {(24)} (one);
   \draw[arr] (two.south west) -- node[lab,pos=0.3,above=1pt] {(26)} (one.north east);
   \draw[arr] (one) -- (rate);
   \draw[arr] (rate) -- (cauchy);
   % ---- identification
-  \node[obox] (spec) at (\cB,-3.3) {Prop 12.1: ground state in the spectral sense, via (P)};
-  \node[grey] (par) at (\cC,-3.3) {Lemma 2.8: covariance (T) and parity of the cutoff states};
-  \node[cbox] (norm) at (\cD,-3.3) {Prop 11.2: $\omega_\infty|_{\A(O)}$ normal (norm limit of vector states)};
-  \node[tag,anchor=north west] at (spec.south west) {any norm limit};
-  \node[lab,fill=none] (a6b) at (-4.4,-3.3) {A6: (P)};
+  \node[tout] (spec) at (\cB,-3.35) {Prop 12.1: ground state in the spectral sense, via (P)};
+  \node[grey] (par) at (\cC,-3.35) {Lemma 2.8: covariance (T) and parity of the cutoff states};
+  \node[tbox] (norm) at (\cD,-3.35) {Prop 11.2: $\omega_\infty|_{\A(O)}$ normal (norm limit of vector states)};
+  \node[tag,anchor=north west,color=warn] at (spec.south west) {any norm limit};
+  \node[lab,fill=none] (a6b) at (-4.4,-3.35) {A6: (P)};
   \draw[arr] (a6b) -- (spec.west);
   \draw[arr] (cauchy) -- node[lab,right] {(31)} (norm);
-  \draw[arr] (cauchy.south west) -- ++(0,-0.3) -| node[lab,pos=0.25,above=1pt] {(31) as hypothesis} (spec.north);
-  \node[cbox,text width=10.1cm,align=left] (main) at (1.8,-5.65)
-   {\textbf{Thm 12.2} (assume $\UGJS$; $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$): a state $\omega_\infty$ on $\A$ with\\[1pt]
+  % the run is tied to spec.north, so it stays above the node and the tip points down into it
+  \draw[arr] (cauchy.south west) |- node[lab,pos=0.75,above=1pt] {(31) as hypothesis} ([yshift=1.5mm]spec.north) -- (spec.north);
+  \node[tbox,text width=10.1cm,align=left] (main) at (1.8,-5.5)
+   {\textbf{Thm 12.2} ($0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$): a state $\omega_\infty$ on $\A$ with\\[1pt]
     (1) full-net convergence with rate: the estimate (31), Thm 11.1\\
     (2) local normality: norm limits of normal states, Prop 11.2\\
     (3) ground state in the spectral sense: the identity (P), Prop 12.1\\
     (4) invariances: $g\mapsto\tau_ag$ is an order isomorphism of $\G$, plus (T), Lemma 2.8\\
     (5) spectra and local moment of $H(g)$, $g\in\CH$: restates Thms 7.8, 5.1};
-  \node[cbox] (cor) at (\cA,-5.65) {Cor 12.3, by (1) and averaging: every $w^*$ limit point of GJ3's averaged or unaveraged states equals $\omega_\infty$ on each $\A(O)$};
+  \node[tbox] (cor) at (\cA,-5.5) {Cor 12.3, by (1) and averaging: every $w^*$ limit point of GJ3's averaged or unaveraged states equals $\omega_\infty$ on each $\A(O)$};
   \draw[arr] ([xshift=-4mm]spec.south east) -- node[lab,right] {(3)} ([xshift=-4mm]spec.south east |- main.north);
   \draw[arr] (par) -- node[lab,right] {(4)} (main.north -| par);
   \draw[arr] (norm) -- node[lab,right] {(2)} (main.north -| norm);
-  \draw[arr] (cauchy.east) -| (7.25,-3.5) |- (main.east);
-  \node[lab,rotate=90] at (7.25,-3.5) {(1)};
+  \draw[arr] (cauchy.east) -| (7.25,-3.55) |- (main.east);
+  \node[lab,rotate=90] at (7.25,-3.55) {(1)};
   \draw[arr] ([yshift=-3mm]main.west) -- ([yshift=-3mm]cor.east);
 \end{tikzpicture}

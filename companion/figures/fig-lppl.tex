@@ -20,7 +20,7 @@
   \node[mv,anchor=north west] (k) at ($(top.south west)!0.67!(top.south east)+(0,-4mm)$)
     {\textbf{(3) clustering}, Lemmas 9.3, 10.3\\ $|C_{j,s}(t)|\le 2Me^{-\gamma r_j/4}$ for $|t|\le r_j/2$;\\ $\|V_j\Om_s\|\le M$ is the moment (M$_2$).};
   % ================= (b) the path and the cells
-  \begin{scope}[shift={(0,-6.6cm)},x=0.40cm,y=0.95cm,font=\scriptsize]
+  \begin{scope}[shift={(0,-6.5cm)},x=0.40cm,y=0.85cm,font=\scriptsize]
     \def\d{6}\def\o{1.2}
     \node[pl,font=\footnotesize\bfseries] at (-15.6,2.0) {(b)};
     \draw[gline,->] (-15,0) -- (15.6,0) node[right,mut] {$x$};
@@ -39,8 +39,8 @@
     % cells B_j = supp(eta_j v), clipped to supp v = [-14,-8] u [8,14]
     \foreach \j/\lft/\rgt in {8/8/9, 9/8/10, 10/9/11, 11/10/12, 12/11/13, 13/12/14, 14/13/14} {
       \pgfmathsetmacro{\yy}{-0.52 - 0.09*mod(\j,2)}
-      \draw[warn,line width=1.4pt] (\lft,\yy) -- (\rgt,\yy);
-      \draw[warn,line width=1.4pt] (-\rgt,\yy) -- (-\lft,\yy); }
+      \draw[black!75,line width=1.4pt] (\lft,\yy) -- (\rgt,\yy);
+      \draw[black!75,line width=1.4pt] (-\rgt,\yy) -- (-\lft,\yy); }
     
     % unit shells from O
     \foreach \n in {6,...,12} {
@@ -56,7 +56,7 @@
       {$V(v)$, $v=g'-g$: unbounded, not small; only $V_j\Om_s$ enters (Lemma 10.2).\\ plateau of $g_s\supseteq\{g=1\}^\circ\cap\{g'=1\}^\circ$ (Lemma 3.1(iii)).};
   \end{scope}
   % ================= (c) the two regimes
-  \begin{scope}[shift={(-2.9cm,-13.4cm)},x=0.34cm,y=0.34cm,font=\scriptsize]
+  \begin{scope}[shift={(-2.9cm,-11.65cm)},x=0.34cm,y=0.34cm,font=\scriptsize]
     \def\a{1.4}\def\rj{7}\def\tmax{9.4}\def\xmin{-11.5}\def\xmax{11.5}
     \node[pl,font=\footnotesize\bfseries] at ({\xmin-0.3},{\tmax+1.0}) {(c)};
     \fill[ok!8!white] (\xmin,0) rectangle (\xmax,{\rj/2});
@@ -69,15 +69,15 @@
     \draw[gline,->] (0,-0.6) -- (0,{\tmax+0.6}) node[above,mut] {$|t|$};
     \draw[acc,line width=2.2pt] (-\a,0) -- (\a,0);
     \node[below=3pt] at (0,0) {$O$};
-    \draw[warn,line width=2.2pt] ({\a+\rj},0) -- ({\a+\rj+2},0);
+    \draw[black!75,line width=2.2pt] ({\a+\rj},0) -- ({\a+\rj+2},0);
     \node[below=3pt] at ({\a+\rj+1},0) {$B_j$};
     \draw[mut] (\a,-1.3) -- ({\a+\rj},-1.3);
     \draw[mut] (\a,-1.55) -- (\a,-1.05); \draw[mut] ({\a+\rj},-1.55) -- ({\a+\rj},-1.05);
     \node[below,mut] at ({\a+\rj/2},-1.35) {$r_j=\dist(B_j,O)$};
-    \draw[warn,line width=0.7pt] (\xmin,{\rj/2}) -- (\xmax,{\rj/2});
+    \draw[black!75,line width=0.7pt] (\xmin,{\rj/2}) -- (\xmax,{\rj/2});
     \node[anchor=west,inner sep=1.5pt] at ({\xmax+0.2},{\rj/2}) {$|t|=r_j/2$: the bound switches};
     \draw[mut,line width=0.7pt] (\xmin,\rj) -- (\xmax,\rj);
-    \fill[warn] ({\a+\rj},\rj) circle (2pt);
+    \fill[black!75] ({\a+\rj},\rj) circle (2pt);
     \node[anchor=west,inner sep=1.5pt,color=mut] at ({\xmax+0.2},\rj) {$|t|=r_j$: the cone reaches $B_j$};
     \node[acc] at (0,5.0) {$O_{|t|}$};
     \node[acc,anchor=west,align=left] at (4.3,2.2) {exact, speed $\le1$\\ (Prop 2.7)};

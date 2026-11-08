@@ -2,18 +2,20 @@
 \usepackage[margin=30mm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
-\usepackage{microtype,booktabs,enumitem,longtable,array}
+\usepackage{microtype,booktabs,enumitem,longtable,array,multicol}
 \usepackage{xcolor}
-% Colours: the documentation site's palette (docs/figures/svg.py, LIGHT), so that
-% "conditional on U_GJS" is the same violet in the README, on the site and here.
+% Colours: the documentation site's palette (docs/figures/svg.py, LIGHT).  Revised edition
+% (7 November 2026): the violet class "conditional on U_GJS" is removed with the retired
+% item A8(vi); orange (warn) marks only what rests on A8(iv)-T, the transverse case of
+% GJS Theorem 1.1.7 (Theorem D.4, Theorem 5.1 and what consumes M), in text and figures
+% alike (round R7: no other series, frame or line is orange).
 \definecolor{noteBlue}{RGB}{30,72,110}
 \definecolor{acc}{RGB}{9,105,218}     % #0969da  primary series / emphasis
-\definecolor{warn}{RGB}{188,76,0}     % #bc4c00  second series / caution
-\definecolor{cond}{RGB}{130,80,223}   % #8250df  conditional on U_GJS -- reserved
-\definecolor{ok}{RGB}{26,127,55}      % #1a7f37  unconditional / closed
+\definecolor{warn}{RGB}{188,76,0}     % #bc4c00  reserved: rests on A8(iv)-T
+\definecolor{ok}{RGB}{26,127,55}      % #1a7f37  second path / contrast
 \definecolor{mut}{RGB}{110,119,129}   % #6e7781  muted ink, guides
 \definecolor{gline}{RGB}{208,215,222} % #d0d7de  grid and frames
-\definecolor{cfill}{RGB}{243,238,252} % #f3eefc  conditional fill
+\definecolor{tfill}{RGB}{252,240,232} % warn at about 9 %: fill of what rests on A8(iv)-T
 \definecolor{afill}{RGB}{221,244,255} % #ddf4ff  accent fill
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,decorations.pathreplacing,patterns}
@@ -27,6 +29,16 @@
 \renewcommand{\topfraction}{0.92}\renewcommand{\bottomfraction}{0.6}
 \renewcommand{\textfraction}{0.06}\renewcommand{\floatpagefraction}{0.85}
 \setcounter{topnumber}{2}\setcounter{totalnumber}{3}
+% Revised edition (7 November 2026): tighter space around floats and captions, for the
+% 20-page ceiling with the longer record (PLAN.md, "Revised edition (7 November 2026)").
+\setlength{\textfloatsep}{10pt plus 2pt minus 3pt}\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}\setlength{\abovecaptionskip}{6pt}
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}{-2.5ex \@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}{\normalfont\Large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}{-2.4ex\@plus -1ex \@minus -.2ex}%
+  {1.2ex \@plus .2ex}{\normalfont\large\bfseries}}
+\makeatother
 \pagestyle{fancy}\fancyhf{}
 \lhead{\small Reader's companion: cutoff removal for weakly coupled $P(\varphi)_2$}
 \rhead{\small\thepage}
@@ -60,20 +72,24 @@
 \DeclareMathOperator{\Ran}{Ran}
 
 % ---- companion-specific ----
-% A locator into the document of record [R]: \rec{Theorem~12.2}{30}.
+% A locator into the document of record [R]: \rec{Theorem~12.2}{37}.
 \DeclareRobustCommand{\rec}[2]{[\hyperlink{bib-record}{R}, #1, p.\,#2]}
 \DeclareRobustCommand{\recpp}[2]{[\hyperlink{bib-record}{R}, #1, pp.\,#2]}
 \newcommand{\UGJS}{U_{\mathrm{GJS}}}
-\newcommand{\condtext}[1]{\textcolor{cond}{#1}}
+% The marking of what rests on A8(iv)-T, at its first mention in a section (PLAN.md,
+% "Revised edition (7 November 2026)").
+\newcommand{\Ttext}[1]{\textcolor{warn}{#1}}
 % Boxes.  recordbox: a statement quoted from the record.  checkpoint: the displayed
 % statement a reader holds on to at the end of a short chain.  statusnotice: page 1.
 \newtcolorbox{recordbox}[1]{enhanced,breakable,colback=white,colframe=gline,
   coltitle=black,colbacktitle=gline!40!white,fonttitle=\bfseries\small,title={#1},
-  boxrule=0.5pt,arc=1pt,left=6pt,right=6pt,top=4pt,bottom=4pt}
+  boxrule=0.5pt,arc=1pt,left=6pt,right=6pt,top=4pt,bottom=4pt,
+  before skip=4pt plus 1pt,after skip=4pt plus 1pt}
 \newtcolorbox{checkpoint}[1][Checkpoint]{enhanced,colback=afill!60!white,colframe=acc,
   coltitle=white,colbacktitle=acc,fonttitle=\bfseries\small,title={#1},
-  boxrule=0.5pt,arc=1pt,left=6pt,right=6pt,top=4pt,bottom=4pt}
-\newtcolorbox{statusnotice}{enhanced,colback=warn!6!white,colframe=warn,
+  boxrule=0.5pt,arc=1pt,left=6pt,right=6pt,top=4pt,bottom=4pt,
+  before skip=4pt plus 1pt,after skip=4pt plus 1pt}
+\newtcolorbox{statusnotice}{enhanced,colback=gline!22!white,colframe=mut,
   boxrule=0.6pt,arc=1pt,left=6pt,right=6pt,top=4pt,bottom=4pt}
 \newenvironment{context}{\par\noindent\textsc{Context, not part of the record.}\ }{\par}
 

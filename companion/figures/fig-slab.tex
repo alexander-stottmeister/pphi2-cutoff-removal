@@ -4,39 +4,41 @@
 % the Hamiltonian side of (2), the T -> infinity limit of Lemma 4.4 (simplicity only), and
 % the output: Prop 7.5, then (G) of Thm 7.8.  Drawn from the statements; evaluates nothing.
 % Drawing values: T = 3, t/2 = 2 (Lemma 7.3 needs T >= t/2); working coordinates.
+% Revised 7 November 2026: the output box carries no class (the violet class "conditional
+% on U_GJS" is removed; Lemmas 7.1-7.3 rest on Theorem D.3, parallel strips only).
 \begin{tikzpicture}[font=\small,
   box/.style={draw=gline,rounded corners=1pt,fill=white,align=flush left,inner sep=4pt,font=\footnotesize,text width=6.9cm},
-  cbox/.style={box,draw=cond,fill=cfill},
+  obox/.style={box,draw=acc,fill=afill!45!white},
   arr/.style={-{Latex[length=2mm]},line width=0.7pt,draw=mut}]
   \begin{scope}[x=0.5cm,y=0.5cm]
     \def\T{3}\def\p{1.6}\def\q{2.6}\def\th{2}
     \fill[acc!10!white] (-\q,-\T) rectangle (\q,\T);
     \fill[acc!25!white] (-\p,-\T) rectangle (\p,\T);
-    \fill[pattern=north east lines,pattern color=warn!45!white] (-\q,{-\th+1}) rectangle (\q,{\th-1});
+    \fill[pattern=north east lines,pattern color=acc!55!white] (-\q,{-\th+1}) rectangle (\q,{\th-1});
     \draw[acc,line width=0.8pt] (-\q,-\T) rectangle (\q,\T);
     \draw[gline,->] (-4.2,0) -- (4.4,0) node[right,mut] {$x^1$};
     \draw[gline,->] (0,-4.2) -- (0,4.4) node[above,mut] {$x^0$};
     \node[font=\scriptsize,anchor=south west,inner sep=1pt] at (0.08,{\T+0.05}) {$T$};
     \node[font=\scriptsize,anchor=north west,inner sep=1pt] at (0.08,{-\T-0.05}) {$-T$};
     \node[font=\scriptsize,anchor=south east] at (-0.3,{\T+0.5}) {$h_{T,g}=\mathbf 1_{[-T,T]}\otimes g$};
-    \draw[warn,line width=1.2pt] (-\q,\th) -- (\q,\th);
-    \draw[warn,line width=1.2pt] (-\q,-\th) -- (\q,-\th);
+    \draw[ok,line width=1.2pt] (-\q,\th) -- (\q,\th);
+    \draw[ok,line width=1.2pt] (-\q,-\th) -- (\q,-\th);
     \node[font=\scriptsize,anchor=west] at ({\q+0.15},\th) {$F_2(\Phi(\tfrac t2,\cdot))$};
     \node[font=\scriptsize,anchor=west] at ({\q+0.15},-\th) {$F_1(\Phi(-\tfrac t2,\cdot))$};
     \node[font=\scriptsize,anchor=south west,inner sep=1pt] at ({\q+0.15},0.12) {$|x^0|<\tfrac t2-1$};
     \node[font=\scriptsize,mut,anchor=north,align=center,text width=4.4cm] at (0,{-\T-1.1})
       {dark: $\{g=1\}$; light: $0<g<1$; hatched strip $|x^0|<t/2-1$: CE2 across it, width $t-2$ (Lemma 7.4)};
   \end{scope}
-  \node[box,anchor=west] (e) at (4.9cm,3.0cm)
+  \node[box,anchor=west] (e) at (4.9cm,2.8cm)
     {Euclidean side: $\displaystyle\int F_1\bigl(\Phi(-\tfrac t2,\cdot)\bigr)F_2\bigl(\Phi(\tfrac t2,\cdot)\bigr)\,dq_{h_{T,g}}$};
-  \node[box,anchor=west] (h) at (4.9cm,1.1cm)
+  \node[box,anchor=west] (h) at (4.9cm,1.0cm)
     {Hamiltonian side: $\dfrac{\ip{F_1\psi_{T-t/2}}{e^{-tH(g)}F_2\psi_{T-t/2}}}{\|\psi_T\|^2}$,\quad $\psi_s:=e^{-sH(g)}\Om_0$;\\[2pt] all limits at fixed $g$};
-  \node[box,anchor=west] (l) at (4.9cm,-0.9cm)
+  \node[box,anchor=west] (l) at (4.9cm,-0.85cm)
     {$T\to\infty$: $\psi_T/\|\psi_T\|\to\Om_g$ in norm (Lemma 4.4): simplicity only, no gap assumed};
-  \node[cbox,anchor=west] (p) at (4.9cm,-3.1cm)
+  \node[obox,anchor=west] (p) at (4.9cm,-3.15cm)
     {Prop 7.5: $\ip{\psi_Q}{e^{-tH(g)}\psi_Q}\le\widehat C_Q\,e^{-m_1t}$ for centred polynomial vectors $\psi_Q$;\\[1pt]
      with density (Thm 7.7): (G) $\spec H(g)\subseteq\{0\}\cup[m_1,\infty)$ (Thm 7.8) --- an output};
   \draw[arr] (e.south west) ++(0.4cm,0) -- node[right,font=\scriptsize,mut] {FKN identity (2), Lemma 4.1} ($(h.north west)+(0.4cm,0)$);
   \draw[arr] (h.south west) ++(0.4cm,0) -- node[right,font=\scriptsize,mut] {Lemma 4.4} ($(l.north west)+(0.4cm,0)$);
-  \draw[arr] (l.south west) ++(0.4cm,0) -- node[right,font=\scriptsize,mut,align=left,text width=6.4cm] {slab limits at fixed $g$ (Lemmas 7.1--7.3); CE2 across the strip (Lemma 7.4)} ($(p.north west)+(0.4cm,0)$);
+  \draw[arr] (l.south west) ++(0.4cm,0) -- node[right,font=\scriptsize,mut,align=left,text width=6.4cm] {fixed $g$: Lemmas 7.1--7.3 with Thm D.3;\\ CE2 across the strip: Lemma 7.4} ($(p.north west)+(0.4cm,0)$);
 \end{tikzpicture}

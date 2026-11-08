@@ -3,7 +3,7 @@
 
     python3 companion/council/make_labels.py        # from the repository root
 
-Part 1 lists the 61 numbered statements from docs/results.json (itself generated from
+Part 1 lists the numbered statements from docs/results.json (itself generated from
 part_i/main.tex and resolved through part_i/main.aux by docs/extract.py), with the
 computed flags: whether the statement's proof chain reaches A8, and whether it cites
 U_GJS by name.  Part 2 lists every other \\newlabel of part_i/main.aux -- sections,

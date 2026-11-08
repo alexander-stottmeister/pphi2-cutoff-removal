@@ -1,54 +1,81 @@
-% Fig. 2: "two affine paths, one quantifier" (PLAN Part 3, Fig. 2).  Left: the source's
-% affine path between two arbitrary cutoffs of its class (GJS pp. 594-595, as quoted in
-% A8(vii')(a)) and the record's slab path (A8 Scope (a), p. 11).  Right: the three steps of
-% the record's reading (Scope paragraph, p. 11), the imported quantifier, and Appendix C
-% without an arrow.  Drawn from the record's quotations; nothing is computed; no page image.
+% Fig. 2: the box comparison of Appendix D (redrawn for the revised edition of 7 November 2026;
+% it replaces "two affine paths, one quantifier", which drew the reading of the retired item
+% A8(vi)).  Left: the GJS squares Delta_{l,k} (row l in the time x^0, column k in the space
+% x^1, centred at integer points), the observable's squares, the box B and one separating
+% strip of each kind: (a) Theorem D.3 (box B_s(g,I): rows l_s-1..l_s+1 times every column of
+% supp g and I; every charged square outside lies above or below; parallel strip P_l of width
+% |l-l_s|-1), drawing values l_s = 0, columns of supp g -3..2, I in columns -1..0, slab rows
+% -3..3; (b) Theorem D.4 (S_a = row 0, columns 0..2; B_{3x5} = rows -1..1, columns -1..3; ring j
+% = squares with delta = j; class (P) |l| = 1+j, parallel strip of width j; class (T) |l| <= j
+% in the side columns, transverse strip of width j = A8(iv)-T), drawing values: rings 1-2, a
+% cutoff h drawn as an irregular region, the path h_alpha = h on B and alpha h outside B
+% (Lemma N.5(ii)).  Right: Lemma D.1, Lemma D.2, the box term (Lemma C.2, Theorem C.5) and the
+% two theorems.  Drawn from the statements; nothing is computed; no page image.
 \begin{tikzpicture}[font=\scriptsize,
-  lbox/.style={draw=mut,rounded corners=1pt,fill=white,align=left,inner sep=4pt,text width=2.95cm},
-  dbox/.style={draw=cond,dashed,line width=0.8pt,rounded corners=1pt,fill=cfill,align=left,inner sep=4pt,text width=6.2cm},
-  arr/.style={-{Latex[length=1.6mm]},line width=0.55pt,draw=mut}]
-  % ---------- left, top: the source's path
-  \begin{scope}[x=0.28cm,y=0.28cm]
-    \draw[gline,->] (-4.2,0) -- (4.4,0) node[right,mut] {$x^1$};
-    \draw[gline,->] (0,-3.4) -- (0,3.6) node[above,mut] {$x^0$};
-    \draw[mut,line width=0.9pt,rounded corners=3pt] (-1.5,-1.3) rectangle (1.3,1.3);
-    \node[mut,anchor=north west,inner sep=1pt] at (-1.45,1.25) {$h_1$};
-    \draw[ok,line width=0.9pt,rounded corners=4pt] (-3.2,-2.6) rectangle (3.0,2.8);
-    \node[anchor=south west,inner sep=1pt] at (-3.2,2.85) {$h_2$};
-    \draw[mut!70!black,dashed,rounded corners=3pt] (-2.4,-2.0) rectangle (2.2,2.2);
-    \node[anchor=north west,inner sep=0.5pt,fill=white,font=\tiny] at (-2.3,2.1) {$h_1+\alpha(h_2-h_1)$};
-    \draw[acc,line width=2pt] (-0.5,0) -- (0.5,0);
-    \node[anchor=north,inner sep=1pt] at (0,-0.1) {$\mathcal O$};
-    \node[align=center,anchor=north,text width=4.0cm,font=\tiny] at (0,-3.7)
-      {GJS pp.\,594--595: Thm 1.1.7 applied at every cutoff of the path, one constant (quoted in A8(vii$'$)(a)); $h_1,h_2$ arbitrary, compact support, $0\le h\le1$};
+  sq/.style={draw=gline,line width=0.3pt},
+  lbox/.style={draw=mut,rounded corners=1pt,fill=white,align=left,inner sep=3pt,text width=6.0cm},
+  tlbox/.style={lbox,draw=warn,fill=tfill},
+  arr/.style={-{Latex[length=1.5mm]},line width=0.5pt,draw=mut}]
+  % ================= (a) Theorem D.3
+  \begin{scope}[x=0.37cm,y=0.37cm]
+    % slab h_{T,g}: columns -3..2, rows -3..3
+    \fill[acc!9!white] (-3.5,-3.5) rectangle (2.5,3.5);
+    % parallel strip P_3 for the squares of row 3: 0.5 < x^0 < 2.5
+    \fill[pattern=north east lines,pattern color=acc!55!white] (-4.5,0.5) rectangle (3.5,2.5);
+    \foreach \k in {-4,...,3} \foreach \l in {-3,...,3}
+      \draw[sq] (\k-0.5,\l-0.5) rectangle (\k+0.5,\l+0.5);
+    % squares of the observable, row 0, columns -1..0
+    \fill[acc] (-1.5,-0.5) rectangle (0.5,0.5);
+    % box B_s(g,I): rows -1..1, columns -3..2
+    \draw[ok,line width=1.1pt] (-3.5,-1.5) rectangle (2.5,1.5);
+    % one charged square outside, row 3
+    \draw[acc,line width=0.9pt] (0.5,2.5) rectangle (1.5,3.5);
+    \draw[gline,->] (-4.9,0) -- (3.9,0) node[right,mut,inner sep=1pt] {$x^1$};
+    \draw[gline,->] (-4.5,-3.9) -- (-4.5,3.9) node[above,mut,inner sep=1pt] {$x^0$};
+    \node[font=\footnotesize\bfseries,anchor=south west,inner sep=0pt] at (-4.9,4.25) {(a)};
+    \node[align=left,anchor=north west,text width=3.3cm,inner sep=0pt] at (-4.6,-3.85)
+      {Thm D.3: the box $B$ (green) spans every column of $\supp g$; every square outside lies above or below, so the strip (hatched) is parallel};
   \end{scope}
-  % ---------- left, bottom: the record's slab path
-  \begin{scope}[shift={(0,-5.9cm)},x=0.28cm,y=0.28cm]
-    \draw[gline,->] (-4.2,0) -- (4.4,0) node[right,mut] {$x^1$};
-    \draw[gline,->] (0,-3.4) -- (0,3.6) node[above,mut] {$x^0$};
-    \fill[afill] (-3.0,-2.6) rectangle (3.0,2.6);
-    \draw[mut,line width=0.9pt] (-1.5,-2.6) rectangle (1.5,2.6);
-    \node[mut,anchor=south east,inner sep=1pt] at (-1.5,2.65) {$h_{T,g}$};
-    \draw[ok,line width=0.9pt] (-3.0,-2.6) rectangle (3.0,2.6);
-    \node[anchor=south west,inner sep=1pt] at (1.6,2.65) {$h_{T,g'}$};
-    \draw[acc,dashed,line width=0.9pt] (-2.25,-2.6) rectangle (2.25,2.6);
-    \node[acc,anchor=west,inner sep=1pt] at (3.1,1.3) {$h_{T,g_s}$};
-    \node[anchor=south east,inner sep=1pt] at (-0.2,2.65) {$T$};
-    \node[anchor=north east,inner sep=1pt] at (-0.2,-2.65) {$-T$};
-    \draw[acc,line width=2pt] (-0.5,0) -- (0.5,0);
-    \node[anchor=north,inner sep=1pt] at (0,-0.1) {$O$};
-    \node[align=center,anchor=north,text width=4.0cm,font=\tiny] at (0,-3.7)
-      {the same family: $h_1=h_{T,g}$, $h_2=h_{T,g'}$, $\alpha=s$ (A8 Scope (a), p.\,11); CE1 used at every slab cutoff: Thm 5.1, Lemmas 7.1--7.3; $h$ is a spacetime cutoff, $g$ a spatial one};
+  % ================= (b) Theorem D.4
+  \begin{scope}[shift={(3.85cm,0)},x=0.37cm,y=0.37cm]
+    % a cutoff h in C_E: an irregular region; alpha h outside B is drawn lighter
+    \fill[acc!9!white] (-3.4,-2.9) -- (-1.8,-3.4) -- (2.6,-3.3) -- (5.4,-1.6) -- (5.3,2.3) -- (3.2,3.4) -- (-1.2,3.2) -- (-3.4,1.6) -- cycle;
+    \fill[acc!22!white] (-1.5,-1.5) rectangle (3.5,1.5);
+    % transverse strip for the class-(T) square in row 0, column 4: 2.5 < x^1 < 3.5
+    \fill[pattern=north west lines,pattern color=warn!70!white] (2.5,-3.5) rectangle (3.5,3.5);
+    % parallel strip for the class-(P) square in row 2: 0.5 < x^0 < 1.5
+    \fill[pattern=north east lines,pattern color=acc!55!white] (-3.5,0.5) rectangle (5.5,1.5);
+    \foreach \k in {-3,...,5} \foreach \l in {-3,...,3}
+      \draw[sq] (\k-0.5,\l-0.5) rectangle (\k+0.5,\l+0.5);
+    % ring 1 (dashed outline)
+    \draw[mut,dashed,line width=0.5pt] (-2.5,-2.5) rectangle (4.5,2.5);
+    % squares of the observable S_a: row 0, columns 0..2
+    \fill[acc] (-0.5,-0.5) rectangle (2.5,0.5);
+    % the box B_{3x5}
+    \draw[ok,line width=1.1pt] (-1.5,-1.5) rectangle (3.5,1.5);
+    % one class-(P) square (row 2) and one class-(T) square (row 0, column 4)
+    \draw[acc,line width=0.9pt] (0.5,1.5) rectangle (1.5,2.5);
+    \fill[tfill] (3.5,-0.5) rectangle (4.5,0.5);
+    \draw[warn,line width=0.9pt] (3.5,-0.5) rectangle (4.5,0.5);
+    \node[font=\tiny,inner sep=0.5pt] at (1,2) {P};
+    \node[font=\tiny,inner sep=0.5pt,warn] at (4,0) {T};
+    \node[font=\tiny,inner sep=0.5pt,mut,fill=white] at (-2.6,-3.0) {$\alpha h$};
+    \node[font=\tiny,inner sep=0.5pt,fill=white] at (1,-1.0) {$h$};
+    \node[font=\footnotesize\bfseries,anchor=south west,inner sep=0pt] at (-3.9,4.25) {(b)};
+    \node[align=left,anchor=north west,text width=3.5cm,inner sep=0pt] at (-3.6,-3.85)
+      {Thm D.4: the box $B_{3\times5}$ and its innermost ring (dashed); a square in the top or bottom row of a ring (P) gets a parallel strip, a side square (T) a transverse one: A8(iv)-T};
   \end{scope}
-  % ---------- right: the logic of the evidence
-  \node[lbox] (sa) at (3.95,-1.0) {(a) pp.\,594--595: Thm 1.1.7 at every cutoff of an affine path};
-  \node[lbox] (sb) at (7.5,-1.0) {(b) pp.\,596--597: 1.1.7's $h$-independent constant taken from 1.1.8 at the same $h$; (1.1.16) ``uniformly in $h$''};
-  \node[lbox] (sc) at (11.05,-1.0) {(c) p.\,629: Thms 1.1.8, 1.1.11, 3.1, 4.1 ``uniform in the space cutoff $h$''; 1.1.8 is the case $B=I$, $n=0$};
-  \node[dbox] (u) at (7.5,-4.0) {$\UGJS$: one $C_8$ for all $h_{T,g}$, $T>0$, $g\in\CH$ --- imported at the source's scope, not re-derived (A8(vi))};
-  \node[align=left,text width=6.2cm,color=mut,anchor=north] at (7.5,-4.9)
-    {as stated, Thm 1.1.8 holds uniformly as the source cutoff tends to one (Source Fact 2.3); the assembled quantifier is a named hypothesis of Thm 12.2};
-  \node[lbox,text width=1.45cm,anchor=west] (appc) at (10.95,-4.0) {App.\,C: mechanism audit, two prerequisites; no arrow};
-  \draw[arr] (sa.south) -- ([xshift=5mm]u.north west);
-  \draw[arr] (sb.south) -- (u.north);
-  \draw[arr] (sc.south) -- ([xshift=-6mm]u.north east);
+  % ================= right: the steps
+  \node[lbox,anchor=north west] (s1) at (6.45cm,1.65cm)
+    {(1) Lemma D.1: along $h_\alpha=h^B+\alpha(h-h^B)\in\CE$, the difference $\langle F\rangle_h-\langle F\rangle_{h^B}$ is\\ $-\int_0^1\mathrm{Cov}_{h_\alpha}(F,\mathcal U_{h-h^B})\,d\alpha$};
+  \node[lbox,anchor=north west] (s2) at ($(s1.south west)+(0,-0.12)$)
+    {(2) Lemma D.2: $\mathcal U_{h-h^B}$ is a sum over the squares $\Delta$ outside $B$; Thm 1.1.7 across a strip of width $w_\Delta$ bounds each by $C_7c_U\|F\|_{\rm GJS}e^{-m_1w_\Delta}$};
+  \node[lbox,anchor=north west] (s3) at ($(s2.south west)+(0,-0.12)$)
+    {(3) the box term $\langle F\rangle_{h^B}$: Lemma C.2 bounds $Z(h^B)$ below, Thm C.5 makes $S_2(B)$ finite; no clustering};
+  \node[lbox,anchor=north west,text width=2.8cm] (o3) at ($(s3.south west)+(0,-0.45)$)
+    {Thm D.3: fixed $g$, uniform in $T$; parallel strips only $\to$ \S7};
+  \node[tlbox,anchor=north east,text width=2.8cm] (o4) at ($(s3.south east)+(0,-0.45)$)
+    {Thm D.4: every $h\in\CE$; transverse strips too $\to$ Thm 5.1};
+  \draw[arr] (s3.south -| o3) -- (o3.north);
+  \draw[arr] (s3.south -| o4) -- (o4.north);
 \end{tikzpicture}

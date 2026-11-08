@@ -1,120 +1,156 @@
 % s4-import.tex -- Section 4 of the reader's companion (drafter: cqft, R3; edited in R4).
-\section{The one import that is not a quotation}\label{sec:import}
+% Retitled and rewritten for the revised edition of 7 November 2026: the uniform local
+% moment is a theorem of the record (Appendix D); A8(vi) is retired; A8(iv)-T is disclosed.
+% Status sentence: ugjs/PLAN.md Part 8, F-B with the A8(iv)-T variant, verbatim.
+\section{The uniform local moment, from the printed clustering theorem}\label{sec:import}
 
-\emph{$\UGJS$ is the source's own quantifier, assembled from four pages and not
-re-derived; that is why the theorem is conditional} (the reading as of 24 October 2026;
-see page~1).
+\emph{The uniform local moment is a theorem of the record: restrict the cutoff to a box of
+GJS squares; Theorem~1.1.7 bounds the difference, Appendix~C the box.}
 
-Of the record's eight imports \rec{\S2.4}{7}, A1--A7 quote printed construction
-theorems (table below). A8 packages the cluster-expansion input of Glimm--Jaffe--Spencer
-\cite{GJS} for the interacting Euclidean measures $dq_h$, $h\in\CE$, of A3 and for
-observables $Q(x^0)$ at sharp Euclidean time $x^0$; its items include the printed norms
-$\|\cdot\|_{\rm GJS}$, the clustering estimate CE2 (Source Fact~2.2), the moment bound
-CE1 (Source Fact~2.3), the dilation, and one item not read off a single theorem:
+Of the record's eight imports \rec{\S2.4}{9}, A1--A7 quote printed statements (table
+below). A8 packages the input of Glimm--Jaffe--Spencer \cite{GJS} for the
+interacting Euclidean measures $dq_h=Z(h)^{-1}e^{-\mathcal U_h}d\mu_0$, $h\in\CE$, of A3
+($\mathcal U_h$ the Euclidean interaction, $d\mu_0$ the free Euclidean measure): the
+cutoff classes, the observables, the printed norms $\|\cdot\|_{\rm GJS}$, the dilation, and
+one theorem, CE2; its items (v)--(vii$'$) are provenance, used by no proof
+\rec{A8, \emph{Used in}}{19}.
 
-\begin{recordbox}{Assumption A8(vi) of the record (p.\,10)}
-For
+Theorem~12.2 is proved from printed statements only, with one GJS theorem imported:
+Theorem~1.1.7, which is also used for sharp-time observables across strips transverse to
+the time-zero line, a case its printed statement covers and its printed proof does not
+reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record
+(Appendix~D). The human readings of C5 items 1--4 and 10--12, with item 9(c), are open
+(\S\ref{sec:record}). The imported theorem, as the record transcribes it:
+
+\begin{recordbox}{Source Fact 2.2 of the record: CE2 $=$ GJS Theorem 1.1.7 (p.\,15)}
+For localized monomials $Q_1,Q_2$ with disjoint localization squares separated by a strip
+of width $d$ bounded by two parallel lines (any orientation),
 \[
- \CE^{\rm slab}:=\{h_{T,g}=\mathbf1_{[-T,T]}\otimes g:T>0,\ g\in\CH\}\subset\CE,
+  \Bigl|\int Q_1Q_2\,dq_h-\int Q_1dq_h\int Q_2dq_h\Bigr|
+  \le C_7e^{-m_1d}\|Q_1\|_{\rm GJS}\|Q_2\|_{\rm GJS} ,
 \]
-one and the same constant $C_8$ satisfies
-\begin{equation*}
- \left|\int Q(x^0)\,dq_{h_{T,g}}\right|\le C_8\|Q(x^0)\|_{\rm GJS}\quad(T>0,\ g\in\CH) .
- \tag*{\rec{$(\UGJS)$}{10}}
-\end{equation*}
+with $m_1>0$ and $C_7$ \emph{independent of $h$, $Q_1$, $Q_2$} (so stated in the source).
 \end{recordbox}
 
-$\UGJS$ (A8(vi)) is the cutoff-uniform form of GJS Thm~1.1.8 on the slab family
-$h_{T,g}$; since 5~September 2026 it is imported at the scope at which the source states
-it (p.~629) and uses it (pp.~594--597: the affine path and the derivation of Thm~1.1.7
-from 1.1.8); it is not a quantifier strengthened beyond the source; it is still a named
-hypothesis, because it is assembled from four pages and the cluster expansion is not
-re-derived (Appendix~C audits the mechanism and proves two analytic prerequisites only).
+\emph{The comparison.} The record's \S\S5 and~7 need moments of sharp-time observables
+under the slab measures $dq_{h_{T,g}}$, bounded uniformly in $T$. Appendix~D derives them
+with the device of GJS's own proof of their (1.1.11) \rec{Appendix~D}{53}, in three steps
+(Fig.~\ref{fig:quantifier}); $\langle F\rangle_h:=\int F\,dq_h$.
+(1)~Restrict $h\in\CE$ to a box $B$ of GJS squares (unit squares centred at integer
+points) containing the squares of the observable $F$, $h^B:=h\mathbf 1_B$. Along
+$h_\alpha:=h^B+\alpha(h-h^B)\in\CE$, $\alpha\in[0,1]$, the difference
+$\langle F\rangle_h-\langle F\rangle_{h^B}$ is minus the $\alpha$-integral of the
+covariance, under $dq_{h_\alpha}$, of $F$ with the interaction $\mathcal U_{h-h^B}$ outside
+the box \rec{Lemma~D.1}{79}.
+(2)~That interaction is a sum over the squares $\Delta$ outside $B$ charged by $h$; a strip
+of positive width $w_\Delta$ separates each from the squares of $F$, and Theorem~1.1.7 bounds its
+contribution by $C_7c_U\|F\|_{\rm GJS}e^{-m_1w_\Delta}$, with $c_U$ a bound on the GJS norm
+of the interaction in one square \rec{Lemma~D.2}{84}.
+(3)~The box term needs no clustering: Lemma~C.2 bounds $Z(h^B)$ from below, and
+$\|e^{-\mathcal U_{h^B}}\|_{L^2(d\mu_0)}$ is at most $S_2(B)$, the supremum of that norm over
+the cutoffs supported in the closed box: finite by Theorem~C.5, not evaluated, and
+dependent on the shape of $B$ only \rec{Proposition~N.15}{62}. Two choices of the box give
+two theorems, the second \Ttext{resting on A8(iv)-T}:
+\begin{checkpoint}[Checkpoint: Theorems D.3 and D.4]
+Assume the standing assumption of \rec{\S D.c.1}{82}. For $g\in\CH$, a bounded interval $I$ of positive length, $s\in\R$ and a finite real
+linear combination $F$ of cylinder monomials supported in $I$, for every $T>0$,
+\begin{equation*}
+ \Bigl|\int F(s)\,dq_{h_{T,g}}\Bigr|\le A\,\|F\|_{L^2(d\phi_0)}+B'\,\|F(s)\|_{\rm GJS} ,
+ \tag*{\rec{Theorem~D.3}{90}}
+\end{equation*}
+and for every $h\in\CE$, $a\in\R$ and real measurable $h'$ with $\|h'\|_\infty\le1$ and
+$\supp h'\subseteq[a,a+2]$,
+\begin{equation*}
+ \int V(h')(0)^2\,dq_h\le M_B^2 .
+ \tag*{\rec{Theorem~D.4}{95}}
+\end{equation*}
+\end{checkpoint}
+Here $F(s)$ is $F$ at time $s$, $V(h')(0)$ the local interaction at time $0$,
+$A=e^{3\lambda|a_0|N_B}S_2(B)$, $B'=2C_7c_UN_ge^{-m_1}(1-e^{-m_1})^{-1}$, with $N_g\le N_B$
+the column counts of $\supp g$ and of the box; $M_B$ is in \S\ref{sec:euclidean}.
 
-\emph{Why it is not literal.} As printed, GJS Theorem~1.1.8 is ``stated uniformly as the
-source cutoff tends to one'' \rec{Source Fact~2.3}{10}. The record needs it on another
-family: its limits $T\to\infty$ are taken at fixed $g$ \rec{\S4}{15}, the bound must hold
-along every affine cutoff $g_s=(1-s)g+sg'$ \rec{A8(vi)}{10}, and the slab cutoffs
-$h_{T,g}$, with $g$ of compact support, do not tend to one. Hence Theorem~12.2 is proved,
-\condtext{conditional on $\UGJS$} \rec{Theorem~12.2}{30}.
+For Theorem~D.3 the box is three rows of squares around the time $s$, across every column
+from the leftmost to the rightmost one meeting $\supp g\cup I$; every charged square outside lies
+above or below, so every strip is parallel to the time-zero line \rec{Remark~N.39}{92}.
+The constants then depend on $g$, which is all the record's \S7 needs: its limits
+$T\to\infty$ are taken at fixed $g$. For Theorem~D.4 the observable lies in three
+adjacent squares of row $0$, and $B_{3\times5}$ adds a row above and below and a column on
+each side. The squares outside lie in rings, the $j$-th of $8j+12$ squares: its top and
+bottom rows, class (P), are separated from the observable by a parallel strip of width
+$j$; its side columns, class (T), by a transverse strip of width $j$, and in rows
+$-1,0,1$ by no parallel strip of positive width at all. With parallel strips alone the
+sum would grow with the number of columns that $h$ charges, which is not bounded uniformly
+in $h\in\CE$; the transverse strips make $M_B$ one number for every $h$
+\recpp{\S D.e.4}{96--97}.
 
-\emph{The record's reading.} The Scope paragraph of A8 argues from the passages that
-A8(vii$'$) quotes \recpp{A8(vii$'$)}{10--11}, in three steps (Fig.~\ref{fig:quantifier}):
-\begin{enumerate}[label=(\alph*),leftmargin=2em,itemsep=1pt,topsep=2pt]
-\item the record reads GJS pp.~594--595 as proving Theorem~1.1.1 along the affine path
-  $h_1+\alpha(h_2-h_1)$, $\alpha\in[0,1]$, for arbitrary cutoffs $h_1,h_2$ of the
-  source's class (p.~589: compact support, $0\le h\le1$), with Theorem~1.1.7 applied at
-  every cutoff of that path with one $h$-independent constant; the record's path
-  $h_{T,g_s}=(1-s)h_{T,g}+s\,h_{T,g'}$ is this family with $\alpha=s$
-  \rec{A8, Scope~(a)}{11};
-\item it reads GJS pp.~596--597 as taking the $h$-independent constant of
-  Theorem~1.1.7 from Theorem~1.1.8 and (1.1.16) at the same $h$; since Lemma~7.4 uses
-  Theorem~1.1.7 as printed at $h=h_{T,g}$, it concludes that consistency requires the
-  constant of Theorem~1.1.8 to be uniform on the same class, which is $(\UGJS)$
-  \recpp{A8, Scope~(b)}{11--12};
-\item it reads GJS p.~629, as quoted in \rec{Source Fact~2.4}{10}, as stating the
-  uniformity of Theorems~1.1.8 and 1.1.11 in the space cutoff $h$, with Theorem~1.1.8 the
-  case $B=I$, $n=0$ \rec{A8, Scope~(c)}{12}.
-\end{enumerate}
+\emph{A8(iv)-T.} The record discloses: ``GJS Theorem 1.1.7 is printed for localized
+monomials separated by a strip of any orientation (p.~594). Its printed proof rotates the
+strip into the time direction (p.~597) and so reaches sharp-time monomials only across
+strips parallel to the time-zero line. Lemma~7.4 uses only that case; Appendix~D also uses
+the transverse case, listed separately as A8(iv)-T'' \rec{A8(iv-T)}{15}. In the record's
+uses the second monomial is integrated over time and the strip is bounded by two lines of
+constant $x^1$. The case enters Theorem~D.4, hence \Ttext{Theorem~5.1 and every statement
+that consumes $M$}, from Lemma~10.2 on; it does not enter the record's \S7, whose
+Theorem~D.3 uses parallel strips only. It is listed for transparency, not as another kind
+of import: the printed statement is used at its printed scope, as every item of A8 is. It is not a narrower form of the retired A8(vi), a moment bound on the slab
+class that stated no clustering; neither statement is known to imply the other
+\rec{A8(iv-T)}{15}. The record does not prove it \rec{Appendix~D}{53}; closing it is
+Phase~C of \texttt{ugjs/PLAN.md}, optional and not scheduled (\texttt{docs/imports.md}).
+Nor does the record re-derive the cluster expansion behind Theorem~1.1.7, whose printed
+proof takes its constant from Theorem~1.1.8 at the same $h$ (p.~597)
+\rec{A8, Scope~(c)}{18}.
 
-\emph{Where it is consumed.} Proposition~C.7 of the record, conditional on $\UGJS$ like
-Theorem~5.1 and Lemmas~7.1--7.3, lists every application \rec{Proposition~C.7}{38}: CE1,
-through $(\UGJS)$, in Theorem~5.1 and Lemmas~7.1--7.3, each time at a slab cutoff; CE2 in
-Lemma~7.4 only, as printed, with constants independent of $h$.
+\emph{Appendix~C, and the history.} Theorem~12.2 now consumes Appendix~C: Lemmas~C.2 and
+C.4 and Theorem~C.5 (with Lemma~C.3) enter Theorems~D.3--D.4 \rec{Appendix~C}{45}, with
+inputs the record repaired on 7~November 2026 (\S\ref{sec:record}); its audit of the source
+mechanism is kept, Proposition~C.1 being ``deliberately limited to the audited
+mechanisms'' \rec{Proposition~C.1}{47}. From 16~August to 30~October 2026 the record
+carried the cutoff-uniform moment estimate $\UGJS$, A8(vi), as a named hypothesis of
+Theorem~12.2; on 31~October it read that item off one printed theorem, GJS
+Theorem~1.1.11 (a re-sourcing, not a proof). Since 7~November 2026 A8(vi) is retired:
+Theorems~D.3--D.4 supply what the record's \S\S5 and 7 need, and no proof uses it
+\rec{A8, Scope~(a)}{18}.
 
-\emph{What Appendix~C of the record does.} It audits five source mechanisms; its
-Proposition~C.1 is ``deliberately limited to the audited mechanisms''
-\rec{Proposition~C.1}{36}; it proves $h$-uniform normalisation and stability
-\rec{Lemma~C.2}{37}, \rec{Theorem~C.5}{38}, re-derives neither the expansion nor
-$\UGJS$ \rec{Appendix~C}{35}, and Theorem~12.2 does not consume it.
-
-\emph{C5 and the routes out.} Audit item C5, a second human reading of the GJS page images
-against the transcriptions, is open \rec{Appendix~B, ``External residue''}{35}; its thirteen items (nine before
-31 October 2026) have blank verdicts (\texttt{part\_i/C5\_reading\_record.md}); closing it
-changes no status.
-\texttt{docs/imports.md} called an $h$-trace of the printed expansion (there ``pp.~598--629'';
-the argument runs to p.~631) the only proportionate route until
-the council of 28--30 October 2026 (\texttt{ugjs/PLAN.md}) proposed others: the re-sourcing,
-applied, and a comparison argument, conjectured. The Hamiltonian bypass for (M$_2$) is
-recorded as dead in \texttt{strategy.md}, $g$-uniform local moments being open in the
-1970--71 literature: ``a verdict on the printed record, not a no-go theorem''
-(\texttt{docs/imports.md}).
-
-\emph{The seven literal imports} \rec{\S2.4}{7}:
+\emph{The seven literal imports} \rec{\S2.4}{9}:
 
 \begin{center}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.04\linewidth}
-                >{\raggedright\arraybackslash}p{0.6\linewidth}
-                >{\raggedright\arraybackslash}p{0.3\linewidth}@{}}
+                >{\raggedright\arraybackslash}p{0.55\linewidth}
+                >{\raggedright\arraybackslash}p{0.35\linewidth}@{}}
 \toprule
 & import: what it supplies & source pinpoint\\
 \midrule
 A1 & \emph{cutoff construction:} the ground state $\Om_g$ of $H(g)$; the closure of $K(g)$
-``has $E(g)=\inf\spec K(g)$ as a \emph{simple} eigenvalue'' & \cite[p.~588]{GJS};
-\cite[Thms.~2.2.1, 2.3.1]{GJ2}; \cite{GJ71}; \cite[Thm.~5.3]{Rosen70}\\
+``has $E(g)=\inf\spec K(g)$ as a \emph{simple} eigenvalue''; the Wick powers in $V(h)$ &
+\cite[p.~588]{GJS}; \cite[Thms.~2.2.1, 2.3.1]{GJ2}; \cite{GJ71}; \cite[Thm.~5.3]{Rosen70};
+\cite[pp.~10--12, 15--17, 134--138]{SimonBook}\\
 A2 & \emph{Feynman--Kac--Nelson transfer:} the slab objects $h_{T,g}$, $\psi_s$, $c_g$
 and the Euclidean $\leftrightarrow$ Hamiltonian passage &
 \cite[Thm.~III.6, Cor.~V.14, Thm.~V.15]{SimonBook}; \cite[Thms.~II.14, II.16]{GRS75}\\
-A3 & \emph{finite-volume stability:} the Euclidean interaction $\mathcal U_h$ in every
-$L^p$, $e^{-\varrho\,\mathcal U_h}$ integrable ($\varrho>0$), so the measures $dq_h$ are
-well defined & \cite[Thm.~V.7]{SimonBook}\\
-A4 & \emph{free hypercontractivity:} the $L^p$ smoothing used in the pairing bound (the
-record's \S8) and in Appendix~C & \cite[Thms.~I.17, III.17]{SimonBook}\\
+A3 & \emph{finite-volume stability:} $\mathcal U_h$, built from Simon's Wick powers, in
+every $L^p$, and $e^{-\varrho\,\mathcal U_h}$ integrable ($\varrho>0$): the measures
+$dq_h$ are well defined &
+\cite[pp.~135--137; Thm.~V.2(a), p.~137; Thm.~V.7(a), p.~152]{SimonBook}\\
+A4 & \emph{free hypercontractivity:} the $L^p$ smoothing of the pairing bound (the
+record's \S8) and the moment comparison on the chaoses (Appendices~C, D) &
+\cite[Thms.~I.17, I.22, III.17]{SimonBook}\\
 A5 & \emph{domain smoothing; common core:} $\Om_g\in D(V(h))$, and a common core for all
 $K(g_s)$ along an affine path & (i) \cite[Ch.~7, Thm.~7.4]{GJExp}; (ii)
 \cite[Thm.~V.12]{SimonBook}, \cite[Thm.~5.3]{Rosen70}, \cite{GJ2}\\
 A6 & \emph{free propagation; patching; the dynamics $\alpha$:} (i) speed one, the
 Trotter formula; (ii) (P): $\alpha_t(\A(O))\subseteq\A(O_{|t|})$,
-$\alpha_t(A)=\beta^g_t(A)$ if $g\equiv1$ on $O_{|t|}$ ($A\in\A(O)$); the cutoff cone is
-Proposition~2.7 &
-\cite[\S III]{GJ1}; \cite[\S\S3.5--3.6]{GJ2}; \cite[\S4.1 and Ch.~4]{GJExp}\\
+$\alpha_t(A)=\beta^g_t(A)$ if $g\equiv1$ on $O_{|t|}$ ($A\in\A(O)$); (iii) locality:
+$\A(O)\subseteq\A(O')'$ for disjoint $O$, $O'$; the cutoff cone is Proposition~2.7 &
+\cite[\S III]{GJ1}; \cite[\S\S3.5--3.6]{GJ2}; \cite[\S4.1 and Ch.~4]{GJExp};
+(iii) \cite[p.~397]{GJ2}\\
 A7 & \emph{covariance data:} translation covariance and parity & \cite[p.~398]{GJ2}\\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\noindent\emph{In the record:} A1--A8 with Source Facts~2.2--2.4, eq.~($\UGJS$), item
-(vii$'$) and the Scope paragraph, pp.~7--12; Appendix~B, p.~35; Appendix~C (Proposition~C.1,
-Lemma~C.2, Theorem~C.5, Proposition~C.7), pp.~35--38.
+\noindent\emph{In the record:} \S2.4 with A1--A8, Source Fact~2.2, item (iv-T) and the
+Scope paragraph, pp.~9--19; Appendix~C (Proposition~C.1, Lemma~C.2, Theorem~C.5),
+pp.~45--51; Appendix~D (Lemmas~D.1--D.2, Proposition~N.15, Remark~N.39, Theorems~D.3--D.4,
+\S D.e.4), pp.~53--97.

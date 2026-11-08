@@ -2,10 +2,10 @@
 % interior {g = 1}^o of a cutoff g on the axis t = 0, a bounded interval O inside it, the
 % cone O_{|t|}, and the band |t| < d(g, O) on which the patching identity (P) of A6 makes
 % alpha_t(A) = beta^g_t(A) for A in A(O); the inset is the identity of the proof of Prop 12.1
-% (p. 29).  Drawing values: O = (-1.2, 1.2), plateau interior (-5, 5), so d(g, O) = 3.8.
+% (p. 37 of the record of 7 November 2026).  Drawing values: O = (-1.2, 1.2), plateau interior (-5, 5), so d(g, O) = 3.8.
 % Drawn from the statements; evaluates nothing.
 \begin{tikzpicture}[font=\scriptsize]
-  \begin{scope}[x=0.5cm,y=0.5cm]
+  \begin{scope}[x=0.5cm,y=0.44cm]
     \def\a{1.2}\def\P{5}\def\d{3.8}
     \fill[afill!70!white] (-7.4,-\d) rectangle (7.4,\d);
     \fill[acc!22!white] (-\a,0) -- ({-\a-\d},\d) -- ({\a+\d},\d) -- (\a,0) -- ({\a+\d},-\d) -- ({-\a-\d},-\d) -- cycle;
@@ -29,6 +29,6 @@
   \node[draw=gline,rounded corners=1pt,fill=white,align=left,text width=5.7cm,inner sep=5pt,anchor=west] at (4.25cm,0)
     {for $|t|<d(g,O)$ and $A,B\in\A(O)$:\\[3pt]
      $\omega_g(A\alpha_t(B))=\ip{A^*\Om_g}{e^{itH(g)}B\Om_g}=\displaystyle\int_{[0,\infty)}e^{itE}\,d\rho_g(E)$,\\[3pt]
-     with $\rho_g(\cdot)=\ip{A^*\Om_g}{P_{H(g)}(\cdot)B\Om_g}$ supported in $\spec H(g)\subseteq[0,\infty)$ (proof of Prop 12.1, p.\,29);\\[2pt]
+     with $\rho_g(\cdot)=\ip{A^*\Om_g}{P_{H(g)}(\cdot)B\Om_g}$ supported in $\spec H(g)\subseteq[0,\infty)$ (proof of Prop 12.1, p.\,37);\\[2pt]
      norm convergence on $\A(O_T)$ carries the consequences to $\omega_\infty$ for $|t|\le T$.};
 \end{tikzpicture}

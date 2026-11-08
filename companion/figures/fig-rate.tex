@@ -21,7 +21,7 @@
 \begin{semilogyaxis}[rate,xlabel={$r$},ylabel={$T_\gamma(r)$},xmin=0,xmax=60,ymin=1e-6,ymax=10,
   title={(b) $T_\gamma(r)=\int_{|t|>r}|W_\gamma|$, Lemma 9.1(i)},legend pos=north east]
   \addplot[acc] table[x=r,y=T]{figures/tail_g1.dat}; \addlegendentry{$\gamma=1$}
-  \addplot[warn] table[x=r,y=T]{figures/tail_g2.dat}; \addlegendentry{$\gamma=2$}
+  \addplot[ok] table[x=r,y=T]{figures/tail_g2.dat}; \addlegendentry{$\gamma=2$}
 \end{semilogyaxis}
 \end{tikzpicture}\\[4pt]
 \begin{tikzpicture}
@@ -37,11 +37,11 @@
 \begin{semilogyaxis}[rate,xlabel={$d$},ylabel={$\Psi_\gamma(d)$},xmin=0,xmax=60,ymin=1e-1,ymax=2e3,
   title={(d) $\Psi_\gamma(d)$ of (29), $M=1$; dashed: the bound $2$},legend pos=north east]
   \addplot[acc] table[x=d,y=psi]{figures/psi_g1.dat}; \addlegendentry{$\gamma=1$}
-  \addplot[warn] table[x=d,y=psi]{figures/psi_g2.dat}; \addlegendentry{$\gamma=2$}
+  \addplot[ok] table[x=d,y=psi]{figures/psi_g2.dat}; \addlegendentry{$\gamma=2$}
   \draw[mut,dashed] (axis cs:0,2) -- (axis cs:60,2);
   \node[font=\tiny,color=mut,anchor=north west] at (axis cs:8,1.7) {trivial bound 2};
   \draw[acc!60!white,dotted] (axis cs:6,1e-1) -- (axis cs:6,2e3);
-  \draw[warn!60!white,dotted] (axis cs:5,1e-1) -- (axis cs:5,2e3);
+  \draw[ok!60!white,dotted] (axis cs:5,1e-1) -- (axis cs:5,2e3);
   \node[font=\tiny,color=mut,anchor=south west] at (axis cs:6.5,1.3e-1) {$d_0$};
 \end{semilogyaxis}
 \end{tikzpicture}

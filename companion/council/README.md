@@ -66,3 +66,29 @@ report adds five more (its section 7). All are MINOR; none changes a theorem. Th
 documentation items (README, site texts, `docs/extract.py`) were fixed on 23 October 2026
 in the commit that precedes the companion's; the items in `part_i/main.tex` are left to
 the author.
+
+## Revised edition (7 November 2026)
+
+After the integration of Appendix D into the record on 7 November 2026 (Theorems D.3–D.4
+derive the uniform local moment from GJS Theorem 1.1.7 and Appendix C; A8(vi) retired; the
+transverse case listed as A8(iv)-T), the author decided to revise the companion at once
+(answer 9 to Checkpoint 2 of `ugjs/PLAN.md`, recorded in `part_i/README.md`). The revision
+was made by one editor agent on 7 November 2026, not by the council: the edition of
+24 October 2026 was rewritten in place to describe the 110-page record of that date, with
+`labels.md` regenerated from it (65 numbered statements). No memo or report of this
+revision is kept in this folder; what changed, the rules that replace the U_GJS rules of
+the first edition, and the checks run are `../PLAN.md`, Part 11. The revised edition has
+not yet had an adversarial verification round like R5, and the author's reading of it is
+open.
+
+*8 November 2026, round R7.* The orchestrator's adversarial verification of the revised
+edition (round R7) reported 0 CRITICAL, 2 MAJOR and 12 MINOR items, which the editor fixed
+in place; the findings, the fixes, the space recovered and the checks run are
+`../PLAN.md`, Part 11.1. This supersedes the last sentence above as far as the verification
+round goes: the fixes have not been re-verified by an agent that did not write them, and
+the author's reading of the revised edition is open.
+
+*8 November 2026, round R7b.* The verifier's re-check of the R7 fixes found all fourteen
+fixed and two new MINOR items caused by them (an edge of Fig. 1 drawn into Proposition 12.1,
+and the definition of class P in Appendix A); the editor fixed both the same day
+(`../PLAN.md`, Part 11.1, "R7b"), and those fixes have not been re-verified.
