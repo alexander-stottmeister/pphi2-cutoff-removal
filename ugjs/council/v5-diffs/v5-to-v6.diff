@@ -1,0 +1,40 @@
+--- <scratch>/phase5/main.v5-confirmed.tex	2026-11-11 11:39:11
++++ part_i/main.tex	2026-11-11 11:39:11
+@@ -8599,12 +8599,14 @@
+ $\psi=(\psi_n)\in\mathcal F_{\rm fin}$ the vectors $A^*(\theta)\psi_n$ are mutually orthogonal,
+ as are the $A(\theta)\psi_n$, so $\|A^*(\theta)\psi\|^2\le\|\theta\|^2\sum_n(n+1)\|\psi_n\|^2$
+ and $\|A(\theta)\psi\|^2\le\|\theta\|^2\sum_nn\|\psi_n\|^2$; thus
+-$T:=2^{-1/2}(A^*(\theta)+A(\theta))$ satisfies $\|T\psi\|\le\sqrt2\,\|\theta\|\,
++$R_\theta:=2^{-1/2}(A^*(\theta)+A(\theta))$ satisfies $\|R_\theta\psi\|\le\sqrt2\,\|\theta\|\,
+ \|(N+1)^{1/2}\psi\|$ on $\mathcal F_{\rm fin}$.  Hence every $\psi\in\mathfrak D(N^{1/2})$ is
+ the limit of its truncations $\psi^{(\le n)}\in\mathcal F_{\rm fin}$ in the graph norm of
+ $\varphi_{\mathcal F}(\theta)$, so $\mathfrak D(N^{1/2})\subseteq D(\varphi_{\mathcal
+-F}(\theta))$; and the form $(\chi,\psi)\mapsto\ip\chi{T\psi}$ on $\mathfrak S\times\mathfrak
+-S$, being continuous in $\psi$ for the norm $\|(N+1)^{1/2}\psi\|$, extends to
++F}(\theta))$.  The set $\mathfrak S$ is dense in $\mathfrak D(N^{1/2})$ for the norm
++$\|(N+1)^{1/2}\psi\|$ (truncate, then approximate each component $\psi_n$ in $\mathcal F_n$ by
++symmetric Schwartz functions), and the form $(\chi,\psi)\mapsto\ip\chi{R_\theta\psi}$ on
++$\mathfrak S\times\mathfrak S$ is continuous in $\psi$ for that norm; so it extends to
+ $\mathfrak S\times\mathfrak D(N^{1/2})$, where it equals $\ip\chi{\varphi_{\mathcal
+ F}(\theta)\psi}$.  The operator that the form defines on $\mathfrak D(N^{1/2})$, that is,
+ $\psi\mapsto X\psi$ with $\ip\chi{X\psi}$ the extended form for all $\chi\in\mathfrak S$, is
+@@ -8639,13 +8641,13 @@
+ $\mathcal K$ ((II.47): ``$\mu$ is then the closure of the operator defined on $\mathcal S$''),
+ which is positive and self-adjoint and is the restriction of $\mu^{\C}$ to $\mathcal K$
+ (Lemma~\ref{lem:ff-onepart}(ii)).  That is, $D^{-1}H_0D$ extends $d\Gamma(\mu)$, and, $H_0$ being closed, $H_0$ extends
+-the closure $T$ of $d\Gamma(\mu)$ transported by $D$.  By Assumption~\ref{A:cutoff}(f) (the
+-source's Example 3, for the positive self-adjoint operator $\mu$ on $\mathcal K$), $T$
+-generates a contraction semigroup in the source's convention, $e^{-tT}$; so, by the
+-Hille--Yosida theorem, $T+1$ maps $D(T)$ onto $L^2(d\phi_0)$.  By (3), $H_0$ is
++the closure $Z$ of $d\Gamma(\mu)$ transported by $D$.  By Assumption~\ref{A:cutoff}(f) (the
++source's Example 3, for the positive self-adjoint operator $\mu$ on $\mathcal K$), $Z$
++generates a contraction semigroup in the source's convention, $e^{-tZ}$; so, by the
++Hille--Yosida theorem, $Z+1$ maps $D(Z)$ onto $L^2(d\phi_0)$.  By (3), $H_0$ is
+ unitarily equivalent to a multiplication operator by a non-negative function, so $H_0+1$ is
+-injective.  For $\psi\in D(H_0)$ choose $\chi\in D(T)$ with $(T+1)\chi=(H_0+1)\psi$; then
+-$(H_0+1)(\chi-\psi)=0$, so $\psi=\chi\in D(T)$.  Hence $H_0=T$.
++injective.  For $\psi\in D(H_0)$ choose $\chi\in D(Z)$ with $(Z+1)\chi=(H_0+1)\psi$; then
++$(H_0+1)(\chi-\psi)=0$, so $\psi=\chi\in D(Z)$.  Hence $H_0=Z$.
+ \end{proof}
+ 
+ % ==================================================================

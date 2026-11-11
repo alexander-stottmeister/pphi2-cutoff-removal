@@ -15,8 +15,9 @@ source is converted to this notation at transcription time; the conversion log i
 | C, μ | time-zero covariance C = (2μ)⁻¹, μ = (−∂ₓ² + m₀²)^{1/2} |
 | C_E, C_H, G | the cutoff classes of [Definition 2.1](definitions.md), in the roles fixed there |
 | K(g), E(g), H(g), Ω_g, ω_g, β^g | cutoff Hamiltonian data (§2.1) |
-| α, τ_a, U_a | patched dynamics (A6); space translations and their Q-space unitaries |
-| Θ, θ | parity unitary Θ = Γ(−1); parity automorphism θ = Ad Θ |
+| φ₀, π₀, H₀, i^N | time-zero field (A1); momentum field, free Hamiltonian, number grading (Definition E.3) |
+| α, τ_a, U_a | patched dynamics (A6); space translations τ_a = Ad U_a and their Q-space unitaries (Proposition E.5); on functions, (τ_a f)(x) = f(x − a) |
+| Θ, θ | parity unitary Θ = Γ(−1) = (−1)^N; parity automorphism θ = Ad Θ (Proposition E.5) |
 | K₁, K₂, C₇, m₁ | GJS constants (A8); normalization K₂ ≥ 1 |
 | ‖·‖_GJS | the printed observable norm (1.1.7)–(1.1.9) of [GJS] |
 | N_I | number of columns [k − ½, k + ½), k ∈ ℤ, of the squares of [GJS, p. 593] meeting the interval I in positive measure (Appendix D, Definition N.1) |
@@ -34,7 +35,7 @@ M — and Θ = Γ(−1) is reserved for the parity unitary throughout.
 
 ## Constants
 
-The constants appendix (Appendix A, p. 42 of the build of 7 November 2026) fixes every
+The constants appendix (Appendix A, p. 45 of the build of 11 November 2026) fixes every
 value against its defining display. Each row was re-verified by hand at gates G3a and G3b
 (10 August 2026); the constants new on 7 November 2026 (Appendices C and D) were recomputed
 by hand in the comparison note and by the auditors of round V4 (gate GI, `part_i/README.md`). The constant C₈ of the retired item A8(vi) is no longer listed. The

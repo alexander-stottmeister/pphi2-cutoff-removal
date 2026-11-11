@@ -101,7 +101,12 @@ and `r7-verifier-report.md`, verbatim except for machine paths.
 
 *11 November 2026, status.* An audit of the record on 9 November 2026 (round V4f,
 `../../ugjs/council/v4f-free-field-report.md`) found four standard free-field facts that
-the record uses without stating or importing them. The companion's sentences that call
-Theorem 12.2 "proved from printed statements" (abstract, §1 and §4) therefore overstate
-until the record is repaired; the edition of 7 November 2026 is not
-changed for this. See the README's notice of 11 November 2026.
+the record used without stating or importing them, so that the companion's sentences
+calling Theorem 12.2 "proved from printed statements" (abstract, §1 and §4) overstated.
+The record was repaired the same day (its new Appendix E, audited in rounds V5 to V5d),
+and those sentences hold again. The companion itself is unchanged: it is the edition of
+7 November 2026 and describes the record of that date (110 pages, commit f213cc8). Since
+11 November the record has 125 pages; no statement changed its number, but the page
+numbers in the companion's locators are those of the 7 November build, `labels.md` is the
+label table of that build, and the companion does not mention Appendix E. A third edition
+is not scheduled.

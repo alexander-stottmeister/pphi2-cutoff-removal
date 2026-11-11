@@ -18,71 +18,85 @@ marks the statements whose chain still reaches that displayed inequality.
 
 | # | kind | statement | section | p. | imports A8 | cites U_GJS |
 |---|---|---|---|---|---|---|
-| `2.1` | Definition | cutoff classes | 2 Setting, notation, and standing imports | 8 | - | - |
-| `A1` | Assumption | cutoff construction | 2 Setting, notation, and standing imports | 9 | yes | - |
-| `A2` | Assumption | Feynman--Kac--Nelson transfer | 2 Setting, notation, and standing imports | 11 | - | - |
-| `A3` | Assumption | finite-volume stability | 2 Setting, notation, and standing imports | 11 | yes | - |
-| `A4` | Assumption | free hypercontractivity | 2 Setting, notation, and standing imports | 13 | - | - |
-| `A5` | Assumption | domain smoothing; common core | 2 Setting, notation, and standing imports | 13 | - | - |
-| `A6` | Assumption | free propagation; patching; the dynamics $\alpha$ | 2 Setting, notation, and standing imports | 13 | - | - |
-| `A7` | Assumption | covariance data | 2 Setting, notation, and standing imports | 14 | - | - |
-| `A8` | Assumption | the GJS package | 2 Setting, notation, and standing imports | 14 | yes | yes |
-| `2.2` | Source Fact | CE2 $=$ {\cite[Thm.~1.1.7]{GJS}}, p.~594 | 2 Setting, notation, and standing imports | 15 | yes | - |
-| `2.3` | Source Fact | CE1 $=$ {\cite[Thm.~1.1.8]{GJS}}, p.~595 | 2 Setting, notation, and standing imports | 15 | yes | - |
-| `2.4` | Source Fact | {\cite[p.~629, \S4]{GJS}} | 2 Setting, notation, and standing imports | 17 | yes | - |
-| `2.5` | Remark | conventions lock | 2 Setting, notation, and standing imports | 19 | - | - |
-| `2.6` | Proposition | domain smoothing at the ground state | 2 Setting, notation, and standing imports | 19 | - | - |
-| `2.7` | Proposition | cutoff propagation, uniformly in $g$ | 2 Setting, notation, and standing imports | 19 | - | - |
-| `2.8` | Lemma | covariance and parity of the cutoff states | 2 Setting, notation, and standing imports | 20 | - | - |
-| `3.1` | Lemma | class compatibility | 3 Dimensionless weak-coupling reduction | 20 | - | - |
-| `3.2` | Proposition | dimensionless weak-coupling reduction | 3 Dimensionless weak-coupling reduction | 21 | yes | - |
-| `3.3` | Remark | coordinate convention and transport of the conclusions | 3 Dimensionless weak-coupling reduction | 21 | yes | - |
-| `4.1` | Lemma | slab FKN; bounded nonnegative arguments | 4 Slab transfer | 22 | - | - |
-| `4.2` | Lemma | signed bounded extension | 4 Slab transfer | 22 | - | - |
-| `4.3` | Lemma | unbounded extension | 4 Slab transfer | 23 | - | - |
-| `4.4` | Lemma | slab vacuum; simplicity only | 4 Slab transfer | 23 | - | - |
-| `5.1` | Theorem | uniform local interaction moment (M$_2$) | 5 The uniform local interaction moment | 24 | yes | - |
-| `5.2` | Corollary | $\varphi^4$ instance | 5 The uniform local interaction moment | 25 | yes | - |
-| `6.1` | Lemma | cell count | 6 GJS norms of sharp-time polynomial observables | 25 | - | - |
-| `6.2` | Proposition | GJS norms of polynomial observables | 6 GJS norms of sharp-time polynomial observables | 26 | yes | - |
-| `6.3` | Remark | row independence | 6 GJS norms of sharp-time polynomial observables | 26 | - | - |
-| `7.1` | Lemma | moment transfer | 7 The uniform gap | 26 | yes | - |
-| `7.2` | Lemma | one-point limit | 7 The uniform gap | 27 | yes | - |
-| `7.3` | Lemma | two-point lower semicontinuity | 7 The uniform gap | 27 | yes | - |
-| `7.4` | Lemma | CE2 across a horizontal strip | 7 The uniform gap | 28 | yes | - |
-| `7.5` | Proposition | semigroup decay of centered observables | 7 The uniform gap | 28 | yes | - |
-| `7.6` | Lemma | exponential moments | 7 The uniform gap | 29 | yes | - |
-| `7.7` | Theorem | density of polynomial vectors | 7 The uniform gap | 29 | yes | - |
-| `7.8` | Theorem | uniform gap (G) | 7 The uniform gap | 30 | yes | - |
-| `8.1` | Proposition | path regularity of the semigroup | 8 Affine-path regularity | 31 | - | - |
-| `8.2` | Proposition | projection and eigenvector regularity; derivative formulas | 8 Affine-path regularity | 32 | - | - |
-| `9.1` | Lemma | exact inverse-energy filter | 9 Filter, spectral separation, and clustering | 32 | - | - |
-| `9.2` | Lemma | spectral separation | 9 Filter, spectral separation, and clustering | 33 | - | - |
-| `9.3` | Lemma | clustering with one unbounded local argument | 9 Filter, spectral separation, and clustering | 34 | - | - |
-| `10.1` | Lemma | state derivative | 10 The one-path LPPL estimate | 34 | - | - |
-| `10.2` | Lemma | localization of the perturbation | 10 The one-path LPPL estimate | 35 | yes | - |
-| `10.3` | Lemma | two-regime bound | 10 The one-path LPPL estimate | 35 | yes | - |
-| `10.4` | Proposition | one-path estimate | 10 The one-path LPPL estimate | 35 | yes | - |
-| `10.5` | Lemma | the rate function is super-polynomial | 10 The one-path LPPL estimate | 36 | yes | - |
-| `11.1` | Theorem | full-net convergence with rate | 11 Convergence of the full net; local normality | 36 | yes | - |
-| `11.2` | Proposition | local normality | 11 Convergence of the full net; local normality | 37 | yes | - |
-| `12.1` | Proposition | exact spectral passage | 12 Ground state, invariances, and the Main Theorem | 37 | - | - |
-| `12.2` | Theorem | Main Theorem | 12 Ground state, invariances, and the Main Theorem | 38 | yes | - |
-| `12.3` | Corollary | the Glimm--Jaffe vacuum is canonical at weak coupling | 12 Ground state, invariances, and the Main Theorem | 39 | yes | - |
-| `13.1` | Hypothesis | structure of a broken phase | 13 The two-phase dichotomy | 39 | - | - |
-| `13.2` | Theorem | conditional exclusion of a two-phase structure | 13 The two-phase dichotomy | 40 | yes | - |
-| `13.3` | Remark | scope of the phase-transition literature | 13 The two-phase dichotomy | 41 | yes | - |
-| `C.1` | Proposition | consequence of the audited source mechanisms | C $h$-uniformity: source audit and analytic prerequisites | 47 | - | - |
-| `C.2` | Lemma | normalisation | C $h$-uniformity: source audit and analytic prerequisites | 48 | - | - |
-| `C.3` | Lemma | Wick lower bound; the $h\ge0$ entry | C $h$-uniformity: source audit and analytic prerequisites | 49 | - | - |
-| `C.4` | Lemma | ultraviolet difference; the $h\le1$ entry | C $h$-uniformity: source audit and analytic prerequisites | 49 | - | - |
-| `C.5` | Theorem | $h$-uniform stability | C $h$-uniformity: source audit and analytic prerequisites | 51 | - | - |
-| `C.6` | Remark | why the class is what it is | C $h$-uniformity: source audit and analytic prerequisites | 52 | yes | - |
-| `C.7` | Proposition | coverage of every CE application | C $h$-uniformity: source audit and analytic prerequisites | 52 | yes | - |
-| `D.1` | Lemma | affine-path identity | D The uniform local moment from the printed clustering theorem | 79 | - | - |
-| `D.2` | Lemma | localized comparison | D The uniform local moment from the printed clustering theorem | 84 | yes | - |
-| `D.3` | Theorem | Phase A: fixed cutoff, parallel strips | D The uniform local moment from the printed clustering theorem | 90 | yes | - |
-| `D.4` | Theorem | Phase B: uniform in the cutoff | D The uniform local moment from the printed clustering theorem | 95 | yes | - |
+| `2.1` | Definition | cutoff classes | 2 Setting, notation, and standing imports | 9 | - | - |
+| `A1` | Assumption | cutoff construction | 2 Setting, notation, and standing imports | 10 | yes | - |
+| `A2` | Assumption | Feynman--Kac--Nelson transfer | 2 Setting, notation, and standing imports | 13 | - | - |
+| `A3` | Assumption | finite-volume stability | 2 Setting, notation, and standing imports | 13 | yes | - |
+| `A4` | Assumption | free hypercontractivity | 2 Setting, notation, and standing imports | 15 | - | - |
+| `A5` | Assumption | domain smoothing; common core | 2 Setting, notation, and standing imports | 15 | - | - |
+| `A6` | Assumption | free propagation; patching; the dynamics $\alpha$ | 2 Setting, notation, and standing imports | 15 | - | - |
+| `A7` | Assumption | covariance data | 2 Setting, notation, and standing imports | 16 | - | - |
+| `A8` | Assumption | the GJS package | 2 Setting, notation, and standing imports | 17 | yes | yes |
+| `2.2` | Source Fact | CE2 $=$ {\cite[Thm.~1.1.7]{GJS}}, p.~594 | 2 Setting, notation, and standing imports | 17 | yes | - |
+| `2.3` | Source Fact | CE1 $=$ {\cite[Thm.~1.1.8]{GJS}}, p.~595 | 2 Setting, notation, and standing imports | 18 | yes | - |
+| `2.4` | Source Fact | {\cite[p.~629, \S4]{GJS}} | 2 Setting, notation, and standing imports | 19 | yes | - |
+| `2.5` | Remark | conventions lock | 2 Setting, notation, and standing imports | 21 | - | - |
+| `2.6` | Proposition | domain smoothing at the ground state | 2 Setting, notation, and standing imports | 22 | - | - |
+| `2.7` | Proposition | cutoff propagation, uniformly in $g$ | 2 Setting, notation, and standing imports | 22 | - | - |
+| `2.8` | Lemma | covariance and parity of the cutoff states | 2 Setting, notation, and standing imports | 22 | - | - |
+| `3.1` | Lemma | class compatibility | 3 Dimensionless weak-coupling reduction | 23 | - | - |
+| `3.2` | Proposition | dimensionless weak-coupling reduction | 3 Dimensionless weak-coupling reduction | 23 | yes | - |
+| `3.3` | Remark | coordinate convention and transport of the conclusions | 3 Dimensionless weak-coupling reduction | 24 | yes | - |
+| `4.1` | Lemma | slab FKN; bounded nonnegative arguments | 4 Slab transfer | 25 | - | - |
+| `4.2` | Lemma | signed bounded extension | 4 Slab transfer | 26 | - | - |
+| `4.3` | Lemma | unbounded extension | 4 Slab transfer | 26 | - | - |
+| `4.4` | Lemma | slab vacuum; simplicity only | 4 Slab transfer | 26 | - | - |
+| `5.1` | Theorem | uniform local interaction moment (M$_2$) | 5 The uniform local interaction moment | 27 | yes | - |
+| `5.2` | Corollary | $\varphi^4$ instance | 5 The uniform local interaction moment | 28 | yes | - |
+| `6.1` | Lemma | cell count | 6 GJS norms of sharp-time polynomial observables | 29 | - | - |
+| `6.2` | Proposition | GJS norms of polynomial observables | 6 GJS norms of sharp-time polynomial observables | 29 | yes | - |
+| `6.3` | Remark | row independence | 6 GJS norms of sharp-time polynomial observables | 29 | - | - |
+| `7.1` | Lemma | moment transfer | 7 The uniform gap | 30 | yes | - |
+| `7.2` | Lemma | one-point limit | 7 The uniform gap | 30 | yes | - |
+| `7.3` | Lemma | two-point lower semicontinuity | 7 The uniform gap | 31 | yes | - |
+| `7.4` | Lemma | CE2 across a horizontal strip | 7 The uniform gap | 31 | yes | - |
+| `7.5` | Proposition | semigroup decay of centered observables | 7 The uniform gap | 32 | yes | - |
+| `7.6` | Lemma | exponential moments | 7 The uniform gap | 32 | yes | - |
+| `7.7` | Theorem | density of polynomial vectors | 7 The uniform gap | 32 | yes | - |
+| `7.8` | Theorem | uniform gap (G) | 7 The uniform gap | 33 | yes | - |
+| `8.1` | Proposition | path regularity of the semigroup | 8 Affine-path regularity | 34 | - | - |
+| `8.2` | Proposition | projection and eigenvector regularity; derivative formulas | 8 Affine-path regularity | 35 | - | - |
+| `9.1` | Lemma | exact inverse-energy filter | 9 Filter, spectral separation, and clustering | 35 | - | - |
+| `9.2` | Lemma | spectral separation | 9 Filter, spectral separation, and clustering | 36 | - | - |
+| `9.3` | Lemma | clustering with one unbounded local argument | 9 Filter, spectral separation, and clustering | 37 | - | - |
+| `10.1` | Lemma | state derivative | 10 The one-path LPPL estimate | 38 | - | - |
+| `10.2` | Lemma | localization of the perturbation | 10 The one-path LPPL estimate | 38 | yes | - |
+| `10.3` | Lemma | two-regime bound | 10 The one-path LPPL estimate | 38 | yes | - |
+| `10.4` | Proposition | one-path estimate | 10 The one-path LPPL estimate | 38 | yes | - |
+| `10.5` | Lemma | the rate function is super-polynomial | 10 The one-path LPPL estimate | 39 | yes | - |
+| `11.1` | Theorem | full-net convergence with rate | 11 Convergence of the full net; local normality | 40 | yes | - |
+| `11.2` | Proposition | local normality | 11 Convergence of the full net; local normality | 40 | yes | - |
+| `12.1` | Proposition | exact spectral passage | 12 Ground state, invariances, and the Main Theorem | 40 | - | - |
+| `12.2` | Theorem | Main Theorem | 12 Ground state, invariances, and the Main Theorem | 41 | yes | - |
+| `12.3` | Corollary | the Glimm--Jaffe vacuum is canonical at weak coupling | 12 Ground state, invariances, and the Main Theorem | 42 | yes | - |
+| `13.1` | Hypothesis | structure of a broken phase | 13 The two-phase dichotomy | 43 | - | - |
+| `13.2` | Theorem | conditional exclusion of a two-phase structure | 13 The two-phase dichotomy | 43 | yes | - |
+| `13.3` | Remark | scope of the phase-transition literature | 13 The two-phase dichotomy | 44 | yes | - |
+| `C.1` | Proposition | consequence of the audited source mechanisms | C $h$-uniformity: source audit and analytic prerequisites | 51 | - | - |
+| `C.2` | Lemma | normalisation | C $h$-uniformity: source audit and analytic prerequisites | 53 | - | - |
+| `C.3` | Lemma | Wick lower bound; the $h\ge0$ entry | C $h$-uniformity: source audit and analytic prerequisites | 53 | - | - |
+| `C.4` | Lemma | ultraviolet difference; the $h\le1$ entry | C $h$-uniformity: source audit and analytic prerequisites | 54 | - | - |
+| `C.5` | Theorem | $h$-uniform stability | C $h$-uniformity: source audit and analytic prerequisites | 56 | - | - |
+| `C.6` | Remark | why the class is what it is | C $h$-uniformity: source audit and analytic prerequisites | 57 | yes | - |
+| `C.7` | Proposition | coverage of every CE application | C $h$-uniformity: source audit and analytic prerequisites | 57 | yes | - |
+| `D.1` | Lemma | affine-path identity | D The uniform local moment from the printed clustering theorem | 84 | - | - |
+| `D.2` | Lemma | localized comparison | D The uniform local moment from the printed clustering theorem | 88 | yes | - |
+| `D.3` | Theorem | Phase A: fixed cutoff, parallel strips | D The uniform local moment from the printed clustering theorem | 95 | yes | - |
+| `D.4` | Theorem | Phase B: uniform in the cutoff | D The uniform local moment from the printed clustering theorem | 100 | yes | - |
+| `E.1` | Lemma | the one-particle space in momentum variables | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
+translations, parity, dilations | 115 | - | - |
+| `E.2` | Lemma | second quantization of a unitary | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
+translations, parity, dilations | 117 | - | - |
+| `E.3` | Definition | number grading, momentum field, generators of the net, free Hamiltonian | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
+translations, parity, dilations | 118 | - | - |
+| `E.4` | Lemma | transport by an orthogonal bijection of the index spaces | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
+translations, parity, dilations | 118 | - | - |
+| `E.5` | Proposition | translations, parity, dilations | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
+translations, parity, dilations | 120 | - | - |
+| `E.6` | Remark | the identities of Assumption~\ref{A:covar} | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
+translations, parity, dilations | 122 | - | - |
+| `E.7` | Lemma | the objects of the sources | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
+translations, parity, dilations | 122 | - | - |
 
 ## Statements
 
@@ -90,7 +104,7 @@ marks the statements whose chain still reaches that displayed inequality.
 
 #### Lemma 10.1 (state derivative)
 
-`lem:statederiv` &middot; page 34 &middot; proof in the manuscript
+`lem:statederiv` &middot; page 38 &middot; proof in the manuscript
 
 ```latex
 For self-adjoint $A\in B(\HH)$ and $0<s<1$,
@@ -109,7 +123,7 @@ Uses: `lem:filter`, `prop:projreg`, `prop:smoothing`
 
 #### Lemma 10.2 (localization of the perturbation)
 
-`lem:localize` &middot; page 35 &middot; imports A8 &middot; proof in the manuscript
+`lem:localize` &middot; page 38 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Choose a smooth partition of unity $\sum_{j\in\Z}\eta_j=1$ with $0\le\eta_j\le1$ and
@@ -128,7 +142,7 @@ Uses: `lem:classes`, `thm:M2`
 
 #### Lemma 10.3 (two-regime bound)
 
-`lem:tworegime` &middot; page 35 &middot; imports A8 &middot; proof in the manuscript
+`lem:tworegime` &middot; page 38 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $A=A^*\in\A(O)$ with $\|A\|\le1$, and for a nonzero $h_j$ put
@@ -153,7 +167,7 @@ Uses: `lem:cluster`, `lem:localize`, `prop:propagation`, `prop:smoothing`
 
 #### Proposition 10.4 (one-path estimate)
 
-`prop:onepath` &middot; page 35 &middot; imports A8 &middot; proof in the manuscript
+`prop:onepath` &middot; page 38 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $d\ge d_0:=4+2/\gamma$ and suppose $g\equiv g'\equiv1$ on $O_d$. Then
@@ -170,7 +184,7 @@ Uses: `lem:localize`, `lem:statederiv`, `lem:tworegime`, `prop:projreg`
 
 #### Lemma 10.5 (the rate function is super-polynomial)
 
-`lem:rate` &middot; page 36 &middot; imports A8 &middot; proof in the manuscript
+`lem:rate` &middot; page 39 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Define
@@ -199,7 +213,7 @@ Uses: `lem:filter`, `prop:onepath`
 
 #### Theorem 11.1 (full-net convergence with rate)
 
-`thm:cauchy` &middot; page 36 &middot; imports A8 &middot; proof in the manuscript
+`thm:cauchy` &middot; page 40 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. There is a state $\omega_\infty$ on $\A$
@@ -220,7 +234,7 @@ Uses: `lem:rate`, `prop:onepath`
 
 #### Proposition 11.2 (local normality)
 
-`prop:normal` &middot; page 37 &middot; imports A8 &middot; proof in the manuscript
+`prop:normal` &middot; page 40 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 $\omega_\infty|_{\A(O)}$ is normal for every bounded open interval $O$.
@@ -232,7 +246,7 @@ Uses: `thm:cauchy`
 
 #### Proposition 12.1 (exact spectral passage)
 
-`prop:spectral` &middot; page 37 &middot; proof in the manuscript
+`prop:spectral` &middot; page 40 &middot; proof in the manuscript
 
 ```latex
 If $(g_n)\subseteq\G$ satisfies $d(g_n,O)\to\infty$ for every bounded interval $O$, and
@@ -250,7 +264,7 @@ Provenance: `src: m6/main.tex prop:M0-main(i) (v2), transcribed; = lamport_gap_t
 
 #### Theorem 12.2 (Main Theorem)
 
-`thm:MAIN` &middot; page 38 &middot; imports A8 &middot; proof in the manuscript
+`thm:MAIN` &middot; page 41 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. Then there is a state $\omega_\infty$ on
@@ -293,11 +307,11 @@ contain the finite, unevaluated constant $S_2(B_{3\times5})$ of Theorem~\ref{thm
 ```
 
 Provenance: `src: m6/main.tex thm:MAIN (v2), transcribed; import references adapted to (A1)-(A8);`
-Uses: `A:covar`, `A:cutoff`, `A:gjs`, `A:stability`, `lem:Z`, `lem:covparity`, `lem:uv`, `prop:normal`, `prop:scaling`, `prop:spectral`, `sf:CE2`, `thm:D3`, `thm:D4`, `thm:G`, `thm:M2`, `thm:cauchy`, `thm:stability`
+Uses: `A:covar`, `A:cutoff`, `A:gjs`, `A:stability`, `lem:Z`, `lem:covparity`, `lem:uv`, `prop:ff-symmetries`, `prop:normal`, `prop:scaling`, `prop:spectral`, `sf:CE2`, `thm:D3`, `thm:D4`, `thm:G`, `thm:M2`, `thm:cauchy`, `thm:stability`
 
 #### Corollary 12.3 (the Glimm--Jaffe vacuum is canonical at weak coupling)
 
-`cor:canonical` &middot; page 39 &middot; imports A8 &middot; proof in the manuscript
+`cor:canonical` &middot; page 42 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Every $w^*$ limit point of the (averaged or unaveraged) finite-volume ground states
@@ -307,12 +321,12 @@ weak-coupling region.
 ```
 
 Provenance: `src: m6/main.tex cor:canonical (v2), transcribed.`
-Uses: `thm:MAIN`
+Uses: `prop:ff-symmetries`, `thm:MAIN`
 ### The two-phase dichotomy
 
 #### Hypothesis 13.1 (structure of a broken phase)
 
-`hyp:broken` &middot; page 39
+`hyp:broken` &middot; page 43
 
 ```latex
 $\mathscr P$ is even, and:
@@ -335,7 +349,7 @@ Provenance: `src: m6/main.tex cor:nobreak items (B1)-(B4) (v2); m3/m3.tex hyp:br
 
 #### Theorem 13.2 (conditional exclusion of a two-phase structure)
 
-`thm:dichotomy` &middot; page 40 &middot; imports A8 &middot; proof in the manuscript
+`thm:dichotomy` &middot; page 43 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Assume that $\mathscr P$ is even and $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. Then
@@ -344,11 +358,11 @@ simultaneously.
 ```
 
 Provenance: `src: m6/main.tex cor:nobreak (v2), statement transcribed.`
-Uses: `A:patch`, `hyp:broken`, `lem:cluster`, `thm:G`, `thm:MAIN`
+Uses: `A:patch`, `hyp:broken`, `lem:cluster`, `prop:ff-symmetries`, `thm:G`, `thm:MAIN`
 
 #### Remark 13.3 (scope of the phase-transition literature)
 
-`rem:gjs7576` &middot; page 41 &middot; imports A8
+`rem:gjs7576` &middot; page 44 &middot; imports A8
 
 ```latex
 The GJS phase-transition and mean-field papers \cite{GJS75,GJS76} prove the existence of
@@ -369,7 +383,7 @@ Uses: `hyp:broken`, `thm:dichotomy`
 
 #### Definition 2.1 (cutoff classes)
 
-`def:classes` &middot; page 8
+`def:classes` &middot; page 9
 
 ```latex
 \begin{align*}
@@ -393,7 +407,7 @@ interval $O$ and $r\ge0$ set
 
 #### Assumption A1 (cutoff construction)
 
-`A:cutoff` &middot; page 9 &middot; imports A8
+`A:cutoff` &middot; page 10 &middot; imports A8
 
 ```latex
 For every $g\in\CH$: $K(g)=H_0+V(g)$ is essentially self-adjoint and bounded below; its closure
@@ -438,11 +452,11 @@ S(x_j,y)]g(y)\,dx\,dy$'' \cite[(V.3), p.~136]{SimonBook} (printed with $h(x_j)$ 
 $h_j(x_j)$ is meant [sic]), taken with $m=n$, $\HH=\HH_C$ and the kernel $S$ of the
 source's (V.1), ``$\frac12\langle f,g\rangle_{\mathcal H}=S(f\otimes g)$'' \cite[p.~134]{SimonBook},
 which for the inner product $2\ip f{Cg}$ of $\HH_C$ is $S(x,y)=C(x-y)$, the kernel of
-$\ip\cdot{C\,\cdot}$ (Lemma~\ref{aux:notation-kernel}); that is,
+$\ip\cdot{C\,\cdot}$ (Lemma~\ref{aux:notation-kernel}); that is, for real
+$f_1,\dots,f_n\in\mathcal S(\R)$,
 \begin{equation}
  \bigl\langle{:}\varphi_0(f_1)\cdots\varphi_0(f_n){:},\,{:}\varphi_0^n(g){:}_C\bigr\rangle
- =n!\int\Bigl[\prod_{j=1}^n\int f_j(x_j)\,C(x_j-y)\,dx_j\Bigr]g(y)\,dy
- \qquad(f_j\in\mathcal S(\R)) .
+ =n!\int\Bigl[\prod_{j=1}^n\int f_j(x_j)\,C(x_j-y)\,dx_j\Bigr]g(y)\,dy .
  \tag{W.1}\label{eq:wickpairing}
 \end{equation}
 It exists for this class: ``${:}\phi_F^n{:}$ exists for any $n$ as a random process for
@@ -457,18 +471,66 @@ ${:}\varphi_0^n(g){:}_C$ is that extension, continuous for $\|\cdot\|_{1+\vareps
 (V.6b) at $p=2$, and \eqref{eq:wickpairing} persists for it, both sides being continuous in
 $g$ (the right side by H\"older's inequality, since $\prod_j\int f_j(x)C(x-\cdot)\,dx$ is
 bounded and integrable for $f_j\in\mathcal S(\R)$, $C\in L^1(\R)$); an element of
-$\Gamma_n(\HH_C)$ is determined by its pairings with the Wick monomials with $f_j\in\mathcal
-S(\R)$, as the source's ``unique'' in (V.3) asserts.  For $n=0$ and $g\in L^1(\R)$,
+$\Gamma_n(\HH_C)$ is determined by its pairings with the Wick monomials with real
+$f_j\in\mathcal S(\R)$, as the source's ``unique'' in (V.3) asserts.  For $n=0$ and $g\in L^1(\R)$,
 \eqref{eq:wickpairing} with the empty product determines the constant
 ${:}\varphi_0^0(g){:}_C:=\int g$; it is not continuous for $\|\cdot\|_{1+\varepsilon}$, and
 (V.6b) is used only for $n\ge1$.  Every real $h\in L^1\cap L^2$ of compact support lies in
 $L^{1+\varepsilon}(\R)$, so $V(h)=\lambda\sum_na_n{:}\varphi_0^n(h){:}_C$ of
 \S\ref{subsec:model} is defined, real, and linear in $h$.
+\emph{Fock space and the free field} (added 11 November 2026; the printed statements behind
+$\pi_0$, $H_0$ and the unitaries of translation, parity and dilation,
+Appendix~\ref{app:freefield}).  The source states them for a real Hilbert space, which it
+writes $\mathcal H$, with complexification written $\mathcal H_C$; in items (e)--(f) these two
+symbols are the source's, and its $\mathcal H_C$ is not the space $\HH_C$ of this assumption,
+which is real and takes the place of the source's $\mathcal H$.
+\emph{(e)}~``$\mathcal F_n(\mathcal H)=\mathcal H_C\otimes_s\cdots\otimes_s\mathcal H_C$
+($n$ times)'', ``$\mathcal F(\mathcal H)=\bigoplus_{n=0}^\infty\mathcal F_n(\mathcal H)$''
+and ``Let $\mathcal F_F(\mathcal H)$ be the incompleted direct sum of the $\mathcal F_n$''
+\cite[(I.28), p.~23]{SimonBook}; ``Given $f\in\mathcal H$ and $\psi\in\mathcal F_n(\mathcal
+H)$, we define $A^*(f)\psi=\sqrt{n+1}\,S_{n+1}(f\otimes\psi)$ (I.29a) where $S_{n+1}$ is the
+symmetrization operator'', ``$A(f)=A^*(f)^*\upharpoonright\mathcal F_F(\mathcal H)$'' and
+``$\phi(f)=\frac1{\sqrt2}(A^*(f)+A(f))$'' \cite[(I.29), pp.~23--24]{SimonBook}; ``the
+$\phi(f)$ are essentially self-adjoint on $\mathcal F_F(\mathcal H)$''
+\cite[p.~24]{SimonBook}; and, with $\Omega_0$ ``the vector $(1,0,\dots,0,\dots)\in\mathcal
+F(\mathcal H)$'': ``\textsc{Theorem I.11.} $\mathcal F(\mathcal H)$ is unitarily equivalent
+to $\Gamma(\mathcal H)$ under a unitary $D$ so that (a) $D\Omega_0=1$ (b)
+$D\phi(f)D^{-1}=\phi_{\mathcal H}(f)$ (c) $D\mathcal F_n=\Gamma_n$'' \cite[p.~24]{SimonBook}.
+\emph{(f)}~For ``a (not necessarily bounded) operator'' $A$ ``on $\mathcal H$ (with domain
+$D(A)$)'', with ``$D_n(A)\subset\Gamma_n(\mathcal H)$'' the ``(incomplete tensor product)''
+$D(A)\otimes\dots\otimes D(A)$: ``$d\Gamma(A)\upharpoonright\Gamma_n(\mathcal H)=A\otimes
+I\otimes\dots\otimes I+\dots+I\otimes\dots\otimes I\otimes A$'' \cite[(I.40),
+p.~31]{SimonBook}; ``Let $A$ generate a contraction semigroup on $\mathcal H$.  Then the
+closure of $d\Gamma(A)$ generates a contraction semigroup on $L^2(Q_{\mathcal H},d\mu)$
+[\,\dots] and $e^{-t\,d\Gamma(A)}=\Gamma(e^{-tA})$ (I.41).  In particular, this holds if $A$
+is a positive self-adjoint operator on $\mathcal H$'' \cite[Example 3, p.~32]{SimonBook}; and,
+for the free field of mass $m_0$, on $F_{m_0}$, ``the Hilbert space of all real distributions
+on $R$ whose Fourier transforms are functions with the property that the norm'' (II.46),
+$\|f\|_F^2=\int|\hat f(k)|^2(k^2+m_0^2)^{-1/2}\,dk$, ``is finite'', and with the operator
+$\mu=(-\Delta+m_0^2)^{1/2}$ of (II.47): ``$H_0=d\Gamma(\mu)$'' \cite[Thm.~II.17,
+(II.46)--(II.48), pp.~78--79]{SimonBook}.
+\emph{(g)}~The Fock-space objects of the cutoff construction; they are quoted to identify
+them with the objects of this manuscript (Lemma~\ref{lem:ff-sources}), and no proof uses them
+otherwise.  ``The Fock space $\mathcal F$ is the Hilbert space completion of the symmetric
+tensor algebra over $L_2(R)$'', with the vacuum ``$\Omega_0=\{1,0,0,\cdots\}$'',
+``$(H_0\psi)_n(k_1,\cdots,k_n)=\sum_{j=1}^n\mu(k_j)\psi_n(k_1,\cdots,k_n)$'',
+``$\mu(k)=(k^2+m_0^2)^{1/2}$'' and ``$(a(k)\psi)_{n-1}(k_1,\cdots,k_{n-1})=n^{1/2}\psi_n(k,k_1,
+\cdots,k_{n-1})$'' \cite[(1.2.1)--(1.2.6), p.~364]{GJ2}; ``the set $\mathfrak S$ of vectors
+$\psi$ in $\mathcal F$ with $\psi_n=0$ for large $n$ and $\psi_n\in\mathcal S(R^n)$ for all
+$n$'', the form ``$(a^*(k)\psi)_{n+1}(k_1,\cdots,k_{n+1})=(n+1)^{-1/2}\sum_{j=1}^{n+1}
+\delta(k-k_j)\psi_n(k_1,\cdots,\hat k_j,\cdots,k_{n+1})$'', ``$\varphi(x)=(4\pi)^{-1/2}\int
+e^{-ikx}\mu(k)^{-1/2}\{a^*(k)+a(-k)\}dk$'' and ``$\pi(x)=i(4\pi)^{-1/2}\int e^{-ikx}\mu(k)^{1/2}
+\{a^*(k)-a(-k)\}dk$'' \cite[(1.2.7), (1.2.10), (1.2.11), p.~365]{GJ2}; and the translation
+unitaries ``$U(\alpha)\theta(k_1,\cdots,k_j)=e^{+i\alpha(k_1+\cdots+k_j)}\theta(k_1,\cdots,k_j)$''
+\cite[(3.6.2), p.~398]{GJ2}.
 
 \emph{Sources.} \cite[p.~588]{GJS}; existence and uniqueness of the cutoff vacuum:
 \cite[Thms.~2.2.1, 2.3.1]{GJ2}; lower bounds and positivity: \cite{GJ71}; the semigroup
 construction: \cite[Thm.~5.3]{Rosen70}; the Wick powers: \cite[pp.~10--12, 15--17,
-134--138]{SimonBook}, read on the page images on 7 November 2026.
+134--138]{SimonBook}, read on the page images on 7 November 2026; Fock space, Theorem I.11
+and the second quantization: \cite[pp.~23--24, 27, 31--32, 78--79]{SimonBook}, and the
+Fock-space objects of the cutoff construction: \cite[pp.~364--365, 398]{GJ2}, read on the page
+images on 9 and 11 November 2026.
 
 \emph{Scope.} Strict positivity of $\Om_g$ is the standard positivity-improving semigroup
 argument of the cited construction; simplicity is used below only through the two consequences
@@ -486,31 +548,61 @@ uses $V(h)$ (the general statements of this assumption, of Assumption~\ref{A:dom
 Proposition~\ref{prop:smoothing} are applied only to such $h$), the same
 element is constructed in this manuscript as an explicit $L^2(d\phi_0)$-limit
 (Lemma~\ref{aux:notation-ident}(iii) with Lemma~\ref{aux:notation-wick}(iii)), so nothing
-below rests on that reading alone.  The sources of the cutoff construction define $V(g)$ by
-normal ordering in Fock space; that their $V(g)$ is the object defined here is the Fock
-space--$Q$-space dictionary of \cite[Ch.~I]{SimonBook}, a reading of the kind recorded in
-Assumption~\ref{A:gjs}, Scope~(d).
+below rests on that reading alone.  Items (a)--(d) and Lemma~\ref{aux:notation-kernel} hold
+for every mass $m_0>0$, and Remark~\ref{rem:wlog} with Proposition~\ref{prop:ff-symmetries}(D)
+uses them at the mass $M_*$ as well.  Of items (e)--(g): the source's $\Omega_0$ is the Fock
+vacuum, which the unitary $D$ carries to the constant function $\Om_0=1$ of
+\S\ref{subsec:model}; the statements are printed for ``the'' Gaussian random process indexed by
+$\mathcal H$ and are used for the realisation of \S\ref{subsec:model}, any two realisations
+being isomorphic (Theorem I.6, above); item (e) and the statements (I.40),
+(I.41) of item (f) are printed for an arbitrary real Hilbert space and are used with the
+source's real space taken to be the space $\HH_C$ of this assumption, formed with the mass
+$m_0$ and, in Remark~\ref{rem:wlog}, with the mass $M_*$ (Appendix~\ref{app:freefield} writes
+$\mathcal K_m$ for it and $\mathcal K_m^{\C}$ for its complexification); item (b) of Theorem I.11 is read as an identity
+between the closure of $\phi(f)$ and the operator of multiplication by
+$\phi_{\mathcal H}(f)$, and the proof of Lemma~\ref{lem:ff-transport}(ii) shows that the
+weaker reading, an identity on $D\mathcal F_F$, gives the same; Example 3 is used for $A=\mu$,
+which is a positive self-adjoint operator on $\HH_C$ (under the isometry $j$ of
+Lemma~\ref{lem:ff-onepart} it is multiplication by $\mu(k)\ge m_0$ on $L^2_{\rm r}(\R)$), and
+only in Lemma~\ref{lem:ff-sources}(b); (II.48) is printed for the space $F_{m_0}$ only and is
+quoted as the source's definition of $H_0$, and $F_{m_0}$ is $\HH_C$: the source normalizes the
+Fourier transform ``throughout these notes'' by ``$\hat F(t_1,\dots,t_n)=(2\pi)^{-n/2}\int
+e^{-i\sum t_ix_i}F(x_1,\dots,x_n)\,d^nx$'' \cite[p.~27]{SimonBook}, as
+Appendix~\ref{app:freefield} does, so the map $f\mapsto\mu^{-1/2}\hat f$ carries $F_{m_0}$
+isometrically onto $L^2_{\rm r}(\R)$, and the image of the real Schwartz functions is dense
+there (Lemma~\ref{lem:ff-onepart}(i)).  The sources of the cutoff construction work in Fock
+space; the dictionary between their Fock space and $Q$-space is the unitary $\mathfrak D$ of
+Lemma~\ref{lem:ff-sources}, which carries their vacuum to $1$, their time-zero fields to
+$\varphi_0$ and $\pi_0$, their free Hamiltonian to $H_0$ and their translation unitary $U(-a)$
+to $U_a$.
+They define $V(g)$ by normal ordering in Fock space; that $\mathfrak D$ carries their $V(g)$
+to the $V(g)$ defined here is not proved in this manuscript and remains a reading of the kind
+recorded in Assumption~\ref{A:gjs}, Scope~(d).
 
 \emph{Used in.} \S\ref{subsec:model} (the construction and locality of $V(h)$),
 \S\ref{sec:slab} (slab limits), \S\ref{sec:M2} (Step~1; weak-graph passage),
 \S\ref{sec:G} (density, spectral projections), \S\ref{sec:path} (simple Perron root),
 \S\ref{sec:ground} and \S\ref{sec:dichotomy} (covariance and parity via
 Lemma~\ref{lem:covparity}), Appendix~\ref{app:huniform} (Lemma~\ref{lem:Z} uses item (c)),
-Appendix~\ref{app:comparison} (Lemmas~\ref{aux:notation-wick} and~\ref{aux:notation-ident}).
+Appendix~\ref{app:comparison} (Lemmas~\ref{aux:notation-wick} and~\ref{aux:notation-ident}),
+Appendix~\ref{app:freefield} (items (a), (c)--(g)).
 
 {\raggedright\emph{Dossier.} \texttt{gj2-ground-existence-08}, \texttt{gjii-ground-12},
 \texttt{gj71-lower-bound-02}, \texttt{gj71-theorem2-04}, \texttt{rosen-semigroup-22},
 \texttt{rosen-selfadjoint-23}, \texttt{gjs-source-05/06} (E04--E06, E10--E13, E20); Wick
 powers (added 7 November 2026): \texttt{simon-wickgen-032}, \texttt{simon-wickpair-033},
 \texttt{simon-wickprod-034}, \texttt{simon-gaussproc-037}, \texttt{simon-gamman-038/039},
-\texttt{simon-wickdef-156/157/158}, \texttt{simon-wickthm-159/160}.\par}
+\texttt{simon-wickdef-156/157/158}, \texttt{simon-wickthm-159/160}; Fock space and the free
+field (added 11 November 2026): \texttt{simon-fock-045/046}, \texttt{simon-fourier-049},
+\texttt{simon-dgamma-053/054}, \texttt{simon-freefield-100/101}, \texttt{gj2-fock-04},
+\texttt{gj2-fields-05}, \texttt{gj2-cutoff-independence-38}.\par}
 ```
 
-Uses: `A:domain`, `A:gjs`, `lem:Z`, `lem:covparity`, `prop:smoothing`
+Uses: `A:domain`, `A:gjs`, `lem:Z`, `lem:covparity`, `lem:ff-onepart`, `lem:ff-sources`, `lem:ff-transport`, `prop:ff-symmetries`, `prop:smoothing`, `rem:wlog`
 
 #### Assumption A2 (Feynman--Kac--Nelson transfer)
 
-`A:fkn` &middot; page 11
+`A:fkn` &middot; page 13
 
 ```latex
 Let $d\mu_0$ be the free Euclidean Gaussian measure with covariance
@@ -547,7 +639,7 @@ Uses: `rem:conv`
 
 #### Assumption A3 (finite-volume stability)
 
-`A:stability` &middot; page 11 &middot; imports A8
+`A:stability` &middot; page 13 &middot; imports A8
 
 ```latex
 For every $h\in\CE$: $\mathcal U_h\in L^p(d\mu_0)$ for every $p<\infty$, and
@@ -635,7 +727,7 @@ Uses: `A:cutoff`, `A:fkn`, `A:gjs`, `A:hyper`, `lem:classes`, `lem:uv`
 
 #### Assumption A4 (free hypercontractivity)
 
-`A:hyper` &middot; page 13
+`A:hyper` &middot; page 15
 
 ```latex
 The free time-zero Markov semigroup $\mathsf P_T$ satisfies
@@ -677,7 +769,7 @@ Uses: `A:stability`
 
 #### Assumption A5 (domain smoothing; common core)
 
-`A:domain` &middot; page 13
+`A:domain` &middot; page 15
 
 ```latex
 \emph{(i)} For every $g\in\CH$ and $t>0$,
@@ -709,12 +801,13 @@ Uses: `prop:smoothing`
 
 #### Assumption A6 (free propagation; patching; the dynamics $\alpha$)
 
-`A:patch` &middot; page 13
+`A:patch` &middot; page 15
 
 ```latex
 \emph{(i)} The free dynamics $\mathrm{Ad}\,e^{itH_0}$ has propagation speed one
-(Klein--Gordon finite propagation), and the Trotter product formula for $e^{itK(g)}$ converges
-strongly.
+(Klein--Gordon finite propagation): $e^{itH_0}\A(O)e^{-itH_0}\subseteq\A(O_{|t|})$ for every
+bounded open interval $O$ and $t\in\R$ (stated as this inclusion since 11 November 2026); and
+the Trotter product formula for $e^{itK(g)}$ converges strongly.
 \emph{(ii)} There is a one-parameter automorphism group $\alpha$ of $\A$, independent of $g$,
 with
 \begin{equation}
@@ -725,7 +818,8 @@ with
 \emph{(iii)} The net is local: $\A(O)\subseteq\A(O')'$ for disjoint bounded open intervals
 $O$, $O'$ (listed on 7 November 2026; used before without being listed).
 
-\emph{Sources.} \cite[\S III]{GJ1}; \cite[\S\S3.5--3.6]{GJ2}; \cite[\S4.1 and Ch.~4]{GJExp};
+\emph{Sources.} \cite[\S III]{GJ1} (item (i): (3.4), p.~1948); \cite[\S\S3.5--3.6]{GJ2};
+\cite[\S4.1 and Ch.~4]{GJExp};
 (iii): \cite[p.~397, proof of Thm.~3.5.1]{GJ2}, read on the page image on 7 November 2026.
 
 \emph{Scope.} \eqref{eq:P} is the Glimm--Jaffe patching construction verbatim; the
@@ -734,18 +828,30 @@ $g$-uniform propagation bound for the \emph{cutoff} dynamics is not imported but
 defines, for an open set in space, ``as the weak closure of the bounded functions of the
 $t=0$ fields'' $\int\varphi(x,0)f(x)\,dx$ and $\int\pi(x,0)f(x)\,dx$ ``as $f$ runs over the
 $C^\infty$ functions with support in'' that set: for two ``disjoint open sets'', ``elements
-of'' the two algebras ``commute''.  The algebra so defined for an interval $O$ is the
-$\A(O)$ of \S\ref{subsec:model}, which is generated by the bounded Borel functions of
-$\varphi_0(f)$ and $\pi_0(f)$, $f\in C_c^\infty(O)$ real, once the source's Fock-space fields
-$\varphi(x,0)$, $\pi(x,0)$ are read as the $Q$-space fields $\varphi_0$, $\pi_0$: the Fock
-space--$Q$-space dictionary of the Scope paragraph of Assumption~\ref{A:cutoff}, a reading of
-the source.  Items (i) and (ii) are imported under the same reading.  (Until 7 November 2026
-\S\ref{subsec:model} wrote the generators of $\A(O)$ as all $W(f,h)$; matching that
-generating set to the source's would need the Weyl relations, which this manuscript does not
-state and does not use for the local algebras; the remark on the coordinate convention in
-\S\ref{sec:reduction} presupposes them for its scaling automorphism, of which only the action
-on $W(f,0)$ and $W(0,h)$ enters
-$\sigma_s(\A(O))=\A(sO)$.)
+of'' the two algebras ``commute''.  The unitary $\mathfrak D$ of Lemma~\ref{lem:ff-sources}
+carries the closures of the source's Fock-space fields $\varphi(f)$, $\pi(f)$,
+(1.2.10)--(1.2.11), to $\varphi_0(f)$, $\pi_0(f)$, and its free Hamiltonian to $H_0$; so it
+carries the algebra so defined for an interval $O$ onto the $\A(O)$ of
+\S\ref{subsec:model}, which is generated by the bounded Borel functions of $\varphi_0(f)$ and
+$\pi_0(f)$, $f\in C_c^\infty(O)$ real.  That the source's time-zero fields $\varphi(x,0)$,
+$\pi(x,0)$ of p.~397 are its (1.2.10)--(1.2.11), and that its test functions are real, is a
+reading of the source.  Items (i) and (ii) are imported through the same unitary; for item
+(ii) this includes the reading recorded in the Scope of Assumption~\ref{A:cutoff}, that the
+source's interaction is carried to $V(g)$.  The identity \eqref{eq:P} is printed with ``let
+$g\equiv1$ on $B_t$'' \cite[Thm.~4.1.2, p.~42]{GJExp}.  \cite[p.~398]{GJ2} prints the
+condition for the same cutoff independence as ``$g(y)=\lambda$ for $|x-y|>|t|$'', and in the
+next clause ``$|x+\alpha-y|>|t|$'', with $>$ where (3.5.1) of p.~397 (``distance less than
+$|\sigma|$'') calls for $<$ [sic]; those clauses are not used.  Item (i) is printed as ``we
+infer that $e^{iH_0t}\mathfrak A(O)e^{-iH_0t}\subset\mathfrak A(O_t)$, (3.4) where $O_t$ is
+the region $O$ expanded by $t$'', for $O$ ``an open region of space'' and $\mathfrak A(O)$
+``the von Neumann algebra of operators generated by the spectral projections of all the
+fields $\varphi(f)$ and $\pi(f)$, supp $f\subset O$'' \cite[\S III, p.~1948]{GJ1} (read on the
+page image on 11 November 2026); for $t<0$ the region is read as $O$ expanded by $|t|$.  That
+the fields and the Fock space of \cite{GJ1} are those of \cite[(1.2.1)--(1.2.11)]{GJ2}, and
+that its test functions are real, is a reading of the source, of the same kind as for item
+(iii).  (Until 11 November 2026 this paragraph called the identification of the fields a
+reading and mentioned the Weyl relations, which this manuscript does not state; they are not
+used, see Appendix~\ref{app:freefield}.)
 
 \emph{Used in.} Proposition~\ref{prop:propagation}, \S\ref{sec:filter} (locality identity),
 \S\ref{sec:lppl}, \S\ref{sec:ground}; item (iii): \S\ref{subsec:model} (\emph{Locality}, hence
@@ -754,29 +860,44 @@ Proposition~\ref{prop:propagation} and the two-regime bound of \S\ref{sec:lppl})
 
 {\raggedright\emph{Dossier.} \texttt{gj1-locality-06}, \texttt{gjexp-054/055/056},
 \texttt{gj2-cutoff-independence-38}, \texttt{gj2-local-algebra-40} (E03, E06,
-E14--E16); item (iii) (added 7 November 2026): \texttt{gj2-locality-37}.\par}
+E14--E16); item (iii) (added 7 November 2026): \texttt{gj2-locality-37}; item (i), the
+printed inclusion (added 11 November 2026): \texttt{gj1-propagation-04}.\par}
 ```
 
-Uses: `A:cutoff`, `prop:propagation`
+Uses: `A:cutoff`, `lem:ff-sources`, `prop:propagation`
 
 #### Assumption A7 (covariance data)
 
-`A:covar` &middot; page 14
+`A:covar` &middot; page 16
 
 ```latex
-Let $U_a$ implement the space translation $\tau_a$ on $Q$-space and let
-$\Theta:=\Gamma(-1)$, so that $(\Theta\psi)(q)=\psi(-q)$ in $Q$-space. Then, for every
+Let $U_a$, $a\in\R$, be the translation unitaries and $\Theta=(-1)^N$ the parity unitary of
+Proposition~\ref{prop:ff-symmetries}, $\tau_a=\mathrm{Ad}\,U_a$ and
+$\theta=\mathrm{Ad}\,\Theta$; in the notation of second quantization $\Theta=\Gamma(-1)$, and
+$(\Theta\psi)(q)=\psi(-q)$ in $Q$-space.  Then, for every
 $g\in\CH$,
 \[
  U_aK(g)U_a^*=K(\tau_ag),\qquad \Theta H_0\Theta=H_0,\qquad
  \Theta V(g)\Theta=V(g)\ \ \text{for even }\mathscr P .
 \]
 
-\emph{Sources.} \cite[p.~398]{GJ2} (cutoff covariance); the transformation of Wick powers
-under $\Gamma(-1)$ is the parity of the polynomial.
+\emph{Sources.} \cite[p.~398]{GJ2} (cutoff covariance): ``$U(-\alpha)H(g)U(+\alpha)=H(g')$,
+where $g'(x)=g(x-\alpha)$'', for the source's translation unitaries $U(\alpha)$, of which
+$U_a$ is $U(-a)$ under the dictionary (Lemma~\ref{lem:ff-sources}(a)); the transformation of
+Wick powers under $\Gamma(-1)$ is the parity of the polynomial.
 
 \emph{Scope.} Only the displayed operator identities are imported; the state-level
-consequences are derived in Lemma~\ref{lem:covparity}.
+consequences are derived in Lemma~\ref{lem:covparity}.  Since 11 November 2026 the three
+identities are also proved in this manuscript, for every $\mathscr P$ of \S\ref{subsec:model}
+(Proposition~\ref{prop:ff-symmetries}(T), (P) and Remark~\ref{rem:ff-A7}); the assumption is
+kept under its number and with its source.  The source prints the first identity for its
+$(\varphi^4)_2$ Hamiltonian.  How $U_a$ and $\Theta$ act on the fields and on the local
+algebras, which \S\ref{sec:ground} and \S\ref{sec:dichotomy} use, is
+Proposition~\ref{prop:ff-symmetries}; until 11 November 2026 it was used without proof
+(Appendix~\ref{app:provenance}).  The description $(\Theta\psi)(q)=\psi(-q)$ presupposes a
+realisation of $Q$-space on which $q\mapsto-q$ preserves the measure
+(Proposition~\ref{prop:ff-symmetries}(P)); no proof depends on it.  The same page of the
+source says ``from the definition (1.2.11)'' where $\varphi(x)$ is its (1.2.10) [sic].
 
 \emph{Used in.} Lemma~\ref{lem:covparity}; thence \S\ref{sec:ground},
 \S\ref{sec:dichotomy}.
@@ -784,11 +905,11 @@ consequences are derived in Lemma~\ref{lem:covparity}.
 {\raggedright\emph{Dossier.} \texttt{gj2-cutoff-independence-38} (E06).\par}
 ```
 
-Uses: `lem:covparity`
+Uses: `lem:covparity`, `lem:ff-sources`, `prop:ff-symmetries`, `rem:ff-A7`
 
 #### Assumption A8 (the GJS package)
 
-`A:gjs` &middot; page 14 &middot; imports A8
+`A:gjs` &middot; page 17 &middot; imports A8
 
 ```latex
 The Euclidean input is \cite{GJS}, used exactly as printed, as follows.
@@ -1105,7 +1226,7 @@ Uses: `A:covar`, `A:cutoff`, `A:fkn`, `A:hyper`, `A:stability`, `lem:D2`, `lem:Z
 
 #### Source Fact 2.2 (CE2 $=$ {\cite[Thm.~1.1.7]{GJS}}, p.~594)
 
-`sf:CE2` &middot; page 15 &middot; imports A8
+`sf:CE2` &middot; page 17 &middot; imports A8
 
 ```latex
 For localized monomials $Q_1,Q_2$ with disjoint localization squares separated by a strip of
@@ -1121,7 +1242,7 @@ Uses: `A:gjs`
 
 #### Source Fact 2.3 (CE1 $=$ {\cite[Thm.~1.1.8]{GJS}}, p.~595)
 
-`sf:CE1` &middot; page 15 &middot; imports A8
+`sf:CE1` &middot; page 18 &middot; imports A8
 
 ```latex
 The printed estimate is
@@ -1143,7 +1264,7 @@ Uses: `A:fkn`, `A:gjs`, `A:hyper`, `thm:D3`, `thm:D4`
 
 #### Source Fact 2.4 ({\cite[p.~629, \S4]{GJS}})
 
-`sf:printed` &middot; page 17 &middot; imports A8
+`sf:printed` &middot; page 19 &middot; imports A8
 
 ```latex
 ``It is important to work with a translation invariant Hamiltonian, in order that time
@@ -1158,7 +1279,7 @@ Uses: `A:gjs`
 
 #### Remark 2.5 (conventions lock)
 
-`rem:conv` &middot; page 19
+`rem:conv` &middot; page 21
 
 ```latex
 The sharp-time restriction of the Euclidean covariance equals $C$:
@@ -1172,7 +1293,7 @@ Provenance: `src: m6/main.tex rem:conv (v2), transcribed.`
 
 #### Proposition 2.6 (domain smoothing at the ground state)
 
-`prop:smoothing` &middot; page 19 &middot; proof in the manuscript
+`prop:smoothing` &middot; page 22 &middot; proof in the manuscript
 
 ```latex
 $\Om_g\in D(V(h))$ for every $g\in\CH$ and every real $h\in L^1\cap L^2$ of compact support.
@@ -1182,7 +1303,7 @@ Uses: `A:domain`
 
 #### Proposition 2.7 (cutoff propagation, uniformly in $g$)
 
-`prop:propagation` &middot; page 19 &middot; proof in the manuscript
+`prop:propagation` &middot; page 22 &middot; proof in the manuscript
 
 ```latex
 $\beta^g_t(\A(O))\subseteq\A(O_{|t|})$ for every $g\in\CH$ and $t\in\R$, with propagation
@@ -1193,7 +1314,7 @@ Uses: `A:patch`
 
 #### Lemma 2.8 (covariance and parity of the cutoff states)
 
-`lem:covparity` &middot; page 20 &middot; proof in the manuscript
+`lem:covparity` &middot; page 22 &middot; proof in the manuscript
 
 ```latex
 For every $g\in\CH$ and $a\in\R$:
@@ -1204,12 +1325,12 @@ For every $g\in\CH$ and $a\in\R$:
 For even $\mathscr P$: $\omega_g\circ\theta=\omega_g$.
 ```
 
-Uses: `A:covar`, `A:cutoff`
+Uses: `A:covar`, `A:cutoff`, `lem:ff-transport`, `prop:ff-symmetries`
 ### Dimensionless weak-coupling reduction
 
 #### Lemma 3.1 (class compatibility)
 
-`lem:classes` &middot; page 20 &middot; proof in the manuscript
+`lem:classes` &middot; page 23 &middot; proof in the manuscript
 
 ```latex
 \emph{(i)} $\G\subset\CH$.
@@ -1230,7 +1351,7 @@ Uses: `A:stability`
 
 #### Proposition 3.2 (dimensionless weak-coupling reduction)
 
-`prop:scaling` &middot; page 21 &middot; imports A8 &middot; proof in the manuscript
+`prop:scaling` &middot; page 23 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 The standing inequality $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$ implies the source
@@ -1249,49 +1370,107 @@ Uses: `A:gjs`, `rem:wlog`
 
 #### Remark 3.3 (coordinate convention and transport of the conclusions)
 
-`rem:wlog` &middot; page 21 &middot; imports A8
+`rem:wlog` &middot; page 24 &middot; imports A8
 
 ```latex
 The dilation behind Proposition~\ref{prop:scaling} identifies the model at
 $(m_0,\lambda)$ with the model at $(M_*,\lambda')$, $\lambda'=(M_*/m_0)^2\lambda
-<\lambda_*$, as follows. Let $s=m_0/M_*$, $y=sx$, and let $\sigma_s$ be the scaling
-automorphism of the Weyl algebra, $\sigma_s(W(f,h))=W(s^{-1}f(\cdot/s),h(\cdot/s))$
-(a symplectic map). The sharp-time covariance is scale-covariant between the two masses,
-$C_{M_*}(s\,z)=C_{m_0}(z)$ (the one-dimensional analogue of the substitution in the
-proof of Proposition~\ref{prop:scaling}), so $\sigma_s$ carries the mass-$m_0$ Fock
-state onto the mass-$M_*$ Fock state and is unitarily implemented by some $U_s$ with
-$U_s\Om_0^{(m_0)}=\Om_0^{(M_*)}$; moreover $\sigma_s(\A(O))=\A(sO)$. On the
-generators, $\mu_{M_*}(k/s)=s^{-1}\mu_{m_0}(k)$ (since $sM_*=m_0$) gives
-$U_sH_0^{(m_0)}U_s^*=s\,H_0^{(M_*)}$, and the Euclidean Wick identification of
-Proposition~\ref{prop:scaling}, restricted to sharp time (Remark~\ref{rem:conv}), gives
+<\lambda_*$, as follows.  Let $s=m_0/M_*$ and let $U_s$ be the unitary of
+Proposition~\ref{prop:ff-symmetries}(D), with $m=m_0$ and $m'=M_*$, from the $Q$-space of
+mass $m_0$ onto the $Q$-space of mass $M_*$.  A superscript $(m_0)$ names an object of the
+model at $(m_0,\lambda)$, a superscript $(M_*)$ an object of the model at $(M_*,\lambda')$.
+By that proposition $U_s\Om_0^{(m_0)}=\Om_0^{(M_*)}$,
+\begin{gather*}
+ U_s\varphi_0^{(m_0)}(f)U_s^*=\varphi_0^{(M_*)}(s^{-1}f(\cdot/s)),\qquad
+ U_s\pi_0^{(m_0)}(h)U_s^*=\pi_0^{(M_*)}(h(\cdot/s)),\\
+ U_s\,\A^{(m_0)}(O)\,U_s^*=\A^{(M_*)}(sO),
+\end{gather*}
+$U_sH_0^{(m_0)}U_s^*=s\,H_0^{(M_*)}$ and
 $U_sV_{m_0,\lambda}(g)U_s^*=s\,V_{M_*,\lambda'}(g(\cdot/s))$; hence
+(Remark~\ref{rem:ff-A7})
 \[
  U_s\,K_{m_0,\lambda}(g)\,U_s^*=s\,K_{M_*,\lambda'}(g(\cdot/s)),
  \qquad g\in\CH .
 \]
 Consequently $g\mapsto g(\cdot/s)$ is an order isomorphism of $\G$ onto $\G$ (and a
-bijection of $\CH$), cutoff ground states correspond under $U_s$, and the two cutoff
-nets of states are carried onto each other. Every conclusion of
-Theorem~\ref{thm:MAIN}, proved in the working (scaled) coordinates, therefore holds for
-the original model with the dictionary: localization $O\leftrightarrow sO$; plateau
-distance $d\leftrightarrow s\,d$, so the rate becomes $\Psi_{m_{1,*}}(s\,d)$, again
-decaying faster than every inverse power of $d$; dynamics
-$\alpha_t\leftrightarrow\alpha_{st}$, the light cone being form-invariant; gap
-$m_1:=s\,m_{1,*}$; and the local-moment clause of item (5) transports to supports of
-length $2/s$ --- equivalently, it holds for supports of length $2$ after splitting $h$
-by a partition of unity into at most $\lceil s\rceil+1$ pieces of support length
-$\le2/s$ (finite additivity of $V$), with constant $(\lceil s\rceil+1)$ times the
-transported one. All displayed constants of \S\S\ref{sec:slab}--\ref{sec:lppl} and of
+bijection of $\CH$); $E^{(m_0)}(g)=s\,E^{(M_*)}(g(\cdot/s))$ and
+$U_sH^{(m_0)}(g)U_s^*=s\,H^{(M_*)}(g(\cdot/s))$; and $U_s$ maps the ground vector of
+$K_{m_0,\lambda}(g)$ to a ground vector of $K_{M_*,\lambda'}(g(\cdot/s))$, so that
+\[
+ \omega^{(m_0)}_g=\omega^{(M_*)}_{g(\cdot/s)}\circ\mathrm{Ad}\,U_s ,\qquad
+ \mathrm{Ad}\,U_s\circ\beta^{g,(m_0)}_t=\beta^{g(\cdot/s),(M_*)}_{st}\circ\mathrm{Ad}\,U_s .
+\]
+The dynamics $\alpha^{(m_0)}$ of the original model is that of Assumption~\ref{A:patch}(ii)
+at $(m_0,\lambda)$.  Let $A\in\A^{(m_0)}(O)$ and $t\in\R$, and choose $g\in\G$ with $g\equiv1$
+on $O_{|t|}$.  Then $U_sAU_s^*\in\A^{(M_*)}(sO)$ and $g(\cdot/s)\equiv1$ on
+$s\,O_{|t|}=(sO)_{s|t|}$, so \eqref{eq:P}, used for both models, and the last display give
+$\mathrm{Ad}\,U_s(\alpha^{(m_0)}_t(A))=\mathrm{Ad}\,U_s(\beta^{g,(m_0)}_t(A))=
+\beta^{g(\cdot/s),(M_*)}_{st}(U_sAU_s^*)=\alpha^{(M_*)}_{st}(U_sAU_s^*)$.  The local algebras
+being norm dense in $\A^{(m_0)}$ and all maps isometric,
+\[
+ \mathrm{Ad}\,U_s\circ\alpha^{(m_0)}_t=\alpha^{(M_*)}_{st}\circ\mathrm{Ad}\,U_s
+ \qquad\text{on }\A^{(m_0)},\ t\in\R .
+\]
+Theorem~\ref{thm:MAIN} is proved below in the working (scaled) coordinates, that is, for the
+model at $(M_*,\lambda')$; write $\omega^{(M_*)}_\infty$, $m_{1,*}$, $M$ and $\Psi_{m_{1,*}}$
+for its limit state, its gap, its moment constant and its rate function.  With
+$\omega^{(m_0)}_\infty:=\omega^{(M_*)}_\infty\circ\mathrm{Ad}\,U_s$ on $\A^{(m_0)}$, every
+conclusion of the theorem holds for the original model, in the following form.
+\emph{(1)}~If $g\in\G$ and $g\equiv1$ on $O_d$, then $g(\cdot/s)\equiv1$ on $(sO)_{sd}$ and
+\[
+ \bigl\|(\omega^{(m_0)}_g-\omega^{(m_0)}_\infty)|_{\A^{(m_0)}(O)}\bigr\|
+ =\bigl\|(\omega^{(M_*)}_{g(\cdot/s)}-\omega^{(M_*)}_\infty)|_{\A^{(M_*)}(sO)}\bigr\|
+ \le\Psi_{m_{1,*}}(s\,d) ;
+\]
+the function $d\mapsto\Psi_{m_{1,*}}(s\,d)$ again decays faster than every inverse power, and
+the net converges because $g\mapsto g(\cdot/s)$ is an order isomorphism of $\G$.  In the
+original coordinates the rate is this function; it is not the function $\Psi_\gamma$ formed
+with the gap $\gamma=s\,m_{1,*}$ of item (5).
+\emph{(2)}~$\mathrm{Ad}\,U_s$ is a spatial isomorphism of $\A^{(m_0)}(O)$ onto
+$\A^{(M_*)}(sO)$, hence normal, so $\omega^{(m_0)}_\infty|_{\A^{(m_0)}(O)}$ is normal.
+\emph{(3)}~By the intertwining relation for $\alpha$,
+$\omega^{(m_0)}_\infty\circ\alpha^{(m_0)}_t=\omega^{(m_0)}_\infty$ and, for $A,B\in
+\A^{(m_0)}$ with $A'=U_sAU_s^*$, $B'=U_sBU_s^*$,
+$\omega^{(m_0)}_\infty(A\alpha^{(m_0)}_t(B))=\omega^{(M_*)}_\infty(A'\alpha^{(M_*)}_{st}(B'))$,
+which is continuous and bounded in $t$.  If $f\in L^1(\R)$ and $\check f$ vanishes on
+$[0,\infty)$, then $f_s(t):=s^{-1}f(t/s)$ is in $L^1(\R)$ and $\check f_s(E)=\check f(sE)$
+vanishes on $[0,\infty)$, because $s>0$; hence
+$\int f(t)\,\omega^{(m_0)}_\infty(A\alpha^{(m_0)}_t(B))\,dt
+=\int f_s(t)\,\omega^{(M_*)}_\infty(A'\alpha^{(M_*)}_t(B'))\,dt=0$.  So $\omega^{(m_0)}_\infty$
+is a ground state of $(\A^{(m_0)},\alpha^{(m_0)})$ in the sense of
+Proposition~\ref{prop:spectral}.
+\emph{(4)}~$U_sU^{(m_0)}_aU_s^*=U^{(M_*)}_{sa}$ and $U_s\Theta^{(m_0)}U_s^*=\Theta^{(M_*)}$
+(Proposition~\ref{prop:ff-symmetries}(D)), so $\tau^{(m_0)}_a$ corresponds to
+$\tau^{(M_*)}_{sa}$ and $\theta^{(m_0)}$ to $\theta^{(M_*)}$, and the two invariances
+transport.
+\emph{(5)}~$\spec H^{(m_0)}(g)=s\,\spec H^{(M_*)}(g(\cdot/s))\subseteq\{0\}\cup[s\,m_{1,*},
+\infty)$ and $\dim\ker H^{(m_0)}(g)=1$; so the gap of the original model is $s\,m_{1,*}$,
+the number called $m_1$ at the end of the proof of Proposition~\ref{prop:scaling}.
+For real $h$ with $\|h\|_\infty\le1$ supported in an interval of length $2/s$,
+$\|V_{m_0,\lambda}(h)\Om^{(m_0)}_g\|=s\,\|V_{M_*,\lambda'}(h(\cdot/s))\Om^{(M_*)}_{g(\cdot/s)}\|
+\le s\,M$.  Consequently, for real $h$ with $\|h\|_\infty\le1$ supported in an interval of
+length $2$: split $h$ by a partition of unity into at most $\lceil s\rceil+1$ pieces of
+support length $\le2/s$ (one piece if $s\le1$); $\Om^{(m_0)}_g$ lies in the domain of $V$ of
+each piece (Proposition~\ref{prop:smoothing}) and $V$ is finitely additive, so
+$\|V_{m_0,\lambda}(h)\Om^{(m_0)}_g\|\le(\lceil s\rceil+1)\,s\,M$.
+
+The introduction and Theorem~\ref{thm:MAIN} state the rate $\Psi_{m_1}(d)$ and the gap $m_1$
+in the working coordinates, where $s=1$ and $m_1=m_{1,*}$.  For a general pair
+$(m_0,\lambda)$ they are to be read through items (1) and (5) above: the rate is
+$d\mapsto\Psi_{m_{1,*}}(s\,d)$ and the gap is $s\,m_{1,*}$.
+
+All displayed constants of
+\S\S\ref{sec:slab}--\ref{sec:lppl} and of
 Appendices~\ref{app:constants}, \ref{app:huniform} and~\ref{app:comparison} are the constants
 of the working coordinates, in which the unit-lattice geometry of Assumption~\ref{A:gjs} is literal.
 ```
 
-Uses: `A:gjs`, `prop:scaling`, `rem:conv`, `thm:MAIN`
+Uses: `A:gjs`, `A:patch`, `prop:ff-symmetries`, `prop:scaling`, `prop:smoothing`, `prop:spectral`, `rem:ff-A7`, `thm:MAIN`
 ### Slab transfer
 
 #### Lemma 4.1 (slab FKN; bounded nonnegative arguments)
 
-`lem:slabFKN` &middot; page 22 &middot; proof in the manuscript
+`lem:slabFKN` &middot; page 25 &middot; proof in the manuscript
 
 ```latex
 For $T>0$, $t\in[0,2T]$, $s\in[-T,T]$, and bounded nonnegative measurable functions
@@ -1310,7 +1489,7 @@ Uses: `A:fkn`, `A:stability`, `lem:classes`, `rem:conv`
 
 #### Lemma 4.2 (signed bounded extension)
 
-`lem:slabsigned` &middot; page 22 &middot; proof in the manuscript
+`lem:slabsigned` &middot; page 26 &middot; proof in the manuscript
 
 ```latex
 Equations \eqref{eq:fkn2}--\eqref{eq:fkn1} hold for bounded signed measurable $F_1,F_2$.
@@ -1321,7 +1500,7 @@ Uses: `lem:slabFKN`
 
 #### Lemma 4.3 (unbounded extension)
 
-`lem:slabunbdd` &middot; page 23 &middot; proof in the manuscript
+`lem:slabunbdd` &middot; page 26 &middot; proof in the manuscript
 
 ```latex
 \emph{(i)} For nonnegative measurable $F_1$ and $F_2$, the identities
@@ -1348,7 +1527,7 @@ Uses: `A:domain`, `A:stability`, `lem:slabFKN`, `lem:slabsigned`
 
 #### Lemma 4.4 (slab vacuum; simplicity only)
 
-`lem:slabvac` &middot; page 23 &middot; proof in the manuscript
+`lem:slabvac` &middot; page 26 &middot; proof in the manuscript
 
 ```latex
 $\hat\psi_s\to\Om_g$ in norm, $\|\psi_s\|\downarrow c_g$, and
@@ -1362,7 +1541,7 @@ Uses: `A:cutoff`
 
 #### Theorem 5.1 (uniform local interaction moment (M$_2$))
 
-`thm:M2` &middot; page 24 &middot; imports A8 &middot; proof in the manuscript
+`thm:M2` &middot; page 27 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. For every $g\in\CH$ and every real
@@ -1390,7 +1569,7 @@ Uses: `A:fkn`, `A:gjs`, `lem:ce2strip`, `lem:classes`, `lem:slabunbdd`, `lem:sla
 
 #### Corollary 5.2 ($\varphi^4$ instance)
 
-`cor:M2phi4` &middot; page 25 &middot; imports A8
+`cor:M2phi4` &middot; page 28 &middot; imports A8
 
 ```latex
 For $\mathscr P(\xi)=\xi^4$ ($p'=2$, $a_4=1$, $a_0=\dots=a_3=0$, $\sum_n|a_n|=1$;
@@ -1414,7 +1593,7 @@ Uses: `thm:D4`
 
 #### Lemma 6.1 (cell count)
 
-`lem:cells` &middot; page 25 &middot; proof in the manuscript
+`lem:cells` &middot; page 29 &middot; proof in the manuscript
 
 ```latex
 $N_I\le\lfloor L\rfloor+2\le L+2$. The bound $L+1$ is % negative-scope mention (whitelisted): L+1
@@ -1426,7 +1605,7 @@ Provenance: `src: lamport_euclidean_to_gap.tex <1>5 <2>1; audit repair L1; colum
 
 #### Proposition 6.2 (GJS norms of polynomial observables)
 
-`prop:gjsnorms` &middot; page 26 &middot; imports A8 &middot; proof in the manuscript
+`prop:gjsnorms` &middot; page 29 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 \begin{align}
@@ -1443,7 +1622,7 @@ Uses: `A:gjs`
 
 #### Remark 6.3 (row independence)
 
-`rem:row` &middot; page 26
+`rem:row` &middot; page 29
 
 ```latex
 The norm of a sharp-time monomial is independent of the common sharp time $s$: at every $s$
@@ -1458,7 +1637,7 @@ Provenance: `src: lamport_euclidean_to_gap.tex <1>5 <2>3.`
 
 #### Lemma 7.1 (moment transfer)
 
-`lem:transfer` &middot; page 26 &middot; imports A8 &middot; proof in the manuscript
+`lem:transfer` &middot; page 30 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 If the interval $I$ of \S\ref{sec:norms} has length $L>0$, let $A$ and $B'$ be the
@@ -1473,7 +1652,7 @@ Uses: `lem:slabunbdd`, `lem:slabvac`, `thm:D3`
 
 #### Lemma 7.2 (one-point limit)
 
-`lem:onepoint` &middot; page 27 &middot; imports A8 &middot; proof in the manuscript
+`lem:onepoint` &middot; page 30 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 For every fixed $s\in\R$,
@@ -1488,7 +1667,7 @@ Uses: `lem:slabunbdd`, `lem:slabvac`, `lem:transfer`, `thm:D3`
 
 #### Lemma 7.3 (two-point lower semicontinuity)
 
-`lem:twopoint` &middot; page 27 &middot; imports A8 &middot; proof in the manuscript
+`lem:twopoint` &middot; page 31 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 For every $t\ge0$, with the Euclidean integrals over slabs of half-width $T\ge t/2$
@@ -1504,7 +1683,7 @@ Uses: `lem:onepoint`, `lem:slabunbdd`, `lem:slabvac`, `lem:transfer`, `thm:D3`
 
 #### Lemma 7.4 (CE2 across a horizontal strip)
 
-`lem:ce2strip` &middot; page 28 &middot; imports A8 &middot; proof in the manuscript
+`lem:ce2strip` &middot; page 31 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 For $t>2$ and every $h\in\CE$,
@@ -1520,7 +1699,7 @@ Uses: `rem:row`, `sf:CE2`
 
 #### Proposition 7.5 (semigroup decay of centered observables)
 
-`prop:semidecay` &middot; page 28 &middot; imports A8 &middot; proof in the manuscript
+`prop:semidecay` &middot; page 32 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $\psi_Q:=Q\Om_g-\ip{\Om_g}{Q\Om_g}\Om_g$. Then
@@ -1536,7 +1715,7 @@ Uses: `lem:ce2strip`, `lem:onepoint`, `lem:twopoint`
 
 #### Lemma 7.6 (exponential moments)
 
-`lem:expmom` &middot; page 29 &middot; imports A8 &middot; proof in the manuscript
+`lem:expmom` &middot; page 32 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $d\mu_g:=|\Om_g|^2\,d\phi_0$ and $X_f:=\varphi_0(f)$ for real
@@ -1562,7 +1741,7 @@ Uses: `lem:transfer`, `thm:D3`
 
 #### Theorem 7.7 (density of polynomial vectors)
 
-`thm:dense` &middot; page 29 &middot; imports A8 &middot; proof in the manuscript
+`thm:dense` &middot; page 32 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Cylinder polynomials are dense in $L^2(d\mu_g)$. Equivalently, since $\Om_g>0$ a.e.\ makes
@@ -1575,7 +1754,7 @@ Uses: `lem:expmom`
 
 #### Theorem 7.8 (uniform gap (G))
 
-`thm:G` &middot; page 30 &middot; imports A8 &middot; proof in the manuscript
+`thm:G` &middot; page 33 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. For every $g\in\CH$,
@@ -1592,7 +1771,7 @@ Uses: `A:cutoff`, `prop:semidecay`, `thm:dense`
 
 #### Proposition 8.1 (path regularity of the semigroup)
 
-`prop:pathreg` &middot; page 31 &middot; proof in the manuscript
+`prop:pathreg` &middot; page 34 &middot; proof in the manuscript
 
 ```latex
 For each $T>0$, the family $s\mapsto e^{-TK_s}$ is norm-continuous on $[0,1]$ and
@@ -1605,7 +1784,7 @@ Uses: `A:fkn`, `A:hyper`, `A:stability`, `lem:classes`
 
 #### Proposition 8.2 (projection and eigenvector regularity; derivative formulas)
 
-`prop:projreg` &middot; page 32 &middot; proof in the manuscript
+`prop:projreg` &middot; page 35 &middot; proof in the manuscript
 
 ```latex
 \emph{(i)} $s\mapsto P_s$ is norm-continuous on $[0,1]$ and norm-$C^1$ on $(0,1)$.
@@ -1625,7 +1804,7 @@ Uses: `A:cutoff`, `A:domain`, `prop:pathreg`, `prop:smoothing`
 
 #### Lemma 9.1 (exact inverse-energy filter)
 
-`lem:filter` &middot; page 32 &middot; proof in the manuscript
+`lem:filter` &middot; page 35 &middot; proof in the manuscript
 
 ```latex
 Choose an even $\chi\in C^\infty(\R;[0,1])$ with $\chi=0$ on $[-\gamma/2,\gamma/2]$ and
@@ -1656,7 +1835,7 @@ Provenance: `src: lamport_gap_to_main.tex <1>2.`
 
 #### Lemma 9.2 (spectral separation)
 
-`lem:separation` &middot; page 33 &middot; proof in the manuscript
+`lem:separation` &middot; page 36 &middot; proof in the manuscript
 
 ```latex
 Let
@@ -1676,7 +1855,7 @@ Provenance: `src: lamport_gap_to_main.tex <1>3; variation bound renamed M_0 -> \
 
 #### Lemma 9.3 (clustering with one unbounded local argument)
 
-`lem:cluster` &middot; page 34 &middot; proof in the manuscript
+`lem:cluster` &middot; page 37 &middot; proof in the manuscript
 
 ```latex
 Let $g\in\CH$, write $H=H(g)$, $\Om=\Om_g$, $\beta_t=\beta^g_t$, and assume
@@ -1696,7 +1875,7 @@ Uses: `lem:separation`, `prop:propagation`
 
 #### Proposition C.1 (consequence of the audited source mechanisms)
 
-`prop:struct` &middot; page 47 &middot; proof in the manuscript
+`prop:struct` &middot; page 51 &middot; proof in the manuscript
 
 ```latex
 Within mechanisms M1--M5 as recorded above, and excluding the stability input of M6,
@@ -1711,7 +1890,7 @@ Provenance: `src: m4/r1-check.tex prop:struct, transcribed; statement narrowed 3
 
 #### Lemma C.2 (normalisation)
 
-`lem:Z` &middot; page 48 &middot; proof in the manuscript
+`lem:Z` &middot; page 53 &middot; proof in the manuscript
 
 ```latex
 For every $h\in\CE$ with $\supp h\subseteq\Lambda$:
@@ -1725,7 +1904,7 @@ Uses: `A:cutoff`, `A:stability`, `thm:stability`
 
 #### Lemma C.3 (Wick lower bound; the $h\ge0$ entry)
 
-`lem:wick` &middot; page 49 &middot; proof in the manuscript
+`lem:wick` &middot; page 53 &middot; proof in the manuscript
 
 ```latex
 With
@@ -1757,7 +1936,7 @@ Uses: `thm:stability`
 
 #### Lemma C.4 (ultraviolet difference; the $h\le1$ entry)
 
-`lem:uv` &middot; page 49 &middot; proof in the manuscript
+`lem:uv` &middot; page 54 &middot; proof in the manuscript
 
 ```latex
 For $n\ge1$ and $R\ge0$ put
@@ -1784,7 +1963,7 @@ Provenance: `src: m4/r1-check.tex lem:uv, transcribed; kernel facts derived and 
 
 #### Theorem C.5 ($h$-uniform stability)
 
-`thm:stability` &middot; page 51 &middot; proof in the manuscript
+`thm:stability` &middot; page 56 &middot; proof in the manuscript
 
 ```latex
 For every $p<\infty$ and compact $\Lambda$,
@@ -1804,7 +1983,7 @@ Uses: `A:hyper`, `A:stability`, `lem:uv`, `lem:wick`
 
 #### Remark C.6 (why the class is what it is)
 
-`rem:whyclass` &middot; page 52 &middot; imports A8
+`rem:whyclass` &middot; page 57 &middot; imports A8
 
 ```latex
 The two halves of the constraint $0\le h\le1$ are used in complementary places:
@@ -1823,7 +2002,7 @@ Uses: `lem:Z`, `lem:uv`, `lem:wick`, `sf:printed`
 
 #### Proposition C.7 (coverage of every CE application)
 
-`prop:discharge` &middot; page 52 &middot; imports A8 &middot; proof in the manuscript
+`prop:discharge` &middot; page 57 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 CE1 is used nowhere in \S\S\ref{sec:slab}--\ref{sec:G}: every use of Euclidean clustering
@@ -1848,7 +2027,7 @@ Uses: `lem:D2`, `lem:Z`, `lem:ce2strip`, `lem:classes`, `lem:cluster`, `lem:tran
 
 #### Lemma D.1 (affine-path identity)
 
-`lem:D1` &middot; page 79
+`lem:D1` &middot; page 84
 
 ```latex
 Let $h_1,h_2\in\CE$, and let $F$ be a finite sum of localized monomials of type $(1.1.5)$ or
@@ -1869,7 +2048,7 @@ and
 
 #### Lemma D.2 (localized comparison)
 
-`lem:D2` &middot; page 84 &middot; imports A8
+`lem:D2` &middot; page 88 &middot; imports A8
 
 ```latex
 Assume the standing assumption of \S\ref{sub:d2-conv}.  Let $F=\sum_{a\in\mathfrak A}F_a$ be a
@@ -1910,7 +2089,7 @@ Uses: `A:gjs`, `rem:wlog`, `sf:CE2`
 
 #### Theorem D.3 (Phase A: fixed cutoff, parallel strips)
 
-`thm:D3` &middot; page 90 &middot; imports A8
+`thm:D3` &middot; page 95 &middot; imports A8
 
 ```latex
 Assume the standing assumption of \S\ref{sub:d2-conv}.  Let $g\in\CH$, let $I\subset\R$ be a
@@ -1937,7 +2116,7 @@ Uses: `rem:wlog`
 
 #### Theorem D.4 (Phase B: uniform in the cutoff)
 
-`thm:D4` &middot; page 95 &middot; imports A8
+`thm:D4` &middot; page 100 &middot; imports A8
 
 ```latex
 Assume the standing assumption of \S\ref{sub:d2-conv}.  For every $h\in\CE$, every $a\in\R$ and
@@ -1961,5 +2140,250 @@ its printed proof does not reach (A8(iv)-T, Assumption~\ref{A:gjs}, item (iv-T);
 ```
 
 Uses: `A:gjs`, `rem:wlog`, `thm:stability`
+### The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
+translations, parity, dilations
+
+#### Lemma E.1 (the one-particle space in momentum variables)
+
+`lem:ff-onepart` &middot; page 115 &middot; proof in the manuscript
+
+```latex
+Let $m>0$ and let $L^2_{\rm r}(\R):=\{\theta\in L^2(\R,dk):\theta(-k)=\overline{\theta(k)}
+\text{ for a.e.\ }k\}$, a closed real-linear subspace of $L^2(\R,dk)$.
+\begin{enumerate}
+\item[\textup{(i)}] The map $j_mf:=\mu_m^{-1/2}\hat f$, $f\in\mathcal S_\R(\R)$, extends to a
+real-linear isometry of $\mathcal K_m$ onto $L^2_{\rm r}(\R)$, and $j_m^{\C}(v+iw):=j_mv+i\,j_mw$
+$(v,w\in\mathcal K_m)$ is a unitary of $\mathcal K_m^{\C}$ onto $L^2(\R,dk)$.
+\item[\textup{(ii)}] For $f\in\mathcal S_\R(\R)$ and $a\in\R$: $\mu_mf\in\mathcal S_\R(\R)$,
+$\tau_af\in\mathcal S_\R(\R)$, $j_m(\mu_mf)=\mu_m(\cdot)\,j_mf$ and
+$j_m(\tau_af)=e^{-ia\,\cdot}\,j_mf$.  Hence $\tau_a$ extends to an orthogonal bijection of
+$\mathcal K_m$ with inverse $\tau_{-a}$, $\tau_a\mu_mf=\mu_m\tau_af$, and, for the
+complex-linear extension $\tau_a^{\C}$, $j_m^{\C}\tau_a^{\C}=e^{-ia\,\cdot}\,j_m^{\C}$ on
+$\mathcal K_m^{\C}$.  The closure of $\mu_m\upharpoonright\mathcal S_\R(\R)$ in $\mathcal K_m$
+is $j_m^{-1}\mu_m(\cdot)\,j_m$ on the domain $\{f\in\mathcal K_m:\mu_m(\cdot)\,j_mf\in L^2\}$;
+it is self-adjoint and bounded below by $m$.
+\item[\textup{(iii)}] Let $s>0$ and $m=sm'$.  Then $d_s$ maps $\mathcal S_\R(\R)$ onto itself,
+$\|d_sf\|_{m'}=\|f\|_m$, and $d_s$ extends to an orthogonal bijection of $\mathcal K_m$ onto
+$\mathcal K_{m'}$.  For $f\in\mathcal S_\R(\R)$,
+\begin{gather*}
+ j_{m'}d_sf=u_sj_mf\quad\text{with }(u_s\theta)(k):=s^{1/2}\theta(sk),\\
+ d_s\mu_mf=\mu_{m'}\,e_sf,\qquad d_s\tau_af=\tau_{sa}d_sf .
+\end{gather*}
+$u_s$ is a unitary of $L^2(\R,dk)$, $j_{m'}^{\C}d_s^{\C}=u_sj_m^{\C}$ on $\mathcal K_m^{\C}$
+for the complex-linear extension $d_s^{\C}$, and $u_s\,w(\cdot)\,u_s^{-1}=w(s\,\cdot)$ for the
+operator of multiplication by a bounded measurable function $w$; in particular
+$u_s\,e^{it\mu_m(\cdot)}\,u_s^{-1}=e^{its\mu_{m'}(\cdot)}$ for $t\in\R$.
+\end{enumerate}
+```
+
+
+#### Lemma E.2 (second quantization of a unitary)
+
+`lem:ff-gamma` &middot; page 117 &middot; proof in the manuscript
+
+```latex
+Let $u:\mathfrak h\to\mathfrak h'$ be a unitary between complex Hilbert spaces and put
+$\Gamma_{\!\mathcal F}(u):=\bigoplus_{n\ge0}u^{\otimes n}\upharpoonright\mathcal F_n(\mathfrak h)$
+$(u^{\otimes0}:=1)$.
+\begin{enumerate}
+\item[\textup{(i)}] $\Gamma_{\!\mathcal F}(u)$ is a unitary of $\mathcal F(\mathfrak h)$ onto
+$\mathcal F(\mathfrak h')$; it maps $\mathcal F_n(\mathfrak h)$ onto $\mathcal F_n(\mathfrak h')$,
+$\mathcal F_{\rm fin}(\mathfrak h)$ onto $\mathcal F_{\rm fin}(\mathfrak h')$ and
+$\Omega_{\mathcal F}$ to $\Omega_{\mathcal F}$.  Moreover $\Gamma_{\!\mathcal F}(u'u)=
+\Gamma_{\!\mathcal F}(u')\Gamma_{\!\mathcal F}(u)$ and $\Gamma_{\!\mathcal F}(u)^{-1}=
+\Gamma_{\!\mathcal F}(u^{-1})$.
+\item[\textup{(ii)}] $\Gamma_{\!\mathcal F}(u)A^*(v)\psi=A^*(uv)\Gamma_{\!\mathcal F}(u)\psi$ and
+$\Gamma_{\!\mathcal F}(u)A(v)\psi=A(uv)\Gamma_{\!\mathcal F}(u)\psi$ for $v\in\mathfrak h$,
+$\psi\in\mathcal F_{\rm fin}(\mathfrak h)$.
+\item[\textup{(iii)}] $\Gamma_{\!\mathcal F}(u)\,\varphi_{\mathcal F}(v)\,
+\Gamma_{\!\mathcal F}(u)^{-1}=\varphi_{\mathcal F}(uv)$ for $v\in\mathfrak h$.
+\item[\textup{(iv)}] If $(u_t)_{t\in\R}$ is a strongly continuous one-parameter unitary group
+on $\mathfrak h$, then $(\Gamma_{\!\mathcal F}(u_t))_{t\in\R}$ is one on
+$\mathcal F(\mathfrak h)$.
+\end{enumerate}
+```
+
+
+#### Definition E.3 (number grading, momentum field, generators of the net, free Hamiltonian)
+
+`def:ff-objects` &middot; page 118
+
+```latex
+Let $m>0$, $\mathcal K=\mathcal K_m$, $\mu=\mu_m$, $j=j_m$, and let $D=D_m:\mathcal F(\mathcal
+K^{\C})\to\Gamma(\mathcal K)$ be the unitary of Assumption~\ref{A:cutoff}(e) (the source's
+Theorem I.11); it is unique (Lemma~\ref{lem:ff-transport}(vi)).
+\begin{enumerate}
+\item[\textup{(a)}] By item (c) of that theorem, $D\mathcal F_n(\mathcal K^{\C})=
+\Gamma_n(\mathcal K)$; as $D$ is unitary, $L^2(d\phi_0)=\bigoplus_{n\ge0}\Gamma_n(\mathcal K)$.
+For $z\in\C$ with $|z|=1$, $z^N$ denotes the unitary that multiplies $\Gamma_n(\mathcal K)$ by
+$z^n$; thus $z^N=D\,\Gamma_{\!\mathcal F}(z\mathbf 1)\,D^{-1}$ and $z^N1=1$.  (The exponent $N$
+stands for the grading by $n$; it is not the count $N_I$ of \S\ref{subsec:freeze}.)
+\item[\textup{(b)}] For real $h\in\mathcal S(\R)$, so that $\mu h\in\mathcal S_\R(\R)\subset
+\mathcal K$ (Lemma~\ref{lem:ff-onepart}(ii)),
+\[
+ \pi_0(h):=i^N\,\varphi_0(\mu h)\,i^{-N} .
+\]
+It is self-adjoint, being unitarily equivalent to the multiplication operator
+$\varphi_0(\mu h)$, and $\pi_0(th)=t\,\pi_0(h)$ for $t\in\R$.
+\item[\textup{(c)}] $W(f,0):=e^{i\varphi_0(f)}$ for $f\in\mathcal K$, and
+$W(0,h):=e^{i\pi_0(h)}=i^N\,e^{i\varphi_0(\mu h)}\,i^{-N}$ for real $h\in\mathcal S(\R)$.
+\item[\textup{(d)}] Let $\mu^{\C}:=(j^{\C})^{-1}\mu(\cdot)\,j^{\C}$, where $\mu(\cdot)$ is the
+operator of multiplication by $\mu(k)$ on $L^2(\R,dk)$; it is self-adjoint on
+$\mathcal K^{\C}$, and $\mu^{\C}f=\mu f$ for $f\in\mathcal S_\R(\R)$
+(Lemma~\ref{lem:ff-onepart}(ii)).  By Lemma~\ref{lem:ff-gamma}(iv), $t\mapsto
+\Gamma_{\!\mathcal F}(e^{it\mu^{\C}})$ is a strongly continuous one-parameter unitary group.
+$H_0$ is the self-adjoint operator on $L^2(d\phi_0)$ with
+\[
+ e^{itH_0}=D\,\Gamma_{\!\mathcal F}(e^{it\mu^{\C}})\,D^{-1}\qquad(t\in\R)
+\]
+(Stone's theorem).
+\end{enumerate}
+```
+
+Uses: `A:cutoff`, `lem:ff-gamma`, `lem:ff-onepart`, `lem:ff-transport`
+
+#### Lemma E.4 (transport by an orthogonal bijection of the index spaces)
+
+`lem:ff-transport` &middot; page 118 &middot; proof in the manuscript
+
+```latex
+For $i=1,2$ let $\mathcal K_i$ be a real Hilbert space, $\varphi_i$ the Gaussian random process
+indexed by $\mathcal K_i$, with measure $d\phi_i$, and $D_i$ the unitary of
+Assumption~\ref{A:cutoff}(e).  Let $T:\mathcal K_1\to\mathcal K_2$ be an orthogonal bijection,
+$T^{\C}$ its complex-linear extension, and
+\[
+ U_T:=D_2\,\Gamma_{\!\mathcal F}(T^{\C})\,D_1^{-1}:L^2(d\phi_1)\to L^2(d\phi_2) .
+\]
+\begin{enumerate}
+\item[\textup{(i)}] $U_T$ is unitary, $U_T1=1$, $U_T\Gamma_n(\mathcal K_1)=\Gamma_n(\mathcal
+K_2)$ for every $n$, and $U_Tz^N=z^NU_T$ for $|z|=1$.
+\item[\textup{(ii)}] $U_T\,\varphi_1(f)\,U_T^{-1}=\varphi_2(Tf)$ for every $f\in\mathcal K_1$.
+\item[\textup{(iii)}] For every polynomial $P$ in $r$ variables and $f_1,\dots,f_r\in
+\mathcal K_1$, $U_T\,P(\varphi_1(f_1),\dots,\varphi_1(f_r))=P(\varphi_2(Tf_1),\dots,
+\varphi_2(Tf_r))$ as elements of $L^2$; and $U_T\,{:}\varphi_1(f_1)\cdots\varphi_1(f_n){:}=
+{:}\varphi_2(Tf_1)\cdots\varphi_2(Tf_n){:}$.
+\item[\textup{(iv)}] For every real $F\in L^2(d\phi_1)$, $U_TF$ is real and
+$U_T\,M_F\,U_T^{-1}=M_{U_TF}$; if $F\ge0$, then $U_TF\ge0$.
+\item[\textup{(v)}] A unitary $W:L^2(d\phi_1)\to L^2(d\phi_2)$ with $W1=1$ and
+$W\varphi_1(f)W^{-1}=\varphi_2(Tf)$ for all $f\in\mathcal K_1$ equals $U_T$.  Consequently
+$U_{T'T}=U_{T'}U_T$ for an orthogonal bijection $T':\mathcal K_2\to\mathcal K_3$, and
+$U_{T^{-1}}=U_T^{-1}$.
+\item[\textup{(vi)}] The unitary $D_1$ of Assumption~\ref{A:cutoff}(e) is unique: a unitary
+$D':\mathcal F(\mathcal K_1^{\C})\to L^2(d\phi_1)$ with $D'\Omega_{\mathcal F}=1$ and
+$D'\varphi_{\mathcal F}(f)D'^{-1}=\varphi_1(f)$ for all $f\in\mathcal K_1$ equals $D_1$.
+\end{enumerate}
+```
+
+Uses: `A:cutoff`, `def:ff-objects`, `lem:ff-gamma`
+
+#### Proposition E.5 (translations, parity, dilations)
+
+`prop:ff-symmetries` &middot; page 120 &middot; proof in the manuscript
+
+```latex
+\leavevmode
+\begin{enumerate}
+\item[\textup{(T)}] Let $m>0$ and, for $a\in\R$, $U_a:=U_{\tau_a}$
+(Lemmas~\ref{lem:ff-onepart}(ii) and~\ref{lem:ff-transport}), and $\tau_a:=\mathrm{Ad}\,U_a$.
+Then $U_a1=1$, $U_aU_b=U_{a+b}$, and for $f\in\mathcal K_m$ and real $h\in\mathcal S(\R)$
+\[
+ U_a\varphi_0(f)U_a^*=\varphi_0(\tau_af),\qquad U_a\pi_0(h)U_a^*=\pi_0(\tau_ah),
+\]
+so that $\tau_a(W(f,0))=W(\tau_af,0)$ and $\tau_a(W(0,h))=W(0,\tau_ah)$.  For every bounded open
+interval $O$, $\tau_a(\A(O))=\A(O+a)$, and $\tau_a$ restricts to an automorphism of $\A$.
+Moreover $U_aH_0U_a^*=H_0$, and for $n\ge0$ and real $g\in L^1\cap L^2$ of compact support,
+\[
+ U_a\,{:}\varphi_0^n(g){:}_C={:}\varphi_0^n(\tau_ag){:}_C,\qquad U_aV(g)U_a^*=V(\tau_ag) .
+\]
+\item[\textup{(P)}] Let $\Theta:=U_{-\mathbf 1}=(-1)^N$ and $\theta:=\mathrm{Ad}\,\Theta$.  Then
+$\Theta=\Theta^*=\Theta^{-1}$, $\Theta1=1$,
+\[
+ \Theta\varphi_0(f)\Theta=-\varphi_0(f),\qquad\Theta\pi_0(h)\Theta=-\pi_0(h),
+\]
+so that $\theta(W(f,0))=W(-f,0)$ and $\theta(W(0,h))=W(0,-h)$; $\theta(\A(O))=\A(O)$ for every
+bounded open interval $O$, and $\theta$ restricts to an automorphism of $\A$.  Moreover
+$\Theta H_0\Theta=H_0$, $\Theta\,{:}\varphi_0^n(g){:}_C=(-1)^n{:}\varphi_0^n(g){:}_C$ for $n\ge0$
+and real $g\in L^1\cap L^2$ of compact support, and $\Theta V(g)\Theta=V(g)$ if $\mathscr P$ is
+even ($a_n=0$ for odd $n$).  If the Gaussian
+measure is realised on a real vector space $Q$ on which $q\mapsto-q$ is measurable and measure
+preserving and $\varphi_0(f)(-q)=-\varphi_0(f)(q)$, then $(\Theta\psi)(q)=\psi(-q)$.
+\item[\textup{(D)}] Let $s>0$, $m=sm'$, and $U_s:=U_{d_s}:L^2(d\phi_0^{(m)})\to
+L^2(d\phi_0^{(m')})$ (Lemmas~\ref{lem:ff-onepart}(iii) and~\ref{lem:ff-transport}).  Then
+$U_s1=1$ and, for $f\in\mathcal K_m$, real $h\in\mathcal S(\R)$, $a\in\R$ and every bounded open
+interval $O$,
+\begin{gather*}
+ U_s\varphi_0^{(m)}(f)U_s^*=\varphi_0^{(m')}(d_sf),\qquad
+ U_s\pi_0^{(m)}(h)U_s^*=\pi_0^{(m')}(e_sh),\\
+ U_s\,\A^{(m)}(O)\,U_s^*=\A^{(m')}(sO),\qquad U_sH_0^{(m)}U_s^*=s\,H_0^{(m')},\\
+ U_sU_a^{(m)}U_s^*=U_{sa}^{(m')},\qquad U_s\Theta^{(m)}U_s^*=\Theta^{(m')} ,
+\end{gather*}
+where the superscripts name the mass with which an object is formed.  Moreover, for $n\ge0$ and
+real $g\in L^1\cap L^2$ of compact support,
+\begin{gather*}
+ U_s\,{:}\varphi_0^n(g){:}_{C_m}=s^{-1}\,{:}\varphi_0^n(e_sg){:}_{C_{m'}},\\
+ U_s\,V_{m,\lambda}(g)\,U_s^*=s\,V_{m',\lambda'}(e_sg),\qquad\lambda':=s^{-2}\lambda ,
+\end{gather*}
+where $V_{m,\lambda}(g)=\lambda\sum_na_n{:}\varphi_0^n(g){:}_{C_m}$ is the interaction of
+\S\ref{subsec:model} formed with the mass $m$ and the coupling $\lambda$.
+\end{enumerate}
+```
+
+Uses: `A:cutoff`, `def:ff-objects`, `lem:ff-gamma`, `lem:ff-onepart`, `lem:ff-transport`
+
+#### Remark E.6 (the identities of Assumption~\ref{A:covar})
+
+`rem:ff-A7` &middot; page 122
+
+```latex
+For $g\in\CH$, $K(g)$ is the closure of the operator sum $H_0+V(g)$, whose domain is
+$D(H_0)\cap D(V(g))$ and which is essentially self-adjoint (Assumption~\ref{A:cutoff}).  By Proposition~\ref{prop:ff-symmetries}(T), $U_a$ maps that
+domain onto $D(H_0)\cap D(V(\tau_ag))$, and $U_a(H_0+V(g))U_a^*=H_0+V(\tau_ag)$ there; so
+$U_aK(g)U_a^*=K(\tau_ag)$.  Part (P) gives $\Theta H_0\Theta=H_0$ and, for even $\mathscr P$,
+$\Theta V(g)\Theta=V(g)$; then $\Theta$ maps $D(H_0)\cap D(V(g))$ onto itself and commutes with
+$H_0+V(g)$ there, so $\Theta K(g)\Theta=K(g)$.  These are the three identities of Assumption~\ref{A:covar}, for
+every polynomial $\mathscr P$ of \S\ref{subsec:model}.  In the same way
+Proposition~\ref{prop:ff-symmetries}(D) gives $U_sK_{m,\lambda}(g)U_s^*=
+s\,K_{m',\lambda'}(e_sg)$ for $g\in\CH$.
+```
+
+Uses: `A:covar`, `A:cutoff`, `prop:ff-symmetries`
+
+#### Lemma E.7 (the objects of the sources)
+
+`lem:ff-sources` &middot; page 122 &middot; proof in the manuscript
+
+```latex
+Let $m>0$, $\mathcal K=\mathcal K_m$, $\mu=\mu_m$, $j=j_m$, $D=D_m$.
+\begin{enumerate}
+\item[\textup{(a)}] \textup{(The Fock space of \cite{GJ2}.)}  $\Upsilon:=\Gamma_{\!\mathcal F}(j^{\C})$
+is a unitary of $\mathcal F(\mathcal K^{\C})$ onto $\mathcal F(L^2(\R,dk))$, which is the Fock
+space (1.2.1)--(1.2.2) of the source (Assumption~\ref{A:cutoff}(g)), its $n$-particle space
+being the symmetric functions in $L^2(\R^n)$.  The unitary $\mathfrak D:=D\Upsilon^{-1}:
+\mathcal F(L^2(\R,dk))\to L^2(d\phi_0)$ has the following properties.
+ \begin{enumerate}
+ \item[\textup{(1)}] $\mathfrak D\,\Omega_{\mathcal F}=1$, where $\Omega_{\mathcal F}$ is the source's vacuum (1.2.3), which
+ the source writes $\Omega_0$.
+ \item[\textup{(2)}] For real $f,h\in\mathcal S(\R)$, the source's bilinear forms
+ $\varphi(f)=\int\varphi(x)f(x)\,dx$ and $\pi(h)=\int\pi(x)h(x)\,dx$, (1.2.10)--(1.2.11), are,
+ on the source's domain $\mathfrak S\times\mathfrak S$, the forms of the operators
+ $2^{-1/2}(A^*(jf)+A(jf))$ and $2^{-1/2}(A^*(i\,j\mu h)+A(i\,j\mu h))$.  The closures of these
+ operators on $\mathfrak S$ are $\varphi_{\mathcal F}(jf)$ and $\varphi_{\mathcal F}(i\,j\mu h)$,
+ and
+ \[
+  \mathfrak D\,\varphi_{\mathcal F}(jf)\,\mathfrak D^{-1}=\varphi_0(f),\qquad
+  \mathfrak D\,\varphi_{\mathcal F}(i\,j\mu h)\,\mathfrak D^{-1}=\pi_0(h) .
+ \]
+ \item[\textup{(3)}] $\mathfrak D\,H_0^{\rm GJ}\,\mathfrak D^{-1}=H_0$, where $H_0^{\rm GJ}$ is
+ the source's operator (1.2.5), multiplication by $\sum_{j=1}^n\mu(k_j)$ on the $n$-particle
+ space, on its maximal domain.
+ \item[\textup{(4)}] $\mathfrak D\,U(-a)\,\mathfrak D^{-1}=U_a$ for the source's translation
+ unitaries (3.6.2), and $\mathfrak D\,\Gamma_{\!\mathcal F}(-\mathbf 1)\,\mathfrak D^{-1}=\Theta$.
+ \end{enumerate}
+\item[\textup{(b)}] \textup{(The $Q$-space source \cite{SimonBook}.)}  $H_0$ is the closure of
+the operator $d\Gamma(\mu)$ of the source's (I.40) and (II.48) (Assumption~\ref{A:cutoff}(f)).
+\end{enumerate}
+```
+
+Uses: `A:cutoff`, `def:ff-objects`, `lem:ff-gamma`, `lem:ff-onepart`, `lem:ff-transport`, `prop:ff-symmetries`
 
 <!-- {% endraw %} -->

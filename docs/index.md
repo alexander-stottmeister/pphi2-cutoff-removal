@@ -14,9 +14,10 @@ published paper.
 > (A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D); the former
 > moment input U_GJS is retired.
 >
-> **Notice of 11 November 2026.** An audit found four standard free-field facts that the record
-> uses without stating or importing them; until the repair is audited, Theorem 12.2 is proved
-> conditional on them.
+> **11 November 2026.** An audit of 9 November found the record's free-field layer (momentum
+> field, free Hamiltonian, the action of translations, parity and dilations) used without
+> being stated. Appendix E of the record now defines and proves it; the notice that stood here
+> for some hours on 11 November is withdrawn.
 >
 > Nothing here has been refereed; audit item C5 is open; the work is AI-assisted and
 > human verification of it is ongoing. Treat every statement as a claim under active
@@ -49,7 +50,7 @@ dynamics in the spectral sense.
 | [Provenance](provenance.md) | gates, corrections history, the citation dossiers |
 | [Figures](interactive/index.html) | eight interactive illustrations of the main results |
 
-The manuscript itself is [`part_i/main.pdf`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/main.pdf) (110 pp, document of
+The manuscript itself is [`part_i/main.pdf`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/main.pdf) (125 pp, document of
 record).
 
 ## The shape of the proof

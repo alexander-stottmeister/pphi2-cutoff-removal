@@ -74,11 +74,11 @@ norm convergence of the ground-state net on the quasi-local algebra\\[4pt]
   \normalsize Institut f\"ur Theoretische Physik, Leibniz Universit\"at Hannover,\\
   \normalsize Appelstra\ss e 2, 30167 Hannover, Germany}
 % Fixed date on purpose: it tracks the last change of the mathematics or of an
-% import's status (the integration of Appendix D, 7 November 2026), not the build date,
+% import's status (the free-field appendix, Appendix E, 11 November 2026), not the build date,
 % so the title page does not drift on every rebuild.  Update it only for such a change.
 % The PDF bytes still carry pdftex's build timestamp; for byte-identical output
-% build with SOURCE_DATE_EPOCH=1794009600 FORCE_SOURCE_DATE=1 (7 November 2026, 00:00 UTC).
-\date{7 November 2026}
+% build with SOURCE_DATE_EPOCH=1794355200 FORCE_SOURCE_DATE=1 (11 November 2026, 00:00 UTC).
+\date{11 November 2026}
 
 \begin{document}
 \maketitle
@@ -134,6 +134,23 @@ contains the finite, unevaluated constant of Theorem~\ref{thm:stability}.  The h
 readings of audit item C5 (items 1--4 and 10--12, with item 9(c)) remain open.  The record of the derivation
 (council, drafts, four audit rounds) is \texttt{ugjs/}; the gate record of the integration is
 \texttt{part\_i/README.md}.
+
+\smallskip
+\textbf{The free-field layer (11 November 2026).}  An audit of 9 November 2026 found that
+this manuscript named the time-zero momentum field $\pi_0$, the free Hamiltonian $H_0$, the
+translation unitaries and a dilation unitary, and used how translations, parity and dilations
+act on the fields and on the local algebras, without defining these objects by a formula and
+without deriving or importing those actions.  No step was found false and no statement of a
+theorem changed, but the sentence that no other external mathematical input is used was
+inaccurate.  Appendix~\ref{app:freefield} now gives the definitions and the proofs, from
+printed statements of \cite{SimonBook} that are listed in Assumption~\ref{A:cutoff} (its
+items (e)--(f) are new); \S\ref{subsec:model}, Assumptions~\ref{A:patch} and~\ref{A:covar},
+Remark~\ref{rem:wlog} and the proofs of Lemma~\ref{lem:covparity} and of
+Theorems~\ref{thm:MAIN} and~\ref{thm:dichotomy} refer to it
+(Appendix~\ref{app:provenance}, corrections history).  The repair was audited on
+11 November 2026 by two agents that had written none of it, and their findings were applied
+and re-checked (rounds V5 to V5d; \texttt{part\_i/README.md}).  With this addition the
+status sentence of 7 November 2026 above stands.
 \end{quote}
 
 \begin{abstract}
@@ -217,7 +234,9 @@ $\|(\omega_g-\omega_\infty)|_{\A(O)}\|\le\Psi_{m_1}(d)$ for $g\equiv1$ on $O_d$,
 $\Psi_{m_1}$ decaying faster than every inverse power.}
 \end{quote}
 
-See Theorem~\ref{thm:MAIN}. The logical structure is deliberately Hamiltonian and
+See Theorem~\ref{thm:MAIN}. The rate function $\Psi_{m_1}$ and the gap $m_1$ are stated in the
+working coordinates of \S\ref{subsec:weak}; Remark~\ref{rem:wlog} gives their form for a
+general pair $(m_0,\lambda)$. The logical structure is deliberately Hamiltonian and
 compactness-free:
 
 \begin{center}
@@ -343,7 +362,8 @@ box term with the normalization and stability results of Appendix~\ref{app:hunif
 the gap; Theorem~\ref{thm:D4} uniformly in the cutoff, across transverse strips as well,
 for the moment).  Appendix~\ref{app:huniform} also records the source mechanism; neither
 appendix replaces the source's polymer expansion. The transfer device is the
-Feynman--Kac--Nelson slab formula: $\psi_T=e^{-TH(g)}\Om_0$ normalizes to the ground
+Feynman--Kac--Nelson slab formula: $\psi_T=e^{-TH(g)}\Om_0$, with $\Om_0\equiv1$ the constant
+function of $Q$-space (\S\ref{subsec:model}), normalizes to the ground
 state, and sharp-time Euclidean moments become matrix elements of $e^{-tH(g)}$. One
 structural point deserves emphasis: $\hat\psi_T\to\Om_g$ uses \emph{simplicity only}
 (Lemma~\ref{lem:slabvac}) --- no gap is presupposed, and the gap of
@@ -420,7 +440,10 @@ the printed theorems of \cite{GJS} and the explicitly cited construction results
 \cite{GJ1,GJ2,GJ71,Rosen70,SimonBook,GRS75,GJExp}; they are enumerated once, as
 Assumptions~\ref{A:cutoff}--\ref{A:gjs}, and no other external mathematical input is
 used (Corollary~\ref{cor:canonical} additionally quotes the averaged-state formula
-\cite[(2.3)--(2.5)]{GJ3} as the definition of the averaged states it identifies).
+\cite[(2.3)--(2.5)]{GJ3} as the definition of the averaged states it identifies).  (Until
+11 November 2026 the free-field layer that Appendix~\ref{app:freefield} now derives from the
+printed statements listed in Assumption~\ref{A:cutoff} was used without being listed;
+Appendix~\ref{app:provenance}.)
 
 \section{Setting, notation, and standing imports}\label{sec:setting}
 
@@ -428,13 +451,26 @@ used (Corollary~\ref{cor:canonical} additionally quotes the averaged-state formu
 
 % src: m6/main.tex \S2.1 (v2), transcribed.
 $\HH=L^2(\mathcal S'(\R),d\phi_0)$ is $Q$-space over the time-zero free field of mass $m_0>0$:
-$d\phi_0$ is Gaussian with covariance $C=(2\mu)^{-1}$, $\mu=(-\partial_x^2+m_0^2)^{1/2}$. Let
-$\pi_0$ be the time-zero momentum field, the sources' $\pi(x,0)$ carried to $Q$-space by the
-Fock space--$Q$-space dictionary of the Scope paragraph of Assumption~\ref{A:cutoff}.  With
-the Weyl operators $W(f,h)=\exp i(\varphi_0(f)+\pi_0(h))$, the local net is
+$d\phi_0$ is Gaussian with covariance $C=(2\mu)^{-1}$, $\mu=(-\partial_x^2+m_0^2)^{1/2}$; the
+time-zero field $\varphi_0$ is the Gaussian random process indexed by the real Hilbert space
+$\HH_C$ of Assumption~\ref{A:cutoff}; $\varphi_0(f)$ also denotes the operator of
+multiplication by the random variable $\varphi_0(f)$; and $\Om_0:=1$ is the constant function.
+The time-zero momentum field is
 \[
-  \A(O)=\{W(f,0),\,W(0,h):f,h\in C_c^\infty(O)\ \text{real}\}'',\qquad
-  \A=\overline{\textstyle\bigcup_O\A(O)}^{\;\|\cdot\|} ,
+ \pi_0(h):=i^N\,\varphi_0(\mu h)\,i^{-N}\qquad(h\in\mathcal S(\R)\ \text{real}),
+\]
+where $i^N$ is the unitary that multiplies the $n$-th chaos $\Gamma_n(\HH_C)$ by $i^n$, and
+$H_0$ is the free Hamiltonian, the self-adjoint generator of the second quantization of the
+one-particle group $e^{it\mu}$ (Definition~\ref{def:ff-objects}).  $\pi_0(h)$ and $H_0$ are
+self-adjoint, and they are the momentum field and the free Hamiltonian of the sources
+(Lemma~\ref{lem:ff-sources}).  With the unitaries
+\[
+ W(f,0):=e^{i\varphi_0(f)},\qquad W(0,h):=e^{i\pi_0(h)},
+\]
+the local net is
+\[
+\A(O)=\{W(f,0),\,W(0,h):f,h\in C_c^\infty(O)\ \text{real}\}'',\qquad
+\A=\overline{\textstyle\bigcup_O\A(O)}^{\;\|\cdot\|} ,
 \]
 $O$ ranging over bounded open intervals.  Equivalently, $\A(O)$ is the von Neumann algebra
 generated by the bounded Borel functions of the time-zero fields $\varphi_0(f)$ and
@@ -442,9 +478,14 @@ $\pi_0(f)$, $f\in C_c^\infty(O)$ real: $W(tf,0)=e^{it\varphi_0(f)}$ and $W(0,tf)
 and the von Neumann algebra generated by the unitary group $e^{itT}$, $t\in\R$, of a
 self-adjoint $T$ contains every bounded Borel function of $T$ (an operator commuting with
 every $e^{itT}$ commutes with the spectral projections of $T$).  These are the local algebras
-of the sources (Assumption~\ref{A:patch}(iii)); until 7 November 2026 the generators were
-written as all $W(f,h)$, $f,h\in C_c^\infty(O)$, and no proof below uses a generator other
-than $W(f,0)$ and $W(0,h)$.  Let
+of the sources (Assumption~\ref{A:patch}(iii) and Lemma~\ref{lem:ff-sources}).  The space
+translations $\tau_a=\mathrm{Ad}\,U_a$ and the parity $\theta=\mathrm{Ad}\,\Theta$ act on the
+net by Proposition~\ref{prop:ff-symmetries}: $\tau_a(\A(O))=\A(O+a)$ and
+$\theta(\A(O))=\A(O)$.  (Until 7 November 2026 the generators were written as all $W(f,h)$,
+$f,h\in C_c^\infty(O)$; no proof uses a generator other than $W(f,0)$ and $W(0,h)$, and an
+operator $W(f,h)$ with $f\ne0\ne h$ is not defined in this manuscript.  Until 11 November
+2026 $\pi_0$ and $H_0$ were named here without a definition; Appendix~\ref{app:provenance}.)
+Let
 $\mathscr P(\xi)=\sum_{n=0}^{2p'}a_n\xi^n$, $a_{2p'}>0$, $p'\ge1$, and for real
 $h\in L^1(\R)\cap L^2(\R)$ of compact support
 \[
@@ -559,8 +600,9 @@ $\ip{\cdot}{\cdot}$ & inner product, conjugate-linear in the \emph{first} argume
 $C$, $\mu$ & time-zero covariance $C=(2\mu)^{-1}$, $\mu=(-\partial_x^2+m_0^2)^{1/2}$\\
 $\CE,\ \CH,\ \G$ & cutoff classes of Definition~\ref{def:classes}, in the roles fixed there\\
 $K(g),E(g),H(g),\Om_g,\omega_g,\beta^g$ & cutoff Hamiltonian data (\S\ref{subsec:model})\\
-$\alpha$, $\tau_a$, $U_a$ & patched dynamics (Assumption~\ref{A:patch}); space translations and their $Q$-space unitaries\\
-$\Theta$, $\theta$ & parity unitary $\Theta=\Gamma(-1)$; parity automorphism $\theta=\mathrm{Ad}\,\Theta$\\
+$\varphi_0$, $\pi_0$, $H_0$, $i^N$ & time-zero field (Assumption~\ref{A:cutoff}); momentum field, free Hamiltonian, number grading (Definition~\ref{def:ff-objects})\\
+$\alpha$, $\tau_a$, $U_a$ & patched dynamics (Assumption~\ref{A:patch}); space translations $\tau_a=\mathrm{Ad}\,U_a$ and their $Q$-space unitaries (Proposition~\ref{prop:ff-symmetries}); on functions, $(\tau_af)(x)=f(x-a)$\\
+$\Theta$, $\theta$ & parity unitary $\Theta=\Gamma(-1)=(-1)^N$; parity automorphism $\theta=\mathrm{Ad}\,\Theta$ (Proposition~\ref{prop:ff-symmetries})\\
 $K_1,K_2,C_7,m_1$ & GJS constants (Assumption~\ref{A:gjs}); normalization $K_2\ge1$\\
 $\|\cdot\|_{\rm GJS}$ & printed observable norm (1.1.7)--(1.1.9) of \cite{GJS}\\
 $N_I$ & number of columns $[k-\frac12,k+\frac12)$, $k\in\Z$, of the squares of \cite[p.~593]{GJS} meeting the interval $I$ in positive measure (Appendix~\ref{app:comparison}, Definition~\ref{aux:notation-squares})\\
@@ -630,11 +672,11 @@ S(x_j,y)]g(y)\,dx\,dy$'' \cite[(V.3), p.~136]{SimonBook} (printed with $h(x_j)$ 
 $h_j(x_j)$ is meant [sic]), taken with $m=n$, $\HH=\HH_C$ and the kernel $S$ of the
 source's (V.1), ``$\frac12\langle f,g\rangle_{\mathcal H}=S(f\otimes g)$'' \cite[p.~134]{SimonBook},
 which for the inner product $2\ip f{Cg}$ of $\HH_C$ is $S(x,y)=C(x-y)$, the kernel of
-$\ip\cdot{C\,\cdot}$ (Lemma~\ref{aux:notation-kernel}); that is,
+$\ip\cdot{C\,\cdot}$ (Lemma~\ref{aux:notation-kernel}); that is, for real
+$f_1,\dots,f_n\in\mathcal S(\R)$,
 \begin{equation}
  \bigl\langle{:}\varphi_0(f_1)\cdots\varphi_0(f_n){:},\,{:}\varphi_0^n(g){:}_C\bigr\rangle
- =n!\int\Bigl[\prod_{j=1}^n\int f_j(x_j)\,C(x_j-y)\,dx_j\Bigr]g(y)\,dy
- \qquad(f_j\in\mathcal S(\R)) .
+ =n!\int\Bigl[\prod_{j=1}^n\int f_j(x_j)\,C(x_j-y)\,dx_j\Bigr]g(y)\,dy .
  \tag{W.1}\label{eq:wickpairing}
 \end{equation}
 It exists for this class: ``${:}\phi_F^n{:}$ exists for any $n$ as a random process for
@@ -649,18 +691,66 @@ ${:}\varphi_0^n(g){:}_C$ is that extension, continuous for $\|\cdot\|_{1+\vareps
 (V.6b) at $p=2$, and \eqref{eq:wickpairing} persists for it, both sides being continuous in
 $g$ (the right side by H\"older's inequality, since $\prod_j\int f_j(x)C(x-\cdot)\,dx$ is
 bounded and integrable for $f_j\in\mathcal S(\R)$, $C\in L^1(\R)$); an element of
-$\Gamma_n(\HH_C)$ is determined by its pairings with the Wick monomials with $f_j\in\mathcal
-S(\R)$, as the source's ``unique'' in (V.3) asserts.  For $n=0$ and $g\in L^1(\R)$,
+$\Gamma_n(\HH_C)$ is determined by its pairings with the Wick monomials with real
+$f_j\in\mathcal S(\R)$, as the source's ``unique'' in (V.3) asserts.  For $n=0$ and $g\in L^1(\R)$,
 \eqref{eq:wickpairing} with the empty product determines the constant
 ${:}\varphi_0^0(g){:}_C:=\int g$; it is not continuous for $\|\cdot\|_{1+\varepsilon}$, and
 (V.6b) is used only for $n\ge1$.  Every real $h\in L^1\cap L^2$ of compact support lies in
 $L^{1+\varepsilon}(\R)$, so $V(h)=\lambda\sum_na_n{:}\varphi_0^n(h){:}_C$ of
 \S\ref{subsec:model} is defined, real, and linear in $h$.
+\emph{Fock space and the free field} (added 11 November 2026; the printed statements behind
+$\pi_0$, $H_0$ and the unitaries of translation, parity and dilation,
+Appendix~\ref{app:freefield}).  The source states them for a real Hilbert space, which it
+writes $\mathcal H$, with complexification written $\mathcal H_C$; in items (e)--(f) these two
+symbols are the source's, and its $\mathcal H_C$ is not the space $\HH_C$ of this assumption,
+which is real and takes the place of the source's $\mathcal H$.
+\emph{(e)}~``$\mathcal F_n(\mathcal H)=\mathcal H_C\otimes_s\cdots\otimes_s\mathcal H_C$
+($n$ times)'', ``$\mathcal F(\mathcal H)=\bigoplus_{n=0}^\infty\mathcal F_n(\mathcal H)$''
+and ``Let $\mathcal F_F(\mathcal H)$ be the incompleted direct sum of the $\mathcal F_n$''
+\cite[(I.28), p.~23]{SimonBook}; ``Given $f\in\mathcal H$ and $\psi\in\mathcal F_n(\mathcal
+H)$, we define $A^*(f)\psi=\sqrt{n+1}\,S_{n+1}(f\otimes\psi)$ (I.29a) where $S_{n+1}$ is the
+symmetrization operator'', ``$A(f)=A^*(f)^*\upharpoonright\mathcal F_F(\mathcal H)$'' and
+``$\phi(f)=\frac1{\sqrt2}(A^*(f)+A(f))$'' \cite[(I.29), pp.~23--24]{SimonBook}; ``the
+$\phi(f)$ are essentially self-adjoint on $\mathcal F_F(\mathcal H)$''
+\cite[p.~24]{SimonBook}; and, with $\Omega_0$ ``the vector $(1,0,\dots,0,\dots)\in\mathcal
+F(\mathcal H)$'': ``\textsc{Theorem I.11.} $\mathcal F(\mathcal H)$ is unitarily equivalent
+to $\Gamma(\mathcal H)$ under a unitary $D$ so that (a) $D\Omega_0=1$ (b)
+$D\phi(f)D^{-1}=\phi_{\mathcal H}(f)$ (c) $D\mathcal F_n=\Gamma_n$'' \cite[p.~24]{SimonBook}.
+\emph{(f)}~For ``a (not necessarily bounded) operator'' $A$ ``on $\mathcal H$ (with domain
+$D(A)$)'', with ``$D_n(A)\subset\Gamma_n(\mathcal H)$'' the ``(incomplete tensor product)''
+$D(A)\otimes\dots\otimes D(A)$: ``$d\Gamma(A)\upharpoonright\Gamma_n(\mathcal H)=A\otimes
+I\otimes\dots\otimes I+\dots+I\otimes\dots\otimes I\otimes A$'' \cite[(I.40),
+p.~31]{SimonBook}; ``Let $A$ generate a contraction semigroup on $\mathcal H$.  Then the
+closure of $d\Gamma(A)$ generates a contraction semigroup on $L^2(Q_{\mathcal H},d\mu)$
+[\,\dots] and $e^{-t\,d\Gamma(A)}=\Gamma(e^{-tA})$ (I.41).  In particular, this holds if $A$
+is a positive self-adjoint operator on $\mathcal H$'' \cite[Example 3, p.~32]{SimonBook}; and,
+for the free field of mass $m_0$, on $F_{m_0}$, ``the Hilbert space of all real distributions
+on $R$ whose Fourier transforms are functions with the property that the norm'' (II.46),
+$\|f\|_F^2=\int|\hat f(k)|^2(k^2+m_0^2)^{-1/2}\,dk$, ``is finite'', and with the operator
+$\mu=(-\Delta+m_0^2)^{1/2}$ of (II.47): ``$H_0=d\Gamma(\mu)$'' \cite[Thm.~II.17,
+(II.46)--(II.48), pp.~78--79]{SimonBook}.
+\emph{(g)}~The Fock-space objects of the cutoff construction; they are quoted to identify
+them with the objects of this manuscript (Lemma~\ref{lem:ff-sources}), and no proof uses them
+otherwise.  ``The Fock space $\mathcal F$ is the Hilbert space completion of the symmetric
+tensor algebra over $L_2(R)$'', with the vacuum ``$\Omega_0=\{1,0,0,\cdots\}$'',
+``$(H_0\psi)_n(k_1,\cdots,k_n)=\sum_{j=1}^n\mu(k_j)\psi_n(k_1,\cdots,k_n)$'',
+``$\mu(k)=(k^2+m_0^2)^{1/2}$'' and ``$(a(k)\psi)_{n-1}(k_1,\cdots,k_{n-1})=n^{1/2}\psi_n(k,k_1,
+\cdots,k_{n-1})$'' \cite[(1.2.1)--(1.2.6), p.~364]{GJ2}; ``the set $\mathfrak S$ of vectors
+$\psi$ in $\mathcal F$ with $\psi_n=0$ for large $n$ and $\psi_n\in\mathcal S(R^n)$ for all
+$n$'', the form ``$(a^*(k)\psi)_{n+1}(k_1,\cdots,k_{n+1})=(n+1)^{-1/2}\sum_{j=1}^{n+1}
+\delta(k-k_j)\psi_n(k_1,\cdots,\hat k_j,\cdots,k_{n+1})$'', ``$\varphi(x)=(4\pi)^{-1/2}\int
+e^{-ikx}\mu(k)^{-1/2}\{a^*(k)+a(-k)\}dk$'' and ``$\pi(x)=i(4\pi)^{-1/2}\int e^{-ikx}\mu(k)^{1/2}
+\{a^*(k)-a(-k)\}dk$'' \cite[(1.2.7), (1.2.10), (1.2.11), p.~365]{GJ2}; and the translation
+unitaries ``$U(\alpha)\theta(k_1,\cdots,k_j)=e^{+i\alpha(k_1+\cdots+k_j)}\theta(k_1,\cdots,k_j)$''
+\cite[(3.6.2), p.~398]{GJ2}.
 
 \emph{Sources.} \cite[p.~588]{GJS}; existence and uniqueness of the cutoff vacuum:
 \cite[Thms.~2.2.1, 2.3.1]{GJ2}; lower bounds and positivity: \cite{GJ71}; the semigroup
 construction: \cite[Thm.~5.3]{Rosen70}; the Wick powers: \cite[pp.~10--12, 15--17,
-134--138]{SimonBook}, read on the page images on 7 November 2026.
+134--138]{SimonBook}, read on the page images on 7 November 2026; Fock space, Theorem I.11
+and the second quantization: \cite[pp.~23--24, 27, 31--32, 78--79]{SimonBook}, and the
+Fock-space objects of the cutoff construction: \cite[pp.~364--365, 398]{GJ2}, read on the page
+images on 9 and 11 November 2026.
 
 \emph{Scope.} Strict positivity of $\Om_g$ is the standard positivity-improving semigroup
 argument of the cited construction; simplicity is used below only through the two consequences
@@ -678,24 +768,54 @@ uses $V(h)$ (the general statements of this assumption, of Assumption~\ref{A:dom
 Proposition~\ref{prop:smoothing} are applied only to such $h$), the same
 element is constructed in this manuscript as an explicit $L^2(d\phi_0)$-limit
 (Lemma~\ref{aux:notation-ident}(iii) with Lemma~\ref{aux:notation-wick}(iii)), so nothing
-below rests on that reading alone.  The sources of the cutoff construction define $V(g)$ by
-normal ordering in Fock space; that their $V(g)$ is the object defined here is the Fock
-space--$Q$-space dictionary of \cite[Ch.~I]{SimonBook}, a reading of the kind recorded in
-Assumption~\ref{A:gjs}, Scope~(d).
+below rests on that reading alone.  Items (a)--(d) and Lemma~\ref{aux:notation-kernel} hold
+for every mass $m_0>0$, and Remark~\ref{rem:wlog} with Proposition~\ref{prop:ff-symmetries}(D)
+uses them at the mass $M_*$ as well.  Of items (e)--(g): the source's $\Omega_0$ is the Fock
+vacuum, which the unitary $D$ carries to the constant function $\Om_0=1$ of
+\S\ref{subsec:model}; the statements are printed for ``the'' Gaussian random process indexed by
+$\mathcal H$ and are used for the realisation of \S\ref{subsec:model}, any two realisations
+being isomorphic (Theorem I.6, above); item (e) and the statements (I.40),
+(I.41) of item (f) are printed for an arbitrary real Hilbert space and are used with the
+source's real space taken to be the space $\HH_C$ of this assumption, formed with the mass
+$m_0$ and, in Remark~\ref{rem:wlog}, with the mass $M_*$ (Appendix~\ref{app:freefield} writes
+$\mathcal K_m$ for it and $\mathcal K_m^{\C}$ for its complexification); item (b) of Theorem I.11 is read as an identity
+between the closure of $\phi(f)$ and the operator of multiplication by
+$\phi_{\mathcal H}(f)$, and the proof of Lemma~\ref{lem:ff-transport}(ii) shows that the
+weaker reading, an identity on $D\mathcal F_F$, gives the same; Example 3 is used for $A=\mu$,
+which is a positive self-adjoint operator on $\HH_C$ (under the isometry $j$ of
+Lemma~\ref{lem:ff-onepart} it is multiplication by $\mu(k)\ge m_0$ on $L^2_{\rm r}(\R)$), and
+only in Lemma~\ref{lem:ff-sources}(b); (II.48) is printed for the space $F_{m_0}$ only and is
+quoted as the source's definition of $H_0$, and $F_{m_0}$ is $\HH_C$: the source normalizes the
+Fourier transform ``throughout these notes'' by ``$\hat F(t_1,\dots,t_n)=(2\pi)^{-n/2}\int
+e^{-i\sum t_ix_i}F(x_1,\dots,x_n)\,d^nx$'' \cite[p.~27]{SimonBook}, as
+Appendix~\ref{app:freefield} does, so the map $f\mapsto\mu^{-1/2}\hat f$ carries $F_{m_0}$
+isometrically onto $L^2_{\rm r}(\R)$, and the image of the real Schwartz functions is dense
+there (Lemma~\ref{lem:ff-onepart}(i)).  The sources of the cutoff construction work in Fock
+space; the dictionary between their Fock space and $Q$-space is the unitary $\mathfrak D$ of
+Lemma~\ref{lem:ff-sources}, which carries their vacuum to $1$, their time-zero fields to
+$\varphi_0$ and $\pi_0$, their free Hamiltonian to $H_0$ and their translation unitary $U(-a)$
+to $U_a$.
+They define $V(g)$ by normal ordering in Fock space; that $\mathfrak D$ carries their $V(g)$
+to the $V(g)$ defined here is not proved in this manuscript and remains a reading of the kind
+recorded in Assumption~\ref{A:gjs}, Scope~(d).
 
 \emph{Used in.} \S\ref{subsec:model} (the construction and locality of $V(h)$),
 \S\ref{sec:slab} (slab limits), \S\ref{sec:M2} (Step~1; weak-graph passage),
 \S\ref{sec:G} (density, spectral projections), \S\ref{sec:path} (simple Perron root),
 \S\ref{sec:ground} and \S\ref{sec:dichotomy} (covariance and parity via
 Lemma~\ref{lem:covparity}), Appendix~\ref{app:huniform} (Lemma~\ref{lem:Z} uses item (c)),
-Appendix~\ref{app:comparison} (Lemmas~\ref{aux:notation-wick} and~\ref{aux:notation-ident}).
+Appendix~\ref{app:comparison} (Lemmas~\ref{aux:notation-wick} and~\ref{aux:notation-ident}),
+Appendix~\ref{app:freefield} (items (a), (c)--(g)).
 
 {\raggedright\emph{Dossier.} \texttt{gj2-ground-existence-08}, \texttt{gjii-ground-12},
 \texttt{gj71-lower-bound-02}, \texttt{gj71-theorem2-04}, \texttt{rosen-semigroup-22},
 \texttt{rosen-selfadjoint-23}, \texttt{gjs-source-05/06} (E04--E06, E10--E13, E20); Wick
 powers (added 7 November 2026): \texttt{simon-wickgen-032}, \texttt{simon-wickpair-033},
 \texttt{simon-wickprod-034}, \texttt{simon-gaussproc-037}, \texttt{simon-gamman-038/039},
-\texttt{simon-wickdef-156/157/158}, \texttt{simon-wickthm-159/160}.\par}
+\texttt{simon-wickdef-156/157/158}, \texttt{simon-wickthm-159/160}; Fock space and the free
+field (added 11 November 2026): \texttt{simon-fock-045/046}, \texttt{simon-fourier-049},
+\texttt{simon-dgamma-053/054}, \texttt{simon-freefield-100/101}, \texttt{gj2-fock-04},
+\texttt{gj2-fields-05}, \texttt{gj2-cutoff-independence-38}.\par}
 \end{assumption}
 
 \begin{assumption}[Feynman--Kac--Nelson transfer]\label{A:fkn}
@@ -875,8 +995,9 @@ and is therefore \emph{not} sufficient here; the citation is to Theorem~7.4
 
 \begin{assumption}[free propagation; patching; the dynamics $\alpha$]\label{A:patch}
 \emph{(i)} The free dynamics $\mathrm{Ad}\,e^{itH_0}$ has propagation speed one
-(Klein--Gordon finite propagation), and the Trotter product formula for $e^{itK(g)}$ converges
-strongly.
+(Klein--Gordon finite propagation): $e^{itH_0}\A(O)e^{-itH_0}\subseteq\A(O_{|t|})$ for every
+bounded open interval $O$ and $t\in\R$ (stated as this inclusion since 11 November 2026); and
+the Trotter product formula for $e^{itK(g)}$ converges strongly.
 \emph{(ii)} There is a one-parameter automorphism group $\alpha$ of $\A$, independent of $g$,
 with
 \begin{equation}
@@ -887,7 +1008,8 @@ with
 \emph{(iii)} The net is local: $\A(O)\subseteq\A(O')'$ for disjoint bounded open intervals
 $O$, $O'$ (listed on 7 November 2026; used before without being listed).
 
-\emph{Sources.} \cite[\S III]{GJ1}; \cite[\S\S3.5--3.6]{GJ2}; \cite[\S4.1 and Ch.~4]{GJExp};
+\emph{Sources.} \cite[\S III]{GJ1} (item (i): (3.4), p.~1948); \cite[\S\S3.5--3.6]{GJ2};
+\cite[\S4.1 and Ch.~4]{GJExp};
 (iii): \cite[p.~397, proof of Thm.~3.5.1]{GJ2}, read on the page image on 7 November 2026.
 
 \emph{Scope.} \eqref{eq:P} is the Glimm--Jaffe patching construction verbatim; the
@@ -896,18 +1018,30 @@ $g$-uniform propagation bound for the \emph{cutoff} dynamics is not imported but
 defines, for an open set in space, ``as the weak closure of the bounded functions of the
 $t=0$ fields'' $\int\varphi(x,0)f(x)\,dx$ and $\int\pi(x,0)f(x)\,dx$ ``as $f$ runs over the
 $C^\infty$ functions with support in'' that set: for two ``disjoint open sets'', ``elements
-of'' the two algebras ``commute''.  The algebra so defined for an interval $O$ is the
-$\A(O)$ of \S\ref{subsec:model}, which is generated by the bounded Borel functions of
-$\varphi_0(f)$ and $\pi_0(f)$, $f\in C_c^\infty(O)$ real, once the source's Fock-space fields
-$\varphi(x,0)$, $\pi(x,0)$ are read as the $Q$-space fields $\varphi_0$, $\pi_0$: the Fock
-space--$Q$-space dictionary of the Scope paragraph of Assumption~\ref{A:cutoff}, a reading of
-the source.  Items (i) and (ii) are imported under the same reading.  (Until 7 November 2026
-\S\ref{subsec:model} wrote the generators of $\A(O)$ as all $W(f,h)$; matching that
-generating set to the source's would need the Weyl relations, which this manuscript does not
-state and does not use for the local algebras; the remark on the coordinate convention in
-\S\ref{sec:reduction} presupposes them for its scaling automorphism, of which only the action
-on $W(f,0)$ and $W(0,h)$ enters
-$\sigma_s(\A(O))=\A(sO)$.)
+of'' the two algebras ``commute''.  The unitary $\mathfrak D$ of Lemma~\ref{lem:ff-sources}
+carries the closures of the source's Fock-space fields $\varphi(f)$, $\pi(f)$,
+(1.2.10)--(1.2.11), to $\varphi_0(f)$, $\pi_0(f)$, and its free Hamiltonian to $H_0$; so it
+carries the algebra so defined for an interval $O$ onto the $\A(O)$ of
+\S\ref{subsec:model}, which is generated by the bounded Borel functions of $\varphi_0(f)$ and
+$\pi_0(f)$, $f\in C_c^\infty(O)$ real.  That the source's time-zero fields $\varphi(x,0)$,
+$\pi(x,0)$ of p.~397 are its (1.2.10)--(1.2.11), and that its test functions are real, is a
+reading of the source.  Items (i) and (ii) are imported through the same unitary; for item
+(ii) this includes the reading recorded in the Scope of Assumption~\ref{A:cutoff}, that the
+source's interaction is carried to $V(g)$.  The identity \eqref{eq:P} is printed with ``let
+$g\equiv1$ on $B_t$'' \cite[Thm.~4.1.2, p.~42]{GJExp}.  \cite[p.~398]{GJ2} prints the
+condition for the same cutoff independence as ``$g(y)=\lambda$ for $|x-y|>|t|$'', and in the
+next clause ``$|x+\alpha-y|>|t|$'', with $>$ where (3.5.1) of p.~397 (``distance less than
+$|\sigma|$'') calls for $<$ [sic]; those clauses are not used.  Item (i) is printed as ``we
+infer that $e^{iH_0t}\mathfrak A(O)e^{-iH_0t}\subset\mathfrak A(O_t)$, (3.4) where $O_t$ is
+the region $O$ expanded by $t$'', for $O$ ``an open region of space'' and $\mathfrak A(O)$
+``the von Neumann algebra of operators generated by the spectral projections of all the
+fields $\varphi(f)$ and $\pi(f)$, supp $f\subset O$'' \cite[\S III, p.~1948]{GJ1} (read on the
+page image on 11 November 2026); for $t<0$ the region is read as $O$ expanded by $|t|$.  That
+the fields and the Fock space of \cite{GJ1} are those of \cite[(1.2.1)--(1.2.11)]{GJ2}, and
+that its test functions are real, is a reading of the source, of the same kind as for item
+(iii).  (Until 11 November 2026 this paragraph called the identification of the fields a
+reading and mentioned the Weyl relations, which this manuscript does not state; they are not
+used, see Appendix~\ref{app:freefield}.)
 
 \emph{Used in.} Proposition~\ref{prop:propagation}, \S\ref{sec:filter} (locality identity),
 \S\ref{sec:lppl}, \S\ref{sec:ground}; item (iii): \S\ref{subsec:model} (\emph{Locality}, hence
@@ -916,23 +1050,38 @@ Proposition~\ref{prop:propagation} and the two-regime bound of \S\ref{sec:lppl})
 
 {\raggedright\emph{Dossier.} \texttt{gj1-locality-06}, \texttt{gjexp-054/055/056},
 \texttt{gj2-cutoff-independence-38}, \texttt{gj2-local-algebra-40} (E03, E06,
-E14--E16); item (iii) (added 7 November 2026): \texttt{gj2-locality-37}.\par}
+E14--E16); item (iii) (added 7 November 2026): \texttt{gj2-locality-37}; item (i), the
+printed inclusion (added 11 November 2026): \texttt{gj1-propagation-04}.\par}
 \end{assumption}
 
 \begin{assumption}[covariance data]\label{A:covar}
-Let $U_a$ implement the space translation $\tau_a$ on $Q$-space and let
-$\Theta:=\Gamma(-1)$, so that $(\Theta\psi)(q)=\psi(-q)$ in $Q$-space. Then, for every
+Let $U_a$, $a\in\R$, be the translation unitaries and $\Theta=(-1)^N$ the parity unitary of
+Proposition~\ref{prop:ff-symmetries}, $\tau_a=\mathrm{Ad}\,U_a$ and
+$\theta=\mathrm{Ad}\,\Theta$; in the notation of second quantization $\Theta=\Gamma(-1)$, and
+$(\Theta\psi)(q)=\psi(-q)$ in $Q$-space.  Then, for every
 $g\in\CH$,
 \[
  U_aK(g)U_a^*=K(\tau_ag),\qquad \Theta H_0\Theta=H_0,\qquad
  \Theta V(g)\Theta=V(g)\ \ \text{for even }\mathscr P .
 \]
 
-\emph{Sources.} \cite[p.~398]{GJ2} (cutoff covariance); the transformation of Wick powers
-under $\Gamma(-1)$ is the parity of the polynomial.
+\emph{Sources.} \cite[p.~398]{GJ2} (cutoff covariance): ``$U(-\alpha)H(g)U(+\alpha)=H(g')$,
+where $g'(x)=g(x-\alpha)$'', for the source's translation unitaries $U(\alpha)$, of which
+$U_a$ is $U(-a)$ under the dictionary (Lemma~\ref{lem:ff-sources}(a)); the transformation of
+Wick powers under $\Gamma(-1)$ is the parity of the polynomial.
 
 \emph{Scope.} Only the displayed operator identities are imported; the state-level
-consequences are derived in Lemma~\ref{lem:covparity}.
+consequences are derived in Lemma~\ref{lem:covparity}.  Since 11 November 2026 the three
+identities are also proved in this manuscript, for every $\mathscr P$ of \S\ref{subsec:model}
+(Proposition~\ref{prop:ff-symmetries}(T), (P) and Remark~\ref{rem:ff-A7}); the assumption is
+kept under its number and with its source.  The source prints the first identity for its
+$(\varphi^4)_2$ Hamiltonian.  How $U_a$ and $\Theta$ act on the fields and on the local
+algebras, which \S\ref{sec:ground} and \S\ref{sec:dichotomy} use, is
+Proposition~\ref{prop:ff-symmetries}; until 11 November 2026 it was used without proof
+(Appendix~\ref{app:provenance}).  The description $(\Theta\psi)(q)=\psi(-q)$ presupposes a
+realisation of $Q$-space on which $q\mapsto-q$ preserves the measure
+(Proposition~\ref{prop:ff-symmetries}(P)); no proof depends on it.  The same page of the
+source says ``from the definition (1.2.11)'' where $\varphi(x)$ is its (1.2.10) [sic].
 
 \emph{Used in.} Lemma~\ref{lem:covparity}; thence \S\ref{sec:ground},
 \S\ref{sec:dichotomy}.
@@ -1323,13 +1472,17 @@ For even $\mathscr P$: $\omega_g\circ\theta=\omega_g$.
 % src: m6/main.tex prop:M0-main(ii),(iii) (v2), transcribed.
 By Assumption~\ref{A:covar}, $U_aK(g)U_a^*=K(\tau_ag)$, so by simplicity
 (Assumption~\ref{A:cutoff}) $\Om_{\tau_ag}=U_a\Om_g$ up to a phase, which cancels in the
-state; this is \eqref{eq:T}.
+state: $\omega_{\tau_ag}(A)=\ip{U_a\Om_g}{AU_a\Om_g}=\omega_g(U_a^*AU_a)=\omega_g(\tau_{-a}(A))$,
+because $U_a^*=U_{-a}$ (Proposition~\ref{prop:ff-symmetries}(T)); this is \eqref{eq:T}.
 
 For parity: $\Theta=\Gamma(-1)$ is unitary, self-adjoint, commutes with $H_0$, and for even
-$\mathscr P$ satisfies $\Theta V(g)\Theta=V(g)$ (Assumption~\ref{A:covar}); hence
-$\Theta\Om_g=c\Om_g$ with $c\in\{\pm1\}$ by simplicity and $\Theta^2=1$. In $Q$-space
-$(\Theta\psi)(q)=\psi(-q)$, so $\Theta\Om_g>0$ a.e.\ together with $\Om_g>0$ a.e.\
-(Assumption~\ref{A:cutoff}) forces $c=+1$. Thus
+$\mathscr P$ satisfies $\Theta V(g)\Theta=V(g)$ (Assumption~\ref{A:covar}); so $\Theta$ maps
+$D(H_0)\cap D(V(g))$ onto itself and commutes with $H_0+V(g)$ there, hence with the closure
+$K(g)$.  Therefore
+$\Theta\Om_g=c\Om_g$ with $c\in\{\pm1\}$ by simplicity and $\Theta^2=1$.  $\Theta$ maps
+non-negative functions to non-negative functions (Lemma~\ref{lem:ff-transport}(iv); in a
+realisation with $(\Theta\psi)(q)=\psi(-q)$ this is evident), so $c\,\Om_g=\Theta\Om_g\ge0$,
+which together with $\Om_g>0$ a.e.\ (Assumption~\ref{A:cutoff}) forces $c=+1$. Thus
 $\omega_g(\theta(A))=\ip{\Theta\Om_g}{A\Theta\Om_g}=\omega_g(A)$.
 \end{proof}
 
@@ -1452,38 +1605,99 @@ Remark~\ref{rem:wlog}.
 
 \begin{remark}[coordinate convention and transport of the conclusions]\label{rem:wlog}
 % [new] item, authorized by the U4 plan amendment in strategy.md (adjudicates the U4
-% finding on the lattice transport). Each claim is a one-line consequence of the
-% computations in the proof of Proposition 3.2.
+% finding on the lattice transport).  Rewritten on 11 November 2026 (audit round V4f, findings
+% F4, F5, F10; audit round V5, findings F-A to F-C): the dilation unitary, asserted before, is
+% that of prop:ff-symmetries(D); the transport of each conclusion of Theorem 12.2, of the
+% dynamics in particular, is derived; the factor s of the moment constant and the labels of
+% the two models are explicit.
 The dilation behind Proposition~\ref{prop:scaling} identifies the model at
 $(m_0,\lambda)$ with the model at $(M_*,\lambda')$, $\lambda'=(M_*/m_0)^2\lambda
-<\lambda_*$, as follows. Let $s=m_0/M_*$, $y=sx$, and let $\sigma_s$ be the scaling
-automorphism of the Weyl algebra, $\sigma_s(W(f,h))=W(s^{-1}f(\cdot/s),h(\cdot/s))$
-(a symplectic map). The sharp-time covariance is scale-covariant between the two masses,
-$C_{M_*}(s\,z)=C_{m_0}(z)$ (the one-dimensional analogue of the substitution in the
-proof of Proposition~\ref{prop:scaling}), so $\sigma_s$ carries the mass-$m_0$ Fock
-state onto the mass-$M_*$ Fock state and is unitarily implemented by some $U_s$ with
-$U_s\Om_0^{(m_0)}=\Om_0^{(M_*)}$; moreover $\sigma_s(\A(O))=\A(sO)$. On the
-generators, $\mu_{M_*}(k/s)=s^{-1}\mu_{m_0}(k)$ (since $sM_*=m_0$) gives
-$U_sH_0^{(m_0)}U_s^*=s\,H_0^{(M_*)}$, and the Euclidean Wick identification of
-Proposition~\ref{prop:scaling}, restricted to sharp time (Remark~\ref{rem:conv}), gives
+<\lambda_*$, as follows.  Let $s=m_0/M_*$ and let $U_s$ be the unitary of
+Proposition~\ref{prop:ff-symmetries}(D), with $m=m_0$ and $m'=M_*$, from the $Q$-space of
+mass $m_0$ onto the $Q$-space of mass $M_*$.  A superscript $(m_0)$ names an object of the
+model at $(m_0,\lambda)$, a superscript $(M_*)$ an object of the model at $(M_*,\lambda')$.
+By that proposition $U_s\Om_0^{(m_0)}=\Om_0^{(M_*)}$,
+\begin{gather*}
+ U_s\varphi_0^{(m_0)}(f)U_s^*=\varphi_0^{(M_*)}(s^{-1}f(\cdot/s)),\qquad
+ U_s\pi_0^{(m_0)}(h)U_s^*=\pi_0^{(M_*)}(h(\cdot/s)),\\
+ U_s\,\A^{(m_0)}(O)\,U_s^*=\A^{(M_*)}(sO),
+\end{gather*}
+$U_sH_0^{(m_0)}U_s^*=s\,H_0^{(M_*)}$ and
 $U_sV_{m_0,\lambda}(g)U_s^*=s\,V_{M_*,\lambda'}(g(\cdot/s))$; hence
+(Remark~\ref{rem:ff-A7})
 \[
  U_s\,K_{m_0,\lambda}(g)\,U_s^*=s\,K_{M_*,\lambda'}(g(\cdot/s)),
  \qquad g\in\CH .
 \]
 Consequently $g\mapsto g(\cdot/s)$ is an order isomorphism of $\G$ onto $\G$ (and a
-bijection of $\CH$), cutoff ground states correspond under $U_s$, and the two cutoff
-nets of states are carried onto each other. Every conclusion of
-Theorem~\ref{thm:MAIN}, proved in the working (scaled) coordinates, therefore holds for
-the original model with the dictionary: localization $O\leftrightarrow sO$; plateau
-distance $d\leftrightarrow s\,d$, so the rate becomes $\Psi_{m_{1,*}}(s\,d)$, again
-decaying faster than every inverse power of $d$; dynamics
-$\alpha_t\leftrightarrow\alpha_{st}$, the light cone being form-invariant; gap
-$m_1:=s\,m_{1,*}$; and the local-moment clause of item (5) transports to supports of
-length $2/s$ --- equivalently, it holds for supports of length $2$ after splitting $h$
-by a partition of unity into at most $\lceil s\rceil+1$ pieces of support length
-$\le2/s$ (finite additivity of $V$), with constant $(\lceil s\rceil+1)$ times the
-transported one. All displayed constants of \S\S\ref{sec:slab}--\ref{sec:lppl} and of
+bijection of $\CH$); $E^{(m_0)}(g)=s\,E^{(M_*)}(g(\cdot/s))$ and
+$U_sH^{(m_0)}(g)U_s^*=s\,H^{(M_*)}(g(\cdot/s))$; and $U_s$ maps the ground vector of
+$K_{m_0,\lambda}(g)$ to a ground vector of $K_{M_*,\lambda'}(g(\cdot/s))$, so that
+\[
+ \omega^{(m_0)}_g=\omega^{(M_*)}_{g(\cdot/s)}\circ\mathrm{Ad}\,U_s ,\qquad
+ \mathrm{Ad}\,U_s\circ\beta^{g,(m_0)}_t=\beta^{g(\cdot/s),(M_*)}_{st}\circ\mathrm{Ad}\,U_s .
+\]
+The dynamics $\alpha^{(m_0)}$ of the original model is that of Assumption~\ref{A:patch}(ii)
+at $(m_0,\lambda)$.  Let $A\in\A^{(m_0)}(O)$ and $t\in\R$, and choose $g\in\G$ with $g\equiv1$
+on $O_{|t|}$.  Then $U_sAU_s^*\in\A^{(M_*)}(sO)$ and $g(\cdot/s)\equiv1$ on
+$s\,O_{|t|}=(sO)_{s|t|}$, so \eqref{eq:P}, used for both models, and the last display give
+$\mathrm{Ad}\,U_s(\alpha^{(m_0)}_t(A))=\mathrm{Ad}\,U_s(\beta^{g,(m_0)}_t(A))=
+\beta^{g(\cdot/s),(M_*)}_{st}(U_sAU_s^*)=\alpha^{(M_*)}_{st}(U_sAU_s^*)$.  The local algebras
+being norm dense in $\A^{(m_0)}$ and all maps isometric,
+\[
+ \mathrm{Ad}\,U_s\circ\alpha^{(m_0)}_t=\alpha^{(M_*)}_{st}\circ\mathrm{Ad}\,U_s
+ \qquad\text{on }\A^{(m_0)},\ t\in\R .
+\]
+Theorem~\ref{thm:MAIN} is proved below in the working (scaled) coordinates, that is, for the
+model at $(M_*,\lambda')$; write $\omega^{(M_*)}_\infty$, $m_{1,*}$, $M$ and $\Psi_{m_{1,*}}$
+for its limit state, its gap, its moment constant and its rate function.  With
+$\omega^{(m_0)}_\infty:=\omega^{(M_*)}_\infty\circ\mathrm{Ad}\,U_s$ on $\A^{(m_0)}$, every
+conclusion of the theorem holds for the original model, in the following form.
+\emph{(1)}~If $g\in\G$ and $g\equiv1$ on $O_d$, then $g(\cdot/s)\equiv1$ on $(sO)_{sd}$ and
+\[
+ \bigl\|(\omega^{(m_0)}_g-\omega^{(m_0)}_\infty)|_{\A^{(m_0)}(O)}\bigr\|
+ =\bigl\|(\omega^{(M_*)}_{g(\cdot/s)}-\omega^{(M_*)}_\infty)|_{\A^{(M_*)}(sO)}\bigr\|
+ \le\Psi_{m_{1,*}}(s\,d) ;
+\]
+the function $d\mapsto\Psi_{m_{1,*}}(s\,d)$ again decays faster than every inverse power, and
+the net converges because $g\mapsto g(\cdot/s)$ is an order isomorphism of $\G$.  In the
+original coordinates the rate is this function; it is not the function $\Psi_\gamma$ formed
+with the gap $\gamma=s\,m_{1,*}$ of item (5).
+\emph{(2)}~$\mathrm{Ad}\,U_s$ is a spatial isomorphism of $\A^{(m_0)}(O)$ onto
+$\A^{(M_*)}(sO)$, hence normal, so $\omega^{(m_0)}_\infty|_{\A^{(m_0)}(O)}$ is normal.
+\emph{(3)}~By the intertwining relation for $\alpha$,
+$\omega^{(m_0)}_\infty\circ\alpha^{(m_0)}_t=\omega^{(m_0)}_\infty$ and, for $A,B\in
+\A^{(m_0)}$ with $A'=U_sAU_s^*$, $B'=U_sBU_s^*$,
+$\omega^{(m_0)}_\infty(A\alpha^{(m_0)}_t(B))=\omega^{(M_*)}_\infty(A'\alpha^{(M_*)}_{st}(B'))$,
+which is continuous and bounded in $t$.  If $f\in L^1(\R)$ and $\check f$ vanishes on
+$[0,\infty)$, then $f_s(t):=s^{-1}f(t/s)$ is in $L^1(\R)$ and $\check f_s(E)=\check f(sE)$
+vanishes on $[0,\infty)$, because $s>0$; hence
+$\int f(t)\,\omega^{(m_0)}_\infty(A\alpha^{(m_0)}_t(B))\,dt
+=\int f_s(t)\,\omega^{(M_*)}_\infty(A'\alpha^{(M_*)}_t(B'))\,dt=0$.  So $\omega^{(m_0)}_\infty$
+is a ground state of $(\A^{(m_0)},\alpha^{(m_0)})$ in the sense of
+Proposition~\ref{prop:spectral}.
+\emph{(4)}~$U_sU^{(m_0)}_aU_s^*=U^{(M_*)}_{sa}$ and $U_s\Theta^{(m_0)}U_s^*=\Theta^{(M_*)}$
+(Proposition~\ref{prop:ff-symmetries}(D)), so $\tau^{(m_0)}_a$ corresponds to
+$\tau^{(M_*)}_{sa}$ and $\theta^{(m_0)}$ to $\theta^{(M_*)}$, and the two invariances
+transport.
+\emph{(5)}~$\spec H^{(m_0)}(g)=s\,\spec H^{(M_*)}(g(\cdot/s))\subseteq\{0\}\cup[s\,m_{1,*},
+\infty)$ and $\dim\ker H^{(m_0)}(g)=1$; so the gap of the original model is $s\,m_{1,*}$,
+the number called $m_1$ at the end of the proof of Proposition~\ref{prop:scaling}.
+For real $h$ with $\|h\|_\infty\le1$ supported in an interval of length $2/s$,
+$\|V_{m_0,\lambda}(h)\Om^{(m_0)}_g\|=s\,\|V_{M_*,\lambda'}(h(\cdot/s))\Om^{(M_*)}_{g(\cdot/s)}\|
+\le s\,M$.  Consequently, for real $h$ with $\|h\|_\infty\le1$ supported in an interval of
+length $2$: split $h$ by a partition of unity into at most $\lceil s\rceil+1$ pieces of
+support length $\le2/s$ (one piece if $s\le1$); $\Om^{(m_0)}_g$ lies in the domain of $V$ of
+each piece (Proposition~\ref{prop:smoothing}) and $V$ is finitely additive, so
+$\|V_{m_0,\lambda}(h)\Om^{(m_0)}_g\|\le(\lceil s\rceil+1)\,s\,M$.
+
+The introduction and Theorem~\ref{thm:MAIN} state the rate $\Psi_{m_1}(d)$ and the gap $m_1$
+in the working coordinates, where $s=1$ and $m_1=m_{1,*}$.  For a general pair
+$(m_0,\lambda)$ they are to be read through items (1) and (5) above: the rate is
+$d\mapsto\Psi_{m_{1,*}}(s\,d)$ and the gap is $s\,m_{1,*}$.
+
+All displayed constants of
+\S\S\ref{sec:slab}--\ref{sec:lppl} and of
 Appendices~\ref{app:constants}, \ref{app:huniform} and~\ref{app:comparison} are the constants
 of the working coordinates, in which the unit-lattice geometry of Assumption~\ref{A:gjs} is literal.
 \end{remark}
@@ -2890,7 +3104,9 @@ $\widetilde g_n\equiv1$ on $(-n,n)$; then $d(\widetilde g_n,O)\to\infty$ for eve
 and, by (1), $\omega_{\widetilde g_n}\to\omega_\infty$ in norm on every $\A(O)$;
 Proposition~\ref{prop:spectral} applies and gives (3) together with the
 $\alpha$-invariance. For (4): translation is an order isomorphism of $\G$ with cofinal
-range, so by \eqref{eq:T} and (1),
+range, and for $A\in\A(O)$ the operator $\tau_{-a}A$ lies in $\A(O-a)$
+(Proposition~\ref{prop:ff-symmetries}(T)); so by \eqref{eq:T} and (1), applied on $\A(O)$ and
+on $\A(O-a)$,
 \[
  \omega_\infty(A)=\lim_g\omega_{\tau_ag}(A)
  =\lim_g\omega_g(\tau_{-a}A)
@@ -2898,8 +3114,9 @@ range, so by \eqref{eq:T} and (1),
 \]
 for local $A$, and by density on $\A$. The $\Z_2$ statement is the local norm limit of
 Lemma~\ref{lem:covparity}: $\omega_g(\theta(A))=\omega_g(A)$ for $A\in\A(O)$, and
-$\theta(A)\in\A(O)$ ($\theta$ maps $W(f,h)$ to $W(-f,-h)$ and hence preserves each local
-algebra), so (1) passes the identity to $\omega_\infty$, and density extends it to $\A$.
+$\theta(A)\in\A(O)$ ($\theta$ maps $W(f,0)$ to $W(-f,0)$ and $W(0,h)$ to $W(0,-h)$ and hence
+preserves each local algebra: Proposition~\ref{prop:ff-symmetries}(P)), so (1) passes the
+identity to $\omega_\infty$, and density extends it to $\A$.
 \end{proof}
 
 \begin{corollary}[the Glimm--Jaffe vacuum is canonical at weak coupling]\label{cor:canonical}
@@ -2914,7 +3131,8 @@ weak-coupling region.
 For the unaveraged net this is Theorem~\ref{thm:MAIN}(1). For the averaged states of
 \cite[(2.3)--(2.5)]{GJ3}: fix $g\in\G$ with $g\equiv1$ on $[-3,3]$ and set
 $g_n:=g(\cdot/n)\in\G$; let $\sigma_{a'}$ denote the space-translation automorphisms
-used there (our $\tau_{\epsilon a'}$, with $\epsilon\in\{\pm1\}$ the direction
+used there (our $\tau_{\epsilon a'}=\mathrm{Ad}\,U_{\epsilon a'}$ of
+Proposition~\ref{prop:ff-symmetries}(T), with $\epsilon\in\{\pm1\}$ the direction
 convention), and let $\bar h\ge0$, $\supp\bar h\subseteq[-1,1]$, $\int\bar h=1$, be the
 averaging weight. Then
 \begin{align*}
@@ -2985,7 +3203,8 @@ where $O$ is the localization interval of the order parameter $B$ from (B3).
 \emph{Step 1: uniform cutoff clustering for the bounded order parameter.} For the cutoff
 Hamiltonian $H(\widetilde g_n)$ apply Lemma~\ref{lem:cluster} with $\gamma=m_1$
 (Theorem~\ref{thm:G}), unbounded-argument slot $X=B$, bounded-argument slot
-$A=\tau_a(B)\in\A(O+a)$, and localization set $\overline O$. The bounded operator $B$ has
+$A=\tau_a(B)\in\A(O+a)$ (Proposition~\ref{prop:ff-symmetries}(T)), and localization set
+$\overline O$. The bounded operator $B$ has
 domain $\HH$; because $B\in\A(O)\subseteq\A(O')'$ for every bounded open interval $O'$ with
 $\dist(\overline O,O')>0$ (such $O'$ is disjoint from $O$; Assumption~\ref{A:patch}(iii)), it is
 affiliated with every such $\A(O')'$, and
@@ -3251,11 +3470,49 @@ Lemma~\ref{aux:notation-ident}; the affiliation of $V(h)$ with the local algebra
 in \S\ref{subsec:model} without an argument, is now proved there (\emph{Locality}), for
 every bounded open set containing $\supp h$; the hypothesis of Lemma~\ref{lem:cluster} on its
 unbounded argument is restated to match, and the locality of the net, used before without
-being listed, is listed as Assumption~\ref{A:patch}(iii), with the generators of $\A(O)$
-written as in the sources, $W(f,0)$ and $W(0,h)$ (\S\ref{subsec:model}).  Also:
+being listed, is listed as Assumption~\ref{A:patch}(iii), with $\A(O)$ generated by
+$W(f,0)$ and $W(0,h)$, which generate the algebra that the sources define through the bounded
+functions of the smeared fields (\S\ref{subsec:model}).  Also:
 A8(vii$'$)(a) transcribed (1.1.11) with ``$O(1)$'' where p.~594 prints ``0(1)'' with a digit
 zero; it now transcribes it as printed, marked [sic];
 Lemma~\ref{lem:transfer}'s misprint ``le'' for $\le$ is gone with its replaced proof.
+\item \emph{The free-field layer} (11 November 2026; audit round V4f of 9 November 2026 by a
+fresh agent, \texttt{ugjs/council/v4f-free-field-report.md}; the findings were re-read at the
+source, except the auditor's judgment on how the identity for $V$ in Remark~\ref{rem:wlog} had
+been justified and its statement that \S\S\ref{sec:filter}--\ref{sec:lppl} use the net only
+through Proposition~\ref{prop:propagation}, the \emph{Locality} paragraph of
+\S\ref{subsec:model} and Assumption~\ref{A:patch}(iii)).  Four findings classed MAJOR by the auditor, as statements about the record; no step
+was found false, and all four gaps are older than the integration of 7 November.
+\emph{(i)}~\S\ref{subsec:model} introduced $\pi_0$ by reference to a dictionary that the Scope
+of Assumption~\ref{A:cutoff} stated for $V(g)$ only, with no formula and no property, and
+$H_0$ was used without a definition.  \emph{(ii)}~Remark~\ref{rem:wlog} asserted its dilation
+unitary: the Weyl relations, the Fock state on the Weyl operators and the cyclicity of the
+vacuum, on which the assertion rested, were not stated, and
+Assumption~\ref{A:gjs}(viii) imports a Euclidean scaling only.  \emph{(iii)}~The space translations were not defined as automorphisms of the algebra, although
+Theorem~\ref{thm:MAIN}(4), Corollary~\ref{cor:canonical} and Theorem~\ref{thm:dichotomy} use
+them as such, and their action on the net, $\tau_a(\A(O))=\A(O+a)$, was used in the proofs of
+Theorems~\ref{thm:MAIN}(4) and~\ref{thm:dichotomy} without being derived or imported.  \emph{(iv)}~So was the parity relation
+$\Theta\pi_0(h)\Theta=-\pi_0(h)$ in the proof of Theorem~\ref{thm:MAIN}(4).  The sentence of
+the introduction that no other external mathematical input is used, and the like sentence of
+Theorem~\ref{thm:MAIN}, were therefore inaccurate.  Repaired by
+Appendix~\ref{app:freefield}: the momentum field, the free Hamiltonian and the unitaries of
+translation, parity and dilation are defined through the unitary between Fock space and
+$Q$-space of the source's Theorem I.11 (Assumption~\ref{A:cutoff}(e)--(f)); their action on
+the fields, on the local algebras, on $H_0$ and on $V(g)$ is proved
+(Proposition~\ref{prop:ff-symmetries}); and they are identified with the objects of the
+sources (Lemma~\ref{lem:ff-sources}).  \S\ref{subsec:model}, Assumptions~\ref{A:patch}
+and~\ref{A:covar}, Lemma~\ref{lem:covparity}, Remark~\ref{rem:wlog}, the proofs of
+Theorems~\ref{thm:MAIN}(4) and~\ref{thm:dichotomy} and that of Corollary~\ref{cor:canonical}
+refer to it.  The six MINOR points of the
+same audit are repaired in place: $\varphi_0$ and $\Om_0$ are introduced at the start of
+\S\ref{subsec:model}, and $\Om_0$ also at its first occurrence, in the introduction; $W(f,h)$ is written for $h=0$ or $f=0$ only; the transported moment constant of
+Remark~\ref{rem:wlog} carries its factor $s$, and the objects of that remark their mass;
+Assumption~\ref{A:patch}(i) states the inclusion that Proposition~\ref{prop:propagation}
+uses; and the wording ``written as in the sources'' of the entry above is corrected.  Also
+reported now: \cite[p.~398]{GJ2} prints the condition for cutoff independence with $>$ for
+$<$, and cites its (1.2.11) for $\varphi(x)$, which is its (1.2.10) (Scope paragraphs of
+Assumptions~\ref{A:patch} and~\ref{A:covar}).  As a by-product the three identities of
+Assumption~\ref{A:covar} are proved in this manuscript (Remark~\ref{rem:ff-A7}).
 \item \emph{Withdrawn routes} (kept in the record, not used here):
 \texttt{m4/h6-attack.tex} Thm.~2.3 (withdrawn; UV-divergent double commutator);
 gap-based (H6) proofs; wavelet-MRA-as-Polchinski decomposition (see Part II documents).
@@ -3278,7 +3535,10 @@ it.  The page images of Simon's book read for the Wick-power constructions on 7 
 2026 (pp.~10--12, 15--17, 25, 34, 38, 134--138, 152) are in
 \texttt{audit\_2026/}\allowbreak\texttt{evidence/} and in the Dossier lines of
 Assumptions~\ref{A:cutoff}, \ref{A:stability} and~\ref{A:hyper}; the dossier's index file has
-not yet been updated.
+not yet been updated.  The pages read for Appendix~\ref{app:freefield} and for the Scope
+paragraphs of Assumptions~\ref{A:cutoff} and~\ref{A:patch} on 9 and 11 November 2026
+(\cite{SimonBook}, pp.~23--24, 27, 31--32, 78--79; \cite{GJ2}, pp.~364--365, 398;
+\cite{GJ1}, p.~1948) are in the same folder and in the Dossier lines of those assumptions.
 
 \section{$h$-uniformity: source audit and analytic prerequisites}\label{app:huniform}
 
@@ -7708,6 +7968,688 @@ $\GJS Q$ is computed on GJS's squares), $\mathfrak m$, $d_0$ and the shell count
 $S_2(B)$, $A$, $B'$, $A_f$, $K_f$ (with $\sigma_f$), $s_0$, $V_*$, $\overline\Sigma_{3\times5}$,
 $M_B$, and the explicit constants $b_0$, $C_*$, $c_1$, $c_2$, $b_*$ of Appendix~\ref{app:huniform}; $S_2(B)$, and through it $A$, $A_f$ and $M_B$, contain the unevaluated finite constant of
 Theorem~\ref{thm:stability}.
+
+% ==================================================================
+\section{The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
+translations, parity, dilations}\label{app:freefield}
+% Added 11 November 2026: repair of the findings of audit round V4f (9 November 2026;
+% ugjs/council/v4f-free-field-report.md).  New labels only; nothing above is renumbered.
+
+Added on 11 November 2026.  Until that date this manuscript named the time-zero momentum field
+$\pi_0$, the free Hamiltonian $H_0$, the translation unitaries $U_a$ and a dilation unitary
+$U_s$, and used how translations, parity and dilations act on the fields and on the local
+algebras, but it did not define these objects by a formula and neither derived nor imported
+those actions (audit round V4f of 9 November 2026; Appendix~\ref{app:provenance}).  This
+appendix supplies the definitions and the proofs.  Its external inputs are printed statements
+of \cite{SimonBook} listed in Assumption~\ref{A:cutoff}: items (e) and (f), added for this
+appendix, and items (a), (c) and (d), on the Wick monomials, the spaces $\Gamma_n$ and the Wick
+powers.  The source states them for ``the'' Gaussian random process indexed by a real Hilbert
+space; by its Theorem I.6, quoted in Assumption~\ref{A:cutoff}, any two realisations are
+isomorphic, and the statements are used for the realisation $L^2(\mathcal S'(\R),d\phi_0)$ of
+\S\ref{subsec:model}.  The definitions of \cite{GJ2} quoted in item (g) there enter only
+Lemma~\ref{lem:ff-sources}, which says that the objects defined here are those of the sources.
+Lemma~\ref{aux:notation-kernel} of Appendix~\ref{app:comparison} is used for the kernel of the
+covariance.  Everything else is proved here.  The Weyl relations are not used.
+
+\subsection*{Conventions}
+
+For a mass $m>0$ put $\mu_m(k):=(k^2+m^2)^{1/2}$, $\mu_m:=(-\partial_x^2+m^2)^{1/2}$ and
+$C_m:=(2\mu_m)^{-1}$.  In this appendix the Fourier transform is the unitary one, $\hat
+f(k):=(2\pi)^{-1/2}\int e^{-ikx}f(x)\,dx$; Appendix~\ref{app:comparison} normalizes it as
+$\int e^{-ikx}f(x)\,dx$ (proof of Lemma~\ref{aux:notation-kernel}), and no Fourier transform is
+taken over from there: only the formula for the kernel $C$ is.
+$\mathcal S_\R(\R)$ is the space of real-valued Schwartz functions.  $\mathcal K_m$ denotes the
+real Hilbert space $\HH_C$ of Assumption~\ref{A:cutoff} formed with the mass $m$, that is, the
+completion of $\mathcal S_\R(\R)$ in the inner product
+\[
+ \ip fg_m:=2\ip f{C_mg}=\int\overline{\hat f(k)}\,\hat g(k)\,\mu_m(k)^{-1}\,dk
+\]
+(Plancherel), and $\mathcal K_m^{\C}$ denotes its complexification, whose inner product is
+linear in the second and conjugate-linear in the first argument.  $(\varphi_0^{(m)}(f))_{f\in
+\mathcal K_m}$ is the Gaussian random process indexed by $\mathcal K_m$, with measure
+$d\phi_0^{(m)}$, and $\Gamma(\mathcal K_m)=L^2(d\phi_0^{(m)})$ and $\Gamma_n(\mathcal K_m)$ are
+as in Assumption~\ref{A:cutoff}(c).  For a real random variable $F$, $M_F$ is the operator of
+multiplication by $F$ on its maximal domain $\{\psi\in L^2:F\psi\in L^2\}$; it is self-adjoint,
+with $(M_F-i)^{-1}=M_{(F-i)^{-1}}$ and $e^{itM_F}=M_{e^{itF}}$.  As in the body,
+$\varphi_0^{(m)}(f)$ also denotes the operator $M_{\varphi_0^{(m)}(f)}$.  For $a\in\R$ and $s>0$,
+\[
+ (\tau_af)(x):=f(x-a),\qquad (d_sf)(x):=s^{-1}f(x/s),\qquad (e_sf)(x):=f(x/s) .
+\]
+In \S\S\ref{sec:setting}--\ref{sec:discussion} the mass is $m_0$, and the index $m$ is omitted
+there and, when only one mass occurs, here.  Assumption~\ref{A:cutoff}, items (a)--(g), and
+Lemma~\ref{aux:notation-kernel} are stated for an arbitrary mass $m_0>0$; below they are used
+with $m$ or $m'$ in the place of $m_0$, for the objects formed with that mass.
+
+\begin{lemma}[the one-particle space in momentum variables]\label{lem:ff-onepart}
+Let $m>0$ and let $L^2_{\rm r}(\R):=\{\theta\in L^2(\R,dk):\theta(-k)=\overline{\theta(k)}
+\text{ for a.e.\ }k\}$, a closed real-linear subspace of $L^2(\R,dk)$.
+\begin{enumerate}
+\item[\textup{(i)}] The map $j_mf:=\mu_m^{-1/2}\hat f$, $f\in\mathcal S_\R(\R)$, extends to a
+real-linear isometry of $\mathcal K_m$ onto $L^2_{\rm r}(\R)$, and $j_m^{\C}(v+iw):=j_mv+i\,j_mw$
+$(v,w\in\mathcal K_m)$ is a unitary of $\mathcal K_m^{\C}$ onto $L^2(\R,dk)$.
+\item[\textup{(ii)}] For $f\in\mathcal S_\R(\R)$ and $a\in\R$: $\mu_mf\in\mathcal S_\R(\R)$,
+$\tau_af\in\mathcal S_\R(\R)$, $j_m(\mu_mf)=\mu_m(\cdot)\,j_mf$ and
+$j_m(\tau_af)=e^{-ia\,\cdot}\,j_mf$.  Hence $\tau_a$ extends to an orthogonal bijection of
+$\mathcal K_m$ with inverse $\tau_{-a}$, $\tau_a\mu_mf=\mu_m\tau_af$, and, for the
+complex-linear extension $\tau_a^{\C}$, $j_m^{\C}\tau_a^{\C}=e^{-ia\,\cdot}\,j_m^{\C}$ on
+$\mathcal K_m^{\C}$.  The closure of $\mu_m\upharpoonright\mathcal S_\R(\R)$ in $\mathcal K_m$
+is $j_m^{-1}\mu_m(\cdot)\,j_m$ on the domain $\{f\in\mathcal K_m:\mu_m(\cdot)\,j_mf\in L^2\}$;
+it is self-adjoint and bounded below by $m$.
+\item[\textup{(iii)}] Let $s>0$ and $m=sm'$.  Then $d_s$ maps $\mathcal S_\R(\R)$ onto itself,
+$\|d_sf\|_{m'}=\|f\|_m$, and $d_s$ extends to an orthogonal bijection of $\mathcal K_m$ onto
+$\mathcal K_{m'}$.  For $f\in\mathcal S_\R(\R)$,
+\begin{gather*}
+ j_{m'}d_sf=u_sj_mf\quad\text{with }(u_s\theta)(k):=s^{1/2}\theta(sk),\\
+ d_s\mu_mf=\mu_{m'}\,e_sf,\qquad d_s\tau_af=\tau_{sa}d_sf .
+\end{gather*}
+$u_s$ is a unitary of $L^2(\R,dk)$, $j_{m'}^{\C}d_s^{\C}=u_sj_m^{\C}$ on $\mathcal K_m^{\C}$
+for the complex-linear extension $d_s^{\C}$, and $u_s\,w(\cdot)\,u_s^{-1}=w(s\,\cdot)$ for the
+operator of multiplication by a bounded measurable function $w$; in particular
+$u_s\,e^{it\mu_m(\cdot)}\,u_s^{-1}=e^{its\mu_{m'}(\cdot)}$ for $t\in\R$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) For $f,g\in\mathcal S_\R(\R)$, $\ip{j_mf}{j_mg}_{L^2(dk)}=\int\overline{\hat f}\,\hat g\,
+\mu_m^{-1}\,dk=\ip fg_m$.  Since $f$ is real, $\hat f(-k)=\overline{\hat f(k)}$, and $\mu_m$ is
+even, so $j_mf\in L^2_{\rm r}(\R)$.  The function $\mu_m(k)^{\pm1/2}=(k^2+m^2)^{\pm1/4}$ is
+smooth and each of its derivatives is bounded by a polynomial (because $k^2+m^2\ge m^2>0$), so
+multiplication by it maps $\mathcal S(\R)$ onto $\mathcal S(\R)$, and it preserves the symmetry
+$\theta(-k)=\overline{\theta(k)}$.  As $\{\hat f:f\in\mathcal S_\R(\R)\}=\mathcal S(\R)\cap
+L^2_{\rm r}(\R)$, this gives $j_m(\mathcal S_\R(\R))=\mathcal S(\R)\cap L^2_{\rm r}(\R)$.  That
+set is dense in $L^2_{\rm r}(\R)$: for $\theta\in L^2_{\rm r}(\R)$ choose $\eta_n\in\mathcal
+S(\R)$ with $\eta_n\to\theta$ in $L^2$ and put $\eta_n^\sharp(k):=\overline{\eta_n(-k)}$; then
+$\frac12(\eta_n+\eta_n^\sharp)\in\mathcal S(\R)\cap L^2_{\rm r}(\R)$ converges to
+$\frac12(\theta+\theta^\sharp)=\theta$.  An isometry from a dense subspace of $\mathcal K_m$
+onto a dense subspace of the complete space $L^2_{\rm r}(\R)$ extends to an isometry of
+$\mathcal K_m$ onto $L^2_{\rm r}(\R)$.  For $\theta,\theta'\in L^2_{\rm r}(\R)$,
+$\overline{\ip\theta{\theta'}}=\int\theta(k)\overline{\theta'(k)}\,dk=\int\theta(-k)
+\overline{\theta'(-k)}\,dk=\int\overline{\theta(k)}\theta'(k)\,dk=\ip\theta{\theta'}$, so
+$\ip\theta{\theta'}$ is real and $\|\theta+i\theta'\|^2=\|\theta\|^2+\|\theta'\|^2$; hence
+$j_m^{\C}$ is isometric.  It is onto, because every $\theta\in L^2(\R,dk)$ is
+$\frac12(\theta+\theta^\sharp)+i\cdot\frac1{2i}(\theta-\theta^\sharp)$ with both terms in
+$L^2_{\rm r}(\R)$.
+
+(ii) $\widehat{\mu_mf}=\mu_m(\cdot)\hat f$ and $\widehat{\tau_af}=e^{-ia\,\cdot}\hat f$ lie in
+$\mathcal S(\R)$ and have the symmetry of $\hat f$ ($\mu_m$ is even and real, and
+$\overline{e^{-ia(-k)}}=e^{-iak}$), so $\mu_mf$ and $\tau_af$ are real Schwartz functions; the
+two formulas for $j_m$ follow by multiplying with $\mu_m^{-1/2}$.  As $|e^{-iak}|=1$,
+$\|\tau_af\|_m=\|f\|_m$, and $\tau_a\tau_{-a}=1$ on $\mathcal S_\R(\R)$, so $\tau_a$ extends to
+an orthogonal bijection.  Both $\tau_a\mu_mf$ and $\mu_m\tau_af$ have the Fourier transform
+$e^{-ia\,\cdot}\mu_m(\cdot)\hat f$.  The identity $j_m\tau_a=e^{-ia\,\cdot}j_m$ extends from
+$\mathcal S_\R(\R)$ to $\mathcal K_m$ by continuity and to $\mathcal K_m^{\C}$ by complex
+linearity.  For the last statement: multiplication by $\mu_m(\cdot)$ on
+$\{\theta\in L^2_{\rm r}(\R):\mu_m(\cdot)\theta\in L^2\}$ is a closed operator in the real
+Hilbert space $L^2_{\rm r}(\R)$; it is symmetric, bounded below by $m$, and onto (its inverse
+is multiplication by $\mu_m(\cdot)^{-1}\le m^{-1}$, which preserves $L^2_{\rm r}(\R)$), hence
+self-adjoint.  The set $\mathcal S(\R)\cap L^2_{\rm r}(\R)=j_m(\mathcal S_\R(\R))$ is a core
+for it: given $\theta$ in the domain, $\theta_n:=\mathbf 1_{[-n,n]}\theta$ converges to
+$\theta$ with $\mu_m(\cdot)\theta_n\to\mu_m(\cdot)\theta$ (dominated convergence), and for an
+even real mollifier $\rho_\varepsilon$ supported in $[-\varepsilon,\varepsilon]$ the functions
+$\theta_n*\rho_\varepsilon$ lie in $C_c^\infty(\R)\cap L^2_{\rm r}(\R)$, are supported in
+$[-n-1,n+1]$ for $\varepsilon\le1$, where $\mu_m(\cdot)$ is bounded, and converge to
+$\theta_n$ in $L^2$ as $\varepsilon\to0$.  Transport by $j_m$, with
+$j_m(\mu_mf)=\mu_m(\cdot)j_mf$.
+
+(iii) $\widehat{d_sf}(k)=(2\pi)^{-1/2}\int e^{-ikx}s^{-1}f(x/s)\,dx=\hat f(sk)$, and
+$\mu_m(sk)=(s^2k^2+s^2m'^2)^{1/2}=s\,\mu_{m'}(k)$.  Hence, with $q=sk$,
+\begin{align*}
+ \|d_sf\|_{m'}^2&=\int|\hat f(sk)|^2\mu_{m'}(k)^{-1}\,dk=\int|\hat f(q)|^2\,\mu_{m'}(q/s)^{-1}s^{-1}\,dq\\
+ &=\int|\hat f(q)|^2\mu_m(q)^{-1}\,dq=\|f\|_m^2 ,
+\end{align*}
+and $d_s$ maps $\mathcal S_\R(\R)$ onto itself with inverse $d_{1/s}$; so it extends to an
+orthogonal bijection of $\mathcal K_m$ onto $\mathcal K_{m'}$.  Next,
+$(j_{m'}d_sf)(k)=\mu_{m'}(k)^{-1/2}\hat f(sk)$ and $(u_sj_mf)(k)=s^{1/2}\mu_m(sk)^{-1/2}\hat f(sk)=
+s^{1/2}(s\mu_{m'}(k))^{-1/2}\hat f(sk)$ agree; this identity extends from $\mathcal S_\R(\R)$ to
+$\mathcal K_m$ by continuity and to $\mathcal K_m^{\C}$ by complex linearity.  The Fourier
+transforms of $d_s\mu_mf$ and of
+$\mu_{m'}e_sf$ at $k$ are $\mu_m(sk)\hat f(sk)$ and $\mu_{m'}(k)\,s\hat f(sk)$, which agree; and
+$(d_s\tau_af)(x)=s^{-1}f(x/s-a)=s^{-1}f((x-sa)/s)=(\tau_{sa}d_sf)(x)$.  Finally $u_s$ is
+unitary (substitute $q=sk$), $(u_s^{-1}\theta)(k)=s^{-1/2}\theta(k/s)$, and
+$(u_s\,w(\cdot)\,u_s^{-1}\theta)(k)=s^{1/2}w(sk)(u_s^{-1}\theta)(sk)=w(sk)\theta(k)$; with
+$w=e^{it\mu_m(\cdot)}$ this is multiplication by $e^{it\mu_m(sk)}=e^{its\mu_{m'}(k)}$.
+\end{proof}
+
+\subsection*{Fock space}
+
+For a complex Hilbert space $\mathfrak h$ let $\mathcal F_0(\mathfrak h):=\C$, let
+$\mathcal F_n(\mathfrak h):=S_n\mathfrak h^{\otimes n}$ be the range of the symmetrization
+projection $S_n$ on the $n$-fold Hilbert tensor power, $\mathcal F(\mathfrak h):=
+\bigoplus_{n\ge0}\mathcal F_n(\mathfrak h)$ the Hilbert direct sum, $\mathcal F_{\rm fin}
+(\mathfrak h)$ the algebraic direct sum (the finite particle vectors), and
+$\Omega_{\mathcal F}:=(1,0,0,\dots)$.  For $v\in\mathfrak h$ define on $\mathcal F_{\rm fin}
+(\mathfrak h)$
+\[
+ A^*(v)\psi:=\sqrt{n+1}\,S_{n+1}(v\otimes\psi)\quad(\psi\in\mathcal F_n(\mathfrak h)),\qquad
+ A(v):=A^*(v)^*\upharpoonright\mathcal F_{\rm fin}(\mathfrak h) .
+\]
+$A^*(v)$ maps $\mathcal F_n$ into $\mathcal F_{n+1}$ with norm at most $\sqrt{n+1}\,\|v\|$.  For
+$\chi\in\mathcal F_{n+1}$ and $\psi\in\mathcal F_{\rm fin}$ only the component $\psi_n$ of
+$\psi$ in $\mathcal F_n$ contributes to $\ip\chi{A^*(v)\psi}$, which therefore equals
+$\ip{B^*\chi}{\psi}$ with $B$ the bounded map $A^*(v)\upharpoonright\mathcal F_n$; so
+$\mathcal F_{\rm fin}\subseteq D(A^*(v)^*)$, the operator $A(v)$ is defined, maps
+$\mathcal F_{n+1}$ into $\mathcal F_n$ and annihilates $\mathcal F_0$.  $A^*(v)$ is linear and
+$A(v)$ conjugate-linear in $v$, and $\ip\chi{A^*(v)\psi}=\ip{A(v)\chi}\psi$ for
+$\chi,\psi\in\mathcal F_{\rm fin}$.  Hence $2^{-1/2}(A^*(v)+A(v))$ is symmetric on
+$\mathcal F_{\rm fin}(\mathfrak h)$; its closure is denoted $\varphi_{\mathcal F}(v)$.  For
+$\mathfrak h=\mathcal K^{\C}$, the complexification of a real Hilbert space $\mathcal K$, and
+$v=f\in\mathcal K$, these are the objects (I.28)--(I.29) of the source
+(Assumption~\ref{A:cutoff}(e)), which writes $\mathcal F(\mathcal K)$ for
+$\mathcal F(\mathcal K^{\C})$ and defines $A^*(f)$ for $f\in\mathcal K$ only.
+
+\begin{lemma}[second quantization of a unitary]\label{lem:ff-gamma}
+Let $u:\mathfrak h\to\mathfrak h'$ be a unitary between complex Hilbert spaces and put
+$\Gamma_{\!\mathcal F}(u):=\bigoplus_{n\ge0}u^{\otimes n}\upharpoonright\mathcal F_n(\mathfrak h)$
+$(u^{\otimes0}:=1)$.
+\begin{enumerate}
+\item[\textup{(i)}] $\Gamma_{\!\mathcal F}(u)$ is a unitary of $\mathcal F(\mathfrak h)$ onto
+$\mathcal F(\mathfrak h')$; it maps $\mathcal F_n(\mathfrak h)$ onto $\mathcal F_n(\mathfrak h')$,
+$\mathcal F_{\rm fin}(\mathfrak h)$ onto $\mathcal F_{\rm fin}(\mathfrak h')$ and
+$\Omega_{\mathcal F}$ to $\Omega_{\mathcal F}$.  Moreover $\Gamma_{\!\mathcal F}(u'u)=
+\Gamma_{\!\mathcal F}(u')\Gamma_{\!\mathcal F}(u)$ and $\Gamma_{\!\mathcal F}(u)^{-1}=
+\Gamma_{\!\mathcal F}(u^{-1})$.
+\item[\textup{(ii)}] $\Gamma_{\!\mathcal F}(u)A^*(v)\psi=A^*(uv)\Gamma_{\!\mathcal F}(u)\psi$ and
+$\Gamma_{\!\mathcal F}(u)A(v)\psi=A(uv)\Gamma_{\!\mathcal F}(u)\psi$ for $v\in\mathfrak h$,
+$\psi\in\mathcal F_{\rm fin}(\mathfrak h)$.
+\item[\textup{(iii)}] $\Gamma_{\!\mathcal F}(u)\,\varphi_{\mathcal F}(v)\,
+\Gamma_{\!\mathcal F}(u)^{-1}=\varphi_{\mathcal F}(uv)$ for $v\in\mathfrak h$.
+\item[\textup{(iv)}] If $(u_t)_{t\in\R}$ is a strongly continuous one-parameter unitary group
+on $\mathfrak h$, then $(\Gamma_{\!\mathcal F}(u_t))_{t\in\R}$ is one on
+$\mathcal F(\mathfrak h)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) $u^{\otimes n}$ is a unitary of $\mathfrak h^{\otimes n}$ onto $\mathfrak h'^{\otimes n}$
+that intertwines the permutations of the tensor factors, hence the symmetrization projections;
+so it maps $\mathcal F_n(\mathfrak h)$ onto $\mathcal F_n(\mathfrak h')$.  The other statements
+follow from $(u'u)^{\otimes n}=u'^{\otimes n}u^{\otimes n}$.
+
+(ii) For $\psi\in\mathcal F_n(\mathfrak h)$, $\Gamma_{\!\mathcal F}(u)A^*(v)\psi=\sqrt{n+1}\,
+u^{\otimes(n+1)}S_{n+1}(v\otimes\psi)=\sqrt{n+1}\,S_{n+1}(uv\otimes u^{\otimes n}\psi)=
+A^*(uv)\Gamma_{\!\mathcal F}(u)\psi$.  For the second identity let $\chi\in
+\mathcal F_{\rm fin}(\mathfrak h')$ and $\psi\in\mathcal F_{\rm fin}(\mathfrak h)$.  Applying the
+first identity to $u^{-1}$ and $uv$,
+\[
+ \ip\chi{\Gamma_{\!\mathcal F}(u)A(v)\psi}=\ip{A^*(v)\Gamma_{\!\mathcal F}(u)^{-1}\chi}\psi
+ =\ip{\Gamma_{\!\mathcal F}(u)^{-1}A^*(uv)\chi}\psi=\ip\chi{A(uv)\Gamma_{\!\mathcal F}(u)\psi},
+\]
+and $\mathcal F_{\rm fin}(\mathfrak h')$ is dense.
+
+(iii) By (i) and (ii), $\Gamma_{\!\mathcal F}(u)\oplus\Gamma_{\!\mathcal F}(u)$ maps the graph of
+$2^{-1/2}(A^*(v)+A(v))\upharpoonright\mathcal F_{\rm fin}(\mathfrak h)$ onto the graph of
+$2^{-1/2}(A^*(uv)+A(uv))\upharpoonright\mathcal F_{\rm fin}(\mathfrak h')$, hence the closure of
+the one onto the closure of the other.
+
+(iv) The group law is (i).  On an elementary tensor, $\|u_t^{\otimes n}(v_1\otimes\dots\otimes
+v_n)-v_1\otimes\dots\otimes v_n\|\le\sum_j\|u_tv_j-v_j\|\prod_{i\ne j}\|v_i\|\to0$ as $t\to0$
+(telescoping); so $u_t^{\otimes n}\to1$ strongly on the span of the elementary tensors and, the
+operators having norm $1$, on $\mathfrak h^{\otimes n}$.  For $\psi=(\psi_n)\in
+\mathcal F(\mathfrak h)$, $\|\Gamma_{\!\mathcal F}(u_t)\psi-\psi\|^2=\sum_n\|u_t^{\otimes n}
+\psi_n-\psi_n\|^2\to0$ by dominated convergence, each term being at most $4\|\psi_n\|^2$.
+\end{proof}
+
+\begin{definition}[number grading, momentum field, generators of the net, free Hamiltonian]
+\label{def:ff-objects}
+Let $m>0$, $\mathcal K=\mathcal K_m$, $\mu=\mu_m$, $j=j_m$, and let $D=D_m:\mathcal F(\mathcal
+K^{\C})\to\Gamma(\mathcal K)$ be the unitary of Assumption~\ref{A:cutoff}(e) (the source's
+Theorem I.11); it is unique (Lemma~\ref{lem:ff-transport}(vi)).
+\begin{enumerate}
+\item[\textup{(a)}] By item (c) of that theorem, $D\mathcal F_n(\mathcal K^{\C})=
+\Gamma_n(\mathcal K)$; as $D$ is unitary, $L^2(d\phi_0)=\bigoplus_{n\ge0}\Gamma_n(\mathcal K)$.
+For $z\in\C$ with $|z|=1$, $z^N$ denotes the unitary that multiplies $\Gamma_n(\mathcal K)$ by
+$z^n$; thus $z^N=D\,\Gamma_{\!\mathcal F}(z\mathbf 1)\,D^{-1}$ and $z^N1=1$.  (The exponent $N$
+stands for the grading by $n$; it is not the count $N_I$ of \S\ref{subsec:freeze}.)
+\item[\textup{(b)}] For real $h\in\mathcal S(\R)$, so that $\mu h\in\mathcal S_\R(\R)\subset
+\mathcal K$ (Lemma~\ref{lem:ff-onepart}(ii)),
+\[
+ \pi_0(h):=i^N\,\varphi_0(\mu h)\,i^{-N} .
+\]
+It is self-adjoint, being unitarily equivalent to the multiplication operator
+$\varphi_0(\mu h)$, and $\pi_0(th)=t\,\pi_0(h)$ for $t\in\R$.
+\item[\textup{(c)}] $W(f,0):=e^{i\varphi_0(f)}$ for $f\in\mathcal K$, and
+$W(0,h):=e^{i\pi_0(h)}=i^N\,e^{i\varphi_0(\mu h)}\,i^{-N}$ for real $h\in\mathcal S(\R)$.
+\item[\textup{(d)}] Let $\mu^{\C}:=(j^{\C})^{-1}\mu(\cdot)\,j^{\C}$, where $\mu(\cdot)$ is the
+operator of multiplication by $\mu(k)$ on $L^2(\R,dk)$; it is self-adjoint on
+$\mathcal K^{\C}$, and $\mu^{\C}f=\mu f$ for $f\in\mathcal S_\R(\R)$
+(Lemma~\ref{lem:ff-onepart}(ii)).  By Lemma~\ref{lem:ff-gamma}(iv), $t\mapsto
+\Gamma_{\!\mathcal F}(e^{it\mu^{\C}})$ is a strongly continuous one-parameter unitary group.
+$H_0$ is the self-adjoint operator on $L^2(d\phi_0)$ with
+\[
+ e^{itH_0}=D\,\Gamma_{\!\mathcal F}(e^{it\mu^{\C}})\,D^{-1}\qquad(t\in\R)
+\]
+(Stone's theorem).
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}[transport by an orthogonal bijection of the index spaces]\label{lem:ff-transport}
+For $i=1,2$ let $\mathcal K_i$ be a real Hilbert space, $\varphi_i$ the Gaussian random process
+indexed by $\mathcal K_i$, with measure $d\phi_i$, and $D_i$ the unitary of
+Assumption~\ref{A:cutoff}(e).  Let $T:\mathcal K_1\to\mathcal K_2$ be an orthogonal bijection,
+$T^{\C}$ its complex-linear extension, and
+\[
+ U_T:=D_2\,\Gamma_{\!\mathcal F}(T^{\C})\,D_1^{-1}:L^2(d\phi_1)\to L^2(d\phi_2) .
+\]
+\begin{enumerate}
+\item[\textup{(i)}] $U_T$ is unitary, $U_T1=1$, $U_T\Gamma_n(\mathcal K_1)=\Gamma_n(\mathcal
+K_2)$ for every $n$, and $U_Tz^N=z^NU_T$ for $|z|=1$.
+\item[\textup{(ii)}] $U_T\,\varphi_1(f)\,U_T^{-1}=\varphi_2(Tf)$ for every $f\in\mathcal K_1$.
+\item[\textup{(iii)}] For every polynomial $P$ in $r$ variables and $f_1,\dots,f_r\in
+\mathcal K_1$, $U_T\,P(\varphi_1(f_1),\dots,\varphi_1(f_r))=P(\varphi_2(Tf_1),\dots,
+\varphi_2(Tf_r))$ as elements of $L^2$; and $U_T\,{:}\varphi_1(f_1)\cdots\varphi_1(f_n){:}=
+{:}\varphi_2(Tf_1)\cdots\varphi_2(Tf_n){:}$.
+\item[\textup{(iv)}] For every real $F\in L^2(d\phi_1)$, $U_TF$ is real and
+$U_T\,M_F\,U_T^{-1}=M_{U_TF}$; if $F\ge0$, then $U_TF\ge0$.
+\item[\textup{(v)}] A unitary $W:L^2(d\phi_1)\to L^2(d\phi_2)$ with $W1=1$ and
+$W\varphi_1(f)W^{-1}=\varphi_2(Tf)$ for all $f\in\mathcal K_1$ equals $U_T$.  Consequently
+$U_{T'T}=U_{T'}U_T$ for an orthogonal bijection $T':\mathcal K_2\to\mathcal K_3$, and
+$U_{T^{-1}}=U_T^{-1}$.
+\item[\textup{(vi)}] The unitary $D_1$ of Assumption~\ref{A:cutoff}(e) is unique: a unitary
+$D':\mathcal F(\mathcal K_1^{\C})\to L^2(d\phi_1)$ with $D'\Omega_{\mathcal F}=1$ and
+$D'\varphi_{\mathcal F}(f)D'^{-1}=\varphi_1(f)$ for all $f\in\mathcal K_1$ equals $D_1$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) Lemma~\ref{lem:ff-gamma}(i) and items (a), (c) of the source's Theorem I.11.  For the last
+claim, $z^N=D_i\,\Gamma_{\!\mathcal F}(z\mathbf 1)\,D_i^{-1}$ and
+$\Gamma_{\!\mathcal F}(T^{\C})\Gamma_{\!\mathcal F}(z\mathbf 1)=\Gamma_{\!\mathcal F}(zT^{\C})=
+\Gamma_{\!\mathcal F}(z\mathbf 1)\Gamma_{\!\mathcal F}(T^{\C})$.
+
+(ii) For $f\in\mathcal K_i$ the operator $2^{-1/2}(A^*(f)+A(f))$ is essentially self-adjoint
+on $\mathcal F_{\rm fin}(\mathcal K_i^{\C})$ (Assumption~\ref{A:cutoff}(e)), so its closure
+$\varphi_{\mathcal F}(f)$ is self-adjoint, and item (b) of Theorem I.11 gives
+$D_i\,\varphi_{\mathcal F}(f)\,D_i^{-1}=\varphi_i(f)$.  (If item (b) is read as an identity on
+$D_i\mathcal F_{\rm fin}$ only, the conclusion is the same: $D_i\varphi_{\mathcal F}(f)D_i^{-1}$
+is then a self-adjoint operator contained in the closed operator $\varphi_i(f)$, which is
+self-adjoint, so they are equal.)  By Lemma~\ref{lem:ff-gamma}(iii),
+$\Gamma_{\!\mathcal F}(T^{\C})\varphi_{\mathcal F}(f)\Gamma_{\!\mathcal F}(T^{\C})^{-1}=
+\varphi_{\mathcal F}(Tf)$ for $f\in\mathcal K_1$.  Combine the three identities.
+
+(iii) Call $p=P(\varphi_1(f_1),\dots,\varphi_1(f_r))$ a polynomial vector.  It lies in
+$L^2(d\phi_1)$ and in the domain of every $\varphi_1(f)$, because a product of Gaussian random
+variables has finite moments of every order (H\"older's inequality), and $\varphi_1(f)p$ is again a
+polynomial vector.  By (ii), $U_T$ maps $D(\varphi_1(f))$ onto $D(\varphi_2(Tf))$ and
+$U_T\varphi_1(f)p=\varphi_2(Tf)U_Tp$.  Starting from $U_T1=1$, induction on the degree gives the
+claim for monomials, and linearity for polynomials.  Consequently, for every polynomial $P$,
+\[
+ \E_{\phi_1}\bigl[P(\varphi_1(f_1),\dots,\varphi_1(f_r))\bigr]
+ =\ip{U_T1}{U_TP(\varphi_1(f_1),\dots)}
+ =\E_{\phi_2}\bigl[P(\varphi_2(Tf_1),\dots,\varphi_2(Tf_r))\bigr] :
+\]
+the families $(\varphi_1(f_j))_j$ and $(\varphi_2(Tf_j))_j$ have the same mixed moments.  By the
+recursion of Assumption~\ref{A:cutoff}(a), read with $\partial/\partial g_i$ the formal partial
+derivative of a polynomial in formal variables (the source does not say how the derivative
+is meant), the Wick product ${:}g_1\cdots
+g_n{:}$ of jointly Gaussian random variables is a polynomial in $g_1,\dots,g_n$ whose
+coefficients are determined by the mixed moments of the $g_j$ (induction on $n$: the
+derivative conditions determine the polynomial up to its constant term, and the condition
+$\langle{:}g_1\cdots g_n{:}\rangle=0$ fixes the constant term as minus the expectation of the
+remaining terms).  So
+${:}\varphi_1(f_1)\cdots\varphi_1(f_n){:}$ and ${:}\varphi_2(Tf_1)\cdots\varphi_2(Tf_n){:}$ are
+the same polynomial of their arguments, and the first claim gives the second.
+
+(iv) \emph{Step 1.}  By (ii) and the functional calculus, $U_Te^{i\varphi_1(f)}U_T^{-1}=
+e^{i\varphi_2(Tf)}$ for $f\in\mathcal K_1$.  For $f_1,\dots,f_r\in\mathcal K_1$ and $t\in\R^r$,
+$\varphi_i$ being linear, this gives $U_T\,M_{\exp(i\sum_jt_j\varphi_1(f_j))}\,U_T^{-1}=
+M_{\exp(i\sum_jt_j\varphi_2(Tf_j))}$.
+
+\emph{Step 2.}  Let $G\in\mathcal S(\R^r)$, so that $G(x)=(2\pi)^{-r/2}\int\hat G(t)e^{it\cdot
+x}\,dt$ with $\hat G\in L^1(\R^r)$.  For $\psi,\chi\in L^2(d\phi_2)$, Fubini's theorem and
+Step~1 give
+\begin{align*}
+ \ip\chi{U_TM_{G(\varphi_1(f_1),\dots,\varphi_1(f_r))}U_T^{-1}\psi}
+ &=(2\pi)^{-r/2}\!\int\!\hat G(t)\,\ip\chi{M_{\exp(i\sum_jt_j\varphi_2(Tf_j))}\psi}\,dt\\
+ &=\ip\chi{M_{G(\varphi_2(Tf_1),\dots,\varphi_2(Tf_r))}\psi} .
+\end{align*}
+\emph{Step 3.}  Let $G$ be bounded and continuous on $\R^r$.  With $\rho\in C_c^\infty(\R^r)$,
+$\rho\ge0$, $\int\rho=1$, $\supp\rho\subseteq\{|x|\le1\}$ and $\rho_n(x):=n^r\rho(nx)$, the
+functions $G_n:=(G\,e^{-|\cdot|^2/n})*\rho_n$ lie in $\mathcal S(\R^r)$, are bounded by
+$\sup|G|$, and converge to $G$ pointwise, since $|G_n(x)-G(x)|\le\sup_{|y|\le1/n}
+|G(x-y)e^{-|x-y|^2/n}-G(x)|$.  By dominated convergence $M_{G_n(\varphi_i(\cdot))}\to
+M_{G(\varphi_i(\cdot))}$ strongly, so the identity of Step~2 holds for $G$.
+
+\emph{Step 4.}  Let $P$ be a real polynomial in $r$ variables.  $G:=(P-i)^{-1}$ is bounded and
+continuous, and $M_G$ evaluated on the fields is the resolvent at $i$ of the multiplication
+operator by the polynomial vector; so Step~3 reads
+\[
+ U_T\bigl(M_{P(\varphi_1(f_1),\dots,\varphi_1(f_r))}-i\bigr)^{-1}U_T^{-1}
+ =\bigl(M_{P(\varphi_2(Tf_1),\dots,\varphi_2(Tf_r))}-i\bigr)^{-1} .
+\]
+\emph{Step 5.}  The polynomial vectors are dense in $L^2(d\phi_1)$: each $\Gamma_n(\mathcal
+K_1)$ is the closed span of Wick monomials, which are polynomial vectors, and $L^2(d\phi_1)=
+\bigoplus_n\Gamma_n(\mathcal K_1)$ (Definition~\ref{def:ff-objects}(a), which holds for every
+real Hilbert space).  Let $F\in L^2(d\phi_1)$ be real and let $p_n$ be polynomial vectors with
+$p_n\to F$ in $L^2$; replacing $p_n$ by its real part, which is a polynomial vector with real
+coefficients because the fields are real, we may take $p_n=P_n(\varphi_1(f^{(n)}_1),\dots)$ with
+real polynomials $P_n$.  By (iii), $p_n':=U_Tp_n=P_n(\varphi_2(Tf^{(n)}_1),\dots)$ is real and
+converges to $U_TF$ in $L^2$, so $U_TF$ is real.  Passing to a subsequence, $p_n\to F$ and
+$p_n'\to U_TF$ almost everywhere.  Then $(p_n-i)^{-1}\to(F-i)^{-1}$ and
+$(p_n'-i)^{-1}\to(U_TF-i)^{-1}$ almost everywhere, with absolute values at most $1$, so the
+corresponding multiplication operators converge strongly, and Step~4 gives
+$U_T(M_F-i)^{-1}U_T^{-1}=(M_{U_TF}-i)^{-1}$.  Hence $U_TM_FU_T^{-1}=M_{U_TF}$.
+
+\emph{Step 6.}  Let $F\ge0$ be bounded.  Then $G:=F^{1/2}$ is real, bounded and in $L^2$, and
+$F=M_GG$; by Step~5, $U_TF=U_TM_GU_T^{-1}\,U_TG=M_{U_TG}U_TG=(U_TG)^2\ge0$.  For a general
+$F\ge0$ in $L^2$, $\min\{F,n\}\to F$ in $L^2$, and an $L^2$-limit of non-negative functions is
+non-negative.
+
+(v) The induction in the proof of (iii) uses only $W1=1$ and $W\varphi_1(f)W^{-1}=
+\varphi_2(Tf)$; so $W$ and $U_T$ agree on the polynomial vectors, which are dense (Step~5).
+$U_{T'}U_T$ has the two properties for $T'T$, and $U_T^{-1}$ has them for $T^{-1}$.
+
+(vi) $W:=D'D_1^{-1}$ is a unitary of $L^2(d\phi_1)$ with $W1=1$ and
+$W\varphi_1(f)W^{-1}=D'\varphi_{\mathcal F}(f)D'^{-1}=\varphi_1(f)$ for all $f$, by item (b) of
+Theorem I.11 as in (ii).  By (v) for the identity map of $\mathcal K_1$, for which
+$U_{\mathbf 1}=1$, $W=1$.
+\end{proof}
+
+\begin{proposition}[translations, parity, dilations]\label{prop:ff-symmetries}
+\leavevmode
+\begin{enumerate}
+\item[\textup{(T)}] Let $m>0$ and, for $a\in\R$, $U_a:=U_{\tau_a}$
+(Lemmas~\ref{lem:ff-onepart}(ii) and~\ref{lem:ff-transport}), and $\tau_a:=\mathrm{Ad}\,U_a$.
+Then $U_a1=1$, $U_aU_b=U_{a+b}$, and for $f\in\mathcal K_m$ and real $h\in\mathcal S(\R)$
+\[
+ U_a\varphi_0(f)U_a^*=\varphi_0(\tau_af),\qquad U_a\pi_0(h)U_a^*=\pi_0(\tau_ah),
+\]
+so that $\tau_a(W(f,0))=W(\tau_af,0)$ and $\tau_a(W(0,h))=W(0,\tau_ah)$.  For every bounded open
+interval $O$, $\tau_a(\A(O))=\A(O+a)$, and $\tau_a$ restricts to an automorphism of $\A$.
+Moreover $U_aH_0U_a^*=H_0$, and for $n\ge0$ and real $g\in L^1\cap L^2$ of compact support,
+\[
+ U_a\,{:}\varphi_0^n(g){:}_C={:}\varphi_0^n(\tau_ag){:}_C,\qquad U_aV(g)U_a^*=V(\tau_ag) .
+\]
+\item[\textup{(P)}] Let $\Theta:=U_{-\mathbf 1}=(-1)^N$ and $\theta:=\mathrm{Ad}\,\Theta$.  Then
+$\Theta=\Theta^*=\Theta^{-1}$, $\Theta1=1$,
+\[
+ \Theta\varphi_0(f)\Theta=-\varphi_0(f),\qquad\Theta\pi_0(h)\Theta=-\pi_0(h),
+\]
+so that $\theta(W(f,0))=W(-f,0)$ and $\theta(W(0,h))=W(0,-h)$; $\theta(\A(O))=\A(O)$ for every
+bounded open interval $O$, and $\theta$ restricts to an automorphism of $\A$.  Moreover
+$\Theta H_0\Theta=H_0$, $\Theta\,{:}\varphi_0^n(g){:}_C=(-1)^n{:}\varphi_0^n(g){:}_C$ for $n\ge0$
+and real $g\in L^1\cap L^2$ of compact support, and $\Theta V(g)\Theta=V(g)$ if $\mathscr P$ is
+even ($a_n=0$ for odd $n$).  If the Gaussian
+measure is realised on a real vector space $Q$ on which $q\mapsto-q$ is measurable and measure
+preserving and $\varphi_0(f)(-q)=-\varphi_0(f)(q)$, then $(\Theta\psi)(q)=\psi(-q)$.
+\item[\textup{(D)}] Let $s>0$, $m=sm'$, and $U_s:=U_{d_s}:L^2(d\phi_0^{(m)})\to
+L^2(d\phi_0^{(m')})$ (Lemmas~\ref{lem:ff-onepart}(iii) and~\ref{lem:ff-transport}).  Then
+$U_s1=1$ and, for $f\in\mathcal K_m$, real $h\in\mathcal S(\R)$, $a\in\R$ and every bounded open
+interval $O$,
+\begin{gather*}
+ U_s\varphi_0^{(m)}(f)U_s^*=\varphi_0^{(m')}(d_sf),\qquad
+ U_s\pi_0^{(m)}(h)U_s^*=\pi_0^{(m')}(e_sh),\\
+ U_s\,\A^{(m)}(O)\,U_s^*=\A^{(m')}(sO),\qquad U_sH_0^{(m)}U_s^*=s\,H_0^{(m')},\\
+ U_sU_a^{(m)}U_s^*=U_{sa}^{(m')},\qquad U_s\Theta^{(m)}U_s^*=\Theta^{(m')} ,
+\end{gather*}
+where the superscripts name the mass with which an object is formed.  Moreover, for $n\ge0$ and
+real $g\in L^1\cap L^2$ of compact support,
+\begin{gather*}
+ U_s\,{:}\varphi_0^n(g){:}_{C_m}=s^{-1}\,{:}\varphi_0^n(e_sg){:}_{C_{m'}},\\
+ U_s\,V_{m,\lambda}(g)\,U_s^*=s\,V_{m',\lambda'}(e_sg),\qquad\lambda':=s^{-2}\lambda ,
+\end{gather*}
+where $V_{m,\lambda}(g)=\lambda\sum_na_n{:}\varphi_0^n(g){:}_{C_m}$ is the interaction of
+\S\ref{subsec:model} formed with the mass $m$ and the coupling $\lambda$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(T) $U_a1=1$ and the relation for $\varphi_0$ are Lemma~\ref{lem:ff-transport}(i), (ii);
+$U_aU_b=U_{a+b}$ is Lemma~\ref{lem:ff-transport}(v), since $\tau_a\tau_b=\tau_{a+b}$.  By
+Definition~\ref{def:ff-objects}(b), Lemma~\ref{lem:ff-transport}(i) and
+Lemma~\ref{lem:ff-onepart}(ii),
+\[
+ U_a\pi_0(h)U_a^*=i^N\,U_a\varphi_0(\mu h)U_a^*\,i^{-N}=i^N\varphi_0(\tau_a\mu h)\,i^{-N}
+ =i^N\varphi_0(\mu\tau_ah)\,i^{-N}=\pi_0(\tau_ah) .
+\]
+The relations for the unitaries $W$ follow by the functional calculus.  The map
+$f\mapsto\tau_af$ is a bijection of the real functions in $C_c^\infty(O)$ onto those in
+$C_c^\infty(O+a)$, so $\mathrm{Ad}\,U_a$ maps the generating set $\{W(f,0),W(0,h)\}$ of $\A(O)$
+(\S\ref{subsec:model}) onto that of $\A(O+a)$.  A spatial isomorphism $\mathrm{Ad}\,U$ maps the
+commutant of a set $\mathcal M$ onto the commutant of $U\mathcal MU^*$, hence the von Neumann
+algebra generated by $\mathcal M$ onto the one generated by $U\mathcal MU^*$; so
+$\tau_a(\A(O))=\A(O+a)$.  Therefore $\tau_a$ maps $\bigcup_O\A(O)$ onto itself, and, being
+isometric, its norm closure $\A$ onto itself.
+
+By Lemma~\ref{lem:ff-onepart}(ii), $j^{\C}\tau_a^{\C}(j^{\C})^{-1}$ is multiplication by
+$e^{-iak}$, which commutes with multiplication by $e^{it\mu(k)}$; so $\tau_a^{\C}$ commutes with
+$e^{it\mu^{\C}}$ and, by Definition~\ref{def:ff-objects}(d) and Lemma~\ref{lem:ff-gamma}(i),
+$U_ae^{itH_0}U_a^*=e^{itH_0}$ for all $t$, that is, $U_aH_0U_a^*=H_0$.  For the Wick powers:
+for $n=0$ both sides are the constant $\int g=\int\tau_ag$ (Assumption~\ref{A:cutoff}(d)).
+Let $n\ge1$ and $f_1,\dots,f_n\in\mathcal S_\R(\R)$.  For $y'\in\R$,
+$\int(\tau_af_j)(x')\,C(x'-y')\,dx'=\int f_j(x)\,C(x-(y'-a))\,dx$.  By
+Lemma~\ref{lem:ff-transport}(iii), the unitarity of $U_a$ and \eqref{eq:wickpairing},
+\[
+ \bigl\langle{:}\varphi_0(\tau_af_1)\cdots\varphi_0(\tau_af_n){:},\,U_a{:}\varphi_0^n(g){:}_C
+ \bigr\rangle=n!\int\Bigl[\prod_{j=1}^n\int f_j(x)\,C(x-y)\,dx\Bigr]g(y)\,dy ,
+\]
+and \eqref{eq:wickpairing} for $\tau_ag$, with the substitution $y=y'-a$, gives the same value
+for $\bigl\langle{:}\varphi_0(\tau_af_1)\cdots\varphi_0(\tau_af_n){:},\,
+{:}\varphi_0^n(\tau_ag){:}_C\bigr\rangle$.  Both $U_a{:}\varphi_0^n(g){:}_C$ and
+${:}\varphi_0^n(\tau_ag){:}_C$ lie in $\Gamma_n(\mathcal K_m)$
+(Lemma~\ref{lem:ff-transport}(i)), the functions $\tau_af_j$ range over all of
+$\mathcal S_\R(\R)$, and an element of $\Gamma_n(\mathcal K_m)$ is determined by its pairings
+with the Wick monomials with entries in $\mathcal S_\R(\R)$ (Assumption~\ref{A:cutoff}(d)); so
+the two are equal.  Summing over $n$ with the coefficients $\lambda a_n$ gives
+$U_aV(g)=V(\tau_ag)$ in $L^2(d\phi_0)$, and Lemma~\ref{lem:ff-transport}(iv) gives the
+identity of the multiplication operators.
+
+(P) $-\mathbf 1$ is an orthogonal bijection of $\mathcal K_m$, and
+$U_{-\mathbf 1}=D\,\Gamma_{\!\mathcal F}(-\mathbf 1)\,D^{-1}=(-1)^N$
+(Definition~\ref{def:ff-objects}(a)), which is a self-adjoint unitary fixing $1$.
+$\Theta\varphi_0(f)\Theta=\varphi_0(-f)=-\varphi_0(f)$ by Lemma~\ref{lem:ff-transport}(ii), and
+$\Theta\pi_0(h)\Theta=i^N\Theta\varphi_0(\mu h)\Theta\,i^{-N}=-\pi_0(h)$, because $\Theta$
+commutes with $i^N$.  The statements on $W$, $\A(O)$ and $\A$ follow as in (T), $f\mapsto-f$
+being a bijection of the real functions in $C_c^\infty(O)$.  $\Gamma_{\!\mathcal F}(-\mathbf 1)$
+commutes with $\Gamma_{\!\mathcal F}(e^{it\mu^{\C}})$ (Lemma~\ref{lem:ff-gamma}(i)), so
+$\Theta e^{itH_0}\Theta=e^{itH_0}$ and $\Theta H_0\Theta=H_0$.  The Wick power
+${:}\varphi_0^n(g){:}_C$ lies in $\Gamma_n(\mathcal K_m)$ (Assumption~\ref{A:cutoff}(d); for
+$n=0$ it is a constant), on which $\Theta$ is $(-1)^n$.  For even $\mathscr P$ this gives
+$\Theta V(g)=V(g)$ in $L^2(d\phi_0)$, and Lemma~\ref{lem:ff-transport}(iv) gives
+$\Theta V(g)\Theta=V(g)$ for the multiplication operators.  In the situation of the last
+sentence, $R\psi:=\psi(-\,\cdot\,)$ is a unitary with $R1=1$ and $R\varphi_0(f)R^{-1}=
+\varphi_0(-f)$, so $R=U_{-\mathbf 1}$ by Lemma~\ref{lem:ff-transport}(v).
+
+(D) $U_s1=1$ and the relation for $\varphi_0$ are Lemma~\ref{lem:ff-transport}(i), (ii).  By
+Definition~\ref{def:ff-objects}(b), Lemma~\ref{lem:ff-transport}(i) and
+Lemma~\ref{lem:ff-onepart}(iii),
+\[
+ U_s\pi_0^{(m)}(h)U_s^*=i^N\varphi_0^{(m')}(d_s\mu_mh)\,i^{-N}
+ =i^N\varphi_0^{(m')}(\mu_{m'}e_sh)\,i^{-N}=\pi_0^{(m')}(e_sh) .
+\]
+$f\mapsto d_sf$ and $h\mapsto e_sh$ are bijections of the real functions in $C_c^\infty(O)$ onto
+those in $C_c^\infty(sO)$, so $\mathrm{Ad}\,U_s$ maps the generating set of $\A^{(m)}(O)$ onto
+that of $\A^{(m')}(sO)$, and the argument of (T) gives the third relation.  For $H_0$: by
+Definition~\ref{def:ff-objects}(d), Lemma~\ref{lem:ff-gamma}(i) and
+Lemma~\ref{lem:ff-onepart}(iii),
+\[
+ U_se^{itH_0^{(m)}}U_s^*
+ =D_{m'}\,\Gamma_{\!\mathcal F}\bigl(d_s^{\C}e^{it\mu_m^{\C}}(d_s^{\C})^{-1}\bigr)\,D_{m'}^{-1}
+ =D_{m'}\,\Gamma_{\!\mathcal F}\bigl(e^{its\mu_{m'}^{\C}}\bigr)\,D_{m'}^{-1}=e^{itsH_0^{(m')}} ,
+\]
+because $j_{m'}^{\C}d_s^{\C}=u_sj_m^{\C}$ and $u_s\,e^{it\mu_m(\cdot)}\,u_s^{-1}=
+e^{its\mu_{m'}(\cdot)}$; the generators of the two unitary groups are $U_sH_0^{(m)}U_s^*$ and
+$sH_0^{(m')}$.  The relations for $U_a$ and $\Theta$ follow from
+Lemma~\ref{lem:ff-transport}(v), since $d_s\tau_a=\tau_{sa}d_s$ and $d_s(-\mathbf 1)=
+(-\mathbf 1)d_s$.
+
+\emph{The Wick powers.}  For $n=0$ both sides are the constant $\int g=s^{-1}\int e_sg$
+(Assumption~\ref{A:cutoff}(d)).  Let $n\ge1$.  With $u=s^2t$ in the formula of
+Lemma~\ref{aux:notation-kernel}, $C_{m'}(sz)=\frac1{4\pi}\int_0^\infty u^{-1}e^{-um'^2-s^2z^2/(4u)}
+\,du=\frac1{4\pi}\int_0^\infty t^{-1}e^{-tm^2-z^2/(4t)}\,dt=C_m(z)$ for $z\ne0$.  Hence, for
+$f\in\mathcal S_\R(\R)$ and $y\in\R$,
+\[
+ \int(d_sf)(x')\,C_{m'}(x'-sy)\,dx'=\int f(x)\,C_{m'}(s(x-y))\,dx=\int f(x)\,C_m(x-y)\,dx .
+\]
+Put $\tilde g:=s^{-1}e_sg$, which is real, of compact support and in $L^1\cap L^2$.  For
+$f_1,\dots,f_n\in\mathcal S_\R(\R)$, by Lemma~\ref{lem:ff-transport}(iii), the unitarity of
+$U_s$ and \eqref{eq:wickpairing} at the mass $m$,
+\[
+ \bigl\langle{:}\varphi_0^{(m')}(d_sf_1)\cdots\varphi_0^{(m')}(d_sf_n){:},\,
+   U_s{:}\varphi_0^n(g){:}_{C_m}\bigr\rangle
+ =n!\int\Bigl[\prod_{j=1}^n\int f_j(x)\,C_m(x-y)\,dx\Bigr]g(y)\,dy ,
+\]
+while \eqref{eq:wickpairing} at the mass $m'$ and the substitution $y'=sy$ give
+\begin{multline*}
+ \bigl\langle{:}\varphi_0^{(m')}(d_sf_1)\cdots\varphi_0^{(m')}(d_sf_n){:},\,
+   {:}\varphi_0^n(\tilde g){:}_{C_{m'}}\bigr\rangle\\
+ =n!\int\Bigl[\prod_{j=1}^n\int(d_sf_j)(x')\,C_{m'}(x'-sy)\,dx'\Bigr]s\,\tilde g(sy)\,dy ,
+\end{multline*}
+which is the same number, since $s\,\tilde g(sy)=g(y)$.  Both $U_s{:}\varphi_0^n(g){:}_{C_m}$
+and ${:}\varphi_0^n(\tilde g){:}_{C_{m'}}$ lie in $\Gamma_n(\mathcal K_{m'})$
+(Lemma~\ref{lem:ff-transport}(i)), the functions $d_sf_j$ range over all of $\mathcal
+S_\R(\R)$, and an element of $\Gamma_n(\mathcal K_{m'})$ is determined by its pairings with the
+Wick monomials with entries in $\mathcal S_\R(\R)$ (Assumption~\ref{A:cutoff}(d)).  So
+$U_s{:}\varphi_0^n(g){:}_{C_m}={:}\varphi_0^n(\tilde g){:}_{C_{m'}}=s^{-1}{:}\varphi_0^n(e_sg){:}_{C_{m'}}$,
+the Wick power being linear in its test function.  Summing over $n$ with the coefficients
+$\lambda a_n$,
+\[
+ U_sV_{m,\lambda}(g)=\lambda s^{-1}\sum_na_n{:}\varphi_0^n(e_sg){:}_{C_{m'}}
+ =s\,\lambda'\sum_na_n{:}\varphi_0^n(e_sg){:}_{C_{m'}}=s\,V_{m',\lambda'}(e_sg)
+\]
+as elements of $L^2(d\phi_0^{(m')})$; they are real, and Lemma~\ref{lem:ff-transport}(iv) turns
+this into the identity of the multiplication operators.
+\end{proof}
+
+\begin{remark}[the identities of Assumption~\ref{A:covar}]\label{rem:ff-A7}
+For $g\in\CH$, $K(g)$ is the closure of the operator sum $H_0+V(g)$, whose domain is
+$D(H_0)\cap D(V(g))$ and which is essentially self-adjoint (Assumption~\ref{A:cutoff}).  By Proposition~\ref{prop:ff-symmetries}(T), $U_a$ maps that
+domain onto $D(H_0)\cap D(V(\tau_ag))$, and $U_a(H_0+V(g))U_a^*=H_0+V(\tau_ag)$ there; so
+$U_aK(g)U_a^*=K(\tau_ag)$.  Part (P) gives $\Theta H_0\Theta=H_0$ and, for even $\mathscr P$,
+$\Theta V(g)\Theta=V(g)$; then $\Theta$ maps $D(H_0)\cap D(V(g))$ onto itself and commutes with
+$H_0+V(g)$ there, so $\Theta K(g)\Theta=K(g)$.  These are the three identities of Assumption~\ref{A:covar}, for
+every polynomial $\mathscr P$ of \S\ref{subsec:model}.  In the same way
+Proposition~\ref{prop:ff-symmetries}(D) gives $U_sK_{m,\lambda}(g)U_s^*=
+s\,K_{m',\lambda'}(e_sg)$ for $g\in\CH$.
+\end{remark}
+
+\begin{lemma}[the objects of the sources]\label{lem:ff-sources}
+Let $m>0$, $\mathcal K=\mathcal K_m$, $\mu=\mu_m$, $j=j_m$, $D=D_m$.
+\begin{enumerate}
+\item[\textup{(a)}] \textup{(The Fock space of \cite{GJ2}.)}  $\Upsilon:=\Gamma_{\!\mathcal F}(j^{\C})$
+is a unitary of $\mathcal F(\mathcal K^{\C})$ onto $\mathcal F(L^2(\R,dk))$, which is the Fock
+space (1.2.1)--(1.2.2) of the source (Assumption~\ref{A:cutoff}(g)), its $n$-particle space
+being the symmetric functions in $L^2(\R^n)$.  The unitary $\mathfrak D:=D\Upsilon^{-1}:
+\mathcal F(L^2(\R,dk))\to L^2(d\phi_0)$ has the following properties.
+ \begin{enumerate}
+ \item[\textup{(1)}] $\mathfrak D\,\Omega_{\mathcal F}=1$, where $\Omega_{\mathcal F}$ is the source's vacuum (1.2.3), which
+ the source writes $\Omega_0$.
+ \item[\textup{(2)}] For real $f,h\in\mathcal S(\R)$, the source's bilinear forms
+ $\varphi(f)=\int\varphi(x)f(x)\,dx$ and $\pi(h)=\int\pi(x)h(x)\,dx$, (1.2.10)--(1.2.11), are,
+ on the source's domain $\mathfrak S\times\mathfrak S$, the forms of the operators
+ $2^{-1/2}(A^*(jf)+A(jf))$ and $2^{-1/2}(A^*(i\,j\mu h)+A(i\,j\mu h))$.  The closures of these
+ operators on $\mathfrak S$ are $\varphi_{\mathcal F}(jf)$ and $\varphi_{\mathcal F}(i\,j\mu h)$,
+ and
+ \[
+  \mathfrak D\,\varphi_{\mathcal F}(jf)\,\mathfrak D^{-1}=\varphi_0(f),\qquad
+  \mathfrak D\,\varphi_{\mathcal F}(i\,j\mu h)\,\mathfrak D^{-1}=\pi_0(h) .
+ \]
+ \item[\textup{(3)}] $\mathfrak D\,H_0^{\rm GJ}\,\mathfrak D^{-1}=H_0$, where $H_0^{\rm GJ}$ is
+ the source's operator (1.2.5), multiplication by $\sum_{j=1}^n\mu(k_j)$ on the $n$-particle
+ space, on its maximal domain.
+ \item[\textup{(4)}] $\mathfrak D\,U(-a)\,\mathfrak D^{-1}=U_a$ for the source's translation
+ unitaries (3.6.2), and $\mathfrak D\,\Gamma_{\!\mathcal F}(-\mathbf 1)\,\mathfrak D^{-1}=\Theta$.
+ \end{enumerate}
+\item[\textup{(b)}] \textup{(The $Q$-space source \cite{SimonBook}.)}  $H_0$ is the closure of
+the operator $d\Gamma(\mu)$ of the source's (I.40) and (II.48) (Assumption~\ref{A:cutoff}(f)).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $\Upsilon$ is unitary by Lemmas~\ref{lem:ff-onepart}(i) and~\ref{lem:ff-gamma}(i), and (1)
+follows from $\Upsilon\Omega_{\mathcal F}=\Omega_{\mathcal F}$ and item (a) of Theorem I.11.
+
+(2) Identify $\mathcal F_n(L^2(\R,dk))$ with the symmetric functions in $L^2(\R^n)$.  For
+$\theta\in L^2(\R)$ and symmetric $\psi_n$,
+\begin{align*}
+ (A^*(\theta)\psi_n)(k_1,\dots,k_{n+1})&=(n+1)^{-1/2}\sum_{j=1}^{n+1}\theta(k_j)\,
+ \psi_n(k_1,\dots,\widehat{k_j},\dots,k_{n+1}),\\
+ (A(\theta)\psi_n)(k_1,\dots,k_{n-1})&=n^{1/2}\!\int\!\overline{\theta(k)}\,\psi_n(k,k_1,\dots,
+ k_{n-1})\,dk ,
+\end{align*}
+the first by the definition of $S_{n+1}$, the second because it is the adjoint of the first.
+The source's $a(k)$, $(a(k)\psi)_{n-1}(k_1,\dots,k_{n-1})=n^{1/2}\psi_n(k,k_1,\dots,k_{n-1})$,
+is an operator on $\mathfrak S$, and its $a^*(k)$, (1.2.7), is the bilinear form
+$\ip\chi{a^*(k)\psi}=\ip{a(k)\chi}\psi$ on $\mathfrak S\times\mathfrak S$.  Hence, for
+$\chi,\psi\in\mathfrak S$ and $\theta\in\mathcal S(\R)$,
+\[
+ \int\theta(k)\,\ip\chi{a^*(k)\psi}\,dk=\ip\chi{A^*(\theta)\psi},\qquad
+ \int\theta(k)\,\ip\chi{a(-k)\psi}\,dk=\ip\chi{A(\theta^\sharp)\psi},
+\]
+with $\theta^\sharp(k)=\overline{\theta(-k)}$.  The functions $k\mapsto\ip\chi{a^*(k)\psi}$ and
+$k\mapsto\ip\chi{a(-k)\psi}$ are Schwartz functions, so the $x$-integration may be done first
+in $\int f(x)\,\ip\chi{\varphi(x)\psi}\,dx$; with $\int e^{-ikx}f(x)\,dx=(2\pi)^{1/2}\hat f(k)$
+and (1.2.10),
+\begin{align*}
+ \ip\chi{\varphi(f)\psi}&=2^{-1/2}\!\int\!\mu(k)^{-1/2}\hat f(k)\bigl\{\ip\chi{a^*(k)\psi}+
+ \ip\chi{a(-k)\psi}\bigr\}dk\\
+ &=2^{-1/2}\ip\chi{(A^*(jf)+A(jf))\psi},
+\end{align*}
+because $jf=\mu^{-1/2}\hat f$ and $(jf)^\sharp=jf$.  In the same way, with (1.2.11) and
+$\theta':=\mu^{1/2}\hat h=j\mu h$, for which $\theta'^\sharp=\theta'$,
+\[
+ \ip\chi{\pi(h)\psi}=i\,2^{-1/2}\ip\chi{(A^*(\theta')-A(\theta'))\psi}
+ =2^{-1/2}\ip\chi{(A^*(i\theta')+A(i\theta'))\psi},
+\]
+$A$ being conjugate-linear.  $\mathfrak S\cap\mathcal F_n$ is dense in $\mathcal F_n$ and
+$A^*(\theta)$, $A(\theta)$ are bounded on each $\mathcal F_n$, so the closure of
+$2^{-1/2}(A^*(\theta)+A(\theta))$ on $\mathfrak S$ contains its restriction to
+$\mathcal F_{\rm fin}$ and is $\varphi_{\mathcal F}(\theta)$.  The source takes its closures
+from the domain $\mathfrak D(N^{1/2})$ of the square root of its number operator (1.2.4): ``the
+bilinear forms $\varphi(f)$ and $\pi(g)$ define operators whose closures on $\mathfrak
+D(N^{1/2})$ are self-adjoint'' \cite[p.~365]{GJ2}.  They are the same operators.  For
+$\psi=(\psi_n)\in\mathcal F_{\rm fin}$ the vectors $A^*(\theta)\psi_n$ are mutually orthogonal,
+as are the $A(\theta)\psi_n$, so $\|A^*(\theta)\psi\|^2\le\|\theta\|^2\sum_n(n+1)\|\psi_n\|^2$
+and $\|A(\theta)\psi\|^2\le\|\theta\|^2\sum_nn\|\psi_n\|^2$; thus
+$R_\theta:=2^{-1/2}(A^*(\theta)+A(\theta))$ satisfies $\|R_\theta\psi\|\le\sqrt2\,\|\theta\|\,
+\|(N+1)^{1/2}\psi\|$ on $\mathcal F_{\rm fin}$.  Hence every $\psi\in\mathfrak D(N^{1/2})$ is
+the limit of its truncations $\psi^{(\le n)}\in\mathcal F_{\rm fin}$ in the graph norm of
+$\varphi_{\mathcal F}(\theta)$, so $\mathfrak D(N^{1/2})\subseteq D(\varphi_{\mathcal
+F}(\theta))$.  The set $\mathfrak S$ is dense in $\mathfrak D(N^{1/2})$ for the norm
+$\|(N+1)^{1/2}\psi\|$ (truncate, then approximate each component $\psi_n$ in $\mathcal F_n$ by
+symmetric Schwartz functions), and the form $(\chi,\psi)\mapsto\ip\chi{R_\theta\psi}$ on
+$\mathfrak S\times\mathfrak S$ is continuous in $\psi$ for that norm; so it extends to
+$\mathfrak S\times\mathfrak D(N^{1/2})$, where it equals $\ip\chi{\varphi_{\mathcal
+F}(\theta)\psi}$.  The operator that the form defines on $\mathfrak D(N^{1/2})$, that is,
+$\psi\mapsto X\psi$ with $\ip\chi{X\psi}$ the extended form for all $\chi\in\mathfrak S$, is
+therefore the restriction of $\varphi_{\mathcal F}(\theta)$ to $\mathfrak D(N^{1/2})$; it
+extends the operator on $\mathfrak S$, and its closure is $\varphi_{\mathcal F}(\theta)$.  By Lemma~\ref{lem:ff-gamma}(iii)
+with $u=(j^{\C})^{-1}$, $\Upsilon^{-1}\varphi_{\mathcal F}(jf)\Upsilon=\varphi_{\mathcal F}(f)$ and
+$\Upsilon^{-1}\varphi_{\mathcal F}(i\,j\mu h)\Upsilon=\varphi_{\mathcal F}(i\mu h)=
+\Gamma_{\!\mathcal F}(i\mathbf 1)\varphi_{\mathcal F}(\mu h)\Gamma_{\!\mathcal F}(i\mathbf
+1)^{-1}$.  Conjugating with $D$, item (b) of Theorem I.11 (as in the proof of
+Lemma~\ref{lem:ff-transport}(ii)) and Definition~\ref{def:ff-objects}(a), (b) give the two
+displayed identities.
+
+(3) By Definition~\ref{def:ff-objects}(d) and Lemma~\ref{lem:ff-gamma}(i),
+$\mathfrak D^{-1}e^{itH_0}\mathfrak D=\Gamma_{\!\mathcal F}(j^{\C}e^{it\mu^{\C}}(j^{\C})^{-1})=
+\Gamma_{\!\mathcal F}(e^{it\mu(\cdot)})$, which on the $n$-particle space is multiplication by
+$\prod_je^{it\mu(k_j)}=e^{it\sum_j\mu(k_j)}$.  The generator of this group of multiplication
+operators is the maximal multiplication operator by $\sum_j\mu(k_j)$.
+
+(4) By Lemma~\ref{lem:ff-onepart}(ii), $j^{\C}\tau_a^{\C}(j^{\C})^{-1}$ is multiplication by
+$e^{-iak}$, so $\mathfrak D^{-1}U_a\mathfrak D=\Gamma_{\!\mathcal F}(e^{-ia\,\cdot})$ is
+multiplication by $e^{-ia(k_1+\dots+k_n)}$ on the $n$-particle space, which is the source's
+$U(-a)$ by (3.6.2).  The last identity is Proposition~\ref{prop:ff-symmetries}(P).
+
+(b) The source writes (I.40) in the Fock-space realization of $\Gamma_n(\mathcal K)$: after its
+Theorem I.11 it uses $\Gamma$, $\Gamma_n$ for $\mathcal F$, $\mathcal F_n$ and ``drop[s] `$D$'
+treating it as an identity'' (p.~24).  Let $v_1,\dots,v_n\in D(\mu^{\C})$.  Then
+$t\mapsto\Gamma_{\!\mathcal F}(e^{it\mu^{\C}})S_n(v_1\otimes\dots\otimes v_n)=
+S_n(e^{it\mu^{\C}}v_1\otimes\dots\otimes e^{it\mu^{\C}}v_n)$ is differentiable at $t=0$, with
+derivative $i\,S_n\sum_jv_1\otimes\dots\otimes\mu^{\C}v_j\otimes\dots\otimes v_n$.  So these
+vectors lie in the domain of $D^{-1}H_0D$, which acts on them by the formula (I.40) with
+$A=\mu$.  Here the source's $\mu$ is the closure of $\mu\upharpoonright\mathcal S_\R(\R)$ in
+$\mathcal K$ ((II.47): ``$\mu$ is then the closure of the operator defined on $\mathcal S$''),
+which is positive and self-adjoint and is the restriction of $\mu^{\C}$ to $\mathcal K$
+(Lemma~\ref{lem:ff-onepart}(ii)).  That is, $D^{-1}H_0D$ extends $d\Gamma(\mu)$, and, $H_0$ being closed, $H_0$ extends
+the closure $Z$ of $d\Gamma(\mu)$ transported by $D$.  By Assumption~\ref{A:cutoff}(f) (the
+source's Example 3, for the positive self-adjoint operator $\mu$ on $\mathcal K$), $Z$
+generates a contraction semigroup in the source's convention, $e^{-tZ}$; so, by the
+Hille--Yosida theorem, $Z+1$ maps $D(Z)$ onto $L^2(d\phi_0)$.  By (3), $H_0$ is
+unitarily equivalent to a multiplication operator by a non-negative function, so $H_0+1$ is
+injective.  For $\psi\in D(H_0)$ choose $\chi\in D(Z)$ with $(Z+1)\chi=(H_0+1)\psi$; then
+$(H_0+1)(\chi-\psi)=0$, so $\psi=\chi\in D(Z)$.  Hence $H_0=Z$.
+\end{proof}
 
 % ==================================================================
 \begin{thebibliography}{99}

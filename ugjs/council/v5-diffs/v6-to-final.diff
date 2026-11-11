@@ -1,0 +1,19 @@
+--- <scratch>/phase5/main.v6.tex	2026-11-11 11:56:43
++++ part_i/main.tex	2026-11-11 11:53:28
+@@ -134,6 +134,7 @@
+ readings of audit item C5 (items 1--4 and 10--12, with item 9(c)) remain open.  The record of the derivation
+ (council, drafts, four audit rounds) is \texttt{ugjs/}; the gate record of the integration is
+ \texttt{part\_i/README.md}.
++
+ \smallskip
+ \textbf{The free-field layer (11 November 2026).}  An audit of 9 November 2026 found that
+ this manuscript named the time-zero momentum field $\pi_0$, the free Hamiltonian $H_0$, the
+@@ -148,7 +149,7 @@
+ Theorems~\ref{thm:MAIN} and~\ref{thm:dichotomy} refer to it
+ (Appendix~\ref{app:provenance}, corrections history).  The repair was audited on
+ 11 November 2026 by two agents that had written none of it, and their findings were applied
+-and re-checked (rounds V5, V5b and V5c; \texttt{part\_i/README.md}).  With this addition the
++and re-checked (rounds V5 to V5d; \texttt{part\_i/README.md}).  With this addition the
+ status sentence of 7 November 2026 above stands.
+ \end{quote}
+ 

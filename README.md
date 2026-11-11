@@ -17,43 +17,45 @@ being released.
 **Human verification of the output is ongoing.** Nothing here has been refereed, and the
 author's own line-by-line check of the machine-assisted material is still in progress:
 open audit item C5 (a second human reader for the source page images, see below) is
-unclosed. Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. An audit of 9 November 2026 found that the record uses four standard free-field facts without stating them, so "from printed statements only" overstates until the repair is audited (notice of 11 November 2026, under Status). Read every
+unclosed. Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. Since 11 November 2026 the free-field layer of the record (its momentum field and free Hamiltonian, and the action of translations, parity and dilations) is defined and proved in Appendix E; an audit of 9 November had found it used without being stated (see Status). Read every
 statement in this repository as a claim under active verification, not as a settled
 result, and check anything you intend to rely on against the cited sources yourself.
 Direction, mathematical judgement and final responsibility are the author's.
 
 ## Status: the main theorem is an implication from printed imports. Please read this first.
 
-**Notice of 11 November 2026: four free-field facts are used without being stated.** A fresh
-audit on 9 November 2026 (round V4f, `ugjs/council/v4f-free-field-report.md`) found that
-`part_i/main.tex` uses four standard properties of the free field that it neither defines,
-derives nor imports:
+**The free-field layer: found on 9 November 2026, repaired on 11 November.** A fresh audit on
+9 November (round V4f, `ugjs/council/v4f-free-field-report.md`) found that `part_i/main.tex`
+used four standard properties of the free field that it neither defined, derived nor imported:
 
-1. the time-zero momentum field π₀ and the free Hamiltonian H₀ on Q-space: §2.1 introduces π₀ by
-   reference to a dictionary that Assumption A1 states for the interaction only, and H₀ is
-   never defined;
-2. the action of the space translations on the fields, hence τ_a(A(O)) = A(O + a), used in the
-   proofs of Theorem 12.2(4), Corollary 12.3 and Theorem 13.2;
+1. the time-zero momentum field π₀ and the free Hamiltonian H₀ on Q-space, which were named
+   and never defined;
+2. the space translations as automorphisms of the algebra, which Theorem 12.2(4),
+   Corollary 12.3 and Theorem 13.2 use, and their action on the net, τ_a(A(O)) = A(O + a),
+   used in the proofs of Theorem 12.2(4) and Theorem 13.2;
 3. the parity relation Θπ₀(h)Θ = −π₀(h), used in the proof of Theorem 12.2(4) and through it
    in Theorem 13.2;
-4. the dilation unitary of Remark 3.3, on which the reduction to the source's mass rests
-   (§2.6 and §3). Assumption A8(viii) imports the scaling of GJS, p. 590, which is Euclidean,
-   on L²(S′(ℝ²)); the time-zero unitary, its action on π₀ and H₀ and on the vacuum are not
-   imported.
+4. the dilation unitary of Remark 3.3, on which the reduction to the source's mass rests.
 
-No step is known to be false, and each of the four is a textbook property of the free field.
-All four gaps are older than the integration of 7 November; the sentence added to §2.1 on
-that day to introduce π₀ did not close the first. But until they are written out and
-audited, the status sentences of this README, of `docs/`, of `CITATION.cff` and of the
-companion ("proved from printed statements only", "an implication from the printed imports
-A1–A8") and the manuscript's own "no other external [mathematical] input is used" (§1 and
-Theorem 12.2) overstate. **Theorem 12.2 is proved conditional on the standard definitions of
-π₀ and H₀ (item 1) and on the three properties of items 2 to 4; without item 4, only for the
-pairs (m₀, λ) that satisfy the printed GJS hypotheses themselves (m₀ = M_*, λ < λ_* in the
-notation of §2.6).** A repair, an explicit Fock space to Q-space dictionary, is in preparation and
-will be audited independently before this notice is withdrawn.
+No step was found to be false, and all four gaps were older than the integration of
+7 November. For some hours on 11 November the public pages carried a notice that Theorem 12.2
+was proved conditional on these four items (commit d2b106c). The record now has an Appendix E.
+It defines the objects through the unitary between Fock space and Q-space of Simon's
+Theorem I.11, proves how translations, parity and dilations act on the fields, on the local
+algebras, on H₀ and on the interaction V(g), and identifies the objects with those of the
+Fock-space sources. The printed statements it uses are listed in Assumption A1, whose items
+(e)–(g) are new. Two fresh agents audited the repair on 11 November (round V5: one the
+mathematics, one the sources and the integration). They found no critical error and three
+major points: Remark 3.3 stated how the dynamics transports under the dilation without
+deriving it, and two statements of the record about itself were inaccurate. These and the
+minor points were repaired, and the same auditors re-checked the repairs (rounds V5b to V5d;
+reports `ugjs/council/v5-math-report.md` and `ugjs/council/v5-sources-report.md`; gate record
+in `part_i/README.md`, "Free-field appendix (2026-11-11)"). The notice is withdrawn: the status sentence stands as on
+7 November, with the free-field layer now written out. The record has 125 pages. No numbered
+statement changed its number, and no statement of a theorem, proposition, lemma or corollary
+changed; Assumptions A1, A6 and A7 and Remark 3.3 did.
 
-**Part I** (`part_i/main.tex`, 110 pp, document of record) proves Theorem 12.2. In the
+**Part I** (`part_i/main.tex`, 125 pp, document of record) proves Theorem 12.2. In the
 Glimm–Jaffe–Spencer weak-coupling region 0 ≤ λ/m₀² < ε_P, the full net (ω_g) of cutoff
 ground states, with no subnets and no space averaging, converges in norm on every local
 algebra A(O),
@@ -126,7 +128,7 @@ own `\ref` graph, and the shading is computed, not asserted. A statement is shad
 exactly when its proof chain reaches A8, the GJS package; every item of A8 is a printed
 statement (since 7 November 2026 the one GJS theorem a proof uses is Theorem 1.1.7, and item
 (vi), U_GJS, is retired), so the shading records dependence on the GJS imports, not a
-conditional status. Thirty-four of the sixty-five numbered statements are shaded, the three
+conditional status. Thirty-four of the seventy-two numbered statements are shaded, the three
 Source Facts printed inside A8, Lemma 7.4, Remark C.6, Lemma D.2 and Theorems D.3–D.4 among
 them; Assumptions A1 and A3 are shaded since 7 November 2026 only because their Wick-power
 paragraphs refer to Appendix D, which applies A8 — an effect of the mechanical index; the [result
@@ -187,9 +189,9 @@ below by one γ for the whole cutoff class.
 
 | document | | what it is |
 |---|---|---|
-| [`part_i/main.pdf`](part_i/main.pdf) | 110 pp | **the document of record.** Theorem 12.2 and its full proof from the imports, with Appendix D (the uniform local moment from the printed clustering theorem) |
+| [`part_i/main.pdf`](part_i/main.pdf) | 125 pp | **the document of record.** Theorem 12.2 and its full proof from the imports, with Appendix D (the uniform local moment from the printed clustering theorem) and Appendix E (the free field on Q-space: momentum field, free Hamiltonian, translations, parity, dilations) |
 | [`part_ii/gate_II11_scoping.pdf`](part_ii/gate_II11_scoping.pdf) | 11 pp | the open Part II programme at gate (II.11) |
-| [`companion/companion.pdf`](companion/companion.pdf) | 20 pp | **a reader's companion:** what is proved, under what, and why; it explains the record and proves nothing new |
+| [`companion/companion.pdf`](companion/companion.pdf) | 20 pp | **a reader's companion:** what is proved, under what, and why; it explains the record and proves nothing new. It is the edition of 7 November 2026 and describes the record of that date (110 pp, commit f213cc8): statement numbers are unchanged since, its page numbers are those of that build, and it does not mention Appendix E |
 | [`audit_2026/critical_proof_audit.pdf`](audit_2026/critical_proof_audit.pdf) | 10 pp | the independent audit, frozen against the v1 hash |
 | [`fresh_audit_2026_08_16/critical_audit_parts_i_ii.pdf`](fresh_audit_2026_08_16/critical_audit_parts_i_ii.pdf) | 11 pp | a second, independent audit of both parts |
 | [`fresh_audit_2026_08_16/lamport_reconstruction_parts_i_ii.pdf`](fresh_audit_2026_08_16/lamport_reconstruction_parts_i_ii.pdf) | 114 pp | the whole chain rebuilt in Lamport's hierarchical proof format |
@@ -205,7 +207,7 @@ figures below are interactive.
 | | |
 |---|---|
 | [status](docs/status.md) | what is proved, what is conditional, what is open; the gate record |
-| [results](docs/results.md) | all 65 numbered statements with dependencies — generated, never hand-edited |
+| [results](docs/results.md) | all 72 numbered statements with dependencies — generated, never hand-edited |
 | [imports](docs/imports.md) | A1–A8, A8(iv)-T, and what U_GJS was |
 | [definitions](docs/definitions.md) · [notation](docs/notation.md) | the objects and the frozen symbol table |
 | [provenance](docs/provenance.md) | frozen sources, corrections history, the dossiers |
@@ -271,7 +273,7 @@ all references.
 cd part_i && pdflatex main.tex && pdflatex main.tex && pdflatex main.tex
 ```
 
-A clean build is 110 pages with zero errors, zero overfull boxes and zero undefined references.
+A clean build is 125 pages with zero errors, zero overfull boxes and zero undefined references.
 
 The three citation dossiers (`audit_2026/`, `fresh_audit_2026_08_16/`, `part_ii/`) build
 the same way, from their own directory. Without the page-image corpus each image is
@@ -284,11 +286,11 @@ not drift between builds. The PDF bytes would otherwise still carry pdftex's own
 timestamp, so the committed `part_i/main.pdf` is built with that timestamp pinned too:
 
 ```sh
-SOURCE_DATE_EPOCH=1794009600 FORCE_SOURCE_DATE=1 pdflatex main.tex   # x3
+SOURCE_DATE_EPOCH=1794355200 FORCE_SOURCE_DATE=1 pdflatex main.tex   # x3
 ```
 
 Three passes of this command reproduce the committed PDF byte for byte under pdfTeX
-1.40.29 (TeX Live 2026). The epoch belongs to the printed date (1794009600 is 7 November
+1.40.29 (TeX Live 2026). The epoch belongs to the printed date (1794355200 is 11 November
 2026, 00:00 UTC); the comment above `\date` in `part_i/main.tex` names the current one.
 
 The reader's companion builds from its own folder with pdfTeX plus TikZ and pgfplots
@@ -334,6 +336,4 @@ came from.
 
 See `CITATION.cff`. If you cite the theorem, please cite it as an implication from the
 printed imports A1–A8 of §2.4 of the manuscript, and name the open human page readings
-(audit item C5). Until the repair announced in the notice of 11 November 2026 is audited,
-please name that notice as well: the record uses four standard free-field facts without
-stating or importing them.
+(audit item C5).
