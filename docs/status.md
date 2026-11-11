@@ -7,9 +7,40 @@ title: Status
 What is proved, what is conditional, and what is open. Nothing on this page is a
 summary of intent: each line names the statement or the gate it comes from.
 
+## Notice of 11 November 2026: four free-field facts are used without being stated
+
+A fresh audit on 9 November 2026 (round V4f; report
+[`ugjs/council/v4f-free-field-report.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/ugjs/council/v4f-free-field-report.md))
+found that `part_i/main.tex` uses four standard properties of the free field that it neither
+defines, derives nor imports:
+
+1. the time-zero momentum field π₀ and the free Hamiltonian H₀ on Q-space: §2.1 introduces π₀ by
+   reference to a dictionary that Assumption A1 states for the interaction only, and H₀ is
+   never defined;
+2. the action of the space translations on the fields, hence τ_a(A(O)) = A(O + a), used in the
+   proofs of Theorem 12.2(4), Corollary 12.3 and Theorem 13.2;
+3. the parity relation Θπ₀(h)Θ = −π₀(h), used in the proof of Theorem 12.2(4) and through it
+   in Theorem 13.2;
+4. the dilation unitary of Remark 3.3, on which the reduction to the source's mass rests
+   (§2.6 and §3). Assumption A8(viii) imports the scaling of GJS, p. 590, which is Euclidean,
+   on L²(S′(ℝ²)); the time-zero unitary, its action on π₀ and H₀ and on the vacuum are not
+   imported.
+
+No step is known to be false, and each of the four is a textbook property of the free field.
+All four gaps are older than the integration of 7 November; the sentence added to §2.1 on
+that day to introduce π₀ did not close the first. But until they are written out and
+audited, the status sentences of this site, of the README, of `CITATION.cff` and of the
+companion ("proved from printed statements only", "an implication from the printed imports
+A1–A8") and the manuscript's own "no other external [mathematical] input is used" (§1 and
+Theorem 12.2) overstate. **Theorem 12.2 is proved conditional on the standard definitions of
+π₀ and H₀ (item 1) and on the three properties of items 2 to 4; without item 4, only for the
+pairs (m₀, λ) that satisfy the printed GJS hypotheses themselves (m₀ = M_*, λ < λ_* in the
+notation of §2.6).** A repair, an explicit Fock space to Q-space dictionary, is in preparation and
+will be audited independently before this notice is withdrawn.
+
 ## Part I — an implication from printed imports; one GJS theorem imported since 7 November 2026
 
-**Theorem 12.2 (Main Theorem).** Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. It is an *implication* from the imports A1–A8 enumerated in §2.4; the record is not a proof of those imports, and it does not re-derive the cluster expansion.
+**Theorem 12.2 (Main Theorem).** Subject to the notice above: Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. It is an *implication* from the imports A1–A8 enumerated in §2.4; the record is not a proof of those imports, and it does not re-derive the cluster expansion.
 
 How the record got here:
 
@@ -38,6 +69,12 @@ No claim outside the weak-coupling region.
 | G4 | citation ↔ dossier bijection; regression greps | passed 10 Aug 2026 |
 | G5 | 3 × pdflatex, zero unresolved; every page rendered and inspected | passed 10 Aug 2026 |
 | G6 | adversarial pass; zero confirmed findings, or all fixed and re-verified | passed 10 Aug 2026 |
+| GI | integration of Appendix D: G0 re-run on the 110 pages; the 125 earlier labels keep their numbers; step map of the replaced proofs; constants re-derived by hand; audit rounds V4 and V4b, with the re-checks V4c–V4e | passed 7 Nov 2026, without G4 and G5 |
+
+G0–G6 are the gates of the manuscript of 10 August 2026. For the build of 7 November 2026 the
+corresponding record is gate GI. Two of its parts were **not run**: the dossier index was not
+extended to the new page images (G4), and the 110 pages were not each inspected (G5). The
+audit of 9 November 2026 (round V4f, notice above) came after GI and is not a gate.
 
 The full records, including the findings G6 raised and their dispositions, are in
 [`part_i/README.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/README.md).

@@ -13,6 +13,11 @@ published paper.
 > used across strips transverse to the time-zero line, a case its printed proof does not reach
 > (A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D); the former
 > moment input U_GJS is retired.
+>
+> **Notice of 11 November 2026.** An audit found four standard free-field facts that the record
+> uses without stating or importing them; until the repair is audited, Theorem 12.2 is proved
+> conditional on them.
+>
 > Nothing here has been refereed; audit item C5 is open; the work is AI-assisted and
 > human verification of it is ongoing. Treat every statement as a claim under active
 > verification. See [status](status.md).

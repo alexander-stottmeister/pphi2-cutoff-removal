@@ -4,7 +4,7 @@ title: Imports
 
 # The standing imports A1–A8
 
-Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. The statements are in the [result inventory](results.md); this page records what each import is for, and what its status is.
+Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. **Notice of 11 November 2026:** an audit found four standard free-field facts that the record uses without stating or importing them, so "from printed statements only" overstates until the repair is audited; see [status](status.md). The statements are in the [result inventory](results.md); this page records what each import is for, and what its status is.
 
 | | assumption | what it supplies |
 |---|---|---|
@@ -14,10 +14,10 @@ Theorem 12.2 is proved from printed statements only, with one GJS theorem import
 | A4 | free hypercontractivity | the L^p smoothing used in the moment estimates, and the moment comparison on the chaoses (Simon, Theorem I.22) |
 | A5 | domain smoothing; common core | Ω_g ∈ D(V_j), and a core on which the algebra acts |
 | A6 | free propagation; patching; the dynamics α | free propagation at speed one, the Trotter formula, and the patched limit dynamics α; since 7 November 2026 also the locality of the time-zero net, item (iii) (GJ2 p. 397), which the record used before without listing it; the cutoff light cone itself is derived (Proposition 2.7) |
-| A7 | covariance data | translation covariance and parity |
+| A7 | covariance data | the covariance of the cutoff Hamiltonian K(g) under the translation unitaries, and the parity of H₀ and of V(g) for even P; how translations and parity act on the fields and on the local algebras is not part of A7 (notice of 11 November 2026) |
 | A8 | the GJS package | the cutoff class, the observables and the printed norms of GJS, and CE2 (Theorem 1.1.7), including its transverse case **A8(iv)-T**; CE1 and **U_GJS** (A8(v)–(vi)) are kept as provenance and are used by no proof since 7 November 2026 |
 
-A1–A7 are literal quotations of printed statements, cited to the page (A6(iii), the locality of the net, is a sentence printed inside the proof of Theorem 3.5.1 of GJ2, p. 397). A8 is a package of
+A1–A7 are printed statements, cited to the page (A6(iii), the locality of the net, is a sentence printed inside the proof of Theorem 3.5.1 of GJ2, p. 397). A1 and A6 are applied under a declared reading, the dictionary between the sources' Fock space and Q-space (their Scope paragraphs); the audit of 9 November 2026 found that the record does not write this dictionary out. A8 is a package of
 several printed items; since 31 October 2026 every item is read off a printed statement, and
 since 7 November 2026 the one GJS theorem among them that a proof uses is Theorem 1.1.7.
 

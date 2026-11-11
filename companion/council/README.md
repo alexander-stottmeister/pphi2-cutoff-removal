@@ -92,3 +92,16 @@ the author's reading of the revised edition is open.
 fixed and two new MINOR items caused by them (an edge of Fig. 1 drawn into Proposition 12.1,
 and the definition of class P in Appendix A); the editor fixed both the same day
 (`../PLAN.md`, Part 11.1, "R7b"), and those fixes have not been re-verified.
+
+*11 November 2026, reports archived.* The sentence above that no report of the revision is
+kept here is superseded. The editor's three reports (the revision, the fixes of R7, the
+fixes of R7b) and the verifier's two (R7, R7b) had been returned as messages; they were
+recovered from the session transcripts and saved as `revised-edition-editor-reports.md`
+and `r7-verifier-report.md`, verbatim except for machine paths.
+
+*11 November 2026, status.* An audit of the record on 9 November 2026 (round V4f,
+`../../ugjs/council/v4f-free-field-report.md`) found four standard free-field facts that
+the record uses without stating or importing them. The companion's sentences that call
+Theorem 12.2 "proved from printed statements" (abstract, §1 and §4) therefore overstate
+until the record is repaired; the edition of 7 November 2026 is not
+changed for this. See the README's notice of 11 November 2026.

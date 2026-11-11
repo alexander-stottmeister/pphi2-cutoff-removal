@@ -17,10 +17,11 @@ source is converted to this notation at transcription time; the conversion log i
 | K(g), E(g), H(g), Ω_g, ω_g, β^g | cutoff Hamiltonian data (§2.1) |
 | α, τ_a, U_a | patched dynamics (A6); space translations and their Q-space unitaries |
 | Θ, θ | parity unitary Θ = Γ(−1); parity automorphism θ = Ad Θ |
-| K₁, K₂, C₇, C₈, m₁ | GJS constants (A8); normalization K₂ ≥ 1 |
+| K₁, K₂, C₇, m₁ | GJS constants (A8); normalization K₂ ≥ 1 |
 | ‖·‖_GJS | the printed observable norm (1.1.7)–(1.1.9) of [GJS] |
-| N_I | number of unit cells [j, j+1) meeting the interval I in positive measure |
-| M | the uniform local moment constant of (M₂), §5 |
+| N_I | number of columns [k − ½, k + ½), k ∈ ℤ, of the squares of [GJS, p. 593] meeting the interval I in positive measure (Appendix D, Definition N.1) |
+| M | the uniform local moment constant of (M₂), §5; M = M_B of Theorem D.4 |
+| S₂(B), c_U, A, B′ | constants of Appendix D (S₂ finite, not evaluated) |
 | γ vs. m₁ | γ is the abstract gap parameter in §§8–10; instantiated as γ = m₁ in §11 |
 | `\mathfrak m` | total-variation bound in the spectral-separation lemma, §9 |
 | h_{T,g}, ψ_s, ψ̂_s, c_g | slab objects (A2; §4) |
@@ -33,9 +34,11 @@ M — and Θ = Γ(−1) is reserved for the parity unitary throughout.
 
 ## Constants
 
-The constants appendix (Appendix A, p. 35) fixes every value against its defining
-display; each row was re-verified by hand at gates G3a and G3b. The two that drive the
-figures are
+The constants appendix (Appendix A, p. 42 of the build of 7 November 2026) fixes every
+value against its defining display. Each row was re-verified by hand at gates G3a and G3b
+(10 August 2026); the constants new on 7 November 2026 (Appendices C and D) were recomputed
+by hand in the comparison note and by the auditors of round V4 (gate GI, `part_i/README.md`). The constant C₈ of the retired item A8(vi) is no longer listed. The
+two that drive the figures are
 
 ```latex
 d_0 = 4 + 2/\gamma,

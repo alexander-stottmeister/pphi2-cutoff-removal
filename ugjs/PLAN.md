@@ -2,6 +2,8 @@
 
 Corrected after R3b (30 October 2026): items N1, N2 and n1–n14 of `r3-verifier-report.md`, section R3b, are applied.
 
+**Where the execution is recorded (pointer added on 11 November 2026; the plan below is unchanged since 30 October 2026).** Phases 0′ and 0: `part_i/README.md`, "Re-sourcing of A8(vi) and documentation repairs (2026-10-31)". Phases A and B: `ugjs/comparison.tex` and `ugjs/council/README.md`. Checkpoint 2, answered by the author on 7 November 2026, and the integration: `part_i/README.md`, "Integration of Appendix D (2026-11-07)". Phase C is not decided. What a later audit found: `part_i/README.md`, "Status review (2026-11-09 to 2026-11-11)".
+
 30 October 2026. This plan was revised after the R3 verification
 (`ugjs/council/r3-verifier-report.md`: 1 CRITICAL, 4 MAJOR and 20 MINOR findings), under the
 orchestrator's rulings R9–R13 (`r1c-orchestrator-rulings.md`, §5). It synthesizes:

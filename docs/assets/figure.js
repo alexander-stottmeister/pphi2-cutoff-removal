@@ -50,8 +50,10 @@ export function banner(host) {
   const d = document.createElement("div");
   d.className = "banner";
   d.innerHTML = "<b>This is an illustration, not evidence.</b> Theorem 12.2 is " +
-    "proved from the printed imports A1\u2013A8 (U_GJS is GJS Theorem 1.1.11 as printed " +
-    "since 31 October 2026), the human page readings of audit item C5 are open, the work is " +
+    "an implication from the printed imports A1\u2013A8, with one GJS theorem imported since " +
+    "7 November 2026 (Theorem 1.1.7; the former moment input U_GJS is retired) and subject " +
+    "to the notice of 11 November 2026 on the status page; the human page readings of audit " +
+    "item C5 are open, the work is " +
     "AI-assisted and human verification of it is ongoing. Figures show bounds and " +
     "structure, never a measured property of any state. " +
     '<a href="../status.html">Status</a>.';

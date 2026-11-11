@@ -368,7 +368,8 @@ def fig_dag(results):
         cols[lab] = (100 + (i % 2) * 300, 150 + i * 29)
     s = Svg(W, H, "The import graph",
             "A1-A8 and the spine of Part I. Everything whose proof chain reaches A8, the "
-            "GJS package, rests on its printed statements (all literal since 31 October 2026).")
+            "GJS package, rests on its printed statements. Since 7 November 2026 one GJS "
+            "theorem is used by a proof, Theorem 1.1.7; item (vi), U_GJS, is retired.")
     s.text(28, 26, "What Theorem 12.2 rests on", "b")
     s.text(W - 24, 26, "generated from part_i/main.tex", "mut xs", text_anchor="end")
     s.rect(28, 38, 10, 10, fill="var(--cfill)", stroke="var(--cond)", stroke_width=1.2, rx=2)
@@ -412,7 +413,7 @@ def fig_dag(results):
         if not is_hyp:
             s.text(x + w / 2 + 8, y + 4, clip(r["title"] or "", 42), "xs mut")
     ax, ay = cols["A:gjs"]
-    s.text(ax, ay - 18, "U_GJS is item (vi)", "xs b", text_anchor="middle", fill="var(--cond)")
+    s.text(ax, ay - 18, "one GJS theorem: 1.1.7", "xs b", text_anchor="middle", fill="var(--cond)")
     return s
 
 

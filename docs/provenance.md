@@ -52,6 +52,25 @@ The point of publishing this is that the errors are part of the record.
   it had missed); A8(ii) widened; the transverse case of Theorem 1.1.7 disclosed in A8's Scope
   paragraph — see `part_i/README.md`, "Re-sourcing of A8(vi) and documentation repairs
   (2026-10-31)", and `ugjs/PLAN.md`.
+- **Integration of Appendix D** (7 Nov 2026): the moment bounds of §§5 and 7 derived from the
+  printed GJS Theorem 1.1.7 (Lemmas D.1–D.2, Theorems D.3–D.4); A8(vi) retired; the
+  transverse case of Theorem 1.1.7 listed as A8(iv)-T. Repaired in the same pass: three
+  inputs of Appendix C that were neither proved nor imported; the cell count of §6, shifted
+  by half a unit against the source's squares (two displayed norm bounds were false as
+  stated; no theorem was affected); the missing construction of the Wick powers behind
+  V(h); the affiliation of V(h) with the local algebras, asserted without an argument; and
+  the locality of the net, used without being listed (now A6(iii)) — see `part_i/README.md`,
+  "Integration of Appendix D (2026-11-07)".
+- **This site, 7–11 Nov 2026**: the pages were not rebuilt after the integration. A statement
+  added on 7 November contains two opening braces, which the page builder reads as template
+  syntax, and every build failed; the files in the repository were current and the site
+  showed the state of 31 October. Fixed on 11 November: the inventory is generated inside a
+  raw block and `extract.py --check` tests every page for the pattern.
+- **Free-field layer** (audit of 9 Nov 2026, round V4f; not yet repaired): the record names
+  the momentum field π₀, the free Hamiltonian H₀, the translation unitaries and a dilation
+  unitary, and uses how translations, parity and dilations act on the fields, without
+  defining these objects or deriving or importing those actions. No step is known to be
+  false; see [status](status.md), notice of 11 November 2026.
 - **Scope amendment** (5 Sep 2026): the status of U_GJS re-based — see
   [imports](imports.md). No proof changed; all 125 labels unmoved.
 
@@ -88,4 +107,6 @@ cd .. && python3 docs/extract.py
 ```
 
 `python3 docs/extract.py --check` exits non-zero if the committed inventory has drifted
-from the manuscript. The numbers come from `part_i/main.aux`, never from hand-editing.
+from the manuscript, or if a page of this site contains a Liquid delimiter outside a raw
+block (one such delimiter fails the whole site build). The numbers come from
+`part_i/main.aux`, never from hand-editing.

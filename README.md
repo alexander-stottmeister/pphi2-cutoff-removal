@@ -17,12 +17,41 @@ being released.
 **Human verification of the output is ongoing.** Nothing here has been refereed, and the
 author's own line-by-line check of the machine-assisted material is still in progress:
 open audit item C5 (a second human reader for the source page images, see below) is
-unclosed. Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. Read every
+unclosed. Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. An audit of 9 November 2026 found that the record uses four standard free-field facts without stating them, so "from printed statements only" overstates until the repair is audited (notice of 11 November 2026, under Status). Read every
 statement in this repository as a claim under active verification, not as a settled
 result, and check anything you intend to rely on against the cited sources yourself.
 Direction, mathematical judgement and final responsibility are the author's.
 
 ## Status: the main theorem is an implication from printed imports. Please read this first.
+
+**Notice of 11 November 2026: four free-field facts are used without being stated.** A fresh
+audit on 9 November 2026 (round V4f, `ugjs/council/v4f-free-field-report.md`) found that
+`part_i/main.tex` uses four standard properties of the free field that it neither defines,
+derives nor imports:
+
+1. the time-zero momentum field π₀ and the free Hamiltonian H₀ on Q-space: §2.1 introduces π₀ by
+   reference to a dictionary that Assumption A1 states for the interaction only, and H₀ is
+   never defined;
+2. the action of the space translations on the fields, hence τ_a(A(O)) = A(O + a), used in the
+   proofs of Theorem 12.2(4), Corollary 12.3 and Theorem 13.2;
+3. the parity relation Θπ₀(h)Θ = −π₀(h), used in the proof of Theorem 12.2(4) and through it
+   in Theorem 13.2;
+4. the dilation unitary of Remark 3.3, on which the reduction to the source's mass rests
+   (§2.6 and §3). Assumption A8(viii) imports the scaling of GJS, p. 590, which is Euclidean,
+   on L²(S′(ℝ²)); the time-zero unitary, its action on π₀ and H₀ and on the vacuum are not
+   imported.
+
+No step is known to be false, and each of the four is a textbook property of the free field.
+All four gaps are older than the integration of 7 November; the sentence added to §2.1 on
+that day to introduce π₀ did not close the first. But until they are written out and
+audited, the status sentences of this README, of `docs/`, of `CITATION.cff` and of the
+companion ("proved from printed statements only", "an implication from the printed imports
+A1–A8") and the manuscript's own "no other external [mathematical] input is used" (§1 and
+Theorem 12.2) overstate. **Theorem 12.2 is proved conditional on the standard definitions of
+π₀ and H₀ (item 1) and on the three properties of items 2 to 4; without item 4, only for the
+pairs (m₀, λ) that satisfy the printed GJS hypotheses themselves (m₀ = M_*, λ < λ_* in the
+notation of §2.6).** A repair, an explicit Fock space to Q-space dictionary, is in preparation and
+will be audited independently before this notice is withdrawn.
 
 **Part I** (`part_i/main.tex`, 110 pp, document of record) proves Theorem 12.2. In the
 Glimm–Jaffe–Spencer weak-coupling region 0 ≤ λ/m₀² < ε_P, the full net (ω_g) of cutoff
@@ -242,7 +271,7 @@ all references.
 cd part_i && pdflatex main.tex && pdflatex main.tex && pdflatex main.tex
 ```
 
-A clean build is 42 pages with zero errors, zero overfull boxes and zero undefined references.
+A clean build is 110 pages with zero errors, zero overfull boxes and zero undefined references.
 
 The three citation dossiers (`audit_2026/`, `fresh_audit_2026_08_16/`, `part_ii/`) build
 the same way, from their own directory. Without the page-image corpus each image is
@@ -255,11 +284,12 @@ not drift between builds. The PDF bytes would otherwise still carry pdftex's own
 timestamp, so the committed `part_i/main.pdf` is built with that timestamp pinned too:
 
 ```sh
-SOURCE_DATE_EPOCH=1793404800 FORCE_SOURCE_DATE=1 pdflatex main.tex   # x3
+SOURCE_DATE_EPOCH=1794009600 FORCE_SOURCE_DATE=1 pdflatex main.tex   # x3
 ```
 
 Three passes of this command reproduce the committed PDF byte for byte under pdfTeX
-1.40.29 (TeX Live 2026).
+1.40.29 (TeX Live 2026). The epoch belongs to the printed date (1794009600 is 7 November
+2026, 00:00 UTC); the comment above `\date` in `part_i/main.tex` names the current one.
 
 The reader's companion builds from its own folder with pdfTeX plus TikZ and pgfplots
 (its figures are drawn, never rasterised); `make_bib.py` first copies the bibliography
@@ -271,7 +301,8 @@ cd companion && python3 make_bib.py && pdflatex companion.tex   # x3
 
 A clean build is 20 pages with zero errors, zero overfull boxes and zero undefined
 references. The committed `companion/companion.pdf` is built with
-`SOURCE_DATE_EPOCH=1792800000 FORCE_SOURCE_DATE=1` on the same three passes.
+`SOURCE_DATE_EPOCH=1794009600 FORCE_SOURCE_DATE=1` on the same three passes (the epoch is
+named at the top of `companion/companion.tex`).
 
 ## License
 
@@ -303,4 +334,6 @@ came from.
 
 See `CITATION.cff`. If you cite the theorem, please cite it as an implication from the
 printed imports A1–A8 of §2.4 of the manuscript, and name the open human page readings
-(audit item C5).
+(audit item C5). Until the repair announced in the notice of 11 November 2026 is audited,
+please name that notice as well: the record uses four standard free-field facts without
+stating or importing them.
