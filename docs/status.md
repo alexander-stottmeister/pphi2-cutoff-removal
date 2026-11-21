@@ -7,7 +7,7 @@ title: Status
 What is proved, what is conditional, and what is open. Nothing on this page is a
 summary of intent: each line names the statement or the gate it comes from.
 
-## The free-field layer: found on 9 November 2026, repaired on 11 November
+## The free-field layer: found on 9 November 2026, repaired on 11 November, published on 21 November
 
 A fresh audit on 9 November 2026 (round V4f; report
 [`ugjs/council/v4f-free-field-report.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/ugjs/council/v4f-free-field-report.md))
@@ -24,7 +24,7 @@ defined, derived nor imported:
 4. the dilation unitary of Remark 3.3, on which the reduction to the source's mass rests.
 
 No step was found to be false, and all four gaps were older than the integration of
-7 November. For some hours on 11 November the public pages carried a notice that Theorem 12.2
+7 November. From 11 to 21 November the public pages carried a notice that Theorem 12.2
 was proved conditional on these four items (commit d2b106c). The record now has an Appendix E.
 It defines the objects through the unitary between Fock space and Q-space of Simon's
 Theorem I.11, proves how translations, parity and dilations act on the fields, on the local
@@ -34,11 +34,16 @@ Fock-space sources. The printed statements it uses are listed in Assumption A1, 
 mathematics, one the sources and the integration). They found no critical error and three
 major points: Remark 3.3 stated how the dynamics transports under the dilation without
 deriving it, and two statements of the record about itself were inaccurate. These and the
-minor points were repaired, and the same auditors re-checked the repairs (rounds V5b to V5d;
-reports
+minor points were repaired, and each repair to the manuscript was re-checked by the auditor who
+had raised the finding (rounds V5b to V5d; reports
 [`v5-math-report.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/ugjs/council/v5-math-report.md) and
-[`v5-sources-report.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/ugjs/council/v5-sources-report.md); gate record in
-[`part_i/README.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/README.md), "Free-field appendix (2026-11-11)"). The notice is withdrawn: the status sentence stands as on
+[`v5-sources-report.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/ugjs/council/v5-sources-report.md)). The repair was committed on
+11 November (73bbb76) and published on 21 November, after a third agent had checked its
+documentation on 12 November and that check's three major and eight minor points had been
+applied. All of them concern the documentation; two of the minor ones concern the title-page
+notice of the manuscript, which was rebuilt (no statement, label or page number changed)
+([`docs-check-2026-11-12-report.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/ugjs/council/docs-check-2026-11-12-report.md);
+gate record in [`part_i/README.md`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/README.md), "Free-field appendix (2026-11-11)"). The notice is withdrawn: the status sentence stands as on
 7 November, with the free-field layer now written out. The record has 125 pages. No numbered
 statement changed its number, and no statement of a theorem, proposition, lemma or corollary
 changed; Assumptions A1, A6 and A7 and Remark 3.3 did.
@@ -52,7 +57,7 @@ How the record got here:
 - **16 August – 30 October 2026.** The cutoff-uniform moment estimate U_GJS, A8(vi), was a named hypothesis of Theorem 12.2 ("assembled from four pages" of the source).
 - **31 October 2026 (re-sourcing).** A8(vi) was read off one printed theorem, GJS Theorem 1.1.11, (1.1.16), at B = I, n = 0 (p. 596; p. 600; p. 629). A re-sourcing, not a proof: the same mathematics with different bookkeeping.
 - **7 November 2026 (integration of Appendix D).** The moment bounds that §§5 and 7 consume are derived from the printed clustering theorem, GJS Theorem 1.1.7, by comparing a cutoff with its restriction to a box of the source's lattice squares (Lemmas D.1–D.2, Theorems D.3–D.4), with the normalization, ultraviolet and stability results of Appendix C. A8(vi) is retired; GJS Theorem 1.1.11 is no longer used. The uniform gap (Theorem 7.8) rests on the parallel case of Theorem 1.1.7 alone; the uniform local moment (Theorem 5.1), and through its constant M everything from Lemma 10.2 on, uses the transverse case A8(iv)-T as well. M now contains the finite, unevaluated constant of Theorem C.5, so the rate of Theorem 12.2(1) is explicit up to that constant.
-- **11 November 2026 (free-field appendix).** Appendix E defines the momentum field π₀, the free Hamiltonian H₀ and the unitaries of translation, parity and dilation on Q-space and proves how they act; until then the record had used them without stating them (section above). Theorem 12.2 and its proof are unchanged apart from the references to that appendix; Remark 3.3, which reduces a general pair (m₀, λ) to the source's mass, is rewritten and transports each conclusion of Theorem 12.2 explicitly.
+- **11 November 2026 (free-field appendix; published 21 November).** Appendix E defines the momentum field π₀, the free Hamiltonian H₀ and the unitaries of translation, parity and dilation on Q-space and proves how they act; until then the record had used them without stating them (section above). Theorem 12.2 and its proof are unchanged apart from the references to that appendix; Remark 3.3, which reduces a general pair (m₀, λ) to the source's mass, is rewritten and transports each conclusion of Theorem 12.2 explicitly.
 
 In the pass of 7 November three defects of the record were repaired (Appendix B, corrections history): Appendix C's analytic lemmas rested on three inputs that were neither proved nor imported (found by the independent audit V3 of 2 November 2026; now derived or imported, every constant explicit); §6 counted spatial cells shifted by half a unit against the source's squares, which made the displayed norm bounds (7)–(8) false as stated (now counted on the source's columns; no theorem was affected); and the record wrote the interaction V(h) and its Euclidean counterpart as formal integrals with no construction of their Wick powers (now constructed in Assumptions A1 and A3, with Lemma N.23′ identifying them with the limits used in Appendix D). The record of that date has 110 pages; since 11 November 2026 it has 125.
 
@@ -76,7 +81,7 @@ No claim outside the weak-coupling region.
 | G5 | 3 × pdflatex, zero unresolved; every page rendered and inspected | passed 10 Aug 2026 |
 | G6 | adversarial pass; zero confirmed findings, or all fixed and re-verified | passed 10 Aug 2026 |
 | GI | integration of Appendix D: G0 re-run on the 110 pages; the 125 earlier labels keep their numbers; step map of the replaced proofs; constants re-derived by hand; audit rounds V4 and V4b, with the re-checks V4c–V4e | passed 7 Nov 2026, without G4 and G5 |
-| GF | free-field appendix E: G0 re-run on the 125 pages; all 230 earlier labels keep their numbers; no statement of a theorem, proposition, lemma or corollary changed; the scaling identities re-derived by hand by the auditor; audit rounds V5 to V5d | passed 11 Nov 2026, without G4 and G5 |
+| GF | free-field appendix E: G0 re-run on the 125 pages; all 230 earlier labels keep their numbers; no statement of a theorem, proposition, lemma or corollary changed; the scaling identities re-derived by hand by the auditor; audit rounds V5 to V5d; its documentation checked by a third agent on 12 Nov | passed 11 Nov 2026, without G4 and G5; published 21 Nov 2026 |
 
 G0–G6 are the gates of the manuscript of 10 August 2026. For the build of 7 November 2026 the
 corresponding record is gate GI. Two of its parts were **not run**: the dossier index was not

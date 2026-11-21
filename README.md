@@ -17,14 +17,14 @@ being released.
 **Human verification of the output is ongoing.** Nothing here has been refereed, and the
 author's own line-by-line check of the machine-assisted material is still in progress:
 open audit item C5 (a second human reader for the source page images, see below) is
-unclosed. Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. Since 11 November 2026 the free-field layer of the record (its momentum field and free Hamiltonian, and the action of translations, parity and dilations) is defined and proved in Appendix E; an audit of 9 November had found it used without being stated (see Status). Read every
+unclosed. Theorem 12.2 is proved from printed statements only, with one GJS theorem imported: Theorem 1.1.7, which is also used for sharp-time observables across strips transverse to the time-zero line, a case its printed statement covers and its printed proof does not reach (listed separately as A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D). The human page readings of audit item C5 (items 1–4 and 10–12, with item 9(c)) are open. Since the version of 11 November 2026, published on 21 November, the free-field layer of the record (its momentum field and free Hamiltonian, and the action of translations, parity and dilations) is defined and proved in Appendix E; an audit of 9 November had found it used without being stated (see Status). Read every
 statement in this repository as a claim under active verification, not as a settled
 result, and check anything you intend to rely on against the cited sources yourself.
 Direction, mathematical judgement and final responsibility are the author's.
 
 ## Status: the main theorem is an implication from printed imports. Please read this first.
 
-**The free-field layer: found on 9 November 2026, repaired on 11 November.** A fresh audit on
+**The free-field layer: found on 9 November 2026, repaired on 11 November, published on 21 November.** A fresh audit on
 9 November (round V4f, `ugjs/council/v4f-free-field-report.md`) found that `part_i/main.tex`
 used four standard properties of the free field that it neither defined, derived nor imported:
 
@@ -38,7 +38,7 @@ used four standard properties of the free field that it neither defined, derived
 4. the dilation unitary of Remark 3.3, on which the reduction to the source's mass rests.
 
 No step was found to be false, and all four gaps were older than the integration of
-7 November. For some hours on 11 November the public pages carried a notice that Theorem 12.2
+7 November. From 11 to 21 November the public pages carried a notice that Theorem 12.2
 was proved conditional on these four items (commit d2b106c). The record now has an Appendix E.
 It defines the objects through the unitary between Fock space and Q-space of Simon's
 Theorem I.11, proves how translations, parity and dilations act on the fields, on the local
@@ -48,9 +48,15 @@ Fock-space sources. The printed statements it uses are listed in Assumption A1, 
 mathematics, one the sources and the integration). They found no critical error and three
 major points: Remark 3.3 stated how the dynamics transports under the dilation without
 deriving it, and two statements of the record about itself were inaccurate. These and the
-minor points were repaired, and the same auditors re-checked the repairs (rounds V5b to V5d;
-reports `ugjs/council/v5-math-report.md` and `ugjs/council/v5-sources-report.md`; gate record
-in `part_i/README.md`, "Free-field appendix (2026-11-11)"). The notice is withdrawn: the status sentence stands as on
+minor points were repaired, and each repair to the manuscript was re-checked by the auditor who
+had raised the finding (rounds V5b to V5d; reports `ugjs/council/v5-math-report.md` and
+`ugjs/council/v5-sources-report.md`). The repair was committed on 11 November (73bbb76) and
+published on 21 November, after a third agent had checked its documentation on 12 November and
+that check's three major and eight minor points had been applied. All of them concern the
+documentation; two of the minor ones concern the title-page notice of the manuscript, which was
+rebuilt (no statement, label or page number changed)
+(`ugjs/council/docs-check-2026-11-12-report.md`; gate record in `part_i/README.md`,
+"Free-field appendix (2026-11-11)"). The notice is withdrawn: the status sentence stands as on
 7 November, with the free-field layer now written out. The record has 125 pages. No numbered
 statement changed its number, and no statement of a theorem, proposition, lemma or corollary
 changed; Assumptions A1, A6 and A7 and Remark 3.3 did.

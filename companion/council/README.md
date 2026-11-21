@@ -103,7 +103,8 @@ and `r7-verifier-report.md`, verbatim except for machine paths.
 `../../ugjs/council/v4f-free-field-report.md`) found four standard free-field facts that
 the record used without stating or importing them, so that the companion's sentences
 calling Theorem 12.2 "proved from printed statements" (abstract, §1 and §4) overstated.
-The record was repaired the same day (its new Appendix E, audited in rounds V5 to V5d),
+The record was repaired on 11 November (its new Appendix E, audited in rounds V5 to V5d;
+published on 21 November),
 and those sentences hold again. The companion itself is unchanged: it is the edition of
 7 November 2026 and describes the record of that date (110 pages, commit f213cc8). Since
 11 November the record has 125 pages; no statement changed its number, but the page

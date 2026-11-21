@@ -66,13 +66,14 @@ The point of publishing this is that the errors are part of the record.
   syntax, and every build failed; the files in the repository were current and the site
   showed the state of 31 October. Fixed on 11 November: the inventory is generated inside a
   raw block and `extract.py --check` tests every page for the pattern.
-- **Free-field layer** (audit of 9 Nov 2026, round V4f; repaired 11 Nov 2026): the record
+- **Free-field layer** (audit of 9 Nov 2026, round V4f; repaired 11 Nov 2026, published 21 Nov): the record
   named the momentum field π₀, the free Hamiltonian H₀, the translation unitaries and a
   dilation unitary, and used how translations, parity and dilations act on the fields,
   without defining these objects or deriving or importing those actions. No step was found
   to be false. Repaired by Appendix E (definitions through the unitary between Fock space
   and Q-space of Simon's Theorem I.11; the actions proved; the objects identified with those
-  of the Fock-space sources), audited in rounds V5 to V5d — see [status](status.md) and
+  of the Fock-space sources), audited in rounds V5 to V5d, its documentation checked by a
+  third agent on 12 Nov — see [status](status.md) and
   `part_i/README.md`, "Free-field appendix (2026-11-11)".
 - **Scope amendment** (5 Sep 2026): the status of U_GJS re-based — see
   [imports](imports.md). No proof changed; all 125 labels unmoved.

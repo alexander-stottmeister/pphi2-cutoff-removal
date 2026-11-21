@@ -14,10 +14,10 @@ published paper.
 > (A8(iv)-T). The uniform local moment is a theorem of the record (Appendix D); the former
 > moment input U_GJS is retired.
 >
-> **11 November 2026.** An audit of 9 November found the record's free-field layer (momentum
+> **21 November 2026.** An audit of 9 November found the record's free-field layer (momentum
 > field, free Hamiltonian, the action of translations, parity and dilations) used without
-> being stated. Appendix E of the record now defines and proves it; the notice that stood here
-> for some hours on 11 November is withdrawn.
+> being stated. Appendix E of the record, dated 11 November, now defines and proves it; the
+> notice that stood here from 11 to 21 November is withdrawn.
 >
 > Nothing here has been refereed; audit item C5 is open; the work is AI-assisted and
 > human verification of it is ongoing. Treat every statement as a claim under active
