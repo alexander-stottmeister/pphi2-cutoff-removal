@@ -1,0 +1,1933 @@
+% route_t.tex -- the Route T note (content proposed for Phase C3 of ugjs/PLAN.md).
+% Drafted 23 November 2026 by the drafter "route-t" of the working council (an AI agent).
+% Audited by two independent agents on 23 November 2026, re-checked by both (23/24 November) and
+% confirmed by one on 24 November; revised for their findings.
+% Not integrated into the record.  Built on its own.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.8cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\setlength{\emergencystretch}{3em}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+% --- macros of part_i/main.tex, same names and meanings (copied from ugjs/preamble.tex) ---
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\CE}{\mathcal{C}_{\mathrm E}}
+\newcommand{\CH}{\mathcal{C}_{\mathrm H}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\Om}{\Omega}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Cov}{Cov}
+\newcommand{\GJS}[1]{\lVert #1\rVert_{\mathrm{GJS}}}
+\newcommand{\ev}[2]{\langle #1\rangle_{#2}}
+\newcommand{\Uc}{\mathcal U}
+\newcommand{\dmu}{d\mu_0}
+\newcommand{\dphi}{d\phi_0}
+% --- macros of this note ---
+\newcommand{\Vb}{\overline V}                 % the time-integrated interaction of Lemma T.13
+\newcommand{\Mt}{\widetilde M}                % the resolvent-weighted moment of Definition T.1
+\newcommand{\Ft}{\widetilde F}
+\newcommand{\Gt}{\widetilde G}
+\newcommand{\mt}{\widetilde{\mathfrak m}}
+\newcommand{\Psit}{\widetilde\Psi}
+
+\renewcommand{\theequation}{t\arabic{equation}}
+\theoremstyle{plain}
+\newtheorem{tlemma}{Lemma}
+\renewcommand{\thetlemma}{T.\arabic{tlemma}}
+\newtheorem{ttheorem}[tlemma]{Theorem}
+\newtheorem{tprop}[tlemma]{Proposition}
+\theoremstyle{definition}
+\newtheorem{tdef}[tlemma]{Definition}
+\newtheorem{trem}[tlemma]{Remark}
+
+\title{Route T: items (1)--(4) of Theorem 12.2 without the transverse sharp-time case\\[4pt]
+\large A note for Phase C3 of \texttt{ugjs/PLAN.md}}
+\author{Written by an AI agent (Claude), commissioned by the author\\
+\small and supervised by the council's orchestrator (an AI agent), for Phase C3 of the project;\\
+\small revised after two independent audits and their re-checks}
+\date{23 November 2026}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status of this note.}
+\begin{itemize}
+\item \emph{Authorship.}  Written on 23 November 2026 by an AI agent (Claude, the drafter
+``route-t'' of the project's working council).  It was commissioned by the author and supervised
+by the council's orchestrator (an AI agent), as the content proposed for Phase C3 of
+\path{ugjs/PLAN.md}.
+\item \emph{Audits.}  On 23 November 2026 two independent agents audited it, and each re-checked
+the revision; their reports are \path{ugjs/council/route-t-audit-analysis.md} and
+\path{ugjs/council/route-t-audit-sources.md}.  No finding was CRITICAL or MAJOR.  The note was
+revised for the findings of the audits, and a last round of MINOR points from the re-checks was
+applied after them.  One of the two auditors read that last round in full on 24 November 2026 and
+confirmed it.  Of the three points of that confirmation (two MINOR, one cosmetic; section 10 of
+the first report), the second, on the record of 23 November, is taken up in the item ``Which
+record'' below; the other two are not applied: Simon's class $F$ on p.~163 is fixed by his own
+notation and is not a reading, as the proof of Lemma~T.15 calls it; and three wordings.  The
+sentences of this item and of ``Which record'' that concern the confirmation were written by the
+orchestrating agent and read only by the documentation check of 24 November
+(\path{ugjs/council/route-t-docs-check.md}).
+\item \emph{Not read by a human.}  Nothing in it has yet been read by a human.
+\item \emph{Not integrated.}  This note changes nothing in the record: it is not integrated, and
+Theorem~12.2 of \path{part_i/main.tex} is stated and proved there as before.
+\item \emph{Which record.}  The record it refers to is \path{part_i/main.tex} at commit 49f2d23;
+line numbers and pages are those of that commit.  The record of 23 November 2026 (commit
+9733263, 127 pages) has the same statement numbers as 49f2d23, and different pages; it rewords one
+sentence of the imports paragraph of Theorem~12.2.  It also restricts Corollary~12.3 to
+$\mathscr P(\xi)=\xi^4$ and to cutoffs $0\le g\le1$: its audit found that the statement at
+49f2d23, which covered every cutoff of GJ3, goes beyond its proof, which needs $0\le g\le1$.
+This note obtains Corollary~12.3 from that proof with $\Psit_{m_1}$ in place of $\Psi_{m_1}$
+(\S\ref{sec:assembly}(b)), so it gives the restricted corollary only, and Corollary~12.3 is to
+be read so wherever this note names it.  By the auditor's confirmation (point C2), the argument
+applies to the restricted corollary, whose proof uses Theorem~12.2(1) only through its rate.  The
+restricted corollary also rests on the reading of A1's Scope applied to GJ3, which the record of
+23 November names after it.
+\end{itemize}
+
+\section*{Summary}
+
+\emph{What is proved.}  In the record (\path{part_i/main.tex} at commit 49f2d23), items
+(1)--(4) of Theorem~12.2 (label \texttt{thm:MAIN}) rest on the uniform local moment $M$ of
+Theorem~5.1 (\texttt{thm:M2}), which rests on Theorem~D.4 (\texttt{thm:D4}) and through it on the
+transverse case A8(iv)-T of GJS Theorem~1.1.7.  This note replaces, in the chain from the
+uniform gap to items (1)--(4), the moment $M$ by the resolvent-weighted moment
+$\Mt(\lambda_0)=\sup\|(\lambda_0-iH(g))^{-1}Q_gV(h)\Om_g\|$ (Definition~\ref{def:Mt}), proves
+the modified chain (Lemmas~\ref{lem:transforms}--\ref{lem:rate}), and bounds $\Mt(\lambda_0)$
+for every $\lambda_0\ge1$ by $c_k^{1/2}M_B$, $c_k=2/(1+e^{-2})$, through a time-integrated copy
+of Theorem~D.4 (Theorems~\ref{thm:TD4} and~\ref{thm:Mt}).  Items (1)--(4) of Theorem~12.2 and
+Corollary~12.3 then hold with the same state $\omega_\infty$ and a new explicit rate function
+$\Psit_{m_1}$, decaying faster than every inverse power (Theorem~\ref{thm:routeT}).  These proofs
+use neither Theorem~5.1 nor Theorem~D.4 nor A8(iv)-T.  The sketch of
+22 November (steps (a)--(d)) is confirmed; its constants are confirmed or slightly improved.
+
+\emph{What it rests on, honestly.}  Route T adds no input to the record's imports.  Its
+Euclidean-to-Hamiltonian step (Lemma~\ref{lem:fkn}) uses A2's multi-time formula for bounded
+functions at two times placed asymmetrically in a slab; formulas (2) and (3) of the record's
+Lemma~4.1 place two symmetric times and one time.  The note derives that formula from the
+bounded case of Simon's Theorem~V.15 as printed, by approximation, and passes to the unbounded
+$V(h)$ by the truncation of the record's Lemma~4.3(ii).  Every
+application of GJS Theorem~1.1.7 that the new chain makes pairs two time-integrated monomials:
+a two-factor piece of $\Vb(h')^2$ and a one-square interaction $U_{\Delta,n}$, across strips of
+both orientations (cases P3, P4 of \S\ref{sec:cases}).  The printed statement covers these
+pairs.  The printed proof reaches them on reading R1 of p.~596 (\S\ref{sec:readings}): the
+monomial $A$ of Theorem~1.1.11 may have its factors at different times.  For the transverse
+case P4 this holds granted the rotation covariance that the proof's ``rotating'' presupposes.
+R1 is the reading under which GJS's own proofs are complete: their application of
+Theorem~1.1.7 on p.~595, and their derivation of Theorem~1.1.8 at its printed multi-time scope
+from Theorem~1.1.11 (pp.~600, 629).  No printed sentence states R1 in words.  On the other
+reading (R2) the new applications are not reached, the parallel ones included (only the trivial
+pieces with a factor of degree $0$ are).  Remark~\ref{rem:obstruction} argues that no variant
+that bounds a quadratic observable by the comparison of Lemma~D.2 around a box of fixed shape
+can be reached on R2.  So Route T does not make items (1)--(4) rest only on cases the printed
+proof reaches.  It trades A8(iv)-T, which no reading of the printed proof reaches, for
+reading R1.  The moment clause of item (5), Theorem~5.1 and Corollary~5.2 are not touched and
+still rest on A8(iv)-T.
+
+\emph{Remark N.39.}  The finding N3 of 22 November is confirmed: the parallel pairs of
+Theorem~D.3 are reached after slicing $U_{\Delta,n}$ in time, by a Fubini step written out in
+Proposition~\ref{prop:N39}, on either reading of p.~596, with no multi-time reading.
+
+\tableofcontents
+
+\section{Setting and what is to be proved}\label{sec:setting}
+
+\subsection{Sources and conventions}
+
+\emph{The record} is \path{part_i/main.tex} at commit 49f2d23 (8744 lines).  Statements of the
+record are cited by their number, label and page as read from \path{part_i/main.aux}, for
+example ``Lemma~9.3 (\texttt{lem:cluster}, p.~37)''; line numbers are those of that commit.
+The record's Appendix~D numbers its auxiliary statements N.1--N.55; they are cited the same
+way.  Assumptions A1--A8 are the record's standing imports (\S2.4).  \emph{GJS} is
+J.~Glimm, A.~Jaffe, T.~Spencer, \emph{The Wightman axioms and particle structure in the
+$\mathscr P(\phi)_2$ quantum field model}, Annals of Mathematics 100 (1974), no.~3, 585--632
+(checked on the first page of the copy in \path{refs/}, which is not part of the repository);
+page images of pp.~593--597 are \path{audit_2026/evidence/gjs-theorems-10.png} (p.~593),
+\path{gjs-theorems-11.png} (p.~594), \path{gjs-theorems-12.png} (p.~595),
+\path{gjs-thm1111-13.png} (p.~596) and \path{gjs-proof-14.png} (p.~597), PDF page indices
+10--14 of the copy in \path{refs/}; pp.~600, 628 and 629 are \path{gjs-proof118-17.png},
+\path{gjs-thm41-45.png} and \path{gjs-uniform-46.png} (PDF page indices 17, 45, 46), and
+p.~590 is PDF page index 7.  \emph{Simon} is B.~Simon, \emph{The $P(\Phi)_2$
+Euclidean (Quantum) Field Theory}, Princeton University Press, 1974; its Theorem~V.15 is on
+printed p.~163 (image \path{audit_2026/evidence/simon-fkn-185.png}) and continues on p.~164
+(PDF page index 186 of the copy in \path{refs/}).  Every quotation of a source below was read
+on the rendered page on 23 November 2026.  \emph{The commission} below is the author's
+commission of 23 November 2026 for this note (Phase C3 of \path{ugjs/PLAN.md}).  It asked for
+items (a)--(d), which follow steps (a)--(d) of the sketch of 22 November, and for the three
+categories of \S\ref{sec:input}.
+
+\emph{Standing assumption.}  As in \S\S8--10 of the record, $0\le\lambda/m_0^2<\varepsilon_{\mathscr
+P}$, and we work in the working coordinates of \S2.6 (\texttt{subsec:weak}, p.~22) and
+Remark~3.3 (\texttt{rem:wlog}, p.~24), in which the printed hypotheses of GJS Theorem~1.1.7
+hold.  $\gamma>0$ is a constant for which (G$_\gamma$) of the record (\texttt{eq:Ggamma},
+p.~34) holds:
+\[
+ \spec H(g)\subseteq\{0\}\cup[\gamma,\infty),\qquad\dim\ker H(g)=1\qquad(g\in\CH);
+\]
+Theorem~7.8 (\texttt{thm:G}, p.~33) gives $\gamma=m_1$.  For $g\in\CH$ we write
+$H=H(g)$, $\Om=\Om_g$, $P_0=|\Om\rangle\langle\Om|$, $Q=1-P_0$, and $P_H(\cdot)$ for the
+spectral measure of $H$; under (G$_\gamma$), $Q=P_H([\gamma,\infty))$ and $H^{-1}Q$ denotes
+the bounded operator $\phi(H)$, $\phi(E)=E^{-1}\mathbf 1_{[\gamma,\infty)}(E)$, of norm
+$\le\gamma^{-1}$ (as in Proposition~8.2, \texttt{prop:projreg}, p.~35).  The path setting of
+\S8 of the record is used verbatim: $g,g'\in\G$ equal to $1$ on a common nonempty open
+interval, $g_s=(1-s)g+sg'$, $v=g'-g$, $H_s$, $\Om_s$, $P_s$, $Q_s$; the partition of unity
+$\eta_j$, $h_j=\eta_jv$, $V_j=V(h_j)$, $B_j=\supp h_j$ of Lemma~10.2 (\texttt{lem:localize},
+p.~38); for a bounded open interval $O$, $r_j=\dist(B_j,O)$.  $W_\gamma$ and
+$T_\gamma(r)=\int_{|t|>r}|W_\gamma|$ are those of Lemma~9.1 (\texttt{lem:filter}, p.~35).
+
+The resolvent parameter is a number $\lambda_0\ge1$; it has nothing to do with the coupling
+constant $\lambda$.
+
+\begin{tdef}[the resolvent-weighted moment]\label{def:Mt}
+Let $\mathscr A$ be the set of pairs $(g,h)$ with $g\in\CH$ and $h$ real and measurable,
+$\|h\|_\infty\le1$, $\supp h\subseteq[a,a+2]$ for some $a\in\R$.  For $\lambda_0\ge1$ let
+\[
+ \Mt(\lambda_0):=\sup\Bigl\{\bigl\|(\lambda_0-iH(g))^{-1}Q_g\,V(h)\,\Om_g\bigr\|:\
+ (g,h)\in\mathscr A\Bigr\}\in[0,\infty] .
+\]
+Here $Q_g=1-|\Om_g\rangle\langle\Om_g|$, and $\Om_g\in D(V(h))$ by Proposition~2.6
+(\texttt{prop:smoothing}, p.~22).  The operator $(\lambda_0-iH(g))^{-1}$ is bounded with norm
+$\le\lambda_0^{-1}$ because $H(g)$ is self-adjoint and $|\lambda_0-iE|\ge\lambda_0$ for real
+$E$.  The record's moment of Theorem~5.1 is the supremum of
+$\|V(h)\Om_g\|$ over the same set; since $|\lambda_0-iE|\ge\lambda_0\ge1$,
+$\Mt(\lambda_0)\le M$ whenever the record's bound $M$ is available.  Route T does not use it.
+\end{tdef}
+
+\subsection{The modified chain}\label{sec:chain}
+
+The following table says which statements of the record are replaced in the chain
+``uniform gap $\Rightarrow$ items (1)--(4)''.  Statements not listed are used as they stand.
+
+\begin{center}\small
+\begin{tabular}{@{}p{0.36\textwidth}p{0.10\textwidth}p{0.46\textwidth}@{}}
+\toprule
+record (label, page) & uses $M$? & in Route T\\
+\midrule
+Lemma 9.2 (\texttt{lem:separation}, p.~36) & no & kept; Lemma~\ref{lem:sep} is its variant
+with an exponential discrepancy\\
+Lemma 9.3 (\texttt{lem:cluster}, p.~37) & no & kept (it is used in \S13); Lemma~\ref{lem:cluster}
+is the resolvent-weighted variant\\
+Lemma 10.1 (\texttt{lem:statederiv}, p.~38) & no & replaced in the chain by
+Lemma~\ref{lem:deriv}\\
+Lemma 10.2 (\texttt{lem:localize}, p.~38) & yes & only its first assertion (finite
+decomposition) is used, in Lemma~\ref{lem:deriv}\\
+Lemma 10.3 (\texttt{lem:tworegime}, p.~38) & yes & replaced by Lemma~\ref{lem:tworegime}\\
+Proposition 10.4 (\texttt{prop:onepath}, p.~38) & yes & replaced by
+Proposition~\ref{prop:onepath}\\
+Lemma 10.5 (\texttt{lem:rate}, p.~39) & yes & replaced by Lemma~\ref{lem:rate}\\
+Theorem 5.1 (\texttt{thm:M2}, p.~27) & --- & not used; Theorem~\ref{thm:Mt} bounds
+$\Mt(\lambda_0)$\\
+Theorem D.4 (\texttt{thm:D4}, p.~100) & --- & not used; Theorem~\ref{thm:TD4} is its
+time-integrated copy\\
+Theorem 11.1, Proposition 11.2 (p.~40), Theorem 12.2 (1)--(4), Corollary 12.3 (pp.~41--42) &
+through $\Psi_{m_1}$ & same statements with $\Psit_{m_1}$ (Theorem~\ref{thm:routeT})\\
+Theorem 12.2 (5) & --- & unchanged; its moment clause still rests on Theorem~5.1, hence on
+A8(iv)-T\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The constants of the new chain are $c_k:=2/(1+e^{-2})$ ($=1.7615\ldots$) and
+\begin{gather}
+ k(E):=\iint_{[-\frac12,\frac12]^2}e^{-|\tau-\tau'|E}\,d\tau\,d\tau'
+ =\frac{2(E-1+e^{-E})}{E^2}\quad(E>0),\qquad k(0)=1,\label{eq:k}\\
+ \Xi_{\gamma,\lambda_0}(R):=\Bigl(1+\frac{4}{\pi\gamma R}\Bigr)e^{-\gamma R/4}
+ +\Bigl(1+\frac1\pi\Bigr)e^{-\lambda_0R/2}\qquad(R>0),\label{eq:Xi}\\
+ \begin{split}
+ \Psit_{\gamma,\lambda_0}(d):=12\,M'\sum_{n\ge\lfloor d\rfloor}\Bigl(\Xi_{\gamma,\lambda_0}(n)
+ &+\lambda_0\|W_\gamma\|_1\,\Xi_{\gamma,\lambda_0}(n/2)\\
+ &+\lambda_0\,T_\gamma(n/2)\Bigr)\qquad(d\ge1),
+ \end{split}\label{eq:Psit}
+\end{gather}
+and $\Psit_{\gamma,\lambda_0}(d):=\max\{2,\Psit_{\gamma,\lambda_0}(1)\}$ for $0\le d<1$, where
+$M'$ is any number with $M'\ge\Mt(\lambda_0)$.  In Theorem~\ref{thm:routeT},
+$M'=\Mt_*:=c_k^{1/2}M_B$, with $M_B$ the constant of Theorem~D.4 (equal to the $M$ of
+Theorem~5.1), and $\gamma=m_1$.
+
+\begin{ttheorem}[Route T]\label{thm:routeT}
+Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$ and $\lambda_0\ge1$.  Put
+$\Psit_{m_1}:=\Psit_{m_1,\lambda_0}$ with $M'=\Mt_*=c_k^{1/2}M_B$.
+\begin{enumerate}
+\item[\rm(a)] $\Mt(\lambda_0)\le\Mt_*$.
+\item[\rm(b)] Theorem~11.1 (\texttt{thm:cauchy}) and Proposition~11.2 (\texttt{prop:normal}) of
+the record hold with $\Psi_{m_1}$ replaced by $\Psit_{m_1}$.  Consequently items (1)--(4) of
+Theorem~12.2 and Corollary~12.3 hold, for the same state $\omega_\infty$, with $\Psi_{m_1}$
+replaced by $\Psit_{m_1}$ in item (1) and in the proof of Corollary~12.3; $\Psit_{m_1}$ decays
+faster than every inverse power (Lemma~\ref{lem:rate}).
+\item[\rm(c)] The proofs of (a) and (b) use neither Theorem~5.1 nor Theorem~D.4 nor the item
+A8(iv)-T of Assumption~A8.  Every application of GJS Theorem~1.1.7 they make is one of the
+cases P1--P4 of \S\ref{sec:cases}: P1 and P2 are those of Lemma~7.4 and Theorem~D.3 (strips
+parallel to the time-zero line), P3 and P4 are those of Theorem~\ref{thm:TD4} (two
+time-integrated monomials, parallel and transverse strips).
+\end{enumerate}
+\end{ttheorem}
+
+\emph{Constants.}  $\Mt_*$ depends on $(\lambda,\mathscr P,m_0)$ through $M_B$, i.e.\ through
+$C_7$, $m_1$, $K_1$, $K_2$, $V_*$ and the unevaluated $S_2(B_{3\times5})$; it does not depend on
+$\lambda_0\ge1$, $g$ or $h$.  $\Psit_{m_1}$ depends in addition on $\lambda_0$ and on the
+cut-off function $\chi$ of Lemma~9.1 (through $W_{m_1}$ and $T_{m_1}$), and on nothing else; it
+is uniform in $g,g'\in\G$, in $O$ and in $A$.  The threshold of the one-path estimate is
+$d\ge1$, in place of $d\ge d_0=4+2/\gamma$.  Any $\lambda_0\ge1$ may be used; $\lambda_0=1$ is
+the simplest choice, and $\lambda_0=\max\{1,m_1/2\}$ makes the two exponentials of
+$\Xi_{m_1,\lambda_0}$ decay at the same rate $e^{-m_1R/4}$ when $m_1\ge2$.
+
+\emph{Coordinates.}  Theorem~\ref{thm:routeT}, like Theorem~12.2, is proved in the working
+coordinates.  Remark~3.3(1) of the record (ll.~1660--1669 and 1698--1701) transports item (1)
+to a general pair $(m_0,\lambda)$ through the dilation unitary and uses of the
+working-coordinate statement only its inequality; the same transport applies verbatim to
+$\Psit$.  In the original coordinates the rate is $d\mapsto\Psit_{m_{1,*},\lambda_0}(s\,d)$,
+$s=m_0/M_*$, with $m_{1,*}$ the gap of the working coordinates and $\lambda_0$ in working units.
+
+\emph{Status.}  Proved, conditional on: the imports A1--A8 of the record, with A8(iv) used only
+in the cases P1--P4 and A8(iv)-T not used, and with A2 used at two times placed asymmetrically
+in a slab (Lemma~\ref{lem:fkn}(ii)), as formula (3) of the record's Lemma~4.1 uses it at one; the readings
+the record declares (Scope paragraphs of A1, A3, A6, and A8 Scope (d), with the open items of
+\path{part_i/C5_reading_record.md}); and the statements of the record listed in
+\S\ref{sec:status}.  Whether the printed \emph{proof} of Theorem~1.1.7 reaches P3--P4 depends
+on reading R1 and, for P4, on the rotation covariance the proof presupposes
+(\S\ref{sec:input}).  The proof of Theorem~\ref{thm:routeT} is in \S\ref{sec:assembly}.
+
+\section{The Hamiltonian side: steps (a) and (b) of the sketch}\label{sec:hamiltonian}
+
+\begin{tlemma}[resolvent transforms]\label{lem:transforms}
+Let $H\ge0$ be self-adjoint with $\spec H\subseteq\{0\}\cup[\gamma,\infty)$, $\gamma>0$, and
+$\ker H$ spanned by a unit vector $\Om$; put $P_0=|\Om\rangle\langle\Om|$, $Q=1-P_0$.  Let
+$X=X^*$ with $\Om\in D(X)$, let $A$ be bounded, $\lambda_0>0$, and put
+\[
+ u:=(\lambda_0-iH)^{-1}QX\Om,\qquad \mt:=\|u\|\,\|A\|,
+\]
+\begin{gather*}
+ F(t):=\ip{X\Om}{(e^{itH}-P_0)A\Om},\qquad G(t):=\ip{A^*\Om}{(e^{-itH}-P_0)X\Om},\\
+ \Ft(t):=\int_{-\infty}^te^{-\lambda_0(t-s)}F(s)\,ds,\qquad
+ \Gt(t):=\int_{-\infty}^te^{-\lambda_0(t-s)}G(s)\,ds .
+\end{gather*}
+\begin{enumerate}
+\item[\rm(i)] $F$ and $G$ are continuous and bounded by $\|X\Om\|\,\|A\|$; the integrals
+defining $\Ft$, $\Gt$ converge absolutely.
+\item[\rm(ii)] $\Ft(t)=\ip{u}{e^{itH}QA\Om}=\int e^{itE}\,d\tilde\rho(E)$ with the complex
+Borel measure $\tilde\rho(\cdot):=\ip{u}{P_H(\cdot)QA\Om}$, which is supported in
+$[\gamma,\infty)$ and has total variation $|\tilde\rho|(\R)\le\mt$.
+\item[\rm(iii)] $\Gt(t)=\ip{QA^*\Om}{e^{-itH}u}=\int e^{itE}\,d\tilde\sigma(E)$, where
+$\tilde\sigma$ is the image of $\ip{QA^*\Om}{P_H(\cdot)u}$ under $E\mapsto-E$; it is supported
+in $(-\infty,-\gamma]$ and $|\tilde\sigma|(\R)\le\mt$.
+\item[\rm(iv)] $|\Ft(t)|\le\mt$ and $|\Gt(t)|\le\mt$ for every $t\in\R$.
+\end{enumerate}
+\end{tlemma}
+
+\begin{proof}
+(i) $HP_0=0$ gives $e^{itH}P_0=P_0$, so $e^{itH}-P_0=e^{itH}Q$ and
+$F(t)=\ip{X\Om}{e^{itH}QA\Om}$, $G(t)=\ip{A^*\Om}{e^{-itH}QX\Om}$.  Strong continuity of
+$t\mapsto e^{itH}$ gives continuity, and $\|QA\Om\|\le\|A\|$ gives the bound; $e^{-\lambda_0(t-s)}$
+is integrable over $s\in(-\infty,t]$.
+
+(ii) For every vector $y$, $v\mapsto e^{-\lambda_0v}e^{-ivH}y$ is continuous and norm-integrable
+on $[0,\infty)$, and for every vector $x$, by Fubini (the scalar measure
+$\ip{x}{P_H(\cdot)y}$ is finite and $e^{-\lambda_0v}$ is integrable),
+\begin{align*}
+ \Bigl\langle x,\int_0^\infty e^{-\lambda_0v}e^{-ivH}y\,dv\Bigr\rangle
+ &=\int\Bigl(\int_0^\infty e^{-\lambda_0v}e^{-ivE}dv\Bigr)d\ip{x}{P_H(E)y}\\
+ &=\int\frac{d\ip{x}{P_H(E)y}}{\lambda_0+iE}=\ip{x}{(\lambda_0+iH)^{-1}y} .
+\end{align*}
+Hence, substituting $s=t-v$,
+\[
+ \Ft(t)=\int_0^\infty e^{-\lambda_0v}\ip{X\Om}{e^{i(t-v)H}QA\Om}\,dv
+ =\ip{X\Om}{(\lambda_0+iH)^{-1}e^{itH}QA\Om} .
+\]
+The vector $e^{itH}QA\Om$ lies in $Q\HH$, and $(\lambda_0+iH)^{-1}$ commutes with $Q$, so
+$(\lambda_0+iH)^{-1}e^{itH}QA\Om=Q(\lambda_0+iH)^{-1}e^{itH}QA\Om$; with
+$((\lambda_0+iH)^{-1})^*=(\lambda_0-iH)^{-1}$ this gives
+$\Ft(t)=\ip{(\lambda_0-iH)^{-1}QX\Om}{e^{itH}QA\Om}=\ip{u}{e^{itH}QA\Om}$, and the spectral
+theorem gives $\Ft(t)=\int e^{itE}d\tilde\rho(E)$.  Under the hypothesis on $\spec H$,
+$Q=P_H([\gamma,\infty))$, so $\tilde\rho(B)=\ip{u}{P_H(B\cap[\gamma,\infty))QA\Om}$ and
+$\supp\tilde\rho\subseteq[\gamma,\infty)$.  For a finite Borel partition $(B_i)$ of $\R$ and
+$w:=QA\Om$, Cauchy--Schwarz twice gives
+\begin{align*}
+ \sum_i|\tilde\rho(B_i)|=\sum_i|\ip{P_H(B_i)u}{P_H(B_i)w}|
+ &\le\Bigl(\sum_i\|P_H(B_i)u\|^2\Bigr)^{1/2}\Bigl(\sum_i\|P_H(B_i)w\|^2\Bigr)^{1/2}\\
+ &=\|u\|\,\|w\|\le\mt ;
+\end{align*}
+the supremum over partitions is $|\tilde\rho|(\R)$.
+
+(iii) In the same way, with $\int_0^\infty e^{-\lambda_0v}e^{ivE}dv=(\lambda_0-iE)^{-1}$,
+\begin{align*}
+ \Gt(t)&=\int_0^\infty e^{-\lambda_0v}\ip{A^*\Om}{e^{-i(t-v)H}QX\Om}\,dv\\
+ &=\ip{A^*\Om}{e^{-itH}(\lambda_0-iH)^{-1}QX\Om}=\ip{QA^*\Om}{e^{-itH}u},
+\end{align*}
+since $e^{-itH}u\in Q\HH$.  The measure $\sigma'(\cdot):=\ip{QA^*\Om}{P_H(\cdot)u}$ is supported
+in $[\gamma,\infty)$ and has variation $\le\|QA^*\Om\|\,\|u\|\le\mt$ (the computation of (ii));
+$\Gt(t)=\int e^{-itE}d\sigma'(E)=\int e^{itE}d\tilde\sigma(E)$ for its image $\tilde\sigma$
+under $E\mapsto-E$.
+
+(iv) $|\Ft(t)|\le|\tilde\rho|(\R)$ and $|\Gt(t)|\le|\tilde\sigma|(\R)$.
+\end{proof}
+
+\begin{tlemma}[the locality discrepancy]\label{lem:discrepancy}
+In the setting of Lemma~\ref{lem:transforms}, suppose $F(t)=G(t)$ for all $t\in(-R,R)$, where
+$R>0$.  Then, for every $t\in(-R,R)$,
+\[
+ \Ft(t)-\Gt(t)=c\,e^{-\lambda_0t},\qquad c:=\int_{-\infty}^{-R}e^{\lambda_0s}\bigl(F(s)-G(s)\bigr)ds,
+ \qquad |c|\le2\,\mt\,e^{-\lambda_0R} .
+\]
+\end{tlemma}
+
+\begin{proof}
+For $t\in(-R,R)$, $F-G$ vanishes on $(-R,t]$, so
+$\Ft(t)-\Gt(t)=\int_{-\infty}^{-R}e^{-\lambda_0(t-s)}(F-G)(s)\,ds=e^{-\lambda_0t}c$; the integral
+defining $c$ converges absolutely by Lemma~\ref{lem:transforms}(i).  By
+Lemma~\ref{lem:transforms}(iv), $|c|e^{-\lambda_0t}\le2\mt$, i.e.\ $|c|\le2\mt e^{\lambda_0t}$,
+for every $t\in(-R,R)$; letting $t\downarrow-R$ gives the bound.
+\end{proof}
+
+So the resolvent smoothing destroys the exact equality $F=G$ on $(-R,R)$ that Lemma~9.2 uses,
+but leaves a discrepancy that is explicit, smooth and exponentially small on $(-R/2,R/2)$:
+there $|ce^{-\lambda_0t}|\le2\mt e^{-\lambda_0R/2}$.  The next lemma is Lemma~9.2 with this
+discrepancy; the principal-value term it produces is computed exactly.
+
+\begin{tlemma}[spectral separation with an exponential discrepancy]\label{lem:sep}
+Let $\gamma>0$, $\lambda_0>0$, $R>0$, $0<R'\le R$ and $\mt\ge0$.  Let $\tilde\rho$, $\tilde\sigma$
+be complex Borel measures on $\R$ with $\supp\tilde\rho\subseteq[\gamma,\infty)$,
+$\supp\tilde\sigma\subseteq(-\infty,-\gamma]$ and $|\tilde\rho|(\R),|\tilde\sigma|(\R)\le\mt$;
+put $\Ft(t)=\int e^{itE}d\tilde\rho(E)$, $\Gt(t)=\int e^{itE}d\tilde\sigma(E)$, and suppose
+$\Ft(t)-\Gt(t)=c\,e^{-\lambda_0t}$ for all $t\in(-R,R)$, with $c\in\C$.  Then
+\begin{equation}
+ |\Ft(0)|\le\mt\Bigl(1+\frac{2}{\pi\gamma R'}\Bigr)e^{-\gamma R'/2}
+ +|c|\Bigl(\frac12+\frac{\sinh(\lambda_0R')}{\pi}\Bigr).
+ \label{eq:sep}
+\end{equation}
+\end{tlemma}
+
+\begin{proof}
+\emph{Step 1: the separator} (Lemma~9.2, Step~1, re-derived).  For $a,\varepsilon>0$ let
+$f_{a,\varepsilon}(t):=(2\pi i)^{-1}e^{-t^2/(2a)}(t-i\varepsilon)^{-1}$; it is integrable, since
+$|t-i\varepsilon|\ge\varepsilon$.  From $i\int_0^\infty e^{-(\varepsilon+it)E'}dE'=
+i(\varepsilon+it)^{-1}=(t-i\varepsilon)^{-1}$,
+\[
+ f_{a,\varepsilon}(t)=\frac1{2\pi}\int_0^\infty e^{-\varepsilon E'}e^{-t^2/(2a)-itE'}\,dE' ,
+\]
+and Fubini (the integrand of the double integral is absolutely integrable) together with
+$\int e^{-t^2/(2a)}e^{itk}dt=(2\pi a)^{1/2}e^{-ak^2/2}$ gives
+\[
+ \check f_{a,\varepsilon}(E):=\int f_{a,\varepsilon}(t)e^{itE}dt
+ =\int_0^\infty\Bigl(\frac a{2\pi}\Bigr)^{1/2}e^{-a(E-E')^2/2}e^{-\varepsilon E'}\,dE'\in[0,1],
+\]
+which increases, as $\varepsilon\downarrow0$, to $\Phi(\sqrt aE)$, $\Phi$ the standard normal
+distribution function (monotone convergence).  This is the transform (\texttt{eq:septransform},
+(20)) of the record.
+
+\emph{Step 2: pairing and tail.}  By Fubini ($f_{a,\varepsilon}\in L^1$, finite measures),
+$\int f_{a,\varepsilon}\Ft\,dt=\int\check f_{a,\varepsilon}d\tilde\rho$ and
+$\int f_{a,\varepsilon}\Gt\,dt=\int\check f_{a,\varepsilon}d\tilde\sigma$.  For $|t|\ge R'$,
+$|f_{a,\varepsilon}(t)|\le(2\pi)^{-1}e^{-t^2/(2a)}|t|^{-1}\le(2\pi)^{-1}e^{-t^2/(2a)}|t|/R'^2$,
+so, uniformly in $\varepsilon$,
+\[
+ \int_{|t|\ge R'}|f_{a,\varepsilon}(t)|\,dt\le\frac1{\pi R'^2}\int_{R'}^\infty te^{-t^2/(2a)}dt
+ =\frac{a}{\pi R'^2}e^{-R'^2/(2a)} .
+\]
+
+\emph{Step 3: the principal-value term.}  Let
+\[
+ \varphi(t):=e^{-t^2/(2a)}e^{-\lambda_0t},\qquad
+ J:=\int_0^{R'}e^{-t^2/(2a)}\,\frac{\sinh(\lambda_0t)}{t}\,dt .
+\]
+We show
+\begin{equation}
+ \lim_{\varepsilon\downarrow0}\int_{-R'}^{R'}f_{a,\varepsilon}(t)\,c\,e^{-\lambda_0t}\,dt
+ =\frac c2+\frac{ic}{\pi}J,\qquad
+ \Bigl|\frac c2+\frac{ic}\pi J\Bigr|\le|c|\Bigl(\frac12+\frac{\sinh(\lambda_0R')}{\pi}\Bigr).
+ \label{eq:pv}
+\end{equation}
+Write $(t-i\varepsilon)^{-1}=t(t^2+\varepsilon^2)^{-1}+i\varepsilon(t^2+\varepsilon^2)^{-1}$.
+With $t=\varepsilon s$, $\varepsilon\int_{-R'}^{R'}\varphi(t)(t^2+\varepsilon^2)^{-1}dt=
+\int_{-R'/\varepsilon}^{R'/\varepsilon}\varphi(\varepsilon s)(1+s^2)^{-1}ds\to\pi\varphi(0)=\pi$
+by dominated convergence (dominator $\sup_{[-R',R']}|\varphi|\,(1+s^2)^{-1}$).  Next,
+$\int_{-R'}^{R'}\varphi(t)t(t^2+\varepsilon^2)^{-1}dt=\int_0^{R'}(\varphi(t)-\varphi(-t))
+t(t^2+\varepsilon^2)^{-1}dt\to\int_0^{R'}(\varphi(t)-\varphi(-t))t^{-1}dt$ by dominated
+convergence, the integrand being bounded by $|\varphi(t)-\varphi(-t)|/t\le2\sup_{[-R',R']}
+|\varphi'|$ (mean value theorem).  Since $\varphi(t)-\varphi(-t)=-2e^{-t^2/(2a)}\sinh(\lambda_0t)$,
+the limit of $\int_{-R'}^{R'}\varphi(t)(t-i\varepsilon)^{-1}dt$ is $-2J+i\pi$, and multiplying by
+$c/(2\pi i)$ gives $c/2-cJ/(\pi i)=c/2+icJ/\pi$.  As $J$ is real,
+$|c/2+icJ/\pi|=|c|(\frac14+J^2/\pi^2)^{1/2}\le|c|(\frac12+J/\pi)$.  Finally
+$e^{-t^2/(2a)}\le1$ and $\sinh(x)/x\le\cosh(x)$ for $x>0$ (that is, $\tanh x\le x$) give
+$J\le\int_0^{\lambda_0R'}\sinh(x)x^{-1}dx\le\int_0^{\lambda_0R'}\cosh(x)\,dx=\sinh(\lambda_0R')$.
+
+\emph{Step 4: combination.}  Since $R'\le R$, the hypothesis gives
+$\Ft-\Gt=ce^{-\lambda_0t}$ on $(-R',R')$, so for every $\varepsilon>0$
+\[
+ \int\check f_{a,\varepsilon}d\tilde\rho-\int\check f_{a,\varepsilon}d\tilde\sigma
+ =\int_{|t|\ge R'}f_{a,\varepsilon}(\Ft-\Gt)\,dt+\int_{-R'}^{R'}f_{a,\varepsilon}(t)\,ce^{-\lambda_0t}dt .
+\]
+As $\varepsilon\downarrow0$ the left side tends to $\int\Phi(\sqrt aE)\,d\tilde\rho-\int\Phi(\sqrt
+aE)\,d\tilde\sigma$ (dominated convergence, $0\le\check f_{a,\varepsilon}\le1$), and the last
+term tends to the limit (\ref{eq:pv}); hence the first term on the right converges too, and
+since $|\Ft-\Gt|\le2\mt$ everywhere, Step~2 bounds it by $2\mt a(\pi R'^2)^{-1}e^{-R'^2/(2a)}$.
+For $x\ge0$, $1-\Phi(x)=\int_0^\infty(2\pi)^{-1/2}e^{-(x+y)^2/2}dy\le e^{-x^2/2}/2$.  On
+$\supp\tilde\rho$, $E\ge\gamma$ and $0\le1-\Phi(\sqrt aE)\le e^{-a\gamma^2/2}/2$; on
+$\supp\tilde\sigma$, $E\le-\gamma$ and $0\le\Phi(\sqrt aE)\le e^{-a\gamma^2/2}/2$.  Writing
+\[
+ \Ft(0)=\int d\tilde\rho=\int\bigl(1-\Phi(\sqrt aE)\bigr)d\tilde\rho
+ +\Bigl[\int\Phi(\sqrt aE)\,d\tilde\rho-\int\Phi(\sqrt aE)\,d\tilde\sigma\Bigr]
+ +\int\Phi(\sqrt aE)\,d\tilde\sigma
+\]
+we obtain $|\Ft(0)|\le\mt e^{-a\gamma^2/2}+2\mt a(\pi R'^2)^{-1}e^{-R'^2/(2a)}
++|c|(\frac12+\sinh(\lambda_0R')/\pi)$.  The choice $a:=R'/\gamma$ makes
+$a\gamma^2/2=R'^2/(2a)=\gamma R'/2$ and $a/(\pi R'^2)=1/(\pi\gamma R')$, which is
+(\ref{eq:sep}).
+\end{proof}
+
+\emph{Boundary values.}  For $c=0$ and $R'=R$, (\ref{eq:sep}) is the bound of Step~4 of the
+record's Lemma~9.2 before its simplification by $\gamma R\ge1$.  As $R'\downarrow0$ the bound
+becomes useless; the trivial bound $|\Ft(0)|\le\mt$ always holds.  The test of Step~3 on
+three parameter sets is in Appendix~\ref{app:numerics} (\emph{numerical}).
+
+\begin{tlemma}[resolvent-weighted clustering; replaces Lemma 9.3 in the chain]\label{lem:cluster}
+Let $g\in\CH$, $H=H(g)$, $\Om=\Om_g$, and assume (G$_\gamma$).  Let $B\subset\R$ be compact, let
+$X=X^*$ be affiliated with $\A(O')'$ for every bounded open interval $O'$ with $\dist(B,O')>0$,
+with $\Om\in D(X)$, and let $A\in\A(O)$ for a bounded interval $O$ with $R:=\dist(B,O)>0$.
+Let $\lambda_0>0$ and $\mt:=\|(\lambda_0-iH)^{-1}QX\Om\|\,\|A\|$.  Then
+\[
+ \bigl|\ip{(\lambda_0-iH)^{-1}QX\Om}{QA\Om}\bigr|\le\mt\,\min\{1,\Xi_{\gamma,\lambda_0}(R)\} .
+\]
+\end{tlemma}
+
+\begin{proof}
+The functions $F$, $G$ of Lemma~\ref{lem:transforms} are the functions $F$, $G$ of the proof of
+Lemma~9.3.  Step~2 of that proof shows $F=G$ on $(-R,R)$; it uses Proposition~2.7
+(\texttt{prop:propagation}), the affiliation of $X$, $\Om\in D(X)$, $X=X^*$ and
+$e^{-itH}\Om=\Om$, and not the hypothesis $\gamma R\ge1$ of Lemma~9.3.  By
+Lemma~\ref{lem:transforms}(ii), $\Ft(0)=\ip{(\lambda_0-iH)^{-1}QX\Om}{QA\Om}$, and the
+measures there satisfy the hypotheses of Lemma~\ref{lem:sep}; Lemma~\ref{lem:discrepancy} gives
+$c$ with $|c|\le2\mt e^{-\lambda_0R}$.  Lemma~\ref{lem:sep} with $R'=R/2$ gives
+\begin{align*}
+ |\Ft(0)|&\le\mt\Bigl(1+\frac4{\pi\gamma R}\Bigr)e^{-\gamma R/4}
+ +2\mt e^{-\lambda_0R}\Bigl(\frac12+\frac{\sinh(\lambda_0R/2)}\pi\Bigr)\\
+ &\le\mt\Bigl(1+\frac4{\pi\gamma R}\Bigr)e^{-\gamma R/4}+\mt e^{-\lambda_0R}
+ +\frac{\mt}{\pi}e^{-\lambda_0R/2},
+\end{align*}
+using $2\sinh x\le e^x$; and $e^{-\lambda_0R}\le e^{-\lambda_0R/2}$.  The bound by $\mt$ is
+Lemma~\ref{lem:transforms}(iv).
+\end{proof}
+
+\emph{Comparison with the sketch.}  Step (a) of the sketch states the bound
+$\mt[(1+4/(\pi\gamma R))e^{-\gamma R/4}+(1+\lambda_0R/\pi)e^{-\lambda_0R/2}]$.  It also follows
+from Step~3, with $J\le x\cosh x\le xe^x$, $x=\lambda_0R/2$, in place of $J\le\sinh x$; for
+$\lambda_0R\ge1$ the form of Lemma~\ref{lem:cluster} is the sharper one.
+
+\begin{tlemma}[resolvent form of the state derivative; replaces Lemma 10.1]\label{lem:deriv}
+In the path setting of \S8 of the record, assume (G$_\gamma$) and let $\lambda_0>0$.  For
+self-adjoint $A\in B(\HH)$ and $0<s<1$ put
+\[
+ u_{j,s}:=(\lambda_0-iH_s)^{-1}Q_sV_j\Om_s,\qquad
+ \Ft_{j,s}(t):=\ip{u_{j,s}}{e^{itH_s}Q_sA\Om_s} .
+\]
+Then, the sum running over the finitely many $j$ with $h_j\ne0$,
+\begin{equation}
+ \frac{d}{ds}\,\omega_{g_s}(A)=-2\,\mathrm{Re}\sum_j\Bigl[i\,\Ft_{j,s}(0)
+ +\lambda_0\int_\R W_\gamma(t)\,\Ft_{j,s}(t)\,dt\Bigr],
+ \label{eq:deriv}
+\end{equation}
+and the integrals converge absolutely.
+\end{tlemma}
+
+\begin{proof}
+\emph{Step 1.}  The first display of the proof of Lemma~10.1, which uses Proposition~8.2(ii)
+and the self-adjointness of $H_s^{-1}Q_s$, gives
+$\frac d{ds}\omega_{g_s}(A)=-2\mathrm{Re}\ip{V(v)\Om_s}{H_s^{-1}Q_sA\Om_s}$, with
+$\Om_s\in D(V(v))$ by Proposition~2.6 ($v=g'-g$ is real, smooth, of compact support).
+
+\emph{Step 2.}  The first assertion of Lemma~10.2 (only finitely many $h_j$ are nonzero, and
+$V(v)\xi=\sum_jV_j\xi$ on common domains) is proved there from the compact support of $v$ and
+the finite additivity of \S2.1 alone; the second assertion of Lemma~10.2, the bound by $M$, is
+not used here.  Each $h_j$ is real, bounded, of compact support, so $\Om_s\in D(V_j)$ by
+Proposition~2.6; hence $\ip{V(v)\Om_s}{y}=\sum_j\ip{V_j\Om_s}{y}$ for every vector $y$.
+
+\emph{Step 3: a functional-calculus identity.}  On $\spec H_s\subseteq\{0\}\cup[\gamma,\infty)$
+the bounded Borel functions $E^{-1}\mathbf 1_{[\gamma,\infty)}(E)$ and
+$(\lambda_0+iE)^{-1}\bigl(i+\lambda_0E^{-1}\bigr)\mathbf 1_{[\gamma,\infty)}(E)$ coincide: for
+$E\ge\gamma$ the second is $(\lambda_0+iE)^{-1}(iE+\lambda_0)E^{-1}=E^{-1}$, and at $E=0$ both
+vanish.  The functional calculus being multiplicative,
+$H_s^{-1}Q_s=(\lambda_0+iH_s)^{-1}\bigl(iQ_s+\lambda_0H_s^{-1}Q_s\bigr)$.
+
+\emph{Step 4.}  Fix $j$ and drop the index $s$.  By Step~3,
+\[
+ \ip{V_j\Om}{H^{-1}QA\Om}=i\ip{V_j\Om}{(\lambda_0+iH)^{-1}QA\Om}
+ +\lambda_0\ip{V_j\Om}{H^{-1}Q\,(\lambda_0+iH)^{-1}QA\Om} .
+\]
+Since $(\lambda_0+iH)^{-1}QA\Om=Q(\lambda_0+iH)^{-1}QA\Om$, the first inner product is
+$\ip{(\lambda_0-iH)^{-1}QV_j\Om}{QA\Om}=\Ft_j(0)$.  For the second, Lemma~9.1(ii), whose
+hypothesis is (G$_\gamma$) and in which $1-P_{\ker H}=Q$ because $\dim\ker H=1$, gives
+$H^{-1}Q=\int W_\gamma(t)e^{itH}Q\,dt$ as a norm-convergent Bochner integral; applied to
+$(\lambda_0+iH)^{-1}QA\Om$ and paired with $V_j\Om$,
+\begin{align*}
+ \ip{V_j\Om}{H^{-1}Q(\lambda_0+iH)^{-1}QA\Om}
+ &=\int W_\gamma(t)\ip{(\lambda_0-iH)^{-1}QV_j\Om}{e^{itH}QA\Om}\,dt\\
+ &=\int W_\gamma(t)\Ft_j(t)\,dt .
+\end{align*}
+The integral converges absolutely because $W_\gamma\in L^1$ (Lemma~9.1(i)) and
+$|\Ft_j|\le\|u_j\|\,\|A\|$ (Lemma~\ref{lem:transforms}(iv)).  Summing over $j$ (Step~2) and
+inserting in Step~1 gives (\ref{eq:deriv}).
+\end{proof}
+
+\emph{Domains} (item (b) of the commission).  Every operator applied to $Q_sA\Om_s$ above is
+bounded: $\|H_s^{-1}Q_s\|\le\gamma^{-1}$ by (G$_\gamma$), and
+$\|(\lambda_0\pm iH_s)^{-1}\|\le\lambda_0^{-1}$.  The only unbounded operator is $V_j$, applied
+to $\Om_s\in D(V_j)$.  No domain condition on $Q_sA\Om_s$ is needed; without the gap,
+$H_s^{-1}Q_s$ would be unbounded and Step~3 would need $Q_sA\Om_s\in D(H_s^{-1})$.
+
+\begin{tlemma}[two-regime bound with $\Mt$; replaces Lemma 10.3]\label{lem:tworegime}
+In the setting of Lemma~\ref{lem:deriv} let $\lambda_0\ge1$, let $O$ be a bounded open interval,
+$A=A^*\in\A(O)$ with $\|A\|\le1$, and let $h_j\ne0$ with $r_j=\dist(B_j,O)>0$.  Then
+\begin{gather*}
+ |\Ft_{j,s}(t)|\le\Mt(\lambda_0)\quad(t\in\R),\qquad
+ |\Ft_{j,s}(t)|\le\Mt(\lambda_0)\,\Xi_{\gamma,\lambda_0}(r_j/2)\quad(|t|\le r_j/2),\\
+ |\Ft_{j,s}(0)|\le\Mt(\lambda_0)\,\Xi_{\gamma,\lambda_0}(r_j) .
+\end{gather*}
+\end{tlemma}
+
+\begin{proof}
+$h_j$ is real and measurable with $\|h_j\|_\infty\le1$ and $\supp h_j\subseteq[j-1,j+1]$ (proof
+of Lemma~10.2), and $g_s\in\G\subset\CH$ (Lemma~3.1); so $\|u_{j,s}\|\le\Mt(\lambda_0)$ by
+Definition~\ref{def:Mt}, and the first bound is Lemma~\ref{lem:transforms}(iv).  Let $|t|<r_j$
+and $\beta_t:=\beta^{g_s}_t=\mathrm{Ad}\,e^{itH_s}$.  Since $e^{-itH_s}\Om_s=\Om_s$ and $Q_s$
+commutes with $e^{itH_s}$, $e^{itH_s}Q_sA\Om_s=Q_s\beta_t(A)\Om_s$, so
+$\Ft_{j,s}(t)=\ip{u_{j,s}}{Q_s\beta_t(A)\Om_s}$.  Apply Lemma~\ref{lem:cluster} with $g=g_s$,
+$X=V_j$, $B=B_j$, the bounded open interval $O_{|t|}$ and $\beta_t(A)\in\A(O_{|t|})$
+(Proposition~2.7).  Its hypotheses: (G$_\gamma$); $V_j$ is affiliated with $\A(O')'$ for every
+bounded open interval $O'$ with $\dist(B_j,O')>0$ (\emph{Locality} in \S2.1, as
+$B_j=\supp h_j$); $\Om_s\in D(V_j)$ (Proposition~2.6); $R:=\dist(B_j,O_{|t|})\ge r_j-|t|>0$,
+because $|y-x|\ge\dist(y,O)-\dist(x,O)>r_j-|t|$ for $y\in B_j$, $x\in O_{|t|}$.  With
+$\|\beta_t(A)\|=\|A\|\le1$ it gives $|\Ft_{j,s}(t)|\le\Mt(\lambda_0)\Xi(R)\le
+\Mt(\lambda_0)\Xi(r_j-|t|)$, since $\Xi$ is nonincreasing (both summands are).  For
+$|t|\le r_j/2$, $r_j-|t|\ge r_j/2$; at $t=0$, $O_0=O$ and $R=r_j$.
+\end{proof}
+
+\begin{tprop}[one-path estimate with $\Mt$; replaces Proposition 10.4]\label{prop:onepath}
+Assume (G$_\gamma$), let $\lambda_0\ge1$ and $M'\ge\Mt(\lambda_0)$.  If $d\ge1$ and
+$g\equiv g'\equiv1$ on $O_d$ ($g,g'\in\G$), then
+\[
+ \|(\omega_g-\omega_{g'})|_{\A(O)}\|\le12\,M'\sum_{n\ge\lfloor d\rfloor}\Bigl(\Xi_{\gamma,\lambda_0}(n)
+ +\lambda_0\|W_\gamma\|_1\,\Xi_{\gamma,\lambda_0}(n/2)+\lambda_0\,T_\gamma(n/2)\Bigr)
+ =\Psit_{\gamma,\lambda_0}(d) .
+\]
+The series converges.
+\end{tprop}
+
+\begin{proof}
+\emph{Step 1.}  $g\equiv g'\equiv1$ on the open interval $O_d$, so the plateau interiors share
+$O_d\ne\varnothing$ and the path setting applies; $v=0$ on $O_d$, so every nonzero $h_j$ has
+$B_j\subseteq\supp v\subseteq\R\setminus O_d$ and $r_j\ge d\ge1$ (as in Step~1 of
+Proposition~10.4).
+
+\emph{Step 2.}  For $A=A^*\in\A(O)$, $\|A\|\le1$, and $0<s<1$, Lemma~\ref{lem:deriv},
+$|\mathrm{Re}\,z|\le|z|$, and Lemma~\ref{lem:tworegime}, with the integral split at
+$|t|=r_j/2$, give
+\begin{align*}
+ \Bigl|\frac d{ds}\omega_{g_s}(A)\Bigr|
+ &\le2\sum_j\Bigl(|\Ft_{j,s}(0)|+\lambda_0\!\int|W_\gamma||\Ft_{j,s}|\Bigr)\\
+ &\le2M'\sum_j\Bigl(\Xi(r_j)+\lambda_0\|W_\gamma\|_1\Xi(r_j/2)+\lambda_0T_\gamma(r_j/2)\Bigr).
+\end{align*}
+
+\emph{Step 3: shell count.}  For every integer $n\ge\lfloor d\rfloor$ at most six indices $j$
+have $r_j\in[n,n+1)$.  Write $O=(a_O,b_O)$.  $O_d$ has length $b_O-a_O+2d>2$, and $B_j$ is a
+compact subset of $[j-1,j+1]$ disjoint from the open interval $O_d=(a_O-d,b_O+d)$, so each of
+its points satisfies $y\le a_O-d$ or $y\ge b_O+d$; points $y\le a_O-d$ and $y'\ge b_O+d$ of $B_j$
+would give $y'-y\ge b_O-a_O+2d>2$, contradicting $B_j\subseteq[j-1,j+1]$; so $B_j$ lies on one
+side of $O_d$.  On the right side,
+$x_j:=\min B_j$ satisfies $x_j-b_O=r_j\in[n,n+1)$ and $|x_j-j|\le1$, so
+$j\in[b_O+n-1,b_O+n+2)$, a half-open interval of length $3$, which contains at most three
+integers.  On the left side, $x_j:=\max B_j$ gives $j\in(a_O-n-2,a_O-n+1]$, again at most
+three.  (Step~3 of Proposition~10.4 says ``at most four integers'' per side; that bound is
+true and weaker.)
+
+\emph{Step 4.}  The three functions of $r_j$ in Step~2 are nonincreasing ($\Xi$ by inspection,
+$T_\gamma$ by definition), and every $r_j\ge d$ lies in a shell $[n,n+1)$ with
+$n\ge\lfloor d\rfloor$; so $|\frac d{ds}\omega_{g_s}(A)|\le12M'\sum_{n\ge\lfloor d\rfloor}(\dots)$.
+Integrate over $s\in[\varepsilon,1-\varepsilon]$ and let $\varepsilon\downarrow0$, using the
+norm continuity of $s\mapsto P_s$ at the endpoints (Proposition~8.2(i)), as in Step~4 of
+Proposition~10.4; $\omega_g-\omega_{g'}$ is hermitian, so its norm on $\A(O)$ is the supremum
+over self-adjoint contractions.  Convergence: for $n\ge1$,
+$\Xi(n)\le(1+\frac4{\pi\gamma})e^{-\gamma n/4}+(1+\frac1\pi)e^{-\lambda_0n/2}$ and
+$\Xi(n/2)\le(1+\frac8{\pi\gamma})e^{-\gamma n/8}+(1+\frac1\pi)e^{-\lambda_0n/4}$, and
+$T_\gamma(n/2)\le C_{q,\gamma}(1+n/2)^{-q}$ for every $q\ge0$ (Lemma~9.1(i)).
+\end{proof}
+
+\begin{tlemma}[the rate function; replaces Lemma 10.5]\label{lem:rate}
+Assume (G$_\gamma$), let $\lambda_0\ge1$ and $\Mt(\lambda_0)\le M'<\infty$, and let
+$\Psit:=\Psit_{\gamma,\lambda_0}$ be defined by (\ref{eq:Psit}) and
+$\Psit(d):=\max\{2,\Psit(1)\}$ for $0\le d<1$.  Then $\Psit$ is nonincreasing; for every
+$N\ge1$ there is $C_N=C_{N,\gamma,\lambda_0,M'}<\infty$ with $\Psit(d)\le C_N(1+d)^{-N}$ for all
+$d\ge0$; and $\|(\omega_g-\omega_{g'})|_{\A(O)}\|\le\Psit(d)$ whenever $g,g'\in\G$ satisfy
+$g\equiv g'\equiv1$ on $O_d$, $d\ge0$.
+\end{tlemma}
+
+\begin{proof}
+Monotonicity: for $d\ge1$, a larger $\lfloor d\rfloor$ removes nonnegative terms; on $[0,1)$
+the value $\max\{2,\Psit(1)\}$ dominates every value on $[1,\infty)$.  Decay: for $d\ge1$,
+$\lfloor d\rfloor\ge(1+d)/4$ (for $1\le d<2$ because $d<3$; for $d\ge2$ because
+$\lfloor d\rfloor\ge d-1\ge(1+d)/4$).  For $\beta>0$,
+$\sum_{n\ge\lfloor d\rfloor}e^{-\beta n}=e^{-\beta\lfloor d\rfloor}(1-e^{-\beta})^{-1}\le
+e^{-\beta(1+d)/4}(1-e^{-\beta})^{-1}$, which is $\le C(1+d)^{-N}$; this covers the
+$\Xi$-terms, by the bounds at the end of the proof of Proposition~\ref{prop:onepath}.  For the
+$T_\gamma$-terms take $q:=N+1$: $T_\gamma(n/2)\le C_{q,\gamma}2^q(1+n)^{-q}$ and
+$\sum_{n\ge\lfloor d\rfloor}(1+n)^{-q}\le\int_{\lfloor d\rfloor-1}^\infty(1+x)^{-q}dx=
+\lfloor d\rfloor^{1-q}/(q-1)\le4^{q-1}(1+d)^{1-q}/(q-1)$.  For $0\le d<1$,
+$\Psit(d)\le2^N\max\{2,\Psit(1)\}(1+d)^{-N}$.  The last assertion is
+Proposition~\ref{prop:onepath} for $d\ge1$ and the trivial bound
+$\|\omega_g-\omega_{g'}\|\le2$ for $d<1$.
+\end{proof}
+
+\section{The Euclidean side: steps (c) and (d) of the sketch}\label{sec:euclidean}
+
+\begin{tlemma}[the elementary inequality]\label{lem:ineq}
+The function $k$ of (\ref{eq:k}) satisfies $k(E)=2\int_0^1(1-u)e^{-uE}du$; it is continuous,
+positive and nonincreasing on $[0,\infty)$, and $k(2)=(1+e^{-2})/2=1/c_k$.  For $\lambda_0\ge1$
+and $E\ge0$,
+\[
+ (\lambda_0^2+E^2)^{-1}\le c_k\,k(E) .
+\]
+\end{tlemma}
+
+\begin{proof}
+For measurable $\varphi\ge0$, $\iint_{[-\frac12,\frac12]^2}\varphi(\tau-\tau')\,d\tau\,d\tau'
+=\int_{-1}^1(1-|u|)\varphi(u)\,du$, because for $|u|\le1$ the set of $\tau$ with
+$\tau,\tau-u\in[-\frac12,\frac12]$ has length $1-|u|$.  With $\varphi(u)=e^{-|u|E}$ this gives
+$k(E)=2\int_0^1(1-u)e^{-uE}du$; at $E=0$ the value is $1$, and for $E>0$ an integration by parts
+gives $\int_0^1(1-u)e^{-uE}du=E^{-1}-(1-e^{-E})E^{-2}=(E-1+e^{-E})E^{-2}$, which is
+(\ref{eq:k}).  The integrand is positive and nonincreasing in $E$ for each $u\in[0,1)$, so $k$
+is positive and nonincreasing, and continuous by dominated convergence;
+$k(2)=2(1+e^{-2})/4$.  \emph{Case $0\le E\le2$:} $c_kk(E)\ge c_kk(2)=1\ge\lambda_0^{-2}\ge
+(\lambda_0^2+E^2)^{-1}$.  \emph{Case $E\ge2$:} $k(E)\ge2(E-1)E^{-2}\ge E^{-1}$ (the second
+inequality is $E\ge2$), $E^{-1}\ge(1+E^2)^{-1}$ (as $E^2-E+1>0$), $(1+E^2)^{-1}\ge
+(\lambda_0^2+E^2)^{-1}$ (as $\lambda_0\ge1$), and $c_k\ge1$.
+\end{proof}
+
+\emph{Tests.}  By hand: $E=0$ gives $\lambda_0^{-2}\le1<c_k$; $E=2$, $\lambda_0=1$ gives
+$\frac15\le1$; $E=10$ gives $\frac1{101}\le c_k\cdot\frac{2(9+e^{-10})}{100}=0.317\ldots$.  The
+closed form of $k$ and the inequality on a grid are checked in Appendix~\ref{app:numerics}
+(\emph{numerical}).  The constant is not sharp; it is chosen so that the case split falls at
+$E=2$.
+
+The next lemma is the Fubini step on which both the time-integrated observable of Route T and
+\S\ref{sec:N39} rest.  It concerns the objects of Definition~N.26 (\texttt{aux:d1-obs},
+p.~81) of the record: for $\kappa\ge2$ the regularized field
+$\Phi_\kappa(\zeta)=\Phi(\delta_\kappa(\zeta-\cdot))$, its variance $c_\kappa$, the Wick power
+$A_\kappa(z):={:}\Phi_\kappa(z)^n{:}_{c_\kappa}$, and the regularized monomials, integrated
+pointwise in $q\in\mathcal S'(\R^2)$; the localized monomial is their $L^2(\dmu)$-limit
+(Lemma~N.28(a), \texttt{aux:d1-moments}).  The squares are
+$\Delta_{l,k}=[l-\frac12,l+\frac12)\times[k-\frac12,k+\frac12)$, time first (Definition~N.1).
+
+\begin{tlemma}[time slicing of a one-square time-integrated monomial]\label{lem:slice}
+Let $\Delta=\Delta_{l,k}$, let $w:\R^2\to\R$ be bounded, Borel measurable and zero outside
+$\Delta$, and let $0\le n\le2p'$.  Let $Q$ be the localized monomial of type (1.1.6) of
+Definition~N.26(a) with $r=1$, degree $n$ and kernel $w$, and, for $t\in\R$, let $Q(t)$ be the
+localized monomial of type (1.1.5) of Definition~N.26(b) with $r=1$, degree $n$, time $t$ and
+kernel $w(t,\cdot)$ (so $Q(t)=0$ for $t\notin[l-\frac12,l+\frac12)$).
+\begin{enumerate}
+\item[\rm(i)] $\sup_t\|Q(t)\|_{L^2(\dmu)}<\infty$; $t\mapsto Q(t)$ is strongly measurable from
+$\R$ to $L^2(\dmu)$; and $Q=\int_\R Q(t)\,dt$ as an $L^2(\dmu)$-valued Bochner integral.  Hence
+$\ell(Q)=\int\ell(Q(t))\,dt$ for every bounded linear functional $\ell$ on $L^2(\dmu)$.
+\item[\rm(ii)] Let $n\ge1$.  For $t\in[l-\frac12,l+\frac12)$, $Q(t)$ is localized in $\Delta$
+(Remark~N.2(ii): the row of the time $t$ is $l$), with local degree $N(\Delta)=n$ and
+$\GJS{Q(t)}=K_1K_2^{2n}n!\,\|w(t,\cdot)\|_{L^2(\R)}$; and
+$\int_\R\GJS{Q(t)}\,dt\le K_1K_2^{2n}n!\,\|w\|_{L^2(\R^2)}=\GJS{Q}$.
+\end{enumerate}
+\end{tlemma}
+
+\begin{proof}
+Write $Q^{(\kappa)}(q):=\int w(z)A_\kappa(z)(q)\,dz$ and
+$Q^{(\kappa)}(t)(q):=\int w(t,x)A_\kappa(t,x)(q)\,dx$ (Definition~N.26).
+
+\emph{Step 1 (Fubini, pointwise).}  For each $q$, $z\mapsto A_\kappa(z)(q)$ is continuous
+(Definition~N.26: $\zeta\mapsto\Phi_\kappa(\zeta)(q)$ is smooth, and (35) is a polynomial), and
+$w$ is bounded with compact support; Fubini on $\R^2$ gives
+$Q^{(\kappa)}(q)=\int Q^{(\kappa)}(t)(q)\,dt$ for every $q$.
+
+\emph{Step 2 (moments, uniformly in $t$ and $\kappa$).}  Lemma~N.24 with $\ell=2$ and the
+Fubini step of the proof of Lemma~N.28 (display (37) with $j=1$, and the majorant (38) for type
+(b)) give
+$\E[Q^{(\kappa)}(t)^2]=n!\iint w(t,x)w(t,y)G_{\kappa\kappa}((0,x-y))^n\,dx\,dy
+\le n!\,\|w\|_\infty^2\iint_{[k-\frac12,k+\frac12]^2}M_1(|x-y|)^n\,dx\,dy=:c_w$,
+finite by Lemma~N.25(iii)--(iv) and independent of $t$ and of $\kappa\ge2$.  Also
+$\E[A_\kappa(z)^2]=n!\,c_\kappa^n$ (Lemma~N.24, $\ell=2$, equal variables).
+
+\emph{Step 3 (the regularized slices form a Bochner integral).}  Let $\phi\in L^2(\dmu)$.  The
+function $(t,x,q)\mapsto\phi(q)w(t,x)A_\kappa(t,x)(q)$ is measurable ($A_\kappa(z)(q)$ is
+continuous in $z$ and measurable in $q$, hence jointly measurable), and
+$\iiint|\phi\,w\,A_\kappa|\,d\mu_0\,dx\,dt\le\|\phi\|_2(n!c_\kappa^n)^{1/2}\|w\|_{L^1(\R^2)}<\infty$.
+By Fubini, $t\mapsto\ip{\phi}{Q^{(\kappa)}(t)}$ is measurable and, with Step~1,
+$\int\ip{\phi}{Q^{(\kappa)}(t)}dt=\ip{\phi}{Q^{(\kappa)}}$.  $L^2(\dmu)$ is separable: its
+$\sigma$-algebra is generated by $\Phi(f_m)$, $\{f_m\}$ a countable dense subset of
+$\mathcal S(\R^2)$, because $q(f)=\lim q(f_m)$ when $f_m\to f$ in $\mathcal S(\R^2)$.  By
+Pettis's theorem $t\mapsto Q^{(\kappa)}(t)$ is strongly measurable; it is bounded by
+$c_w^{1/2}$ (Step~2) and vanishes outside $[l-\frac12,l+\frac12)$, hence Bochner integrable,
+and $\ip{\phi}{\int Q^{(\kappa)}(t)dt}=\ip{\phi}{Q^{(\kappa)}}$ for all $\phi$, i.e.\
+$\int Q^{(\kappa)}(t)\,dt=Q^{(\kappa)}$.
+
+\emph{Step 4 ($\kappa\to\infty$).}  By Lemma~N.28(a), applied to type (a) and to type (b),
+$Q^{(\kappa)}\to Q$ and $Q^{(\kappa)}(t)\to Q(t)$ in $L^2(\dmu)$ for every $t$.  Fix
+$\kappa_m\to\infty$.  Then $t\mapsto Q(t)$ is strongly measurable, as a pointwise limit of
+strongly measurable functions, and $\|Q(t)\|_2^2\le c_w$; moreover
+$\|Q^{(\kappa_m)}(t)-Q(t)\|_2\le2c_w^{1/2}$, it tends to $0$ for every $t$, and it vanishes
+outside $[l-\frac12,l+\frac12)$.  By dominated convergence
+$\int\|Q^{(\kappa_m)}(t)-Q(t)\|_2\,dt\to0$, so
+$\int Q(t)\,dt=\lim_m\int Q^{(\kappa_m)}(t)\,dt=\lim_mQ^{(\kappa_m)}=Q$.  Bounded linear
+functionals commute with Bochner integrals.
+
+(ii) For $t\in[l-\frac12,l+\frac12)$, $w(t,x)\ne0$ only if $(t,x)\in\Delta$, i.e.\
+$x\in[k-\frac12,k+\frac12)$; so $Q(t)$ is localized in $\Delta_{l,k}$ (Remark~N.2(ii)), with
+$N(\Delta)=n$ and all other local degrees $0$, and (1.1.8) gives its norm.  Cauchy--Schwarz on
+an interval of length $1$ gives $\int_{l-1/2}^{l+1/2}\|w(t,\cdot)\|_2\,dt\le
+(\int\|w(t,\cdot)\|_2^2dt)^{1/2}=\|w\|_{L^2(\R^2)}$, and (1.1.7) gives
+$\GJS{Q}=K_1K_2^{2n}n!\|w\|_{L^2(\R^2)}$ (as in Lemma~N.18(i) for $U_{\Delta,n}$).
+\end{proof}
+
+\emph{Borel versions.}  Every kernel used below is bounded, measurable and of compact support.
+Replacing it by a Borel function equal to it almost everywhere changes neither the regularized
+integrals (pointwise in $q$) nor their limits, and changes the slices only for a null set of
+times; so the Borel hypothesis of Lemma~\ref{lem:slice} is no restriction.
+
+\begin{tlemma}[the time-integrated interaction]\label{lem:Vbar}
+Let $h'$ be real and measurable with $\|h'\|_\infty\le1$ and $\supp h'\subseteq[a,a+2]$, and let
+$k_a$, $S_a=\{\Delta_{0,k}:k_a\le k\le k_a+2\}$ be as in Definition~N.10
+(\texttt{aux:notation-ringdef}).  For $k\in\{k_a,k_a+1,k_a+2\}$ and $0\le n\le2p'$ let
+$h'_k:=h'\mathbf 1_{[k-\frac12,k+\frac12)}$, $w_{n,k}(\tau,x):=\lambda a_n\mathbf
+1_{[-\frac12,\frac12)}(\tau)\,h'_k(x)$, let $\Vb_{n,k}$ be the localized monomial of type (1.1.6)
+with $r=1$, degree $n$ and kernel $w_{n,k}$, and put $\Vb(h'):=\sum_{n,k}\Vb_{n,k}$.
+\begin{enumerate}
+\item[\rm(i)] $\tau\mapsto J_\tau V(h')$ is strongly measurable from $[-\frac12,\frac12)$ to
+$L^2(\dmu)$, and $\Vb(h')=\int_{-1/2}^{1/2}J_\tau V(h')\,d\tau$ as an $L^2(\dmu)$-valued Bochner
+integral.  Here $V(h')$ is the $V(h')$ of \S2.1 of the record and $J_\tau$ the sharp-time map of
+the proof of Lemma~N.22 (\texttt{aux:notation-sharpid}).
+\item[\rm(ii)] $\Vb_{n,k}={:}\Phi^n(w_{n,k}){:}\in\Gamma_n(\HH_G)$, so
+$\Vb(h')\in\bigoplus_{n=0}^{2p'}\Gamma_n(\HH_G)$;
+$\|\Vb(h')\|_{L^2(\dmu)}\le\|V(h')\|_{L^2(\dphi)}\le V_*^{1/2}$;
+$\|\Vb(h')\|_{L^4(\dmu)}\le3^{p'}\|\Vb(h')\|_{L^2(\dmu)}$; hence
+$\|\Vb(h')^2\|_{L^2(\dmu)}\le9^{p'}V_*$.
+\item[\rm(iii)] For $0\le n,n'\le2p'$ and $k,k'\in\{k_a,k_a+1,k_a+2\}$ let $\overline
+Q_{n,n',k,k'}$ be the localized monomial of type (1.1.6) with $r=2$, degrees $(n,n')$ and
+kernel $w_{n,k}\otimes w_{n',k'}\in L^2(\R^4)$, localized in $\Delta_{0,k}$ and $\Delta_{0,k'}$,
+which belong to $S_a$.  Then $\overline Q_{n,n',k,k'}=\Vb_{n,k}\Vb_{n',k'}$ almost everywhere,
+and $\Vb(h')^2=\sum_{n,n',k,k'}\overline Q_{n,n',k,k'}$ almost everywhere.
+\item[\rm(iv)] For this decomposition,
+$\sum_{n,n',k,k'}\GJS{\overline Q_{n,n',k,k'}}\le9K_1K_2^{8p'}(4p')!\,\lambda^2(\sum_{n=0}^{2p'}|a_n|)^2$.
+\end{enumerate}
+\end{tlemma}
+
+\begin{proof}
+(i) By Lemma~\ref{lem:slice} with $\Delta=\Delta_{0,k}$ and $w=w_{n,k}$ (a Borel version),
+$\Vb_{n,k}=\int\Vb_{n,k}(\tau)\,d\tau$, where for $\tau\in[-\frac12,\frac12)$ the slice
+$\Vb_{n,k}(\tau)$ is the monomial of type (1.1.5) with $r=1$, degree $n$, time $\tau$ and
+kernel $\lambda a_nh'_k$, and $\Vb_{n,k}(\tau)=0$ otherwise.  By Lemma~N.28(f)(2) (a real
+bounded measurable kernel vanishing outside one column, $0\le n\le2p'$),
+$\Vb_{n,k}(\tau)=\lambda a_n\,J_\tau W_n(h'_k)$ almost everywhere, for every
+$\tau\in[-\frac12,\frac12)$.  By Remark~N.23(b), $\sum_kW_n(h'_k)=W_n(h')$ (linearity in the
+kernel), and by Lemma~N.23$'$(iii), $\lambda\sum_na_nW_n(h')=V(h')$; $J_\tau$ is linear.  Hence
+$\sum_{n,k}\Vb_{n,k}(\tau)=J_\tau V(h')$ for $\tau\in[-\frac12,\frac12)$; the strong
+measurability and the integral formula follow by summing the finitely many Bochner integrals.
+
+(ii) $\Vb_{n,k}$ is the $L^2(\dmu)$-limit of $\int w_{n,k}(z){:}\Phi_\kappa(z)^n{:}_{c_\kappa}dz$
+(Definition~N.26(a), $r=1$); Lemma~N.23$'$(ii), in the case $(\HH_G,\Phi,G,2)$ with $\nu=\delta$
+and the real bounded kernel $w_{n,k}$ of compact support, identifies the limit with
+${:}\Phi^n(w_{n,k}){:}\in\Gamma_n(\HH_G)$.  By (i) and the norm inequality for Bochner integrals,
+$\|\Vb(h')\|_2\le\int_{-1/2}^{1/2}\|J_\tau V(h')\|_{L^2(\dmu)}d\tau=\|V(h')\|_{L^2(\dphi)}$, since
+$J_\tau$ is isometric (proof of Lemma~N.22), and $\|V(h')\|^2_{L^2(\dphi)}\le V_*$ by
+Lemma~N.20(iv) with Lemma~N.23$'$(iii).  The proof of Lemma~N.21(ii) uses of its $Y$ only that
+it is a sum of Wick chaoses of degree $\le2p'$ in $L^2(\dmu)$ (it says so); it applies verbatim
+to $\Vb(h')$ and gives $\|\Vb(h')\|_4\le3^{p'}\|\Vb(h')\|_2$ (this is also Simon's
+Theorem~I.22 at $p=4$, $m=2p'$, as quoted in Assumption~A4).  Finally
+$\|\Vb^2\|_2=\|\Vb\|_4^2\le9^{p'}\|\Vb\|_2^2\le9^{p'}V_*$.
+
+(iii) The kernel $w_{n,k}\otimes w_{n',k'}$ is the product of the bounded functions
+$w_{n,k}$, $w_{n',k'}$, which vanish outside $\Delta_{0,k}$ and $\Delta_{0,k'}$; by
+Lemma~N.28(c) (type (a)), $\overline Q_{n,n',k,k'}=\Vb_{n,k}\Vb_{n',k'}$ almost everywhere, and
+$\sum_{n,n',k,k'}\Vb_{n,k}\Vb_{n',k'}=(\sum_{n,k}\Vb_{n,k})^2$.  The individual degrees are
+$\le2p'<\bar n=2p'+1$; a factor of degree $0$ contributes $0$ to the local degree, as in
+Lemma~N.43(ii).
+
+(iv) The computation of Lemma~N.43(iii), with
+\[
+ \|w_{n,k}\|_{L^2(\R^2)}=\lambda|a_n|\,\|\mathbf 1_{[-\frac12,\frac12)}\|_{L^2(\R)}\,
+ \|h'_k\|_{L^2(\R)}\le\lambda|a_n|
+\]
+in place of $\lambda|a_n|\,\|h'_k\|_2$: for one ordered column pair the weight of (1.1.7) is
+$K_1K_2^{2(n+n')}(n+n')!$ if $k=k'$ and $K_1K_2^{2n}n!\,K_2^{2n'}n'!$ if $k\ne k'$, in both cases
+$\le K_1K_2^{8p'}(4p')!$ ($K_2\ge1$, $n+n'\le4p'$, $n!n'!\le(n+n')!$); the kernel norm is
+$\le\lambda^2|a_na_{n'}|$; there are at most $9$ ordered column pairs; and
+$\sum_{n,n'}|a_na_{n'}|=(\sum_n|a_n|)^2$.
+\end{proof}
+
+\begin{ttheorem}[time-integrated copy of Theorem D.4]\label{thm:TD4}
+Assume the standing assumption of \S D.c.1 of the record (\texttt{sub:d2-conv}).  For every
+$h\in\CE$, every $a\in\R$ and every real measurable $h'$ with $\|h'\|_\infty\le1$ and
+$\supp h'\subseteq[a,a+2]$,
+\[
+ \int\Vb(h')^2\,dq_h\le M_B^2 ,
+\]
+with $M_B^2=e^{15\lambda|a_0|}S_2(B_{3\times5})\,9^{p'}V_*+C_7c_U\overline\Sigma_{3\times5}\cdot
+9K_1K_2^{8p'}(4p')!\,\lambda^2(\sum_n|a_n|)^2$, the constant of Theorem~D.4.
+\end{ttheorem}
+
+\begin{proof}
+\emph{Step 1.}  By Lemma~\ref{lem:Vbar}(iii), $\Vb(h')^2$ is almost everywhere the finite sum
+of the localized monomials $\overline Q_{n,n',k,k'}$ of type (1.1.6), with kernels in $L^2$,
+individual degrees $<\bar n$, and localization squares in $R:=S_a$; $B:=B_{3\times5}(a)$ is a
+box containing $R$.  $\Vb(h')\in L^4(\dmu)$, so $\Vb(h')\in L^2(dq_h)$ for every $h\in\CE$
+(Lemma~N.32, \texttt{aux:d2-int}) and $\Vb(h')^2\in L^1(dq_h)$.  Since $\Vb^2\ge0$,
+$\int\Vb^2dq_h=\ev{\Vb^2}{h^B}+(\ev{\Vb^2}{h}-\ev{\Vb^2}{h^B})$ with $\ev{\Vb^2}{h^B}\ge0$.
+
+\emph{Step 2 (base term).}  As in Step~2 of Theorem~D.4: $h^B\in\CE$ with $\supp
+h^B\subseteq\overline B$, of measure $15$ (Lemma~N.5(i)); Lemma~C.2 (\texttt{lem:Z}) gives
+$Z(h^B)\ge e^{-15\lambda|a_0|}$; Proposition~N.15(iv),(iii) gives
+$\|e^{-\Uc_{h^B}}\|_{L^2(\dmu)}\le S_2(B_{3\times5})$.  By Cauchy--Schwarz and
+Lemma~\ref{lem:Vbar}(ii),
+$\ev{\Vb^2}{h^B}\le e^{15\lambda|a_0|}\|\Vb^2\|_{L^2(\dmu)}S_2(B_{3\times5})\le
+e^{15\lambda|a_0|}9^{p'}V_*S_2(B_{3\times5})$.
+
+\emph{Step 3 (strips).}  Exactly Step~3 of Theorem~D.4, which depends only on $R=S_a$ and $B$:
+each $\Delta=\Delta_{l,k}\not\subseteq B$ lies in one ring $\mathcal L_j$, $j\ge1$, and receives
+a strip of width $j$, parallel to the time-zero line if $|l|=1+j$ (class (P)) and bounded by two
+lines of constant $x^1$ if $|l|\le j$ (class (T)) (Lemma~N.11(iv)); hence
+$\sum_{\Delta\in\mathcal D(h,B)}e^{-m_1w_\Delta}\le\overline\Sigma_{3\times5}$
+(Lemma~N.11(ii),(vi)).
+
+\emph{Step 4 (comparison term).}  Lemma~D.2(a) (\texttt{lem:D2}), with $F=\sum\overline
+Q_{n,n',k,k'}$ and these pieces, $R$, $B$, $h$ and the strips of Step~3, together with
+Lemma~\ref{lem:Vbar}(iv), gives
+\[
+ |\ev{\Vb^2}{h}-\ev{\Vb^2}{h^B}|\le C_7c_U\GJS{\Vb^2}\,\overline\Sigma_{3\times5}
+ \le C_7c_U\overline\Sigma_{3\times5}\cdot9K_1K_2^{8p'}(4p')!\,\lambda^2\Bigl(\sum_n|a_n|\Bigr)^2 .
+\]
+The hypotheses of Lemma~D.2 hold: $F$ is a finite sum of localized monomials of type (1.1.6),
+which the lemma admits (``of type (1.1.5) or (1.1.6)''); $R\subseteq B$; $h\in\CE$; every
+strip has positive width $j\ge1$ and separates $\Delta$ from $\bigcup S_a$.  The estimates
+inside Lemma~D.2 are Source Fact~2.2 (\texttt{sf:CE2}; Assumption~A8(iv)) for the pairs
+\begin{itemize}
+\item $Q_1=\overline Q_{n,n',k,k'}$: type (1.1.6), $r=2$, degrees $n,n'\le2p'<\bar n$,
+localized in $\Delta_{0,k},\Delta_{0,k'}\in S_a$, kernel $w_{n,k}\otimes w_{n',k'}\in L^2(\R^4)$;
+\item $Q_2=U_{\Delta,n''}$, $1\le n''\le2p'$, $\Delta\in\mathcal D(h,B)\cap\mathcal L_j$: type
+(1.1.6), $r=1$, localized in $\Delta$, kernel $\lambda a_{n''}h\mathbf 1_\Delta$
+(Lemma~N.18(i));
+\item the cutoff $h_\alpha=h^B+\alpha(h-h^B)\in\CE$, $0\le\alpha\le1$ (Lemma~N.5(ii));
+\item the strip of Step~3, of width $j$: parallel (class (P), case P3 of \S\ref{sec:cases}) or
+transverse, bounded by two lines of constant $x^1$ (class (T), case P4).
+\end{itemize}
+Because $Q_1$ is of type (1.1.6), none of these applications is the case A8(iv)-T as the record
+defines it (Assumption~A8, item (iv-T): ``Source Fact~2.2 applied to a sharp-time monomial
+$Q_1$ of type (1.1.5)''); all are applications of A8(iv) at its printed scope.
+
+\emph{Step 5.}  Steps~1, 2 and 4 give $\int\Vb^2dq_h\le M_B^2$.  No constant depends on $h$,
+$a$ or $h'$ (Step~5 of Theorem~D.4).
+\end{proof}
+
+\emph{Status of Theorem~\ref{thm:TD4}.}  Proved, conditional on A8(iv) at its printed scope in
+the cases P3--P4, and under the reading of Remark~N.2(iv) (\texttt{aux:notation-gjslattice};
+A8 Scope (d)) that the constructed objects, here the $\overline Q_{n,n',k,k'}$ and the
+$U_{\Delta,n''}$, are GJS's monomials of p.~593 and that $\Uc_h$ is GJS's $V(h)$.  All other
+inputs are statements of the record, used as it states them: Lemmas D.1, D.2, C.2,
+Proposition~N.15, Lemmas N.5, N.11, N.18, N.20--N.23$'$, N.24--N.28, N.32, and Assumptions A3,
+A4.
+
+\subsection{Theorem D.4 step by step, for $\Vb(h')^2$ in place of $V(h')(0)^2$}
+
+Item (d) of the commission asks, for each step of the proof of Theorem~D.4 and of what it
+invokes, whether it holds unchanged, holds with a stated change, or fails.  None fails.
+
+\begin{center}\small
+\begin{tabular}{@{}p{0.43\textwidth}p{0.51\textwidth}@{}}
+\toprule
+item of Theorem D.4 (record) & for $\Vb(h')^2$\\
+\midrule
+setting: $V(h')$ constructed (N.20), $Y=J_0V(h')$, $Q_V=Y^2$ & changed:
+$\Vb(h')=\sum\Vb_{n,k}=\int_{-1/2}^{1/2}J_\tau V(h')d\tau$ (Lemmas~\ref{lem:slice},
+\ref{lem:Vbar}(i)), and $\Vb(h')^2$\\
+box $B_{3\times5}(a)$, $R=S_a$, rings $\mathcal L_j$, ring constant $\overline\Sigma_{3\times5}$ &
+unchanged: the time support $[-\frac12,\frac12)$ of $\Vb(h')$ is row $0$, and its columns are
+those of $h'$\\
+$V_*$ & unchanged; used through $\|\Vb\|_2\le\|V(h')\|_2$ (Bochner norm inequality, $J_\tau$
+isometric) instead of $\|Y\|_2=\|V(h')\|_2$\\
+Lemma N.43(i): $Q_V$ as a sum of pieces (N.22, N.23(b)) & changed: Lemma~\ref{lem:Vbar}(iii),
+through N.28(c) for type (a)\\
+Lemma N.43(ii): pieces of type (1.1.5), two factors at time $0$ & changed: pieces of type
+(1.1.6), $r=2$, two factors integrated over row $0$\\
+Lemma N.43(iii): $\GJS{Q_V}\le9K_1K_2^{8p'}(4p')!\lambda^2(\sum|a_n|)^2$ & same bound; each kernel
+norm acquires the factor $\|\mathbf 1_{[-\frac12,\frac12)}\|_2=1$\\
+Step 1 (positivity, splitting) & unchanged\\
+Step 2: Lemma C.2, $S_2(B_{3\times5})$, Proposition N.15 & unchanged (the measures are the same)\\
+Step 2: $\|Y\|_4\le3^{p'}\|Y\|_2$ (N.21(ii)) & holds with a stated change: applied to
+$\Vb(h')\in\bigoplus_{n\le2p'}\Gamma_n(\HH_G)$ (N.23$'$(ii)); the argument of N.21(ii) uses
+nothing else\\
+Step 3 (strips (P) and (T), $\overline\Sigma_{3\times5}$) & unchanged\\
+Step 4: Lemma D.2(a), with Lemma D.1 (class $\mathfrak F$ contains type (1.1.6)) and N.32 &
+unchanged in form; the first monomial of each pair is now of type (1.1.6) with $r=2$\\
+Step 4: ``every application to a square of class (T) is \dots A8(iv)-T'' & changed: class (T)
+is now the case P4 (two time-integrated monomials), not A8(iv)-T\\
+Step 5 (constants) & unchanged: the constant is $M_B^2$\\
+Appendix C (C.2, C.4 through Step 3 of D.2, C.5 through $S_2$) & unchanged: they concern the
+measures $dq_{h_\alpha}$ and $\Uc_{h-h^B}$, which do not change\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{tlemma}[from the Euclidean bound to the resolvent-weighted quantity]\label{lem:fkn}
+Let $g\in\CH$, $H=H(g)$, $\Om=\Om_g$, $c_g=\ip{\Om_g}{\Om_0}>0$ and
+$\psi_s=e^{-sH}\Om_0$ (\S4 of the record); let $h$ be real and measurable with
+$\|h\|_\infty\le1$ and $\supp h\subseteq[a,a+2]$, and $X:=V(h)$.
+\begin{enumerate}
+\item[\rm(i)] For every $s>0$, $Xe^{-sH}$ is a bounded operator.
+\item[\rm(ii)] For $T\ge1$ and $-\frac12\le\tau<\tau'\le\frac12$,
+\[
+ \int J_\tau X\cdot J_{\tau'}X\,dq_{h_{T,g}}
+ =\frac{\ip{X\psi_{T+\tau}}{e^{-(\tau'-\tau)H}X\psi_{T-\tau'}}}{\|\psi_T\|^2} .
+\]
+\item[\rm(iii)] $\lim_{T\to\infty}\int\Vb(h)^2\,dq_{h_{T,g}}=\ip{X\Om}{k(H)X\Om}$.
+\end{enumerate}
+\end{tlemma}
+
+\begin{proof}
+(i) By Assumption~A5(i) (\texttt{A:domain}), $\Ran e^{-sK(g)}\subseteq D(X)$, and
+$e^{-sH}=e^{sE(g)}e^{-sK(g)}$ has the same range; so $Xe^{-sH}$ is everywhere defined.  It is
+closed: if $\xi_m\to\xi$ and $Xe^{-sH}\xi_m\to\eta$, then $e^{-sH}\xi_m\to e^{-sH}\xi$, and $X$
+is closed, so $Xe^{-sH}\xi=\eta$.  The closed graph theorem makes it bounded.
+
+(ii) \emph{Step 0: clipping commutes with $J_\tau$.}  For $\ell>0$ let
+$c_\ell(y):=(-\ell)\vee(y\wedge\ell)$; it is $1$-Lipschitz.  For a cylinder function $F$ the
+identity $J_\tau(c_\ell\circ F)=c_\ell\circ J_\tau F$ is the definition of $J_\tau$ (proof of
+Lemma~N.22).  For general $F\in L^2(\dphi)$ approximate $F$ in $L^2$ by cylinder functions, the
+density by which that proof extends $J_\tau$ to $L^p$: $c_\ell\circ(\cdot)$ is continuous in
+$L^2$, and $J_\tau$ is an $L^2$-isometry.  So $J_\tau(c_\ell\circ F)=c_\ell\circ J_\tau F$.  In
+particular $|J_\tau F|\le C$ almost everywhere whenever $|F|\le C$, since then
+$J_\tau F=J_\tau(c_C\circ F)=c_C\circ J_\tau F$.
+
+\emph{Step 1: bounded functions.}  Let $F_1,F_2$ be real measurable functions of the time-zero
+field with $|F_i|\le C$, and let $-T<\tau<\tau'<T$.  We show
+\begin{equation}
+ \ip{\Om_0}{e^{-(T-\tau')K}F_2\,e^{-(\tau'-\tau)K}F_1\,e^{-(T+\tau)K}\Om_0}
+ =\int J_\tau F_1\cdot J_{\tau'}F_2\;e^{-\Uc_{h_{T,g}}}\,d\mu_0 ,\qquad K=K(g).
+ \label{eq:fknasym}
+\end{equation}
+This is an instance of Assumption~A2 (\texttt{A:fkn}, ll.~825--838), stated ``For all bounded
+time-zero functions $f,h'$, $T>0$, and $g\in\CH$'', ``together with the analogous multi-time
+formulas on finite slabs'': the functions $1,F_1,F_2,1$ sit at the times $-T,\tau,\tau',T$ of the
+slab $[-T,T]$, and A2's display puts the later time on the left.  The record uses these formulas
+in Lemma~4.1 at the symmetric times $\mp t/2$ and, in its formula (3), at one time $s$ placed
+anywhere in $[-T,T]$.  A2's wording does not restrict the positions of the times.
+
+The printed theorems behind A2, however, have functions of finitely many fields at the interior
+times.  Simon's Theorem~V.15 (p.~163) is printed for ``measurable functions on $R^k$ with
+$|G_j(x)|\le C(1+|x|^N)$'' of the fields $\phi_F(f_1),\dots,\phi_F(f_k)$, and GRS's
+Theorem~II.16 likewise.  For other functions Simon has only the Remark on p.~164, printed without
+proof.  So (\ref{eq:fknasym}) is derived here from the bounded case of Theorem~V.15, whose proof
+is printed (``Suppose first that $G_0,\dots,G_n$ are bounded \dots\ This proves (V.47) in case are
+bounded'', p.~164), by approximation.
+\begin{enumerate}
+\item[(1)] \emph{Approximants.}  Polynomials in finitely many fields $\varphi_0(f)$, $f$ real
+Schwartz functions, are dense in $L^2(\dphi)$.  This follows from Assumption~A1(c),
+$L^2(\dphi)=\Gamma(\HH_C)$, the closed span of the Wick monomials, together with the density of
+$\mathcal S(\R)$ in $\HH_C$; it is also the density by which the proof of Lemma~N.22 extends
+$J_\tau$.  Choose such polynomials $P_{i,m}\to F_i$ in $L^2(\dphi)$ and put
+$F_i^{(m)}:=c_C\circ P_{i,m}$.  Then $F_i^{(m)}$ is a bounded function of finitely many fields
+with $|F_i^{(m)}|\le C$.  Since $c_C$ is $1$-Lipschitz and $c_C\circ F_i=F_i$,
+$\|F_i^{(m)}-F_i\|_2\le\|P_{i,m}-F_i\|_2\to0$.
+\item[(2)] \emph{(\ref{eq:fknasym}) for the approximants.}  Apply Theorem~V.15 with $n=3$,
+$s_0=-T$, $t_1=T+\tau$, $t_2=\tau'-\tau$, $t_3=T-\tau'$ (all positive), $G_0=G_3=1$, and $G_1$,
+$G_2$ the bounded functions that define $F_1^{(m)}$, $F_2^{(m)}$.  The fields of both
+approximants are listed among $f_1,\dots,f_k$.  The hypotheses hold: a bounded function satisfies
+$|G_j(x)|\le C(1+|x|^N)$ with $N=0$; and $g\ge0$ is bounded with compact support, so
+$g\in L^1\cap L^{1+\epsilon}$.  Then $s_1=\tau$, $s_2=\tau'$, $s_3=T$.  The dictionary is A2's:
+Simon's $H=H_0+H_I(g)$ is the record's $K(g)$, his $U(g\otimes(s_0,s_3))$ is $\Uc_{h_{T,g}}$,
+his $J_s$ is the record's $J_s$, and his $\phi_F$ is the record's $\varphi_0$.  Theorem~V.15
+puts the earliest time on the left.  All the operators are self-adjoint and the right side is
+real, so taking the complex conjugate of its left side gives the ordering of
+(\ref{eq:fknasym}).  That the real Schwartz functions belong to Simon's class $F$ (``Let
+$f_1,\dots,f_k\in F$'', p.~163, where $F$ is not restated) is the reading under which A2 cites
+Theorem~V.15 for the record's time-zero fields.
+\item[(3)] \emph{The Hilbert side converges.}  Let $y:=e^{-(T+\tau)K}\Om_0$.  Every subsequence
+has a further subsequence on which $F_1^{(m)}\to F_1$ almost everywhere.  On it,
+$|F_1^{(m)}-F_1|^2|y|^2\le4C^2|y|^2\in L^1(\dphi)$, and dominated convergence gives
+$(F_1^{(m)}-F_1)y\to0$; hence $(F_1^{(m)}-F_1)y\to0$ along the whole sequence.  The semigroup
+is bounded, so $z_m:=e^{-(\tau'-\tau)K}F_1^{(m)}y\to z:=e^{-(\tau'-\tau)K}F_1y$.  Then
+$F_2^{(m)}z_m-F_2z=F_2^{(m)}(z_m-z)+(F_2^{(m)}-F_2)z\to0$, by $|F_2^{(m)}|\le C$ and the same
+subsequence argument for $z$.  So the left side of (\ref{eq:fknasym}) for the approximants
+tends to the left side for $F_1,F_2$.
+\item[(4)] \emph{The path side converges.}  $J_\tau$ is an isometry
+$L^2(\dphi)\to L^2(\dmu)$ (proof of Lemma~N.22), and $|J_sF_i^{(m)}|\le C$, $|J_sF_i|\le C$ for
+$s=\tau,\tau'$ by Step~0.  So
+\[
+ \bigl\|J_\tau F_1^{(m)}\,J_{\tau'}F_2^{(m)}-J_\tau F_1\,J_{\tau'}F_2\bigr\|_{L^2(\dmu)}
+ \le C\bigl(\|F_1^{(m)}-F_1\|_2+\|F_2^{(m)}-F_2\|_2\bigr)\to0 .
+\]
+Also $e^{-\Uc_{h_{T,g}}}\in L^2(\dmu)$ by A3, and Cauchy--Schwarz gives the convergence of the
+right side of (\ref{eq:fknasym}).
+\item[(5)] \emph{Conclusion.}  (\ref{eq:fknasym}) holds for $F_1,F_2$.  With $F_1=F_2=1$,
+Theorem~V.15 itself gives $\ip{\Om_0}{e^{-2TK}\Om_0}=Z(h_{T,g})$.
+\end{enumerate}
+So (\ref{eq:fknasym}) rests on Theorem~V.15 as printed, on A1(c), A3 and Lemma~N.22, and on A2's
+dictionary; Simon's Remark is not used.  Insert $K=H+E(g)$; the factors $e^{-2TE(g)}$ cancel in
+the quotient.  The operators $F_2$ (multiplication by a bounded real function) and
+$e^{-(T-\tau')H}$ are self-adjoint, so
+\begin{equation}
+ \int J_\tau F_1\,J_{\tau'}F_2\,dq_{h_{T,g}}
+ =\frac{\ip{F_2\psi_{T-\tau'}}{e^{-(\tau'-\tau)H}F_1\psi_{T+\tau}}}{\|\psi_T\|^2}
+ =\frac{\ip{F_1\psi_{T+\tau}}{e^{-(\tau'-\tau)H}F_2\psi_{T-\tau'}}}{\|\psi_T\|^2} ;
+ \label{eq:fknbdd}
+\end{equation}
+the second equality holds because the left side is real, so the middle term equals its complex
+conjugate.
+
+\emph{Step 2: truncation.}  Fix a real-valued representative of $X$, and for $\ell>0$ let
+$X^{[\ell]}:=(-\ell)\vee(X\wedge\ell)$, the clipped truncation of Lemma~4.3(ii).  It is a
+bounded real measurable function of the time-zero field, so (\ref{eq:fknbdd}) holds with
+$F_1=F_2=X^{[\ell]}$, and $J_\tau(X^{[\ell]})=(J_\tau X)^{[\ell]}$ by Step~0.  Now let
+$\ell\to\infty$.
+\begin{itemize}
+\item \emph{Path side.}  $(J_\tau X)^{[\ell]}(J_{\tau'}X)^{[\ell]}\to J_\tau X\cdot J_{\tau'}X$
+pointwise, with the majorant $|J_\tau X|\,|J_{\tau'}X|$.  The majorant is
+$dq_{h_{T,g}}$-integrable.  $X\in L^4(\dphi)$, being a finite sum of Wick powers (bound (V.6b)
+quoted in Assumption~A1(d)), and $J_\tau$ is an isometry of $L^4$, so $J_\tau X\in L^4(\dmu)$.
+Lemma~N.32 (\texttt{aux:d2-int}; hypothesis $h_{T,g}\in\CE$, Lemma~3.1(ii)) gives
+$J_\tau X\in L^2(dq_{h_{T,g}})$, and Cauchy--Schwarz in $L^2(dq_{h_{T,g}})$ gives the
+integrability.  By dominated convergence the left side of (\ref{eq:fknbdd}) tends to
+$\int J_\tau XJ_{\tau'}X\,dq_{h_{T,g}}$.
+\item \emph{Hilbert side.}  For $b>0$, $\psi_b=e^{bE(g)}e^{-bK(g)}\Om_0\in\Ran e^{-bK(g)}\subseteq
+D(X)$ by A5(i); so $|X|^2|\psi_b|^2\in L^1(\dphi)$.  Since $|X^{[\ell]}-X|^2|\psi_b|^2\le
+|X|^2|\psi_b|^2$ and $X^{[\ell]}\to X$ pointwise, dominated convergence gives
+$X^{[\ell]}\psi_b\to X\psi_b$ in $\HH$; this is the computation of Lemma~4.3(ii).  Take
+$b=T+\tau$ and $b=T-\tau'$, both $\ge\frac12$; since $e^{-(\tau'-\tau)H}$ is bounded, the
+right side of (\ref{eq:fknbdd}) tends to
+$\ip{X\psi_{T+\tau}}{e^{-(\tau'-\tau)H}X\psi_{T-\tau'}}/\|\psi_T\|^2$.
+\end{itemize}
+This proves (ii).  Simon's Remark on p.~164 (``More generally, the above holds if
+$G_j^F\in\bigcap_{p<\infty}L^p(Q_F)$ and $G_j^{s_j}=J_{s_j}G_j$'') would give (ii) directly; the
+proof above uses it nowhere, neither for $V(h)$ nor for the bounded truncations.
+
+(iii) By Lemma~\ref{lem:Vbar}(i) with $h'=h$, $\Vb(h)=\int_{-1/2}^{1/2}J_\tau X\,d\tau$ in
+$L^2(\dmu)$.  For $W\in L^4(\dmu)$ the map $U\mapsto\int UW\,dq_{h_{T,g}}$ is a bounded linear
+functional on $L^2(\dmu)$: $|\int UWdq_{h_{T,g}}|\le
+Z(h_{T,g})^{-1}\|U\|_2\|W\|_4\|e^{-\Uc_{h_{T,g}}}\|_4$, finite because $e^{-4\Uc_h}\in L^1(\dmu)$
+(Assumption~A3).  $\Vb(h)$ and every $J_\tau X$ lie in $L^4(\dmu)$ (Lemma~\ref{lem:Vbar}(ii);
+$J_\tau$ is isometric on $L^4$).  Applying the functional with $W=\Vb(h)$, and then for each
+$\tau$ with $W=J_\tau X$,
+\[
+ \int\Vb(h)^2dq_{h_{T,g}}=\int_{-1/2}^{1/2}d\tau\int_{-1/2}^{1/2}d\tau'\,
+ \int J_\tau XJ_{\tau'}X\,dq_{h_{T,g}} .
+\]
+\emph{Dominator.}  For $b\ge\frac12$, $X\psi_b=Xe^{-H/2}\psi_{b-1/2}$ and $\|\psi_{b-1/2}\|\le1$,
+so $\|X\psi_b\|\le\|Xe^{-H/2}\|<\infty$ by (i).  In (ii), $T+\tau\ge\frac12$ and
+$T-\tau'\ge\frac12$, and $\|\psi_T\|\ge c_g$ by Lemma~4.4 (\texttt{lem:slabvac}); so the
+integrand is bounded by $\|Xe^{-H/2}\|^2c_g^{-2}$, uniformly in $T\ge1$ and $\tau\ne\tau'$
+(by (ii) and the symmetry of the integrand).  \emph{Limit.}  Lemma~4.4 gives
+$\psi_s=\|\psi_s\|\hat\psi_s\to c_g\Om$; hence $X\psi_{T+\tau}=Xe^{-H/2}\psi_{T+\tau-1/2}\to
+c_gXe^{-H/2}\Om=c_gX\Om$ ($H\Om=0$), likewise $X\psi_{T-\tau'}\to c_gX\Om$, and
+$\|\psi_T\|^2\to c_g^2$; so the integrand tends to $\ip{X\Om}{e^{-|\tau-\tau'|H}X\Om}$ for
+$\tau\ne\tau'$.  The integrand is continuous off the diagonal (by (ii): $b\mapsto X\psi_b$ is
+continuous on $[\frac12,\infty)$ by (i), and $e^{-uH}$ is strongly continuous), hence
+measurable, and the diagonal is a null set.  Dominated convergence and Tonelli (with the spectral
+measure $\mu_{X\Om}$ of $X\Om$, and $e^{-|\tau-\tau'|E}\ge0$) give
+\[
+ \lim_{T\to\infty}\int\Vb(h)^2dq_{h_{T,g}}=\iint\ip{X\Om}{e^{-|\tau-\tau'|H}X\Om}\,d\tau\,d\tau'
+ =\int k(E)\,d\mu_{X\Om}(E)=\ip{X\Om}{k(H)X\Om} .\qedhere
+\]
+\end{proof}
+
+\emph{The role of the cutoff $h_{T,g}$} (item (c) of the commission).  Theorem~\ref{thm:TD4}
+holds for every $h\in\CE$; it is used only at the slab cutoffs $h_{T,g}$, $T\ge1$, $g\in\CH$,
+which lie in $\CE$ by Lemma~3.1(ii).  The limit $T\to\infty$ is taken at fixed $g$, with the
+$g$-dependent dominator $\|V(h)e^{-H(g)/2}\|^2c_g^{-2}$; that is harmless because the bound
+$M_B^2$ does not depend on $T$ or $g$.  The condition $T\ge1$ keeps the window
+$[-\frac12,\frac12]$ at distance at least $\frac12$ from the ends of the slab, which is what the
+dominator needs.  The slab-transfer statement that carries the passage is A2's multi-time
+formula for bounded functions at two times placed asymmetrically in the slab (Step~1 of the
+proof of Lemma~\ref{lem:fkn}(ii)).  It is extended to $V(h)$ by the truncation of the record's
+Lemma~4.3(ii).  The record's Lemma~4.1 states the two-time formula only at the symmetric times
+$\mp t/2$, and its one-time formula (3) at any time $s$.
+
+\begin{ttheorem}[bound on the resolvent-weighted moment]\label{thm:Mt}
+For every $\lambda_0\ge1$, $\Mt(\lambda_0)\le c_k^{1/2}M_B$.
+\end{ttheorem}
+
+\begin{proof}
+Fix $g\in\CH$ and $h$ as in Definition~\ref{def:Mt}, choose $a$ with $\supp h\subseteq[a,a+2]$,
+and let $X=V(h)$, $H=H(g)$, $\Om=\Om_g$, $Q=Q_g$.  Let $\mu$ be the spectral measure of $QX\Om$
+for $H$; it is supported in $\spec H\subseteq[0,\infty)$.  By Lemma~\ref{lem:ineq},
+\begin{align*}
+ \|(\lambda_0-iH)^{-1}QX\Om\|^2=\int\frac{d\mu(E)}{\lambda_0^2+E^2}&\le c_k\int k\,d\mu\\
+ &=c_k\ip{QX\Om}{k(H)QX\Om}\le c_k\ip{X\Om}{k(H)X\Om},
+\end{align*}
+the last step because $P_0$ commutes with $k(H)$ and $k\ge0$:
+$\ip{X\Om}{k(H)X\Om}=\ip{QX\Om}{k(H)QX\Om}+\ip{P_0X\Om}{k(H)P_0X\Om}$.  By
+Lemma~\ref{lem:fkn}(iii) and Theorem~\ref{thm:TD4} at $h_{T,g}\in\CE$ with $h'=h$,
+$\ip{X\Om}{k(H)X\Om}=\lim_T\int\Vb(h)^2dq_{h_{T,g}}\le M_B^2$.  Take the supremum over $g$ and
+$h$.  No gap is used in this proof.
+\end{proof}
+
+\emph{Comparison with the sketch.}  Step (c) states $\Mt^2\le2\sup_T\int Z^2dq_{h_{T,g}}$ for
+$Z=\int_{-1/2}^{1/2}J_\tau V(h_j)\,d\tau$ (here $\Vb(h_j)$); this holds, since $c_k\le2$ and the
+limit in Lemma~\ref{lem:fkn}(iii) is at most the supremum.  Step (d) states that the proof of
+Theorem~D.4 applies to $Z^2$ ``with the same box $B_{3\times5}$, the same rings and the same
+constant $M_B^2$, since $\|Z\|_2\le\|V(h')\|_2$ and the GJS norm is unchanged''.  That is
+confirmed by Theorem~\ref{thm:TD4}, with one precision: the GJS norm of the decomposition
+changes, its bound does not.
+
+\section{Assembly: proof of Theorem~\ref{thm:routeT}}\label{sec:assembly}
+
+(a) is Theorem~\ref{thm:Mt}.
+
+(b) Theorem~7.8 gives (G$_\gamma$) with $\gamma=m_1$; by (a), $M'=\Mt_*$ satisfies
+$M'\ge\Mt(\lambda_0)$, so Lemma~\ref{lem:rate} and Proposition~\ref{prop:onepath} hold for
+$\Psit_{m_1}$.  \emph{Theorem~11.1.}  Step~1 of its proof: given $\varepsilon>0$, choose $d\ge1$
+with $\Psit_{m_1}(d)<\varepsilon$ (Lemma~\ref{lem:rate}), and $g_0\in\G$ whose plateau interior
+contains $O_d$; for $g,g'\succcurlyeq g_0$, $g\equiv g'\equiv1$ on $O_d$, and
+Proposition~\ref{prop:onepath} gives $\|(\omega_g-\omega_{g'})|_{\A(O)}\|<\varepsilon$.  Step~2
+(limit functionals, compatibility, the state $\omega_\infty$) uses nothing else and is
+unchanged.  Step~3 (the rate): for $g\equiv1$ on $O_d$ and every $g'$ in the cofinal set
+$\{g'\in\G:g'\equiv1\text{ on }O_d\}$, Lemma~\ref{lem:rate} gives
+$\|(\omega_g-\omega_{g'})|_{\A(O)}\|\le\Psit_{m_1}(d)$, and the bound passes to the norm limit.
+The limit state is the one of the record: norm limits are unique.  \emph{Proposition~11.2} uses
+only the convergence of Theorem~11.1.  \emph{Theorem~12.2:} the record's proof derives (1)--(2)
+from Theorem~11.1 and Proposition~11.2, (3) from (1) and Proposition~12.1, and (4) from (1),
+Lemma~2.8 and Proposition~E.5; with the modified Theorem~11.1 these derivations are unchanged.
+\emph{Corollary~12.3:} its proof uses (1) in the form $\Psi_{m_1}(2n-R)\to0$, which holds for
+$\Psit_{m_1}$.
+
+(c) The statements used are those listed in (a)--(b), Lemmas~\ref{lem:transforms}--\ref{lem:rate}
+and~\ref{lem:ineq}--\ref{lem:fkn}, Theorems~\ref{thm:TD4}--\ref{thm:Mt}, and, from the record,
+Theorem~7.8, Propositions~2.6, 2.7, 8.1, 8.2, Lemma~9.1, Step~2 of Lemma~9.3, the first display
+of the proof of Lemma~10.1, the first assertion of Lemma~10.2, Step~2 of Theorem~11.1,
+Propositions~11.2, 12.1, Lemma~2.8, Proposition~E.5, the inputs of Theorem~\ref{thm:TD4}, and
+the inputs of Lemma~\ref{lem:fkn}: Lemmas~3.1(ii), 4.4, N.22 and N.32, the computation of
+Lemma~4.3(ii), and Assumptions A1(c), A1(d), A2 (with Simon's Theorem~V.15 as printed behind it),
+A3 and A5(i).  In the record, Theorem~5.1 enters the chain in two places.
+\begin{itemize}
+\item Through the second assertion of Lemma~10.2 (l.~2776), hence Lemma~10.3,
+Proposition~10.4, Lemma~10.5 and the instantiation of $\Psi_{m_1}$ at the head of \S11
+(l.~2921).
+\item Through the first sentences of the proof of Theorem~12.2 (ll.~3104--3106): ``(5) is
+Theorem~7.8 and Theorem~5.1.  These supply (G$_\gamma$) with $\gamma=m_1$ and (M$_2$), so
+Theorem~11.1 and Proposition~11.2 give (1)--(2)''.  So (M$_2$) reaches items (1)--(2) through
+Theorem~11.1, and item (5) directly.
+\end{itemize}
+None of these is used for items (1)--(4) here: Theorem~11.1 and Proposition~11.2 are re-proved
+with Proposition~\ref{prop:onepath} and Lemma~\ref{lem:rate}, and only the moment clause of
+item (5) still takes Theorem~5.1.  Theorem~D.4 enters only through Step~5 of Theorem~5.1, and
+A8(iv)-T only through Theorem~D.4 (Assumption~A8, item (iv-T): ``Used in Theorem~D.4 (through
+Lemma~D.2), hence in Theorem~5.1 and in every statement that consumes its constant $M$ \dots\
+not in \S7'').  A search of \S7 of the record (ll.~2055--2389) for \texttt{thm:M2},
+\texttt{thm:D4}, \texttt{M\_B} and ``transverse'' finds nothing.  The applications of
+Theorem~1.1.7 are those of Theorem~7.8 (through Lemma~7.4 and Theorem~D.3; cases P1, P2) and of
+Theorem~\ref{thm:TD4} (cases P3, P4).  \qed
+
+\section{The clustering input actually used}\label{sec:input}
+
+\subsection{What GJS print}\label{sec:printed}
+
+The following sentences were read on the rendered pages (images named in \S\ref{sec:setting});
+nothing longer is needed.
+\begin{itemize}
+\item p.~590: ``\textsc{Theorem} 1.1.1. \emph{Let $\lambda/m_0^2$ be sufficiently small.  The
+$\mathscr P(\phi)_2$ quantum field model exists as a limit of space cutoff theories and satisfies
+the Wightman axioms.}'' (the statement continues).
+\item p.~593: ``(1.1.5) $Q(x_0)=\int d\vec x\,w(x)\prod_{i=1}^r{:}\Phi(x_i)^{n_i}{:}$'' and
+``(1.1.6) $Q=\int dx_0Q(x_0)$''; ``$Q$ is said to be localized if $w(x)$ is supported in a
+product $\Delta_{j_1}\times\cdots\times\Delta_{j_n}\subset R^{2r}$ where $\Delta_{j_i}$ is the unit
+lattice square in $R^2$ centered at the lattice side $j_i\in Z^2$.''
+\item p.~594: ``For two localized monomials $Q_1$ and $Q_2$, with disjoint localization squares
+$\{\Delta^{(1)}_{j_i}\}$ and $\{\Delta^{(2)}_{j_l}\}$ respectively, let $d$ be the width of the
+widest strip bounded by two parallel lines, and separating the $\{\Delta^{(1)}_{j_i}\}$ from the
+$\{\Delta^{(2)}_{j_l}\}$'' (no period in the source).  ``\textsc{Theorem} 1.1.7. \emph{Let $m_0$,
+$K_2$ and $K_1$ be sufficiently large and let $\lambda$ be sufficiently small.  There are constants
+$0<m_1$ and $O(1)$ independent of $h$, $Q_1$ and $Q_2$ such that} (1.1.10)
+$|\int Q_1Q_2dq_h-\int Q_1dq_h\int Q_2dq_h|\le O(1)e^{-m_1d}\|Q_1\|\,\|Q_2\|$.''
+\item p.~595, in the proof of (1.1.11) with ``$Q=\prod_i\Phi(f_i)$'' for ``test functions
+$f_i\in C_0^\infty(\mathcal O)$'' (p.~594) and $V(g_i)$, $g_i=g\chi_{\Delta_i}$: ``We apply
+Theorem 1.1.7 to each term in the sum to obtain'' a sum over ``$i\in Z^2\cap\operatorname{supp}g$''
+of ``$O(1)e^{-m_1\operatorname{dist}(\mathcal O,\Delta_i)}$'', followed by ``As a special case,
+the cutoff Schwinger functions $S_h$ converge as $h\to1$.''  Then: ``In the monomial $Q(x_0)$
+of (1.1.5), suppose $x_0=(x_{1,0},\cdots,x_{r,0})$ where $x_{1,0}\le\cdots\le x_{r,0}$.''  And
+``\textsc{Theorem} 1.1.8. \emph{For $Q(x_0)$ of the form} (1.1.5), $|\int Q(x_0)dq_h|\le
+O(1)\|Q(x_0)\|$, \emph{uniformly as $h\to1$}.''
+\item p.~596: ``We let $A$ and $B$ denote monomials of type (1.1.5) of degree $|A|$ and $|B|$ and
+with kernels $w_A$ and $w_B$ respectively.  We assume that $A$ is localized at times
+$x_{i0}\le0$, and that $B$ is localized at times $x_{i0}\ge0$.''  ``In the next two results, we
+take all times $x_{1,0}=t=\cdots=x_{r,0}$ equal in $Q(x_0)$.  To indicate this restriction, we
+write $Q(t)$ in place of $Q(x_0)$.''  Theorem~1.1.10 then names an approximant
+``$Q(T)=\alpha(T)+\int\Phi(0,\vec x)h_T(\vec x)d\vec x$'', and Theorem~1.1.11 ``$n$\textsuperscript{th}
+degree polynomials $Q_n(t_j)$ of the form (1.1.5) with $r=1$'' with the bound ``(1.1.16)
+$|\int(A-Q)B_Tdq_h|\le O(1)\|A\|\,\|B\|e^{-\gamma T}$, uniformly in $h$''.  The proof of
+Corollary~1.1.9 on the same page writes ``Apply the theorem to
+$Q_1=Q(x_{i0}-x_{10})Q(x_{10}-x_{i0})^-$, where $Q$ has the form (1.1.5)''; that ``the theorem''
+is Theorem~1.1.8 is a reading, supported by the form of the bound that follows,
+$\int Q_1dq\le O(1)\|Q_1\|_{K_2}$.
+\item p.~597: ``After rotating and translating the strip separating $Q_1$ and $Q_2$ in Theorem
+1.1.7, and after choosing $A=Q_1$, $B_T=Q_2$ in Theorem 1.1.11, the proof follows from Theorem
+1.1.8, (1.1.16) and the above determination of $Q$.''  In the proof of Theorem~1.1.5 on the same
+page: ``where $\theta_A$ is the vector (1.1.13) corresponding to $A$''.
+\item p.~600: ``Proof of Theorem 1.1.8, assuming Theorem 1.1.10.  Choose $T=0$ and $B=I$ in
+Theorem 1.1.11.  Then $Q=0$, so Theorem 1.1.8 is a special case of Theorem 1.1.10.''  Both
+occurrences of ``1.1.10'' are misprints for 1.1.11; the record marks them [sic] (A8(vi),
+ll.~1236--1238).
+\item p.~628, ``Proof of Theorems 1.1.8 and 1.1.11'': the expansion (4.3) groups ``terms with
+common values of $i$ and $y_0$'', and ``set $Q_n(y_0)=\sum_{i=0}^n\int d\vec y\,w_i(y)\int
+{:}\Phi(y_1)\cdots\Phi(y_i){:}$\,.  (By removal of the Wick ordering in $Q_n(y_0)$, we may apply
+the norms of (1.1.8).)''
+\item p.~629: ``Theorem 1.1.11 follows from this inequality, while Theorem 1.1.8 is the special
+case $B=I$, $n=0$.''
+\end{itemize}
+
+\subsection{The applications of Theorem 1.1.7 behind items (1)--(4)}\label{sec:cases}
+
+Before Route T the record applies Theorem~1.1.7, for items (1)--(4), in the cases P1, P2 and in
+Theorem~D.4; after Route T in the cases P1--P4.  All cutoffs are in $\CE$, and the constant used
+is the printed $O(1)=C_7$ ``independent of $h$'', read over $\CE$ (A8 Scope (d)).
+
+\begin{center}\small
+\begin{tabular}{@{}p{0.05\textwidth}p{0.15\textwidth}p{0.22\textwidth}p{0.17\textwidth}p{0.12\textwidth}p{0.13\textwidth}@{}}
+\toprule
+case & where & $Q_1$ & $Q_2$ & strip & cutoffs\\
+\midrule
+P1 & Lemma 7.4 & sharp-time cylinder pieces at $-t/2$, type (1.1.5), one time & the same at
+$t/2$ & parallel & every $h\in\CE$\\
+P2 & Theorem D.3 (Lemma D.2) & sharp-time cylinder pieces at $s$, type (1.1.5), one time &
+$U_{\Delta,n}$, type (1.1.6), $r=1$ & parallel ($P_l$) & $h_\alpha$, $h=h_{T,g}$\\
+P3 & Theorem~\ref{thm:TD4}, class (P) & $\overline Q_{n,n',k,k'}$, type (1.1.6), $r=2$ &
+$U_{\Delta,n''}$, type (1.1.6), $r=1$ & parallel & $h_\alpha$, $h\in\CE$\\
+P4 & Theorem~\ref{thm:TD4}, class (T) & as in P3 & as in P3 & lines of constant $x^1$ & as in
+P3\\
+\midrule
+--- & Theorem D.4, class (T) (A8(iv)-T; not used after Route T) & $Q_{n,n',k,k'}$, type (1.1.5),
+two factors at time $0$ & $U_{\Delta,n''}$ & lines of constant $x^1$ & $h_\alpha$, $h\in\CE$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Theorem~D.4's class (P) applications, of the form P2 with two factors at time $0$, are not used
+after Route T either.
+
+\subsection{Two readings of p.~596}\label{sec:readings}
+
+The sentence ``In the next two results, we take all times $x_{1,0}=t=\cdots=x_{r,0}$ equal in
+$Q(x_0)$'' admits two readings.
+\begin{itemize}
+\item[\textbf{R1}] It fixes the form of the approximants: the notation $Q(t)$ it introduces
+occurs in Theorems~1.1.10--1.1.11 only for $Q(T)$ and $Q_n(t_j)$.  The monomials $A$ and $B$
+are monomials of type (1.1.5) in the sense of p.~595, whose factors may sit at different times
+$x_{1,0}\le\cdots\le x_{r,0}$.
+\item[\textbf{R2}] It restricts $A$ and $B$ themselves to monomials whose factors all sit at one
+time.
+\end{itemize}
+\emph{In favour of R1} (printed passages of \S\ref{sec:printed}):
+\begin{enumerate}
+\item[(a)] p.~595 introduces the times $x_{1,0}\le\cdots\le x_{r,0}$ of a monomial of type
+(1.1.5) and states Theorem~1.1.8 ``For $Q(x_0)$ of the form (1.1.5)''.  The proof of
+Corollary~1.1.9 applies ``the theorem'' (Theorem~1.1.8, by the form of the bound) to a product
+whose factors sit at different times.  On p.~600 GJS prove Theorem~1.1.8 by choosing $T=0$ and
+$B=I$ in Theorem~1.1.11, and p.~629 repeats that ``Theorem 1.1.8 is the special case $B=I$,
+$n=0$''.  So GJS obtain Theorem~1.1.8 as the case $A=Q(x_0)$, $B=I$ of Theorem~1.1.11.  On R2
+this derivation gives Theorem~1.1.8 only for monomials with all their factors at one time, short
+of the scope at which it is printed and used; on R1 it gives the printed scope.
+\item[(b)] p.~596 says ``$A$ is localized at times $x_{i0}\le0$'', with an index on the times.
+\item[(c)] In the proof of Theorem~1.1.5 on p.~597, ``$\theta_A$ is the vector (1.1.13)
+corresponding to $A$''; (1.1.13) is the vector that p.~595 builds for ordered, possibly distinct
+times (weaker evidence).
+\item[(d)] GJS's own application of Theorem~1.1.7 on p.~595 needs R1 (below).
+\end{enumerate}
+\emph{In favour of R2:} only the wording ``in $Q(x_0)$'', which could be read as concerning every
+monomial of the next two results.  The draft of this note offered a second argument, that the
+approximants have one Wick factor ($r=1$ in the statement of Theorem~1.1.11), so the sentence
+would be redundant for them.  p.~628 removes its premise: the approximants are built as
+$Q_n(y_0)$, with up to $n$ field factors at one time $y_0$ after the removal of the Wick
+ordering.  So the sentence has content for them.  No printed sentence states in words that $A$
+may have factors at different times, and in that narrow sense the printed text does not decide
+between R1 and R2.  But R1 is the reading under which GJS's own proofs are complete: at
+p.~595, and in the derivation of Theorem~1.1.8 at its printed scope (pp.~600, 629).
+
+\emph{Provenance.}  R1 is the ``multi-time reading of (1.1.5)'' that Remark~N.39 of the record
+names (l.~6816), applied to the monomial $A$ of Theorem~1.1.11.  The record's own objects
+already carry it: Definition~N.26(b) admits times ``equal or not'' (l.~5750), and Remark~N.27
+says ``Case (b) admits distinct times $x_{i,0}$, the reading of p.~595'' (l.~5783).
+\path{ugjs/PLAN.md}, Part~2 (ll.~312--315 at 49f2d23), records that monomials of type (1.1.6)
+``are reached in any orientation, after slicing, under the multi-time reading of (1.1.5)'',
+and that ``This is how GJS's own use on p.~595 is covered''.
+
+\emph{GJS's own use needs R1.}  On p.~595 GJS apply Theorem~1.1.7 to the pairs
+$(\prod_i\Phi(f_i),V(g_i))$ for all $i\in Z^2\cap\supp g$, that is, across strips of every
+orientation relative to $\mathcal O$.  $\prod_i\Phi(f_i)$ is a time-integrated monomial with
+$r$ factors of degree $1$ (type (1.1.6), split into localized pieces by (1.1.9)), and $V(g_i)$ is
+a sum of time-integrated monomials with $r=1$.  The printed proof takes ``$A=Q_1$'' of type
+(1.1.5); for a time-integrated $Q_1$ this is possible only after slicing in time, and for $r\ge2$
+the slices have their factors at different times.  So on R2 the printed proof of Theorem~1.1.7
+does not reach the application GJS make on p.~595, in the proof of their Theorem~1.1.1 (p.~590),
+at the step where the cutoff Schwinger functions converge (p.~595).  That step needs products
+of at least two fields.  On R1 the printed proof reaches it.  This is an observation about the
+source's logic; neither the record nor this note verifies any proof of GJS.
+
+\subsection{What the printed proof reaches}
+
+Following the usage of the record (A8 Scope (b), Remark~N.39, \S D.e.4), a pair
+$(Q_1,Q_2)$ separated by a strip $S$ is said to be \emph{reached by the printed proof} of
+Theorem~1.1.7 if, after the rigid motion that the proof performs (``rotating and translating
+the strip''), one of the following holds.
+\begin{itemize}
+\item[(a)] $Q_1$ and $Q_2$ are admissible as $A$ and $B_T$ in Theorem~1.1.11, and $B_T$ as
+$Q(x_0)$ in Theorem~1.1.8.  Relabelling $Q_1\leftrightarrow Q_2$ is allowed, since (1.1.10) is
+symmetric in $Q_1$ and $Q_2$.
+\item[(b)] $Q_1$ and $Q_2$ are integrals over time of slices for which (a) holds pairwise, and
+the bound for $(Q_1,Q_2)$ follows from the bounds for the pairs of slices by an integration that
+is written out (as in Proposition~\ref{prop:N39}).
+\end{itemize}
+The notion concerns the scope of the printed proof, not its correctness, which neither the record
+nor this note examines (A8 Scope (c)).  Three questions concern the motions and the constant of
+the printed proof.
+\begin{itemize}
+\item \emph{The constant.}  The printed proof takes its constant ``from Theorem 1.1.8'' at the
+same $h$ (p.~597).  p.~595 prints Theorem~1.1.8 ``uniformly as $h\to1$'', while p.~629 states that
+``the estimates of Theorems 1.1.8, 1.1.11, 3.1 and 4.1 are uniform in the space cutoff $h$''
+(Source Fact~2.4, \texttt{sf:printed}).  This question is common to P1--P4 and to every use of
+Theorem~1.1.7 in the record; it is not decided here.
+\item \emph{Translations} raise no question in P1--P3; in P4 they raise at most a bounded
+factor, of the same kind as the question of the constant.  In P1 and P2 both partners are
+sharp-time pieces.  In P3 and P4 the printed proof is applied after slicing, so again to
+sharp-time pieces: one time per slice of $U_{\Delta,n}$, two times per slice of a two-factor
+piece.
+  \begin{itemize}
+  \item A translation by $a\in\R^2$ is covariant.  Lemma~N.13: $T_a$ preserves $d\mu_0$, $\tau_a$
+  maps $\CE$ onto $\CE$, and $\int F\circ T_a\,dq_{\tau_ah}=\int F\,dq_h$.  It also carries a
+  constructed monomial to the constructed monomial with the translated kernel.  Indeed
+  $\Phi_\kappa(z)\circ T_a=\Phi_\kappa(z+a)$ (proof of Lemma~N.13(iii)) and the variance
+  $c_\kappa$ does not depend on $z$, so the regularized monomial of Definition~N.26 with kernel
+  $w$, composed with $T_a$, is pointwise the one with kernel $w(\cdot-a)$.  The limits agree,
+  because $F\mapsto F\circ T_a$ is an isometry of $L^2(\dmu)$ (Lemma~N.13(i)).
+  \item A sharp-time factor moved to another time lies in the square of the row of its new time.
+  Remark~N.2(ii): ``The choice of row changes neither the local degrees nor
+  $\|w(x_0,\cdot)\|_2$, hence not the norm (1.1.8)''.
+  \item In P3, both factors of a two-time slice start in row $0$.  A translation can therefore
+  only split them into different rows of one column.  That splits a local degree $n+n'$ into
+  $n$ and $n'$, which does not increase the norm (1.1.8): $K_2^{2(n+n')}$ is unchanged and
+  $n!\,n'!\le(n+n')!$.
+  \item In P4, after the rotation, the two factors of a piece with $k\ne k'$ start in different
+  rows of one column, and over part of the range their times are less than $1$ apart.  A
+  non-integer translation can then put both into one square.  That raises the weight in (1.1.8)
+  by $(n+n')!/(n!\,n'!)\le2^{n+n'}\le2^{4p'}$.  Translations by integers avoid this: they map
+  the lattice onto itself and change no norm, at the price of at most one unit of the separation
+  $T$ in (1.1.16), a factor at most $e^{\gamma}$.  Either way the effect is a bounded factor, of
+  the same kind as the question of the constant; the verdicts below are not affected.
+  \end{itemize}
+\item \emph{Rotations} are needed only for P4 (and for the record's class (T) of
+Theorem~D.4).  For P1--P3 the strip is parallel, and relabelling $Q_1\leftrightarrow Q_2$ replaces
+the rotation by $\pi$.  A rotation $\varrho$ by $\pi/2$ about a lattice point maps the squares of
+p.~593 onto themselves, and lines of constant $x^1$ onto lines of constant $x^0$.  ``Rotating''
+presupposes that it also carries $dq_h$ to $dq_{h\circ\varrho^{-1}}$, and the constructed
+monomials to those with the rotated kernels.  Call this the \emph{rotation presupposition}.
+  \begin{itemize}
+  \item The record proves translation covariance (Lemma~N.13), not rotation covariance.
+  \item A proof would follow Lemma~N.13 with a radial mollifier.  It would use that the kernel $G$
+  of the free covariance is radial (Lemma~N.19(v)) and that the limits do not depend on the
+  mollifier (Lemma~N.28(e)).
+  \item It is not written here, and no proof in the chain of Theorem~\ref{thm:routeT} uses it.
+  \end{itemize}
+\end{itemize}
+
+\begin{tprop}[what the printed proof reaches]\label{prop:reach}
+\begin{enumerate}
+\item[\rm(a)] The pairs of case P1 are reached, on R1 and on R2.
+\item[\rm(b)] The pairs of case P2, and those of Theorem~D.4's class (P), are reached after the
+time slicing of $U_{\Delta,n}$, on R1 and on R2 (Proposition~\ref{prop:N39}).
+\item[\rm(c)] The pairs of case P3 are reached on R1.  The pairs of case P4 are reached on R1,
+granted the rotation presupposition.  On R2, the pairs of P3 and P4 whose two-factor piece
+$\overline Q_{n,n',k,k'}$ has $n,n'\ge1$ are not reached.  The pieces with a factor of degree $0$
+are reached after slicing, on either reading (for P4, granted the rotation presupposition).
+\item[\rm(d)] The pairs of Theorem~D.4's class (T) (A8(iv)-T) are reached neither on R1 nor
+on R2.
+\end{enumerate}
+\end{tprop}
+
+\emph{Status.}  This is a statement about the scope of the source's printed proof, with the notion
+of ``reached'' just defined.  Proved: (a), (b), (d); in (c), the assertions for P3 on R1, and
+the assertions on R2 except the reach of P4's degree-$0$ pieces.  Proved conditional on the
+rotation presupposition: in (c), P4 on R1, and the reach of P4's degree-$0$ pieces.
+
+\begin{proof}
+(a) Both monomials are of type (1.1.5), each with all its factors at one time, and the strip is
+parallel.  After a time translation, and relabelling $Q_1\leftrightarrow Q_2$ if necessary, the
+earlier monomial is localized at times $\le0$ and the later at times $\ge$ the width of the strip.
+On either reading they are admissible as $A$ and $B_T$, and $B_T$ in Theorem~1.1.8.
+
+(b) Proposition~\ref{prop:N39}.
+
+(c) \emph{P3 on R1.}  Fix the following data:
+\begin{itemize}
+\item a piece $\overline Q:=\overline Q_{n,n',k,k'}$ of Lemma~\ref{lem:Vbar}(iii);
+\item a square $\Delta=\Delta_{l,k''}\in\mathcal D(h,B)\cap\mathcal L_j$ of class (P), so that
+$|l|=1+j$;
+\item a degree $1\le n''\le2p'$, and $\alpha\in[0,1]$.
+\end{itemize}
+Write $U:=U_{\Delta,n''}$ and $q:=dq_{h_\alpha}$.
+
+\emph{Step 1: two-time slices.}
+\begin{itemize}
+\item By Lemma~\ref{lem:slice}, $\Vb_{n,k}=\int\Vb_{n,k}(\tau)\,d\tau$ in $L^2(\dmu)$.  The slices
+$\Vb_{n,k}(\tau)=\lambda a_nJ_\tau W_n(h'_k)$ lie in the $n$-th chaos.  This follows from the
+proof of Lemma~\ref{lem:Vbar}(i), since $J_\tau$ maps a Wick power to the Wick power of the image
+variable (proof of Lemma~N.22).
+\item On a finite sum of chaoses $\|\cdot\|_4\le3^{p'}\|\cdot\|_2$, by the argument of
+Lemma~N.21(ii).  So $\tau\mapsto\Vb_{n,k}(\tau)$ is also strongly measurable and Bochner
+integrable in $L^4(\dmu)$, with the same integral.
+\item The product $L^4\times L^4\to L^2$ is bounded and bilinear (H\"older).  So
+\[
+ \overline Q=\Vb_{n,k}\Vb_{n',k'}=\iint\overline Q(\tau,\tau')\,d\tau\,d\tau'
+\]
+as an $L^2(\dmu)$-valued Bochner integral, where
+$\overline Q(\tau,\tau'):=\Vb_{n,k}(\tau)\Vb_{n',k'}(\tau')$ lies in $L^4(\dmu)$.
+\item For $\tau,\tau'\in[-\frac12,\frac12)$, Lemma~N.28(c) (type (b)) identifies
+$\overline Q(\tau,\tau')$ with the localized monomial of type (1.1.5) with kernel
+$\lambda^2a_na_{n'}h'_k\otimes h'_{k'}$ and two factors at the times $\tau,\tau'$.  It is localized
+in $\Delta_{0,k}$ and $\Delta_{0,k'}$, with the local degrees of $\overline Q$.
+\item Hence
+$\GJS{\overline Q(\tau,\tau')}=K_1\bigl[\prod_\Delta K_2^{2N(\Delta)}N(\Delta)!\bigr]
+\lambda^2|a_na_{n'}|\,\|h'_k\|_2\|h'_{k'}\|_2$.  Since the time factor of the kernel has $L^2$ norm
+$1$, $\iint_{[-\frac12,\frac12)^2}\GJS{\overline Q(\tau,\tau')}\,d\tau\,d\tau'=\GJS{\overline Q}$.
+\end{itemize}
+
+\emph{Step 2: the covariance.}  For $W\in L^4(\dmu)$ the maps $V\mapsto\Cov_q(V,W)$ and
+$V\mapsto\Cov_q(W,V)$ are bounded linear functionals on $L^2(\dmu)$:
+\[
+ \Bigl|\int VW\,dq\Bigr|\le Z(h_\alpha)^{-1}\|V\|_2\|W\|_4\|e^{-\Uc_{h_\alpha}}\|_4,\qquad
+ \Bigl|\int V\,dq\Bigr|\le Z(h_\alpha)^{-1}\|V\|_2\|e^{-\Uc_{h_\alpha}}\|_2 ,
+\]
+both finite by A3.  Apply them first with $W=U\in L^4(\dmu)$, then, for each $(\tau,\tau')$,
+with $W=\overline Q(\tau,\tau')$.  With $U=\int U(t)\,dt$ (Lemma~\ref{lem:slice}) this gives
+\[
+ \Cov_q(\overline Q,U)=\iint d\tau\,d\tau'\int dt\ \Cov_q\bigl(\overline Q(\tau,\tau'),U(t)\bigr).
+\]
+
+\emph{Step 3: one triple.}  Let $\tau\ne\tau'$ and let $t$ lie in row $l$.
+\begin{itemize}
+\item $\overline Q(\tau,\tau')$ is a localized monomial of type (1.1.5) with its factors at the two
+times $\tau,\tau'$ of row $0$.  $U(t)$ is one with a single factor at the time $t$, localized in
+$\Delta$.
+\item The parallel strip of class (P), of width $j$, separates their localization squares.
+\item On R1 the pair is reached in the sense of (a).  After a time translation and, if $l<0$,
+relabelling, the earlier monomial is admissible as $A$ and the later as $B_T$ in
+Theorem~1.1.11, and $B_T$ in Theorem~1.1.8.
+\item Its printed bound is $C_7e^{-m_1j}\GJS{\overline Q(\tau,\tau')}\GJS{U(t)}$.
+\end{itemize}
+
+\emph{Step 4: integration.}  Steps~1--3 and Lemma~\ref{lem:slice}(ii) give
+\[
+ |\Cov_q(\overline Q,U)|\le C_7e^{-m_1j}\GJS{\overline Q}\GJS{U} .
+\]
+This is the bound that
+Theorem~\ref{thm:TD4} takes from Lemma~D.2(a) for this pair.  So P3 is reached on R1, in the sense
+of (b).
+
+\emph{P4 on R1, granted the rotation presupposition.}  After a rotation $\varrho$ by $\pi/2$ about
+a lattice point, the following hold.
+\begin{itemize}
+\item The strip of class (T) becomes parallel.
+\item $\overline Q$ and $U$ become time-integrated monomials with the rotated kernels.
+$w_{n,k}\circ\varrho^{-1}$ is again bounded and vanishes outside one square; the product
+structure, the $L^2$ norms and the local degrees are preserved.
+\item The measure becomes $dq_{h_\alpha\circ\varrho^{-1}}$, and $h_\alpha\circ\varrho^{-1}\in\CE$.
+\end{itemize}
+Granted that the constructed objects and the measures transform in this way, Steps~1--4 apply in
+the rotated frame; the new time of a factor is, up to sign, its old space coordinate.
+
+\emph{On R2.}
+\begin{itemize}
+\item If $n,n'\ge1$, R2 admits as $A$ or $B$ only monomials with all their factors at one time.
+The slices $\overline Q(\tau,\tau')$ with $\tau\ne\tau'$ are therefore admissible neither as $A$
+nor as $B$.
+\item They carry the whole integral of Step~1, because the diagonal $\tau=\tau'$ is a null set.
+So the printed proof gives no bound for them, and the pair is not reached.
+\item For P4 the same holds in the rotated frame.  If the rotation presupposition fails, the
+printed proof does not reach P4 at all; so P4 is not reached on R2 either way.
+\item Pieces with $n,n'\ge1$ occur, because $a_{2p'}>0$.
+\item If $n=0$ (or $n'=0$), the factor of degree $0$ is the constant $\lambda a_0\int h'_k$.  So
+$\overline Q_{0,n',k,k'}=(\lambda a_0\int h'_k)\,\Vb_{n',k'}$ is a constant times a
+time-integrated monomial with $r=1$.  Its pairs with $U$ are reached after slicing both
+partners, on either reading.  Both partners are time-integrated with one factor, so all their
+slices are one-time monomials, and Steps~1--4 above apply with one-factor slices in place of
+two-time slices.  For P4 this holds in the rotated frame, granted the rotation
+presupposition.
+\end{itemize}
+
+(d) This is the record's analysis (\S D.e.4, \texttt{sub:d4-transverse}, p.~101): a rotation by a
+right angle ``turns the sharp-time piece of $Q_V$ into an object with fixed spatial position and
+integrated times, which is not of type (1.1.5) in the rotated frame''.  It is not of type (1.1.6)
+either, its kernel being concentrated on a line.  Slicing does not help: the slices in the new time
+have spatial kernels concentrated at one point, which are not in $L^2$.  This holds on both
+readings.
+\end{proof}
+
+\begin{trem}[the obstruction on R2; an argued observation]\label{rem:obstruction}
+On R2, a pair across a strip bounded by lines of constant $x^1$ is reached only if, after the
+rotation, every slice of each monomial has all its factors at one time.
+\begin{itemize}
+\item A time-integrated monomial with $r\ge2$ factors of positive degree and a nonzero kernel in
+$L^2(\R^{2r})$ never has this property, because the set where two of its time coordinates
+coincide is a null set of $\R^{2r}$.
+\item Nor does a sharp-time monomial of positive degree and positive spatial extent
+(Proposition~\ref{prop:reach}(d)).
+\end{itemize}
+So on R2 the printed proof reaches a transverse pair only if both monomials are time-integrated,
+each with at most one factor of positive degree.
+
+Now take the comparison of Lemma~D.2 around a box $B$ of fixed shape, independent of the cutoff.
+Apply it to a quadratic Euclidean observable of $V(h)$, that is, a sum of products of two factors
+of positive degree at different points, whose localization squares lie in a row $l'$.
+\begin{itemize}
+\item The charged squares in the rows $l'-1,l',l'+1$ outside $B$ admit no parallel strip of positive
+width.  This is Lemma~N.7(iv), which holds for every rectangle of squares containing the
+observable's squares.
+\item Such squares occur for suitable $h\in\CE$: for example $h=h_{T,g}$ with $T\ge|l'|+2$ and
+$\supp g$ charging a column outside $B$.
+\item For $B_{3\times5}$, Remark~N.12(b) shows in addition that uniformity in $h\in\CE$ forces the
+transverse strips for the other side squares of the rings.
+\end{itemize}
+So such a comparison applies Theorem~1.1.7 across transverse strips to two-factor pieces of
+positive degrees, and it is not reached on R2.
+
+This is an argued observation, not a theorem: the class of ``routes'' is not defined.  A box that
+grows with $\supp h$ escapes the argument, at the price of uniformity in $h$; Theorem~D.3 is of
+that kind.  The observation locates the step at which the stronger claim fails for routes of this
+type.  That claim is: ``after Route T, items (1)--(4) rest only on cases the printed proof reaches,
+whatever the reading''.  Not excluded: a route that avoids quadratic observables, or one that
+avoids the comparison method.
+\end{trem}
+
+\subsection{Verdict}
+
+\emph{The category.}  The commission distinguishes three categories: a case is (i) reached by the
+printed proof, (ii) covered by the printed statement only, or (iii) dependent on a reading.
+\begin{itemize}
+\item The cases P3--P4 that Route T needs fall in category (iii), dependent on a reading.
+\item They are covered by the printed statement of Theorem~1.1.7: two localized monomials, a
+strip of any orientation, a constant independent of $h$.
+\item They are reached by the printed proof on reading R1 of p.~596, the reading under which
+GJS's own proofs are complete (\S\ref{sec:readings}).  For P4 this holds granted the rotation
+presupposition.
+\item On R2, their pieces of positive degrees are covered by the printed statement only, in both
+orientations.
+\end{itemize}
+
+\emph{What Route T changes.}
+\begin{itemize}
+\item \emph{Before.}  Items (1)--(4) rest on A8(iv)-T, which the printed proof reaches on no
+reading.  They also rest on P1, P2 and Theorem~D.4's class (P), which it reaches on both
+readings.
+\item \emph{After.}  They rest on P1 and P2, reached on both readings, and on P3 and P4, reached
+on R1 (P4 granted the rotation presupposition).
+\item \emph{On R1} every application behind items (1)--(4) is reached.
+\item \emph{On R2} neither the record nor Route T achieves that.  The record keeps the unreached
+class (T) of Theorem~D.4; Route T has the unreached pieces of positive degrees of P3 (parallel)
+and P4 (transverse).
+\end{itemize}
+Route T therefore does not remove every dependence of items (1)--(4) on unreached cases.  It
+replaces a case that no reading reaches by reading R1.  It adds no input to the record's imports
+(Lemma~\ref{lem:fkn}).
+
+\emph{Readings and presuppositions that remain for items (1)--(4) after Route T.}
+\begin{enumerate}
+\item R1 of p.~596, and for P4 the rotation presupposition.  Both matter only for the question
+whether the printed proof reaches P3--P4.  Under the record's import standard (the printed
+statement at its printed scope) neither is needed.
+\item The readings the record declares, with the open items of
+\path{part_i/C5_reading_record.md} named there:
+  \begin{itemize}
+  \item A1 Scope (ll.~797--804): the sources' $V(g)$ is the record's.
+  \item A3 Scope (ll.~919--927): Simon's and GJS's interaction is $\Uc_h$.
+  \item A6 Scope (ll.~1028--1046): the fields of GJ1 and GJ2.
+  \item A8 Scope (d) (ll.~1381--1399): the constructed objects are GJS's monomials, $\Uc_h$ is
+  GJS's $V(h)$, ``independent of $h$'' is read over $\CE$, and the $O(1)$ constants depend on the
+  printed thresholds only.
+  \end{itemize}
+Route T adds monomials of type (1.1.6) with $r=2$ to the objects of A8 Scope (d); the record's
+Definition~N.26(a) already covers them.
+\item The question of the constant, taken from Theorem~1.1.8 at the same $h$.  It affects every
+case alike, as in the record.  The translation question named in the draft of this note does not
+arise in P1--P3.  In P4 it reduces to a bounded factor of the same kind ($\le2^{4p'}$, or
+$\le e^\gamma$ with integer translations; see the ``Translations'' item before
+Proposition~\ref{prop:reach}).
+\end{enumerate}
+
+\section{Remark N.39 of the record: the parallel pairs are reached}\label{sec:N39}
+
+Remark~N.39 (\texttt{aux:d3-orient}, p.~96, ll.~6804--6825) says of the applications of
+Theorem~1.1.7 in Theorem~D.3: ``The partner $U_{\Delta,n}$ is of type (1.1.6); the printed proof
+reaches the pair only after $U_{\Delta,n}$ is sliced in time and the bound is integrated over the
+slices, the multi-time reading of (1.1.5) that the plan records (Part~2) and GJS do not print.''
+It leaves open whether the printed proof reaches the pair.  The finding N3 of 22 November states
+that it does, by a Fubini step and with no multi-time reading.  The argument, written out:
+
+\begin{tprop}[the pairs of Theorem D.3 are reached after slicing]\label{prop:N39}
+Let the data be those of Step~3 of the proof of Theorem~D.3 (\texttt{thm:D3}, p.~95): $g\in\CH$,
+$T>0$, $h=h_{T,g}$, $B=B_s(g,I)$, $R=R_s(I)$; $Q_1:=c_\beta Q_{\beta,\kappa}(s)$, a localized
+monomial of type (1.1.5) with $r_\beta$ factors of degree $1$, all at the time $s$, localized in
+squares of $R_s(I)$ (Lemma~N.36(ii),(v)); $\Delta=\Delta_{l,k}\in\mathcal D(h,B)$, so that
+$|l-l_s|\ge2$ (Lemma~N.38(i)); $1\le n\le2p'$; $\alpha\in[0,1]$ and $h_\alpha=h^B+\alpha(h-h^B)$;
+$w_\Delta:=|l-l_s|-1$.  Let $U_{\Delta,n}(t)$ be the slices of $U_{\Delta,n}$ given by
+Lemma~\ref{lem:slice} (kernel $\lambda a_n\tilde h\mathbf 1_\Delta$, $\tilde h$ a Borel version of
+$h$).  Then:
+\begin{enumerate}
+\item[\rm(i)] $\Cov_{h_\alpha}(Q_1,U_{\Delta,n})=\int_{l-1/2}^{l+1/2}\Cov_{h_\alpha}(Q_1,U_{\Delta,n}(t))\,dt$.
+\item[\rm(ii)] For every $t\in[l-\frac12,l+\frac12)$ the pair $(Q_1,U_{\Delta,n}(t))$ consists
+of two localized monomials of type (1.1.5), each with all its factors at one time ($s$, resp.\
+$t$), with localization squares in $R_s(I)$, resp.\ equal to $\Delta$, separated by the strip
+$P_l$ of Lemma~N.38(ii), which is parallel to the time-zero line and has width $w_\Delta\ge1$.
+\item[\rm(iii)] Source Fact~2.2 applied to each pair of (ii), with (i) and
+Lemma~\ref{lem:slice}(ii), gives
+$|\Cov_{h_\alpha}(Q_1,U_{\Delta,n})|\le C_7e^{-m_1w_\Delta}\GJS{Q_1}\GJS{U_{\Delta,n}}$, the bound
+that Step~3 of the proof of Theorem~D.3 takes from Lemma~D.2(a) for this pair.
+\item[\rm(iv)] Every pair of (ii) is reached by the printed proof directly, on R1 and on R2.
+\end{enumerate}
+The same holds, with $Q_1=Q_{n,n',k,k'}$ (two factors, both at the time $0$), for the class (P)
+applications of Theorem~D.4.
+\end{tprop}
+
+\emph{Status.}  (i)--(iii): proved, conditional on A8(iv) at its printed scope for pairs of
+one-time monomials across parallel strips, on A3, and on the reading of A8 Scope (d)
+(Remark~N.2(iv)) that the constructed objects, here $Q_1$ and the slices $U_{\Delta,n}(t)$, are
+GJS's monomials; the same conditions as for Theorem~\ref{thm:TD4} and the record's
+Theorem~D.3.  (iv): proved, as a statement about the scope of the source's printed proof.
+
+\begin{proof}
+(i) The map $V\mapsto\Cov_{h_\alpha}(Q_1,V)$ is a bounded linear functional on $L^2(\dmu)$:
+$|\int Q_1V\,dq_{h_\alpha}|\le Z(h_\alpha)^{-1}\|V\|_2\|Q_1\|_4\|e^{-\Uc_{h_\alpha}}\|_4$ and
+$|\int V\,dq_{h_\alpha}|\le Z(h_\alpha)^{-1}\|V\|_2\|e^{-\Uc_{h_\alpha}}\|_2$, finite by
+Assumption~A3 ($Z(h_\alpha)>0$, $e^{-4\Uc_{h_\alpha}}\in L^1(\dmu)$) and Lemma~N.28(b)
+($Q_1\in L^4(\dmu)$).  $U_{\Delta,n}$ (Definition~N.17) is the localized monomial of type (1.1.6)
+with $r=1$, degree $n$ and kernel $\lambda a_nh\mathbf 1_\Delta$ (Lemma~N.18(i)), the
+$L^2(\dmu)$-limit of Definition~N.26(a) (Step~3 of the proof of Lemma~D.2), and the kernel is
+bounded and vanishes outside $\Delta$.  Lemma~\ref{lem:slice}(i) gives (i).
+
+(ii) $Q_1$ is as stated by Lemma~N.36(ii),(v).  By Lemma~\ref{lem:slice}(ii), $U_{\Delta,n}(t)$ is
+a monomial of type (1.1.5) with one factor at the time $t$, localized in $\Delta$.  $P_l$
+separates $\Delta_{l,k}$ from the whole row $l_s$ (Lemma~N.38(ii)), hence the localization
+squares of the two monomials, which are disjoint because the width is positive.
+
+(iii) For each $t$, Source Fact~2.2 applies: two localized monomials with disjoint localization
+squares, individual degrees $1<\bar n$ and $n<\bar n$, separated by a strip of width $w_\Delta$
+(so the widest strip has width $\ge w_\Delta$ and $e^{-m_1d}\le e^{-m_1w_\Delta}$, as in Step~4 of
+Lemma~D.2), the cutoff $h_\alpha\in\CE$ (Lemma~N.5(ii)), and the printed hypotheses on $m_0$,
+$K_1$, $K_2$, $\lambda$ (the standing assumption).  It gives
+$|\Cov_{h_\alpha}(Q_1,U_{\Delta,n}(t))|\le C_7e^{-m_1w_\Delta}\GJS{Q_1}\GJS{U_{\Delta,n}(t)}$.
+Integrate over $t$ with (i), and use
+$\int\GJS{U_{\Delta,n}(t)}dt\le\GJS{U_{\Delta,n}}$ (Lemma~\ref{lem:slice}(ii)).
+
+(iv) Both monomials of the pair are of type (1.1.5), each with all its factors at one time, and
+the strip is parallel.  After a time translation (Lemma~N.13 and Remark~N.2(ii): the pieces stay
+sharp-time pieces in the rows of their new times, with unchanged norms), and relabelling
+$Q_1\leftrightarrow Q_2$ if $l<l_s$ ((1.1.10) is symmetric in $Q_1$ and $Q_2$), the earlier
+monomial is localized at times $\le0$ and the later at times $\ge w_\Delta$.  They are admissible
+as $A$ and $B_T$ in Theorem~1.1.11 on R2, hence also on R1, and $B_T$ is admissible in
+Theorem~1.1.8.  For
+Theorem~D.4's class (P) the same proof applies with $Q_1=Q_{n,n',k,k'}$, whose two factors both
+sit at the time $0$ (Lemma~N.43(ii)).
+\end{proof}
+
+So the slicing of $U_{\Delta,n}$ uses no multi-time reading: its slices have one factor
+($r=1$, Definition~N.17), and $Q_1$ has all its factors at one time.  What GJS do not print is
+the Fubini step (i), (iii).  The finding N3 is confirmed.  Proposed wording for Remark~N.39, in
+place of the clause after the semicolon: ``the printed proof reaches the pair after
+$U_{\Delta,n}$ is sliced in time and the bound is integrated over the slices, a Fubini step that
+GJS do not print (\path{ugjs/route_t/route_t.tex}, Proposition~T.19); every pair of slices consists of
+two monomials of type (1.1.5), each with all its factors at one time, so the pair is reached on
+either reading of the equal-times sentence of p.~596, and no multi-time reading is needed.''
+Consequence: the uniform gap (Theorem~7.8), which applies Theorem~1.1.7 only through Lemma~7.4
+(P1) and Theorem~D.3 (P2), rests only on applications the printed proof reaches.
+
+\section{Status}\label{sec:status}
+
+\subsection{The statements of this note}
+
+\begin{center}\small
+\begin{tabular}{@{}p{0.22\textwidth}p{0.72\textwidth}@{}}
+\toprule
+statement & status\\
+\midrule
+Definition T.1 & definition\\
+Theorem T.2 & proved, conditional on: A1--A8 of the record, with A8(iv) used only in P1--P4,
+A8(iv)-T not used, and A2 used at two times placed asymmetrically in a slab (as formula (3) of
+the record's Lemma~4.1 uses it at one); the record's declared readings (A1, A3, A6 Scope; A8
+Scope (d)) and the open items of \path{part_i/C5_reading_record.md}; the statements of the record
+listed in \S\ref{sec:assembly}(c) and in the rows of this table\\
+Lemmas T.3, T.4, T.5 & proved (spectral theorem, Fubini, dominated convergence; no import)\\
+Lemma T.6 & proved, from Step~2 of the proof of Lemma~9.3 (Proposition~2.7, Locality of \S2.1),
+(G$_\gamma$), and Lemmas T.3--T.5\\
+Lemma T.7 & proved, from Proposition~8.2(ii) (first display of the proof of Lemma~10.1), the
+first assertion of Lemma~10.2, Proposition~2.6, Lemma~9.1(ii), (G$_\gamma$)\\
+Lemma T.8, Proposition T.9, Lemma T.10 & proved, from Lemmas T.3, T.6, T.7, Proposition~2.7,
+Lemma~3.1, Proposition~8.2(i), Lemma~9.1(i); $\Mt(\lambda_0)$ enters as a number, finite by
+Theorem~T.16\\
+Lemma T.11 & proved (elementary)\\
+Lemma T.12 & proved, from Definition~N.26 and Lemmas N.24, N.25, N.28(a) of the record, Fubini,
+Pettis's measurability theorem and the Bochner integral\\
+Lemma T.13 & proved, from Lemma T.12 and the record's Lemmas N.20(iv), N.21(ii) (its argument),
+N.23(b), N.23$'$(ii)--(iii), N.28(c), N.28(f)(2), and the isometry $J_\tau$ (proof of N.22)\\
+Theorem T.14 & proved, conditional on A8(iv) at its printed scope in the cases P3--P4 and on the
+reading of A8 Scope (d) (Remark~N.2(iv)); from Lemmas D.1, D.2, C.2, Proposition~N.15, Lemmas
+N.5, N.11, N.18, N.32, A3, Lemma~T.13.  Reached by the printed proof of Theorem~1.1.7 on R1
+(P4: granted the rotation presupposition), not on R2 (Proposition~T.17(c))\\
+Lemma T.15 & proved, from A2 (its multi-time formula for bounded functions on finite slabs, at two
+times placed asymmetrically in the slab, derived in Step~1 of (ii) from the bounded case of
+Simon's Theorem~V.15 as printed, by approximation), A1(c), A1(d), A3, A5(i), Lemma~N.22 (the
+definition of $J_\tau$, its density extension, its isometry), Lemma~N.32, Lemma~3.1(ii),
+Lemma~4.4, Lemma~T.13, and the truncation of Lemma~4.3(ii); Simon's Remark on p.~164 is not
+used\\
+Theorem T.16 & proved, from Lemmas T.11, T.15 and Theorem T.14 (hence conditional as T.14)\\
+Proposition T.17 & as a statement about the scope of the source's printed proof (notion of
+\S\ref{sec:input}): proved for (a), (b), (d), for P3 on R1, and for the assertions on R2 in (c)
+except the reach of P4's degree-$0$ pieces; proved, conditional on the rotation presupposition,
+for P4 on R1 and for the reach of P4's degree-$0$ pieces\\
+Remark T.18 & its two ingredients are proved: on R2 a transverse pair is reached only if each
+monomial has at most one factor of positive degree, and the comparison around a box of fixed shape
+needs transverse strips (Lemma~N.7(iv)).  Its conclusion about routes of that type is an argued
+observation: the class of routes is not defined\\
+Proposition T.19 & (i)--(iii): proved, conditional on A8(iv) at its printed scope (pairs of
+one-time monomials across parallel strips), A3 and the reading of A8 Scope (d); (iv): proved, as
+a statement about the source's printed proof\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{What Theorem 12.2 would rest on if the note were integrated}
+
+\emph{Items (1)--(4) and Corollary~12.3.}  Proved, with the rate function $\Psit_{m_1}$ in
+item (1), conditional on the following:
+\begin{itemize}
+\item A1--A8, with A8(iv) used in the cases P1--P4 only (A8(iv)-T not used), and with A2 used at
+two times placed asymmetrically in a slab (Lemma~T.15);
+\item the declared readings (A1, A3, A6 Scope; A8 Scope (d); the C5 items);
+\item the record's statements listed above.
+\end{itemize}
+Under the standard ``only cases the printed proof reaches'', they are conditional in addition on
+reading R1 of p.~596 (for P3--P4) and, for P4, on the rotation presupposition.  The question of
+the constant taken from Theorem~1.1.8 at the same $h$ is common to every case, as in the record.
+
+\emph{Item (5), the gap clause} (Theorem~7.8): unchanged.  It uses P1 and P2 only, which the
+printed proof reaches on either reading (Proposition~T.19).  \emph{Item (5), the moment clause}
+(Theorem~5.1): unchanged.  It still rests on Theorem~D.4, hence on A8(iv)-T.
+
+\emph{Section 13 of the record.}  Theorem~13.2 uses Lemma~9.3 with the bounded $X=B$
+(ll.~3207--3221), Theorem~7.8, and items (1), (3), (4) of Theorem~12.2.  Item (1) enters only
+through local-norm convergence (l.~3225); item (4) enters at l.~3227 and items (3)--(4) at
+l.~3234.  It uses
+neither $M$ nor $\Psi_{m_1}$.  After Route T it rests on what those items rest on.
+Remark~13.3 is context.
+
+\subsection{What the note does not do}
+
+\begin{itemize}
+\item It does not touch the sharp moment clause of item (5), Theorem~5.1, Corollary~5.2 or
+Theorem~D.4; they still rest on A8(iv)-T.
+\item It does not prove A8(iv)-T, P3 or P4, does not decide between R1 and R2, does not prove the
+rotation presupposition, and verifies no proof of GJS.
+\item It does not re-audit the record's statements it cites (Appendix~C, Lemmas D.1, D.2,
+N.5--N.43); it uses them as the record states them.
+\item It does not evaluate $S_2(B_{3\times5})$; $\Mt_*$ and $\Psit_{m_1}$ contain it through
+$M_B$.
+\item It is not integrated into \path{part_i/main.tex}.  Integration would touch the following
+places of the record (line numbers at 49f2d23).
+\begin{itemize}
+\item The imports paragraph of Theorem~12.2 (ll.~3083--3099).  It says the theorem uses
+A8(iv)-T ``for the sharp-time observable of Theorem~5.1'' and that ``The constant $M$ of
+item (5), and through it the rate $\Psi_{m_1}$ of item (1)'' contain $S_2$.  Also the first
+sentences of its proof (ll.~3104--3106).
+\item A8, item (iv-T), ``Used in'' (ll.~1166--1169), and A8 Scope (b) (ll.~1369--1377).
+\item A2: its parenthetical on the uses of the multi-time formulas (ll.~835--838, ``used in \S4
+in the two- and one-time forms'') and its ``Used in'' line (l.~848), which would add the
+asymmetric two-time use of Lemma~T.15(ii).
+\item The ``Integration of Appendix~D'' paragraph of the front matter (ll.~120--124).
+\item The introduction: the rate $\Psi_{m_1}$ (ll.~237--241 and 351); the strategy table,
+step (i) ``incl.\ A8(iv)-T'' (l.~251) and step (iv) ``(G)+(M$_2$)'' (l.~257); the dependency
+display (l.~280); Pillar~1 (ll.~356--368).
+\item The notation table: the rows $M$ (l.~613), $\Psi_\gamma$ (l.~618) and $d_0$ (l.~619).
+\item Remark~3.3 (ll.~1656--1657 and 1698--1701), which names $M$ and $\Psi_{m_{1,*}}$.
+\item Lemma~10.2, split into its decomposition and its bound.  Lemmas~10.3--10.5 and
+Proposition~10.4 replaced, and $\Psi_{m_1}$ redefined at the head of \S11 (l.~2921).
+\item Appendix~A: the rows $d_0$, shell count, $\Psi_\gamma$ and its tail (ll.~3369--3372), and
+l.~3378.
+\item Proposition~C.7 (ll.~4087--4101), the inventory of every application of Source Fact~2.2,
+which must add P3--P4.
+\item The Discussion (l.~3291), which calls $\Psi_{m_1}$ ``super-polynomial but sub-exponential''.
+$\Psit_{m_1}$ contains the same $T_{m_1}$ terms; that characterization was not checked for
+either function.
+\item The new statements T.3--T.16, and the wording of Remark~N.39 above.
+\end{itemize}
+\item A point for the record, not for this note.  The approximation in Step~1 of the proof of
+Lemma~T.15(ii) applies equally to the record's own Lemma~4.1.  A2 is stated ``For all bounded
+time-zero functions'', while its printed sources give the interior functions as functions of
+finitely many fields (Simon's Theorem~V.15; GRS's Theorem~II.16).  For other bounded functions,
+Lemma~4.1 rests on Simon's Remark on p.~164 or on this approximation.
+\end{itemize}
+
+\subsection{The steps an auditor of this revision should check first}
+
+\begin{enumerate}
+\item Lemma~T.15(ii), rewritten twice.  Check that A2's ``analogous multi-time formulas on finite
+slabs'' cover bounded functions at two asymmetric times.  Check the approximation of Step~1 by
+bounded cylinder functions, which rests that formula on the bounded case of Simon's
+Theorem~V.15 as printed.  Check the identity $J_\tau(c_\ell\circ F)=c_\ell\circ J_\tau F$ of
+Step~0.  Check the two dominated convergences of Step~2.
+\item Proposition~T.17(c), now written out for P3: the $L^4$-Bochner representation of the slices
+and the two-step use of the bounded covariance functional.
+\item The account of the printed evidence for R1 in \S\ref{sec:readings}, in particular the
+reading of p.~628.
+\item Remark~T.18, now stated as an argued observation.
+\end{enumerate}
+
+\appendix
+\section{Numerical checks (numerical; nothing is deduced from them)}\label{app:numerics}
+
+The script \path{check_route_t.py}, kept beside this note, was run on 23 November 2026 with
+the system \texttt{python3} (Python 3.14.7, numpy 2.5.2, scipy 1.18.1, mpmath 1.4.1), seed
+$20261123$; its output, \path{check_route_t.output.txt}, ends with ``ALL CHECKS PASSED''.  It checks:
+the closed form of $k$ against two quadratures at nine values of $E\in[10^{-6},100]$ (40-digit
+arithmetic, relative tolerance $10^{-12}$; maximal error $9.2\cdot10^{-30}$); the inequality of
+Lemma~T.11 on a grid of $4\cdot10^5$ points $E\in[0,10^4]$ for $\lambda_0\in\{1,1.0001,1.5,3,10\}$
+(minimal margin $3.5\cdot10^{-4}$) and the monotonicity of $k$; the transform of
+$f_{a,\varepsilon}$ (Lemma~T.5, Step~1) at four parameter sets (error $<10^{-9}$); the
+principal-value limit of Step~3 at three parameter sets, for $\varepsilon=10^{-2},10^{-3},10^{-4}$
+(errors decreasing like $\varepsilon$, the smallest $\le1.1\cdot10^{-4}$) and the bounds on $J$;
+the Gaussian tail $1-\Phi(x)\le e^{-x^2/2}/2$ on $[0,40]$; $\int_0^x\sinh u\,u^{-1}du\le\sinh x$;
+the resolvent transform and the identity of Lemma~T.7, Step~3, for a random discrete measure; the
+discrepancy formula of Lemma~T.4 for two functions that agree on $(-2,2)$; the separator tail of
+Step~2; the count of integers in a half-open interval of length $3$; the monotonicity of $\Xi$;
+$\int\|w(t,\cdot)\|dt\le\|w\|$ for random step kernels; and, for the free field with $n=1$,
+$m_0=1$, $h=\mathbf 1_{[0,2]}$, the inequality $\E[\Vb(h)^2]\le\E[V(h)^2]$ ($0.478\le0.709$).  The
+tolerances are printed in the output.
+
+Two checks were added with the revision, and the script was rerun on 23 November 2026 (23 lines
+PASS, ``ALL CHECKS PASSED'').
+\begin{itemize}
+\item \emph{The truncation of Lemma~T.15(ii), Step~2,} in a Gaussian toy: $X_i=Y_i^2-1$ for
+standard normal $Y_1,Y_2$ with correlation $\rho$.  The quantity $\E[X_1^{[\ell]}X_2^{[\ell]}]$
+is computed by the Mehler expansion in normalized Hermite polynomials, 120 terms, and compared
+with $\E[X_1X_2]=2\rho^2$.  For $\rho\in\{0.3,0.7,0.9\}$ and $\ell=0.5,2,8,32,64$ the errors
+decrease, to at most $2.2\cdot10^{-13}$ at $\ell=64$.  The first run of this check stopped at
+$\ell=32$ with an a priori tolerance of $10^{-6}$.  It printed FAIL because the error at
+$\ell=32$, $\rho=0.9$, is $1.03\cdot10^{-6}$: a true truncation error, not a numerical one.
+The level $\ell=64$ was then added.
+\item \emph{The free case of Lemma~T.15(ii)} ($\lambda=0$).  Here the formula reads
+\[
+ \E_{\mu_0}[\Phi(\tau,f)\Phi(\tau',f)]=\ip{\varphi_0(f)}{e^{-(\tau'-\tau)H_0}\varphi_0(f)} .
+\]
+The
+position-space value $\iint f(x)f(y)\,K_0(m_0|(u,x-y)|)/(2\pi)\,dx\,dy$ is compared with the
+momentum-space value $(2\pi)^{-1}\int|\hat f(k)|^2e^{-u\mu(k)}/(2\mu(k))\,dk$, for
+$f=\mathbf 1_{[0,1]}$, $m_0=1$, $u=\tau'-\tau\in\{0.3,1,2.5\}$.  The relative difference is
+$1.7\cdot10^{-15}$ (tolerance $10^{-8}$).
+\end{itemize}
+
+\end{document}

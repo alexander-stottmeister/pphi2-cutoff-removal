@@ -139,3 +139,17 @@ Commissioned by the author on 23 November 2026 after a status council of 22 Nove
 
 The reports are archived as the agents wrote them, except one line of `v6-public-texts-report.md` (§4, machine-path grep), where a command that spelled out two machine-path prefixes now names them in words. Inside the reports, `wording-main.md`, `repairs-main.md` and `public-texts.md` are the files archived here as `v6-wording-main-report.md`, `v6-repairs-main-report.md` and `v6-public-texts-report.md`; the diffs they name, `PASS2.md` and the council's brief of 23 November are not archived (`BRIEF.md` in this folder is the brief of 28 October).
 
+## Route T: the note for Phase C3 (23–24 November 2026)
+
+Commissioned by the author on 23 November 2026 with the audits above. The note is `../route_t/route_t.tex` (33 pages); `../route_t/README.md` says what it shows and what it does not. It is not integrated into the record and has not been read by a human.
+
+| file | what it is |
+|---|---|
+| `route-t-drafter-report.md` | the drafter's report on the first draft (25 pages) |
+| `route-t-audit-analysis.md` | independent audit of the analysis, its re-check of the revision, and its confirmation of the last round (24 November): every step of its part (§§1–4: T.1–T.16 and the proof of T.2) holds; no CRITICAL or MAJOR point |
+| `route-t-audit-sources.md` | independent audit of the note's claims about the printed sources and about what rests on what, and its re-check: quotations exact, the four kinds of application within the printed statement of Theorem 1.1.7; no CRITICAL or MAJOR point |
+| `route-t-revision-report.md` | the drafter's report on the two revisions (the Remark of Simon's p. 164 replaced by a written truncation and approximation argument) |
+| `route-t-docs-check.md` | check of `../route_t/README.md`, of the note's first page and of the public sentences about the note before the commit: 1 MAJOR point (a first-page sentence implied that the note covers Corollary 12.3 as stated before its restriction) and eight smaller ones, applied on 24 November; the corrections were not checked again |
+
+The reports are archived as the agents wrote them, except three lines in which a grep command that spelled out machine-path prefixes now names them in words. They refer to themselves and to each other under their working names (`route-t-drafter.md`, `route-t-revision.md`) and name diffs that are not archived.
+
