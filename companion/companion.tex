@@ -4,6 +4,10 @@
 % edited in R4, verified in R5 and corrected on 23-24 October 2026 (PLAN.md Part 10).
 % Revised edition of 7 November 2026 for the record of that date (PLAN.md, "Revised edition
 % (7 November 2026)").
+% Dated notice of 23 November 2026 in the box on p. 1 (council/README.md).  The edition, its
+% date and its epoch are unchanged.  The notice's space is taken from p. 1 only (the title block
+% below, the box set in footnote size, three kerns), so that pp. 2-20 keep their layout; on
+% p. 20 only the MMST entry differs (bib.tex regenerated on 23 November 2026).
 % Build from this folder: pdflatex twice.  Reproducible build for the tracked PDF:
 %   SOURCE_DATE_EPOCH=1794009600 FORCE_SOURCE_DATE=1 pdflatex -interaction=nonstopmode companion.tex
 % (1794009600 = 7 November 2026, 00:00 UTC; the edition of 24 October 2026 used 1792800000.)
@@ -16,17 +20,56 @@
   \normalsize Appelstra\ss e 2, 30167 Hannover, Germany}
 \date{7 November 2026}
 
+% The title block of article.cls with tighter skips (there: 2em above, 1.5em, 1em, 1.5em), for
+% the dated notice of 23 November 2026 within the 20-page budget (PLAN.md, Part 11, "Budget").
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \kern-40pt
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip .75em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip .25em%
+    {\large \@date}%
+  \end{center}%
+  \par
+  \vskip 0em}
+\makeatother
+
 \begin{document}
 \maketitle
+\kern-6pt
 
-\begin{statusnotice}
+\begin{statusnotice}\footnotesize
 \emph{Read this first.} This companion explains a research record, AI-assisted and not
 refereed, and proves nothing new; human verification is ongoing. This revised edition of
 7 November 2026 describes, with its numbers and pages, \texttt{part\_i/main.tex} of that
 date (110 pages), in which Appendix~D derives the uniform local moment and the item
 $\UGJS$ (A8(vi)) is retired. Audit item C5, a second human reading of the source page
 images, is open. Figures are illustrations, not evidence.
+
+\smallskip
+\emph{Notice of 23~November 2026.} An audit of 9~November found the record described here
+(commit f213cc8) using its free-field layer (momentum field, free Hamiltonian, translations,
+parity, dilations) without stating it; since 11~November Appendix~E supplies it, and the
+status sentence quoted in \S\S1 and 4 stands. The current record (23~November, 127~pages)
+restricts Corollary~12.3 (\S\S1, 2, 7, Fig.~1 here) to $\mathscr P(\xi)=\xi^4$ and cutoffs
+$0\le g\le1$ in \cite[(2.3)]{GJ3}; Theorem~12.2 is unchanged in substance. Statement numbers
+are unchanged; cited pages are up to seven too early. \S4's table and Fig.~1 predate
+A1(e)--(g); read their ``literal imports'' with the readings declared in A1, A3, A6 and A8,
+and A7's row as the covariance of $K(g)$ and the parity of $H_0$ and, for even $\mathscr P$,
+of $V(g)$. \S1's rate and gap are in working coordinates (general form: Remark~3.3). A third
+edition waits for the author's decision on Phase~C.
 \end{statusnotice}
+\kern-8pt
 
 \begin{abstract}
 \noindent A reading guide to the record of 7 November 2026 on the spatially cutoff
@@ -43,6 +86,7 @@ We explain why the question was open, how a uniform gap and moment and an exact 
 cone replace compactness, and what is not claimed.
 \end{abstract}
 
+\kern-14pt
 \paragraph*{How to read.}
 Fifteen minutes: this page, \S\ref{sec:result} (what is proved, under what),
 \S\ref{sec:architecture} with Fig.~\ref{fig:spine} (the architecture) and

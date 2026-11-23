@@ -19,6 +19,9 @@ published paper.
 > being stated. Appendix E of the record, dated 11 November, now defines and proves it; the
 > notice that stood here from 11 to 21 November is withdrawn.
 >
+> **24 November 2026.** An audit of 23 November restricted Corollary 12.3 to cutoffs
+> 0 ≤ g ≤ 1 and P(ξ) = ξ⁴; Theorem 12.2 is unchanged in substance. See [status](status.md).
+>
 > Nothing here has been refereed; audit item C5 is open; the work is AI-assisted and
 > human verification of it is ongoing. Treat every statement as a claim under active
 > verification. See [status](status.md).
@@ -34,7 +37,7 @@ averaging — converges in norm on every local algebra A(O),
 \lim_{g\in\mathcal G}\ \bigl\|(\omega_g-\omega_\infty)|_{\mathfrak A(O)}\bigr\| = 0 ,
 ```
 
-with a super-polynomial rate in dist(O, {g < 1}), explicit up to the finite constant of Theorem C.5. The limit is locally normal,
+with a super-polynomial rate in dist(O, {g < 1}), given by an explicit formula in unevaluated constants: those of the imported GJS Theorem 1.1.7 and the stability constant S₂ (Definition N.14), finite by Theorem C.5; Appendix A also names V_*, which the record bounds explicitly, and the filter of Lemma 9.1. The limit is locally normal,
 translation invariant, ℤ₂ invariant for even P, and a ground state of the Glimm–Jaffe
 dynamics in the spectral sense.
 
@@ -50,7 +53,7 @@ dynamics in the spectral sense.
 | [Provenance](provenance.md) | gates, corrections history, the citation dossiers |
 | [Figures](interactive/index.html) | eight interactive illustrations of the main results |
 
-The manuscript itself is [`part_i/main.pdf`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/main.pdf) (125 pp, document of
+The manuscript itself is [`part_i/main.pdf`](https://github.com/alexander-stottmeister/pphi2-cutoff-removal/blob/main/part_i/main.pdf) (127 pp, document of
 record).
 
 ## The shape of the proof

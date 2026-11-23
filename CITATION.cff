@@ -15,11 +15,13 @@ abstract: >-
   Theorem 1.1.7, used also across strips transverse to the time-zero line (a case its
   printed statement covers and its printed proof does not reach), together with standard
   construction inputs, the full net (omega_g) converges in norm on every local algebra in
-  the weak-coupling region, with a super-polynomial rate, explicit up to one finite
-  stability constant; the uniform local moment is derived in the record (Appendix D) by
+  the weak-coupling region, with a super-polynomial rate given by an explicit formula in
+  unevaluated constants, those of the imported clustering theorem and one finite
+  stability constant (and in an explicitly bounded constant and the chosen filter);
+  the uniform local moment is derived in the record (Appendix D) by
   comparing a cutoff with its restriction to a box of the source's lattice squares. The
   limit is locally normal,
-  translation and Z_2 invariant, and a ground state of the Glimm-Jaffe dynamics in
+  translation invariant, Z_2 invariant for even P, and a ground state of the Glimm-Jaffe dynamics in
   the spectral sense. The proof is Hamiltonian, via a local-perturbations-perturb-
   locally estimate built on an exact spectral filter and the exact light cone. The
   repository also contains the working drafts and the adversarial audit trail.
@@ -30,8 +32,8 @@ authors:
     affiliation: >-
       Institut fuer Theoretische Physik, Leibniz Universitaet Hannover, Germany
     orcid: "https://orcid.org/0000-0002-0145-0877"
-version: "1.2.0"
-date-released: "2026-11-21"
+version: "1.2.1"
+date-released: "2026-11-24"
 license:
   - CC-BY-4.0
   - MIT

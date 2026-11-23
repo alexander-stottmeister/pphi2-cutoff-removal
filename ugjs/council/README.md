@@ -118,3 +118,24 @@ The repair of the V4f findings (Appendix E of `part_i/main.tex`, with the rewrit
 ## Check of the documentation of the repair (12 and 21 November 2026)
 
 The repair was committed on 11 November (73bbb76) and held back until its documentation had been checked; a first check, started that day, was stopped unfinished at a usage limit. On 12 November a fresh Opus agent that had written none of it checked the commit: `docs-check-2026-11-12-report.md` (findings D3-1 to D3-11: 3 MAJOR, 8 MINOR, all about the documentation, two of the minor ones about the title-page notice of `part_i/main.tex`, which was rebuilt; builds, labels, statements, numerics, archived reports and page images confirmed). The findings were applied on 21 November, before the push, and the same agent re-checked the changes that day (rounds D3b and D3c, appended to the report file: all eleven findings closed; four further MINOR wording points, D3b-1 to D3b-4, applied and then confirmed closed, with nothing new). Dispositions: `part_i/README.md`, "Free-field appendix (2026-11-11)", paragraph "Documentation check".
+
+## Machine paths (23 November 2026)
+
+On 23 November 2026 the machine paths in five archived files of this folder (`BRIEF.md`, `ab-drafting-brief.md`, `r3-verifier-brief.md`, `v1-brief.md`, `v2-report.md`) were replaced by paths relative to the repository root and by two placeholders, `<scratch>` for the session's scratch directory and `<ws>/` for the folder on the author's machine that holds this repository and `AGENTS.md`; nothing else on those lines changed, and the git history keeps the originals.
+
+## Rounds V6: third audit of Appendix E, audit of the path to Theorems 12.2 and 13.2, repairs (23 November 2026)
+
+Commissioned by the author on 23 November 2026 after a status council of 22 November (three Opus agents; its memos are not in this repository; record in the knowledge base). All agents were Opus; none audited text it had written. Gate record: `../../part_i/README.md`, "Audit and corrections (2026-11-23)".
+
+| file | what it is |
+|---|---|
+| `v6-appendix-e-audit.md` | third, independent audit of Appendix E (E.1–E.7), line by line, with the quotations against the page images: all hold; three MINOR findings |
+| `v6-chain-audit.md` | audit of the Locality paragraph, Proposition 2.7, Lemma 2.8, Lemma 9.3, Proposition 12.1, Theorem 12.2 (2), (3), (5), Corollary 12.3, Theorem 13.2 and §14: the proofs hold; the statement of Corollary 12.3 exceeded its proof (F-A); ten MINOR findings |
+| `v6-wording-main-report.md` | the editing agent's report on its first pass over `part_i/main.tex` (the status council's wording points); line numbers are those of that pass |
+| `v6-repairs-main-report.md` | the same agent's report on its second pass (the repairs for the two audits); four small edits were made after it (gate record) |
+| `v6-repairs-check.md` | the independent re-check of every change by a third fresh agent, with its second round on the four last edits |
+| `v6-public-texts-report.md` | the editing agent's report on the public texts, the machine paths and the companion's dated notice, with its follow-up |
+| `v6-docs-check.md` | the check of the documentation of this commit by a fourth fresh agent before it was pushed: 1 MAJOR and 26 MINOR findings, applied on 24 November (the fixes were not checked again) |
+
+The reports are archived as the agents wrote them, except one line of `v6-public-texts-report.md` (§4, machine-path grep), where a command that spelled out two machine-path prefixes now names them in words. Inside the reports, `wording-main.md`, `repairs-main.md` and `public-texts.md` are the files archived here as `v6-wording-main-report.md`, `v6-repairs-main-report.md` and `v6-public-texts-report.md`; the diffs they name, `PASS2.md` and the council's brief of 23 November are not archived (`BRIEF.md` in this folder is the brief of 28 October).
+

@@ -2,7 +2,7 @@
 
 Round R3, 30 October 2026. The verifier is a fresh agent that wrote none of the memos and
 none of the plan. Repository root: `glimm_jaffe/` (public; make no git changes). The
-scratchpad is `<scratch> = /private/tmp/claude-501/-Users-alex-Documents-Uni-Hannover-claude-glimm-jaffe/8bac9e45-6e21-41a1-bdb8-e018c3356462/scratchpad`;
+scratchpad is `<scratch> = <session scratch directory>`;
 page images: `<scratch>/gjs74/p-NN.png` (printed page = NN + 583), `<scratch>/erice1/p-NN.png`
 (printed = NN + 131), `<scratch>/erice2/p-NN.png` (printed = NN + 198). Render further pages
 only into `<scratch>`.

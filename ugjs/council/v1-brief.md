@@ -1,14 +1,14 @@
 # Audit brief V1: the comparison note (Phases A and B of `ugjs/PLAN.md`), first audit
 
 Object: the note `WORK/comparison.tex` (built PDF `WORK/comparison.pdf`; parts in `WORK/parts/`), where
-`WORK/` = `/private/tmp/claude-501/-Users-alex-Documents-Uni-Hannover-claude-glimm-jaffe/8bac9e45-6e21-41a1-bdb8-e018c3356462/scratchpad/phaseAB/`.
+`WORK/` = `<scratch>/phaseAB/`.
 Drafters: aqft (§§4–6, §8), mp (§3 Lemma D.1, §7), cqft2 (§2, Appendix A). The drafters' own reports
-are in `WORK/REPORTS-drafters.md`. Record: `/Users/alex/Documents/Uni/Hannover/claude/glimm_jaffe/part_i/main.tex`
+are in `WORK/REPORTS-drafters.md`. Record: `part_i/main.tex`
 (42 pp; labels and pages in `WORK/labels-main.txt`). Plan: `ugjs/PLAN.md` (Part 1 statements, Part 3 gates GA/GB,
 Part 8 traps). GJS 1974: `glimm_jaffe/refs/Glimm et al. - 1974 - The Wightman Axioms…pdf` (PDF page = printed − 583);
 render pages you need with pdftoppm into your own folder `WORK/audits/v1-<name>/`. V3 audit of Lemmas C.2–C.5:
 `glimm_jaffe/ugjs/council/v3-appendix-c-report.md` (its repairs R1–R8 are the condition under which the note cites
-Lemma C.2 and Theorem C.5). Standard: AGENTS.md §§1–5 (`/Users/alex/Documents/Uni/Hannover/claude/AGENTS.md`).
+Lemma C.2 and Theorem C.5). Standard: AGENTS.md §§1–5 (`<ws>/AGENTS.md`).
 
 ## Roles
 - **cqft (attacker).** Refute. Every application of GJS Theorem 1.1.7 ((1.1.10), p. 594) in §§4–6: are the two

@@ -137,7 +137,7 @@ Read in this order; paths relative to the repository root.
    Their text layers garble formulas, and the JSTOR scan of the Annals paper is garbled
    even in running text on the expansion pages; **read the page images**, which the
    orchestrator rendered today into the scratchpad
-   `<scratch> = /private/tmp/claude-501/-Users-alex-Documents-Uni-Hannover-claude-glimm-jaffe/8bac9e45-6e21-41a1-bdb8-e018c3356462/scratchpad`:
+   `<scratch> = <session scratch directory>`:
    - `<scratch>/gjs74/p-NN.png`, NN = 01..49, 170 dpi, from `<scratch>/gjs74.pdf` =
      J. Glimm, A. Jaffe, T. Spencer, *The Wightman axioms and particle structure in the
      P(phi)_2 quantum field model*, Ann. of Math. 100 (1974) 585-632. **Printed page =

@@ -18,85 +18,86 @@ marks the statements whose chain still reaches that displayed inequality.
 
 | # | kind | statement | section | p. | imports A8 | cites U_GJS |
 |---|---|---|---|---|---|---|
-| `2.1` | Definition | cutoff classes | 2 Setting, notation, and standing imports | 9 | - | - |
-| `A1` | Assumption | cutoff construction | 2 Setting, notation, and standing imports | 10 | yes | - |
+| `2.1` | Definition | cutoff classes | 2 Setting, notation, and standing imports | 10 | - | - |
+| `A1` | Assumption | cutoff construction | 2 Setting, notation, and standing imports | 11 | yes | - |
 | `A2` | Assumption | Feynman--Kac--Nelson transfer | 2 Setting, notation, and standing imports | 13 | - | - |
-| `A3` | Assumption | finite-volume stability | 2 Setting, notation, and standing imports | 13 | yes | - |
+| `A3` | Assumption | finite-volume stability | 2 Setting, notation, and standing imports | 14 | yes | - |
 | `A4` | Assumption | free hypercontractivity | 2 Setting, notation, and standing imports | 15 | - | - |
 | `A5` | Assumption | domain smoothing; common core | 2 Setting, notation, and standing imports | 15 | - | - |
-| `A6` | Assumption | free propagation; patching; the dynamics $\alpha$ | 2 Setting, notation, and standing imports | 15 | - | - |
-| `A7` | Assumption | covariance data | 2 Setting, notation, and standing imports | 16 | - | - |
+| `A6` | Assumption | free propagation; patching; the dynamics $\alpha$ | 2 Setting, notation, and standing imports | 16 | - | - |
+| `A7` | Assumption | covariance data | 2 Setting, notation, and standing imports | 17 | - | - |
 | `A8` | Assumption | the GJS package | 2 Setting, notation, and standing imports | 17 | yes | yes |
-| `2.2` | Source Fact | CE2 $=$ {\cite[Thm.~1.1.7]{GJS}}, p.~594 | 2 Setting, notation, and standing imports | 17 | yes | - |
+| `2.2` | Source Fact | CE2 $=$ {\cite[Thm.~1.1.7]{GJS}}, p.~594 | 2 Setting, notation, and standing imports | 18 | yes | - |
 | `2.3` | Source Fact | CE1 $=$ {\cite[Thm.~1.1.8]{GJS}}, p.~595 | 2 Setting, notation, and standing imports | 18 | yes | - |
-| `2.4` | Source Fact | {\cite[p.~629, \S4]{GJS}} | 2 Setting, notation, and standing imports | 19 | yes | - |
-| `2.5` | Remark | conventions lock | 2 Setting, notation, and standing imports | 21 | - | - |
+| `2.4` | Source Fact | {\cite[p.~629, \S4]{GJS}} | 2 Setting, notation, and standing imports | 20 | yes | - |
+| `2.5` | Remark | conventions lock | 2 Setting, notation, and standing imports | 22 | - | - |
 | `2.6` | Proposition | domain smoothing at the ground state | 2 Setting, notation, and standing imports | 22 | - | - |
 | `2.7` | Proposition | cutoff propagation, uniformly in $g$ | 2 Setting, notation, and standing imports | 22 | - | - |
-| `2.8` | Lemma | covariance and parity of the cutoff states | 2 Setting, notation, and standing imports | 22 | - | - |
+| `2.8` | Lemma | covariance and parity of the cutoff states | 2 Setting, notation, and standing imports | 23 | - | - |
 | `3.1` | Lemma | class compatibility | 3 Dimensionless weak-coupling reduction | 23 | - | - |
-| `3.2` | Proposition | dimensionless weak-coupling reduction | 3 Dimensionless weak-coupling reduction | 23 | yes | - |
-| `3.3` | Remark | coordinate convention and transport of the conclusions | 3 Dimensionless weak-coupling reduction | 24 | yes | - |
-| `4.1` | Lemma | slab FKN; bounded nonnegative arguments | 4 Slab transfer | 25 | - | - |
+| `3.2` | Proposition | dimensionless weak-coupling reduction | 3 Dimensionless weak-coupling reduction | 24 | yes | - |
+| `3.3` | Remark | coordinate convention and transport of the conclusions | 3 Dimensionless weak-coupling reduction | 25 | yes | - |
+| `4.1` | Lemma | slab FKN; bounded nonnegative arguments | 4 Slab transfer | 26 | - | - |
 | `4.2` | Lemma | signed bounded extension | 4 Slab transfer | 26 | - | - |
 | `4.3` | Lemma | unbounded extension | 4 Slab transfer | 26 | - | - |
-| `4.4` | Lemma | slab vacuum; simplicity only | 4 Slab transfer | 26 | - | - |
-| `5.1` | Theorem | uniform local interaction moment (M$_2$) | 5 The uniform local interaction moment | 27 | yes | - |
-| `5.2` | Corollary | $\varphi^4$ instance | 5 The uniform local interaction moment | 28 | yes | - |
+| `4.4` | Lemma | slab vacuum; simplicity only | 4 Slab transfer | 27 | - | - |
+| `5.1` | Theorem | uniform local interaction moment (M$_2$) | 5 The uniform local interaction moment | 28 | yes | - |
+| `5.2` | Corollary | $\varphi^4$ instance | 5 The uniform local interaction moment | 29 | yes | - |
 | `6.1` | Lemma | cell count | 6 GJS norms of sharp-time polynomial observables | 29 | - | - |
-| `6.2` | Proposition | GJS norms of polynomial observables | 6 GJS norms of sharp-time polynomial observables | 29 | yes | - |
-| `6.3` | Remark | row independence | 6 GJS norms of sharp-time polynomial observables | 29 | - | - |
+| `6.2` | Proposition | GJS norms of polynomial observables | 6 GJS norms of sharp-time polynomial observables | 30 | yes | - |
+| `6.3` | Remark | row independence | 6 GJS norms of sharp-time polynomial observables | 30 | - | - |
 | `7.1` | Lemma | moment transfer | 7 The uniform gap | 30 | yes | - |
-| `7.2` | Lemma | one-point limit | 7 The uniform gap | 30 | yes | - |
+| `7.2` | Lemma | one-point limit | 7 The uniform gap | 31 | yes | - |
 | `7.3` | Lemma | two-point lower semicontinuity | 7 The uniform gap | 31 | yes | - |
-| `7.4` | Lemma | CE2 across a horizontal strip | 7 The uniform gap | 31 | yes | - |
+| `7.4` | Lemma | CE2 across a horizontal strip | 7 The uniform gap | 32 | yes | - |
 | `7.5` | Proposition | semigroup decay of centered observables | 7 The uniform gap | 32 | yes | - |
-| `7.6` | Lemma | exponential moments | 7 The uniform gap | 32 | yes | - |
-| `7.7` | Theorem | density of polynomial vectors | 7 The uniform gap | 32 | yes | - |
-| `7.8` | Theorem | uniform gap (G) | 7 The uniform gap | 33 | yes | - |
-| `8.1` | Proposition | path regularity of the semigroup | 8 Affine-path regularity | 34 | - | - |
-| `8.2` | Proposition | projection and eigenvector regularity; derivative formulas | 8 Affine-path regularity | 35 | - | - |
-| `9.1` | Lemma | exact inverse-energy filter | 9 Filter, spectral separation, and clustering | 35 | - | - |
-| `9.2` | Lemma | spectral separation | 9 Filter, spectral separation, and clustering | 36 | - | - |
-| `9.3` | Lemma | clustering with one unbounded local argument | 9 Filter, spectral separation, and clustering | 37 | - | - |
+| `7.6` | Lemma | exponential moments | 7 The uniform gap | 33 | yes | - |
+| `7.7` | Theorem | density of polynomial vectors | 7 The uniform gap | 33 | yes | - |
+| `7.8` | Theorem | uniform gap (G) | 7 The uniform gap | 34 | yes | - |
+| `8.1` | Proposition | path regularity of the semigroup | 8 Affine-path regularity | 35 | - | - |
+| `8.2` | Proposition | projection and eigenvector regularity; derivative formulas | 8 Affine-path regularity | 36 | - | - |
+| `9.1` | Lemma | exact inverse-energy filter | 9 Filter, spectral separation, and clustering | 36 | - | - |
+| `9.2` | Lemma | spectral separation | 9 Filter, spectral separation, and clustering | 37 | - | - |
+| `9.3` | Lemma | clustering with one unbounded local argument | 9 Filter, spectral separation, and clustering | 38 | - | - |
 | `10.1` | Lemma | state derivative | 10 The one-path LPPL estimate | 38 | - | - |
-| `10.2` | Lemma | localization of the perturbation | 10 The one-path LPPL estimate | 38 | yes | - |
-| `10.3` | Lemma | two-regime bound | 10 The one-path LPPL estimate | 38 | yes | - |
-| `10.4` | Proposition | one-path estimate | 10 The one-path LPPL estimate | 38 | yes | - |
-| `10.5` | Lemma | the rate function is super-polynomial | 10 The one-path LPPL estimate | 39 | yes | - |
+| `10.2` | Lemma | localization of the perturbation | 10 The one-path LPPL estimate | 39 | yes | - |
+| `10.3` | Lemma | two-regime bound | 10 The one-path LPPL estimate | 39 | yes | - |
+| `10.4` | Proposition | one-path estimate | 10 The one-path LPPL estimate | 39 | yes | - |
+| `10.5` | Lemma | the rate function is super-polynomial | 10 The one-path LPPL estimate | 40 | yes | - |
 | `11.1` | Theorem | full-net convergence with rate | 11 Convergence of the full net; local normality | 40 | yes | - |
-| `11.2` | Proposition | local normality | 11 Convergence of the full net; local normality | 40 | yes | - |
-| `12.1` | Proposition | exact spectral passage | 12 Ground state, invariances, and the Main Theorem | 40 | - | - |
-| `12.2` | Theorem | Main Theorem | 12 Ground state, invariances, and the Main Theorem | 41 | yes | - |
-| `12.3` | Corollary | the Glimm--Jaffe vacuum is canonical at weak coupling | 12 Ground state, invariances, and the Main Theorem | 42 | yes | - |
-| `13.1` | Hypothesis | structure of a broken phase | 13 The two-phase dichotomy | 43 | - | - |
-| `13.2` | Theorem | conditional exclusion of a two-phase structure | 13 The two-phase dichotomy | 43 | yes | - |
-| `13.3` | Remark | scope of the phase-transition literature | 13 The two-phase dichotomy | 44 | yes | - |
-| `C.1` | Proposition | consequence of the audited source mechanisms | C $h$-uniformity: source audit and analytic prerequisites | 51 | - | - |
-| `C.2` | Lemma | normalisation | C $h$-uniformity: source audit and analytic prerequisites | 53 | - | - |
-| `C.3` | Lemma | Wick lower bound; the $h\ge0$ entry | C $h$-uniformity: source audit and analytic prerequisites | 53 | - | - |
-| `C.4` | Lemma | ultraviolet difference; the $h\le1$ entry | C $h$-uniformity: source audit and analytic prerequisites | 54 | - | - |
-| `C.5` | Theorem | $h$-uniform stability | C $h$-uniformity: source audit and analytic prerequisites | 56 | - | - |
-| `C.6` | Remark | why the class is what it is | C $h$-uniformity: source audit and analytic prerequisites | 57 | yes | - |
-| `C.7` | Proposition | coverage of every CE application | C $h$-uniformity: source audit and analytic prerequisites | 57 | yes | - |
-| `D.1` | Lemma | affine-path identity | D The uniform local moment from the printed clustering theorem | 84 | - | - |
-| `D.2` | Lemma | localized comparison | D The uniform local moment from the printed clustering theorem | 88 | yes | - |
-| `D.3` | Theorem | Phase A: fixed cutoff, parallel strips | D The uniform local moment from the printed clustering theorem | 95 | yes | - |
-| `D.4` | Theorem | Phase B: uniform in the cutoff | D The uniform local moment from the printed clustering theorem | 100 | yes | - |
+| `11.2` | Proposition | local normality | 11 Convergence of the full net; local normality | 41 | yes | - |
+| `12.1` | Proposition | exact spectral passage | 12 Ground state, invariances, and the Main Theorem | 41 | - | - |
+| `12.2` | Theorem | Main Theorem | 12 Ground state, invariances, and the Main Theorem | 42 | yes | - |
+| `12.3` | Corollary | the Glimm--Jaffe vacuum is canonical at weak coupling, for cutoffs
+$0\le g\le1$ | 12 Ground state, invariances, and the Main Theorem | 43 | yes | - |
+| `13.1` | Hypothesis | structure of a broken phase | 13 The two-phase dichotomy | 44 | - | - |
+| `13.2` | Theorem | conditional exclusion of a two-phase structure | 13 The two-phase dichotomy | 44 | yes | - |
+| `13.3` | Remark | scope of the phase-transition literature | 13 The two-phase dichotomy | 45 | yes | - |
+| `C.1` | Proposition | consequence of the audited source mechanisms | C $h$-uniformity: source audit and analytic prerequisites | 53 | - | - |
+| `C.2` | Lemma | normalisation | C $h$-uniformity: source audit and analytic prerequisites | 55 | - | - |
+| `C.3` | Lemma | Wick lower bound; the $h\ge0$ entry | C $h$-uniformity: source audit and analytic prerequisites | 55 | - | - |
+| `C.4` | Lemma | ultraviolet difference; the $h\le1$ entry | C $h$-uniformity: source audit and analytic prerequisites | 56 | - | - |
+| `C.5` | Theorem | $h$-uniform stability | C $h$-uniformity: source audit and analytic prerequisites | 57 | - | - |
+| `C.6` | Remark | why the class is what it is | C $h$-uniformity: source audit and analytic prerequisites | 58 | yes | - |
+| `C.7` | Proposition | coverage of every CE application | C $h$-uniformity: source audit and analytic prerequisites | 59 | yes | - |
+| `D.1` | Lemma | affine-path identity | D The uniform local moment from the printed clustering theorem | 86 | - | - |
+| `D.2` | Lemma | localized comparison | D The uniform local moment from the printed clustering theorem | 90 | yes | - |
+| `D.3` | Theorem | Phase A: fixed cutoff, parallel strips | D The uniform local moment from the printed clustering theorem | 97 | yes | - |
+| `D.4` | Theorem | Phase B: uniform in the cutoff | D The uniform local moment from the printed clustering theorem | 101 | yes | - |
 | `E.1` | Lemma | the one-particle space in momentum variables | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
-translations, parity, dilations | 115 | - | - |
-| `E.2` | Lemma | second quantization of a unitary | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
 translations, parity, dilations | 117 | - | - |
+| `E.2` | Lemma | second quantization of a unitary | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
+translations, parity, dilations | 119 | - | - |
 | `E.3` | Definition | number grading, momentum field, generators of the net, free Hamiltonian | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
-translations, parity, dilations | 118 | - | - |
+translations, parity, dilations | 119 | - | - |
 | `E.4` | Lemma | transport by an orthogonal bijection of the index spaces | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
-translations, parity, dilations | 118 | - | - |
-| `E.5` | Proposition | translations, parity, dilations | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
 translations, parity, dilations | 120 | - | - |
+| `E.5` | Proposition | translations, parity, dilations | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
+translations, parity, dilations | 121 | - | - |
 | `E.6` | Remark | the identities of Assumption~\ref{A:covar} | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
-translations, parity, dilations | 122 | - | - |
+translations, parity, dilations | 124 | - | - |
 | `E.7` | Lemma | the objects of the sources | E The free field on \texorpdfstring{$Q$}{Q}-space: momentum field, free Hamiltonian,
-translations, parity, dilations | 122 | - | - |
+translations, parity, dilations | 124 | - | - |
 
 ## Statements
 
@@ -123,7 +124,7 @@ Uses: `lem:filter`, `prop:projreg`, `prop:smoothing`
 
 #### Lemma 10.2 (localization of the perturbation)
 
-`lem:localize` &middot; page 38 &middot; imports A8 &middot; proof in the manuscript
+`lem:localize` &middot; page 39 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Choose a smooth partition of unity $\sum_{j\in\Z}\eta_j=1$ with $0\le\eta_j\le1$ and
@@ -142,7 +143,7 @@ Uses: `lem:classes`, `thm:M2`
 
 #### Lemma 10.3 (two-regime bound)
 
-`lem:tworegime` &middot; page 38 &middot; imports A8 &middot; proof in the manuscript
+`lem:tworegime` &middot; page 39 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $A=A^*\in\A(O)$ with $\|A\|\le1$, and for a nonzero $h_j$ put
@@ -167,7 +168,7 @@ Uses: `lem:cluster`, `lem:localize`, `prop:propagation`, `prop:smoothing`
 
 #### Proposition 10.4 (one-path estimate)
 
-`prop:onepath` &middot; page 38 &middot; imports A8 &middot; proof in the manuscript
+`prop:onepath` &middot; page 39 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $d\ge d_0:=4+2/\gamma$ and suppose $g\equiv g'\equiv1$ on $O_d$. Then
@@ -184,7 +185,7 @@ Uses: `lem:localize`, `lem:statederiv`, `lem:tworegime`, `prop:projreg`
 
 #### Lemma 10.5 (the rate function is super-polynomial)
 
-`lem:rate` &middot; page 39 &middot; imports A8 &middot; proof in the manuscript
+`lem:rate` &middot; page 40 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Define
@@ -234,7 +235,7 @@ Uses: `lem:rate`, `prop:onepath`
 
 #### Proposition 11.2 (local normality)
 
-`prop:normal` &middot; page 40 &middot; imports A8 &middot; proof in the manuscript
+`prop:normal` &middot; page 41 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 $\omega_\infty|_{\A(O)}$ is normal for every bounded open interval $O$.
@@ -246,11 +247,12 @@ Uses: `thm:cauchy`
 
 #### Proposition 12.1 (exact spectral passage)
 
-`prop:spectral` &middot; page 40 &middot; proof in the manuscript
+`prop:spectral` &middot; page 41 &middot; proof in the manuscript
 
 ```latex
-If $(g_n)\subseteq\G$ satisfies $d(g_n,O)\to\infty$ for every bounded interval $O$, and
-$\omega_{g_n}\to\omega$ in norm on every $\A(O)$, then $\omega$ is a ground state of
+If $(g_n)\subseteq\G$ satisfies $d(g_n,O)\to\infty$ for every bounded open interval $O$, and
+$\omega$ is a state on $\A$ with $\omega_{g_n}\to\omega$ in norm on every $\A(O)$, then $\omega$
+is a ground state of
 $(\A,\alpha)$ in the spectral sense: $\omega\circ\alpha_t=\omega$ for all $t$; the
 function $t\mapsto\omega(A\alpha_t(B))$ is continuous and bounded for all $A,B\in\A$; and
 \[
@@ -264,7 +266,7 @@ Provenance: `src: m6/main.tex prop:M0-main(i) (v2), transcribed; = lamport_gap_t
 
 #### Theorem 12.2 (Main Theorem)
 
-`thm:MAIN` &middot; page 41 &middot; imports A8 &middot; proof in the manuscript
+`thm:MAIN` &middot; page 42 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. Then there is a state $\omega_\infty$ on
@@ -303,30 +305,33 @@ Assumptions~\ref{A:cutoff}--\ref{A:covar}.  Proposition~\ref{prop:scaling} verif
 dimensionless weak-coupling hypothesis implies the source smallness condition. The theorem
 is an implication from exactly this list of printed statements; no other external input is
 used.  The constant $M$ of item (5), and through it the rate $\Psi_{m_1}$ of item (1),
-contain the finite, unevaluated constant $S_2(B_{3\times5})$ of Theorem~\ref{thm:stability}.
+contain the unevaluated constant $S_2(B_{3\times5})$ of Definition~\ref{aux:notation-S2def},
+finite by Theorem~\ref{thm:stability}.
 ```
 
 Provenance: `src: m6/main.tex thm:MAIN (v2), transcribed; import references adapted to (A1)-(A8);`
 Uses: `A:covar`, `A:cutoff`, `A:gjs`, `A:stability`, `lem:Z`, `lem:covparity`, `lem:uv`, `prop:ff-symmetries`, `prop:normal`, `prop:scaling`, `prop:spectral`, `sf:CE2`, `thm:D3`, `thm:D4`, `thm:G`, `thm:M2`, `thm:cauchy`, `thm:stability`
 
-#### Corollary 12.3 (the Glimm--Jaffe vacuum is canonical at weak coupling)
+#### Corollary 12.3 (the Glimm--Jaffe vacuum is canonical at weak coupling, for cutoffs
+$0\le g\le1$)
 
-`cor:canonical` &middot; page 42 &middot; imports A8 &middot; proof in the manuscript
+`cor:canonical` &middot; page 43 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
-Every $w^*$ limit point of the (averaged or unaveraged) finite-volume ground states
-constructed in \cite[\S2]{GJ3} coincides on each $\A(O)$ with $\omega_\infty$; in
-particular the construction of \cite{GJ3} is subsequence- and averaging-independent in the
-weak-coupling region.
+Let $\mathscr P(\xi)=\xi^4$, and let the cutoff $g$ of \cite[(2.3)]{GJ3} be chosen in $\G$, that
+is, with $0\le g\le1$.  Then every $w^*$ limit point of the averaged states $\omega_n$ of
+\cite[(2.4)]{GJ3} and of the unaveraged states $\omega_{g_n}$, $g_n=g(\cdot/n)$, coincides on
+each $\A(O)$ with $\omega_\infty$; in particular, for such $g$, the construction of
+\cite[\S2]{GJ3} is subsequence- and averaging-independent in the weak-coupling region.
 ```
 
-Provenance: `src: m6/main.tex cor:canonical (v2), transcribed.`
+Provenance: `src: m6/main.tex cor:canonical (v2), transcribed; statement restricted 23 November 2026`
 Uses: `prop:ff-symmetries`, `thm:MAIN`
 ### The two-phase dichotomy
 
 #### Hypothesis 13.1 (structure of a broken phase)
 
-`hyp:broken` &middot; page 43
+`hyp:broken` &middot; page 44
 
 ```latex
 $\mathscr P$ is even, and:
@@ -343,13 +348,16 @@ $\mathscr P$ is even, and:
 \item[\rm(B4)] every $\theta$-invariant ground state of $(\A,\alpha)$ equals
       $\tfrac12(\omega_++\omega_-)$.
 \end{enumerate}
+In (B1) and (B4), ``ground state'' is meant in the spectral sense of
+Proposition~\ref{prop:spectral}.
 ```
 
 Provenance: `src: m6/main.tex cor:nobreak items (B1)-(B4) (v2); m3/m3.tex hyp:broken states (B4)`
+Uses: `prop:spectral`
 
 #### Theorem 13.2 (conditional exclusion of a two-phase structure)
 
-`thm:dichotomy` &middot; page 43 &middot; imports A8 &middot; proof in the manuscript
+`thm:dichotomy` &middot; page 44 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Assume that $\mathscr P$ is even and $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. Then
@@ -362,7 +370,7 @@ Uses: `A:patch`, `hyp:broken`, `lem:cluster`, `prop:ff-symmetries`, `thm:G`, `th
 
 #### Remark 13.3 (scope of the phase-transition literature)
 
-`rem:gjs7576` &middot; page 44 &middot; imports A8
+`rem:gjs7576` &middot; page 45 &middot; imports A8
 
 ```latex
 The GJS phase-transition and mean-field papers \cite{GJS75,GJS76} prove the existence of
@@ -372,7 +380,7 @@ phase-space classification (B1)--(B4) --- in particular not the midpoint identif
 (B4) --- for the state space of $(\A,\alpha)$. This manuscript therefore makes no
 unconditional assertion that its state space carries the structure of
 Hypothesis~\ref{hyp:broken}; Theorem~\ref{thm:dichotomy} says only that, at weak coupling,
-that structure cannot coexist with the cutoff-uniform gap. The two rigorous options
+that structure cannot coexist with the cutoff-uniform gap and the uniform local moment. The two rigorous options
 recorded by the audit --- state (B1)--(B4) explicitly, or delete the corollary --- are
 resolved here by the first.
 ```
@@ -383,7 +391,7 @@ Uses: `hyp:broken`, `thm:dichotomy`
 
 #### Definition 2.1 (cutoff classes)
 
-`def:classes` &middot; page 9
+`def:classes` &middot; page 10
 
 ```latex
 \begin{align*}
@@ -407,7 +415,7 @@ interval $O$ and $r\ge0$ set
 
 #### Assumption A1 (cutoff construction)
 
-`A:cutoff` &middot; page 10 &middot; imports A8
+`A:cutoff` &middot; page 11 &middot; imports A8
 
 ```latex
 For every $g\in\CH$: $K(g)=H_0+V(g)$ is essentially self-adjoint and bounded below; its closure
@@ -570,11 +578,19 @@ Fourier transform ``throughout these notes'' by ``$\hat F(t_1,\dots,t_n)=(2\pi)^
 e^{-i\sum t_ix_i}F(x_1,\dots,x_n)\,d^nx$'' \cite[p.~27]{SimonBook}, as
 Appendix~\ref{app:freefield} does, so the map $f\mapsto\mu^{-1/2}\hat f$ carries $F_{m_0}$
 isometrically onto $L^2_{\rm r}(\R)$, and the image of the real Schwartz functions is dense
-there (Lemma~\ref{lem:ff-onepart}(i)).  The sources of the cutoff construction work in Fock
-space; the dictionary between their Fock space and $Q$-space is the unitary $\mathfrak D$ of
-Lemma~\ref{lem:ff-sources}, which carries their vacuum to $1$, their time-zero fields to
-$\varphi_0$ and $\pi_0$, their free Hamiltonian to $H_0$ and their translation unitary $U(-a)$
-to $U_a$.
+there (Lemma~\ref{lem:ff-onepart}(i)).  Of the sources of the cutoff construction,
+\cite{GJS} works in $Q$-space: its ``Fock space $\mathcal F=L_2(\mathcal S'(R^1),d\phi)$'' has ``covariance
+$\mu^{-1}=(-d^2/dx_1^2+m_0^2)^{-1/2}$, see [1]'' and ``Wick ordering with respect to
+$d\phi$'' \cite[p.~588]{GJS}.  Literally $\mu^{-1}=2C$; reading $\mu^{-1}$ as the inner product
+$2\ip f{Cg}$ of $\HH_C$, which makes $d\phi$ our $d\phi_0$ consistently with
+$\Phi(0,\vec x)=\phi_0(\vec x)$ and the covariance $(-\Delta+m_0^2)^{-1}$ of $d\Phi$
+\cite[p.~589]{GJS} (Remark~\ref{rem:conv}), is a reading of the kind recorded in
+Assumption~\ref{A:gjs}, Scope~(d), not proved here (the source's [1] is not among ours).
+\cite[p.~364]{GJ2}, \cite[p.~255]{GJ71} and \cite[p.~158]{Rosen70} work in Fock space; the
+dictionary between the Fock space of \cite{GJ2} and $Q$-space is the unitary $\mathfrak D$ of
+Lemma~\ref{lem:ff-sources}, which carries its vacuum to $1$, its time-zero fields to
+$\varphi_0$ and $\pi_0$, its free Hamiltonian to $H_0$ and its translation unitary $U(-a)$
+to $U_a$; that \cite{GJ71,Rosen70} use the same objects is a reading of those sources.
 They define $V(g)$ by normal ordering in Fock space; that $\mathfrak D$ carries their $V(g)$
 to the $V(g)$ defined here is not proved in this manuscript and remains a reading of the kind
 recorded in Assumption~\ref{A:gjs}, Scope~(d).
@@ -598,7 +614,7 @@ field (added 11 November 2026): \texttt{simon-fock-045/046}, \texttt{simon-fouri
 \texttt{gj2-fields-05}, \texttt{gj2-cutoff-independence-38}.\par}
 ```
 
-Uses: `A:domain`, `A:gjs`, `lem:Z`, `lem:covparity`, `lem:ff-onepart`, `lem:ff-sources`, `lem:ff-transport`, `prop:ff-symmetries`, `prop:smoothing`, `rem:wlog`
+Uses: `A:domain`, `A:gjs`, `lem:Z`, `lem:covparity`, `lem:ff-onepart`, `lem:ff-sources`, `lem:ff-transport`, `prop:ff-symmetries`, `prop:smoothing`, `rem:conv`, `rem:wlog`
 
 #### Assumption A2 (Feynman--Kac--Nelson transfer)
 
@@ -639,7 +655,7 @@ Uses: `rem:conv`
 
 #### Assumption A3 (finite-volume stability)
 
-`A:stability` &middot; page 13 &middot; imports A8
+`A:stability` &middot; page 14 &middot; imports A8
 
 ```latex
 For every $h\in\CE$: $\mathcal U_h\in L^p(d\mu_0)$ for every $p<\infty$, and
@@ -784,24 +800,31 @@ $\mathscr C$ for all $K(g_s)$, $s\in[0,1]$, on which
 $K(g_s)\xi=K(g_{s_0})\xi+(s-s_0)V(g'-g)\xi$.
 
 \emph{Sources.} (i) is the model-specific smoothing theorem \cite[Ch.~7, Thm.~7.4]{GJExp}.
-(ii) is part of the cutoff construction; essential self-adjointness pinpoints, in their
-roles per the audit: \cite[Thm.~V.12]{SimonBook}, \cite[Thm.~5.3]{Rosen70}, \cite{GJ2}. % whitelisted: V.12 in its audited positive role (esa), not the S2 misuse
+(ii): ``Let $g\ge0$, $g\,\epsilon\,L^1\cap L^{1+\epsilon}$.  Let $H(g)$ be given by (V.15).
+Then (a) $H(g)$ is essentially self-adjoint on $C^\infty(H_0)$'' \cite[Thm.~V.12, p.~158]{SimonBook}, % whitelisted: V.12 in its audited positive role (esa), not the S2 misuse
+(V.15) being ``$H(g)=H_0+H_I(g)$'', ``$H_I(g)=\int g(x)\,{:}P(\phi_F(x)){:}\,dx$'', with $P$
+``semibounded'' \cite[pp.~141, 146]{SimonBook}; also \cite[Thm.~5.3]{Rosen70}, \cite{GJ2}.
 
 \emph{Scope.} \cite[Thm.~7.3]{GJExp} alone assumes a potential bounded below % negative-scope mention (whitelisted): Thm. 7.3
 and is therefore \emph{not} sufficient here; the citation is to Theorem~7.4
-(audit finding S3).
+(audit finding S3).  For (ii), Theorem V.12(a) at each $g_s$ % whitelisted: V.12 in its audited positive role (esa), not the S2 misuse
+($0\le g_s\in C_c^\infty\subset L^1\cap L^{1+\varepsilon}$, $P:=\lambda\mathscr P$
+semibounded, $\phi_F$ as in the Scope of~\ref{A:cutoff}, so $H(g_s)=H_0+V(g_s)$) puts
+$\mathscr C:=C^\infty(H_0)=\bigcap_nD(H_0^n)$ in $D(H_0)\cap D(V(g_s))$ as a core of the
+self-adjoint $K(g_s)$; the identity on $\mathscr C$ is the linearity of $h\mapsto V(h)$.
 
 \emph{Used in.} Proposition~\ref{prop:smoothing}, \S\ref{sec:slab} (dominators),
 \S\ref{sec:path} (eigenvalue differentiation).
 
-{\raggedright\emph{Dossier.} \texttt{gjexp-domain-165/166/167} (E17--E19).\par}
+{\raggedright\emph{Dossier.} \texttt{gjexp-domain-165/166/167} (E17--E19); item (ii):
+\texttt{simon-semibounded-163}, \texttt{simon-hg-168}, \texttt{simon-transfer-180}.\par}
 ```
 
-Uses: `prop:smoothing`
+Uses: `A:cutoff`, `prop:smoothing`
 
 #### Assumption A6 (free propagation; patching; the dynamics $\alpha$)
 
-`A:patch` &middot; page 15
+`A:patch` &middot; page 16
 
 ```latex
 \emph{(i)} The free dynamics $\mathrm{Ad}\,e^{itH_0}$ has propagation speed one
@@ -868,7 +891,7 @@ Uses: `A:cutoff`, `lem:ff-sources`, `prop:propagation`
 
 #### Assumption A7 (covariance data)
 
-`A:covar` &middot; page 16
+`A:covar` &middot; page 17
 
 ```latex
 Let $U_a$, $a\in\R$, be the translation unitaries and $\Theta=(-1)^N$ the parity unitary of
@@ -1151,11 +1174,13 @@ smallness hypothesis to the printed one is Proposition~\ref{prop:scaling}.
 
 \emph{Scope.} Every item of this assumption is a printed statement of \cite{GJS}, used at
 the scope at which it is printed; this is the standard under which
-Assumptions~\ref{A:cutoff}--\ref{A:covar} are imported, and no stricter one is available
-to this manuscript, since the printed proof of Theorem 1.1.7 itself obtains its
-$h$-independent constant from Theorem 1.1.8 at the same $h$ (p.~597) while Theorem
-1.1.8 is printed only ``uniformly as $h\to1$'' (p.~595).  Four points of scope are
-recorded.
+Assumptions~\ref{A:cutoff}--\ref{A:covar} are imported.  The printed proof of Theorem 1.1.7
+takes its $h$-independent constant from Theorem 1.1.8 at the same $h$ (p.~597), whose
+estimate is printed ``uniformly as $h\to1$'' (p.~595) and ``uniform in the space cutoff $h$''
+(p.~629, Source Fact~\ref{sf:printed}).  A stricter standard, admitting only cases that a
+printed proof reaches, is not adopted: it would exclude A8(iv)-T (point (b)), and
+Theorems~\ref{thm:D3}, \ref{thm:D4} would need the slicing of Remark~\ref{aux:d3-orient}.
+Four points of scope are recorded.
 \emph{(a) Item (vi), retired.}  From 16 August to 30 October 2026 the slab-uniform estimate
 \eqref{eq:UGJS} was carried as a named hypothesis of Theorem~\ref{thm:MAIN}, documented
 on 5 September 2026 as the quantifier the source states on p.~629 and consumes on
@@ -1226,7 +1251,7 @@ Uses: `A:covar`, `A:cutoff`, `A:fkn`, `A:hyper`, `A:stability`, `lem:D2`, `lem:Z
 
 #### Source Fact 2.2 (CE2 $=$ {\cite[Thm.~1.1.7]{GJS}}, p.~594)
 
-`sf:CE2` &middot; page 17 &middot; imports A8
+`sf:CE2` &middot; page 18 &middot; imports A8
 
 ```latex
 For localized monomials $Q_1,Q_2$ with disjoint localization squares separated by a strip of
@@ -1264,7 +1289,7 @@ Uses: `A:fkn`, `A:gjs`, `A:hyper`, `thm:D3`, `thm:D4`
 
 #### Source Fact 2.4 ({\cite[p.~629, \S4]{GJS}})
 
-`sf:printed` &middot; page 19 &middot; imports A8
+`sf:printed` &middot; page 20 &middot; imports A8
 
 ```latex
 ``It is important to work with a translation invariant Hamiltonian, in order that time
@@ -1279,7 +1304,7 @@ Uses: `A:gjs`
 
 #### Remark 2.5 (conventions lock)
 
-`rem:conv` &middot; page 21
+`rem:conv` &middot; page 22
 
 ```latex
 The sharp-time restriction of the Euclidean covariance equals $C$:
@@ -1314,7 +1339,7 @@ Uses: `A:patch`
 
 #### Lemma 2.8 (covariance and parity of the cutoff states)
 
-`lem:covparity` &middot; page 22 &middot; proof in the manuscript
+`lem:covparity` &middot; page 23 &middot; proof in the manuscript
 
 ```latex
 For every $g\in\CH$ and $a\in\R$:
@@ -1351,7 +1376,7 @@ Uses: `A:stability`
 
 #### Proposition 3.2 (dimensionless weak-coupling reduction)
 
-`prop:scaling` &middot; page 23 &middot; imports A8 &middot; proof in the manuscript
+`prop:scaling` &middot; page 24 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 The standing inequality $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$ implies the source
@@ -1370,7 +1395,7 @@ Uses: `A:gjs`, `rem:wlog`
 
 #### Remark 3.3 (coordinate convention and transport of the conclusions)
 
-`rem:wlog` &middot; page 24 &middot; imports A8
+`rem:wlog` &middot; page 25 &middot; imports A8
 
 ```latex
 The dilation behind Proposition~\ref{prop:scaling} identifies the model at
@@ -1470,7 +1495,7 @@ Uses: `A:gjs`, `A:patch`, `prop:ff-symmetries`, `prop:scaling`, `prop:smoothing`
 
 #### Lemma 4.1 (slab FKN; bounded nonnegative arguments)
 
-`lem:slabFKN` &middot; page 25 &middot; proof in the manuscript
+`lem:slabFKN` &middot; page 26 &middot; proof in the manuscript
 
 ```latex
 For $T>0$, $t\in[0,2T]$, $s\in[-T,T]$, and bounded nonnegative measurable functions
@@ -1527,7 +1552,7 @@ Uses: `A:domain`, `A:stability`, `lem:slabFKN`, `lem:slabsigned`
 
 #### Lemma 4.4 (slab vacuum; simplicity only)
 
-`lem:slabvac` &middot; page 26 &middot; proof in the manuscript
+`lem:slabvac` &middot; page 27 &middot; proof in the manuscript
 
 ```latex
 $\hat\psi_s\to\Om_g$ in norm, $\|\psi_s\|\downarrow c_g$, and
@@ -1541,7 +1566,7 @@ Uses: `A:cutoff`
 
 #### Theorem 5.1 (uniform local interaction moment (M$_2$))
 
-`thm:M2` &middot; page 27 &middot; imports A8 &middot; proof in the manuscript
+`thm:M2` &middot; page 28 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. For every $g\in\CH$ and every real
@@ -1569,7 +1594,7 @@ Uses: `A:fkn`, `A:gjs`, `lem:ce2strip`, `lem:classes`, `lem:slabunbdd`, `lem:sla
 
 #### Corollary 5.2 ($\varphi^4$ instance)
 
-`cor:M2phi4` &middot; page 28 &middot; imports A8
+`cor:M2phi4` &middot; page 29 &middot; imports A8
 
 ```latex
 For $\mathscr P(\xi)=\xi^4$ ($p'=2$, $a_4=1$, $a_0=\dots=a_3=0$, $\sum_n|a_n|=1$;
@@ -1605,7 +1630,7 @@ Provenance: `src: lamport_euclidean_to_gap.tex <1>5 <2>1; audit repair L1; colum
 
 #### Proposition 6.2 (GJS norms of polynomial observables)
 
-`prop:gjsnorms` &middot; page 29 &middot; imports A8 &middot; proof in the manuscript
+`prop:gjsnorms` &middot; page 30 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 \begin{align}
@@ -1622,7 +1647,7 @@ Uses: `A:gjs`
 
 #### Remark 6.3 (row independence)
 
-`rem:row` &middot; page 29
+`rem:row` &middot; page 30
 
 ```latex
 The norm of a sharp-time monomial is independent of the common sharp time $s$: at every $s$
@@ -1652,7 +1677,7 @@ Uses: `lem:slabunbdd`, `lem:slabvac`, `thm:D3`
 
 #### Lemma 7.2 (one-point limit)
 
-`lem:onepoint` &middot; page 30 &middot; imports A8 &middot; proof in the manuscript
+`lem:onepoint` &middot; page 31 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 For every fixed $s\in\R$,
@@ -1683,7 +1708,7 @@ Uses: `lem:onepoint`, `lem:slabunbdd`, `lem:slabvac`, `lem:transfer`, `thm:D3`
 
 #### Lemma 7.4 (CE2 across a horizontal strip)
 
-`lem:ce2strip` &middot; page 31 &middot; imports A8 &middot; proof in the manuscript
+`lem:ce2strip` &middot; page 32 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 For $t>2$ and every $h\in\CE$,
@@ -1715,7 +1740,7 @@ Uses: `lem:ce2strip`, `lem:onepoint`, `lem:twopoint`
 
 #### Lemma 7.6 (exponential moments)
 
-`lem:expmom` &middot; page 32 &middot; imports A8 &middot; proof in the manuscript
+`lem:expmom` &middot; page 33 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $d\mu_g:=|\Om_g|^2\,d\phi_0$ and $X_f:=\varphi_0(f)$ for real
@@ -1741,7 +1766,7 @@ Uses: `lem:transfer`, `thm:D3`
 
 #### Theorem 7.7 (density of polynomial vectors)
 
-`thm:dense` &middot; page 32 &middot; imports A8 &middot; proof in the manuscript
+`thm:dense` &middot; page 33 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Cylinder polynomials are dense in $L^2(d\mu_g)$. Equivalently, since $\Om_g>0$ a.e.\ makes
@@ -1754,7 +1779,7 @@ Uses: `lem:expmom`
 
 #### Theorem 7.8 (uniform gap (G))
 
-`thm:G` &middot; page 33 &middot; imports A8 &middot; proof in the manuscript
+`thm:G` &middot; page 34 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 Let $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$. For every $g\in\CH$,
@@ -1771,7 +1796,7 @@ Uses: `A:cutoff`, `prop:semidecay`, `thm:dense`
 
 #### Proposition 8.1 (path regularity of the semigroup)
 
-`prop:pathreg` &middot; page 34 &middot; proof in the manuscript
+`prop:pathreg` &middot; page 35 &middot; proof in the manuscript
 
 ```latex
 For each $T>0$, the family $s\mapsto e^{-TK_s}$ is norm-continuous on $[0,1]$ and
@@ -1784,7 +1809,7 @@ Uses: `A:fkn`, `A:hyper`, `A:stability`, `lem:classes`
 
 #### Proposition 8.2 (projection and eigenvector regularity; derivative formulas)
 
-`prop:projreg` &middot; page 35 &middot; proof in the manuscript
+`prop:projreg` &middot; page 36 &middot; proof in the manuscript
 
 ```latex
 \emph{(i)} $s\mapsto P_s$ is norm-continuous on $[0,1]$ and norm-$C^1$ on $(0,1)$.
@@ -1804,11 +1829,13 @@ Uses: `A:cutoff`, `A:domain`, `prop:pathreg`, `prop:smoothing`
 
 #### Lemma 9.1 (exact inverse-energy filter)
 
-`lem:filter` &middot; page 35 &middot; proof in the manuscript
+`lem:filter` &middot; page 36 &middot; proof in the manuscript
 
 ```latex
-Choose an even $\chi\in C^\infty(\R;[0,1])$ with $\chi=0$ on $[-\gamma/2,\gamma/2]$ and
-$\chi=1$ outside $(-\gamma,\gamma)$, and set
+Fix, once for each $\gamma>0$, an even $\chi\in C^\infty(\R;[0,1])$ with $\chi=0$ on
+$[-\gamma/2,\gamma/2]$ and $\chi=1$ outside $(-\gamma,\gamma)$; $W_\gamma$, $T_\gamma$,
+$C_{q,\gamma}$ below and $\Psi_\gamma$, $C_\gamma'$, $C_{N,\gamma,M}$ of \S\ref{sec:lppl}
+depend on this choice.  Set
 \begin{equation}
  \widehat W_\gamma(E):=\begin{cases}\chi(E)/E,&E\ne0,\\0,&E=0,\end{cases}
  \qquad
@@ -1835,7 +1862,7 @@ Provenance: `src: lamport_gap_to_main.tex <1>2.`
 
 #### Lemma 9.2 (spectral separation)
 
-`lem:separation` &middot; page 36 &middot; proof in the manuscript
+`lem:separation` &middot; page 37 &middot; proof in the manuscript
 
 ```latex
 Let
@@ -1855,13 +1882,13 @@ Provenance: `src: lamport_gap_to_main.tex <1>3; variation bound renamed M_0 -> \
 
 #### Lemma 9.3 (clustering with one unbounded local argument)
 
-`lem:cluster` &middot; page 37 &middot; proof in the manuscript
+`lem:cluster` &middot; page 38 &middot; proof in the manuscript
 
 ```latex
 Let $g\in\CH$, write $H=H(g)$, $\Om=\Om_g$, $\beta_t=\beta^g_t$, and assume
 \eqref{eq:Ggamma}. Let $B\subset\R$ be compact, let $X=X^*$ be affiliated with $\A(O')'$ for
 every bounded open interval $O'$ with $\dist(B,O')>0$, with $\Om\in D(X)$, and let
-$A\in\A(O)$ for a bounded interval $O$. If $R:=\dist(B,O)>0$ satisfies $\gamma R\ge1$, then
+$A\in\A(O)$ for a bounded open interval $O$. If $R:=\dist(B,O)>0$ satisfies $\gamma R\ge1$, then
 \begin{equation}
  \bigl|\ip{X\Om}{A\Om}-\ip{X\Om}{\Om}\ip{\Om}{A\Om}\bigr|
  \le2\,\|X\Om\|\,\|A\|\,e^{-\gamma R/2} .
@@ -1875,7 +1902,7 @@ Uses: `lem:separation`, `prop:propagation`
 
 #### Proposition C.1 (consequence of the audited source mechanisms)
 
-`prop:struct` &middot; page 51 &middot; proof in the manuscript
+`prop:struct` &middot; page 53 &middot; proof in the manuscript
 
 ```latex
 Within mechanisms M1--M5 as recorded above, and excluding the stability input of M6,
@@ -1890,7 +1917,7 @@ Provenance: `src: m4/r1-check.tex prop:struct, transcribed; statement narrowed 3
 
 #### Lemma C.2 (normalisation)
 
-`lem:Z` &middot; page 53 &middot; proof in the manuscript
+`lem:Z` &middot; page 55 &middot; proof in the manuscript
 
 ```latex
 For every $h\in\CE$ with $\supp h\subseteq\Lambda$:
@@ -1904,7 +1931,7 @@ Uses: `A:cutoff`, `A:stability`, `thm:stability`
 
 #### Lemma C.3 (Wick lower bound; the $h\ge0$ entry)
 
-`lem:wick` &middot; page 53 &middot; proof in the manuscript
+`lem:wick` &middot; page 55 &middot; proof in the manuscript
 
 ```latex
 With
@@ -1936,7 +1963,7 @@ Uses: `thm:stability`
 
 #### Lemma C.4 (ultraviolet difference; the $h\le1$ entry)
 
-`lem:uv` &middot; page 54 &middot; proof in the manuscript
+`lem:uv` &middot; page 56 &middot; proof in the manuscript
 
 ```latex
 For $n\ge1$ and $R\ge0$ put
@@ -1963,7 +1990,7 @@ Provenance: `src: m4/r1-check.tex lem:uv, transcribed; kernel facts derived and 
 
 #### Theorem C.5 ($h$-uniform stability)
 
-`thm:stability` &middot; page 56 &middot; proof in the manuscript
+`thm:stability` &middot; page 57 &middot; proof in the manuscript
 
 ```latex
 For every $p<\infty$ and compact $\Lambda$,
@@ -1983,7 +2010,7 @@ Uses: `A:hyper`, `A:stability`, `lem:uv`, `lem:wick`
 
 #### Remark C.6 (why the class is what it is)
 
-`rem:whyclass` &middot; page 57 &middot; imports A8
+`rem:whyclass` &middot; page 58 &middot; imports A8
 
 ```latex
 The two halves of the constraint $0\le h\le1$ are used in complementary places:
@@ -2002,7 +2029,7 @@ Uses: `lem:Z`, `lem:uv`, `lem:wick`, `sf:printed`
 
 #### Proposition C.7 (coverage of every CE application)
 
-`prop:discharge` &middot; page 57 &middot; imports A8 &middot; proof in the manuscript
+`prop:discharge` &middot; page 59 &middot; imports A8 &middot; proof in the manuscript
 
 ```latex
 CE1 is used nowhere in \S\S\ref{sec:slab}--\ref{sec:G}: every use of Euclidean clustering
@@ -2027,7 +2054,7 @@ Uses: `lem:D2`, `lem:Z`, `lem:ce2strip`, `lem:classes`, `lem:cluster`, `lem:tran
 
 #### Lemma D.1 (affine-path identity)
 
-`lem:D1` &middot; page 84
+`lem:D1` &middot; page 86
 
 ```latex
 Let $h_1,h_2\in\CE$, and let $F$ be a finite sum of localized monomials of type $(1.1.5)$ or
@@ -2048,7 +2075,7 @@ and
 
 #### Lemma D.2 (localized comparison)
 
-`lem:D2` &middot; page 88 &middot; imports A8
+`lem:D2` &middot; page 90 &middot; imports A8
 
 ```latex
 Assume the standing assumption of \S\ref{sub:d2-conv}.  Let $F=\sum_{a\in\mathfrak A}F_a$ be a
@@ -2089,7 +2116,7 @@ Uses: `A:gjs`, `rem:wlog`, `sf:CE2`
 
 #### Theorem D.3 (Phase A: fixed cutoff, parallel strips)
 
-`thm:D3` &middot; page 95 &middot; imports A8
+`thm:D3` &middot; page 97 &middot; imports A8
 
 ```latex
 Assume the standing assumption of \S\ref{sub:d2-conv}.  Let $g\in\CH$, let $I\subset\R$ be a
@@ -2116,7 +2143,7 @@ Uses: `rem:wlog`
 
 #### Theorem D.4 (Phase B: uniform in the cutoff)
 
-`thm:D4` &middot; page 100 &middot; imports A8
+`thm:D4` &middot; page 101 &middot; imports A8
 
 ```latex
 Assume the standing assumption of \S\ref{sub:d2-conv}.  For every $h\in\CE$, every $a\in\R$ and
@@ -2133,8 +2160,9 @@ with $V(h')(0)$, $V_*$ and $\overline\Sigma_{3\times5}$ as in \S\ref{sub:d4-sett
 Lemma~\ref{aux:notation-cU}, and $S_2(B_{3\times5})$ the common value of
 Definition~\ref{aux:notation-S2def} at all boxes of $3$ rows and $5$ columns
 (Proposition~\ref{aux:notation-S2}(iii)).  In working coordinates (Remark~\ref{rem:wlog}), $M_B$
-depends on $(\lambda,\mathscr P,m_0)$ through $C_7$, $m_1$, $K_1$, $K_2$, the unevaluated finite
-constant $S_2(B_{3\times5})$ of Theorem~\ref{thm:stability}, and $V_*$; it does not depend on $h$, $a$
+depends on $(\lambda,\mathscr P,m_0)$ through $C_7$, $m_1$, $K_1$, $K_2$, the unevaluated
+constant $S_2(B_{3\times5})$ of Definition~\ref{aux:notation-S2def}, finite by
+Theorem~\ref{thm:stability}, and $V_*$; it does not depend on $h$, $a$
 or $h'$.  The proof uses GJS Theorem~1.1.7 across strips transverse to the time-zero line, a case
 its printed proof does not reach (A8(iv)-T, Assumption~\ref{A:gjs}, item (iv-T); \S\ref{sub:d4-transverse}).
 ```
@@ -2145,7 +2173,7 @@ translations, parity, dilations
 
 #### Lemma E.1 (the one-particle space in momentum variables)
 
-`lem:ff-onepart` &middot; page 115 &middot; proof in the manuscript
+`lem:ff-onepart` &middot; page 117 &middot; proof in the manuscript
 
 ```latex
 Let $m>0$ and let $L^2_{\rm r}(\R):=\{\theta\in L^2(\R,dk):\theta(-k)=\overline{\theta(k)}
@@ -2179,7 +2207,7 @@ $u_s\,e^{it\mu_m(\cdot)}\,u_s^{-1}=e^{its\mu_{m'}(\cdot)}$ for $t\in\R$.
 
 #### Lemma E.2 (second quantization of a unitary)
 
-`lem:ff-gamma` &middot; page 117 &middot; proof in the manuscript
+`lem:ff-gamma` &middot; page 119 &middot; proof in the manuscript
 
 ```latex
 Let $u:\mathfrak h\to\mathfrak h'$ be a unitary between complex Hilbert spaces and put
@@ -2206,7 +2234,7 @@ $\mathcal F(\mathfrak h)$.
 
 #### Definition E.3 (number grading, momentum field, generators of the net, free Hamiltonian)
 
-`def:ff-objects` &middot; page 118
+`def:ff-objects` &middot; page 119
 
 ```latex
 Let $m>0$, $\mathcal K=\mathcal K_m$, $\mu=\mu_m$, $j=j_m$, and let $D=D_m:\mathcal F(\mathcal
@@ -2244,7 +2272,7 @@ Uses: `A:cutoff`, `lem:ff-gamma`, `lem:ff-onepart`, `lem:ff-transport`
 
 #### Lemma E.4 (transport by an orthogonal bijection of the index spaces)
 
-`lem:ff-transport` &middot; page 118 &middot; proof in the manuscript
+`lem:ff-transport` &middot; page 120 &middot; proof in the manuscript
 
 ```latex
 For $i=1,2$ let $\mathcal K_i$ be a real Hilbert space, $\varphi_i$ the Gaussian random process
@@ -2278,14 +2306,15 @@ Uses: `A:cutoff`, `def:ff-objects`, `lem:ff-gamma`
 
 #### Proposition E.5 (translations, parity, dilations)
 
-`prop:ff-symmetries` &middot; page 120 &middot; proof in the manuscript
+`prop:ff-symmetries` &middot; page 121 &middot; proof in the manuscript
 
 ```latex
 \leavevmode
 \begin{enumerate}
 \item[\textup{(T)}] Let $m>0$ and, for $a\in\R$, $U_a:=U_{\tau_a}$
 (Lemmas~\ref{lem:ff-onepart}(ii) and~\ref{lem:ff-transport}), and $\tau_a:=\mathrm{Ad}\,U_a$.
-Then $U_a1=1$, $U_aU_b=U_{a+b}$, and for $f\in\mathcal K_m$ and real $h\in\mathcal S(\R)$
+Then $U_a1=1$, $U_aU_b=U_{a+b}$, $a\mapsto U_a$ is a strongly continuous one-parameter unitary
+group, and for $f\in\mathcal K_m$ and real $h\in\mathcal S(\R)$
 \[
  U_a\varphi_0(f)U_a^*=\varphi_0(\tau_af),\qquad U_a\pi_0(h)U_a^*=\pi_0(\tau_ah),
 \]
@@ -2332,7 +2361,7 @@ Uses: `A:cutoff`, `def:ff-objects`, `lem:ff-gamma`, `lem:ff-onepart`, `lem:ff-tr
 
 #### Remark E.6 (the identities of Assumption~\ref{A:covar})
 
-`rem:ff-A7` &middot; page 122
+`rem:ff-A7` &middot; page 124
 
 ```latex
 For $g\in\CH$, $K(g)$ is the closure of the operator sum $H_0+V(g)$, whose domain is
@@ -2350,7 +2379,7 @@ Uses: `A:covar`, `A:cutoff`, `prop:ff-symmetries`
 
 #### Lemma E.7 (the objects of the sources)
 
-`lem:ff-sources` &middot; page 122 &middot; proof in the manuscript
+`lem:ff-sources` &middot; page 124 &middot; proof in the manuscript
 
 ```latex
 Let $m>0$, $\mathcal K=\mathcal K_m$, $\mu=\mu_m$, $j=j_m$, $D=D_m$.

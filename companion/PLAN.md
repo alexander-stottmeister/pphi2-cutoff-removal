@@ -864,3 +864,8 @@ The plan approved on 23 October 2026 had two author checkpoints: Checkpoint 1 (P
 - The optional item was taken: the checkpoint of §4 reads "Assume the standing assumption of [R, §D.c.1, p. 82]"; the line it adds is absorbed on p. 8.
 
 **Checks after R7b.** Two passes with the pinned epoch: 0 errors, 0 Overfull, 0 Underfull, 0 undefined, 20 pages, empty `??|TODO|Hmm|wait,` grep, no raster image; a repeated double build gives a byte-identical PDF. checkpages: 171 locators (the two new ones included), the 32 pages of Table 1, the 65 rows of Appendix A (in the order of `labels.md`) and the three box titles, 0 problems. Front matter 75, 150 and 53 words; openings at most 28 words; six captions end "Illustration, not evidence."; banned words as after R7.
+
+## 12. Dated notice of 23 November 2026 (not a revision)
+
+On 23 November 2026 a dated notice was added to the box on the first page (record: `council/README.md`, "23 November 2026, dated notice"). It deviates from this plan in two points, both confined to page 1: the box now holds 236 words (budget of Part 8, item 12: 80), and it is set in footnote size with reduced title spacing, because any added line pushed the references onto a twenty-first page. `bib.tex` was regenerated the same day (the page range of [MMST]). Pages 2–19 are those of the edition of 7 November 2026; a third edition waits for the author's decision on Phase C.
+

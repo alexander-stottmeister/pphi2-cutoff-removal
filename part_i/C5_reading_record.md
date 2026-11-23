@@ -25,7 +25,11 @@ Leave the mathematics alone: the question is only "does the page say this".
 
 Manuscript build the record refers to: `part_i/main.tex`, integration of Appendix D of
 7 November 2026 (title-page notice), Assumption A8 items (i)–(viii) with (iv-T), (vii′) and the
-unnumbered source fact of the retired item (vi). Since 7 November 2026, items 1–4 carry the
+unnumbered source fact of the retired item (vi). Assumption A8 is unchanged in the version of
+11 November 2026 (Appendix E); in the version of 23 November 2026 only the opening of its Scope
+paragraph is reworded (the sentence on Theorem 1.1.8, pp. 595 and 597, now also citing p. 629,
+and the sentence on a stricter standard), and no item (i)–(viii) and no point (a)–(d) of the
+Scope changed. Since 7 November 2026, items 1–4 carry the
 imports of A8 (Theorem 1.1.7 is the one GJS theorem imported; item 1(e) also the reading of
 (1.8)); items 10–11, item 12(a),(c) and item 9(c) carry the readings of the Scope paragraph,
 points (b)–(d), including the item A8(iv)-T (the transverse case: the printed statement
@@ -112,7 +116,15 @@ imports of A8 (item 2 also the admissibility of B = I).
 - Image: `gjs-source-05.png`.
 - To confirm: (1.6) and the class of spatial cutoffs for H(g); essential self-adjointness;
   the ground eigenvalue is simple (record the exact statement and any citation the source
-  gives for it).
+  gives for it); and (added 23 November 2026) the sentence that defines Fock space, "Fock
+  space 𝓕 = L₂(𝒮′(R¹), dφ) is defined by the Gaussian measure dφ with mean zero and
+  covariance μ⁻¹ = (− d²/dx₁² + m₀²)^{−1/2}, see [1]. Also : : denotes Wick ordering with
+  respect to dφ." (transcribe exactly what `gjs-source-05.png` prints). The record's Gaussian
+  measure dφ₀ has covariance C = (2μ)⁻¹ with μ = (−∂ₓ² + m₀²)^{1/2} (`main.tex` §2.1), and
+  Assumption A1, Scope, records that the printed μ⁻¹ is literally 2C and that reading it as the
+  inner product 2⟨f, Cg⟩ of ℋ_C is a reading not proved in the manuscript (since 23 November
+  2026), and that the identification of the Fock-space sources' V(g), defined by normal
+  ordering, with the record's V(g) is not proved in the manuscript and remains a reading.
 - Manuscript sites: A8(i), A1 cross-reference.
 - Verdict: ________  Notes: ______________________________________________
 

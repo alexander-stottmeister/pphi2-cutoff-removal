@@ -35,7 +35,7 @@ M — and Θ = Γ(−1) is reserved for the parity unitary throughout.
 
 ## Constants
 
-The constants appendix (Appendix A, p. 45 of the build of 11 November 2026) fixes every
+The constants appendix (Appendix A, p. 46 of the build of 23 November 2026) fixes every
 value against its defining display. Each row was re-verified by hand at gates G3a and G3b
 (10 August 2026); the constants new on 7 November 2026 (Appendices C and D) were recomputed
 by hand in the comparison note and by the auditors of round V4 (gate GI, `part_i/README.md`). The constant C₈ of the retired item A8(vi) is no longer listed. The

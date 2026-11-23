@@ -74,11 +74,12 @@ norm convergence of the ground-state net on the quasi-local algebra\\[4pt]
   \normalsize Institut f\"ur Theoretische Physik, Leibniz Universit\"at Hannover,\\
   \normalsize Appelstra\ss e 2, 30167 Hannover, Germany}
 % Fixed date on purpose: it tracks the last change of the mathematics or of an
-% import's status (the free-field appendix, Appendix E, 11 November 2026), not the build date,
-% so the title page does not drift on every rebuild.  Update it only for such a change.
+% import's status (the restriction of Corollary 12.3 and the corrections of 23 November 2026),
+% not the build date, so the title page does not drift on every rebuild.  Update it only for
+% such a change.
 % The PDF bytes still carry pdftex's build timestamp; for byte-identical output
-% build with SOURCE_DATE_EPOCH=1794355200 FORCE_SOURCE_DATE=1 (11 November 2026, 00:00 UTC).
-\date{11 November 2026}
+% build with SOURCE_DATE_EPOCH=1795392000 FORCE_SOURCE_DATE=1 (23 November 2026, 00:00 UTC).
+\date{23 November 2026}
 
 \begin{document}
 \maketitle
@@ -155,6 +156,26 @@ to V5d), and the two findings repaired in the gate record, together with the las
 this notice, were checked by a third agent before publication
 (\texttt{part\_i/README.md}).  With this addition the status sentence of 7 November 2026
 above stands.
+
+\smallskip
+\textbf{Audit of 23 November 2026; corrections.}  Two independent audits, a third one of
+Appendix~\ref{app:freefield} and one of the \emph{Locality} paragraph of \S\ref{subsec:model},
+Lemma~\ref{lem:covparity}, Proposition~\ref{prop:spectral}, Corollary~\ref{cor:canonical},
+Theorem~\ref{thm:dichotomy} and \S\ref{sec:discussion}, found every proof they read to hold for
+what it covers, and one statement that claimed more than its proof:
+Corollary~\ref{cor:canonical}, now restricted to cutoffs $0\le g\le1$ and to
+$\mathscr P(\xi)=\xi^4$.  Theorem~\ref{thm:MAIN} and every other theorem are unchanged in
+substance; Hypothesis~\ref{hyp:broken} now says that ``ground state'' is meant in the spectral
+sense, and \S\ref{sec:dichotomy} that (B2) is not used; Proposition~\ref{prop:ff-symmetries}(T)
+now states that translations are strongly continuous; smaller corrections are listed in
+Appendix~\ref{app:provenance}.  The wording was also corrected: the description of the rate's
+constants (above, ``the finite, unevaluated constant of Theorem~\ref{thm:stability}'' is $S_2$,
+Definition~\ref{aux:notation-S2def}; the rate and $M$ are explicit in $S_2$ and the unevaluated
+GJS constants), the Scope paragraphs of A1 and A8, the source of A5(ii), the dependence on the
+filter (Lemma~\ref{lem:filter}) and the abstract's list of imports.  The repairs were re-checked
+by an agent that wrote none of them.  Reports: \texttt{ugjs/council/}
+(\texttt{v6-appendix-e-audit.md}, \texttt{v6-chain-audit.md}); gate record:
+\texttt{part\_i/README.md}.
 \end{quote}
 
 \begin{abstract}
@@ -171,8 +192,8 @@ averaging --- converges in norm on every local algebra,
 \[
   \lim_{g\in\G}\bigl\|(\omega_g-\omega_\infty)|_{\A(O)}\bigr\|=0 ,
 \]
-with a super-polynomial rate in $\dist(O,\{g<1\})$, explicit up to the finite constant of
-Theorem~\ref{thm:stability}; the limit is locally normal,
+with a super-polynomial rate in $\dist(O,\{g<1\})$, explicit in the imported theorem's
+unevaluated constants and one stability constant; the limit is locally normal,
 translation invariant, $\Z_2$-invariant for even $\mathscr P$, and is a ground state of the
 Glimm--Jaffe dynamics $(\A,\alpha)$ in the spectral sense. The proof is Hamiltonian: a
 local-perturbations-perturb-locally estimate built on an exact spectral filter and the exact
@@ -185,8 +206,9 @@ source's lattice squares (Appendix~\ref{app:comparison}), which uses the printed
 also for sharp-time observables across strips transverse to the time-zero line, a case its
 printed proof does not reach.
 The proof also imports, and explicitly identifies in \S\ref{sec:setting}, the standard
-cutoff-construction results on self-adjointness and the simple positive ground state,
-Feynman--Kac--Nelson transfer, finite-volume stability and hypercontractivity, domain smoothing
+cutoff-construction results on self-adjointness and the simple positive ground state, Wick
+powers and the free field, Feynman--Kac--Nelson transfer, finite-volume stability and
+hypercontractivity, domain smoothing
 and a common core, finite propagation and patching, and covariance. No Euclidean uniqueness
 theorem, global Markov property for the infinite-volume measure, or reverse
 Osterwalder--Schrader reconstruction is used. We do not claim uniqueness of $\omega_\infty$
@@ -233,7 +255,7 @@ Rodriguez Zarate--Thiemann cited here is explicitly restricted to finite volume 
 $(\omega_g)_{g\in\G}$ converges in norm on
 every local algebra; the limit is locally normal, translation and (for even $\mathscr P$)
 $\Z_2$ invariant, and is a ground state of the Glimm--Jaffe dynamics. A rate holds,
-explicit up to the finite constant of Theorem~\ref{thm:stability}:
+explicit in unevaluated constants (Appendix~\ref{app:constants}):
 $\|(\omega_g-\omega_\infty)|_{\A(O)}\|\le\Psi_{m_1}(d)$ for $g\equiv1$ on $O_d$, with
 $\Psi_{m_1}$ decaying faster than every inverse power.}
 \end{quote}
@@ -314,13 +336,15 @@ Appendices~\ref{app:huniform} and~\ref{app:comparison}, is:
 % src: m6/main.tex \S1.3 (v2), transcribed; refs adapted.
 (a) \emph{Uniqueness}: Theorem~\ref{thm:MAIN} identifies the limit of \emph{this} cutoff family;
 it does not show that every locally normal ground state of $(\A,\alpha)$ equals $\omega_\infty$.
-(b) \emph{Sharp rate}: in the exactly solvable quadratic model the true rate is
-$\mathrm{poly}(d)\,e^{-2m_1d}$ (companion note \texttt{m2/}); $\Psi_{m_1}$ is super-polynomial but not
-exponential, and this is intrinsic to the filter method used. (c) \emph{Beyond weak coupling}:
+(b) \emph{Sharp rate}: for the exactly solvable quadratic model the companion note \texttt{m2/}
+gives, with a proof sketch and numerics, the rate $\mathrm{poly}(d)\,e^{-2md}$, $m$ the mass of
+that model; $\Psi_{m_1}$ is super-polynomial and, for $\lambda>0$, not exponential, and this is
+intrinsic to the filter method used (\S\ref{subsec:strategy}). (c) \emph{Beyond weak coupling}:
 under the explicit phase-classification hypotheses stated in Hypothesis~\ref{hyp:broken}, a
-cutoff-uniform gap is incompatible with that two-phase structure
-(Theorem~\ref{thm:dichotomy}). Thus an extension to such a broken phase would have to abandon
-the uniform-gap input; no claim is made outside $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$.
+cutoff-uniform gap together with the uniform local moment (through Theorem~\ref{thm:MAIN}) is
+incompatible with that two-phase structure (Theorem~\ref{thm:dichotomy}). Thus an extension to
+such a broken phase would have to abandon the uniform gap or the uniform local moment; no claim
+is made outside $0\le\lambda/m_0^2<\varepsilon_{\mathscr P}$.
 (d) \emph{Wavelet uniformity}: uniformity in a lattice/wavelet resolution is a separate
 problem (Part II of this programme) and is not addressed here.
 
@@ -337,8 +361,8 @@ construction \cite{GJ3} produced a vacuum as a $w^*$ \emph{limit point} of space
 $\omega_g$: compactness selects a state but proves neither convergence nor canonicity.
 Theorem~\ref{thm:MAIN} asserts convergence of the full, unaveraged net in the norm of
 every local dual $\A(O)^*$ --- the strongest locally uniform statement available --- and
-Corollary~\ref{cor:canonical} then makes the historical construction subsequence- and
-averaging-independent. Norm convergence on local duals also transports normality: the
+Corollary~\ref{cor:canonical} then makes the historical construction, with a cutoff $0\le
+g\le1$, subsequence- and averaging-independent. Norm convergence on local duals also transports normality: the
 limit lies in the local Fock folia (Proposition~\ref{prop:normal}).
 
 \emph{Why standard tools fail.} The difference $V(g')-V(g)$ has infinite norm, so the
@@ -417,11 +441,11 @@ cofinal range, so covariance \eqref{eq:T} plus net convergence suffices; parity 
 import ledger of \S\ref{subsec:imports} and the coordinate convention of
 Remark~\ref{rem:wlog}. The theorem does not identify $\omega_\infty$ among \emph{all}
 locally normal ground states of $(\A,\alpha)$, does not reach a sharp exponential rate
-(the filter obstruction above; the solvable quadratic model has
-$\mathrm{poly}(d)\,e^{-2m_1d}$), and claims nothing beyond weak coupling; there,
-Theorem~\ref{thm:dichotomy} records the expected mechanism --- for even $\mathscr P$, a
-cutoff-uniform gap is incompatible with the fully classified two-phase structure of
-Hypothesis~\ref{hyp:broken}. In one sentence: \emph{the same uniform gap that gives
+(the filter obstruction above; for the solvable quadratic model the note \texttt{m2/} gives
+$\mathrm{poly}(d)\,e^{-2md}$, $m$ that model's mass, with a proof sketch), and claims nothing
+beyond weak coupling; there, Theorem~\ref{thm:dichotomy} records the expected mechanism --- for
+even $\mathscr P$, a cutoff-uniform gap together with the uniform local moment is incompatible
+with the fully classified two-phase structure of Hypothesis~\ref{hyp:broken}. In one sentence: \emph{the same uniform gap that gives
 exponential clustering also gives a local-perturbation stability estimate through an
 exact inverse-energy filter and the exact light cone; the printed clustering theorem of
 \cite{GJS}, through the box comparison of Appendix~\ref{app:comparison}, supplies the gap
@@ -444,7 +468,8 @@ the printed theorems of \cite{GJS} and the explicitly cited construction results
 \cite{GJ1,GJ2,GJ71,Rosen70,SimonBook,GRS75,GJExp}; they are enumerated once, as
 Assumptions~\ref{A:cutoff}--\ref{A:gjs}, and no other external mathematical input is
 used (Corollary~\ref{cor:canonical} additionally quotes the averaged-state formula
-\cite[(2.3)--(2.5)]{GJ3} as the definition of the averaged states it identifies).  (Until
+\cite[(2.3)--(2.5)]{GJ3} and the Hamiltonian \cite[(1.10)]{GJ3} as the definition of the states
+it identifies).  (Until
 11 November 2026 the free-field layer that Appendix~\ref{app:freefield} now derives from the
 printed statements listed in Assumption~\ref{A:cutoff} was used without being listed;
 Appendix~\ref{app:provenance}.)
@@ -630,7 +655,7 @@ moment constant $M$), and $\Theta=\Gamma(-1)$ is reserved for the parity unitary
 Each import below states (a) the exact statement used, (b) the pinpoint source, (c) a scope
 remark verifying that the used statement is no stronger than the printed one, (d) the sections
 that consume it, and (e) the page images documenting it in the audit dossier
-(\texttt{audit\_2026/}\allowbreak\texttt{evidence/}, index in
+(\texttt{audit\_2026/}\allowbreak\texttt{evidence/}, partly indexed in
 \texttt{audit\_2026/}\allowbreak\texttt{citation\_screenshot\_dossier.tex}).
 
 \begin{assumption}[cutoff construction]\label{A:cutoff}
@@ -794,11 +819,19 @@ Fourier transform ``throughout these notes'' by ``$\hat F(t_1,\dots,t_n)=(2\pi)^
 e^{-i\sum t_ix_i}F(x_1,\dots,x_n)\,d^nx$'' \cite[p.~27]{SimonBook}, as
 Appendix~\ref{app:freefield} does, so the map $f\mapsto\mu^{-1/2}\hat f$ carries $F_{m_0}$
 isometrically onto $L^2_{\rm r}(\R)$, and the image of the real Schwartz functions is dense
-there (Lemma~\ref{lem:ff-onepart}(i)).  The sources of the cutoff construction work in Fock
-space; the dictionary between their Fock space and $Q$-space is the unitary $\mathfrak D$ of
-Lemma~\ref{lem:ff-sources}, which carries their vacuum to $1$, their time-zero fields to
-$\varphi_0$ and $\pi_0$, their free Hamiltonian to $H_0$ and their translation unitary $U(-a)$
-to $U_a$.
+there (Lemma~\ref{lem:ff-onepart}(i)).  Of the sources of the cutoff construction,
+\cite{GJS} works in $Q$-space: its ``Fock space $\mathcal F=L_2(\mathcal S'(R^1),d\phi)$'' has ``covariance
+$\mu^{-1}=(-d^2/dx_1^2+m_0^2)^{-1/2}$, see [1]'' and ``Wick ordering with respect to
+$d\phi$'' \cite[p.~588]{GJS}.  Literally $\mu^{-1}=2C$; reading $\mu^{-1}$ as the inner product
+$2\ip f{Cg}$ of $\HH_C$, which makes $d\phi$ our $d\phi_0$ consistently with
+$\Phi(0,\vec x)=\phi_0(\vec x)$ and the covariance $(-\Delta+m_0^2)^{-1}$ of $d\Phi$
+\cite[p.~589]{GJS} (Remark~\ref{rem:conv}), is a reading of the kind recorded in
+Assumption~\ref{A:gjs}, Scope~(d), not proved here (the source's [1] is not among ours).
+\cite[p.~364]{GJ2}, \cite[p.~255]{GJ71} and \cite[p.~158]{Rosen70} work in Fock space; the
+dictionary between the Fock space of \cite{GJ2} and $Q$-space is the unitary $\mathfrak D$ of
+Lemma~\ref{lem:ff-sources}, which carries its vacuum to $1$, its time-zero fields to
+$\varphi_0$ and $\pi_0$, its free Hamiltonian to $H_0$ and its translation unitary $U(-a)$
+to $U_a$; that \cite{GJ71,Rosen70} use the same objects is a reading of those sources.
 They define $V(g)$ by normal ordering in Fock space; that $\mathfrak D$ carries their $V(g)$
 to the $V(g)$ defined here is not proved in this manuscript and remains a reading of the kind
 recorded in Assumption~\ref{A:gjs}, Scope~(d).
@@ -984,17 +1017,24 @@ $\mathscr C$ for all $K(g_s)$, $s\in[0,1]$, on which
 $K(g_s)\xi=K(g_{s_0})\xi+(s-s_0)V(g'-g)\xi$.
 
 \emph{Sources.} (i) is the model-specific smoothing theorem \cite[Ch.~7, Thm.~7.4]{GJExp}.
-(ii) is part of the cutoff construction; essential self-adjointness pinpoints, in their
-roles per the audit: \cite[Thm.~V.12]{SimonBook}, \cite[Thm.~5.3]{Rosen70}, \cite{GJ2}. % whitelisted: V.12 in its audited positive role (esa), not the S2 misuse
+(ii): ``Let $g\ge0$, $g\,\epsilon\,L^1\cap L^{1+\epsilon}$.  Let $H(g)$ be given by (V.15).
+Then (a) $H(g)$ is essentially self-adjoint on $C^\infty(H_0)$'' \cite[Thm.~V.12, p.~158]{SimonBook}, % whitelisted: V.12 in its audited positive role (esa), not the S2 misuse
+(V.15) being ``$H(g)=H_0+H_I(g)$'', ``$H_I(g)=\int g(x)\,{:}P(\phi_F(x)){:}\,dx$'', with $P$
+``semibounded'' \cite[pp.~141, 146]{SimonBook}; also \cite[Thm.~5.3]{Rosen70}, \cite{GJ2}.
 
 \emph{Scope.} \cite[Thm.~7.3]{GJExp} alone assumes a potential bounded below % negative-scope mention (whitelisted): Thm. 7.3
 and is therefore \emph{not} sufficient here; the citation is to Theorem~7.4
-(audit finding S3).
+(audit finding S3).  For (ii), Theorem V.12(a) at each $g_s$ % whitelisted: V.12 in its audited positive role (esa), not the S2 misuse
+($0\le g_s\in C_c^\infty\subset L^1\cap L^{1+\varepsilon}$, $P:=\lambda\mathscr P$
+semibounded, $\phi_F$ as in the Scope of~\ref{A:cutoff}, so $H(g_s)=H_0+V(g_s)$) puts
+$\mathscr C:=C^\infty(H_0)=\bigcap_nD(H_0^n)$ in $D(H_0)\cap D(V(g_s))$ as a core of the
+self-adjoint $K(g_s)$; the identity on $\mathscr C$ is the linearity of $h\mapsto V(h)$.
 
 \emph{Used in.} Proposition~\ref{prop:smoothing}, \S\ref{sec:slab} (dominators),
 \S\ref{sec:path} (eigenvalue differentiation).
 
-{\raggedright\emph{Dossier.} \texttt{gjexp-domain-165/166/167} (E17--E19).\par}
+{\raggedright\emph{Dossier.} \texttt{gjexp-domain-165/166/167} (E17--E19); item (ii):
+\texttt{simon-semibounded-163}, \texttt{simon-hg-168}, \texttt{simon-transfer-180}.\par}
 \end{assumption}
 
 \begin{assumption}[free propagation; patching; the dynamics $\alpha$]\label{A:patch}
@@ -1343,11 +1383,13 @@ smallness hypothesis to the printed one is Proposition~\ref{prop:scaling}.
 
 \emph{Scope.} Every item of this assumption is a printed statement of \cite{GJS}, used at
 the scope at which it is printed; this is the standard under which
-Assumptions~\ref{A:cutoff}--\ref{A:covar} are imported, and no stricter one is available
-to this manuscript, since the printed proof of Theorem 1.1.7 itself obtains its
-$h$-independent constant from Theorem 1.1.8 at the same $h$ (p.~597) while Theorem
-1.1.8 is printed only ``uniformly as $h\to1$'' (p.~595).  Four points of scope are
-recorded.
+Assumptions~\ref{A:cutoff}--\ref{A:covar} are imported.  The printed proof of Theorem 1.1.7
+takes its $h$-independent constant from Theorem 1.1.8 at the same $h$ (p.~597), whose
+estimate is printed ``uniformly as $h\to1$'' (p.~595) and ``uniform in the space cutoff $h$''
+(p.~629, Source Fact~\ref{sf:printed}).  A stricter standard, admitting only cases that a
+printed proof reaches, is not adopted: it would exclude A8(iv)-T (point (b)), and
+Theorems~\ref{thm:D3}, \ref{thm:D4} would need the slicing of Remark~\ref{aux:d3-orient}.
+Four points of scope are recorded.
 \emph{(a) Item (vi), retired.}  From 16 August to 30 October 2026 the slab-uniform estimate
 \eqref{eq:UGJS} was carried as a named hypothesis of Theorem~\ref{thm:MAIN}, documented
 on 5 September 2026 as the quantifier the source states on p.~629 and consumes on
@@ -2548,8 +2590,10 @@ $H_s\dot\Om_s=(\dot E_s-V(v))\Om_s$ and using $Q_s\Om_s=0$ proves the second for
 
 \begin{lemma}[exact inverse-energy filter]\label{lem:filter}
 % src: lamport_gap_to_main.tex <1>2.
-Choose an even $\chi\in C^\infty(\R;[0,1])$ with $\chi=0$ on $[-\gamma/2,\gamma/2]$ and
-$\chi=1$ outside $(-\gamma,\gamma)$, and set
+Fix, once for each $\gamma>0$, an even $\chi\in C^\infty(\R;[0,1])$ with $\chi=0$ on
+$[-\gamma/2,\gamma/2]$ and $\chi=1$ outside $(-\gamma,\gamma)$; $W_\gamma$, $T_\gamma$,
+$C_{q,\gamma}$ below and $\Psi_\gamma$, $C_\gamma'$, $C_{N,\gamma,M}$ of \S\ref{sec:lppl}
+depend on this choice.  Set
 \begin{equation}
  \widehat W_\gamma(E):=\begin{cases}\chi(E)/E,&E\ne0,\\0,&E=0,\end{cases}
  \qquad
@@ -2674,7 +2718,7 @@ $2\,\mathfrak m\,e^{-\gamma R/2}$, proving \eqref{eq:sep}.
 Let $g\in\CH$, write $H=H(g)$, $\Om=\Om_g$, $\beta_t=\beta^g_t$, and assume
 \eqref{eq:Ggamma}. Let $B\subset\R$ be compact, let $X=X^*$ be affiliated with $\A(O')'$ for
 every bounded open interval $O'$ with $\dist(B,O')>0$, with $\Om\in D(X)$, and let
-$A\in\A(O)$ for a bounded interval $O$. If $R:=\dist(B,O)>0$ satisfies $\gamma R\ge1$, then
+$A\in\A(O)$ for a bounded open interval $O$. If $R:=\dist(B,O)>0$ satisfies $\gamma R\ge1$, then
 \begin{equation}
  \bigl|\ip{X\Om}{A\Om}-\ip{X\Om}{\Om}\ip{\Om}{A\Om}\bigr|
  \le2\,\|X\Om\|\,\|A\|\,e^{-\gamma R/2} .
@@ -2991,8 +3035,9 @@ on $\A(O)$.
 
 \begin{proposition}[exact spectral passage]\label{prop:spectral}
 % src: m6/main.tex prop:M0-main(i) (v2), transcribed; = lamport_gap_to_main.tex <1>10.
-If $(g_n)\subseteq\G$ satisfies $d(g_n,O)\to\infty$ for every bounded interval $O$, and
-$\omega_{g_n}\to\omega$ in norm on every $\A(O)$, then $\omega$ is a ground state of
+If $(g_n)\subseteq\G$ satisfies $d(g_n,O)\to\infty$ for every bounded open interval $O$, and
+$\omega$ is a state on $\A$ with $\omega_{g_n}\to\omega$ in norm on every $\A(O)$, then $\omega$
+is a ground state of
 $(\A,\alpha)$ in the spectral sense: $\omega\circ\alpha_t=\omega$ for all $t$; the
 function $t\mapsto\omega(A\alpha_t(B))$ is continuous and bounded for all $A,B\in\A$; and
 \[
@@ -3004,7 +3049,7 @@ $[0,\infty)$.
 
 \begin{proof}
 % src: m6/main.tex prop:M0-main proof (i) (v2), transcribed.
-\emph{Exact identity.} Fix a bounded interval $O$, $A,B\in\A(O)$,
+\emph{Exact identity.} Fix a bounded open interval $O$, $A,B\in\A(O)$,
 $\mathfrak m:=\|A\|\|B\|$, and $g\in\G$; let
 $\rho_g(\cdot):=\ip{A^*\Om_g}{P_{H(g)}(\cdot)B\Om_g}$, a complex measure with
 $\supp\rho_g\subseteq\spec H(g)\subseteq[0,\infty)$ and $|\rho_g|(\R)\le\mathfrak m$, and
@@ -3096,7 +3141,8 @@ Assumptions~\ref{A:cutoff}--\ref{A:covar}.  Proposition~\ref{prop:scaling} verif
 dimensionless weak-coupling hypothesis implies the source smallness condition. The theorem
 is an implication from exactly this list of printed statements; no other external input is
 used.  The constant $M$ of item (5), and through it the rate $\Psi_{m_1}$ of item (1),
-contain the finite, unevaluated constant $S_2(B_{3\times5})$ of Theorem~\ref{thm:stability}.
+contain the unevaluated constant $S_2(B_{3\times5})$ of Definition~\ref{aux:notation-S2def},
+finite by Theorem~\ref{thm:stability}.
 \end{theorem}
 
 \begin{proof}
@@ -3123,12 +3169,15 @@ preserves each local algebra: Proposition~\ref{prop:ff-symmetries}(P)), so (1) p
 identity to $\omega_\infty$, and density extends it to $\A$.
 \end{proof}
 
-\begin{corollary}[the Glimm--Jaffe vacuum is canonical at weak coupling]\label{cor:canonical}
-% src: m6/main.tex cor:canonical (v2), transcribed.
-Every $w^*$ limit point of the (averaged or unaveraged) finite-volume ground states
-constructed in \cite[\S2]{GJ3} coincides on each $\A(O)$ with $\omega_\infty$; in
-particular the construction of \cite{GJ3} is subsequence- and averaging-independent in the
-weak-coupling region.
+\begin{corollary}[the Glimm--Jaffe vacuum is canonical at weak coupling, for cutoffs
+$0\le g\le1$]\label{cor:canonical}
+% src: m6/main.tex cor:canonical (v2), transcribed; statement restricted 23 November 2026
+% (audit ugjs/council/v6-chain-audit.md, findings F-A, F-B).
+Let $\mathscr P(\xi)=\xi^4$, and let the cutoff $g$ of \cite[(2.3)]{GJ3} be chosen in $\G$, that
+is, with $0\le g\le1$.  Then every $w^*$ limit point of the averaged states $\omega_n$ of
+\cite[(2.4)]{GJ3} and of the unaveraged states $\omega_{g_n}$, $g_n=g(\cdot/n)$, coincides on
+each $\A(O)$ with $\omega_\infty$; in particular, for such $g$, the construction of
+\cite[\S2]{GJ3} is subsequence- and averaging-independent in the weak-coupling region.
 \end{corollary}
 
 \begin{proof}
@@ -3137,7 +3186,7 @@ For the unaveraged net this is Theorem~\ref{thm:MAIN}(1). For the averaged state
 $g_n:=g(\cdot/n)\in\G$; let $\sigma_{a'}$ denote the space-translation automorphisms
 used there (our $\tau_{\epsilon a'}=\mathrm{Ad}\,U_{\epsilon a'}$ of
 Proposition~\ref{prop:ff-symmetries}(T), with $\epsilon\in\{\pm1\}$ the direction
-convention), and let $\bar h\ge0$, $\supp\bar h\subseteq[-1,1]$, $\int\bar h=1$, be the
+convention), and let $\bar h\ge0$, $\bar h\in C^\infty$, $\supp\bar h\subseteq[-1,1]$, $\int\bar h=1$, be the
 averaging weight. Then
 \begin{align*}
   \omega_n(A)
@@ -3146,7 +3195,9 @@ averaging weight. Then
   =\int_{-1}^{1}\bar h(u)\,\omega_{g_n}\bigl(\tau_{\epsilon nu}A\bigr)\,du\\
   &=\int_{-1}^{1}\bar h(u)\,\omega_{\tau_{-\epsilon nu}g_n}(A)\,du ,
 \end{align*}
-by \eqref{eq:T} (the estimate below is invariant under $\epsilon\to-\epsilon$). Since
+by \eqref{eq:T} (the estimate below is invariant under $\epsilon\to-\epsilon$); the integrands
+are continuous, as $b\mapsto\omega_{g_n}(\tau_bA)=\ip{U_{-b}\Om_{g_n}}{AU_{-b}\Om_{g_n}}$ is, by
+the strong continuity of $b\mapsto U_b$ (Proposition~\ref{prop:ff-symmetries}(T)). Since
 $g_n\equiv1$ on $[-3n,3n]$, the shifted cutoff $\tau_{-\epsilon nu}g_n\in\G$ equals $1$
 on an interval containing $[-2n,2n]$ for every $|u|\le1$; hence for $O\subseteq[-R,R]$,
 $d(\tau_{-\epsilon nu}g_n,O)\ge2n-R$ \emph{uniformly in $u$}, and
@@ -3154,19 +3205,29 @@ Theorem~\ref{thm:MAIN}(1) gives
 \[
   \|(\omega_n-\omega_\infty)|_{\A(O)}\|
   \le\int_{-1}^1\bar h(u)\,\bigl\|(\omega_{\tau_{-\epsilon nu}g_n}-\omega_\infty)|_{\A(O)}\bigr\|\,du
-  \le\Psi_{m_1}(2n-R)\longrightarrow0 .
+  \le\Psi_{m_1}(2n-R)\longrightarrow0 ;
 \]
-No translation invariance of $\omega_\infty$ is needed for this bound.
+the integrand in $u$ is the supremum, over $A$ in the unit ball of $\A(O)$, of the continuous
+functions $u\mapsto|\omega_{g_n}(\tau_{\epsilon nu}A)-\omega_\infty(A)|$, hence lower
+semicontinuous and measurable.  No translation invariance of $\omega_\infty$ is needed for this
+bound.
 \end{proof}
+
+The states of \cite{GJ3} are built from the ground states of
+``$H(g)=H_0+\lambda\int{:}\phi^4(x){:}\,g(x)\,dx-E_g$'' \cite[(1.10), p.~205]{GJ3}; that these
+are the $\Om_{g_n}$ of this manuscript rests on the reading recorded in the Scope of
+Assumption~\ref{A:cutoff}, applied to \cite{GJ3}, which is not among the sources listed there.
 
 % ==================================================================
 \section{The two-phase dichotomy}\label{sec:dichotomy}
 
-The uniform gap of Theorem~\ref{thm:G} is incompatible with a fully classified two-phase
-structure. The incompatibility is stated as a conditional theorem: \emph{all four}
-hypotheses below are load-bearing, and (B4) in particular cannot be omitted --- dropping
+The uniform gap of Theorem~\ref{thm:G}, together with the uniform local moment of
+Theorem~\ref{thm:M2} through Theorem~\ref{thm:MAIN}, is incompatible with a fully classified
+two-phase structure. The incompatibility is stated as a conditional theorem: its proof uses
+(B1), (B3) and (B4), and (B4) in particular cannot be omitted --- dropping
 it was the one proof-breaking defect (P1) found by the independent audit of the
-predecessor manuscript (Appendix~\ref{app:provenance}).
+predecessor manuscript (Appendix~\ref{app:provenance}); (B2) belongs to the classification
+being excluded and is not used.
 
 \begin{hypothesis}[structure of a broken phase]\label{hyp:broken}
 % src: m6/main.tex cor:nobreak items (B1)-(B4) (v2); m3/m3.tex hyp:broken states (B4)
@@ -3185,6 +3246,8 @@ $\mathscr P$ is even, and:
 \item[\rm(B4)] every $\theta$-invariant ground state of $(\A,\alpha)$ equals
       $\tfrac12(\omega_++\omega_-)$.
 \end{enumerate}
+In (B1) and (B4), ``ground state'' is meant in the spectral sense of
+Proposition~\ref{prop:spectral}.
 \end{hypothesis}
 
 \begin{theorem}[conditional exclusion of a two-phase structure]\label{thm:dichotomy}
@@ -3198,11 +3261,12 @@ simultaneously.
 % src: m6/main.tex cor:nobreak proof (v2), transcribed; refs adapted.
 Assume that $\mathscr P$ is even and (B1)--(B4) hold. Choose $\widetilde g_n\in\G$ with
 $\widetilde g_n\equiv1$ on $(-n,n)$
-and write $\omega_n:=\omega_{\widetilde g_n}$. Fix $a\in\R$ such that
+and write $\omega_n:=\omega_{\widetilde g_n}$. In Steps~1 and~2, $a\in\R$ is any number with
 \[
  R_a:=\dist(O,O+a)>0,\qquad m_1R_a\ge1 ,
 \]
-where $O$ is the localization interval of the order parameter $B$ from (B3).
+where $O$ is the localization interval of the order parameter $B$ from (B3); every $a$ with
+$|a|\ge|O|+1/m_1$, $|O|$ the length of $O$, is one, since $R_a=|a|-|O|$ for $|a|\ge|O|$.
 
 \emph{Step 1: uniform cutoff clustering for the bounded order parameter.} For the cutoff
 Hamiltonian $H(\widetilde g_n)$ apply Lemma~\ref{lem:cluster} with $\gamma=m_1$
@@ -3266,7 +3330,7 @@ phase-space classification (B1)--(B4) --- in particular not the midpoint identif
 (B4) --- for the state space of $(\A,\alpha)$. This manuscript therefore makes no
 unconditional assertion that its state space carries the structure of
 Hypothesis~\ref{hyp:broken}; Theorem~\ref{thm:dichotomy} says only that, at weak coupling,
-that structure cannot coexist with the cutoff-uniform gap. The two rigorous options
+that structure cannot coexist with the cutoff-uniform gap and the uniform local moment. The two rigorous options
 recorded by the audit --- state (B1)--(B4) explicitly, or delete the corollary --- are
 resolved here by the first.
 \end{remark}
@@ -3285,15 +3349,17 @@ present proof neither establishes nor needs Problem 1: the identification step u
 exact spectral identity of Proposition~\ref{prop:spectral}, and the convergence step uses
 the Cauchy estimate.
 
-\emph{Sharpness.} In the exactly solvable quadratic model the true rate is
-$\mathrm{poly}(d)\,e^{-2m_1d}$ (companion note \texttt{m2/}: a round trip through the
-region where the two Hamiltonians differ, at the local Agmon mass). $\Psi_{m_1}$ is
-super-polynomial but sub-exponential. The present filter argument does not obtain the
-sharp exponential rate; a proof of such a rate would require an additional resolvent or
-Combes--Thomas input not supplied here.
+\emph{Sharpness.} For the exactly solvable quadratic model the companion note \texttt{m2/}
+gives, with a proof sketch and numerics, the rate $\mathrm{poly}(d)\,e^{-2md}$, $m$ the mass of
+that model (a round trip through the region where the two Hamiltonians differ, at the local
+Agmon mass). $\Psi_{m_1}$ is super-polynomial and, for $\lambda>0$, not exponential
+(\S\ref{subsec:strategy}). For $\lambda>0$ the present filter argument does not obtain an exponential rate; a
+proof of such a rate would require an additional resolvent or Combes--Thomas input not supplied
+here.
 
-\emph{Uniqueness.} $\omega_\infty$ is canonical for the cutoff family
-(Corollary~\ref{cor:canonical}), and translation invariant without averaging. The theorem
+\emph{Uniqueness.} $\omega_\infty$ is canonical for the cutoff family $\G$ (for the
+construction of \cite{GJ3} with a cutoff $0\le g\le1$: Corollary~\ref{cor:canonical}), and
+translation invariant without averaging. The theorem
 does not identify every locally normal translation-invariant ground state of
 $(\A,\alpha)$ with $\omega_\infty$. In particular, the Euclidean results \cite{AHZ,BDW}
 do not by themselves provide the reverse reconstruction and state-space identification
@@ -3302,14 +3368,15 @@ implication as its item (R3).
 
 \emph{Beyond weak coupling.} Theorem~\ref{thm:dichotomy} is conditional on
 Hypothesis~\ref{hyp:broken}. Under exactly those hypotheses, a proof based on a
-cutoff-uniform gap cannot extend to that two-phase regime. The phase-transition results
+cutoff-uniform gap and a uniform local moment cannot extend to that two-phase regime. The phase-transition results
 \cite{GJS75,GJS76}, as cited here, are not used as a substitute for (B4)
 (Remark~\ref{rem:gjs7576}), and this manuscript makes no unconditional assertion that its
 Hamiltonian state space has the classification (B1)--(B4).
 
 \emph{Part II.} Uniformity in a lattice/wavelet resolution --- the operator-algebraic
-renormalization programme over the maps of \cite{MMST} --- is a separate problem with no
-mathematical dependence in either direction, and its record lives in
+renormalization programme over the maps of \cite{MMST} --- is a separate problem: Part~I does
+not depend on Part~II, and Part~II re-uses one argument of Appendix~\ref{app:huniform} (from the
+proof of Theorem~\ref{thm:stability}); its record lives in
 \texttt{part\_ii/} and \texttt{strategy.md}. Its present state, in one paragraph: for the
 free nearest-neighbour model, with lattice vacua $\omega^{(0)}_N$ and continuum vacuum
 $\omega^{(0)}$, there are local Weyl unitaries with
@@ -3375,9 +3442,14 @@ $b_0$, $C_*$, $c_1$, $c_2$, $b_*$ & kernel and stability constants of Appendix~\
 \end{tabular}
 \end{center}
 
-The rows $S_2(B)$, $A$, $A_f$, $M$ and the $\Psi_\gamma$ rows contain the finite constant of
-Theorem~\ref{thm:stability}, which is not evaluated (its bound $(1+e^{2b_*})^{1/2}$ at
-$p=2$ is explicit but crude); every other constant is explicit.  Until 7 November 2026 the
+The rows $S_2(B)$, $A$, $A_f$, $M$ and the $\Psi_\gamma$ rows contain $S_2$
+(Definition~\ref{aux:notation-S2def}), which is not evaluated; Theorem~\ref{thm:stability} at
+$p=2$ bounds it by the explicit but crude $(1+e^{2b_*})^{1/2}$ (proof of
+Proposition~\ref{aux:notation-S2}(i)).  Nor are the first two rows evaluated: GJS print $m_1$
+and $C_7$ only as existing, and the thresholds for $K_1$, $K_2$, $M_*$, $\lambda_*$ only as
+``sufficiently large'' or ``sufficiently small'' (p.~594).  Every other constant is explicit
+in these, in $V_*$ (explicitly bounded, Lemma~\ref{aux:notation-wick}) and, for $\Psi_\gamma$,
+in the filter of Lemma~\ref{lem:filter}.  Until 7 November 2026 the
 $M$ rows contained the constant of the retired item A8(vi) (Appendix~\ref{app:provenance},
 corrections history); the formulas of Lemma~\ref{lem:rate} are unchanged.
 
@@ -3395,7 +3467,7 @@ file & role\\
 \texttt{audit\_2026/}\allowbreak\texttt{critical\_proof\_audit.tex} & independent audit (frozen against the v1 SHA-256)\\
 \texttt{audit\_2026/}\allowbreak\texttt{lamport\_euclidean\_to\_gap.tex} & fully explicit proof, GJS $\Rightarrow$ (M$_2$)+(G)\\
 \texttt{audit\_2026/}\allowbreak\texttt{lamport\_gap\_to\_main.tex} & fully explicit proof, (M$_2$)+(G) $\Rightarrow$ main theorem\\
-\texttt{audit\_2026/}\allowbreak\texttt{citation\_screenshot\_dossier.tex} + \texttt{evidence/} & page images for every import\\
+\texttt{audit\_2026/}\allowbreak\texttt{citation\_screenshot\_dossier.tex} + \texttt{evidence/} & page images for every import (the \texttt{.tex} index covers only part of them)\\
 \texttt{m4/r1-check.tex} & gate R1: $h$-uniformity of the Euclidean inputs\\
 \texttt{m4/r2-check.tex} & gate R2: printed norms and exact constants (page image, p.~594)\\
 \texttt{m0/m0.tex}, \texttt{m2/m2.tex}, \texttt{m3/m3.tex} & spectral passage; quadratic-model rate; dichotomy\\
@@ -3503,8 +3575,9 @@ Appendix~\ref{app:freefield}: the momentum field, the free Hamiltonian and the u
 translation, parity and dilation are defined through the unitary between Fock space and
 $Q$-space of the source's Theorem I.11 (Assumption~\ref{A:cutoff}(e)--(f)); their action on
 the fields, on the local algebras, on $H_0$ and on $V(g)$ is proved
-(Proposition~\ref{prop:ff-symmetries}); and they are identified with the objects of the
-sources (Lemma~\ref{lem:ff-sources}).  \S\ref{subsec:model}, Assumptions~\ref{A:patch}
+(Proposition~\ref{prop:ff-symmetries}); and, except for the dilation unitary, which has no
+counterpart in the sources, they are identified with the objects of the sources
+(Lemma~\ref{lem:ff-sources}).  \S\ref{subsec:model}, Assumptions~\ref{A:patch}
 and~\ref{A:covar}, Lemma~\ref{lem:covparity}, Remark~\ref{rem:wlog}, the proofs of
 Theorems~\ref{thm:MAIN}(4) and~\ref{thm:dichotomy} and that of Corollary~\ref{cor:canonical}
 refer to it.  The six MINOR points of the
@@ -3517,6 +3590,35 @@ reported now: \cite[p.~398]{GJ2} prints the condition for cutoff independence wi
 $<$, and cites its (1.2.11) for $\varphi(x)$, which is its (1.2.10) (Scope paragraphs of
 Assumptions~\ref{A:patch} and~\ref{A:covar}).  As a by-product the three identities of
 Assumption~\ref{A:covar} are proved in this manuscript (Remark~\ref{rem:ff-A7}).
+\item \emph{Audit of 23 November 2026; corrections} (two independent audits,
+\texttt{ugjs/council/}\allowbreak\texttt{v6-chain-audit.md} and
+\texttt{v6-appendix-e-audit.md}, and the MINOR findings of the status council of
+22 November 2026).  \emph{(i)}~The statement of Corollary~\ref{cor:canonical} covered every
+cutoff of \cite[\S2]{GJ3}, while its proof needs $0\le g\le1$ (CRITICAL for that statement as
+written; no other result uses it): it is restricted to $g\in\G$ and $\mathscr P(\xi)=\xi^4$, the
+reading it rests on is named, and the sentences of \S\S\ref{subsec:strategy}
+and~\ref{sec:discussion} that summarise it agree.  \emph{(ii)}~Proposition~\ref{prop:ff-symmetries}(T)
+states the strong continuity of $a\mapsto U_a$, which the proof of Corollary~\ref{cor:canonical}
+uses.  \emph{(iii)}~Hypothesis~\ref{hyp:broken} fixes the sense of ``ground state'';
+\S\ref{sec:dichotomy} says that (B2) is not used, and the proof of Theorem~\ref{thm:dichotomy}
+states its quantifier on $a$.  \emph{(iv)}~Proposition~\ref{prop:spectral} assumes $\omega$ to be
+a state, and it and Lemma~\ref{lem:cluster} say ``open'' interval.  \emph{(v)}~The sentences on
+Theorem~\ref{thm:dichotomy} (\S\S1.3, 1.4, 13, Remark~\ref{rem:gjs7576}, \S\ref{sec:discussion})
+name the uniform local moment beside the gap; \S\S1.3, 1.4 and~\ref{sec:discussion} give the
+rate of the quadratic model as \texttt{m2/} gives it, with a proof sketch, and \S\S1.3
+and~\ref{sec:discussion} claim the non-exponential decay of $\Psi_{m_1}$ for $\lambda>0$ only;
+\S\ref{sec:discussion} says that Part~II
+re-uses an argument of Appendix~\ref{app:huniform}; the pages of \cite{MMST} are corrected and
+its arXiv number is added.  \emph{(vi)}~Lemma~\ref{lem:ff-sources}(b) declares its reading of the
+domain in (I.40); the free-field entry above no longer counts the dilation unitary among the
+objects identified with those of the sources; the Scope of Assumption~\ref{A:cutoff} claims the
+dictionary of Lemma~\ref{lem:ff-sources} for \cite{GJ2} only.  \emph{(vii)}~Wording (status
+council of 22 November): the constants of the rate (abstract, \S1.2, Theorem~\ref{thm:MAIN},
+Appendices~\ref{app:constants} and~\ref{app:comparison}), the Scope of
+Assumptions~\ref{A:cutoff} and~\ref{A:gjs}, the source of Assumption~\ref{A:domain}(ii) and its
+page images, the dependence on the filter (Lemma~\ref{lem:filter}), the abstract's list of
+imports, and the two mentions of the dossier index.  Theorem~\ref{thm:MAIN} and every other
+theorem are unchanged in substance; no label was renumbered.
 \item \emph{Withdrawn routes} (kept in the record, not used here):
 \texttt{m4/h6-attack.tex} Thm.~2.3 (withdrawn; UV-divergent double commutator);
 gap-based (H6) proofs; wavelet-MRA-as-Polchinski decomposition (see Part II documents).
@@ -4161,7 +4263,8 @@ Theorem~\ref{thm:D3} uses the parallel case only.
 
 \emph{What the appendix does not do.}  It does not prove the transverse case of
 Theorem~1.1.7; it does not re-derive the cluster expansion; it does not evaluate the
-constant of Theorem~\ref{thm:stability}, which enters the constants below as $S_2(B)$; and
+constant $S_2(B)$ of Definition~\ref{aux:notation-S2def}, finite by Theorem~\ref{thm:stability},
+which enters the constants below; and
 it proves nothing about the net of ground states beyond what \S\S\ref{sec:M2}--\ref{sec:G}
 derive from its two theorems.  The open human readings it rests on, items 1--4, 9(c) and 10--12 of
 \texttt{part\_i/C5\_reading\_record.md}, are named beside every status word.
@@ -7021,8 +7124,9 @@ with $V(h')(0)$, $V_*$ and $\overline\Sigma_{3\times5}$ as in \S\ref{sub:d4-sett
 Lemma~\ref{aux:notation-cU}, and $S_2(B_{3\times5})$ the common value of
 Definition~\ref{aux:notation-S2def} at all boxes of $3$ rows and $5$ columns
 (Proposition~\ref{aux:notation-S2}(iii)).  In working coordinates (Remark~\ref{rem:wlog}), $M_B$
-depends on $(\lambda,\mathscr P,m_0)$ through $C_7$, $m_1$, $K_1$, $K_2$, the unevaluated finite
-constant $S_2(B_{3\times5})$ of Theorem~\ref{thm:stability}, and $V_*$; it does not depend on $h$, $a$
+depends on $(\lambda,\mathscr P,m_0)$ through $C_7$, $m_1$, $K_1$, $K_2$, the unevaluated
+constant $S_2(B_{3\times5})$ of Definition~\ref{aux:notation-S2def}, finite by
+Theorem~\ref{thm:stability}, and $V_*$; it does not depend on $h$, $a$
 or $h'$.  The proof uses GJS Theorem~1.1.7 across strips transverse to the time-zero line, a case
 its printed proof does not reach (A8(iv)-T, Assumption~\ref{A:gjs}, item (iv-T); \S\ref{sub:d4-transverse}).
 \end{theorem}
@@ -7196,7 +7300,8 @@ Lemma~\ref{aux:notation-ident}(iii).  The printed proof of Theorem~1.1.7 takes i
 from Theorem~1.1.8 at the same $h$ \cite[p.~597]{GJS}; that is a fact about the source's
 proof, which this manuscript does not re-verify (Scope (c) of Assumption~\ref{A:gjs}).  $M_B$
 is not ``independent of everything but $(\lambda,\mathscr P,m_0)$'' in an explicit way: it
-depends on them through $C_7$, $m_1$, $K_1$, $K_2$ and the unevaluated constant of
+depends on them through $C_7$, $m_1$, $K_1$, $K_2$ and the unevaluated constant
+$S_2(B_{3\times5})$ of Definition~\ref{aux:notation-S2def}, finite by
 Theorem~\ref{thm:stability}, in working coordinates (Remark~\ref{rem:wlog}) (trap~10).  The
 Euclidean bound implies the Hamiltonian bound of Theorem~\ref{thm:M2} through Steps~5--6 of
 its proof; the converse is not claimed (trap~9).  The theorem needs the weak-coupling
@@ -7390,7 +7495,8 @@ is: $M_B$ first; then $h$, $a$ and $h'$.
 \begin{itemize}
 \item $M_B$ depends on $(\lambda,\mathscr P,m_0)$ through $C_7$, $m_1$ (also through
 $\overline\Sigma_{3\times5}$), $K_1$, $K_2$, the unevaluated constant $S_2(B_{3\times5})$ of
-Theorem~\ref{thm:stability} and the finite $V_*$, in the working coordinates
+Definition~\ref{aux:notation-S2def}, finite by Theorem~\ref{thm:stability}, and the finite
+$V_*$, in the working coordinates
 (Remark~\ref{rem:wlog}); this is the rider of trap~10, and $M_B$ replaced the former $M$ of
 Theorem~\ref{thm:M2} on 7 November 2026.  Theorem~\ref{thm:D4} bounds the constructed observable,
 $V(h')(0)=J_0V(h')$ with $V(h')$ the limit of Lemma~\ref{aux:notation-wick}(iv); its base term
@@ -8353,7 +8459,8 @@ $U_{\mathbf 1}=1$, $W=1$.
 \begin{enumerate}
 \item[\textup{(T)}] Let $m>0$ and, for $a\in\R$, $U_a:=U_{\tau_a}$
 (Lemmas~\ref{lem:ff-onepart}(ii) and~\ref{lem:ff-transport}), and $\tau_a:=\mathrm{Ad}\,U_a$.
-Then $U_a1=1$, $U_aU_b=U_{a+b}$, and for $f\in\mathcal K_m$ and real $h\in\mathcal S(\R)$
+Then $U_a1=1$, $U_aU_b=U_{a+b}$, $a\mapsto U_a$ is a strongly continuous one-parameter unitary
+group, and for $f\in\mathcal K_m$ and real $h\in\mathcal S(\R)$
 \[
  U_a\varphi_0(f)U_a^*=\varphi_0(\tau_af),\qquad U_a\pi_0(h)U_a^*=\pi_0(\tau_ah),
 \]
@@ -8399,6 +8506,10 @@ where $V_{m,\lambda}(g)=\lambda\sum_na_n{:}\varphi_0^n(g){:}_{C_m}$ is the inter
 \begin{proof}
 (T) $U_a1=1$ and the relation for $\varphi_0$ are Lemma~\ref{lem:ff-transport}(i), (ii);
 $U_aU_b=U_{a+b}$ is Lemma~\ref{lem:ff-transport}(v), since $\tau_a\tau_b=\tau_{a+b}$.  By
+Lemma~\ref{lem:ff-onepart}(ii), $j^{\C}\tau_a^{\C}(j^{\C})^{-1}$ is multiplication by $e^{-iak}$,
+strongly continuous in $a$ by dominated convergence; so $(\tau_a^{\C})_{a\in\R}$ is a strongly
+continuous one-parameter unitary group on $\mathcal K_m^{\C}$, and so is
+$U_a=D\,\Gamma_{\!\mathcal F}(\tau_a^{\C})\,D^{-1}$ by Lemma~\ref{lem:ff-gamma}(iv).  By
 Definition~\ref{def:ff-objects}(b), Lemma~\ref{lem:ff-transport}(i) and
 Lemma~\ref{lem:ff-onepart}(ii),
 \[
@@ -8645,7 +8756,10 @@ vectors lie in the domain of $D^{-1}H_0D$, which acts on them by the formula (I.
 $A=\mu$.  Here the source's $\mu$ is the closure of $\mu\upharpoonright\mathcal S_\R(\R)$ in
 $\mathcal K$ ((II.47): ``$\mu$ is then the closure of the operator defined on $\mathcal S$''),
 which is positive and self-adjoint and is the restriction of $\mu^{\C}$ to $\mathcal K$
-(Lemma~\ref{lem:ff-onepart}(ii)).  That is, $D^{-1}H_0D$ extends $d\Gamma(\mu)$, and, $H_0$ being closed, $H_0$ extends
+(Lemma~\ref{lem:ff-onepart}(ii)).  The domain in (I.40), ``$D(A)\otimes\dots\otimes D(A)$
+(incomplete tensor product)'' joined by an ``(incomplete direct sum)'' over $n$, is read as the
+complex span of the vectors $S_n(v_1\otimes\dots\otimes v_n)$ with $v_j\in D(\mu)$, and the
+finite sums of such vectors over $n$.  That is, $D^{-1}H_0D$ extends $d\Gamma(\mu)$, and, $H_0$ being closed, $H_0$ extends
 the closure $Z$ of $d\Gamma(\mu)$ transported by $D$.  By Assumption~\ref{A:cutoff}(f) (the
 source's Example 3, for the positive self-adjoint operator $\mu$ on $\mathcal K$), $Z$
 generates a contraction semigroup in the source's convention, $e^{-tZ}$; so, by the
@@ -8733,7 +8847,7 @@ Comm.\ Math.\ Phys.\ \textbf{309} (2012) 835--871.
 
 \bibitem{MMST} V.~Morinelli, G.~Morsella, A.~Stottmeister, Y.~Tanimoto,
 \emph{Scaling limits of lattice quantum fields by wavelets},
-Comm.\ Math.\ Phys.\ \textbf{387} (2021) 1299--1367.
+Comm.\ Math.\ Phys.\ \textbf{387} (2021) 299--360; arXiv:2010.11121.
 
 \bibitem{Lamport} L.~Lamport,
 \emph{How to write a 21st century proof},

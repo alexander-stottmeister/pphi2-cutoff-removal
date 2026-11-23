@@ -19,7 +19,7 @@ consumed. Every transcribed display carries a `% src:` comment naming its origin
 | `audit_2026/critical_proof_audit.tex` | independent audit, frozen against the v1 SHA-256 |
 | `audit_2026/lamport_euclidean_to_gap.tex` | fully explicit proof, GJS ⟹ (M₂) + (G) |
 | `audit_2026/lamport_gap_to_main.tex` | fully explicit proof, (M₂) + (G) ⟹ main theorem |
-| `audit_2026/citation_screenshot_dossier.tex` + `evidence/` | page images for every import |
+| `audit_2026/citation_screenshot_dossier.tex` + `evidence/` | page images for every import; the `.tex` shows 54 of the 97 images and none of the pages added since 31 October 2026, which are listed in the Dossier line of each assumption in `part_i/main.tex` and in the "Dossier map" at the end of `part_i/README.md` |
 | `m4/r1-check.tex` | gate R1: h-uniformity of the Euclidean inputs |
 | `m4/r2-check.tex` | gate R2: printed norms and exact constants, from the page image of p. 594 |
 | `m0/m0.tex`, `m2/m2.tex`, `m3/m3.tex` | spectral passage; quadratic-model rate; dichotomy |
@@ -71,10 +71,17 @@ The point of publishing this is that the errors are part of the record.
   dilation unitary, and used how translations, parity and dilations act on the fields,
   without defining these objects or deriving or importing those actions. No step was found
   to be false. Repaired by Appendix E (definitions through the unitary between Fock space
-  and Q-space of Simon's Theorem I.11; the actions proved; the objects identified with those
-  of the Fock-space sources), audited in rounds V5 to V5d, its documentation checked by a
+  and Q-space of Simon's Theorem I.11; the actions proved; the objects, except the dilation unitary,
+  identified with those of GJ2), audited in rounds V5 to V5d, its documentation checked by a
   third agent on 12 Nov — see [status](status.md) and
   `part_i/README.md`, "Free-field appendix (2026-11-11)".
+- **Audit of 23 Nov 2026** (published 24 Nov): the statement of Corollary 12.3 covered every
+  cutoff of GJ3 §2, while its proof needs 0 ≤ g ≤ 1 (CRITICAL for that statement as written;
+  no other result uses it); restricted to cutoffs 0 ≤ g ≤ 1 and P(ξ) = ξ⁴. Also:
+  Proposition E.5(T) states the strong continuity of translations; Hypothesis 13.1 fixes the
+  sense of "ground state"; the Scope paragraphs of A1 and A8, the source of A5(ii), the
+  description of the rate's constants and smaller wording — see [status](status.md) and
+  `part_i/README.md`, "Audit and corrections (2026-11-23)".
 - **Scope amendment** (5 Sep 2026): the status of U_GJS re-based — see
   [imports](imports.md). No proof changed; all 125 labels unmoved.
 
@@ -85,13 +92,15 @@ decomposition, which moved to the Part II documents.
 ## The citation dossiers
 
 Every load-bearing citation is matched to an image of the page it is taken from, at the
-theorem actually used. The dossier sources are in the repository; the page images are
+theorem actually used, except GJ3 p. 205, GJ71 p. 255 and Rosen70 p. 158, cited since
+23 November 2026 (`part_i/README.md`, gate GA, G4). The dossier sources are in the repository; the page images are
 not — they are third-party copyrighted material, and the JSTOR scans additionally carry
 a watermark naming the downloading institution. Building a dossier without the corpus
 gives a framed placeholder naming each missing file, with every claim, page reference
 and finding intact.
 
-To regenerate the corpus from your own copies of the sources:
+To regenerate the corpus of the 16 August 2026 audit, `fresh_audit_2026_08_16/evidence/`,
+from your own copies of the sources:
 
 ```sh
 sh fresh_audit_2026_08_16/render_evidence.sh
@@ -99,7 +108,10 @@ sh fresh_audit_2026_08_16/render_evidence.sh
 
 Each call is pinned to a one-based page number, so the images are reproducible for
 anyone with legal access to the papers. The `render` lines name the file expected for
-each source under `refs/`.
+each source under `refs/`. The older dossier `audit_2026/evidence/`, the one
+`part_i/main.tex` cites, has no render script; its page images behind the imports are listed
+in the Dossier line of each assumption in `part_i/main.tex` and in the "Dossier map" at the
+end of `part_i/README.md`.
 
 ## Checking the inventory
 

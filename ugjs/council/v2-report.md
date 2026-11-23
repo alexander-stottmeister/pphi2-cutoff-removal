@@ -3,7 +3,7 @@
 Round V2 of `ugjs/PLAN.md` Part 5. Auditor: a fresh agent (Claude Opus 5.5) that drafted nothing of the note and did not
 read the drafters' reports or the V1 reports before §§1–4 below were written. Started 2 November 2026, interrupted by a
 usage limit, resumed and finished 3 November 2026. Standard: AGENTS.md §§1–5. Severity words as in AGENTS.md §2.
-`WORK/` = `/private/tmp/claude-501/-Users-alex-Documents-Uni-Hannover-claude-glimm-jaffe/8bac9e45-6e21-41a1-bdb8-e018c3356462/scratchpad/phaseAB/`.
+`WORK/` = `<scratch>/phaseAB/`.
 
 ## Verdict
 

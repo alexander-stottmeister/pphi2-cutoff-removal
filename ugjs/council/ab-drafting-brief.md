@@ -2,8 +2,8 @@
 
 Orchestrator: Claude (Fable 5.1), session of 31 October 2026. Drafters: aqft, mp, cqft2 (the
 council of `ugjs/PLAN.md`). Repository (read-only for drafters):
-`/Users/alex/Documents/Uni/Hannover/claude/glimm_jaffe/`. Work folder (the only place you write):
-`/private/tmp/claude-501/-Users-alex-Documents-Uni-Hannover-claude-glimm-jaffe/8bac9e45-6e21-41a1-bdb8-e018c3356462/scratchpad/phaseAB/`
+`<ws>/glimm_jaffe/`. Work folder (the only place you write):
+`<scratch>/phaseAB/`
 (below: `WORK/`). GJS 1974 page images: `WORK/../gjs74/` (PDF page = printed page − 583; e.g.
 printed p. 594 is PDF page 11, file names carry the PDF page); text layer:
 `pdftotext -f N -l N WORK/../gjs74.pdf -`.
@@ -23,7 +23,7 @@ printed p. 594 is PDF page 11, file names carry the PDF page); text layer:
    `lem:ce2strip` l. 1526; Theorems 7.7–7.8), Appendix C (Lemma C.2, Theorem C.5 `thm:stability`
    l. 3008, Proposition C.7). Statement numbers and pages: `WORK/labels-main.txt` (generated
    from `main.aux`). Cite numbers from that table only, never from memory.
-4. `/Users/alex/Documents/Uni/Hannover/claude/AGENTS.md`, §§1–4: binding on every line you write.
+4. `<ws>/AGENTS.md`, §§1–4: binding on every line you write.
 5. `WORK/preamble.tex` and `WORK/comparison.tex`: the macros and the section plan.
 
 ## 1. The deliverable and who writes what

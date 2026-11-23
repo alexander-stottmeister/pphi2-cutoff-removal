@@ -241,5 +241,6 @@ under the standing parameter hypotheses (t >= t_0 with t_0 L >= 1 where the conv
 bounds are consumed; eps_M in A5's constant; omega^ct defined by the constructed K_L).
 
 **Open residues (explicit, none a hidden gap):** the eta symbol collision (V2/V4,
-by-hand rename); Part I is conditional on the U_GJS interface (stated on its title page)
-with item C5 (second human reader for the GJS page images) outstanding.
+by-hand rename); Part I's Theorem 12.2 is an implication from printed imports, with one GJS
+theorem imported (Theorem 1.1.7, including its transverse case A8(iv)-T), and its audit item
+C5 (second human reader for the GJS page images) is open (`../README.md`, Status).
